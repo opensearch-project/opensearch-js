@@ -51,13 +51,13 @@ if (nodeMajor < 10) {
 }
 
 /* istanbul ignore next */
-if (nodeMajor >= 10 && nodeMajor < 12) {
-  process.emitWarning('You are using a version of Node.js that will reach EOL in April 2021. ' +
-                      'The support for this version will be dropped in 7.13. ' +
-                      'Please refer to https://ela.st/nodejs-support for additional information.',
-  'DeprecationWarning'
-  )
-}
+// if (nodeMajor >= 10 && nodeMajor < 12) {
+//   process.emitWarning('You are using a version of Node.js that will reach EOL in April 2021. ' +
+//                       'The support for this version will be dropped in 7.13. ' +
+//                       'Please refer to https://ela.st/nodejs-support for additional information.',
+//   'DeprecationWarning'
+//   )
+// }
 
 class Client extends ESAPI {
   constructor (opts = {}) {

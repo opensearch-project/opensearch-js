@@ -1,4 +1,4 @@
-## 👉 [Please follow one of these issue templates](https://github.com/elastic/elasticsearch-js/issues/new/choose) 👈
+## 👉 [Please follow one of these issue templates](https://github.com/elastic/opensearch-js/issues/new/choose) 👈
 
 #### You have already researched for similar issues?
 It's not uncommon that somebody already opened an issue or in the best case it's already fixed but not merged. That's the reason why you should [search](https://github.com/elastic/elasticsearch-js/issues) at first before submitting a new one.

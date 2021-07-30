@@ -61,7 +61,7 @@ jobs:
     - name: Runs Elasticsearch
       uses: elastic/elastic-github-actions/elasticsearch@master
       with:
-        stack-version: 7.x-SNAPSHOT
+        stack-version: 7.10.2-SNAPSHOT
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -93,12 +93,12 @@ jobs:
     - name: Runs Elasticsearch
       uses: elastic/elastic-github-actions/elasticsearch@master
       with:
-        stack-version: 8.0.0-SNAPSHOT
+        stack-version: 7.10.2-SNAPSHOT
 
-    - name: Use Node.js 14.x
+    - name: Use Node.js 10.x
       uses: actions/setup-node@v1
       with:
-        node-version: 14.x
+        node-version: 10.x
 
     - name: Install
       run: |

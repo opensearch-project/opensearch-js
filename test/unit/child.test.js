@@ -20,9 +20,8 @@
 'use strict'
 
 const { test } = require('tap')
-const { errors } = require('../../index')
+const { Client, errors } = require('../../index')
 const {
-  Client,
   buildServer,
   connection: { MockConnection }
 } = require('../utils')

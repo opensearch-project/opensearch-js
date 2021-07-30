@@ -2,9 +2,8 @@
 
 const { test } = require('tap')
 const FakeTimers = require('@sinonjs/fake-timers')
-const { Transport } = require('../../index')
+const { Client, Transport } = require('../../index')
 const {
-  Client,
   connection: { MockConnection, MockConnectionSniff }
 } = require('../utils')
 const noop = () => {}

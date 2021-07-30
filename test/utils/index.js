@@ -25,7 +25,6 @@ const buildServer = require('./buildServer')
 const buildCluster = require('./buildCluster')
 const buildProxy = require('./buildProxy')
 const connection = require('./MockConnection')
-const { Client } = require('../../')
 
 async function waitCluster (client, waitForStatus = 'green', timeout = '50s', times = 0) {
   if (!client) {
@@ -42,25 +41,10 @@ async function waitCluster (client, waitForStatus = 'green', timeout = '50s', ti
   }
 }
 
-function skipProductCheck (client) {
-  const tSymbol = Object.getOwnPropertySymbols(client.transport || client)
-    .filter(symbol => symbol.description === 'product check')[0]
-  ;(client.transport || client)[tSymbol] = 2
-}
-
-class NoProductCheckClient extends Client {
-  constructor (opts) {
-    super(opts)
-    skipProductCheck(this)
-  }
-}
-
 module.exports = {
   buildServer,
   buildCluster,
   buildProxy,
   connection,
-  waitCluster,
-  skipProductCheck,
-  Client: NoProductCheckClient
+  waitCluster
 }

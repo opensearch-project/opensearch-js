@@ -20,7 +20,8 @@
 'use strict'
 
 const { test } = require('tap')
-const { Client, connection } = require('../../utils')
+const { Client } = require('../../../')
+const { connection } = require('../../utils')
 
 test('Search should have an additional documents property', async t => {
   const MockConnection = connection.buildMockConnection({

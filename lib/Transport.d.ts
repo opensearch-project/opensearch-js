@@ -26,8 +26,7 @@ import * as errors from './errors';
 export type ApiError = errors.ConfigurationError | errors.ConnectionError |
                        errors.DeserializationError | errors.SerializationError |
                        errors.NoLivingConnectionsError | errors.ResponseError |
-                       errors.TimeoutError | errors.RequestAbortedError |
-                       errors.ProductNotSupportedError
+                       errors.TimeoutError | errors.RequestAbortedError
 
 export type Context = unknown
 

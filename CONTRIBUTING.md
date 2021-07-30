@@ -1,100 +1,96 @@
-# Contributing to the Elasticsearch Node.js client
+- [Contributing to OpenSearch](#contributing-to-opensearch)
+- [First Things First](#first-things-first)
+- [Ways to Contribute](#ways-to-contribute)
+  - [Bug Reports](#bug-reports)
+  - [Feature Requests](#feature-requests)
+  - [Contributing Code](#contributing-code)
+- [Developer Certificate of Origin](#developer-certificate-of-origin)
+- [Review Process](#review-process)
 
-The Elasticsearch Node.js client is open source and we love to receive contributions from our community — you!
+## Contributing to OpenSearch
 
-There are many ways to contribute,
-from writing tutorials or blog posts,
-improving the documentation,
-submitting bug reports and feature requests or writing code.
+OpenSearch is a community project that is built and maintained by people just like **you**. We're glad you're interested in helping out. There are several different ways you can do it, but before we talk about that, let's talk about how to get started.
 
-## Repository structure
-The `master` branch is considered unstable, and it's compatible with Elasticsearch master. Unless you are patching an issue, new features should always be sent to the `master` branch, in case of a bugfix, it depends if the bug affects all the release lines.<br/>
-There is a branch for every supported release line, such as `7.x` or `6.x`. We release bugfixes as soon as possible, while minor and major releases are published at the same time of the Elastic Stack.
+## First Things First
 
-Usually for every release line there will be a *published* version and a *next* version. Eg: the `7.x` branch contains the version published on npm, and bugfixes should be sent there, while `7.2` *(assuming that 7.1.x is released)* contains the next version, and new features should be sent there.
+1. **When in doubt, open an issue** - For almost any type of contribution, the first step is opening an issue. Even if you think you already know what the solution is, writing down a description of the problem you're trying to solve will help everyone get context when they review your pull request. If it's truly a trivial change (e.g. spelling error), you can skip this step -- but as the subject says, when it doubt, [open an issue](issues).
 
-## Code contributions
+2. **Only submit your own work**  (or work you have sufficient rights to submit) - Please make sure that any code or documentation you submit is your work or you have the rights to submit. We respect the intellectual property rights of others, and as part of contributing, we'll ask you to sign your contribution with a "Developer Certificate of Origin" (DCO) that states you have the rights to submit this work and you understand we'll use your contribution. There's more information about this topic in the [DCO section](#developer-certificate-of-origin).
 
-If you have a bugfix or new feature that you would like to contribute,
-please find or open an issue about it first.
-Talk about what you would like to do.
-It may be that somebody is already working on it,
-or that there are particular issues that you should know about before implementing the change.
+## Ways to Contribute
 
-Note that we strictly follow the [Elastic EOL schedule](https://www.elastic.co/support/eol).
+### Bug Reports
 
-### Submitting your changes
+Ugh! Bugs!
 
-Generally, we require that you test any code you are adding or modifying.
-Once your changes are ready to submit for review:
+A bug is when software behaves in a way that you didn't expect and the developer didn't intend. To help us understand what's going on, we first want to make sure you're working from the latest version.
 
-1. Test your changes
+Once you've confirmed that the bug still exists in the latest version, you'll want to check to make sure it's not something we already know about on the [open issues GitHub page](issues).
 
-    Run the test suite to make sure that nothing is broken.
-    Usually run `npm test` is enough, our CI will take care of running the integration test. If you want to run the integration test yourself, see the *Testing* section below.
+If you've upgraded to the latest version and you can't find it in our open issues list, then you'll need to tell us how to reproduce it Provide as much information as you can. You may think that the problem lies with your query, when actually it depends on how your data is indexed. The easier it is for us to recreate your problem, the faster it is likely to be fixed.
 
-2. Submit a pull request
+### Feature Requests
 
-    Push your local changes to your forked copy of the repository and [submit a pull request](https://help.github.com/articles/using-pull-requests).
-    In the pull request,
-    choose a title which sums up the changes that you have made,
-    and in the body provide more details about what your changes do.
-    Also mention the number of the issue where discussion has taken place,
-    eg "Closes #123".
+If you've thought of a way that OpenSearch could be better, we want to hear about it. We track feature requests using GitHub, so please feel free to open an issue which describes the feature you would like to see, why you need it, and how it should work.
 
-3. Sign the Contributor License Agreement
 
-    Please make sure you have signed our [Contributor License Agreement](https://www.elastic.co/contributor-agreement/).
-    We are not asking you to assign copyright to us,
-    but to give us the right to distribute your code without restriction.
-    We ask this of all contributors in order to assure our users of the origin and continuing existence of the code.
-    You only need to sign the CLA once.
+### Contributing Code
 
-4. Be patient
+As with other types of contributions, the first step is to [open an issue on GitHub](issues/new/choose). Opening an issue before you make changes makes sure that someone else isn't already working on that particular problem. It also lets us all work together to find the right approach before you spend a bunch of time on a PR. So again, when in doubt, open an issue.
 
-    We might not be able to review your code as fast as we would like to,
-    but we'll do our best to dedicate it the attention it deserves.
-    Your effort is much appreciated!
+## Developer Certificate of Origin
 
-### Code generation
+OpenSearch is an open source product released under the Apache 2.0 license (see either [the Apache site](https://www.apache.org/licenses/LICENSE-2.0) or the [LICENSE.txt file](LICENSE.txt)). The Apache 2.0 license allows you to freely use, modify, distribute, and sell your own products that include Apache 2.0 licensed software.
 
-The entire content of the API folder is generated as well as the `docs/reference.asciidoc` file.<br/>
-If you want to run the code generation you should run the following command:
-```sh
-node scripts/generate --tag <tag name>
-# or
-node scripts/generate --branch <branch name>
+We respect intellectual property rights of others and we want to make sure all incoming contributions are correctly attributed and licensed. A Developer Certificate of Origin (DCO) is a lightweight mechanism to do that.
+
+The DCO is a declaration attached to every contribution made by every developer. In the commit message of the contribution, the developer simply adds a `Signed-off-by` statement and thereby agrees to the DCO, which you can find below or at [DeveloperCertificate.org](http://developercertificate.org/).
+
 ```
-Then you should copy the content of `api/generated.d.ts` into the `index.d.ts` file *(automate this step would be a nice pr!)*.
+Developer's Certificate of Origin 1.1
 
-### Testing
-There are different test scripts, usually during development you only need to run `npm test`, but if you want you can run just a part of the suite, following you will find all the testing scripts and what they do.
+By making a contribution to this project, I certify that:
 
-| Script | Description |
-|---|---|
-| `npm run test:unit` | Runs the content of the `test/unit` folder. |
-| `npm run test:behavior` | Runs the content of the `test/behavior` folder. |
-| `npm run test:types` | Runs the content of the `test/types` folder. |
-| `npm run test:unit -- --cov --coverage-report=html` | Runs the content of the `test/unit` folder and calculates the code coverage. |
-| `npm run test:integration` | Runs the integration test runner.<br/>*Note: it requires a living instance of Elasticsearch.* |
-| `npm run lint` | Run the [linter](https://standardjs.com/). |
-| `npm run lint:fix` | Fixes the lint errors. |
-| `npm test` | Runs lint, unit, behavior, and types test. |
+(a) The contribution was created in whole or in part by me and I
+    have the right to submit it under the open source license
+    indicated in the file; or
 
-#### Integration test
-The integration test are generated on the fly by the runner you will find inside `test/integration`, once you execute it, it will clone the Elasticsearch repository and checkout the correct version to grab the [OSS yaml files](https://github.com/elastic/elasticsearch/tree/master/rest-api-spec/src/main/resources/rest-api-spec/test) and the [Elastic licensed yaml files](https://github.com/elastic/elasticsearch/tree/master/x-pack/plugin/src/test/resources/rest-api-spec/test) that will be used for generating the test.
+(b) The contribution is based upon previous work that, to the
+    best of my knowledge, is covered under an appropriate open
+    source license and I have the right under that license to
+    submit that work with modifications, whether created in whole
+    or in part by me, under the same open source license (unless
+    I am permitted to submit under a different license), as
+    Indicated in the file; or
 
-Usually this step is executed by CI since it takes some time, but you can easily run this yourself! Just follow this steps:
-1. Boot an Elasticsearch instance, you can do that by running `./scripts/es-docker.sh` or `./scripts/es-docker-platinum.sh`, the first one will work only with the OSS APIs, while the second will work also with the Elastic licensed APIs;
-1. If you are running the OSS test, you should use `npm run test:integration`, otherwise use `TEST_ES_SERVER=https://elastic:changeme@localhost:9200 npm run test:integration`. You can also pass a `-b` parameter if you want the test to bail out at the first failure: `npm run test:integration -- -b`;
-1. Grab a coffee, it will take some time ;)
+(c) The contribution was provided directly to me by some other
+    person who certified (a), (b) or (c) and I have not modified
+    it.
 
-### Releasing
+(d) I understand and agree that this project and the contribution
+    are public and that a record of the contribution (including
+    all personal information I submit with it, including my
+    sign-off) is maintained indefinitely and may be redistributed
+    consistent with this project or the open source license(s)
+    involved.
+ ```
 
-If you have access to make releases, the process is as follows:
+We require that every contribution to OpenSearch is signed with a Developer Certificate of Origin. Additionally, please use your real name. We do not accept anonymous contributors nor those utilizing pseudonyms.
 
-1. Update the version in `package.json` according to the scale of the change. (major, minor or patch)
-1. Commit changes with message `Bumped vx.y.z` where `x.y.z` is the version in `package.json`
-1. Create a release via the GitHub UI.
-1. Wait for CI to finish running the test.
-1. Publish to npm with `npm publish` *(see [publish](https://docs.npmjs.com/cli/publish) and [dist-tag](https://docs.npmjs.com/cli/dist-tag) docs)*
+Each commit must include a DCO which looks like this
+
+```
+Signed-off-by: Jane Smith <jane.smith@email.com>
+```
+
+You may type this line on your own when writing your commit messages. However, if your user.name and user.email are set in your git configs, you can use `-s` or `– – signoff` to add the `Signed-off-by` line to the end of the commit message.
+
+## Review Process
+
+We deeply appreciate everyone who takes the time to make a contribution. We will review all contributions as quickly as possible. As a reminder, [opening an issue](issues/new/choose) discussing your change before you make it is the best way to smooth the PR process. This will prevent a rejection because someone else is already working on the problem, or because the solution is incompatible with the architectural direction.
+
+During the PR process, expect that there will be some back-and-forth. Please try to respond to comments in a timely fashion, and if you don't wish to continue with the PR, let us know. If a PR takes too many iterations for its complexity or size, we may reject it. Additionally, if you stop responding we may close the PR as abandoned. In either case, if you feel this was done in error, please add a comment on the PR.
+
+If we accept the PR, a [maintainer](MAINTAINERS.md) will merge your change and usually take care of backporting it to appropriate branches ourselves.
+
+If we reject the PR, we will close the pull request with a comment explaining why. This decision isn't always final: if you feel we have misunderstood your intended change or otherwise think that we should reconsider then please continue the conversation with a comment on the PR and we'll do our best to address any further points you raise.

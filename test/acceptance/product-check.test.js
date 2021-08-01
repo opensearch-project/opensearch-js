@@ -166,7 +166,7 @@ test('Support opensearch', t => {
             distribution: 'opensearch',
             lucene_version: '8.9.0',
             minimum_wire_compatibility_version: '1.0.0',
-            minimum_index_compatibility_version: '1.0.0',
+            minimum_index_compatibility_version: '1.0.0'
           }
         }
       }

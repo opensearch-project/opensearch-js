@@ -40,7 +40,7 @@ test('No errors v7', t => {
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
             number: '7.10.2-SNAPSHOT',
-            build_flavor: 'default',
+            build_flavor: 'anything',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
             build_date: '2021-07-10T01:45:02.136546168Z',
@@ -98,7 +98,7 @@ test('Errors not v7', t => {
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
             number: '6.8.0-SNAPSHOT',
-            build_flavor: 'default',
+            build_flavor: 'anything',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
             build_date: '2021-07-10T01:45:02.136546168Z',
@@ -158,7 +158,7 @@ test('Support opensearch', t => {
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
             number: '1.0.0-SNAPSHOT',
-            build_flavor: 'default',
+            build_flavor: 'anything',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
             build_date: '2021-07-10T01:45:02.136546168Z',
@@ -211,9 +211,6 @@ test('Auth error - 401', t => {
     onRequest (params) {
       return {
         statusCode: 401,
-        headers: {
-          'x-elastic-product': 'Elasticsearch'
-        },
         body: {
           security: 'exception'
         }
@@ -265,9 +262,6 @@ test('Auth error - 403', t => {
     onRequest (params) {
       return {
         statusCode: 403,
-        headers: {
-          'x-elastic-product': 'Elasticsearch'
-        },
         body: {
           security: 'exception'
         }
@@ -337,16 +331,13 @@ test('500 error', t => {
       if (count++ >= 1) {
         return {
           statusCode: 200,
-          headers: {
-            'x-elastic-product': 'Elasticsearch'
-          },
           body: {
             name: '1ef419078577',
             cluster_name: 'docker-cluster',
             cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
             version: {
               number: '7.10.0-SNAPSHOT',
-              build_flavor: 'default',
+              build_flavor: 'anything',
               build_type: 'docker',
               build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
               build_date: '2021-07-10T01:45:02.136546168Z',
@@ -361,9 +352,6 @@ test('500 error', t => {
       } else {
         return {
           statusCode: 500,
-          headers: {
-            'x-elastic-product': 'Elasticsearch'
-          },
           body: {
             error: 'kaboom'
           }
@@ -444,16 +432,13 @@ test('Multiple subsequent calls, no errors', t => {
     onRequest (params) {
       return {
         statusCode: 200,
-        headers: {
-          'x-elastic-product': 'Elasticsearch'
-        },
         body: {
           name: '1ef419078577',
           cluster_name: 'docker-cluster',
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
             number: '7.10.0-SNAPSHOT',
-            build_flavor: 'default',
+            build_flavor: 'anything',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
             build_date: '2021-07-10T01:45:02.136546168Z',
@@ -531,7 +516,7 @@ test('Multiple subsequent calls, with errors', t => {
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
             number: '6.8.0-SNAPSHOT',
-            build_flavor: 'default',
+            build_flavor: 'anything',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
             build_date: '2021-07-10T01:45:02.136546168Z',
@@ -605,16 +590,13 @@ test('Later successful call', t => {
     onRequest (params) {
       return {
         statusCode: 200,
-        headers: {
-          'x-elastic-product': 'Elasticsearch'
-        },
         body: {
           name: '1ef419078577',
           cluster_name: 'docker-cluster',
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
             number: '7.10.0-SNAPSHOT',
-            build_flavor: 'default',
+            build_flavor: 'anything',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
             build_date: '2021-07-10T01:45:02.136546168Z',
@@ -689,7 +671,7 @@ test('Later errored call', t => {
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
             number: '6.8.0-SNAPSHOT',
-            build_flavor: 'default',
+            build_flavor: 'anything',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
             build_date: '2021-07-10T01:45:02.136546168Z',
@@ -810,16 +792,13 @@ test('No multiple checks with child clients', t => {
     onRequest (params) {
       return {
         statusCode: 200,
-        headers: {
-          'x-elastic-product': 'Elasticsearch'
-        },
         body: {
           name: '1ef419078577',
           cluster_name: 'docker-cluster',
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
             number: '7.10.0-SNAPSHOT',
-            build_flavor: 'default',
+            build_flavor: 'anything',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
             build_date: '2021-07-10T01:45:02.136546168Z',

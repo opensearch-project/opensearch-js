@@ -523,7 +523,7 @@ a|* `name` - `string`
 [[compatible-check]]
 === Automatic compatible check
 
-Since v7.14.0, the client performs a required compatible check before the first call.
+Client can perform a compatible check before the first call.
 This pre-flight compatible check allows the client to establish the version of Elasticsearch
 that it is communicating with. The compatible check requires one additional HTTP request to
 be sent to the server as part of the request pipeline before the main API call is sent.

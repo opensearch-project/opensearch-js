@@ -42,16 +42,16 @@ async function waitCluster (client, waitForStatus = 'green', timeout = '50s', ti
   }
 }
 
-function skipProductCheck (client) {
+function skipCompatibleCheck (client) {
   const tSymbol = Object.getOwnPropertySymbols(client.transport || client)
     .filter(symbol => symbol.description === 'compatible check')[0]
   ;(client.transport || client)[tSymbol] = 2
 }
 
-class NoProductCheckClient extends Client {
+class NoCompatibleCheckClient extends Client {
   constructor (opts) {
     super(opts)
-    skipProductCheck(this)
+    skipCompatibleCheck(this)
   }
 }
 
@@ -61,6 +61,6 @@ module.exports = {
   buildProxy,
   connection,
   waitCluster,
-  skipProductCheck,
-  Client: NoProductCheckClient
+  skipCompatibleCheck,
+  Client: NoCompatibleCheckClient
 }

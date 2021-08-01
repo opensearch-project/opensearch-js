@@ -385,6 +385,7 @@ test('500 error', t => {
       }
     }
   }, (err, result) => {
+    console.log('500 error message:', err.message)
     t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
 
     client.search({

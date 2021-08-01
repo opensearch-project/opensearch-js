@@ -572,6 +572,7 @@ test('Multiple subsequent calls, with errors', t => {
     if (req.method === 'GET') {
       t.error(err)
     } else {
+      console.log('err.message:', err.message)
       t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
     }
   })

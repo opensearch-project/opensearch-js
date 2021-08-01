@@ -255,9 +255,9 @@ class Client extends ESAPI {
     }
 
     const client = new Client(options)
-    // sync product check
+    // sync compatible check
     const tSymbol = Object.getOwnPropertySymbols(this.transport)
-      .filter(symbol => symbol.description === 'product check')[0]
+      .filter(symbol => symbol.description === 'compatible check')[0]
     client.transport[tSymbol] = this.transport[tSymbol]
     // Add parent extensions
     if (this[kExtensions].length > 0) {

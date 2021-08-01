@@ -44,7 +44,7 @@ async function waitCluster (client, waitForStatus = 'green', timeout = '50s', ti
 
 function skipProductCheck (client) {
   const tSymbol = Object.getOwnPropertySymbols(client.transport || client)
-    .filter(symbol => symbol.description === 'product check')[0]
+    .filter(symbol => symbol.description === 'compatible check')[0]
   ;(client.transport || client)[tSymbol] = 2
 }
 

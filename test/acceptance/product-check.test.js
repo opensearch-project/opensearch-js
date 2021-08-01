@@ -385,7 +385,6 @@ test('500 error', t => {
       }
     }
   }, (err, result) => {
-    console.log('500 error message:', err.message)
     t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
 
     client.search({
@@ -568,11 +567,9 @@ test('Multiple subsequent calls, with errors', t => {
 
   client.on('request', (err, event) => {
     const req = requests.shift()
-    console.log('req:', req)
     if (req.method === 'GET') {
       t.error(err)
     } else {
-      console.log('err:', err)
       t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
     }
   })

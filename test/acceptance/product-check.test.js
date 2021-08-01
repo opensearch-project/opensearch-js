@@ -756,6 +756,7 @@ test('Multiple subsequent calls, with errors', t => {
     if (req.method === 'GET') {
       t.error(err)
     } else {
+      console.log('err:', err)
       t.equal(err.message, 'The client noticed that the server is not Elasticsearch and we do not support this unknown product.')
     }
   })

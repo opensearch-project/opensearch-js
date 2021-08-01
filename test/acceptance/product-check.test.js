@@ -345,7 +345,7 @@ test('500 error', t => {
             cluster_name: 'docker-cluster',
             cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
             version: {
-              number: '8.0.0-SNAPSHOT',
+              number: '7.10.0-SNAPSHOT',
               build_flavor: 'default',
               build_type: 'docker',
               build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
@@ -453,7 +453,7 @@ test('Multiple subsequent calls, no errors', t => {
           cluster_name: 'docker-cluster',
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
-            number: '8.0.0-SNAPSHOT',
+            number: '7.10.0-SNAPSHOT',
             build_flavor: 'default',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
@@ -531,7 +531,7 @@ test('Multiple subsequent calls, with errors', t => {
           cluster_name: 'docker-cluster',
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
-            number: '8.0.0-SNAPSHOT',
+            number: '7.10.0-SNAPSHOT',
             build_flavor: 'default',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
@@ -614,7 +614,7 @@ test('Later successful call', t => {
           cluster_name: 'docker-cluster',
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
-            number: '8.0.0-SNAPSHOT',
+            number: '7.10.0-SNAPSHOT',
             build_flavor: 'default',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
@@ -689,7 +689,7 @@ test('Later errored call', t => {
           cluster_name: 'docker-cluster',
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
-            number: '8.0.0-SNAPSHOT',
+            number: '7.10.0-SNAPSHOT',
             build_flavor: 'default',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
@@ -819,7 +819,7 @@ test('No multiple checks with child clients', t => {
           cluster_name: 'docker-cluster',
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
-            number: '8.0.0-SNAPSHOT',
+            number: '7.10.0-SNAPSHOT',
             build_flavor: 'default',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',

@@ -568,6 +568,7 @@ test('Multiple subsequent calls, with errors', t => {
 
   client.on('request', (err, event) => {
     const req = requests.shift()
+    console.log('req:', req)
     if (req.method === 'GET') {
       t.error(err)
     } else {

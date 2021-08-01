@@ -616,7 +616,7 @@ test('Later successful call', t => {
           cluster_name: 'docker-cluster',
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
-            number: '6.8.0-SNAPSHOT',
+            number: '7.10.0-SNAPSHOT',
             build_flavor: 'default',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',
@@ -691,7 +691,7 @@ test('Later errored call', t => {
           cluster_name: 'docker-cluster',
           cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
           version: {
-            number: '7.10.0-SNAPSHOT',
+            number: '6.8.0-SNAPSHOT',
             build_flavor: 'default',
             build_type: 'docker',
             build_hash: '5fb4c050958a6b0b6a70a6fb3e616d0e390eaac3',

@@ -59,7 +59,7 @@ jobs:
         sudo sysctl -w vm.max_map_count=262144
 
     - name: Runs Elasticsearch
-      uses: /home/runner/work/opensearch-js/.github/workflows/actions/action@7.x
+      uses: /home/runner/work/opensearch-js/.github/workflows/actions/action@master
       with:
         stack-version: 7.x-SNAPSHOT
         

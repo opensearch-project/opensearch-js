@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [10.x, 12.x, 14.x, 16.x]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
@@ -46,7 +46,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [10.x, 12.x, 14.x, 16.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -118,40 +118,6 @@ jobs:
         npm start --prefix test/bundlers/parcel-test
         npm start --prefix test/bundlers/rollup-test
         npm start --prefix test/bundlers/webpack-test
-
-  code-coverage:
-    name: Code coverage
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install
-      run: |
-        npm install
-
-    - name: Code coverage report
-      run: |
-        npm run test:coverage-report
-
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        file: ./coverage.lcov
-        fail_ci_if_error: true
-
-    - name: Code coverage 100%
-      run: |
-        npm run test:coverage-100
 
   license:
     name: License check

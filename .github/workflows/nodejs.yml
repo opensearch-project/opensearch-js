@@ -43,9 +43,6 @@ jobs:
   helpers-integration-test:
     name: Helpers integration test
     runs-on: ubuntu-latest
-    env:
-      GITHUB_ACTIONS: true
-      ELASTICSEARCH_VERSION: elasticsearch-oss:7.10.2
 
     strategy:
       matrix:
@@ -62,9 +59,7 @@ jobs:
         sudo sysctl -w vm.max_map_count=262144
 
     - name: Runs Elasticsearch
-      run: |
-        docker pull --quiet docker.elastic.co/elasticsearch/${{ env.ELASTICSEARCH_VERSION }}
-        docker pull --quiet appropriate/curl
+      uses: ./.github/actions/action
         
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1

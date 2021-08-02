@@ -1847,6 +1847,7 @@ export interface ElasticsearchVersionInfo {
   build_hash: string
   build_snapshot: boolean
   build_type: string
+  distribution: string
   lucene_version: VersionString
   minimum_index_compatibility_version: VersionString
   minimum_wire_compatibility_version: VersionString

@@ -59,9 +59,10 @@ jobs:
         sudo sysctl -w vm.max_map_count=262144
 
     - name: Runs Elasticsearch
+      #TODO create a docker action: https://github.com/opensearch-project/opensearch-js/issues/72
       uses: elastic/elastic-github-actions/elasticsearch@master
       with:
-        stack-version: 7.x-SNAPSHOT
+        stack-version: 7.10.2
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -91,9 +92,10 @@ jobs:
         sudo sysctl -w vm.max_map_count=262144
 
     - name: Runs Elasticsearch
+      #TODO create a docker action: https://github.com/opensearch-project/opensearch-js/issues/72
       uses: elastic/elastic-github-actions/elasticsearch@master
       with:
-        stack-version: 8.0.0-SNAPSHOT
+        stack-version: 7.10.2
 
     - name: Use Node.js 14.x
       uses: actions/setup-node@v1
@@ -118,40 +120,6 @@ jobs:
         npm start --prefix test/bundlers/parcel-test
         npm start --prefix test/bundlers/rollup-test
         npm start --prefix test/bundlers/webpack-test
-
-  code-coverage:
-    name: Code coverage
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install
-      run: |
-        npm install
-
-    - name: Code coverage report
-      run: |
-        npm run test:coverage-report
-
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        file: ./coverage.lcov
-        fail_ci_if_error: true
-
-    - name: Code coverage 100%
-      run: |
-        npm run test:coverage-100
 
   license:
     name: License check

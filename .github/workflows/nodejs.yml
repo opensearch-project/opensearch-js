@@ -60,6 +60,8 @@ jobs:
 
     - name: Runs Elasticsearch
       uses: ./.github/actions/action
+      with:
+        stack-version: 7.x-SNAPSHOT
         
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1

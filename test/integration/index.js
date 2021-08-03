@@ -68,7 +68,6 @@ const platinumBlackList = {
   'index/10_with_id.yml': ['Index with ID'],
   'indices.get_alias/10_basic.yml': ['Get alias against closed indices'],
   'indices.get_alias/20_empty.yml': ['Check empty aliases when getting all aliases via /_alias'],
-  'text_structure/find_structure.yml': ['*'],
   // https://github.com/elastic/elasticsearch/pull/39400
   'ml/jobs_crud.yml': ['Test put job with id that is already taken'],
   // object keys must me strings, and `0.0.toString()` is `0`
@@ -122,14 +121,7 @@ const platinumBlackList = {
   'unsigned_long/20_null_value.yml': ['*'],
   'unsigned_long/30_multi_fields.yml': ['*'],
   'unsigned_long/40_different_numeric.yml': ['*'],
-  'unsigned_long/50_script_values.yml': ['*'],
-  // docker issue?
-  'watcher/execute_watch/60_http_input.yml': ['*'],
-  // the checks are correct, but for some reason the test is failing on js side
-  // I bet is because the backslashes in the rg
-  'watcher/execute_watch/70_invalid.yml': ['*'],
-  'watcher/put_watch/10_basic.yml': ['*'],
-  'xpack/15_basic.yml': ['*']
+  'unsigned_long/50_script_values.yml': ['*']
 }
 
 function runner (opts = {}) {

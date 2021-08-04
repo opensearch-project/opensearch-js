@@ -146,8 +146,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }, {
         url: new URL('http://127.0.0.1:9201'),
@@ -155,8 +154,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }])
 
@@ -188,8 +186,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }, {
         url: new URL('http://[::1]:9201'),
@@ -197,8 +194,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }])
 
@@ -230,8 +226,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }, {
         url: new URL('http://example.com:9201'),
@@ -239,8 +234,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }])
 
@@ -272,8 +266,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }, {
         url: new URL('http://example.com:9201'),
@@ -281,8 +274,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }])
 
@@ -428,8 +420,7 @@ test('API', t => {
       t.same(pool.connections.find(c => c.id === 'a1').roles, {
         master: true,
         data: true,
-        ingest: true,
-        ml: false
+        ingest: true
       })
       t.equal(pool.connections.find(c => c.id === 'http://127.0.0.1:9200/'), undefined)
     })

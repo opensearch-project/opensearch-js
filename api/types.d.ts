@@ -2053,7 +2053,7 @@ export type NodeIds = string
 
 export type NodeName = string
 
-export type NodeRole = 'master' | 'data' | 'data_cold' | 'data_content' | 'data_frozen' | 'data_hot' | 'data_warm' | 'client' | 'ingest' | 'ml' | 'voting_only' | 'transform' | 'remote_cluster_client' | 'coordinating_only'
+export type NodeRole = 'master' | 'data' | 'data_cold' | 'data_content' | 'data_frozen' | 'data_hot' | 'data_warm' | 'client' | 'ingest' | 'voting_only' | 'transform' | 'remote_cluster_client' | 'coordinating_only'
 
 export type NodeRoles = NodeRole[]
 
@@ -6643,7 +6643,6 @@ export interface ClusterStatsClusterNodeCount {
   data_content: integer
   data_warm: integer
   data_hot: integer
-  ml: integer
   remote_cluster_client: integer
   transform: integer
 }

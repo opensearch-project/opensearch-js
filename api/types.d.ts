@@ -6041,7 +6041,6 @@ export interface ClusterClusterStateIndexLifecycle {
 }
 
 export interface ClusterClusterStateIndexLifecyclePolicy {
-  phases: IlmPhases
 }
 
 export interface ClusterClusterStateIndexLifecycleSummary {

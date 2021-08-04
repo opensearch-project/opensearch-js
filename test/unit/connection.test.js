@@ -641,8 +641,7 @@ test('setRole', t => {
     t.same(connection.roles, {
       master: true,
       data: true,
-      ingest: true,
-      ml: false
+      ingest: true
     })
 
     connection.setRole('master', false)
@@ -650,8 +649,7 @@ test('setRole', t => {
     t.same(connection.roles, {
       master: false,
       data: true,
-      ingest: true,
-      ml: false
+      ingest: true
     })
   })
 
@@ -715,7 +713,7 @@ test('Util.inspect Connection class should hide agent, ssl and auth', t => {
   resurrectTimeout: 0,
   _openRequests: 0,
   status: 'alive',
-  roles: { master: true, data: true, ingest: true, ml: false }}`)
+  roles: { master: true, data: true, ingest: true }}`)
   )
 })
 
@@ -741,8 +739,7 @@ test('connection.toJSON should hide agent, ssl and auth', t => {
     roles: {
       master: true,
       data: true,
-      ingest: true,
-      ml: false
+      ingest: true
     }
   })
 })
@@ -832,7 +829,7 @@ test('Should not add agent and ssl to the serialized connection', t => {
 
   t.equal(
     JSON.stringify(connection),
-    '{"url":"http://localhost:9200/","id":"http://localhost:9200/","headers":{},"deadCount":0,"resurrectTimeout":0,"_openRequests":0,"status":"alive","roles":{"master":true,"data":true,"ingest":true,"ml":false}}'
+    '{"url":"http://localhost:9200/","id":"http://localhost:9200/","headers":{},"deadCount":0,"resurrectTimeout":0,"_openRequests":0,"status":"alive","roles":{"master":true,"data":true,"ingest":true}}'
   )
 
   t.end()

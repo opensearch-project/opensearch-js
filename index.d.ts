@@ -78,7 +78,6 @@ interface NodeOptions {
     master: boolean;
     data: boolean;
     ingest: boolean;
-    ml: boolean;
   }
 }
 

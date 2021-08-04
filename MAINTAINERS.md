@@ -19,7 +19,7 @@ This document explains who the maintainers are (see below), what they do in this
 
 | Maintainer               | GitHub ID                               | Affiliation |
 | ------------------------ | --------------------------------------- | ----------- |
-| Anan Zhuang | [ananzh](https://github.com/ananzh) | Amazon |
+| Anan | [ananzh](https://github.com/ananzh) | Amazon |
 | Bishoy Boktor | [boktorbb-amzn](https://github.com/boktorbb-amzn) | Amazon |
 | Mihir Soni | [mihirsoni](https://github.com/mihirsoni) | Amazon |
 | Kawika (Rocky) Avilla  | [kavilla](https://github.com/kavilla) | Amazon |

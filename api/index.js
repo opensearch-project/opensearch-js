@@ -66,7 +66,6 @@ const SnapshotApi = require('./api/snapshot')
 const TasksApi = require('./api/tasks')
 const termsEnumApi = require('./api/terms_enum')
 const termvectorsApi = require('./api/termvectors')
-const TransformApi = require('./api/transform')
 const updateApi = require('./api/update')
 const updateByQueryApi = require('./api/update_by_query')
 const updateByQueryRethrottleApi = require('./api/update_by_query_rethrottle')
@@ -83,7 +82,6 @@ const kNodes = Symbol('Nodes')
 const kShutdown = Symbol('Shutdown')
 const kSnapshot = Symbol('Snapshot')
 const kTasks = Symbol('Tasks')
-const kTransform = Symbol('Transform')
 
 function ESAPI (opts) {
   this[kConfigurationError] = opts.ConfigurationError

@@ -29,7 +29,7 @@ const { join } = require('path')
 const { locations } = require('../../scripts/download-artifacts')
 const { ConfigurationError } = require('../../lib/errors')
 
-const { delve, to, isXPackTemplate, sleep } = helper
+const { delve, to, sleep } = helper
 
 const supportedFeatures = [
   'gtelte',
@@ -46,7 +46,6 @@ const supportedFeatures = [
 function build (opts = {}) {
   const client = opts.client
   const esVersion = opts.version
-  const isXPack = opts.isXPack
   const stash = new Map()
   let response = null
 
@@ -54,7 +53,7 @@ function build (opts = {}) {
    * Runs a cleanup, removes all indices, aliases, templates, and snapshots
    * @returns {Promise}
    */
-  async function cleanup (isXPack) {
+  async function cleanup () {
     response = null
     stash.clear()
 
@@ -71,7 +70,6 @@ function build (opts = {}) {
     // delete templates
     const { body: templates } = await client.cat.templates({ h: 'name' })
     for (const template of templates.split('\n').filter(Boolean)) {
-      if (isXPackTemplate(template)) continue
       const { body } = await client.indices.deleteTemplate({ name: template }, { ignore: [404] })
       if (JSON.stringify(body).includes(`index_template [${template}] missing`)) {
         await client.indices.deleteIndexTemplate({ name: template }, { ignore: [404] })
@@ -80,7 +78,7 @@ function build (opts = {}) {
 
     // delete component template
     const { body } = await client.cluster.getComponentTemplate()
-    const components = body.component_templates.filter(c => !isXPackTemplate(c.name)).map(c => c.name)
+    const components = body.component_templates.map(c => c.name)
     if (components.length > 0) {
       await client.cluster.deleteComponentTemplate({ name: components.join(',') }, { ignore: [404] })
     }
@@ -119,11 +117,9 @@ function build (opts = {}) {
    * Runs the given test.
    * It runs the test components in the following order:
    *    - skip check
-   *    - xpack user
    *    - setup
    *    - the actual test
    *    - teardown
-   *    - xpack cleanup
    *    - cleanup
    * @param {object} setup (null if not needed)
    * @param {object} test
@@ -140,26 +136,13 @@ function build (opts = {}) {
       return
     }
 
-    if (isXPack) {
-      // Some xpack test requires this user
-      // tap.comment('Creating x-pack user')
-      try {
-        await client.security.putUser({
-          username: 'x_pack_rest_user',
-          body: { password: 'x-pack-test-password', roles: ['superuser'] }
-        })
-      } catch (err) {
-        assert.ifError(err, 'should not error: security.putUser')
-      }
-    }
-
     if (setup) await exec('Setup', setup, stats, junit)
 
     await exec('Test', test, stats, junit)
 
     if (teardown) await exec('Teardown', teardown, stats, junit)
 
-    await cleanup(isXPack)
+    await cleanup()
   }
 
   /**

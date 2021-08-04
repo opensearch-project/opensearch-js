@@ -8893,7 +8893,6 @@ export interface NodesInfoNodeInfoSettings {
   bootstrap?: NodesInfoNodeInfoBootstrap
   transport: NodesInfoNodeInfoSettingsTransport
   network?: NodesInfoNodeInfoSettingsNetwork
-  xpack?: NodesInfoNodeInfoXpack
   script?: NodesInfoNodeInfoScript
   search?: NodesInfoNodeInfoSearch
 }
@@ -8948,51 +8947,6 @@ export interface NodesInfoNodeInfoTransport {
   bound_address: string[]
   publish_address: string
   profiles: Record<string, string>
-}
-
-export interface NodesInfoNodeInfoXpack {
-  license?: NodesInfoNodeInfoXpackLicense
-  security: NodesInfoNodeInfoXpackSecurity
-  notification?: Record<string, any>
-}
-
-export interface NodesInfoNodeInfoXpackLicense {
-  self_generated: NodesInfoNodeInfoXpackLicenseType
-}
-
-export interface NodesInfoNodeInfoXpackLicenseType {
-  type: string
-}
-
-export interface NodesInfoNodeInfoXpackSecurity {
-  http: NodesInfoNodeInfoXpackSecuritySsl
-  enabled: string
-  transport: NodesInfoNodeInfoXpackSecuritySsl
-  authc?: NodesInfoNodeInfoXpackSecurityAuthc
-}
-
-export interface NodesInfoNodeInfoXpackSecurityAuthc {
-  realms: NodesInfoNodeInfoXpackSecurityAuthcRealms
-  token: NodesInfoNodeInfoXpackSecurityAuthcToken
-}
-
-export interface NodesInfoNodeInfoXpackSecurityAuthcRealms {
-  file?: Record<string, NodesInfoNodeInfoXpackSecurityAuthcRealmsStatus>
-  native?: Record<string, NodesInfoNodeInfoXpackSecurityAuthcRealmsStatus>
-  pki?: Record<string, NodesInfoNodeInfoXpackSecurityAuthcRealmsStatus>
-}
-
-export interface NodesInfoNodeInfoXpackSecurityAuthcRealmsStatus {
-  enabled?: string
-  order: string
-}
-
-export interface NodesInfoNodeInfoXpackSecurityAuthcToken {
-  enabled: string
-}
-
-export interface NodesInfoNodeInfoXpackSecuritySsl {
-  ssl: Record<string, string>
 }
 
 export interface NodesInfoNodeJvmInfo {

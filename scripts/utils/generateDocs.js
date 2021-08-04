@@ -261,9 +261,6 @@ const LINK_OVERRIDES = {
 }
 // Fixes bad urls in the JSON spec
 function fixLink (name, str) {
-  /* In 6.x some API start with `xpack.` when in master they do not. We
-   * can safely ignore that for link generation. */
-  name = name.replace(/^xpack\./, '')
   const override = LINK_OVERRIDES[name]
   if (override) return override
   if (!str) return ''

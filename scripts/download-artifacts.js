@@ -38,7 +38,6 @@ const esFolder = join(__dirname, '..', 'elasticsearch')
 const zipFolder = join(esFolder, 'artifacts.zip')
 const specFolder = join(esFolder, 'rest-api-spec', 'api')
 const freeTestFolder = join(esFolder, 'rest-api-spec', 'test', 'free')
-const xPackTestFolder = join(esFolder, 'rest-api-spec', 'test', 'platinum')
 const artifactInfo = join(esFolder, 'info.json')
 
 async function downloadArtifacts (opts) {
@@ -173,6 +172,5 @@ if (require.main === module) {
 module.exports = downloadArtifacts
 module.exports.locations = {
   specFolder,
-  freeTestFolder,
-  xPackTestFolder
+  freeTestFolder
 }

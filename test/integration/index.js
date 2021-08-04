@@ -35,7 +35,6 @@ const createJunitReporter = require('./reporter')
 const downloadArtifacts = require('../../scripts/download-artifacts')
 
 const yamlFolder = downloadArtifacts.locations.freeTestFolder
-const xPackYamlFolder = downloadArtifacts.locations.xPackTestFolder
 
 const MAX_API_TIME = 1000 * 90
 const MAX_FILE_TIME = 1000 * 30
@@ -56,85 +55,12 @@ const freeSkips = {
   // which triggers a retry and the node to be marked as dead
   'search.aggregation/240_max_buckets.yml': ['*']
 }
-const platinumBlackList = {
-  'analytics/histogram.yml': ['Histogram requires values in increasing order'],
-  // this two test cases are broken, we should
-  // return on those in the future.
-  'analytics/top_metrics.yml': [
-    'sort by keyword field fails',
-    'sort by string script fails'
-  ],
-  'cat.aliases/10_basic.yml': ['Empty cluster'],
-  'index/10_with_id.yml': ['Index with ID'],
-  'indices.get_alias/10_basic.yml': ['Get alias against closed indices'],
-  'indices.get_alias/20_empty.yml': ['Check empty aliases when getting all aliases via /_alias'],
-  // https://github.com/elastic/elasticsearch/pull/39400
-  'ml/jobs_crud.yml': ['Test put job with id that is already taken'],
-  // object keys must me strings, and `0.0.toString()` is `0`
-  'ml/evaluate_data_frame.yml': [
-    'Test binary_soft_classifition precision',
-    'Test binary_soft_classifition recall',
-    'Test binary_soft_classifition confusion_matrix'
-  ],
-  // it gets random failures on CI, must investigate
-  'ml/set_upgrade_mode.yml': [
-    'Attempt to open job when upgrade_mode is enabled',
-    'Setting upgrade mode to disabled from enabled'
-  ],
-  // The cleanup fails with a index not found when retrieving the jobs
-  'ml/get_datafeed_stats.yml': ['Test get datafeed stats when total_search_time_ms mapping is missing'],
-  'ml/bucket_correlation_agg.yml': ['Test correlation bucket agg simple'],
-  'ml/preview_datafeed.yml': ['*'],
-  // Investigate why is failing
-  'ml/inference_crud.yml': ['*'],
-  // investigate why this is failing
-  'monitoring/bulk/10_basic.yml': ['*'],
-  'monitoring/bulk/20_privileges.yml': ['*'],
-  'license/20_put_license.yml': ['*'],
-  'snapshot/10_basic.yml': ['*'],
-  'snapshot/20_operator_privileges_disabled.yml': ['*'],
-  // the body is correct, but the regex is failing
-  'sql/sql.yml': ['Getting textual representation'],
-  'searchable_snapshots/10_usage.yml': ['*'],
-  'service_accounts/10_basic.yml': ['*'],
-  // we are setting two certificates in the docker config
-  'ssl/10_basic.yml': ['*'],
-  // very likely, the index template has not been loaded yet.
-  // we should run a indices.existsTemplate, but the name of the
-  // template may vary during time.
-  'transforms_crud.yml': [
-    'Test basic transform crud',
-    'Test transform with query and array of indices in source',
-    'Test PUT continuous transform',
-    'Test PUT continuous transform without delay set'
-  ],
-  'transforms_force_delete.yml': [
-    'Test force deleting a running transform'
-  ],
-  'transforms_cat_apis.yml': ['*'],
-  'transforms_start_stop.yml': ['*'],
-  'transforms_stats.yml': ['*'],
-  'transforms_stats_continuous.yml': ['*'],
-  'transforms_update.yml': ['*'],
-  // js does not support ulongs
-  'unsigned_long/10_basic.yml': ['*'],
-  'unsigned_long/20_null_value.yml': ['*'],
-  'unsigned_long/30_multi_fields.yml': ['*'],
-  'unsigned_long/40_different_numeric.yml': ['*'],
-  'unsigned_long/50_script_values.yml': ['*']
-}
 
 function runner (opts = {}) {
   const options = { node: opts.node }
-  if (opts.isXPack) {
-    options.ssl = {
-      ca: readFileSync(join(__dirname, '..', '..', '.ci', 'certs', 'ca.crt'), 'utf8'),
-      rejectUnauthorized: false
-    }
-  }
   const client = new Client(options)
   log('Loading yaml suite')
-  start({ client, isXPack: opts.isXPack })
+  start({ client })
     .catch(err => {
       if (err.name === 'ResponseError') {
         console.error(err)
@@ -159,7 +85,7 @@ async function waitCluster (client, times = 0) {
   }
 }
 
-async function start ({ client, isXPack }) {
+async function start ({ client }) {
   log('Waiting for Elasticsearch')
   await waitCluster(client)
 
@@ -169,9 +95,9 @@ async function start ({ client, isXPack }) {
   log(`Downloading artifacts for hash ${hash}...`)
   await downloadArtifacts({ hash, version })
 
-  log(`Testing ${isXPack ? 'Platinum' : 'Free'} api...`)
+  log('Testing api...')
   const junit = createJunitReporter()
-  const junitTestSuites = junit.testsuites(`Integration test for ${isXPack ? 'Platinum' : 'Free'} api`)
+  const junitTestSuites = junit.testsuites('Integration test for api')
 
   const stats = {
     total: 0,
@@ -179,7 +105,7 @@ async function start ({ client, isXPack }) {
     pass: 0,
     assertions: 0
   }
-  const folders = getAllFiles(isXPack ? xPackYamlFolder : yamlFolder)
+  const folders = getAllFiles(yamlFolder)
     .filter(t => !/(README|TODO)/g.test(t))
     // we cluster the array based on the folder names,
     // to provide a better test log output
@@ -211,8 +137,7 @@ async function start ({ client, isXPack }) {
     for (const file of folder) {
       const testRunner = build({
         client,
-        version,
-        isXPack: file.includes('platinum')
+        version
       })
       const fileTime = now()
       const data = readFileSync(file, 'utf8')
@@ -247,7 +172,7 @@ async function start ({ client, isXPack }) {
         const junitTestCase = junitTestSuite.testcase(name)
 
         stats.total += 1
-        if (shouldSkip(isXPack, file, name)) {
+        if (shouldSkip(file, name)) {
           stats.skip += 1
           junitTestCase.skip('This test is in the skip list of the client')
           junitTestCase.end()
@@ -262,7 +187,7 @@ async function start ({ client, isXPack }) {
           junitTestCase.end()
           junitTestSuite.end()
           junitTestSuites.end()
-          generateJunitXmlReport(junit, isXPack ? 'platinum' : 'free')
+          generateJunitXmlReport(junit, 'free')
           console.error(err)
           process.exit(1)
         }
@@ -290,7 +215,7 @@ async function start ({ client, isXPack }) {
     }
   }
   junitTestSuites.end()
-  generateJunitXmlReport(junit, isXPack ? 'platinum' : 'free')
+  generateJunitXmlReport(junit, 'free')
   log(`Total testing time: ${ms(now() - totalTime)}`)
   log(`Test stats:
   - Total: ${stats.total}
@@ -330,14 +255,13 @@ function generateJunitXmlReport (junit, suite) {
 if (require.main === module) {
   const node = process.env.TEST_ES_SERVER || 'http://localhost:9200'
   const opts = {
-    node,
-    isXPack: node.indexOf('@') > -1
+    node
   }
   runner(opts)
 }
 
-const shouldSkip = (isXPack, file, name) => {
-  let list = Object.keys(freeSkips)
+const shouldSkip = (file, name) => {
+  const list = Object.keys(freeSkips)
   for (let i = 0; i < list.length; i++) {
     const freeTest = freeSkips[list[i]]
     for (let j = 0; j < freeTest.length; j++) {
@@ -348,21 +272,6 @@ const shouldSkip = (isXPack, file, name) => {
       }
     }
   }
-
-  if (file.includes('x-pack') || isXPack) {
-    list = Object.keys(platinumBlackList)
-    for (let i = 0; i < list.length; i++) {
-      const platTest = platinumBlackList[list[i]]
-      for (let j = 0; j < platTest.length; j++) {
-        if (file.endsWith(list[i]) && (name === platTest[j] || platTest[j] === '*')) {
-          const testName = file.slice(file.indexOf(`${sep}elasticsearch${sep}`)) + ' / ' + name
-          log(`Skipping test ${testName} because is blacklisted in the platinum test`)
-          return true
-        }
-      }
-    }
-  }
-
   return false
 }
 

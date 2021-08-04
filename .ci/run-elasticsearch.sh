@@ -44,23 +44,6 @@ environment=($(cat <<-END
   --env ingest.geoip.downloader.enabled=false
 END
 ))
-if [[ "$TEST_SUITE" == "platinum" ]]; then
-  environment+=($(cat <<-END
-    --env ELASTIC_PASSWORD=$elastic_password
-    --env xpack.license.self_generated.type=trial
-    --env xpack.security.enabled=true
-    --env xpack.security.http.ssl.enabled=true
-    --env xpack.security.http.ssl.verification_mode=certificate
-    --env xpack.security.http.ssl.key=certs/testnode.key
-    --env xpack.security.http.ssl.certificate=certs/testnode.crt
-    --env xpack.security.http.ssl.certificate_authorities=certs/ca.crt
-    --env xpack.security.transport.ssl.enabled=true
-    --env xpack.security.transport.ssl.verification_mode=certificate
-    --env xpack.security.transport.ssl.key=certs/testnode.key
-    --env xpack.security.transport.ssl.certificate=certs/testnode.crt
-    --env xpack.security.transport.ssl.certificate_authorities=certs/ca.crt
-END
-))
   volumes+=($(cat <<-END
     --volume $ssl_cert:/usr/share/elasticsearch/config/certs/testnode.crt
     --volume $ssl_key:/usr/share/elasticsearch/config/certs/testnode.key
@@ -110,7 +93,7 @@ END
   docker run \
     --name "$node_name" \
     --network "$network_name" \
-    --env "ES_JAVA_OPTS=-Xms1g -Xmx1g -da:org.elasticsearch.xpack.ccr.index.engine.FollowingEngineAssertions" \
+    --env "ES_JAVA_OPTS=-Xms1g -Xmx1g" \
     "${environment[@]}" \
     "${volumes[@]}" \
     --publish "$http_port":9200 \

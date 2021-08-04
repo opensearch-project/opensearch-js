@@ -2053,7 +2053,7 @@ export type NodeIds = string
 
 export type NodeName = string
 
-export type NodeRole = 'master' | 'data' | 'data_cold' | 'data_content' | 'data_frozen' | 'data_hot' | 'data_warm' | 'client' | 'ingest' | 'voting_only' | 'transform' | 'remote_cluster_client' | 'coordinating_only'
+export type NodeRole = 'master' | 'data' | 'client' | 'ingest' | 'voting_only' | 'remote_cluster_client' | 'coordinating_only'
 
 export type NodeRoles = NodeRole[]
 
@@ -5806,7 +5806,6 @@ export interface CatShardsShardsRecord {
   sqm?: string
   maxSeqNo?: string
   'seq_no.local_checkpoint'?: string
-  sql?: string
   localCheckpoint?: string
   'seq_no.global_checkpoint'?: string
   sqg?: string
@@ -6638,13 +6637,7 @@ export interface ClusterStatsClusterNodeCount {
   master: integer
   total: integer
   voting_only: integer
-  data_cold: integer
-  data_frozen?: integer
-  data_content: integer
-  data_warm: integer
-  data_hot: integer
   remote_cluster_client: integer
-  transform: integer
 }
 
 export interface ClusterStatsClusterNodes {

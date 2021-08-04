@@ -29,7 +29,7 @@ const { join } = require('path')
 const { locations } = require('../../scripts/download-artifacts')
 const { ConfigurationError } = require('../../lib/errors')
 
-const { delve, to, isXPackTemplate, sleep } = helper
+const { delve, to, sleep } = helper
 
 const supportedFeatures = [
   'gtelte',
@@ -46,7 +46,6 @@ const supportedFeatures = [
 function build (opts = {}) {
   const client = opts.client
   const esVersion = opts.version
-  const isXPack = opts.isXPack
   const stash = new Map()
   let response = null
 
@@ -54,45 +53,9 @@ function build (opts = {}) {
    * Runs a cleanup, removes all indices, aliases, templates, and snapshots
    * @returns {Promise}
    */
-  async function cleanup (isXPack) {
+  async function cleanup () {
     response = null
     stash.clear()
-
-    if (isXPack) {
-      // wipe rollup jobs
-      const { body: jobsList } = await client.rollup.getJobs({ id: '_all' })
-      const jobsIds = jobsList.jobs.map(j => j.config.id)
-      await helper.runInParallel(
-        client, 'rollup.stopJob',
-        jobsIds.map(j => ({ id: j, waitForCompletion: true }))
-      )
-      await helper.runInParallel(
-        client, 'rollup.deleteJob',
-        jobsIds.map(j => ({ id: j }))
-      )
-
-      // delete slm policies
-      const { body: policies } = await client.slm.getLifecycle()
-      await helper.runInParallel(
-        client, 'slm.deleteLifecycle',
-        Object.keys(policies).map(p => ({ policy_id: p }))
-      )
-
-      // remove 'x_pack_rest_user', used in some xpack test
-      await client.security.deleteUser({ username: 'x_pack_rest_user' }, { ignore: [404] })
-
-      const { body: searchableSnapshotIndices } = await client.cluster.state({
-        metric: 'metadata',
-        filter_path: 'metadata.indices.*.settings.index.store.snapshot'
-      })
-      if (searchableSnapshotIndices.metadata != null && searchableSnapshotIndices.metadata.indices != null) {
-        await helper.runInParallel(
-          client, 'indices.delete',
-          Object.keys(searchableSnapshotIndices.metadata.indices).map(i => ({ index: i })),
-          { ignore: [404] }
-        )
-      }
-    }
 
     // clean snapshots
     const { body: repositories } = await client.snapshot.getRepository()
@@ -101,18 +64,12 @@ function build (opts = {}) {
       await client.snapshot.deleteRepository({ repository }, { ignore: [404] })
     }
 
-    if (isXPack) {
-      // clean data streams
-      await client.indices.deleteDataStream({ name: '*' })
-    }
-
     // clean all indices
     await client.indices.delete({ index: '*,-.ds-ilm-history-*', expand_wildcards: 'open,closed,hidden' }, { ignore: [404] })
 
     // delete templates
     const { body: templates } = await client.cat.templates({ h: 'name' })
     for (const template of templates.split('\n').filter(Boolean)) {
-      if (isXPackTemplate(template)) continue
       const { body } = await client.indices.deleteTemplate({ name: template }, { ignore: [404] })
       if (JSON.stringify(body).includes(`index_template [${template}] missing`)) {
         await client.indices.deleteIndexTemplate({ name: template }, { ignore: [404] })
@@ -121,7 +78,7 @@ function build (opts = {}) {
 
     // delete component template
     const { body } = await client.cluster.getComponentTemplate()
-    const components = body.component_templates.filter(c => !isXPackTemplate(c.name)).map(c => c.name)
+    const components = body.component_templates.map(c => c.name)
     if (components.length > 0) {
       await client.cluster.deleteComponentTemplate({ name: components.join(',') }, { ignore: [404] })
     }
@@ -138,42 +95,6 @@ function build (opts = {}) {
     }
     if (Object.keys(newSettings).length > 0) {
       await client.cluster.putSettings({ body: newSettings })
-    }
-
-    if (isXPack) {
-      // delete ilm policies
-      const preserveIlmPolicies = [
-        'ilm-history-ilm-policy', 'slm-history-ilm-policy',
-        'watch-history-ilm-policy', 'ml-size-based-ilm-policy',
-        'logs', 'metrics'
-      ]
-      const { body: policies } = await client.ilm.getLifecycle()
-      for (const policy in policies) {
-        if (preserveIlmPolicies.includes(policy)) continue
-        await client.ilm.deleteLifecycle({ policy })
-      }
-
-      // delete autofollow patterns
-      const { body: patterns } = await client.ccr.getAutoFollowPattern()
-      for (const { name } of patterns.patterns) {
-        await client.ccr.deleteAutoFollowPattern({ name })
-      }
-
-      // delete all tasks
-      const { body: nodesTask } = await client.tasks.list()
-      const tasks = Object.keys(nodesTask.nodes)
-        .reduce((acc, node) => {
-          const { tasks } = nodesTask.nodes[node]
-          Object.keys(tasks).forEach(id => {
-            if (tasks[id].cancellable) acc.push(id)
-          })
-          return acc
-        }, [])
-
-      await helper.runInParallel(
-        client, 'tasks.cancel',
-        tasks.map(id => ({ taskId: id }))
-      )
     }
 
     const { body: shutdownNodes } = await client.shutdown.getNode()
@@ -196,11 +117,9 @@ function build (opts = {}) {
    * Runs the given test.
    * It runs the test components in the following order:
    *    - skip check
-   *    - xpack user
    *    - setup
    *    - the actual test
    *    - teardown
-   *    - xpack cleanup
    *    - cleanup
    * @param {object} setup (null if not needed)
    * @param {object} test
@@ -217,26 +136,13 @@ function build (opts = {}) {
       return
     }
 
-    if (isXPack) {
-      // Some xpack test requires this user
-      // tap.comment('Creating x-pack user')
-      try {
-        await client.security.putUser({
-          username: 'x_pack_rest_user',
-          body: { password: 'x-pack-test-password', roles: ['superuser'] }
-        })
-      } catch (err) {
-        assert.ifError(err, 'should not error: security.putUser')
-      }
-    }
-
     if (setup) await exec('Setup', setup, stats, junit)
 
     await exec('Test', test, stats, junit)
 
     if (teardown) await exec('Teardown', teardown, stats, junit)
 
-    await cleanup(isXPack)
+    await cleanup()
   }
 
   /**

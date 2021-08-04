@@ -1775,10 +1775,6 @@ export type Bytes = 'b' | 'k' | 'kb' | 'm' | 'mb' | 'g' | 'gb' | 't' | 'tb' | 'p
 
 export type CategoryId = string
 
-export interface ChainTransform {
-  transforms: TransformContainer[]
-}
-
 export interface ClusterStatistics {
   skipped: integer
   successful: integer
@@ -2193,7 +2189,6 @@ export interface SearchStats {
 }
 
 export interface SearchTransform {
-  request: WatcherSearchInputRequestDefinition
   timeout: Time
 }
 
@@ -2287,15 +2282,6 @@ export type Time = string | integer
 export type TimeSpan = string
 
 export type Timestamp = string
-
-export interface Transform {
-}
-
-export interface TransformContainer {
-  chain?: ChainTransform
-  script?: ScriptTransform
-  search?: SearchTransform
-}
 
 export interface TranslogStats {
   earliest_last_modified_age: long
@@ -2597,6 +2583,7 @@ export interface AggregationsDateHistogramAggregation extends AggregationsBucket
 
 export interface AggregationsDateHistogramBucketKeys {
 }
+
 export type AggregationsDateHistogramBucket = AggregationsDateHistogramBucketKeys |
     { [property: string]: AggregationsAggregate }
 
@@ -8503,7 +8490,6 @@ export interface IngestSimulatePipelinePipelineSimulation {
   processor_results?: IngestSimulatePipelinePipelineSimulation[]
   tag?: string
   processor_type?: string
-  status?: WatcherActionStatusOptions
 }
 
 export interface IngestSimulatePipelineRequest extends RequestBase {

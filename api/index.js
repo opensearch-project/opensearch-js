@@ -96,7 +96,6 @@ function ESAPI (opts) {
   this[kShutdown] = null
   this[kSnapshot] = null
   this[kTasks] = null
-  this[kTransform] = null
 }
 
 ESAPI.prototype.bulk = bulkApi
@@ -248,14 +247,6 @@ Object.defineProperties(ESAPI.prototype, {
     }
   },
   terms_enum: { get () { return this.termsEnum } },
-  transform: {
-    get () {
-      if (this[kTransform] === null) {
-        this[kTransform] = new TransformApi(this.transport, this[kConfigurationError])
-      }
-      return this[kTransform]
-    }
-  },
   update_by_query: { get () { return this.updateByQuery } },
   update_by_query_rethrottle: { get () { return this.updateByQueryRethrottle } }
 })

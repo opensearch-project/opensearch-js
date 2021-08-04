@@ -4,7 +4,7 @@
 # to form a cluster suitable for running the REST API tests.
 #
 # Export the STACK_VERSION variable, eg. '8.0.0-SNAPSHOT'.
-# Export the TEST_SUITE variable, eg. 'free' or 'platinum' defaults to 'free'.
+# Export the TEST_SUITE variable.
 # Export the NUMBER_OF_NODES variable to start more than 1 node
 
 # Version 1.4.0
@@ -53,9 +53,6 @@ END
 fi
 
 cert_validation_flags=""
-if [[ "$TEST_SUITE" == "platinum" ]]; then
-  cert_validation_flags="--insecure --cacert /usr/share/elasticsearch/config/certs/ca.crt --resolve ${es_node_name}:443:127.0.0.1"
-fi
 
 # Pull the container, retry on failures up to 5 times with
 # short delays between each attempt. Fixes most transient network errors.

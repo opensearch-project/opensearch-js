@@ -66,7 +66,6 @@ const SnapshotApi = require('./api/snapshot')
 const TasksApi = require('./api/tasks')
 const termsEnumApi = require('./api/terms_enum')
 const termvectorsApi = require('./api/termvectors')
-const TransformApi = require('./api/transform')
 const updateApi = require('./api/update')
 const updateByQueryApi = require('./api/update_by_query')
 const updateByQueryRethrottleApi = require('./api/update_by_query_rethrottle')
@@ -83,7 +82,6 @@ const kNodes = Symbol('Nodes')
 const kShutdown = Symbol('Shutdown')
 const kSnapshot = Symbol('Snapshot')
 const kTasks = Symbol('Tasks')
-const kTransform = Symbol('Transform')
 
 function ESAPI (opts) {
   this[kConfigurationError] = opts.ConfigurationError
@@ -98,7 +96,6 @@ function ESAPI (opts) {
   this[kShutdown] = null
   this[kSnapshot] = null
   this[kTasks] = null
-  this[kTransform] = null
 }
 
 ESAPI.prototype.bulk = bulkApi
@@ -250,14 +247,6 @@ Object.defineProperties(ESAPI.prototype, {
     }
   },
   terms_enum: { get () { return this.termsEnum } },
-  transform: {
-    get () {
-      if (this[kTransform] === null) {
-        this[kTransform] = new TransformApi(this.transport, this[kConfigurationError])
-      }
-      return this[kTransform]
-    }
-  },
   update_by_query: { get () { return this.updateByQuery } },
   update_by_query_rethrottle: { get () { return this.updateByQueryRethrottle } }
 })

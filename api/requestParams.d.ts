@@ -571,14 +571,6 @@ export interface FieldCaps<T = RequestBody> extends Generic {
   body?: T;
 }
 
-export interface FleetGlobalCheckpoints extends Generic {
-  index: string;
-  wait_for_advance?: boolean;
-  wait_for_index?: boolean;
-  checkpoints?: string | string[];
-  timeout?: string;
-}
-
 export interface Get extends Generic {
   id: string;
   index: string;

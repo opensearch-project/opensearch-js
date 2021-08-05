@@ -479,16 +479,6 @@ declare class Client {
   fieldCaps<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
   fieldCaps<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(params: RequestParams.FieldCaps<TRequestBody>, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
   fieldCaps<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(params: RequestParams.FieldCaps<TRequestBody>, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-  fleet: {
-    global_checkpoints<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.FleetGlobalCheckpoints, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
-    global_checkpoints<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    global_checkpoints<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.FleetGlobalCheckpoints, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    global_checkpoints<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.FleetGlobalCheckpoints, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    globalCheckpoints<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.FleetGlobalCheckpoints, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
-    globalCheckpoints<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    globalCheckpoints<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.FleetGlobalCheckpoints, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    globalCheckpoints<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.FleetGlobalCheckpoints, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-  }
   get<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.Get, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
   get<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
   get<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.Get, callback: callbackFn<TResponse, TContext>): TransportRequestCallback

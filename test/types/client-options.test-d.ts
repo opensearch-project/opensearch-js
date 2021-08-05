@@ -357,27 +357,6 @@ expectType<Client>(
   })
 )
 
-expectType<Client>(
-  new Client({
-    node: 'http://localhost:9200',
-    auth: {
-      apiKey: 'abcd'
-    }
-  })
-)
-
-expectType<Client>(
-  new Client({
-    node: 'http://localhost:9200',
-    auth: {
-      apiKey: {
-        api_key: 'foo',
-        id: 'bar'
-      }
-    }
-  })
-)
-
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({

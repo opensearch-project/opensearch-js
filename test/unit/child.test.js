@@ -301,7 +301,6 @@ test('Should create a child client (auth check)', t => {
     })
     const child = client.child({
       auth: {
-        username: 'foobar',
         password: 'foobar'
       }
     })

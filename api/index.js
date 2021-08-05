@@ -35,7 +35,6 @@ const existsSourceApi = require('./api/exists_source')
 const explainApi = require('./api/explain')
 const FeaturesApi = require('./api/features')
 const fieldCapsApi = require('./api/field_caps')
-const FleetApi = require('./api/fleet')
 const getApi = require('./api/get')
 const getScriptApi = require('./api/get_script')
 const getScriptContextApi = require('./api/get_script_context')
@@ -75,7 +74,6 @@ const kCat = Symbol('Cat')
 const kCluster = Symbol('Cluster')
 const kDanglingIndices = Symbol('DanglingIndices')
 const kFeatures = Symbol('Features')
-const kFleet = Symbol('Fleet')
 const kIndices = Symbol('Indices')
 const kIngest = Symbol('Ingest')
 const kNodes = Symbol('Nodes')
@@ -89,7 +87,6 @@ function ESAPI (opts) {
   this[kCluster] = null
   this[kDanglingIndices] = null
   this[kFeatures] = null
-  this[kFleet] = null
   this[kIndices] = null
   this[kIngest] = null
   this[kNodes] = null
@@ -178,14 +175,6 @@ Object.defineProperties(ESAPI.prototype, {
     }
   },
   field_caps: { get () { return this.fieldCaps } },
-  fleet: {
-    get () {
-      if (this[kFleet] === null) {
-        this[kFleet] = new FleetApi(this.transport, this[kConfigurationError])
-      }
-      return this[kFleet]
-    }
-  },
   get_script: { get () { return this.getScript } },
   get_script_context: { get () { return this.getScriptContext } },
   get_script_languages: { get () { return this.getScriptLanguages } },

@@ -292,12 +292,6 @@ declare class Client {
   fieldCaps<TContext = unknown>(callback: callbackFn<T.FieldCapsResponse, TContext>): TransportRequestCallback
   fieldCaps<TContext = unknown>(params: T.FieldCapsRequest, callback: callbackFn<T.FieldCapsResponse, TContext>): TransportRequestCallback
   fieldCaps<TContext = unknown>(params: T.FieldCapsRequest, options: TransportRequestOptions, callback: callbackFn<T.FieldCapsResponse, TContext>): TransportRequestCallback
-  fleet: {
-    globalCheckpoints<TContext = unknown>(params?: TODO, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TODO, TContext>>
-    globalCheckpoints<TContext = unknown>(callback: callbackFn<TODO, TContext>): TransportRequestCallback
-    globalCheckpoints<TContext = unknown>(params: TODO, callback: callbackFn<TODO, TContext>): TransportRequestCallback
-    globalCheckpoints<TContext = unknown>(params: TODO, options: TransportRequestOptions, callback: callbackFn<TODO, TContext>): TransportRequestCallback
-  }
   get<TDocument = unknown, TContext = unknown>(params: T.GetRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.GetResponse<TDocument>, TContext>>
   get<TDocument = unknown, TContext = unknown>(params: T.GetRequest, callback: callbackFn<T.GetResponse<TDocument>, TContext>): TransportRequestCallback
   get<TDocument = unknown, TContext = unknown>(params: T.GetRequest, options: TransportRequestOptions, callback: callbackFn<T.GetResponse<TDocument>, TContext>): TransportRequestCallback

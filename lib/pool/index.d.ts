@@ -28,7 +28,7 @@ interface BaseConnectionPoolOptions {
   ssl?: SecureContextOptions;
   agent?: AgentOptions;
   proxy?: string | URL;
-  auth?: BasicAuth | ApiKeyAuth;
+  auth?: BasicAuth;
   emit: (event: string | symbol, ...args: any[]) => boolean;
   Connection: typeof Connection;
 }
@@ -47,22 +47,9 @@ interface getConnectionOptions {
   now?: number;
 }
 
-interface ApiKeyAuth {
-  apiKey:
-    | string
-    | {
-        id: string;
-        api_key: string;
-      }
-}
-
 interface BasicAuth {
   username: string;
   password: string;
-}
-
-interface BearerAuth {
-  bearer: string
 }
 
 interface resurrectOptions {
@@ -89,7 +76,7 @@ declare class BaseConnectionPool {
   _ssl: SecureContextOptions | null;
   _agent: AgentOptions | null;
   _proxy: string | URL;
-  auth: BasicAuth | ApiKeyAuth;
+  auth: BasicAuth;
   Connection: typeof Connection;
   constructor(opts?: BaseConnectionPoolOptions);
   /**
@@ -206,9 +193,7 @@ export {
   // Interfaces
   ConnectionPoolOptions,
   getConnectionOptions,
-  ApiKeyAuth,
   BasicAuth,
-  BearerAuth,
   internals,
   resurrectOptions,
   ResurrectEvent,

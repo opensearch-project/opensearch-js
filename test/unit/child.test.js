@@ -296,13 +296,8 @@ test('Should create a child client (name check)', t => {
 test('Should create a child client (auth check)', t => {
   t.plan(4)
 
-  let count = 0
   function handler (req, res) {
-    if (count++ === 0) {
-      t.match(req.headers, { authorization: 'Basic Zm9vOmJhcg==' })
-    } else {
-      t.match(req.headers, { authorization: 'ApiKey foobar' })
-    }
+    t.match(req.headers, { authorization: 'Basic Zm9vOmJhcg==' })
     res.setHeader('Content-Type', 'application/json;utf=8')
     res.end(JSON.stringify({ hello: 'world' }))
   }
@@ -317,7 +312,7 @@ test('Should create a child client (auth check)', t => {
     })
     const child = client.child({
       auth: {
-        apiKey: 'foobar'
+        username: 'foobar'
       }
     })
 

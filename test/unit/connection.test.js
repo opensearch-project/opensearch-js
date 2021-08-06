@@ -808,28 +808,6 @@ test('Authorization header', t => {
     t.end()
   })
 
-  t.test('ApiKey (string)', t => {
-    const connection = new Connection({
-      url: new URL('http://localhost:9200'),
-      auth: { apiKey: 'Zm9vOmJhcg==' }
-    })
-
-    t.same(connection.headers, { authorization: 'ApiKey Zm9vOmJhcg==' })
-
-    t.end()
-  })
-
-  t.test('ApiKey (object)', t => {
-    const connection = new Connection({
-      url: new URL('http://localhost:9200'),
-      auth: { apiKey: { id: 'foo', api_key: 'bar' } }
-    })
-
-    t.same(connection.headers, { authorization: 'ApiKey Zm9vOmJhcg==' })
-
-    t.end()
-  })
-
   t.end()
 })
 

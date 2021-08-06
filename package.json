@@ -10,7 +10,7 @@
     },
     "./": "./"
   },
-  "homepage": "http://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html",
+  "homepage": "https://www.opensearch.org/",
   "version": "7.14.0",
   "versionCanary": "7.14.0-canary.6",
   "keywords": [
@@ -84,10 +84,10 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/elastic/elasticsearch-js.git"
+    "url": "https://github.com/opensearch-project/opensearch-js.git"
   },
   "bugs": {
-    "url": "https://github.com/elastic/elasticsearch-js/issues"
+    "url": "https://github.com/opensearch-project/opensearch-js/issues"
   },
   "engines": {
     "node": ">=12"

@@ -34,13 +34,13 @@ const { sleep } = require('./helper')
 const createJunitReporter = require('./reporter')
 const downloadArtifacts = require('../../scripts/download-artifacts')
 
-const yamlFolder = downloadArtifacts.locations.freeTestFolder
+const yamlFolder = downloadArtifacts.locations.ossTestFolder
 
 const MAX_API_TIME = 1000 * 90
 const MAX_FILE_TIME = 1000 * 30
 const MAX_TEST_TIME = 1000 * 3
 
-const freeSkips = {
+const ossSkips = {
   'cat.indices/10_basic.yml': ['Test cat indices output for closed index (pre 7.2.0)'],
   'cluster.health/10_basic.yml': ['cluster health with closed index (pre 7.2.0)'],
   // TODO: remove this once 'arbitrary_key' is implemented
@@ -187,7 +187,7 @@ async function start ({ client }) {
           junitTestCase.end()
           junitTestSuite.end()
           junitTestSuites.end()
-          generateJunitXmlReport(junit, 'free')
+          generateJunitXmlReport(junit, 'oss')
           console.error(err)
           process.exit(1)
         }
@@ -215,7 +215,7 @@ async function start ({ client }) {
     }
   }
   junitTestSuites.end()
-  generateJunitXmlReport(junit, 'free')
+  generateJunitXmlReport(junit, 'oss')
   log(`Total testing time: ${ms(now() - totalTime)}`)
   log(`Test stats:
   - Total: ${stats.total}
@@ -261,13 +261,13 @@ if (require.main === module) {
 }
 
 const shouldSkip = (file, name) => {
-  const list = Object.keys(freeSkips)
+  const list = Object.keys(ossSkips)
   for (let i = 0; i < list.length; i++) {
-    const freeTest = freeSkips[list[i]]
-    for (let j = 0; j < freeTest.length; j++) {
-      if (file.endsWith(list[i]) && (name === freeTest[j] || freeTest[j] === '*')) {
+    const ossTest = ossSkips[list[i]]
+    for (let j = 0; j < ossTest.length; j++) {
+      if (file.endsWith(list[i]) && (name === ossTest[j] || ossTest[j] === '*')) {
         const testName = file.slice(file.indexOf(`${sep}elasticsearch${sep}`)) + ' / ' + name
-        log(`Skipping test ${testName} because is blacklisted in the free test`)
+        log(`Skipping test ${testName} because is blacklisted in the oss test`)
         return true
       }
     }

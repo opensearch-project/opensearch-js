@@ -73,7 +73,7 @@ module.exports = async (req, res) => {
       body: {
         _source: ['id', 'url', 'name'], // the fields you want to show in the autocompletion
         size: 0,
-        // https://www.elastic.co/guide/en/elasticsearch/reference/current/search-suggesters-completion.html
+        // https://opensearch.org/docs/opensearch/ux/#autocomplete-queries
         suggest: {
           suggestions: {
             prefix: req.query.q,

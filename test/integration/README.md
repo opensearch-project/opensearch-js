@@ -5,8 +5,8 @@
 Yes.
 
 ## Background
-Elasticsearch offers its entire API via HTTP REST endpoints. You can find the whole API specification for every version [here](https://github.com/elastic/elasticsearch/tree/master/rest-api-spec/src/main/resources/rest-api-spec/api).<br/>
-To support different languages at the same time, the Elasticsearch team decided to provide a [YAML specification](https://github.com/elastic/elasticsearch/tree/master/rest-api-spec/src/main/resources/rest-api-spec/test) to test every endpoint, body, headers, warning, error and so on.<br/>
+Elasticsearch offers its entire API via HTTP REST endpoints. You can find the whole API specification for every version [here](https://github.com/opensearch-project/OpenSearch/tree/main/rest-api-spec/src/main/resources/rest-api-spec/api).<br/>
+To support different languages at the same time, the Elasticsearch team decided to provide a [YAML specification](https://github.com/opensearch-project/OpenSearch/tree/main/rest-api-spec/src/main/resources/rest-api-spec/test) to test every endpoint, body, headers, warning, error and so on.<br/>
 This testing suite uses that specification to generate the test for the specified version of Elasticsearch on the fly.
 
 ## Run
@@ -46,7 +46,7 @@ At first sight, it might seem complicated, but once you understand what the movi
 
 Inside the `index.js` file, you will find the connection, cloning, reading and parsing part of the test, while inside the `test-runner.js` file you will find the function to handle the assertions. Inside `test-runner.js`, we use a [queue](https://github.com/delvedor/workq) to be sure that everything is run in the correct order.
 
-Checkout the [rest-api-spec readme](https://github.com/elastic/elasticsearch/blob/master/rest-api-spec/src/main/resources/rest-api-spec/test/README.asciidoc) if you want to know more about how the assertions work.
+Checkout the [rest-api-spec readme](https://github.com/opensearch-project/OpenSearch/blob/main/rest-api-spec/src/main/resources/rest-api-spec/test/README.md) if you want to know more about how the assertions work.
 
 #### Why are we running the test with the `--harmony` flag?
 Because on Node v6 the regex lookbehinds are not supported.

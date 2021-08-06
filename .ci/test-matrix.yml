@@ -8,6 +8,6 @@ NODE_JS_VERSION:
   - 12
 
 TEST_SUITE:
-  - free
+  - oss
 
 exclude: ~

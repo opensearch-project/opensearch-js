@@ -46,7 +46,6 @@ interface ConnectionRoles {
   master?: boolean
   data?: boolean
   ingest?: boolean
-  ml?: boolean
 }
 
 interface RequestOptions extends http.ClientRequestArgs {
@@ -71,7 +70,6 @@ export default class Connection {
     MASTER: string;
     DATA: string;
     INGEST: string;
-    ML: string;
   };
   url: URL
   ssl: TlsConnectionOptions | null

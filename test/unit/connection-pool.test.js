@@ -344,8 +344,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }, {
         url: new URL('http://127.0.0.1:9201'),
@@ -353,8 +352,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }])
 
@@ -386,8 +384,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }, {
         url: new URL('http://[::1]:9201'),
@@ -395,8 +392,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }])
 
@@ -428,8 +424,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }, {
         url: new URL('http://example.com:9201'),
@@ -437,8 +432,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }])
 
@@ -470,8 +464,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }, {
         url: new URL('http://example.com:9201'),
@@ -479,8 +472,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: false
+          ingest: true
         }
       }])
 
@@ -518,7 +510,7 @@ test('API', t => {
           http: {
             publish_address: 'example.com:9200'
           },
-          roles: ['master', 'data', 'ingest', 'ml']
+          roles: ['master', 'data', 'ingest']
         },
         a2: {
           http: {
@@ -533,8 +525,7 @@ test('API', t => {
         roles: {
           master: true,
           data: true,
-          ingest: true,
-          ml: true
+          ingest: true
         }
       }, {
         url: new URL('http://example.com:9201'),
@@ -542,8 +533,7 @@ test('API', t => {
         roles: {
           master: false,
           data: false,
-          ingest: false,
-          ml: false
+          ingest: false
         }
       }])
 
@@ -665,8 +655,7 @@ test('API', t => {
       t.same(pool.connections.find(c => c.id === 'a1').roles, {
         master: true,
         data: true,
-        ingest: true,
-        ml: false
+        ingest: true
       })
       t.equal(pool.connections.find(c => c.id === 'http://127.0.0.1:9200/'), undefined)
     })
@@ -790,8 +779,7 @@ test('Node filter', t => {
       roles: {
         master: true,
         data: false,
-        ingest: false,
-        ml: false
+        ingest: false
       }
     })
     t.equal(pool.getConnection({ filter: defaultNodeFilter }), null)

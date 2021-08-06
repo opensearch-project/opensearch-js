@@ -26,7 +26,6 @@ const Git = require('simple-git')
 const esRepo = 'https://github.com/elastic/elasticsearch.git'
 const esFolder = join(__dirname, '..', '..', 'elasticsearch')
 const apiFolder = join(esFolder, 'rest-api-spec', 'src', 'main', 'resources', 'rest-api-spec', 'api')
-const xPackFolder = join(esFolder, 'x-pack', 'plugin', 'src', 'test', 'resources', 'rest-api-spec', 'api')
 
 function cloneAndCheckout (opts, callback) {
   const { log, tag, branch } = opts
@@ -72,7 +71,7 @@ function cloneAndCheckout (opts, callback) {
       git.checkout(branch || tag, err => {
         if (err) {
           if (retry++ > 0) {
-            callback(new Error(`Cannot checkout tag '${tag}'`), { apiFolder, xPackFolder })
+            callback(new Error(`Cannot checkout tag '${tag}'`), { apiFolder })
             return
           }
           return pull(checkout)
@@ -80,7 +79,7 @@ function cloneAndCheckout (opts, callback) {
         if (alsoPull) {
           return pull(checkout)
         }
-        callback(null, { apiFolder, xPackFolder })
+        callback(null, { apiFolder })
       })
     }
 
@@ -88,7 +87,7 @@ function cloneAndCheckout (opts, callback) {
       log.text = 'Pulling elasticsearch repository...'
       git.pull(err => {
         if (err) {
-          callback(err, { apiFolder, xPackFolder })
+          callback(err, { apiFolder })
           return
         }
         cb()
@@ -99,7 +98,7 @@ function cloneAndCheckout (opts, callback) {
       log.text = 'Cloning elasticsearch repository...'
       git.clone(esRepo, esFolder, err => {
         if (err) {
-          callback(err, { apiFolder, xPackFolder })
+          callback(err, { apiFolder })
           return
         }
         cb()

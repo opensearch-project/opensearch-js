@@ -47,8 +47,7 @@ test('Configure host', t => {
       roles: {
         master: true,
         data: true,
-        ingest: true,
-        ml: false
+        ingest: true
       }
     })
     t.end()
@@ -68,8 +67,7 @@ test('Configure host', t => {
       roles: {
         master: true,
         data: true,
-        ingest: true,
-        ml: false
+        ingest: true
       }
     })
     t.match(pool.connections.find(c => c.id === 'http://localhost:9201/'), {
@@ -81,8 +79,7 @@ test('Configure host', t => {
       roles: {
         master: true,
         data: true,
-        ingest: true,
-        ml: false
+        ingest: true
       }
     })
 
@@ -114,8 +111,7 @@ test('Configure host', t => {
     t.same(pool.connections.find(c => c.id === 'node').roles, {
       master: true,
       data: false,
-      ingest: false,
-      ml: false
+      ingest: false
     })
 
     t.end()
@@ -155,8 +151,7 @@ test('Configure host', t => {
     t.same(pool.connections.find(c => c.id === 'node1').roles, {
       master: true,
       data: false,
-      ingest: false,
-      ml: false
+      ingest: false
     })
 
     t.match(pool.connections.find(c => c.id === 'node2'), {
@@ -170,8 +165,7 @@ test('Configure host', t => {
     t.same(pool.connections.find(c => c.id === 'node2').roles, {
       master: false,
       data: true,
-      ingest: false,
-      ml: false
+      ingest: false
     })
 
     t.end()
@@ -858,8 +852,7 @@ test('Elastic cloud config', t => {
       roles: {
         master: true,
         data: true,
-        ingest: true,
-        ml: false
+        ingest: true
       }
     })
 
@@ -893,8 +886,7 @@ test('Elastic cloud config', t => {
       roles: {
         master: true,
         data: true,
-        ingest: true,
-        ml: false
+        ingest: true
       }
     })
 
@@ -930,8 +922,7 @@ test('Elastic cloud config', t => {
       roles: {
         master: true,
         data: true,
-        ingest: true,
-        ml: false
+        ingest: true
       }
     })
 
@@ -968,8 +959,7 @@ test('Elastic cloud config', t => {
       roles: {
         master: true,
         data: true,
-        ingest: true,
-        ml: false
+        ingest: true
       }
     })
 

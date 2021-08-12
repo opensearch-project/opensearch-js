@@ -41,7 +41,6 @@ let clientVersion = require('../../../package.json').version
 if (clientVersion.includes('-')) {
   clientVersion = clientVersion.slice(0, clientVersion.indexOf('-')) + 'p'
 }
-const nodeVersion = process.versions.node
 
 const dataset = [
   { user: 'jon', age: 23 },
@@ -57,8 +56,7 @@ test('bulk index', t => {
         onRequest (params) {
           t.equal(params.path, '/_bulk')
           t.match(params.headers, {
-            'content-type': 'application/x-ndjson',
-            'x-elastic-client-meta': `es=${clientVersion},js=${nodeVersion},t=${clientVersion},hc=${nodeVersion},h=bp`
+            'content-type': 'application/x-ndjson'
           })
           const [action, payload] = params.body.split('\n')
           t.same(JSON.parse(action), { index: { _index: 'test' } })
@@ -102,9 +100,6 @@ test('bulk index', t => {
         onRequest (params) {
           t.equal(params.path, '/_bulk')
           t.match(params.headers, { 'content-type': 'application/x-ndjson' })
-          t.notMatch(params.headers, {
-            'x-elastic-client-meta': `es=${clientVersion},js=${nodeVersion},t=${clientVersion},hc=${nodeVersion},h=bp`
-          })
           const [action, payload] = params.body.split('\n')
           t.same(JSON.parse(action), { index: { _index: 'test' } })
           t.same(JSON.parse(payload), dataset[count++])
@@ -1329,8 +1324,7 @@ test('Flush interval', t => {
       onRequest (params) {
         t.strictEqual(params.path, '/_bulk')
         t.match(params.headers, {
-          'content-type': 'application/x-ndjson',
-          'x-elastic-client-meta': `es=${clientVersion},js=${nodeVersion},t=${clientVersion},hc=${nodeVersion},h=bp`
+          'content-type': 'application/x-ndjson'
         })
         const [action, payload] = params.body.split('\n')
         t.deepEqual(JSON.parse(action), { index: { _index: 'test' } })

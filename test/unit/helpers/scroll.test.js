@@ -37,16 +37,11 @@ let clientVersion = require('../../../package.json').version
 if (clientVersion.includes('-')) {
   clientVersion = clientVersion.slice(0, clientVersion.indexOf('-')) + 'p'
 }
-const nodeVersion = process.versions.node
 
 test('Scroll search', async t => {
   let count = 0
   const MockConnection = connection.buildMockConnection({
     onRequest (params) {
-      t.match(params.headers, {
-        'x-elastic-client-meta': `es=${clientVersion},js=${nodeVersion},t=${clientVersion},hc=${nodeVersion},h=s`
-      })
-
       count += 1
       if (params.method === 'POST') {
         t.equal(params.querystring, 'scroll=1m')
@@ -93,9 +88,6 @@ test('Clear a scroll search', async t => {
   let count = 0
   const MockConnection = connection.buildMockConnection({
     onRequest (params) {
-      t.notMatch(params.headers, {
-        'x-elastic-client-meta': `es=${clientVersion},js=${nodeVersion},t=${clientVersion},hc=${nodeVersion},h=s`
-      })
       if (params.method === 'DELETE') {
         const body = JSON.parse(params.body)
         t.equal(body.scroll_id, 'id')

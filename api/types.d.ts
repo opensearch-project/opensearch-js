@@ -504,7 +504,7 @@ export interface InfoResponse {
   cluster_name: Name
   cluster_uuid: Uuid
   name: Name
-  version: ElasticsearchVersionInfo
+  version: OpenSearchVersionInfo
 }
 
 export interface MgetHit<TDocument = unknown> {
@@ -1141,7 +1141,7 @@ export interface SearchGeoDistanceSortKeys {
   unit?: DistanceUnit
 }
 export type SearchGeoDistanceSort = SearchGeoDistanceSortKeys |
-    { [property: string]: QueryDslGeoLocation | QueryDslGeoLocation[] }
+{ [property: string]: QueryDslGeoLocation | QueryDslGeoLocation[] }
 
 export interface SearchHighlight {
   fields: Record<Field, SearchHighlightField>
@@ -1407,7 +1407,7 @@ export interface SearchSortContainerKeys {
   _script?: SearchScriptSort
 }
 export type SearchSortContainer = SearchSortContainerKeys |
-    { [property: string]: SearchFieldSort | SearchSortOrder }
+{ [property: string]: SearchFieldSort | SearchSortOrder }
 
 export type SearchSortMode = 'min' | 'max' | 'sum' | 'avg' | 'median'
 
@@ -1828,7 +1828,7 @@ export interface DocStats {
   deleted: long
 }
 
-export interface ElasticsearchVersionInfo {
+export interface OpenSearchVersionInfo {
   build_date: DateString
   build_hash: string
   build_snapshot: boolean
@@ -2095,7 +2095,7 @@ export type PipelineName = string
 export interface PluginStats {
   classname: string
   description: string
-  elasticsearch_version: VersionString
+  opensearch_version: VersionString
   extended_plugins: string[]
   has_native_controller: boolean
   java_version: VersionString
@@ -2561,7 +2561,7 @@ export interface AggregationsCompositeAggregationSource {
 export interface AggregationsCompositeBucketKeys {
 }
 export type AggregationsCompositeBucket = AggregationsCompositeBucketKeys |
-    { [property: string]: AggregationsAggregate }
+{ [property: string]: AggregationsAggregate }
 
 export interface AggregationsCompositeBucketAggregate extends AggregationsMultiBucketAggregate<Record<string, any>> {
   after_key: Record<string, any>
@@ -2594,7 +2594,7 @@ export interface AggregationsDateHistogramBucketKeys {
 }
 
 export type AggregationsDateHistogramBucket = AggregationsDateHistogramBucketKeys |
-    { [property: string]: AggregationsAggregate }
+{ [property: string]: AggregationsAggregate }
 
 export type AggregationsDateInterval = 'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year'
 
@@ -2668,7 +2668,7 @@ export interface AggregationsFiltersBucketItemKeys {
   doc_count: long
 }
 export type AggregationsFiltersBucketItem = AggregationsFiltersBucketItemKeys |
-    { [property: string]: AggregationsAggregate }
+{ [property: string]: AggregationsAggregate }
 
 export interface AggregationsFormatMetricAggregationBase extends AggregationsMetricAggregationBase {
   format?: string
@@ -2832,7 +2832,7 @@ export interface AggregationsIpRangeAggregationRange {
 export interface AggregationsIpRangeBucketKeys {
 }
 export type AggregationsIpRangeBucket = AggregationsIpRangeBucketKeys |
-    { [property: string]: AggregationsAggregate }
+{ [property: string]: AggregationsAggregate }
 
 export interface AggregationsKeyedBucketKeys<TKey = unknown> {
   doc_count: long
@@ -2840,7 +2840,7 @@ export interface AggregationsKeyedBucketKeys<TKey = unknown> {
   key_as_string: string
 }
 export type AggregationsKeyedBucket<TKey = unknown> = AggregationsKeyedBucketKeys<TKey> |
-    { [property: string]: AggregationsAggregate }
+{ [property: string]: AggregationsAggregate }
 
 export interface AggregationsKeyedValueAggregate extends AggregationsValueAggregate {
   keys: string[]
@@ -3004,7 +3004,7 @@ export interface AggregationsRangeAggregation extends AggregationsBucketAggregat
 export interface AggregationsRangeBucketKeys {
 }
 export type AggregationsRangeBucket = AggregationsRangeBucketKeys |
-    { [property: string]: AggregationsAggregate }
+{ [property: string]: AggregationsAggregate }
 
 export interface AggregationsRareTermsAggregation extends AggregationsBucketAggregationBase {
   exclude?: string | string[]
@@ -3019,7 +3019,7 @@ export interface AggregationsRareTermsAggregation extends AggregationsBucketAggr
 export interface AggregationsRareTermsBucketKeys<TKey = unknown> {
 }
 export type AggregationsRareTermsBucket<TKey = unknown> = AggregationsRareTermsBucketKeys<TKey> |
-    { [property: string]: AggregationsAggregate }
+{ [property: string]: AggregationsAggregate }
 
 export interface AggregationsRateAggregation extends AggregationsFormatMetricAggregationBase {
   unit?: AggregationsDateInterval
@@ -3088,7 +3088,7 @@ export interface AggregationsSignificantTermsAggregation extends AggregationsBuc
 export interface AggregationsSignificantTermsBucketKeys<TKey = unknown> {
 }
 export type AggregationsSignificantTermsBucket<TKey = unknown> = AggregationsSignificantTermsBucketKeys<TKey> |
-    { [property: string]: AggregationsAggregate }
+{ [property: string]: AggregationsAggregate }
 
 export interface AggregationsSignificantTextAggregation extends AggregationsBucketAggregationBase {
   background_filter?: QueryDslQueryContainer
@@ -3113,7 +3113,7 @@ export interface AggregationsSingleBucketAggregateKeys extends AggregationsAggre
   doc_count: double
 }
 export type AggregationsSingleBucketAggregate = AggregationsSingleBucketAggregateKeys |
-    { [property: string]: AggregationsAggregate }
+{ [property: string]: AggregationsAggregate }
 
 export interface AggregationsStandardDeviationBounds {
   lower?: double
@@ -4044,7 +4044,7 @@ export interface QueryDslConstantScoreQuery extends QueryDslQueryBase {
 export interface QueryDslDateDecayFunctionKeys extends QueryDslDecayFunctionBase {
 }
 export type QueryDslDateDecayFunction = QueryDslDateDecayFunctionKeys |
-    { [property: string]: QueryDslDecayPlacement<DateMath, Time> }
+{ [property: string]: QueryDslDecayPlacement<DateMath, Time> }
 
 export type QueryDslDecayFunction = QueryDslDateDecayFunction | QueryDslNumericDecayFunction | QueryDslGeoDecayFunction
 
@@ -4136,7 +4136,7 @@ export type QueryDslGeoCoordinate = string | double[] | QueryDslThreeDimensional
 export interface QueryDslGeoDecayFunctionKeys extends QueryDslDecayFunctionBase {
 }
 export type QueryDslGeoDecayFunction = QueryDslGeoDecayFunctionKeys |
-    { [property: string]: QueryDslDecayPlacement<QueryDslGeoLocation, Distance> }
+{ [property: string]: QueryDslDecayPlacement<QueryDslGeoLocation, Distance> }
 
 export interface QueryDslGeoDistanceQueryKeys extends QueryDslQueryBase {
   distance?: Distance
@@ -4144,7 +4144,7 @@ export interface QueryDslGeoDistanceQueryKeys extends QueryDslQueryBase {
   validation_method?: QueryDslGeoValidationMethod
 }
 export type QueryDslGeoDistanceQuery = QueryDslGeoDistanceQueryKeys |
-    { [property: string]: QueryDslGeoLocation }
+{ [property: string]: QueryDslGeoLocation }
 
 export type QueryDslGeoExecution = 'memory' | 'indexed'
 
@@ -4373,7 +4373,7 @@ export interface QueryDslNamedQueryKeys<TQuery = unknown> {
   ignore_unmapped?: boolean
 }
 export type QueryDslNamedQuery<TQuery = unknown> = QueryDslNamedQueryKeys<TQuery> |
-    { [property: string]: TQuery }
+{ [property: string]: TQuery }
 
 export interface QueryDslNestedQuery extends QueryDslQueryBase {
   ignore_unmapped?: boolean
@@ -4388,7 +4388,7 @@ export type QueryDslNestedScoreMode = 'avg' | 'sum' | 'min' | 'max' | 'none'
 export interface QueryDslNumericDecayFunctionKeys extends QueryDslDecayFunctionBase {
 }
 export type QueryDslNumericDecayFunction = QueryDslNumericDecayFunctionKeys |
-    { [property: string]: QueryDslDecayPlacement<double, double> }
+{ [property: string]: QueryDslDecayPlacement<double, double> }
 
 export type QueryDslOperator = 'and' | 'or' | 'AND' | 'OR'
 

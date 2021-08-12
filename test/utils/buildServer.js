@@ -30,7 +30,7 @@
 
 'use strict'
 
-const debug = require('debug')('elasticsearch-test')
+const debug = require('debug')('opensearch-test')
 const stoppable = require('stoppable')
 
 // allow self signed certificates for testing purposes

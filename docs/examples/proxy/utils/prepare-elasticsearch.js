@@ -30,7 +30,7 @@
 
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 
 // Your Cloud Id
 const cloudId = ''
@@ -40,7 +40,6 @@ const username = ''
 const password = ''
 // The indices or index patterns you will need to access
 const indexNames = ['my-index-name-or-pattern']
-// see https://www.elastic.co/guide/en/elasticsearch/reference/current/security-privileges.html#privileges-list-indices
 const privileges = ['read']
 
 async function generateApiKeys (opts) {
@@ -56,9 +55,9 @@ async function generateApiKeys (opts) {
 
   const { body } = await client.security.createApiKey({
     body: {
-      name: 'elasticsearch-proxy',
+      name: 'opensearch-proxy',
       role_descriptors: {
-        'elasticsearch-proxy-users': {
+        'opensearch-proxy-users': {
           index: [{
             names: indexNames,
             privileges

@@ -494,7 +494,7 @@ export interface DeleteByQuery<T = RequestBody> extends Generic {
   scroll_size?: number;
   wait_for_completion?: boolean;
   requests_per_second?: number;
-  slices?: number|string;
+  slices?: number | string;
   body: T;
 }
 
@@ -1252,7 +1252,7 @@ export interface Reindex<T = RequestBody> extends Generic {
   wait_for_completion?: boolean;
   requests_per_second?: number;
   scroll?: string;
-  slices?: number|string;
+  slices?: number | string;
   max_docs?: number;
   body: T;
 }
@@ -1572,7 +1572,7 @@ export interface UpdateByQuery<T = RequestBody> extends Generic {
   scroll_size?: number;
   wait_for_completion?: boolean;
   requests_per_second?: number;
-  slices?: number|string;
+  slices?: number | string;
   body?: T;
 }
 

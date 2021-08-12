@@ -33,7 +33,7 @@ export interface SerializerOptions {
 }
 
 export default class Serializer {
-  constructor (opts?: SerializerOptions)
+  constructor(opts?: SerializerOptions)
   serialize(object: any): string;
   deserialize(json: string): any;
   ndserialize(array: any[]): string;

@@ -57,7 +57,7 @@ import { ConnectionOptions } from '../../lib/Connection'
 {
   const conn = new Connection({
     url: new URL('http://localhost:9200'),
-    agent (opts) {
+    agent(opts) {
       expectType<ConnectionOptions>(opts)
       return 'the agent'
     }

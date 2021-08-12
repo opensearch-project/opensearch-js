@@ -649,14 +649,14 @@ test('Extend client APIs', t => {
   t.end()
 })
 
-test('Elastic cloud config', t => {
+test('opensearch cloud config', t => {
   t.test('Basic', t => {
     t.plan(5)
     const client = new Client({
       cloud: {
         // 'localhost$abcd$efgh'
         id: 'name:bG9jYWxob3N0JGFiY2QkZWZnaA==',
-        username: 'elastic',
+        username: 'opensearch',
         password: 'changeme'
       }
     })
@@ -664,10 +664,10 @@ test('Elastic cloud config', t => {
     const pool = client.connectionPool
     t.ok(pool instanceof CloudConnectionPool)
     t.match(pool.connections.find(c => c.id === 'https://abcd.localhost/'), {
-      url: new URL('https://elastic:changeme@abcd.localhost'),
+      url: new URL('https://opensearch:changeme@abcd.localhost'),
       id: 'https://abcd.localhost/',
       headers: {
-        authorization: 'Basic ' + Buffer.from('elastic:changeme').toString('base64')
+        authorization: 'Basic ' + Buffer.from('opensearch:changeme').toString('base64')
       },
       ssl: { secureProtocol: 'TLSv1_2_method' },
       deadCount: 0,
@@ -684,13 +684,13 @@ test('Elastic cloud config', t => {
     t.same(pool._ssl, { secureProtocol: 'TLSv1_2_method' })
   })
 
-  t.test('Without kibana component', t => {
+  t.test('Without opensearchDashboards component', t => {
     t.plan(5)
     const client = new Client({
       cloud: {
         // 'localhost$abcd$'
         id: 'name:bG9jYWxob3N0JGFiY2Qk',
-        username: 'elastic',
+        username: 'opensearch',
         password: 'changeme'
       }
     })
@@ -698,10 +698,10 @@ test('Elastic cloud config', t => {
     const pool = client.connectionPool
     t.ok(pool instanceof CloudConnectionPool)
     t.match(pool.connections.find(c => c.id === 'https://abcd.localhost/'), {
-      url: new URL('https://elastic:changeme@abcd.localhost'),
+      url: new URL('https://opensearch:changeme@abcd.localhost'),
       id: 'https://abcd.localhost/',
       headers: {
-        authorization: 'Basic ' + Buffer.from('elastic:changeme').toString('base64')
+        authorization: 'Basic ' + Buffer.from('opensearch:changeme').toString('base64')
       },
       ssl: { secureProtocol: 'TLSv1_2_method' },
       deadCount: 0,
@@ -726,7 +726,7 @@ test('Elastic cloud config', t => {
         id: 'name:bG9jYWxob3N0JGFiY2QkZWZnaA=='
       },
       auth: {
-        username: 'elastic',
+        username: 'opensearch',
         password: 'changeme'
       }
     })
@@ -734,10 +734,10 @@ test('Elastic cloud config', t => {
     const pool = client.connectionPool
     t.ok(pool instanceof CloudConnectionPool)
     t.match(pool.connections.find(c => c.id === 'https://abcd.localhost/'), {
-      url: new URL('https://elastic:changeme@abcd.localhost'),
+      url: new URL('https://opensearch:changeme@abcd.localhost'),
       id: 'https://abcd.localhost/',
       headers: {
-        authorization: 'Basic ' + Buffer.from('elastic:changeme').toString('base64')
+        authorization: 'Basic ' + Buffer.from('opensearch:changeme').toString('base64')
       },
       ssl: { secureProtocol: 'TLSv1_2_method' },
       deadCount: 0,
@@ -760,7 +760,7 @@ test('Elastic cloud config', t => {
       cloud: {
         // 'localhost$abcd$efgh'
         id: 'name:bG9jYWxob3N0JGFiY2QkZWZnaA==',
-        username: 'elastic',
+        username: 'opensearch',
         password: 'changeme'
       },
       compression: false,
@@ -1143,14 +1143,14 @@ test('API compatibility header (json)', t => {
   t.plan(4)
 
   function handler (req, res) {
-    t.equal(req.headers.accept, 'application/vnd.elasticsearch+json; compatible-with=7')
-    t.equal(req.headers['content-type'], 'application/vnd.elasticsearch+json; compatible-with=7')
-    res.setHeader('Content-Type', 'application/vnd.elasticsearch+json; compatible-with=7')
+    t.equal(req.headers.accept, 'application/vnd.opensearch+json; compatible-with=7')
+    t.equal(req.headers['content-type'], 'application/vnd.opensearch+json; compatible-with=7')
+    res.setHeader('Content-Type', 'application/vnd.opensearch+json; compatible-with=7')
     res.end(JSON.stringify({ hello: 'world' }))
   }
 
   buildServer(handler, ({ port }, server) => {
-    process.env.ELASTIC_CLIENT_APIVERSIONING = 'true'
+    process.env.OPENSEARCH_CLIENT_APIVERSIONING = 'true'
     const client = new Client({
       node: `http://localhost:${port}`
     })
@@ -1159,7 +1159,7 @@ test('API compatibility header (json)', t => {
       t.error(err)
       t.same(body, { hello: 'world' })
       server.stop()
-      delete process.env.ELASTIC_CLIENT_APIVERSIONING
+      delete process.env.OPENSEARCH_CLIENT_APIVERSIONING
     })
   })
 })
@@ -1168,14 +1168,14 @@ test('API compatibility header (x-ndjson)', t => {
   t.plan(4)
 
   function handler (req, res) {
-    t.equal(req.headers.accept, 'application/vnd.elasticsearch+json; compatible-with=7')
-    t.equal(req.headers['content-type'], 'application/vnd.elasticsearch+x-ndjson; compatible-with=7')
-    res.setHeader('Content-Type', 'application/vnd.elasticsearch+json; compatible-with=7')
+    t.equal(req.headers.accept, 'application/vnd.opensearch+json; compatible-with=7')
+    t.equal(req.headers['content-type'], 'application/vnd.opensearch+x-ndjson; compatible-with=7')
+    res.setHeader('Content-Type', 'application/vnd.opensearch+json; compatible-with=7')
     res.end(JSON.stringify({ hello: 'world' }))
   }
 
   buildServer(handler, ({ port }, server) => {
-    process.env.ELASTIC_CLIENT_APIVERSIONING = 'true'
+    process.env.OPENSEARCH_CLIENT_APIVERSIONING = 'true'
     const client = new Client({
       node: `http://localhost:${port}`
     })
@@ -1184,7 +1184,7 @@ test('API compatibility header (x-ndjson)', t => {
       t.error(err)
       t.same(body, { hello: 'world' })
       server.stop()
-      delete process.env.ELASTIC_CLIENT_APIVERSIONING
+      delete process.env.OPENSEARCH_CLIENT_APIVERSIONING
     })
   })
 })

@@ -9,7 +9,7 @@ In the following example we have a `game-of-thrones` index which contains differ
 ----
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
 async function run () {

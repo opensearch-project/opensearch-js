@@ -18,7 +18,7 @@ const {
   Client,
   connection: { MockConnection, MockConnectionSniff }
 } = require('../utils')
-const noop = () => {}
+const noop = () => { }
 
 test('Request id', t => {
   t.test('Default generateRequestId', t => {
@@ -322,7 +322,7 @@ test('Client name', t => {
 
       client.on('sniff', (err, { meta }) => {
         t.error(err)
-        t.equal(meta.name, 'elasticsearch-js')
+        t.equal(meta.name, 'opensearch-js')
       })
     })
 
@@ -337,15 +337,15 @@ test('Client name', t => {
       })
 
       client.on('request', (e, { meta }) => {
-        t.equal(meta.name, 'elasticsearch-js')
+        t.equal(meta.name, 'opensearch-js')
       })
 
       client.on('response', (e, { meta }) => {
-        t.equal(meta.name, 'elasticsearch-js')
+        t.equal(meta.name, 'opensearch-js')
       })
 
       client.on('sniff', (e, { meta }) => {
-        t.equal(meta.name, 'elasticsearch-js')
+        t.equal(meta.name, 'opensearch-js')
       })
 
       client.transport.request({
@@ -376,7 +376,7 @@ test('Client name', t => {
 
     client.on('resurrect', (err, meta) => {
       t.error(err)
-      t.equal(meta.name, 'elasticsearch-js')
+      t.equal(meta.name, 'opensearch-js')
       clock.uninstall()
     })
 

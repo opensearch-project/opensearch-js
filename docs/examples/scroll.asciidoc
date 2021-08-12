@@ -16,7 +16,7 @@ in time. Subsequent changes to documents (index, update or delete) will only
 affect later search requests.
 
 In order to use scrolling, the initial search request should specify the scroll 
-parameter in the query string, which tells Elasticsearch how long it should keep 
+parameter in the query string, which tells OpenSearch how long it should keep 
 the “search context” alive.
 
 NOTE: Did you know that we provide an helper for sending scroll requests? You can find it {jsclient}/client-helpers.html[here].
@@ -25,7 +25,7 @@ NOTE: Did you know that we provide an helper for sending scroll requests? You ca
 ----
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
 async function run () {
@@ -119,7 +119,7 @@ async iteration!
 ----
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
 // Scroll utility

@@ -1,7 +1,7 @@
-# Elasticsearch proxy example
+# OpenSearchproxy example
 
 This folder contains an example of how to build a lightweight proxy
-between your frontend code and Elasticsearch if you don't
+between your frontend code and OpenSearchif you don't
 have a more sophisticated backend in place yet.
 
 > **IMPORTANT:** This is not a production ready code and it is only for demonstration purposes,
@@ -25,16 +25,13 @@ In each endpoint you should configure the `INDEX` variable.
 
 ## How to use
 
-Create an account on Vercel, then create a deployment on Elastic Cloud. If you
-don't have an account on Elastic Cloud, you can create one with a free 14-day trial
-of the [Elasticsearch Service](https://www.elastic.co/elasticsearch/service).
+Create an account on Vercel, then create a deployment.
 
-### Configure Elasticsearch
+### Configure OpenSearch
 
-Once you have created a deployment on Elastic Cloud copy the generated Cloud Id and the credentials.
-Then open `utils/prepare-elasticsearch.js` and fill your credentials. The script generates
-an [Api Key](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html)
-that you can use for authenticating your request. Based on the configuration of the Api Key, you will be able
+Once you have created a deployment on opensearch Cloud copy the generated Cloud Id and the credentials.
+Then open `utils/prepare-opensearch.js` and fill your credentials. The script generates
+an Api Key that you can use for authenticating your request. Based on the configuration of the Api Key, you will be able
 to perform different operation on the specified indices or index pattern.
 
 ### Configure Vercel
@@ -42,16 +39,10 @@ to perform different operation on the specified indices or index pattern.
 Install the [Vercel CLI](https://vercel.com/docs/cli) to bootstrap the project,
 or read the [quickstart](https://vercel.com/docs) documentation.
 
-If you are using the CLI, bootstrap the project by running `vercel`. Test the project locally
-with `vercel dev`, and deploy it with `vercel deploy`.
-Configure the `ELASTIC_CLOUD_ID` [environment varible](https://vercel.com/docs/environment-variables) as well.
-The Api Key is passed from the frontend app via a `Authorization` header as `Bearer` token and is
-used to authorize the API calls to the endpoints as well.
-Additional configuration, such as CORS, can be added to [`vercel.json`](https://vercel.com/docs/configuration).
 
 ## Authentication
 
-If you are using Elasticsearch only for search purposes, such as a search box, you can create
+If you are using OpenSearchonly for search purposes, such as a search box, you can create
 an Api Key with `read` permissions and store it in your frontend app. Then you can send it
 via `Authorization` header to the proxy and run your searches.
 

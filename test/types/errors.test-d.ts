@@ -51,7 +51,7 @@ const response = {
 }
 
 {
-  const err = new errors.ElasticsearchClientError()
+  const err = new errors.OpenSearchClientError()
   expectType<string>(err.name)
   expectType<string>(err.message)
 }

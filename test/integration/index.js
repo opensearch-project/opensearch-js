@@ -55,11 +55,11 @@ const ossSkips = {
   'cat.indices/10_basic.yml': ['Test cat indices output for closed index (pre 7.2.0)'],
   'cluster.health/10_basic.yml': ['cluster health with closed index (pre 7.2.0)'],
   // TODO: remove this once 'arbitrary_key' is implemented
-  // https://github.com/elastic/elasticsearch/pull/41492
+  // https://github.com/opensearch-project/opensearch/pull/41492
   'indices.split/30_copy_settings.yml': ['*'],
   'indices.stats/50_disk_usage.yml': ['Disk usage stats'],
   'indices.stats/60_field_usage.yml': ['Field usage stats'],
-  // skipping because we are booting ES with `discovery.type=single-node`
+  // skipping because we are booting opensearch with `discovery.type=single-node`
   // and this test will fail because of this configuration
   'nodes.stats/30_discovery.yml': ['*'],
   // the expected error is returning a 503,
@@ -97,7 +97,7 @@ async function waitCluster (client, times = 0) {
 }
 
 async function start ({ client }) {
-  log('Waiting for Elasticsearch')
+  log('Waiting for OpenSearch')
   await waitCluster(client)
 
   const { body } = await client.info()
@@ -277,7 +277,7 @@ const shouldSkip = (file, name) => {
     const ossTest = ossSkips[list[i]]
     for (let j = 0; j < ossTest.length; j++) {
       if (file.endsWith(list[i]) && (name === ossTest[j] || ossTest[j] === '*')) {
-        const testName = file.slice(file.indexOf(`${sep}elasticsearch${sep}`)) + ' / ' + name
+        const testName = file.slice(file.indexOf(`${sep}opensearch${sep}`)) + ' / ' + name
         log(`Skipping test ${testName} because is blacklisted in the oss test`)
         return true
       }

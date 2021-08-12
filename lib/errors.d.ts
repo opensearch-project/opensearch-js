@@ -30,53 +30,53 @@
 
 import { ApiResponse, Context } from './Transport'
 
-export declare class ElasticsearchClientError extends Error {
+export declare class OpenSearchClientError extends Error {
   name: string;
   message: string;
 }
 
-export declare class TimeoutError<TResponse = Record<string, any>, TContext = Context> extends ElasticsearchClientError {
-  name: string;
-  message: string;
-  meta: ApiResponse<TResponse, TContext>;
-  constructor(message: string, meta: ApiResponse);
-}
-
-export declare class ConnectionError<TResponse = Record<string, any>, TContext = Context> extends ElasticsearchClientError {
+export declare class TimeoutError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;
   constructor(message: string, meta: ApiResponse);
 }
 
-export declare class NoLivingConnectionsError<TResponse = Record<string, any>, TContext = Context> extends ElasticsearchClientError {
+export declare class ConnectionError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;
   constructor(message: string, meta: ApiResponse);
 }
 
-export declare class SerializationError extends ElasticsearchClientError {
+export declare class NoLivingConnectionsError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
+  name: string;
+  message: string;
+  meta: ApiResponse<TResponse, TContext>;
+  constructor(message: string, meta: ApiResponse);
+}
+
+export declare class SerializationError extends OpenSearchClientError {
   name: string;
   message: string;
   data: any;
   constructor(message: string, data: any);
 }
 
-export declare class DeserializationError extends ElasticsearchClientError {
+export declare class DeserializationError extends OpenSearchClientError {
   name: string;
   message: string;
   data: string;
   constructor(message: string, data: string);
 }
 
-export declare class ConfigurationError extends ElasticsearchClientError {
+export declare class ConfigurationError extends OpenSearchClientError {
   name: string;
   message: string;
   constructor(message: string);
 }
 
-export declare class ResponseError<TResponse = Record<string, any>, TContext = Context> extends ElasticsearchClientError {
+export declare class ResponseError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;
@@ -86,14 +86,14 @@ export declare class ResponseError<TResponse = Record<string, any>, TContext = C
   constructor(meta: ApiResponse);
 }
 
-export declare class RequestAbortedError<TResponse = Record<string, any>, TContext = Context> extends ElasticsearchClientError {
+export declare class RequestAbortedError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;
   constructor(message: string, meta: ApiResponse);
 }
 
-export declare class NotCompatibleError<TResponse = Record<string, any>, TContext = Context> extends ElasticsearchClientError {
+export declare class NotCompatibleError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;

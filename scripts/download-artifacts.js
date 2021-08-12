@@ -45,11 +45,11 @@ const pipeline = promisify(stream.pipeline)
 const unzip = promisify(crossZip.unzip)
 const rm = promisify(rimraf)
 
-const esFolder = join(__dirname, '..', 'elasticsearch')
-const zipFolder = join(esFolder, 'artifacts.zip')
-const specFolder = join(esFolder, 'rest-api-spec', 'api')
-const ossTestFolder = join(esFolder, 'rest-api-spec', 'test', 'oss')
-const artifactInfo = join(esFolder, 'info.json')
+const osFolder = join(__dirname, '..', 'opensearch')
+const zipFolder = join(osFolder, 'artifacts.zip')
+const specFolder = join(osFolder, 'rest-api-spec', 'api')
+const ossTestFolder = join(osFolder, 'rest-api-spec', 'test', 'oss')
+const artifactInfo = join(osFolder, 'info.json')
 
 async function downloadArtifacts (opts) {
   if (typeof opts.version !== 'string') {
@@ -80,9 +80,9 @@ async function downloadArtifacts (opts) {
     }
   }
 
-  log.text = 'Cleanup checkouts/elasticsearch'
-  await rm(esFolder)
-  await mkdir(esFolder, { recursive: true })
+  log.text = 'Cleanup checkouts/opensearch'
+  await rm(osFolder)
+  await mkdir(osFolder, { recursive: true })
 
   log.text = 'Downloading artifacts'
   const response = await fetch(resolved.url)
@@ -93,7 +93,7 @@ async function downloadArtifacts (opts) {
   await pipeline(response.body, createWriteStream(zipFolder))
 
   log.text = 'Unzipping'
-  await unzip(zipFolder, esFolder)
+  await unzip(zipFolder, osFolder)
 
   log.text = 'Cleanup'
   await rm(zipFolder)
@@ -113,17 +113,17 @@ function loadInfo () {
 }
 
 async function resolve (version, hash) {
-  const response = await fetch(`https://artifacts-api.elastic.co/v1/versions/${version}`)
+  const response = await fetch(`https://artifacts-api.opensearch.co/v1/versions/${version}`)
   if (!response.ok) {
     throw new Error(`unexpected response ${response.statusText}`)
   }
 
   const data = await response.json()
   const esBuilds = data.version.builds
-    .filter(build => build.projects.elasticsearch != null)
+    .filter(build => build.projects.opensearch != null)
     .map(build => {
       return {
-        projects: build.projects.elasticsearch,
+        projects: build.projects.opensearch,
         buildId: build.build_id,
         date: build.start_time,
         version: build.version

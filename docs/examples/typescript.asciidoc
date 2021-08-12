@@ -11,7 +11,7 @@ to define the API parameters instead of _camelCase_.
 ----
 'use strict'
 
-import { Client, ApiResponse, RequestParams } from '@elastic/elasticsearch'
+import { Client, ApiResponse, RequestParams } from '@opensearch/opensearch'
 const client = new Client({ node: 'http://localhost:9200' })
 
 async function run (): void {

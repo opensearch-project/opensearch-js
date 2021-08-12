@@ -127,7 +127,7 @@ const transport = new Transport({
 
 expectType<Transport>(transport)
 
-expectType<TransportRequestCallback>(transport.request(params, options, (err, result) => {}))
+expectType<TransportRequestCallback>(transport.request(params, options, (err, result) => { }))
 
 // querystring as string
 transport.request({

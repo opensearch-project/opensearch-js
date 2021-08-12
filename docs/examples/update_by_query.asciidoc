@@ -7,7 +7,7 @@ The simplest usage of _update_by_query just performs an update on every document
 ---------
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
 async function run () {

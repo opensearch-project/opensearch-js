@@ -11,7 +11,7 @@ NOTE: Did you know that we provide an helper for sending bulk request? You can f
 'use strict'
 
 require('array.prototype.flatmap').shim()
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({
   node: 'http://localhost:9200'
 })

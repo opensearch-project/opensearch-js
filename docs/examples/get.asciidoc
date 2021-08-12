@@ -9,7 +9,7 @@ The following example gets a JSON document from an index called
 ---------
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
 async function run () {

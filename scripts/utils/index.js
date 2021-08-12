@@ -31,7 +31,7 @@
 'use strict'
 
 const generate = require('./generateApis')
-const cloneAndCheckout = require('./clone-es')
+const cloneAndCheckout = require('./clone-opensearch')
 const genFactory = require('./generateMain')
 const generateDocs = require('./generateDocs')
 const generateRequestTypes = require('./generateRequestTypes')

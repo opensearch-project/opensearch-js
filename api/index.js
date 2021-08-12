@@ -92,7 +92,7 @@ const kShutdown = Symbol('Shutdown')
 const kSnapshot = Symbol('Snapshot')
 const kTasks = Symbol('Tasks')
 
-function ESAPI (opts) {
+function OSAPI (opts) {
   this[kConfigurationError] = opts.ConfigurationError
   this[kCat] = null
   this[kCluster] = null
@@ -106,47 +106,47 @@ function ESAPI (opts) {
   this[kTasks] = null
 }
 
-ESAPI.prototype.bulk = bulkApi
-ESAPI.prototype.clearScroll = clearScrollApi
-ESAPI.prototype.count = countApi
-ESAPI.prototype.create = createApi
-ESAPI.prototype.delete = deleteApi
-ESAPI.prototype.deleteByQuery = deleteByQueryApi
-ESAPI.prototype.deleteByQueryRethrottle = deleteByQueryRethrottleApi
-ESAPI.prototype.deleteScript = deleteScriptApi
-ESAPI.prototype.exists = existsApi
-ESAPI.prototype.existsSource = existsSourceApi
-ESAPI.prototype.explain = explainApi
-ESAPI.prototype.fieldCaps = fieldCapsApi
-ESAPI.prototype.get = getApi
-ESAPI.prototype.getScript = getScriptApi
-ESAPI.prototype.getScriptContext = getScriptContextApi
-ESAPI.prototype.getScriptLanguages = getScriptLanguagesApi
-ESAPI.prototype.getSource = getSourceApi
-ESAPI.prototype.index = indexApi
-ESAPI.prototype.info = infoApi
-ESAPI.prototype.mget = mgetApi
-ESAPI.prototype.msearch = msearchApi
-ESAPI.prototype.msearchTemplate = msearchTemplateApi
-ESAPI.prototype.mtermvectors = mtermvectorsApi
-ESAPI.prototype.ping = pingApi
-ESAPI.prototype.putScript = putScriptApi
-ESAPI.prototype.rankEval = rankEvalApi
-ESAPI.prototype.reindex = reindexApi
-ESAPI.prototype.reindexRethrottle = reindexRethrottleApi
-ESAPI.prototype.renderSearchTemplate = renderSearchTemplateApi
-ESAPI.prototype.scriptsPainlessExecute = scriptsPainlessExecuteApi
-ESAPI.prototype.scroll = scrollApi
-ESAPI.prototype.search = searchApi
-ESAPI.prototype.searchShards = searchShardsApi
-ESAPI.prototype.searchTemplate = searchTemplateApi
-ESAPI.prototype.termsEnum = termsEnumApi
-ESAPI.prototype.termvectors = termvectorsApi
-ESAPI.prototype.update = updateApi
-ESAPI.prototype.updateByQuery = updateByQueryApi
-ESAPI.prototype.updateByQueryRethrottle = updateByQueryRethrottleApi
+OSAPI.prototype.bulk = bulkApi
+OSAPI.prototype.clearScroll = clearScrollApi
+OSAPI.prototype.count = countApi
+OSAPI.prototype.create = createApi
+OSAPI.prototype.delete = deleteApi
+OSAPI.prototype.deleteByQuery = deleteByQueryApi
+OSAPI.prototype.deleteByQueryRethrottle = deleteByQueryRethrottleApi
+OSAPI.prototype.deleteScript = deleteScriptApi
+OSAPI.prototype.exists = existsApi
+OSAPI.prototype.existsSource = existsSourceApi
+OSAPI.prototype.explain = explainApi
+OSAPI.prototype.fieldCaps = fieldCapsApi
+OSAPI.prototype.get = getApi
+OSAPI.prototype.getScript = getScriptApi
+OSAPI.prototype.getScriptContext = getScriptContextApi
+OSAPI.prototype.getScriptLanguages = getScriptLanguagesApi
+OSAPI.prototype.getSource = getSourceApi
+OSAPI.prototype.index = indexApi
+OSAPI.prototype.info = infoApi
+OSAPI.prototype.mget = mgetApi
+OSAPI.prototype.msearch = msearchApi
+OSAPI.prototype.msearchTemplate = msearchTemplateApi
+OSAPI.prototype.mtermvectors = mtermvectorsApi
+OSAPI.prototype.ping = pingApi
+OSAPI.prototype.putScript = putScriptApi
+OSAPI.prototype.rankEval = rankEvalApi
+OSAPI.prototype.reindex = reindexApi
+OSAPI.prototype.reindexRethrottle = reindexRethrottleApi
+OSAPI.prototype.renderSearchTemplate = renderSearchTemplateApi
+OSAPI.prototype.scriptsPainlessExecute = scriptsPainlessExecuteApi
+OSAPI.prototype.scroll = scrollApi
+OSAPI.prototype.search = searchApi
+OSAPI.prototype.searchShards = searchShardsApi
+OSAPI.prototype.searchTemplate = searchTemplateApi
+OSAPI.prototype.termsEnum = termsEnumApi
+OSAPI.prototype.termvectors = termvectorsApi
+OSAPI.prototype.update = updateApi
+OSAPI.prototype.updateByQuery = updateByQueryApi
+OSAPI.prototype.updateByQueryRethrottle = updateByQueryRethrottleApi
 
-Object.defineProperties(ESAPI.prototype, {
+Object.defineProperties(OSAPI.prototype, {
   cat: {
     get () {
       if (this[kCat] === null) {
@@ -251,4 +251,4 @@ Object.defineProperties(ESAPI.prototype, {
   update_by_query_rethrottle: { get () { return this.updateByQueryRethrottle } }
 })
 
-module.exports = ESAPI
+module.exports = OSAPI

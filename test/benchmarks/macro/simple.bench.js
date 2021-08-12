@@ -22,7 +22,7 @@ const { bench, beforeEach, afterEach } = require('../suite')({
   }
 })
 
-const node = process.env.ELASTICSEARCH_URL || 'http://localhost:9200'
+const node = process.env.OPENSEARCH_URL || 'http://localhost:9200'
 
 const smallDocument = require('./fixtures/small_document.json')
 const smallDocumentInfo = {

@@ -76,11 +76,11 @@ function generateDocs (common, spec) {
 
   == API Reference
 
-  This document contains the entire list of the Elasticsearch API supported by the client, both OSS and commercial. The client is entirely licensed under Apache 2.0.
+  This document contains the entire list of the OpenSearchAPI supported by the client, both OSS and commercial. The client is entirely licensed under Apache 2.0.
 
-  Elasticsearch exposes an HTTP layer to communicate with, and the client is a library that will help you do this. Because of this reason, you will see HTTP related parameters, such as ${'`'}body${'`'} or ${'`'}headers${'`'}.
+  OpenSearchexposes an HTTP layer to communicate with, and the client is a library that will help you do this. Because of this reason, you will see HTTP related parameters, such as ${'`'}body${'`'} or ${'`'}headers${'`'}.
 
-  Every API can accept two objects, the first contains all the parameters that will be sent to Elasticsearch, while the second includes the request specific parameters, such as timeouts, headers, and so on.
+  Every API can accept two objects, the first contains all the parameters that will be sent to OpenSearch, while the second includes the request specific parameters, such as timeouts, headers, and so on.
   In the first object, every parameter but the body will be sent via querystring or url parameter, depending on the API, and every unrecognized parameter will be sent as querystring.
 
   [source,js]
@@ -276,8 +276,8 @@ function fixLink (name, str) {
   if (override) return override
   if (!str) return ''
   /* Replace references to the guide with the attribute {ref} because
-   * the json files in the Elasticsearch repo are a bit of a mess. */
-  str = str.replace(/^.+guide\/en\/elasticsearch\/reference\/[^/]+\/([^./]*\.html(?:#.+)?)$/, '{ref}/$1')
+   * the json files in the OpenSearchrepo are a bit of a mess. */
+  str = str.replace(/^.+guide\/en\/opensearch\/reference\/[^/]+\/([^./]*\.html(?:#.+)?)$/, '{ref}/$1')
   str = str.replace(/frozen\.html/, 'freeze-index-api.html')
   str = str.replace(/ml-file-structure\.html/, 'ml-find-file-structure.html')
   str = str.replace(/security-api-get-user-privileges\.html/, 'security-api-get-privileges.html')

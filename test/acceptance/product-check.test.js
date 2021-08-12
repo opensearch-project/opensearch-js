@@ -139,7 +139,7 @@ test('Errors not v7', t => {
     if (req.method === 'GET') {
       t.error(err)
     } else {
-      t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+      t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
     }
   })
 
@@ -151,7 +151,7 @@ test('Errors not v7', t => {
       }
     }
   }, (err, result) => {
-    t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+    t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
   })
 })
 
@@ -228,7 +228,7 @@ test('Auth error - 401', t => {
 
   process.on('warning', onWarning)
   function onWarning (warning) {
-    t.equal(warning.message, 'The client is unable to verify that the server is Elasticsearch due to security privileges on the server side. Some functionality may not be compatible if the server is running an unsupported product.')
+    t.equal(warning.message, 'The client is unable to verify that the server is OpenSearchdue to security privileges on the server side. Some functionality may not be compatible if the server is running an unsupported product.')
   }
 
   const requests = [{
@@ -279,7 +279,7 @@ test('Auth error - 403', t => {
 
   process.on('warning', onWarning)
   function onWarning (warning) {
-    t.equal(warning.message, 'The client is unable to verify that the server is Elasticsearch due to security privileges on the server side. Some functionality may not be compatible if the server is running an unsupported product.')
+    t.equal(warning.message, 'The client is unable to verify that the server is OpenSearchdue to security privileges on the server side. Some functionality may not be compatible if the server is running an unsupported product.')
   }
 
   const requests = [{
@@ -379,7 +379,7 @@ test('500 error', t => {
       }
     }
   }, (err, result) => {
-    t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+    t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
 
     client.search({
       index: 'foo',
@@ -416,7 +416,7 @@ test('TimeoutError', t => {
     if (req.method === 'GET') {
       t.error(err)
     } else {
-      t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+      t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
     }
   })
 
@@ -428,7 +428,7 @@ test('TimeoutError', t => {
       }
     }
   }, (err, result) => {
-    t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+    t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
   })
 })
 
@@ -557,7 +557,7 @@ test('Multiple subsequent calls, with errors', t => {
     if (req.method === 'GET') {
       t.error(err)
     } else {
-      t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+      t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
     }
   })
 
@@ -569,11 +569,11 @@ test('Multiple subsequent calls, with errors', t => {
       }
     }
   }, (err, result) => {
-    t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+    t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
   })
 
   client.ping((err, result) => {
-    t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+    t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
   })
 
   client.index({
@@ -582,7 +582,7 @@ test('Multiple subsequent calls, with errors', t => {
       foo: 'bar'
     }
   }, (err, result) => {
-    t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+    t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
   })
 })
 
@@ -705,7 +705,7 @@ test('Later errored call', t => {
     if (req.method === 'GET') {
       t.error(err)
     } else {
-      t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+      t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
     }
   })
 
@@ -717,7 +717,7 @@ test('Later errored call', t => {
       }
     }
   }, (err, result) => {
-    t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+    t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
   })
 
   setTimeout(() => {
@@ -729,7 +729,7 @@ test('Later errored call', t => {
         }
       }
     }, (err, result) => {
-      t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+      t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
     })
   }, 100)
 })
@@ -767,7 +767,7 @@ test('Bad info response', t => {
     if (req.method === 'GET') {
       t.error(err)
     } else {
-      t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+      t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
     }
   })
 
@@ -779,7 +779,7 @@ test('Bad info response', t => {
       }
     }
   }, (err, result) => {
-    t.equal(err.message, 'The client noticed that the server is not a supported distribution of Elasticsearch')
+    t.equal(err.message, 'The client noticed that the server is not a supported distribution of OpenSearch')
   })
 })
 

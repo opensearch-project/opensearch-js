@@ -40,7 +40,7 @@ const stackoverflowInfo = {
 }
 
 const INDEX = 'stackoverflow'
-const node = process.env.ELASTICSEARCH_URL || 'http://localhost:9200'
+const node = process.env.OPENSEARCH_URL || 'http://localhost:9200'
 
 const client = new Client({ node })
 

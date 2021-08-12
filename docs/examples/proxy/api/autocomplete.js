@@ -35,13 +35,13 @@
 
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const authorize = require('../utils/authorize')
 
 const INDEX = '<index-name>'
 const client = new Client({
   cloud: {
-    id: process.env.ELASTIC_CLOUD_ID
+    id: process.env.OPENSEARCH_CLOUD_ID
   }
 })
 
@@ -77,7 +77,7 @@ module.exports = async (req, res) => {
     const response = await client.search({
       index: INDEX,
       // You could directly send from the browser
-      // the Elasticsearch's query DSL, but it will
+      // the OpenSearch's query DSL, but it will
       // expose you to the risk that a malicious user
       // could overload your cluster by crafting
       // expensive queries.

@@ -35,10 +35,10 @@ import Serializer from './Serializer';
 import * as errors from './errors';
 
 export type ApiError = errors.ConfigurationError | errors.ConnectionError |
-                       errors.DeserializationError | errors.SerializationError |
-                       errors.NoLivingConnectionsError | errors.ResponseError |
-                       errors.TimeoutError | errors.RequestAbortedError |
-                       errors.NotCompatibleError
+  errors.DeserializationError | errors.SerializationError |
+  errors.NoLivingConnectionsError | errors.ResponseError |
+  errors.TimeoutError | errors.RequestAbortedError |
+  errors.NotCompatibleError
 
 export type Context = unknown
 
@@ -99,10 +99,10 @@ export interface RequestEvent<TResponse = Record<string, any>, TContext = Contex
 
 // ApiResponse and RequestEvent are the same thing
 // we are doing this for have more clear names
-export interface ApiResponse<TResponse = Record<string, any>, TContext = Context> extends RequestEvent<TResponse, TContext> {}
+export interface ApiResponse<TResponse = Record<string, any>, TContext = Context> extends RequestEvent<TResponse, TContext> { }
 
-export type RequestBody<T = Record<string, any>>  = T | string | Buffer | ReadableStream
-export type RequestNDBody<T = Record<string, any>[]>  = T | string | string[] | Buffer | ReadableStream
+export type RequestBody<T = Record<string, any>> = T | string | Buffer | ReadableStream
+export type RequestNDBody<T = Record<string, any>[]> = T | string | string[] | Buffer | ReadableStream
 
 export interface TransportRequestParams {
   method: string;

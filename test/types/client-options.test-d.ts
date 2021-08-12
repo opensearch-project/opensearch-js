@@ -464,7 +464,7 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    generateRequestId (params, options) {
+    generateRequestId(params, options) {
       return 'id'
     }
   })
@@ -484,7 +484,7 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    nodeSelector (connections) {
+    nodeSelector(connections) {
       return connections[0]
     }
   })
@@ -501,7 +501,7 @@ expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    nodeSelector (connections) {
+    nodeSelector(connections) {
       return 'id'
     }
   })
@@ -513,7 +513,7 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    nodeFilter (connection) {
+    nodeFilter(connection) {
       return true
     }
   })
@@ -523,7 +523,7 @@ expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    nodeFilter (connection) {
+    nodeFilter(connection) {
       return 'id'
     }
   })
@@ -534,7 +534,7 @@ expectError<errors.ConfigurationError>(
  */
 {
   class CustomSerializer extends Serializer {
-    deserialize (str: string) {
+    deserialize(str: string) {
       return super.deserialize(str)
     }
   }
@@ -552,7 +552,7 @@ expectError<errors.ConfigurationError>(
  */
 {
   class CustomConnection extends Connection {
-    close () {
+    close() {
       return super.close()
     }
   }
@@ -567,7 +567,7 @@ expectError<errors.ConfigurationError>(
 
 {
   class CustomConnection {
-    close () {
+    close() {
       return Promise.resolve()
     }
   }
@@ -586,7 +586,7 @@ expectError<errors.ConfigurationError>(
  */
 {
   class CustomConnectionPool extends ConnectionPool {
-    empty () {
+    empty() {
       return super.empty()
     }
   }
@@ -601,7 +601,7 @@ expectError<errors.ConfigurationError>(
 
 {
   class CustomConnectionPool {
-    empty () {
+    empty() {
       return this
     }
   }
@@ -620,7 +620,7 @@ expectError<errors.ConfigurationError>(
  */
 {
   class CustomTransport extends Transport {
-    getConnection (opts: TransportGetConnectionOptions) {
+    getConnection(opts: TransportGetConnectionOptions) {
       return super.getConnection(opts)
     }
   }
@@ -635,7 +635,7 @@ expectError<errors.ConfigurationError>(
 
 {
   class CustomTransport {
-    getConnection (opts: TransportGetConnectionOptions) {
+    getConnection(opts: TransportGetConnectionOptions) {
       return null
     }
   }

@@ -9,7 +9,7 @@ NOTE: Since this API uses the `HEAD` method, the body value will be boolean.
 ---------
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
 async function run () {

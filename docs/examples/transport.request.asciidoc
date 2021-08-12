@@ -1,10 +1,10 @@
 [[transport_request_examples]]
 === transport.request
 
-It can happen that you need to communicate with {es} by using an API that is not 
+It can happen that you need to communicate with {opensearch} by using an API that is not 
 supported by the client, to mitigate this issue you can directly call 
 `client.transport.request`, which is the internal utility that the client uses 
-to communicate with {es} when you use an API method.
+to communicate with {opensearch} when you use an API method.
 
 NOTE: When using the `transport.request` method you must provide all the 
 parameters needed to perform an HTTP call, such as `method`, `path`, 
@@ -19,7 +19,7 @@ maintain.
 ----
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
 async function run () {

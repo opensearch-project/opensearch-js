@@ -377,7 +377,7 @@ test('Deserialization Error', t => {
       }
       stream.on('close', () => t.pass('Stream destroyed'))
       process.nextTick(callback, null, stream)
-      return { abort () {} }
+      return { abort () { } }
     }
   }
 

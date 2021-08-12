@@ -8,7 +8,7 @@ data.
 ----
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
 async function run () {
@@ -77,14 +77,14 @@ async function run () {
 run().catch(console.log)
 ----
 
-TIP: This can be useful if you need to pipe the {es}'s response to a proxy, or 
+TIP: This can be useful if you need to pipe the {opensearch}'s response to a proxy, or 
 send it directly to another source.
 
 [source,js]
 ----
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 const fastify = require('fastify')()
 

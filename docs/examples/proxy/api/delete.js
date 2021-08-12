@@ -35,13 +35,13 @@
 
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const authorize = require('../utils/authorize')
 
 const INDEX = '<index-name>'
 const client = new Client({
   cloud: {
-    id: process.env.ELASTIC_CLOUD_ID
+    id: process.env.OPENSEARCH_CLOUD_ID
   }
 })
 

@@ -8,7 +8,7 @@ In the following example, we will index a document that also tracks how many tim
 ---------
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
 async function run () {
@@ -54,7 +54,7 @@ With the update API, you can also run a partial update of a document.
 ---------
 'use strict'
 
-const { Client } = require('@elastic/elasticsearch')
+const { Client } = require('@opensearch/opensearch')
 const client = new Client({ node: 'http://localhost:9200' })
 
 async function run () {

@@ -137,7 +137,7 @@ test('API', t => {
         const opts = {
           now: Date.now() + 1000 * 60 * 3,
           requestId: 1,
-          name: 'elasticsearch-js'
+          name: 'opensearch-js'
         }
         pool.resurrect(opts, (isAlive, connection) => {
           t.ok(isAlive)
@@ -163,7 +163,7 @@ test('API', t => {
         const opts = {
           now: Date.now() + 1000 * 60 * 3,
           requestId: 1,
-          name: 'elasticsearch-js'
+          name: 'opensearch-js'
         }
         pool.resurrect(opts, (isAlive, connection) => {
           t.notOk(isAlive)
@@ -191,7 +191,7 @@ test('API', t => {
       const opts = {
         now: Date.now() + 1000 * 60 * 3,
         requestId: 1,
-        name: 'elasticsearch-js'
+        name: 'opensearch-js'
       }
       pool.resurrect(opts, (isAlive, connection) => {
         t.ok(isAlive)
@@ -216,7 +216,7 @@ test('API', t => {
       const opts = {
         now: Date.now() + 1000 * 60 * 3,
         requestId: 1,
-        name: 'elasticsearch-js'
+        name: 'opensearch-js'
       }
       pool.resurrect(opts, (isAlive, connection) => {
         t.ok(isAlive === null)

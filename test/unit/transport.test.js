@@ -69,7 +69,7 @@ test('Basic', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -97,7 +97,7 @@ test('Basic (promises support)', t => {
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -125,7 +125,7 @@ test('Basic - failing (promises support)', t => {
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -152,7 +152,7 @@ test('Basic (options + promises support)', t => {
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -198,7 +198,7 @@ test('Send POST', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -255,7 +255,7 @@ test('Send POST (ndjson)', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -299,7 +299,7 @@ test('Send stream', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -343,7 +343,7 @@ test('Send stream (bulkBody)', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -377,7 +377,7 @@ test('Not JSON payload from server', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -404,7 +404,7 @@ test('NoLivingConnectionsError (null connection)', t => {
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -433,7 +433,7 @@ test('NoLivingConnectionsError (undefined connection)', t => {
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -462,7 +462,7 @@ test('SerializationError', t => {
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -489,7 +489,7 @@ test('SerializationError (bulk)', t => {
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -522,7 +522,7 @@ test('DeserializationError', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -559,7 +559,7 @@ test('TimeoutError (should call markDead on the failing connection)', t => {
   })
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 0,
@@ -594,7 +594,7 @@ test('ConnectionError (should call markDead on the failing connection)', t => {
   })
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 0,
@@ -641,7 +641,7 @@ test('Retry mechanism', t => {
     }])
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 1,
@@ -686,7 +686,7 @@ test('Should not retry if the body is a stream', t => {
     }])
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 1,
@@ -732,7 +732,7 @@ test('Should not retry if the bulkBody is a stream', t => {
     }])
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 1,
@@ -778,7 +778,7 @@ test('No retry', t => {
     }])
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -830,7 +830,7 @@ test('Custom retry mechanism', t => {
     }])
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 0,
@@ -877,7 +877,7 @@ test('Should not retry on 429', t => {
     }])
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 5,
@@ -915,7 +915,7 @@ test('Should call markAlive with a successful response', t => {
   })
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -952,14 +952,14 @@ test('Should call resurrect on every request', t => {
   })
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
     sniffOnStart: false,
-    name: 'elasticsearch-js'
+    name: 'opensearch-js'
   })
   skipCompatibleCheck(transport)
 
@@ -982,7 +982,7 @@ test('Should return a request aborter utility', t => {
   })
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -1061,7 +1061,7 @@ test('Abort a request with the promise API', t => {
   })
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -1101,7 +1101,7 @@ test('ResponseError', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1137,7 +1137,7 @@ test('Override requestTimeout', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1175,7 +1175,7 @@ test('sniff', t => {
 
     // eslint-disable-next-line
     new MyTransport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1199,7 +1199,7 @@ test('sniff', t => {
     pool.addConnection('http://localhost:9200')
 
     const transport = new MyTransport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 0,
@@ -1234,7 +1234,7 @@ test('sniff', t => {
     pool.addConnection('http://localhost:9200')
 
     const transport = new MyTransport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1268,7 +1268,7 @@ test('sniff', t => {
     pool.addConnection('http://localhost:9200')
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 0,
@@ -1305,7 +1305,7 @@ test(`Should mark as dead connections where the statusCode is 502/3/4
       pool.addConnection('http://localhost:9200')
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 0,
@@ -1360,7 +1360,7 @@ test('Should retry the request if the statusCode is 502/3/4', t => {
         pool.addConnection(`http://localhost:${port}`)
 
         const transport = new Transport({
-          emit: () => {},
+          emit: () => { },
           connectionPool: pool,
           serializer: new Serializer(),
           maxRetries: 1,
@@ -1392,7 +1392,7 @@ test('Ignore status code', t => {
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -1442,7 +1442,7 @@ test('Should serialize the querystring', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1486,7 +1486,7 @@ test('timeout option', t => {
         })
 
         const transport = new Transport({
-          emit: () => {},
+          emit: () => { },
           connectionPool: pool,
           serializer: new Serializer(),
           maxRetries: 0,
@@ -1517,7 +1517,7 @@ test('timeout option', t => {
         })
 
         const transport = new Transport({
-          emit: () => {},
+          emit: () => { },
           connectionPool: pool,
           serializer: new Serializer(),
           maxRetries: 0,
@@ -1554,7 +1554,7 @@ test('timeout option', t => {
         })
 
         const transport = new Transport({
-          emit: () => {},
+          emit: () => { },
           connectionPool: pool,
           serializer: new Serializer(),
           maxRetries: 0,
@@ -1585,7 +1585,7 @@ test('timeout option', t => {
         })
 
         const transport = new Transport({
-          emit: () => {},
+          emit: () => { },
           connectionPool: pool,
           serializer: new Serializer(),
           maxRetries: 0,
@@ -1620,7 +1620,7 @@ test('Should cast to boolean HEAD request', t => {
     pool.addConnection('http://localhost:9200')
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1646,7 +1646,7 @@ test('Should cast to boolean HEAD request', t => {
     pool.addConnection('http://localhost:9200')
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1673,7 +1673,7 @@ test('Should cast to boolean HEAD request', t => {
     pool.addConnection('http://localhost:9200')
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1699,7 +1699,7 @@ test('Should cast to boolean HEAD request', t => {
     pool.addConnection('http://localhost:9200')
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1741,7 +1741,7 @@ test('Suggest compression', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1782,7 +1782,7 @@ test('Broken compression', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1819,7 +1819,7 @@ test('Warning header', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -1857,7 +1857,7 @@ test('Warning header', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -1892,7 +1892,7 @@ test('Warning header', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -1928,7 +1928,7 @@ test('asStream set to true', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -1987,7 +1987,7 @@ test('Compress request', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2035,7 +2035,7 @@ test('Compress request', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2082,7 +2082,7 @@ test('Compress request', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2111,7 +2111,7 @@ test('Compress request', t => {
 
     try {
       new Transport({ // eslint-disable-line
-        emit: () => {},
+        emit: () => { },
         connectionPool: new ConnectionPool({ Connection }),
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2141,7 +2141,7 @@ test('Compress request', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2209,7 +2209,7 @@ test('Compress request', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2251,7 +2251,7 @@ test('Headers configuration', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2291,7 +2291,7 @@ test('Headers configuration', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2330,7 +2330,7 @@ test('Headers configuration', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2366,7 +2366,7 @@ test('nodeFilter and nodeSelector', t => {
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -2408,7 +2408,7 @@ test('Should accept custom querystring in the optons object', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2445,7 +2445,7 @@ test('Should accept custom querystring in the optons object', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2475,7 +2475,7 @@ test('Should accept custom querystring in the optons object', t => {
 test('Should add an User-Agent header', t => {
   t.plan(2)
   const clientVersion = require('../../package.json').version
-  const userAgent = `elasticsearch-js/${clientVersion} (${os.platform()} ${os.release()}-${os.arch()}; Node.js ${process.version})`
+  const userAgent = `opensearch-js/${clientVersion} (${os.platform()} ${os.release()}-${os.arch()}; Node.js ${process.version})`
 
   function handler (req, res) {
     t.match(req.headers, {
@@ -2490,7 +2490,7 @@ test('Should add an User-Agent header', t => {
     pool.addConnection(`http://localhost:${port}`)
 
     const transport = new Transport({
-      emit: () => {},
+      emit: () => { },
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
@@ -2520,7 +2520,7 @@ test('Should pass request params and options to generateRequestId', t => {
   const options = { context: { winter: 'is coming' } }
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -2551,7 +2551,7 @@ test('Secure json parsing', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2584,7 +2584,7 @@ test('Secure json parsing', t => {
       pool.addConnection(`http://localhost:${port}`)
 
       const transport = new Transport({
-        emit: () => {},
+        emit: () => { },
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2643,7 +2643,7 @@ test('The callback with a sync error should be called in the next tick - json', 
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -2675,7 +2675,7 @@ test('The callback with a sync error should be called in the next tick - ndjson'
   pool.addConnection('http://localhost:9200')
 
   const transport = new Transport({
-    emit: () => {},
+    emit: () => { },
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,

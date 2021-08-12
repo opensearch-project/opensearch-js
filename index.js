@@ -78,7 +78,7 @@ class Client extends ESAPI {
       if (opts.compression == null) opts.compression = 'gzip'
       if (opts.suggestCompression == null) opts.suggestCompression = true
       if (opts.ssl == null ||
-         (opts.ssl && opts.ssl.secureProtocol == null)) {
+        (opts.ssl && opts.ssl.secureProtocol == null)) {
         opts.ssl = opts.ssl || {}
         opts.ssl.secureProtocol = 'TLSv1_2_method'
       }
@@ -135,10 +135,6 @@ class Client extends ESAPI {
     this[kExtensions] = []
     this.name = options.name
 
-    if (options.enableMetaHeader) {
-      options.headers['x-elastic-client-meta'] = `es=${clientVersion},js=${nodeVersion},t=${clientVersion},hc=${nodeVersion}`
-    }
-
     if (opts[kChild] !== undefined) {
       this.serializer = options[kChild].serializer
       this.connectionPool = options[kChild].connectionPool
@@ -158,8 +154,8 @@ class Client extends ESAPI {
         auth: options.auth,
         emit: this[kEventEmitter].emit.bind(this[kEventEmitter]),
         sniffEnabled: options.sniffInterval !== false ||
-                      options.sniffOnStart !== false ||
-                      options.sniffOnConnectionFault !== false
+          options.sniffOnStart !== false ||
+          options.sniffOnConnectionFault !== false
       })
       // Add the connections before initialize the Transport
       this.connectionPool.addConnection(options.node || options.nodes)

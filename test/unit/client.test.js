@@ -41,7 +41,6 @@ let clientVersion = require('../../package.json').version
 if (clientVersion.includes('-')) {
   clientVersion = clientVersion.slice(0, clientVersion.indexOf('-')) + 'p'
 }
-const nodeVersion = process.versions.node
 
 test('Configure host', t => {
   t.test('Single string', t => {
@@ -541,7 +540,7 @@ test('Extend client APIs', t => {
 
     const client = new Client({ node: 'http://localhost:9200' })
     try {
-      client.extend('index', () => {})
+      client.extend('index', () => { })
       t.fail('Should throw')
     } catch (err) {
       t.equal(err.message, 'The method "index" already exists')
@@ -553,7 +552,7 @@ test('Extend client APIs', t => {
 
     const client = new Client({ node: 'http://localhost:9200' })
     try {
-      client.extend('indices.delete', () => {})
+      client.extend('indices.delete', () => { })
       t.fail('Should throw')
     } catch (err) {
       t.equal(err.message, 'The method "delete" already exists on namespace "indices"')
@@ -1044,7 +1043,7 @@ test('Content length too big (buffer)', t => {
       }
       stream.on('close', () => t.pass('Stream destroyed'))
       process.nextTick(callback, null, stream)
-      return { abort () {} }
+      return { abort () { } }
     }
   }
 
@@ -1071,7 +1070,7 @@ test('Content length too big (string)', t => {
       }
       stream.on('close', () => t.pass('Stream destroyed'))
       process.nextTick(callback, null, stream)
-      return { abort () {} }
+      return { abort () { } }
     }
   }
 
@@ -1080,65 +1079,6 @@ test('Content length too big (string)', t => {
     t.ok(err instanceof errors.RequestAbortedError)
     t.equal(err.message, `The content length (${buffer.constants.MAX_STRING_LENGTH + 10}) is bigger than the maximum allowed string (${buffer.constants.MAX_STRING_LENGTH})`)
     t.equal(result.meta.attempts, 0)
-  })
-})
-
-test('Meta header enabled', t => {
-  t.plan(2)
-
-  class MockConnection extends Connection {
-    request (params, callback) {
-      t.match(params.headers, { 'x-elastic-client-meta': `es=${clientVersion},js=${nodeVersion},t=${clientVersion},hc=${nodeVersion}` })
-      const stream = intoStream(JSON.stringify({ hello: 'world' }))
-      stream.statusCode = 200
-      stream.headers = {
-        'content-type': 'application/json;utf=8',
-        'content-length': '17',
-        connection: 'keep-alive',
-        date: new Date().toISOString()
-      }
-      process.nextTick(callback, null, stream)
-      return { abort () {} }
-    }
-  }
-
-  const client = new Client({
-    node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
-
-  client.info((err, result) => {
-    t.error(err)
-  })
-})
-
-test('Meta header disabled', t => {
-  t.plan(2)
-
-  class MockConnection extends Connection {
-    request (params, callback) {
-      t.notMatch(params.headers, { 'x-elastic-client-meta': `es=${clientVersion},js=${nodeVersion},t=${clientVersion},hc=${nodeVersion}` })
-      const stream = intoStream(JSON.stringify({ hello: 'world' }))
-      stream.statusCode = 200
-      stream.headers = {
-        'content-type': 'application/json;utf=8',
-        'content-length': '17',
-        connection: 'keep-alive',
-        date: new Date().toISOString()
-      }
-      process.nextTick(callback, null, stream)
-      return { abort () {} }
-    }
-  }
-
-  const client = new Client({
-    node: 'http://localhost:9200',
-    Connection: MockConnection,
-    enableMetaHeader: false
-  })
-
-  client.info((err, result) => {
-    t.error(err)
   })
 })
 
@@ -1156,7 +1096,7 @@ test('Prototype poisoning protection enabled by default', t => {
         date: new Date().toISOString()
       }
       process.nextTick(callback, null, stream)
-      return { abort () {} }
+      return { abort () { } }
     }
   }
 
@@ -1184,7 +1124,7 @@ test('Disable prototype poisoning protection', t => {
         date: new Date().toISOString()
       }
       process.nextTick(callback, null, stream)
-      return { abort () {} }
+      return { abort () { } }
     }
   }
 

@@ -10,7 +10,7 @@ OpenSearch Node.js client
 
 ## Welcome!
 
-**opensearch-js** is [a community-driven, open source fork](https://aws.amazon.com/blogs/opensource/introducing-opensearch/) of opensearch-js licensed under the [Apache v2.0 License](LICENSE.txt). For more information, see [opensearch.org](https://opensearch.org/).
+**opensearch-js** is [a community-driven, open source fork](https://aws.amazon.com/blogs/opensource/introducing-opensearch/) of elasticsearch-js licensed under the [Apache v2.0 License](LICENSE.txt). For more information, see [opensearch.org](https://opensearch.org/).
 
 ## Project Resources
 

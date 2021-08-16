@@ -41,7 +41,7 @@ do
       --detach \
       --network=elastic \
       --name="es${node}" \
-      docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+      amazon/opendistro-for-elasticsearch:${STACK_VERSION}
   elif [ "x${MAJOR_VERSION}" == 'x7' ] || [ "x${MAJOR_VERSION}" == 'x8' ]; then
     docker run \
       --rm \
@@ -62,7 +62,7 @@ do
       --detach \
       --network=elastic \
       --name="es${node}" \
-      docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+      amazon/opendistro-for-elasticsearch:${STACK_VERSION}
   fi
 done
 

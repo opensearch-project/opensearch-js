@@ -60,9 +60,10 @@ jobs:
 
     - name: Runs Elasticsearch
       #TODO create a docker action: https://github.com/opensearch-project/opensearch-js/issues/72
-      uses: elastic/elastic-github-actions/elasticsearch@master
+      #uses: elastic/elastic-github-actions/elasticsearch@master
+      uses: ./
       with:
-        stack-version: 7.10.2
+        stack-version: 1.13.2
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1

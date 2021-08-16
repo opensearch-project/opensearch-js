@@ -80,4 +80,4 @@ docker run \
 
 sleep 10
 
-echo "Elasticsearch up and running"s
+echo "Opensearchsearch up and running"

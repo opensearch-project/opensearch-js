@@ -34,7 +34,7 @@ const { accessSync, mkdirSync } = require('fs')
 const { join } = require('path')
 const Git = require('simple-git')
 
-const esRepo = 'https://github.com/elastic/elasticsearch.git'
+const esRepo = 'https://github.com/opensearch-project/opensearch-js.git'
 const esFolder = join(__dirname, '..', '..', 'elasticsearch')
 const apiFolder = join(esFolder, 'rest-api-spec', 'src', 'main', 'resources', 'rest-api-spec', 'api')
 

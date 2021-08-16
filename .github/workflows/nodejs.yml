@@ -60,7 +60,7 @@ jobs:
 
     - name: Runs Elasticsearch
       #TODO create a docker action: https://github.com/opensearch-project/opensearch-js/issues/72
-      #uses: elastic/elastic-github-actions/elasticsearch@master
+      #uses: elastic/elastic-github-actions/elasticsearch@master1
       uses: ./
       with:
         stack-version: 1.13.2

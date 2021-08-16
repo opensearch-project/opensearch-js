@@ -46,6 +46,7 @@ jobs:
 
     strategy:
       matrix:
+        cluster: ["opendistro", "opensearch"]
         node-version: [12.x, 14.x, 16.x]
 
     steps:
@@ -58,9 +59,9 @@ jobs:
         sudo sysctl -w fs.file-max=262144
         sudo sysctl -w vm.max_map_count=262144
 
-    - name: Runs OpenDistro
+    - name: Runs ${{ matrix.cluster }} cluster
       run: |
-        make cluster.clean cluster.opendistro.build cluster.opendistro.start
+        make cluster.clean cluster.${{ matrix.cluster }}.build cluster.${{ matrix.cluster }}.start
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -79,6 +80,10 @@ jobs:
     name: Bundler support
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        cluster: ["opendistro", "opensearch"]
+
     steps:
     - uses: actions/checkout@v2
 
@@ -89,9 +94,9 @@ jobs:
         sudo sysctl -w fs.file-max=262144
         sudo sysctl -w vm.max_map_count=262144
 
-    - name: Runs OpenDistro
+    - name: Runs ${{ matrix.cluster }} cluster
       run: |
-        make cluster.clean cluster.opendistro.build cluster.opendistro.start
+        make cluster.clean cluster.${{ matrix.cluster }}.build cluster.${{ matrix.cluster }}.start
 
     - name: Use Node.js 14.x
       uses: actions/setup-node@v1

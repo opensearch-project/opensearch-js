@@ -80,4 +80,4 @@ docker run \
 
 sleep 10
 
-echo "Opensearchsearch up and running"
+echo "Opensearchsearchs up and running"

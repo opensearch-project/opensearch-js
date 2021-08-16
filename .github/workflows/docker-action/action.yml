@@ -11,7 +11,7 @@ inputs:
     description: 'The version of the Elastic Stack you want to run'
     required: true
   nodes:
-    description: 'Number of nodes in the cluster'
+    description: 'Number of node in the cluster'
     required: false
     default: 1
   port:

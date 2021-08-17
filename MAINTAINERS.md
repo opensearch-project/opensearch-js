@@ -21,8 +21,8 @@ This document explains who the maintainers are (see below), what they do in this
 | ------------------------ | --------------------------------------- | ----------- |
 | Anan Zhuang | [ananzh](https://github.com/ananzh) | Amazon |
 | Bishoy Boktor | [boktorbb-amzn](https://github.com/boktorbb-amzn) | Amazon |
-| Mihir Soni | [mihirsoni](https://github.com/mihirsoni) | Amazon |
 | Kawika (Rocky) Avilla  | [kavilla](https://github.com/kavilla) | Amazon |
+| Mihir Soni | [mihirsoni](https://github.com/mihirsoni) | Amazon |
 | Sean Neumann | [seanneumann](https://github.com/seanneumann) | Amazon | 
 | Tommy Markley | [tmarkley](https://github.com/tmarkley) | Amazon | 
 

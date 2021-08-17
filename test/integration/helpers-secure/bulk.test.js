@@ -43,7 +43,7 @@ const client = new Client({
   node: process.env.TEST_ES_SERVER || 'http://localhost:9200',
   auth: {
     username: 'admin',
-    password: 'admin'
+    password: '123'
   }
 })
 

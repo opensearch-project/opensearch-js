@@ -6,9 +6,14 @@ This document explains who the admins are (see below), what they do in this repo
 
 | Admin                    | GitHub ID                               | Affiliation |
 | -------------------------| --------------------------------------- | ----------- |
+| Anan Zhuang | [ananzh](https://github.com/ananzh) | Amazon |
+| Bishoy Boktor | [boktorbb-amzn](https://github.com/boktorbb-amzn) | Amazon |
 | Charlotte                | [CEHENKLE](https://github.com/CEHENKLE) | Amazon |
 | Henri Yandell            | [hyandell](https://github.com/hyandell) | Amazon      |
-
+| Kawika (Rocky) Avilla  | [kavilla](https://github.com/kavilla) | Amazon |
+| Mihir Soni | [mihirsoni](https://github.com/mihirsoni) | Amazon |
+| Sean Neumann | [seanneumann](https://github.com/seanneumann) | Amazon | 
+| Tommy Markley | [tmarkley](https://github.com/tmarkley) | Amazon | 
 
 ## Admin Responsibilities
 

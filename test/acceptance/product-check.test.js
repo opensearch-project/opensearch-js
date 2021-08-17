@@ -352,8 +352,7 @@ test('500 error', t => {
               lucene_version: '8.9.0',
               minimum_wire_compatibility_version: '7.15.0',
               minimum_index_compatibility_version: '7.0.0'
-            },
-            tagline: 'You Know, for Search'
+            }
           }
         }
       } else {
@@ -452,8 +451,7 @@ test('Multiple subsequent calls, no errors', t => {
             lucene_version: '8.9.0',
             minimum_wire_compatibility_version: '7.15.0',
             minimum_index_compatibility_version: '7.0.0'
-          },
-          tagline: 'You Know, for Search'
+          }
         }
       }
     }
@@ -529,8 +527,7 @@ test('Multiple subsequent calls, with errors', t => {
             lucene_version: '8.9.0',
             minimum_wire_compatibility_version: '7.15.0',
             minimum_index_compatibility_version: '7.0.0'
-          },
-          tagline: 'You Know, for Search'
+          }
         }
       }
     }
@@ -608,8 +605,7 @@ test('Later successful call', t => {
             lucene_version: '8.9.0',
             minimum_wire_compatibility_version: '7.15.0',
             minimum_index_compatibility_version: '7.0.0'
-          },
-          tagline: 'You Know, for Search'
+          }
         }
       }
     }
@@ -682,8 +678,7 @@ test('Later errored call', t => {
             lucene_version: '8.9.0',
             minimum_wire_compatibility_version: '7.15.0',
             minimum_index_compatibility_version: '7.0.0'
-          },
-          tagline: 'You Know, for Search'
+          }
         }
       }
     }
@@ -748,8 +743,7 @@ test('Bad info response', t => {
         body: {
           name: '1ef419078577',
           cluster_name: 'docker-cluster',
-          cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA',
-          tagline: 'You Know, for Search'
+          cluster_uuid: 'cQ5pAMvRRTyEzObH4L5mTA'
         }
       }
     }
@@ -808,8 +802,7 @@ test('No multiple checks with child clients', t => {
             lucene_version: '8.9.0',
             minimum_wire_compatibility_version: '7.15.0',
             minimum_index_compatibility_version: '7.0.0'
-          },
-          tagline: 'You Know, for Search'
+          }
         }
       }
     }

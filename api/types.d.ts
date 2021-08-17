@@ -504,7 +504,6 @@ export interface InfoResponse {
   cluster_name: Name
   cluster_uuid: Uuid
   name: Name
-  tagline: string
   version: ElasticsearchVersionInfo
 }
 
@@ -1831,7 +1830,6 @@ export interface DocStats {
 
 export interface ElasticsearchVersionInfo {
   build_date: DateString
-  build_flavor: string
   build_hash: string
   build_snapshot: boolean
   build_type: string
@@ -8742,7 +8740,6 @@ export interface NodesHotThreadsResponse {
 
 export interface NodesInfoNodeInfo {
   attributes: Record<string, string>
-  build_flavor: string
   build_hash: string
   build_type: string
   host: Host

@@ -29,6 +29,7 @@
     "test:acceptance": "tap test/acceptance/*.test.js",
     "test:integration": "node test/integration/index.js",
     "test:integration:helpers": "tap test/integration/helpers/*.test.js",
+    "test:integration:helpers-secure": "tap test/integration/helpers-secure/*.test.js",
     "test:types": "tsd",
     "test:coverage-100": "tap test/{unit,acceptance}/{*,**/*}.test.js --coverage --100 --nyc-arg=\"--exclude=api\"",
     "test:coverage-report": "tap test/{unit,acceptance}/{*,**/*}.test.js --coverage --nyc-arg=\"--exclude=api\" && nyc report --reporter=text-lcov > coverage.lcov",

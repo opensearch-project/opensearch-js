@@ -50,6 +50,9 @@ jspm_packages
 
 package-lock.json
 
+# elasticsearch repo or binary files
+elasticsearch*
+
 test/benchmarks/macro/fixtures/*
 
 *-junit.xml

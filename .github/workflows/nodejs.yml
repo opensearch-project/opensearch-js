@@ -75,6 +75,41 @@ jobs:
       run: |
         npm run test:integration:helpers
 
+  helpers-secure-integration-test:
+    name: Helpers integration test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Configure sysctl limits
+      run: |
+        sudo swapoff -a
+        sudo sysctl -w vm.swappiness=1
+        sudo sysctl -w fs.file-max=262144
+        sudo sysctl -w vm.max_map_count=262144
+
+    - name: Runs OpenDistro
+      run: |
+        make cluster.clean cluster.opendistro.build cluster.opendistro.start
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install
+      run: |
+        npm install
+
+    - name: Integration test
+      run: |
+        npm run test:integration:helpers-secure
+
   bundler-support:
     name: Bundler support
     runs-on: ubuntu-latest

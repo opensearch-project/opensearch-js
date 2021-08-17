@@ -8,6 +8,16 @@ cluster.opendistro.start:
 cluster.opendistro.stop:
 	docker-compose --project-directory .ci/opendistro down ;
 
+cluster.opensearch.secure.build:
+	docker-compose --project-directory .ci/opensearch-secure build;
+
+cluster.opensearch.secure.start:
+	docker-compose --project-directory .ci/opensearch-secure up -d ;
+	sleep 20;
+
+cluster.opensearch.secure.stop:
+	docker-compose --project-directory .ci/opensearch-secure down ;
+
 cluster.opensearch.build:
 	docker-compose --project-directory .ci/opensearch build;
 
@@ -16,7 +26,7 @@ cluster.opensearch.start:
 	sleep 20;
 
 cluster.opensearch.stop:
-	docker-compose --project-directory .ci/opensearch down ;	
+	docker-compose --project-directory .ci/opensearch down ;		
 
 cluster.clean: ## Remove unused Docker volumes and networks
 	@printf "\033[2m→ Cleaning up Docker assets...\033[0m\n"

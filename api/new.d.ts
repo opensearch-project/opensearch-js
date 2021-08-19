@@ -695,7 +695,7 @@ declare class Client {
   updateByQueryRethrottle<TContext = unknown>(params: T.UpdateByQueryRethrottleRequest, options: TransportRequestOptions, callback: callbackFn<T.UpdateByQueryRethrottleResponse, TContext>): TransportRequestCallback
 }
 
-export * as ostypes from './types'
+export * as opensearchtypes from './types'
 export {
   Client,
   Transport,

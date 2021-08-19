@@ -1,7 +1,7 @@
-# OpenSearchproxy example
+# OpenSearch proxy example
 
 This folder contains an example of how to build a lightweight proxy
-between your frontend code and OpenSearchif you don't
+between your frontend code and OpenSearch if you don't
 have a more sophisticated backend in place yet.
 
 > **IMPORTANT:** This is not a production ready code and it is only for demonstration purposes,
@@ -42,7 +42,7 @@ or read the [quickstart](https://vercel.com/docs) documentation.
 
 ## Authentication
 
-If you are using OpenSearchonly for search purposes, such as a search box, you can create
+If you are using OpenSearch only for search purposes, such as a search box, you can create
 an Api Key with `read` permissions and store it in your frontend app. Then you can send it
 via `Authorization` header to the proxy and run your searches.
 

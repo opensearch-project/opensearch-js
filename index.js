@@ -72,7 +72,7 @@ class Client extends OSAPI {
       opts.node = `https://${cloudUrls[1]}.${cloudUrls[0]}`
 
       // Cloud has better performances with compression enabled
-      // see https://github.com/opensearch-project/opensearch-py/pull/704.
+      // see https://github.com/elastic/elasticsearch-py/pull/704.
       // So unless the user specifies otherwise, we enable compression.
       if (opts.compression == null) opts.compression = 'gzip'
       if (opts.suggestCompression == null) opts.suggestCompression = true

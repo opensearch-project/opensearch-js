@@ -192,8 +192,8 @@ function buildBenchmark (options = {}) {
     const git = Git(__dirname)
     const commit = await git.log(['-1'])
     const branch = await git.revparse(['--abbrev-ref', 'HEAD'])
-    const { body: osInfo } = await client.info()
-    const { body: osNodes } = await client.nodes.stats({ metric: 'os' })
+    const { body: opensearchInfo } = await client.info()
+    const { body: opensearchNodes } = await client.nodes.stats({ metric: 'os' })
 
     const results = reports.map(report => {
       return {
@@ -230,8 +230,8 @@ function buildBenchmark (options = {}) {
           }
         },
         server: {
-          version: osInfo.version.number,
-          nodes_info: osNodes
+          version: opensearchInfo.version.number,
+          nodes_info: opensearchNodes
         }
       }
     })

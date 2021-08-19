@@ -55,7 +55,7 @@ const ossSkips = {
   'cat.indices/10_basic.yml': ['Test cat indices output for closed index (pre 7.2.0)'],
   'cluster.health/10_basic.yml': ['cluster health with closed index (pre 7.2.0)'],
   // TODO: remove this once 'arbitrary_key' is implemented
-  // https://github.com/opensearch-project/opensearch/pull/41492
+  // https://github.com/elastic/elasticsearch/pull/41492
   'indices.split/30_copy_settings.yml': ['*'],
   'indices.stats/50_disk_usage.yml': ['Disk usage stats'],
   'indices.stats/60_field_usage.yml': ['Field usage stats'],
@@ -264,7 +264,7 @@ function generateJunitXmlReport (junit, suite) {
 }
 
 if (require.main === module) {
-  const node = process.env.TEST_ES_SERVER || 'http://localhost:9200'
+  const node = process.env.TEST_OPENSEARCH_SERVER || 'http://localhost:9200'
   const opts = {
     node
   }

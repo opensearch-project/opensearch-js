@@ -755,7 +755,7 @@ test('connection.toJSON should hide agent, ssl and auth', t => {
   })
 })
 
-// https://github.com/opensearch-project/opensearch-js/issues/843
+// https://github.com/elastic/elasticsearch-js/issues/843
 test('Port handling', t => {
   t.test('http 80', t => {
     const connection = new Connection({

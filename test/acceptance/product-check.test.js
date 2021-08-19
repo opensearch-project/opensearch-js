@@ -228,7 +228,7 @@ test('Auth error - 401', t => {
 
   process.on('warning', onWarning)
   function onWarning (warning) {
-    t.equal(warning.message, 'The client is unable to verify that the server is OpenSearchdue to security privileges on the server side. Some functionality may not be compatible if the server is running an unsupported product.')
+    t.equal(warning.message, 'The client is unable to verify that the server is OpenSearch due to security privileges on the server side. Some functionality may not be compatible if the server is running an unsupported product.')
   }
 
   const requests = [{
@@ -279,7 +279,7 @@ test('Auth error - 403', t => {
 
   process.on('warning', onWarning)
   function onWarning (warning) {
-    t.equal(warning.message, 'The client is unable to verify that the server is OpenSearchdue to security privileges on the server side. Some functionality may not be compatible if the server is running an unsupported product.')
+    t.equal(warning.message, 'The client is unable to verify that the server is OpenSearch due to security privileges on the server side. Some functionality may not be compatible if the server is running an unsupported product.')
   }
 
   const requests = [{

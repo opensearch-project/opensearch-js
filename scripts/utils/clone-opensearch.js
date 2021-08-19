@@ -34,36 +34,36 @@ const { accessSync, mkdirSync } = require('fs')
 const { join } = require('path')
 const Git = require('simple-git')
 
-const osRepo = 'https://github.com/opensearch-project/opensearch.git'
-const osFolder = join(__dirname, '..', '..', 'opensearch')
-const apiFolder = join(osFolder, 'rest-api-spec', 'src', 'main', 'resources', 'rest-api-spec', 'api')
+const opensearchRepo = 'https://github.com/opensearch-project/OpenSearch.git'
+const opensearchFolder = join(__dirname, '..', '..', 'opensearch')
+const apiFolder = join(opensearchFolder, 'rest-api-spec', 'src', 'main', 'resources', 'rest-api-spec', 'api')
 
-function cloneAndCheckout(opts, callback) {
+function cloneAndCheckout (opts, callback) {
   const { log, tag, branch } = opts
   withTag(tag, callback)
 
   /**
    * Sets the opensearch repository to the given tag.
-   * If the repository is not present in `osFolder` it will
+   * If the repository is not present in `opensearchFolder` it will
    * clone the repository and the checkout the tag.
    * If the repository is already present but it cannot checkout to
    * the given tag, it will perform a pull and then try again.
    * @param {string} tag
    * @param {function} callback
    */
-  function withTag(tag, callback) {
+  function withTag (tag, callback) {
     let fresh = false
     let retry = 0
 
-    if (!pathExist(osFolder)) {
-      if (!createFolder(osFolder)) {
+    if (!pathExist(opensearchFolder)) {
+      if (!createFolder(opensearchFolder)) {
         log.fail('Failed folder creation')
         return
       }
       fresh = true
     }
 
-    const git = Git(osFolder)
+    const git = Git(opensearchFolder)
 
     if (fresh) {
       clone(checkout)
@@ -73,7 +73,7 @@ function cloneAndCheckout(opts, callback) {
       checkout()
     }
 
-    function checkout(alsoPull = false) {
+    function checkout (alsoPull = false) {
       if (branch) {
         log.text = `Checking out branch '${branch}'`
       } else {
@@ -94,7 +94,7 @@ function cloneAndCheckout(opts, callback) {
       })
     }
 
-    function pull(cb) {
+    function pull (cb) {
       log.text = 'Pulling opensearch repository...'
       git.pull(err => {
         if (err) {
@@ -105,9 +105,9 @@ function cloneAndCheckout(opts, callback) {
       })
     }
 
-    function clone(cb) {
+    function clone (cb) {
       log.text = 'Cloning opensearch repository...'
-      git.clone(osRepo, osFolder, err => {
+      git.clone(opensearchRepo, opensearchFolder, err => {
         if (err) {
           callback(err, { apiFolder })
           return
@@ -122,7 +122,7 @@ function cloneAndCheckout(opts, callback) {
    * @param {string} path
    * @returns {boolean} true if exists, false if not
    */
-  function pathExist(path) {
+  function pathExist (path) {
     try {
       accessSync(path)
       return true
@@ -136,7 +136,7 @@ function cloneAndCheckout(opts, callback) {
    * @param {string} name
    * @returns {boolean} true on success, false on failure
    */
-  function createFolder(name) {
+  function createFolder (name) {
     try {
       mkdirSync(name)
       return true

@@ -92,7 +92,7 @@ const kShutdown = Symbol('Shutdown')
 const kSnapshot = Symbol('Snapshot')
 const kTasks = Symbol('Tasks')
 
-function OSAPI (opts) {
+function OpenSearchAPI (opts) {
   this[kConfigurationError] = opts.ConfigurationError
   this[kCat] = null
   this[kCluster] = null
@@ -106,47 +106,47 @@ function OSAPI (opts) {
   this[kTasks] = null
 }
 
-OSAPI.prototype.bulk = bulkApi
-OSAPI.prototype.clearScroll = clearScrollApi
-OSAPI.prototype.count = countApi
-OSAPI.prototype.create = createApi
-OSAPI.prototype.delete = deleteApi
-OSAPI.prototype.deleteByQuery = deleteByQueryApi
-OSAPI.prototype.deleteByQueryRethrottle = deleteByQueryRethrottleApi
-OSAPI.prototype.deleteScript = deleteScriptApi
-OSAPI.prototype.exists = existsApi
-OSAPI.prototype.existsSource = existsSourceApi
-OSAPI.prototype.explain = explainApi
-OSAPI.prototype.fieldCaps = fieldCapsApi
-OSAPI.prototype.get = getApi
-OSAPI.prototype.getScript = getScriptApi
-OSAPI.prototype.getScriptContext = getScriptContextApi
-OSAPI.prototype.getScriptLanguages = getScriptLanguagesApi
-OSAPI.prototype.getSource = getSourceApi
-OSAPI.prototype.index = indexApi
-OSAPI.prototype.info = infoApi
-OSAPI.prototype.mget = mgetApi
-OSAPI.prototype.msearch = msearchApi
-OSAPI.prototype.msearchTemplate = msearchTemplateApi
-OSAPI.prototype.mtermvectors = mtermvectorsApi
-OSAPI.prototype.ping = pingApi
-OSAPI.prototype.putScript = putScriptApi
-OSAPI.prototype.rankEval = rankEvalApi
-OSAPI.prototype.reindex = reindexApi
-OSAPI.prototype.reindexRethrottle = reindexRethrottleApi
-OSAPI.prototype.renderSearchTemplate = renderSearchTemplateApi
-OSAPI.prototype.scriptsPainlessExecute = scriptsPainlessExecuteApi
-OSAPI.prototype.scroll = scrollApi
-OSAPI.prototype.search = searchApi
-OSAPI.prototype.searchShards = searchShardsApi
-OSAPI.prototype.searchTemplate = searchTemplateApi
-OSAPI.prototype.termsEnum = termsEnumApi
-OSAPI.prototype.termvectors = termvectorsApi
-OSAPI.prototype.update = updateApi
-OSAPI.prototype.updateByQuery = updateByQueryApi
-OSAPI.prototype.updateByQueryRethrottle = updateByQueryRethrottleApi
+OpenSearchAPI.prototype.bulk = bulkApi
+OpenSearchAPI.prototype.clearScroll = clearScrollApi
+OpenSearchAPI.prototype.count = countApi
+OpenSearchAPI.prototype.create = createApi
+OpenSearchAPI.prototype.delete = deleteApi
+OpenSearchAPI.prototype.deleteByQuery = deleteByQueryApi
+OpenSearchAPI.prototype.deleteByQueryRethrottle = deleteByQueryRethrottleApi
+OpenSearchAPI.prototype.deleteScript = deleteScriptApi
+OpenSearchAPI.prototype.exists = existsApi
+OpenSearchAPI.prototype.existsSource = existsSourceApi
+OpenSearchAPI.prototype.explain = explainApi
+OpenSearchAPI.prototype.fieldCaps = fieldCapsApi
+OpenSearchAPI.prototype.get = getApi
+OpenSearchAPI.prototype.getScript = getScriptApi
+OpenSearchAPI.prototype.getScriptContext = getScriptContextApi
+OpenSearchAPI.prototype.getScriptLanguages = getScriptLanguagesApi
+OpenSearchAPI.prototype.getSource = getSourceApi
+OpenSearchAPI.prototype.index = indexApi
+OpenSearchAPI.prototype.info = infoApi
+OpenSearchAPI.prototype.mget = mgetApi
+OpenSearchAPI.prototype.msearch = msearchApi
+OpenSearchAPI.prototype.msearchTemplate = msearchTemplateApi
+OpenSearchAPI.prototype.mtermvectors = mtermvectorsApi
+OpenSearchAPI.prototype.ping = pingApi
+OpenSearchAPI.prototype.putScript = putScriptApi
+OpenSearchAPI.prototype.rankEval = rankEvalApi
+OpenSearchAPI.prototype.reindex = reindexApi
+OpenSearchAPI.prototype.reindexRethrottle = reindexRethrottleApi
+OpenSearchAPI.prototype.renderSearchTemplate = renderSearchTemplateApi
+OpenSearchAPI.prototype.scriptsPainlessExecute = scriptsPainlessExecuteApi
+OpenSearchAPI.prototype.scroll = scrollApi
+OpenSearchAPI.prototype.search = searchApi
+OpenSearchAPI.prototype.searchShards = searchShardsApi
+OpenSearchAPI.prototype.searchTemplate = searchTemplateApi
+OpenSearchAPI.prototype.termsEnum = termsEnumApi
+OpenSearchAPI.prototype.termvectors = termvectorsApi
+OpenSearchAPI.prototype.update = updateApi
+OpenSearchAPI.prototype.updateByQuery = updateByQueryApi
+OpenSearchAPI.prototype.updateByQueryRethrottle = updateByQueryRethrottleApi
 
-Object.defineProperties(OSAPI.prototype, {
+Object.defineProperties(OpenSearchAPI.prototype, {
   cat: {
     get () {
       if (this[kCat] === null) {
@@ -251,4 +251,4 @@ Object.defineProperties(OSAPI.prototype, {
   update_by_query_rethrottle: { get () { return this.updateByQueryRethrottle } }
 })
 
-module.exports = OSAPI
+module.exports = OpenSearchAPI

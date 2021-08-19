@@ -148,14 +148,14 @@ function genFactory (folder, specFolder, namespaces) {
         getters.push(`${namespace}: { get () { return this.${camelify(namespace)} } },\n`)
       }
     } else {
-      apisStr += `OSAPI.prototype.${camelify(namespace)} = ${camelify(namespace)}Api\n`
+      apisStr += `OpenSearchAPI.prototype.${camelify(namespace)} = ${camelify(namespace)}Api\n`
       if (namespace.includes('_')) {
         getters.push(`${namespace}: { get () { return this.${camelify(namespace)} } },\n`)
       }
     }
   }
 
-  apisStr += '\nObject.defineProperties(OSAPI.prototype, {\n'
+  apisStr += '\nObject.defineProperties(OpenSearchAPI.prototype, {\n'
   for (const getter of getters) {
     apisStr += getter
   }
@@ -201,14 +201,14 @@ function genFactory (folder, specFolder, namespaces) {
   const { kConfigurationError } = require('./utils')
   ${symbols}
 
-  function OSAPI (opts) {
+  function OpenSearchAPI (opts) {
     this[kConfigurationError] = opts.ConfigurationError
     ${symbolsInstance}
   }
 
   ${apisStr}
 
-  module.exports = OSAPI
+  module.exports = OpenSearchAPI
   `
 
   // new line at the end of file

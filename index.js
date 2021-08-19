@@ -53,9 +53,9 @@ const kChild = Symbol('opensearchjs-child')
 const kExtensions = Symbol('opensearchjs-extensions')
 const kEventEmitter = Symbol('opensearchjs-event-emitter')
 
-const OSAPI = require('./api')
+const OpenSearchAPI = require('./api')
 
-class Client extends OSAPI {
+class Client extends OpenSearchAPI {
   constructor (opts = {}) {
     super({ ConfigurationError })
     if (opts.cloud && opts[kChild] === undefined) {

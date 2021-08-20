@@ -113,6 +113,7 @@ function loadInfo () {
 }
 
 async function resolve (version, hash) {
+  // TODO: fix artifacts url
   const response = await fetch(`https://artifacts-api.opensearch.co/v1/versions/${version}`)
   if (!response.ok) {
     throw new Error(`unexpected response ${response.statusText}`)

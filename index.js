@@ -183,8 +183,7 @@ class Client extends OpenSearchAPI {
 
     this.helpers = new Helpers({
       client: this,
-      maxRetries: options.maxRetries,
-      metaHeader: null
+      maxRetries: options.maxRetries
     })
   }
 

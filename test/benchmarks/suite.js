@@ -213,7 +213,7 @@ function buildBenchmark (options = {}) {
         },
         agent: {
           version: clientVersion,
-          name: '@opensearch/opensearch-js',
+          name: '@opensearch-project/opensearch-js',
           git: {
             branch: branch.slice(0, -1),
             sha: commit.latest.hash,

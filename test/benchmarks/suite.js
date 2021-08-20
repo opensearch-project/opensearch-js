@@ -113,11 +113,11 @@ function buildBenchmark (options = {}) {
         // still need to warmup
         if (warmup-- > 0) {
           process.nextTick(run)
-        // save the actual measure
+          // save the actual measure
         } else if (measure-- > 0) {
           stats[title].push(convertHrtime(b.time))
           process.nextTick(run)
-        // calculate the statistics
+          // calculate the statistics
         } else {
           done()
         }
@@ -192,8 +192,8 @@ function buildBenchmark (options = {}) {
     const git = Git(__dirname)
     const commit = await git.log(['-1'])
     const branch = await git.revparse(['--abbrev-ref', 'HEAD'])
-    const { body: esInfo } = await client.info()
-    const { body: esNodes } = await client.nodes.stats({ metric: 'os' })
+    const { body: opensearchInfo } = await client.info()
+    const { body: opensearchNodes } = await client.nodes.stats({ metric: 'os' })
 
     const results = reports.map(report => {
       return {
@@ -213,12 +213,12 @@ function buildBenchmark (options = {}) {
         },
         agent: {
           version: clientVersion,
-          name: '@elastic/elasticsearch-js',
+          name: '@opensearch-project/opensearch-js',
           git: {
             branch: branch.slice(0, -1),
             sha: commit.latest.hash,
             commit_message: commit.latest.message,
-            repository: 'elasticsearch-js'
+            repository: 'opensearch-js'
           },
           language: {
             version: process.version
@@ -230,8 +230,8 @@ function buildBenchmark (options = {}) {
           }
         },
         server: {
-          version: esInfo.version.number,
-          nodes_info: esNodes
+          version: opensearchInfo.version.number,
+          nodes_info: opensearchNodes
         }
       }
     })

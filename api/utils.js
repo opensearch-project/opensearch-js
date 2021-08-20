@@ -64,6 +64,6 @@ function normalizeArguments (params, options, callback) {
   return [params, options, callback]
 }
 
-function noop () {}
+function noop () { }
 
 module.exports = { handleError, snakeCaseKeys, normalizeArguments, noop, kConfigurationError }

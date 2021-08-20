@@ -56,7 +56,7 @@ async function waitCluster (client, waitForStatus = 'green', timeout = '50s', ti
 function skipCompatibleCheck (client) {
   const tSymbol = Object.getOwnPropertySymbols(client.transport || client)
     .filter(symbol => symbol.description === 'compatible check')[0]
-  ;(client.transport || client)[tSymbol] = 2
+    ; (client.transport || client)[tSymbol] = 2
 }
 
 class NoCompatibleCheckClient extends Client {

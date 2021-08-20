@@ -40,7 +40,7 @@ const { Client } = require('../../../')
 const datasetPath = join(__dirname, '..', '..', 'fixtures', 'stackoverflow.ndjson')
 const INDEX = `test-helpers-${process.pid}`
 const client = new Client({
-  node: process.env.TEST_ES_SERVER || 'http://localhost:9200'
+  node: process.env.TEST_OPENSEARCH_SERVER || 'http://localhost:9200'
 })
 
 beforeEach(async () => {

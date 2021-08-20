@@ -35,8 +35,8 @@
 const { test } = require('tap')
 const { errors } = require('../../index')
 
-test('ElasticsearchClientError', t => {
-  const err = new errors.ElasticsearchClientError()
+test('OpenSearchClientError', t => {
+  const err = new errors.OpenSearchClientError()
   t.ok(err instanceof Error)
   t.end()
 })
@@ -44,7 +44,7 @@ test('ElasticsearchClientError', t => {
 test('TimeoutError', t => {
   const err = new errors.TimeoutError()
   t.ok(err instanceof Error)
-  t.ok(err instanceof errors.ElasticsearchClientError)
+  t.ok(err instanceof errors.OpenSearchClientError)
   t.ok(err.hasOwnProperty('meta'))
   t.end()
 })
@@ -52,7 +52,7 @@ test('TimeoutError', t => {
 test('ConnectionError', t => {
   const err = new errors.ConnectionError()
   t.ok(err instanceof Error)
-  t.ok(err instanceof errors.ElasticsearchClientError)
+  t.ok(err instanceof errors.OpenSearchClientError)
   t.ok(err.hasOwnProperty('meta'))
   t.end()
 })
@@ -60,7 +60,7 @@ test('ConnectionError', t => {
 test('NoLivingConnectionsError', t => {
   const err = new errors.NoLivingConnectionsError()
   t.ok(err instanceof Error)
-  t.ok(err instanceof errors.ElasticsearchClientError)
+  t.ok(err instanceof errors.OpenSearchClientError)
   t.ok(err.hasOwnProperty('meta'))
   t.end()
 })
@@ -68,7 +68,7 @@ test('NoLivingConnectionsError', t => {
 test('SerializationError', t => {
   const err = new errors.SerializationError()
   t.ok(err instanceof Error)
-  t.ok(err instanceof errors.ElasticsearchClientError)
+  t.ok(err instanceof errors.OpenSearchClientError)
   t.notOk(err.hasOwnProperty('meta'))
   t.ok(err.hasOwnProperty('data'))
   t.end()
@@ -77,7 +77,7 @@ test('SerializationError', t => {
 test('DeserializationError', t => {
   const err = new errors.DeserializationError()
   t.ok(err instanceof Error)
-  t.ok(err instanceof errors.ElasticsearchClientError)
+  t.ok(err instanceof errors.OpenSearchClientError)
   t.notOk(err.hasOwnProperty('meta'))
   t.ok(err.hasOwnProperty('data'))
   t.end()
@@ -86,7 +86,7 @@ test('DeserializationError', t => {
 test('ConfigurationError', t => {
   const err = new errors.ConfigurationError()
   t.ok(err instanceof Error)
-  t.ok(err instanceof errors.ElasticsearchClientError)
+  t.ok(err instanceof errors.OpenSearchClientError)
   t.notOk(err.hasOwnProperty('meta'))
   t.end()
 })
@@ -99,7 +99,7 @@ test('ResponseError', t => {
   }
   const err = new errors.ResponseError(meta)
   t.ok(err instanceof Error)
-  t.ok(err instanceof errors.ElasticsearchClientError)
+  t.ok(err instanceof errors.OpenSearchClientError)
   t.ok(err.hasOwnProperty('meta'))
   t.ok(err.body)
   t.ok(err.statusCode)
@@ -110,7 +110,7 @@ test('ResponseError', t => {
 test('RequestAbortedError', t => {
   const err = new errors.RequestAbortedError()
   t.ok(err instanceof Error)
-  t.ok(err instanceof errors.ElasticsearchClientError)
+  t.ok(err instanceof errors.OpenSearchClientError)
   t.ok(err.hasOwnProperty('meta'))
   t.end()
 })

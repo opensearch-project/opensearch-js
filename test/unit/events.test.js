@@ -58,7 +58,7 @@ test('Should emit a request event when a request is performed', t => {
       warnings: null,
       meta: {
         context: null,
-        name: 'elasticsearch-js',
+        name: 'opensearch-js',
         request: {
           params: {
             method: 'GET',
@@ -103,7 +103,7 @@ test('Should emit a request event once when a request is performed', t => {
       warnings: null,
       meta: {
         context: null,
-        name: 'elasticsearch-js',
+        name: 'opensearch-js',
         request: {
           params: {
             method: 'GET',
@@ -156,7 +156,7 @@ test('Remove an event', t => {
       warnings: null,
       meta: {
         context: null,
-        name: 'elasticsearch-js',
+        name: 'opensearch-js',
         request: {
           params: {
             method: 'GET',
@@ -213,7 +213,7 @@ test('Should emit a response event in case of a successful response', t => {
       warnings: null,
       meta: {
         context: null,
-        name: 'elasticsearch-js',
+        name: 'opensearch-js',
         request: {
           params: {
             method: 'GET',
@@ -259,7 +259,7 @@ test('Should emit a response event with the error set', t => {
       warnings: null,
       meta: {
         context: null,
-        name: 'elasticsearch-js',
+        name: 'opensearch-js',
         request: {
           params: {
             method: 'GET',

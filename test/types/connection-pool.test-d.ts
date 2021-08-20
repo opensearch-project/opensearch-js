@@ -53,8 +53,8 @@ import {
   expectType<BaseConnectionPool>(pool.markAlive(new Connection()))
   expectType<BaseConnectionPool>(pool.markDead(new Connection()))
   expectType<Connection | null>(pool.getConnection({
-    filter (node) { return true },
-    selector (connections) { return connections[0] },
+    filter(node) { return true },
+    selector(connections) { return connections[0] },
     requestId: 'id',
     name: 'name',
     now: Date.now()
@@ -87,8 +87,8 @@ import {
   expectAssignable<ConnectionPool>(pool.markAlive(new Connection()))
   expectAssignable<ConnectionPool>(pool.markDead(new Connection()))
   expectType<Connection | null>(pool.getConnection({
-    filter (node) { return true },
-    selector (connections) { return connections[0] },
+    filter(node) { return true },
+    selector(connections) { return connections[0] },
     requestId: 'id',
     name: 'name',
     now: Date.now()

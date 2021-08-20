@@ -511,7 +511,7 @@ function match (val1, val2, action) {
   // both values are objects
   if (typeof val1 === 'object' && typeof val2 === 'object') {
     assert.ok(deepEqual(val1, val2), action)
-  // the first value is the body as string and the second a pattern string
+    // the first value is the body as string and the second a pattern string
   } else if (
     typeof val1 === 'string' && typeof val2 === 'string' &&
     val2.startsWith('/') && (val2.endsWith('/\n') || val2.endsWith('/'))
@@ -528,7 +528,7 @@ function match (val1, val2, action) {
     // 'm' adds the support for multiline regex
     assert.ok(new RegExp(regStr, 'm').test(val1), `should match pattern provided: ${val2}, action: ${JSON.stringify(action)}`)
     // tap.match(val1, new RegExp(regStr, 'm'), `should match pattern provided: ${val2}, action: ${JSON.stringify(action)}`)
-  // everything else
+    // everything else
   } else {
     assert.equal(val1, val2, `should be equal: ${val1} - ${val2}, action: ${JSON.stringify(action)}`)
   }
@@ -766,13 +766,13 @@ function shouldSkip (esVersion, action) {
       // if both `min` and `max` are specified
       if (min && max) {
         shouldSkip = semver.satisfies(esVersion, action.version)
-      // if only `min` is specified
+        // if only `min` is specified
       } else if (min) {
         shouldSkip = semver.gte(esVersion, min)
-      // if only `max` is specified
+        // if only `max` is specified
       } else if (max) {
         shouldSkip = semver.lte(esVersion, max)
-      // something went wrong!
+        // something went wrong!
       } else {
         throw new Error(`skip: Bad version range: ${action.version}`)
       }

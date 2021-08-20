@@ -59,7 +59,7 @@ const ossSkips = {
   'indices.split/30_copy_settings.yml': ['*'],
   'indices.stats/50_disk_usage.yml': ['Disk usage stats'],
   'indices.stats/60_field_usage.yml': ['Field usage stats'],
-  // skipping because we are booting ES with `discovery.type=single-node`
+  // skipping because we are booting opensearch with `discovery.type=single-node`
   // and this test will fail because of this configuration
   'nodes.stats/30_discovery.yml': ['*'],
   // the expected error is returning a 503,
@@ -97,7 +97,7 @@ async function waitCluster (client, times = 0) {
 }
 
 async function start ({ client }) {
-  log('Waiting for Elasticsearch')
+  log('Waiting for OpenSearch')
   await waitCluster(client)
 
   const { body } = await client.info()
@@ -264,7 +264,7 @@ function generateJunitXmlReport (junit, suite) {
 }
 
 if (require.main === module) {
-  const node = process.env.TEST_ES_SERVER || 'http://localhost:9200'
+  const node = process.env.TEST_OPENSEARCH_SERVER || 'http://localhost:9200'
   const opts = {
     node
   }
@@ -277,7 +277,7 @@ const shouldSkip = (file, name) => {
     const ossTest = ossSkips[list[i]]
     for (let j = 0; j < ossTest.length; j++) {
       if (file.endsWith(list[i]) && (name === ossTest[j] || ossTest[j] === '*')) {
-        const testName = file.slice(file.indexOf(`${sep}elasticsearch${sep}`)) + ' / ' + name
+        const testName = file.slice(file.indexOf(`${sep}opensearch${sep}`)) + ' / ' + name
         log(`Skipping test ${testName} because is blacklisted in the oss test`)
         return true
       }

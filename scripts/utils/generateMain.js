@@ -60,7 +60,7 @@ function genFactory (folder, specFolder, namespaces) {
           const spec = readSpec(specFolder, file.slice(0, -5))
           const isHead = isHeadMethod(spec, file.slice(0, -5))
           const body = hasBody(spec, file.slice(0, -5))
-          const methods = acc === null ? buildMethodDefinition({ kibana: false }, val, name, body, isHead, spec) : null
+          const methods = acc === null ? buildMethodDefinition({ opensearchDashboards: false }, val, name, body, isHead, spec) : null
           const obj = {}
           if (methods) {
             for (const m of methods) {
@@ -77,7 +77,7 @@ function genFactory (folder, specFolder, namespaces) {
     })
     .reduce((acc, val) => deepmerge(acc, val), {})
 
-  const kibanaTypes = apiFiles
+  const opensearchDashboardsTypes = apiFiles
     .map(file => {
       const name = file
         .slice(0, -5)
@@ -92,7 +92,7 @@ function genFactory (folder, specFolder, namespaces) {
           const spec = readSpec(specFolder, file.slice(0, -5))
           const isHead = isHeadMethod(spec, file.slice(0, -5))
           const body = hasBody(spec, file.slice(0, -5))
-          const methods = acc === null ? buildMethodDefinition({ kibana: true }, val, name, body, isHead, spec) : null
+          const methods = acc === null ? buildMethodDefinition({ opensearchDashboards: true }, val, name, body, isHead, spec) : null
           const obj = {}
           if (methods) {
             for (const m of methods) {
@@ -119,9 +119,9 @@ function genFactory (folder, specFolder, namespaces) {
     // remove useless quotes and commas
     .replace(/"/g, '')
     .replace(/,$/gm, '')
-  const kibanaTypesStr = Object.keys(kibanaTypes)
+  const opensearchDashboardsTypesStr = Object.keys(opensearchDashboardsTypes)
     .map(key => {
-      const line = `  ${key}: ${JSON.stringify(kibanaTypes[key], null, 4)}`
+      const line = `  ${key}: ${JSON.stringify(opensearchDashboardsTypes[key], null, 4)}`
       if (line.slice(-1) === '}') {
         return line.slice(0, -1) + '  }'
       }
@@ -148,14 +148,14 @@ function genFactory (folder, specFolder, namespaces) {
         getters.push(`${namespace}: { get () { return this.${camelify(namespace)} } },\n`)
       }
     } else {
-      apisStr += `ESAPI.prototype.${camelify(namespace)} = ${camelify(namespace)}Api\n`
+      apisStr += `OpenSearchAPI.prototype.${camelify(namespace)} = ${camelify(namespace)}Api\n`
       if (namespace.includes('_')) {
         getters.push(`${namespace}: { get () { return this.${camelify(namespace)} } },\n`)
       }
     }
   }
 
-  apisStr += '\nObject.defineProperties(ESAPI.prototype, {\n'
+  apisStr += '\nObject.defineProperties(OpenSearchAPI.prototype, {\n'
   for (const getter of getters) {
     apisStr += getter
   }
@@ -201,18 +201,18 @@ function genFactory (folder, specFolder, namespaces) {
   const { kConfigurationError } = require('./utils')
   ${symbols}
 
-  function ESAPI (opts) {
+  function OpenSearchAPI (opts) {
     this[kConfigurationError] = opts.ConfigurationError
     ${symbolsInstance}
   }
 
   ${apisStr}
 
-  module.exports = ESAPI
+  module.exports = OpenSearchAPI
   `
 
   // new line at the end of file
-  return { fn: fn + '\n', types: typesStr, kibanaTypes: kibanaTypesStr }
+  return { fn: fn + '\n', types: typesStr, opensearchDashboardsTypes: opensearchDashboardsTypesStr }
 }
 
 // from snake_case to camelCase
@@ -235,7 +235,7 @@ function buildMethodDefinition (opts, api, name, hasBody, isHead, spec) {
   const responseType = isHead ? 'boolean' : 'Record<string, any>'
   const defaultBodyType = content_type && content_type.includes('application/x-ndjson') ? 'Record<string, any>[]' : 'Record<string, any>'
 
-  if (opts.kibana) {
+  if (opts.opensearchDashboards) {
     if (hasBody) {
       return [
         { key: `${camelify(api)}<TResponse = ${responseType}, TRequestBody extends ${bodyType} = ${defaultBodyType}, TContext = Context>(params?: RequestParams.${Name}<TRequestBody>, options?: TransportRequestOptions)`, val: 'TransportRequestPromise<ApiResponse<TResponse, TContext>>' }

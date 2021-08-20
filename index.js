@@ -32,7 +32,7 @@
 
 const { EventEmitter } = require('events')
 const { URL } = require('url')
-const debug = require('debug')('elasticsearch')
+const debug = require('debug')('opensearch')
 const Transport = require('./lib/Transport')
 const Connection = require('./lib/Connection')
 const { ConnectionPool, CloudConnectionPool } = require('./lib/pool')
@@ -47,23 +47,22 @@ if (clientVersion.includes('-')) {
   // clean prerelease
   clientVersion = clientVersion.slice(0, clientVersion.indexOf('-')) + 'p'
 }
-const nodeVersion = process.versions.node
 
-const kInitialOptions = Symbol('elasticsearchjs-initial-options')
-const kChild = Symbol('elasticsearchjs-child')
-const kExtensions = Symbol('elasticsearchjs-extensions')
-const kEventEmitter = Symbol('elasticsearchjs-event-emitter')
+const kInitialOptions = Symbol('opensearchjs-initial-options')
+const kChild = Symbol('opensearchjs-child')
+const kExtensions = Symbol('opensearchjs-extensions')
+const kEventEmitter = Symbol('opensearchjs-event-emitter')
 
-const ESAPI = require('./api')
+const OpenSearchAPI = require('./api')
 
-class Client extends ESAPI {
+class Client extends OpenSearchAPI {
   constructor (opts = {}) {
     super({ ConfigurationError })
     if (opts.cloud && opts[kChild] === undefined) {
       const { id, username, password } = opts.cloud
       // the cloud id is `cluster-name:base64encodedurl`
       // the url is a string divided by two '$', the first is the cloud url
-      // the second the elasticsearch instance, the third the kibana instance
+      // the second the opensearch instance, the third the opensearchDashboards instance
       const cloudUrls = Buffer.from(id.split(':')[1], 'base64').toString().split('$')
 
       // TODO: remove username and password here in 8
@@ -118,7 +117,7 @@ class Client extends ESAPI {
         nodeFilter: null,
         nodeSelector: 'round-robin',
         generateRequestId: null,
-        name: 'elasticsearch-js',
+        name: 'opensearch-js',
         auth: null,
         opaqueIdPrefix: null,
         context: null,
@@ -127,8 +126,8 @@ class Client extends ESAPI {
         disablePrototypePoisoningProtection: false
       }, opts)
 
-    if (process.env.ELASTIC_CLIENT_APIVERSIONING === 'true') {
-      options.headers = Object.assign({ accept: 'application/vnd.elasticsearch+json; compatible-with=7' }, options.headers)
+    if (process.env.OPENSEARCH_CLIENT_APIVERSIONING === 'true') {
+      options.headers = Object.assign({ accept: 'application/vnd.opensearch+json; compatible-with=7' }, options.headers)
     }
 
     this[kInitialOptions] = options
@@ -184,10 +183,7 @@ class Client extends ESAPI {
 
     this.helpers = new Helpers({
       client: this,
-      maxRetries: options.maxRetries,
-      metaHeader: options.enableMetaHeader
-        ? `es=${clientVersion},js=${nodeVersion},t=${clientVersion},hc=${nodeVersion}`
-        : null
+      maxRetries: options.maxRetries
     })
   }
 

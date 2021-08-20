@@ -48,7 +48,7 @@ const client = new Client({
 
 const b = client.helpers.bulk<Record<string, any>>({
   datasource: [],
-  onDocument (doc) {
+  onDocument(doc) {
     expectType<Record<string, any>>(doc)
     return { index: { _index: 'test' } }
   },
@@ -57,7 +57,7 @@ const b = client.helpers.bulk<Record<string, any>>({
   concurrency: 5,
   retries: 3,
   wait: 5000,
-  onDrop (doc) {
+  onDrop(doc) {
     expectType<OnDropDocument<Record<string, any>>>(doc)
   },
   refreshOnCompletion: true,
@@ -72,7 +72,7 @@ b.then(stats => expectType<BulkStats>(stats))
 expectError(
   client.helpers.bulk({
     datasource: [],
-    onDocument (doc) {
+    onDocument(doc) {
       return { index: { _index: 'test' } }
     },
     body: []
@@ -84,7 +84,7 @@ expectError(
 {
   const options = {
     datasource: [],
-    onDocument (doc: Record<string, any>) {
+    onDocument(doc: Record<string, any>) {
       return { index: { _index: 'test' } }
     }
   }
@@ -94,7 +94,7 @@ expectError(
 {
   const options = {
     datasource: [],
-    onDocument (doc: Record<string, any>) {
+    onDocument(doc: Record<string, any>) {
       return { create: { _index: 'test' } }
     }
   }
@@ -107,7 +107,7 @@ expectError(
   // a `.helper.bulk`, it works as expected
   const options: BulkHelperOptions<Record<string, any>> = {
     datasource: [],
-    onDocument (doc: Record<string, any>) {
+    onDocument(doc: Record<string, any>) {
       return [{ update: { _index: 'test' } }, doc]
     }
   }
@@ -117,7 +117,7 @@ expectError(
 {
   const options = {
     datasource: [],
-    onDocument (doc: Record<string, any>) {
+    onDocument(doc: Record<string, any>) {
       return { delete: { _index: 'test' } }
     }
   }
@@ -128,7 +128,7 @@ expectError(
 
 // just search params
 {
-  async function test () {
+  async function test() {
     const scrollSearch = client.helpers.scrollSearch({
       index: 'test',
       body: {
@@ -146,7 +146,7 @@ expectError(
 
 // search params and options
 {
-  async function test () {
+  async function test() {
     const scrollSearch = client.helpers.scrollSearch({
       index: 'test',
       body: {
@@ -210,7 +210,7 @@ expectError(
     foo: string
   }
 
-  async function test () {
+  async function test() {
     const scrollSearch = client.helpers.scrollSearch<Source, SearchResponse<Source>>({
       index: 'test',
       body: {
@@ -279,7 +279,7 @@ expectError(
     foo: string
   }
 
-  async function test () {
+  async function test() {
     const scrollSearch = client.helpers.scrollSearch<Source, SearchResponse<Source>, SearchBody, Record<string, unknown>>({
       index: 'test',
       body: {
@@ -302,7 +302,7 @@ expectError(
 
 // just search params
 {
-  async function test () {
+  async function test() {
     const scrollDocuments = client.helpers.scrollDocuments({
       index: 'test',
       body: {
@@ -320,7 +320,7 @@ expectError(
 
 // search params and options
 {
-  async function test () {
+  async function test() {
     const scrollDocuments = client.helpers.scrollDocuments({
       index: 'test',
       body: {
@@ -342,7 +342,7 @@ expectError(
     foo: string
   }
 
-  async function test () {
+  async function test() {
     const scrollDocuments = client.helpers.scrollDocuments<Source>({
       index: 'test',
       body: {
@@ -369,7 +369,7 @@ expectError(
     foo: string
   }
 
-  async function test () {
+  async function test() {
     const scrollDocuments = client.helpers.scrollDocuments<Source, SearchBody>({
       index: 'test',
       body: {
@@ -474,14 +474,14 @@ expectType<MsearchHelper>(s)
 expectType<void>(s.stop())
 expectType<void>(s.stop(new Error('kaboom')))
 
-expectType<Promise<ApiResponse<Record<string, any>, unknown>>>(s.search({ index: 'foo'}, { query: {} }))
-expectType<Promise<ApiResponse<string, string>>>(s.search<string, Record<string, any>, string>({ index: 'foo'}, { query: {} }))
+expectType<Promise<ApiResponse<Record<string, any>, unknown>>>(s.search({ index: 'foo' }, { query: {} }))
+expectType<Promise<ApiResponse<string, string>>>(s.search<string, Record<string, any>, string>({ index: 'foo' }, { query: {} }))
 
-expectType<void>(s.search({ index: 'foo'}, { query: {} }, (err, result) => {
+expectType<void>(s.search({ index: 'foo' }, { query: {} }, (err, result) => {
   expectType<ApiError>(err)
   expectType<ApiResponse>(result)
 }))
-expectType<void>(s.search<string, Record<string, any>, string>({ index: 'foo'}, { query: {} }, (err, result) => {
+expectType<void>(s.search<string, Record<string, any>, string>({ index: 'foo' }, { query: {} }, (err, result) => {
   expectType<ApiError>(err)
   expectType<ApiResponse<string, string>>(result)
 }))

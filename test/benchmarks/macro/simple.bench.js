@@ -16,13 +16,13 @@ const { statSync } = require('fs')
 const { join } = require('path')
 const { bench, beforeEach, afterEach } = require('../suite')({
   report: {
-    url: process.env.ES_RESULT_CLUSTER_URL,
-    username: process.env.ES_RESULT_CLUSTER_USERNAME,
-    password: process.env.ES_RESULT_CLUSTER_PASSWORD
+    url: process.env.OPENSEARCH_RESULT_CLUSTER_URL,
+    username: process.env.OPENSEARCH_RESULT_CLUSTER_USERNAME,
+    password: process.env.OPENSEARCH_RESULT_CLUSTER_PASSWORD
   }
 })
 
-const node = process.env.ELASTICSEARCH_URL || 'http://localhost:9200'
+const node = process.env.OPENSEARCH_URL || 'http://localhost:9200'
 
 const smallDocument = require('./fixtures/small_document.json')
 const smallDocumentInfo = {

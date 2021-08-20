@@ -21,9 +21,9 @@ const { join } = require('path')
 const split = require('split2')
 const { bench, beforeEach, afterEach } = require('../suite')({
   report: {
-    url: process.env.ES_RESULT_CLUSTER_URL,
-    username: process.env.ES_RESULT_CLUSTER_USERNAME,
-    password: process.env.ES_RESULT_CLUSTER_PASSWORD
+    url: process.env.OPENSEARCH_RESULT_CLUSTER_URL,
+    username: process.env.OPENSEARCH_RESULT_CLUSTER_USERNAME,
+    password: process.env.OPENSEARCH_RESULT_CLUSTER_PASSWORD
   }
 })
 
@@ -40,7 +40,7 @@ const stackoverflowInfo = {
 }
 
 const INDEX = 'stackoverflow'
-const node = process.env.ELASTICSEARCH_URL || 'http://localhost:9200'
+const node = process.env.OPENSEARCH_URL || 'http://localhost:9200'
 
 const client = new Client({ node })
 

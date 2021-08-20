@@ -104,4 +104,4 @@ export default class Connection {
   toJSON(): any
 }
 
-export {};
+export { };

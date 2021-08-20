@@ -35,7 +35,6 @@ const { URL } = require('url')
 const buffer = require('buffer')
 const intoStream = require('into-stream')
 const { ConnectionPool, Transport, Connection, errors } = require('../../index')
-const { CloudConnectionPool } = require('../../lib/pool')
 const { Client, buildServer } = require('../utils')
 let clientVersion = require('../../package.json').version
 if (clientVersion.includes('-')) {
@@ -649,136 +648,6 @@ test('Extend client APIs', t => {
   t.end()
 })
 
-test('Elastic cloud config', t => {
-  t.test('Basic', t => {
-    t.plan(5)
-    const client = new Client({
-      cloud: {
-        // 'localhost$abcd$efgh'
-        id: 'name:bG9jYWxob3N0JGFiY2QkZWZnaA==',
-        username: 'elastic',
-        password: 'changeme'
-      }
-    })
-
-    const pool = client.connectionPool
-    t.ok(pool instanceof CloudConnectionPool)
-    t.match(pool.connections.find(c => c.id === 'https://abcd.localhost/'), {
-      url: new URL('https://elastic:changeme@abcd.localhost'),
-      id: 'https://abcd.localhost/',
-      headers: {
-        authorization: 'Basic ' + Buffer.from('elastic:changeme').toString('base64')
-      },
-      ssl: { secureProtocol: 'TLSv1_2_method' },
-      deadCount: 0,
-      resurrectTimeout: 0,
-      roles: {
-        master: true,
-        data: true,
-        ingest: true
-      }
-    })
-
-    t.equal(client.transport.compression, 'gzip')
-    t.equal(client.transport.suggestCompression, true)
-    t.same(pool._ssl, { secureProtocol: 'TLSv1_2_method' })
-  })
-
-  t.test('Without kibana component', t => {
-    t.plan(5)
-    const client = new Client({
-      cloud: {
-        // 'localhost$abcd$'
-        id: 'name:bG9jYWxob3N0JGFiY2Qk',
-        username: 'elastic',
-        password: 'changeme'
-      }
-    })
-
-    const pool = client.connectionPool
-    t.ok(pool instanceof CloudConnectionPool)
-    t.match(pool.connections.find(c => c.id === 'https://abcd.localhost/'), {
-      url: new URL('https://elastic:changeme@abcd.localhost'),
-      id: 'https://abcd.localhost/',
-      headers: {
-        authorization: 'Basic ' + Buffer.from('elastic:changeme').toString('base64')
-      },
-      ssl: { secureProtocol: 'TLSv1_2_method' },
-      deadCount: 0,
-      resurrectTimeout: 0,
-      roles: {
-        master: true,
-        data: true,
-        ingest: true
-      }
-    })
-
-    t.equal(client.transport.compression, 'gzip')
-    t.equal(client.transport.suggestCompression, true)
-    t.same(pool._ssl, { secureProtocol: 'TLSv1_2_method' })
-  })
-
-  t.test('Auth as separate option', t => {
-    t.plan(5)
-    const client = new Client({
-      cloud: {
-        // 'localhost$abcd$efgh'
-        id: 'name:bG9jYWxob3N0JGFiY2QkZWZnaA=='
-      },
-      auth: {
-        username: 'elastic',
-        password: 'changeme'
-      }
-    })
-
-    const pool = client.connectionPool
-    t.ok(pool instanceof CloudConnectionPool)
-    t.match(pool.connections.find(c => c.id === 'https://abcd.localhost/'), {
-      url: new URL('https://elastic:changeme@abcd.localhost'),
-      id: 'https://abcd.localhost/',
-      headers: {
-        authorization: 'Basic ' + Buffer.from('elastic:changeme').toString('base64')
-      },
-      ssl: { secureProtocol: 'TLSv1_2_method' },
-      deadCount: 0,
-      resurrectTimeout: 0,
-      roles: {
-        master: true,
-        data: true,
-        ingest: true
-      }
-    })
-
-    t.equal(client.transport.compression, 'gzip')
-    t.equal(client.transport.suggestCompression, true)
-    t.same(pool._ssl, { secureProtocol: 'TLSv1_2_method' })
-  })
-
-  t.test('Override default options', t => {
-    t.plan(4)
-    const client = new Client({
-      cloud: {
-        // 'localhost$abcd$efgh'
-        id: 'name:bG9jYWxob3N0JGFiY2QkZWZnaA==',
-        username: 'elastic',
-        password: 'changeme'
-      },
-      compression: false,
-      suggestCompression: false,
-      ssl: {
-        secureProtocol: 'TLSv1_1_method'
-      }
-    })
-
-    t.ok(client.connectionPool instanceof CloudConnectionPool)
-    t.equal(client.transport.compression, false)
-    t.equal(client.transport.suggestCompression, false)
-    t.same(client.connectionPool._ssl, { secureProtocol: 'TLSv1_1_method' })
-  })
-
-  t.end()
-})
-
 test('Opaque Id support', t => {
   t.test('No opaqueId', t => {
     t.plan(3)
@@ -1143,14 +1012,14 @@ test('API compatibility header (json)', t => {
   t.plan(4)
 
   function handler (req, res) {
-    t.equal(req.headers.accept, 'application/vnd.elasticsearch+json; compatible-with=7')
-    t.equal(req.headers['content-type'], 'application/vnd.elasticsearch+json; compatible-with=7')
-    res.setHeader('Content-Type', 'application/vnd.elasticsearch+json; compatible-with=7')
+    t.equal(req.headers.accept, 'application/vnd.opensearch+json; compatible-with=7')
+    t.equal(req.headers['content-type'], 'application/vnd.opensearch+json; compatible-with=7')
+    res.setHeader('Content-Type', 'application/vnd.opensearch+json; compatible-with=7')
     res.end(JSON.stringify({ hello: 'world' }))
   }
 
   buildServer(handler, ({ port }, server) => {
-    process.env.ELASTIC_CLIENT_APIVERSIONING = 'true'
+    process.env.OPENSEARCH_CLIENT_APIVERSIONING = 'true'
     const client = new Client({
       node: `http://localhost:${port}`
     })
@@ -1159,7 +1028,7 @@ test('API compatibility header (json)', t => {
       t.error(err)
       t.same(body, { hello: 'world' })
       server.stop()
-      delete process.env.ELASTIC_CLIENT_APIVERSIONING
+      delete process.env.OPENSEARCH_CLIENT_APIVERSIONING
     })
   })
 })
@@ -1168,14 +1037,14 @@ test('API compatibility header (x-ndjson)', t => {
   t.plan(4)
 
   function handler (req, res) {
-    t.equal(req.headers.accept, 'application/vnd.elasticsearch+json; compatible-with=7')
-    t.equal(req.headers['content-type'], 'application/vnd.elasticsearch+x-ndjson; compatible-with=7')
-    res.setHeader('Content-Type', 'application/vnd.elasticsearch+json; compatible-with=7')
+    t.equal(req.headers.accept, 'application/vnd.opensearch+json; compatible-with=7')
+    t.equal(req.headers['content-type'], 'application/vnd.opensearch+x-ndjson; compatible-with=7')
+    res.setHeader('Content-Type', 'application/vnd.opensearch+json; compatible-with=7')
     res.end(JSON.stringify({ hello: 'world' }))
   }
 
   buildServer(handler, ({ port }, server) => {
-    process.env.ELASTIC_CLIENT_APIVERSIONING = 'true'
+    process.env.OPENSEARCH_CLIENT_APIVERSIONING = 'true'
     const client = new Client({
       node: `http://localhost:${port}`
     })
@@ -1184,7 +1053,7 @@ test('API compatibility header (x-ndjson)', t => {
       t.error(err)
       t.same(body, { hello: 'world' })
       server.stop()
-      delete process.env.ELASTIC_CLIENT_APIVERSIONING
+      delete process.env.OPENSEARCH_CLIENT_APIVERSIONING
     })
   })
 })

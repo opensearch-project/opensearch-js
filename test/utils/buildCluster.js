@@ -30,7 +30,7 @@
 
 'use strict'
 
-const debug = require('debug')('elasticsearch-test')
+const debug = require('debug')('opensearch-test')
 const workq = require('workq')
 const buildServer = require('./buildServer')
 

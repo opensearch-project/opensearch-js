@@ -13,9 +13,9 @@
 
 const { bench } = require('../suite')({
   report: {
-    url: process.env.ES_RESULT_CLUSTER_URL,
-    username: process.env.ES_RESULT_CLUSTER_USERNAME,
-    password: process.env.ES_RESULT_CLUSTER_PASSWORD
+    url: process.env.OPENSEARCH_RESULT_CLUSTER_URL,
+    username: process.env.OPENSEARCH_RESULT_CLUSTER_USERNAME,
+    password: process.env.OPENSEARCH_RESULT_CLUSTER_PASSWORD
   }
 })
 const { Client } = require('../../../index')

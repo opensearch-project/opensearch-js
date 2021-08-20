@@ -37,7 +37,7 @@ async function release (opts) {
   const newCanaryVersion = `${originalVersion.split('-')[0]}-canary.${newCanaryInteger}`
 
   // Update the package.json with the correct name and new version
-  packageJson.name = '@elastic/elasticsearch-canary'
+  packageJson.name = '@opensearch/opensearch-canary'
   packageJson.version = newCanaryVersion
   packageJson.versionCanary = newCanaryVersion
   packageJson.types = './api/new.d.ts'
@@ -50,9 +50,9 @@ async function release (opts) {
     'utf8'
   )
 
-  // update the npmignore to publish the kibana types as well
+  // update the npmignore to publish the opensearchDashboards types as well
   const newNpmIgnore = originalNpmIgnore.slice(0, originalNpmIgnore.indexOf('# CANARY-PACKAGE')) +
-                       originalNpmIgnore.slice(originalNpmIgnore.indexOf('# /CANARY-PACKAGE') + 17)
+    originalNpmIgnore.slice(originalNpmIgnore.indexOf('# /CANARY-PACKAGE') + 17)
   await writeFile(
     join(__dirname, '..', '.npmignore'),
     newNpmIgnore,

@@ -1,6 +1,6 @@
 {
-  "name": "@elastic/elasticsearch",
-  "description": "The official Elasticsearch client for Node.js",
+  "name": "@opensearch/opensearch",
+  "description": "The official OpenSearch client for Node.js",
   "main": "index.js",
   "types": "index.d.ts",
   "exports": {
@@ -11,12 +11,11 @@
     "./": "./"
   },
   "homepage": "https://www.opensearch.org/",
-  "version": "7.14.0",
+  "version": "1.0.0",
   "versionCanary": "7.14.0-canary.6",
   "keywords": [
-    "elasticsearch",
-    "elastic",
-    "kibana",
+    "opensearch",
+    "opensearchDashboards",
     "mapping",
     "REST",
     "search",

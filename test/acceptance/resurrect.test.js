@@ -70,7 +70,7 @@ test('Should execute the recurrect API with the ping strategy', t => {
       t.equal(meta.strategy, 'ping')
       t.notOk(meta.isAlive)
       t.equal(meta.connection.id, 'node0')
-      t.equal(meta.name, 'elasticsearch-js')
+      t.equal(meta.name, 'opensearch-js')
       t.same(meta.request, { id: 2 })
     })
 
@@ -130,7 +130,7 @@ test('Resurrect a node and handle 502/3/4 status code', t => {
       t.error(err)
       t.equal(meta.strategy, 'ping')
       t.equal(meta.connection.id, 'node0')
-      t.equal(meta.name, 'elasticsearch-js')
+      t.equal(meta.name, 'opensearch-js')
       t.same(meta.request, { id: idCount++ })
       if (count < 4) {
         t.notOk(meta.isAlive)
@@ -193,7 +193,7 @@ test('Should execute the recurrect API with the optimistic strategy', t => {
       t.equal(meta.strategy, 'optimistic')
       t.ok(meta.isAlive)
       t.equal(meta.connection.id, 'node0')
-      t.equal(meta.name, 'elasticsearch-js')
+      t.equal(meta.name, 'opensearch-js')
       t.same(meta.request, { id: 2 })
     })
 

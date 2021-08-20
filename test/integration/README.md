@@ -5,8 +5,8 @@
 Yes.
 
 ## Background
-OpenSearch offers its entire API via HTTP REST endpoints. You can find the whole API specification for every version [here](https://github.com/opensearch-project/OpenSearch/tree/master/rest-api-spec/src/main/resources/rest-api-spec/api).<br/>
-To support different languages at the same time, the OpenSearch team decided to provide a [YAML specification](https://github.com/opensearch-project/OpenSearch/tree/master/rest-api-spec/src/main/resources/rest-api-spec/test) to test every endpoint, body, headers, warning, error and so on.<br/>
+OpenSearch offers its entire API via HTTP REST endpoints. You can find the whole API specification for every version [here](https://github.com/opensearch-project/OpenSearch/tree/main/rest-api-spec/src/main/resources/rest-api-spec/api).<br/>
+To support different languages at the same time, the OpenSearch team decided to provide a [YAML specification](https://github.com/opensearch-project/OpenSearch/tree/main/rest-api-spec/src/main/resources/rest-api-spec/test) to test every endpoint, body, headers, warning, error and so on.<br/>
 This testing suite uses that specification to generate the test for the specified version of OpenSearch on the fly.
 
 ## Run

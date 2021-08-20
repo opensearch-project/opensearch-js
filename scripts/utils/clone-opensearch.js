@@ -43,7 +43,7 @@ function cloneAndCheckout (opts, callback) {
   withTag(tag, callback)
 
   /**
-   * Sets the opensearch repository to the given tag.
+   * Sets the OpenSearch repository to the given tag.
    * If the repository is not present in `opensearchFolder` it will
    * clone the repository and the checkout the tag.
    * If the repository is already present but it cannot checkout to

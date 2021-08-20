@@ -76,7 +76,7 @@ function generateDocs (common, spec) {
 
   == API Reference
 
-  This document contains the entire list of the OpenSearch API supported by the client, both OSS and commercial. The client is entirely licensed under Apache 2.0.
+  This document contains the entire list of the OpenSearch API supported by the client. The client is entirely licensed under Apache 2.0.
 
   OpenSearch exposes an HTTP layer to communicate with, and the client is a library that will help you do this. Because of this reason, you will see HTTP related parameters, such as ${'`'}body${'`'} or ${'`'}headers${'`'}.
 

@@ -35,7 +35,7 @@ npm run test:integration -- --cov --coverage-report=html
 ## How does this thing work?
 At first sight, it might seem complicated, but once you understand what the moving parts are, it's quite easy.
 1. Connects to the given OpenSearch instance
-1. Gets the opensearch version and build hash
+1. Gets the OpenSearch version and build hash
 1. Checkout to the given hash (and clone the repository if it is not present)
 1. Reads the folder list and for each folder the yaml file list
 1. Starts running folder by folder every file

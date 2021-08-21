@@ -37,14 +37,7 @@
     "license-checker": "license-checker --production --onlyAllow='MIT;Apache-2.0;Apache1.1;ISC;BSD-3-Clause;BSD-2-Clause'",
     "build-esm": "npx gen-esm-wrapper . index.mjs && standard --fix index.mjs"
   },
-  "author": {
-    "name": "Tomas Della Vedova",
-    "company": "Elastic BV"
-  },
-  "original-author": {
-    "name": "Spencer Alger",
-    "company": "Elasticsearch BV"
-  },
+  "author": "opensearch-project",
   "devDependencies": {
     "@sinonjs/fake-timers": "github:sinonjs/fake-timers#0bfffc1",
     "@types/node": "^15.3.1",

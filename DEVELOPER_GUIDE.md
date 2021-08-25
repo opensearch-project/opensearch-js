@@ -19,8 +19,9 @@ The minimum supported version of Node.js is v10.
 [Docker](https://docs.docker.com/install/) is required for building some OpenSearch artifacts and executing integration tests.
 
 ### Unit Testing
-Node.js has a simple tool for running tests, and we simplified it further by creating this make command:
- ```
+Go to your terminal and run:
+```
+cd folder-path
 npm run test:unit
 ```
  
@@ -45,7 +46,8 @@ If you have not installed docker-compose, you can install it from this [link](ht
 
 1. Run below command to start containers. By default, it will launch latest OpenSearch cluster.
    ```
-   sudo docker-compose up
+   cd folder-path/.ci/opensearch
+   docker-compose up
    ```
 
 2. Run all integration tests.
@@ -54,5 +56,5 @@ If you have not installed docker-compose, you can install it from this [link](ht
    ```
 5. Stop and clean containers.
    ```
-   sudo docker-compose down
+   docker-compose down
    ```

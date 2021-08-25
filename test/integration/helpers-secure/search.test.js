@@ -16,14 +16,14 @@ const { join } = require('path')
 const split = require('split2')
 const { test, beforeEach, afterEach } = require('tap')
 const { waitCluster } = require('../../utils')
-const { Client } = require('../../../')
+const { Client } = require('../../..')
 
 const INDEX = `test-helpers-${process.pid}`
 const client = new Client({
   ssl: {
     rejectUnauthorized: false
   },
-  node: process.env.TEST_OPENSEARCH_SERVER || 'https://localhost:9200',
+  node: 'https://localhost:9200',
   auth: {
     username: 'admin',
     password: 'admin'

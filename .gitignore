@@ -51,7 +51,7 @@ jspm_packages
 package-lock.json
 
 # opensearch repo or binary files
-opensearch1*
+opensearch*
 
 test/benchmarks/macro/fixtures/*
 

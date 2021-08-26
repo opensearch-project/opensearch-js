@@ -97,7 +97,8 @@ jobs:
 
     - name: Runs ${{ matrix.cluster }} secure cluster
       run: |
-        make cluster.clean cluster.${{ matrix.cluster }}.secure.build cluster.${{ matrix.cluster }}.secure.start
+        export SECURE_INTEGRATION=true
+        make cluster.clean cluster.${{ matrix.cluster }}.build cluster.${{ matrix.cluster }}.start
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1

@@ -16,7 +16,7 @@ cluster.opensearch.start:
 	sleep 20;
 
 cluster.opensearch.stop:
-	docker-compose --project-directory .ci/opensearch down ;	
+	docker-compose --project-directory .ci/opensearch down ;
 
 cluster.clean: ## Remove unused Docker volumes and networks
 	@printf "\033[2m→ Cleaning up Docker assets...\033[0m\n"

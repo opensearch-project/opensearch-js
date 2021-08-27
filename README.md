@@ -1,3 +1,10 @@
+[![Nodejs](https://github.com/opensearch-project/opensearch-js/actions/workflows/nodejs.yml/badge.svg)](https://github.com/opensearch-project/opensearch-js/actions/workflows/nodejs.yml)
+[![Integration](https://github.com/opensearch-project/opensearch-js/actions/workflows/integration.yml/badge.svg)](https://github.com/opensearch-project/opensearch-js/actions/workflows/integration.yml)
+[![Bundler](https://github.com/opensearch-project/opensearch-js/actions/workflows/bundler.yml/badge.svg)](https://github.com/opensearch-project/opensearch-js/actions/workflows/bundler.yml)
+[![codecov](https://codecov.io/gh/opensearch-project/opensearch-js/branch/main/graph/badge.svg?token=1qbAgj1DnX)](https://codecov.io/gh/opensearch-project/opensearch-js)
+[![Chat](https://img.shields.io/badge/chat-on%20forums-blue)](https://discuss.opendistrocommunity.dev/c/clients/)
+![PRs welcome!](https://img.shields.io/badge/PRs-welcome!-success)
+
 ![OpenSearch logo](OpenSearch.svg)
 
 OpenSearch Node.js client

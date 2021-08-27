@@ -1,0 +1,36 @@
+name: Coverage
+
+on: [push, pull_request]
+
+jobs:
+  code-coverage:
+    name: Code coverage
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install
+      run: |
+        npm install
+    - name: Code coverage report
+      run: |
+        npm run test:coverage-report
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        files: ./coverage.lcov
+        fail_ci_if_error: true
+
+    - name: Code coverage 90%
+      run: |
+        npm run test:coverage-90

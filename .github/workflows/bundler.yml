@@ -1,0 +1,50 @@
+name: Bundler
+
+on: [push, pull_request]
+
+jobs:
+  bundler-support:
+    name: Bundler support
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        cluster: ["opendistro", "opensearch"]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Configure sysctl limits
+      run: |
+        sudo swapoff -a
+        sudo sysctl -w vm.swappiness=1
+        sudo sysctl -w fs.file-max=262144
+        sudo sysctl -w vm.max_map_count=262144
+
+    - name: Runs ${{ matrix.cluster }} cluster
+      run: |
+        make cluster.clean cluster.${{ matrix.cluster }}.build cluster.${{ matrix.cluster }}.start
+
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Install
+      run: |
+        npm install
+        npm install --prefix test/bundlers/parcel-test
+        npm install --prefix test/bundlers/rollup-test
+        npm install --prefix test/bundlers/webpack-test
+
+    - name: Build
+      run: |
+        npm run build --prefix test/bundlers/parcel-test
+        npm run build --prefix test/bundlers/rollup-test
+        npm run build --prefix test/bundlers/webpack-test
+
+    - name: Run bundle
+      run: |
+        npm start --prefix test/bundlers/parcel-test
+        npm start --prefix test/bundlers/rollup-test
+        npm start --prefix test/bundlers/webpack-test

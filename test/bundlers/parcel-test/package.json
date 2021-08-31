@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": ">=12"
+    "node": ">=10"
   },
   "devDependencies": {
     "parcel": "^2.0.0-beta.1"

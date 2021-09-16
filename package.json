@@ -1,5 +1,5 @@
 {
-  "name": "@opensearch/opensearch",
+  "name": "@opensearch-project/opensearch",
   "description": "The official OpenSearch client for Node.js",
   "main": "index.js",
   "types": "index.d.ts",
@@ -12,7 +12,7 @@
   },
   "homepage": "https://www.opensearch.org/",
   "version": "1.0.0",
-  "versionCanary": "7.14.0-canary.6",
+  "versionCanary": "7.10.0-canary.6",
   "keywords": [
     "opensearch",
     "opensearchDashboards",
@@ -38,10 +38,7 @@
     "license-checker": "license-checker --production --onlyAllow='MIT;Apache-2.0;Apache1.1;ISC;BSD-3-Clause;BSD-2-Clause'",
     "build-esm": "npx gen-esm-wrapper . index.mjs && standard --fix index.mjs"
   },
-  "author": {
-    "name": "Tomas Della Vedova",
-    "company": "Elastic BV"
-  },
+  "author": "opensearch-project",
   "original-author": {
     "name": "Spencer Alger",
     "company": "Elasticsearch BV"

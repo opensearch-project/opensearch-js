@@ -50,6 +50,8 @@ jspm_packages
 
 # opensearch repo or binary files
 opensearch*
+!opensearch_dashboards*
+!opensearchDashboards*
 
 test/benchmarks/macro/fixtures/*
 

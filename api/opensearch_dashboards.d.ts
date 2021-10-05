@@ -52,7 +52,7 @@ import {
   /**
     * We are still working on this type, it will arrive soon.
     * If it's critical for you, please open an issue.
-    * https://github.com/elastic/elasticsearch-js
+    * https://github.com/opensearch-project/opensearch-js/issues
     */
   type TODO = Record<string, any>
   

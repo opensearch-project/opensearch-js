@@ -56,7 +56,7 @@
     "js-yaml": "^4.1.0",
     "license-checker": "^25.0.1",
     "minimist": "^1.2.5",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.1.1",
     "ora": "^5.4.0",
     "pretty-hrtime": "^1.0.3",
     "proxy": "^1.0.2",

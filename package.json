@@ -62,7 +62,7 @@
     "proxy": "^1.0.2",
     "rimraf": "^3.0.2",
     "semver": "^7.3.5",
-    "simple-git": "^2.39.0",
+    "simple-git": "^3.3.0",
     "simple-statistics": "^7.7.0",
     "split2": "^3.2.2",
     "standard": "^16.0.3",

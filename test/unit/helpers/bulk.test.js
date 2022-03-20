@@ -848,12 +848,14 @@ test('bulk update', t => {
       flushBytes: 1,
       concurrency: 1,
       onDocument (doc) {
+        const currentId = id++
         return [{
           update: {
             _index: 'test',
-            _id: id++
+            _id: currentId
           }
         }, {
+          doc: dataset[currentId],
           doc_as_upsert: true
         }]
       },
@@ -896,12 +898,13 @@ test('bulk update', t => {
       flushBytes: 1,
       concurrency: 1,
       onDocument (doc) {
+        const currentId = id++
         return [{
           update: {
             _index: 'test',
-            _id: id++
+            _id: currentId
           }
-        }]
+        }, { doc: dataset[currentId] }]
       },
       onDrop (doc) {
         t.fail('This should never be called')
@@ -942,12 +945,14 @@ test('bulk update', t => {
       flushBytes: 1,
       concurrency: 1,
       onDocument (doc) {
+        const currentId = id++
         return [{
           update: {
             _index: 'test',
-            _id: id++
+            _id: currentId
           }
         }, {
+          doc: dataset[currentId],
           doc_as_upsert: true
         }]
       },

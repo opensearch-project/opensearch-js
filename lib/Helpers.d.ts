@@ -114,7 +114,8 @@ export interface OnDropDocument<TDocument = unknown> {
       type: string,
       reason: string
     }
-  }
+  },
+  operation: TDocument
   document: TDocument
   retried: boolean
 }

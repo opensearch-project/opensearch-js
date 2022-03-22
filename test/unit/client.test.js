@@ -951,6 +951,52 @@ test('Content length too big (string)', t => {
   })
 })
 
+test('Content length exceeds max heap limit', t => {
+  t.plan(4)
+  const percentage = 0.8
+  const HEAP_SIZE_LIMIT_WITH_BUFFER = Number(require('v8').getHeapStatistics().heap_size_limit * percentage)
+  const contentLength = buffer.constants.MAX_STRING_LENGTH - 1
+  const memoryCircuitBreaker = {
+    enabled: true,
+    maxPercentage: percentage
+  }
+  // Simulate allocation of bytes
+  const memoryAllocations = []
+  while (process.memoryUsage().heapUsed + contentLength <= HEAP_SIZE_LIMIT_WITH_BUFFER) {
+    const allocation = 50 * 1024 * 1024 // 50MB
+    const numbers = allocation / 8
+    const arr = []
+    arr.length = numbers
+    for (let i = 0; i < numbers; i++) {
+      arr[i] = i
+    }
+    memoryAllocations.push(arr)
+  }
+
+  class MockConnection extends Connection {
+    request (params, callback) {
+      const stream = intoStream(JSON.stringify({ hello: 'world' }))
+      stream.statusCode = 200
+      stream.headers = {
+        'content-type': 'application/json;utf=8',
+        'content-length': contentLength,
+        connection: 'keep-alive',
+        date: new Date().toISOString()
+      }
+      stream.on('close', () => t.pass('Stream destroyed'))
+      process.nextTick(callback, null, stream)
+      return { abort () { } }
+    }
+  }
+
+  const client = new Client({ node: 'http://localhost:9200', Connection: MockConnection, memoryCircuitBreaker })
+  client.info((err, result) => {
+    t.ok(err instanceof errors.RequestAbortedError)
+    t.equal(err.message, `The content length (${contentLength}) is bigger than the maximum allowed heap memory limit.`)
+    t.equal(result.meta.attempts, 0)
+  })
+})
+
 test('Prototype poisoning protection enabled by default', t => {
   t.plan(1)
 

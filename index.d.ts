@@ -126,6 +126,10 @@ interface ClientOptions {
     password?: string;
   };
   disablePrototypePoisoningProtection?: boolean | 'proto' | 'constructor';
+  memoryCircuitBreaker?: {
+    enabled: boolean;
+    maxPercentage: number;
+  }
 }
 
 declare class Client {

@@ -11,7 +11,7 @@
     "./": "./"
   },
   "homepage": "https://www.opensearch.org/",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "versionCanary": "7.10.0-canary.6",
   "keywords": [
     "opensearch",

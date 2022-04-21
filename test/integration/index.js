@@ -278,7 +278,7 @@ const shouldSkip = (file, name) => {
     for (let j = 0; j < ossTest.length; j++) {
       if (file.endsWith(list[i]) && (name === ossTest[j] || ossTest[j] === '*')) {
         const testName = file.slice(file.indexOf(`${sep}opensearch${sep}`)) + ' / ' + name
-        log(`Skipping test ${testName} because is blacklisted in the oss test`)
+        log(`Skipping test ${testName} because is denylisted in the oss test`)
         return true
       }
     }

@@ -54,9 +54,13 @@ export interface ConnectionOptions {
 }
 
 interface ConnectionRoles {
-  master?: boolean;
-  data?: boolean;
-  ingest?: boolean;
+  cluster_manager?: boolean
+  /**
+  * @deprecated use cluster_manager instead
+  */
+  master?: boolean
+  data?: boolean
+  ingest?: boolean
 }
 
 interface RequestOptions extends http.ClientRequestArgs {
@@ -78,7 +82,11 @@ export default class Connection {
     DEAD: string;
   };
   static roles: {
-    MASTER: string;
+    CLUSTER_MANAGER?: string;
+    /**
+    * @deprecated use CLUSTER_MANAGER instead
+    */
+    MASTER?: string;
     DATA: string;
     INGEST: string;
   };
@@ -107,4 +115,4 @@ export default class Connection {
   toJSON(): any;
 }
 
-export {};
+export { };

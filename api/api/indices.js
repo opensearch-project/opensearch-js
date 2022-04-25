@@ -35,6 +35,7 @@
 
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
+  'cluster_manager_timeout',
   'timeout',
   'master_timeout',
   'ignore_unavailable',
@@ -92,6 +93,7 @@ const acceptedQuerystring = [
   'all_shards',
 ];
 const snakeCase = {
+  clusterManagerTimeout: 'cluster_manager_timeout',
   masterTimeout: 'master_timeout',
   ignoreUnavailable: 'ignore_unavailable',
   allowNoIndices: 'allow_no_indices',

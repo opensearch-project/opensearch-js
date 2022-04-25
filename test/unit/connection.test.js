@@ -710,7 +710,7 @@ test('Should disallow two-byte characters in URL path', (t) => {
   );
 });
 
-test('setRole', (t) => {
+test('should set cluster_manager role', (t) => {
   t.test('Update the value of a role', (t) => {
     t.plan(2);
 
@@ -719,15 +719,14 @@ test('setRole', (t) => {
     });
 
     t.same(connection.roles, {
-      master: true,
       data: true,
       ingest: true,
     });
 
-    connection.setRole('master', false);
+    connection.setRole('cluster_manager', true);
 
     t.same(connection.roles, {
-      master: false,
+      cluster_manager: true,
       data: true,
       ingest: true,
     });
@@ -747,6 +746,49 @@ test('setRole', (t) => {
       t.ok(err instanceof ConfigurationError);
       t.equal(err.message, "Unsupported role: 'car'");
     }
+  });
+
+  t.test('Invalid value', (t) => {
+    t.plan(2);
+
+    const connection = new Connection({
+      url: new URL('http://localhost:9200'),
+    });
+
+    try {
+      connection.setRole('cluster_manager', 1);
+      t.fail('Shoud throw');
+    } catch (err) {
+      t.ok(err instanceof ConfigurationError);
+      t.equal(err.message, 'enabled should be a boolean');
+    }
+  });
+
+  t.end();
+});
+
+// master role is deprecated
+// TODO: delete this test when maste role is completed removed
+test('should set master role', (t) => {
+  t.test('Update the value of a role', (t) => {
+    t.plan(2);
+
+    const connection = new Connection({
+      url: new URL('http://localhost:9200'),
+    });
+
+    t.same(connection.roles, {
+      data: true,
+      ingest: true,
+    });
+
+    connection.setRole('master', false);
+
+    t.same(connection.roles, {
+      master: false,
+      data: true,
+      ingest: true,
+    });
   });
 
   t.test('Invalid value', (t) => {
@@ -793,7 +835,7 @@ test('Util.inspect Connection class should hide agent, ssl and auth', (t) => {
   resurrectTimeout: 0,
   _openRequests: 0,
   status: 'alive',
-  roles: { master: true, data: true, ingest: true }}`)
+  roles: { data: true, ingest: true }}`)
   );
 });
 
@@ -817,7 +859,6 @@ test('connection.toJSON should hide agent, ssl and auth', (t) => {
     _openRequests: 0,
     status: 'alive',
     roles: {
-      master: true,
       data: true,
       ingest: true,
     },
@@ -881,7 +922,7 @@ test('Should not add agent and ssl to the serialized connection', (t) => {
 
   t.equal(
     JSON.stringify(connection),
-    '{"url":"http://localhost:9200/","id":"http://localhost:9200/","headers":{},"deadCount":0,"resurrectTimeout":0,"_openRequests":0,"status":"alive","roles":{"master":true,"data":true,"ingest":true}}'
+    '{"url":"http://localhost:9200/","id":"http://localhost:9200/","headers":{},"deadCount":0,"resurrectTimeout":0,"_openRequests":0,"status":"alive","roles":{"data":true,"ingest":true}}'
   );
 
   t.end();

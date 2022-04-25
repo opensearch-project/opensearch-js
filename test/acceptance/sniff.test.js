@@ -62,6 +62,7 @@ test('Should update the connection pool', (t) => {
     });
 
     // run the sniffer
+    // TODO: modify node roles when master is not supported
     client.transport.sniff((err, hosts) => {
       t.error(err);
       t.equal(hosts.length, 4);

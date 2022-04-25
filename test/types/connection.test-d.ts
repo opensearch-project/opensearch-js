@@ -41,9 +41,9 @@ import { ConnectionOptions } from '../../lib/Connection';
     headers: {},
     agent: { keepAlive: false },
     status: 'alive',
-    roles: { master: true },
-    auth: { username: 'username', password: 'password' },
-  });
+    roles: {},
+    auth: { username: 'username', password: 'password' }
+  })
 
   expectType<Connection>(conn);
   expectType<URL>(conn.url);

@@ -130,6 +130,7 @@ test('API', (t) => {
     t.end();
   });
 
+  // TODO: modify node roles when master is not supported
   t.test('nodesToHost', (t) => {
     t.test('publish_address as ip address (IPv4)', (t) => {
       const pool = new BaseConnectionPool({ Connection });
@@ -138,7 +139,7 @@ test('API', (t) => {
           http: {
             publish_address: '127.0.0.1:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -153,7 +154,7 @@ test('API', (t) => {
           url: new URL('http://127.0.0.1:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -181,7 +182,7 @@ test('API', (t) => {
           http: {
             publish_address: '[::1]:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -196,7 +197,7 @@ test('API', (t) => {
           url: new URL('http://[::1]:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -224,7 +225,7 @@ test('API', (t) => {
           http: {
             publish_address: 'example.com/127.0.0.1:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -239,7 +240,7 @@ test('API', (t) => {
           url: new URL('http://example.com:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -267,7 +268,7 @@ test('API', (t) => {
           http: {
             publish_address: 'example.com/[::1]:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -282,7 +283,7 @@ test('API', (t) => {
           url: new URL('http://example.com:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -310,7 +311,7 @@ test('API', (t) => {
           http: {
             publish_address: 'example.com/127.0.0.1:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -328,6 +329,7 @@ test('API', (t) => {
     t.end();
   });
 
+  // TODO: modify node roles when master is not supported
   t.test('update', (t) => {
     t.test('Should not update existing connections', (t) => {
       t.plan(2);
@@ -337,7 +339,7 @@ test('API', (t) => {
           url: new URL('http://127.0.0.1:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -383,7 +385,7 @@ test('API', (t) => {
         url: new URL('http://127.0.0.1:9200'),
         id: 'a1',
         roles: {
-          master: true,
+          cluster_manager: true,
           data: true,
           ingest: true,
         },

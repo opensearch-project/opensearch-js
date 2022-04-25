@@ -108,7 +108,7 @@ declare class BaseConnectionPool {
   /**
    * Returns an alive connection if present,
    * otherwise returns a dead connection.
-   * By default it filters the `master` only nodes.
+   * By default it filters the `cluster_manager` or `master` only nodes.
    * It uses the selector to choose which
    * connection return.
    *

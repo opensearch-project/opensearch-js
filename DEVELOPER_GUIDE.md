@@ -1,3 +1,12 @@
+- [Developer Guide](#developer-guide)
+  - [Getting Started](#getting-started)
+    - [Git Clone OpenSearch Node.js Client Repository](#git-clone-opensearch-nodejs-client-repository)
+    - [Install Prerequisites](#install-prerequisites)
+      - [Node.js](#nodejs)
+      - [Docker](#docker)
+    - [Unit Testing](#unit-testing)
+    - [Integration Testing](#integration-testing)
+      - [Execute integration tests from your terminal](#execute-integration-tests-from-your-terminal)
 # Developer Guide
 
 So you want to contribute code to the OpenSearch Node.js Client?  Excellent!  We're glad you're here.  Here's what you need to do:

@@ -10,24 +10,26 @@
 OpenSearch Node.js client
 
 - [Welcome!](#welcome)
+- [Example use](#example-use)
+  - [Setup](#setup)
+  - [Sample code](#sample-code)
 - [Project Resources](#project-resources)
 - [Code of Conduct](#code-of-conduct)
 - [License](#license)
 - [Copyright](#copyright)
-
 ## Welcome!
 
 **[opensearch-js](https://www.npmjs.com/package/@opensearch-project/opensearch)** is [a community-driven, open source fork](https://aws.amazon.com/blogs/opensource/introducing-opensearch/) of elasticsearch-js licensed under the [Apache v2.0 License](LICENSE.txt). For more information, see [opensearch.org](https://opensearch.org/).
 
 ## Example use
+
 The OpenSearch JavaScript client provides a safer and easier way to interact with your OpenSearch cluster. Rather than using OpenSearch from the browser and potentially exposing your data to the public, you can build an OpenSearch client that takes care of sending requests to your cluster.
 
 The client contains a library of APIs that let you perform different operations on your cluster and return a standard response body. The example here demonstrates some basic operations like creating an index, adding documents, and searching your data.
 
-
 ### Setup
 
-# To add the client to your project, install it with npm:
+To add the client to your project, install it with npm:
 
 ```bash
 npm i @opensearch-project/opensearch

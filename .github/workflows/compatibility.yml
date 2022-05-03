@@ -8,23 +8,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        secured: ["true", "false"]
         entry:
-          - { version: '1.1.0', secured: 'true' }
-          - { version: '1.1.0', secured: 'false' }
-          - { version: '1.2.0', secured: 'true' }
-          - { version: '1.2.0', secured: 'false' }
-          - { version: '1.2.1', secured: 'true' }
-          - { version: '1.2.1', secured: 'false' }
-          - { version: '1.2.2', secured: 'true' }
-          - { version: '1.2.2', secured: 'false' }
-          - { version: '1.2.3', secured: 'true' }
-          - { version: '1.2.3', secured: 'false' }
-          - { version: '1.2.4', secured: 'true' }
-          - { version: '1.2.4', secured: 'false' }
-          - { version: '1.3.0', secured: 'true' }
-          - { version: '1.3.0', secured: 'false' }
-          - { version: '1.3.1', secured: 'true' }
-          - { version: '1.3.1', secured: 'false' }
+          - { opensearch_version: 1.1.0 }
+          - { opensearch_version: 1.2.0 }
+          - { opensearch_version: 1.2.1 }
+          - { opensearch_version: 1.2.2 }
+          - { opensearch_version: 1.2.3 }
+          - { opensearch_version: 1.2.4 }
+          - { opensearch_version: 1.3.0 }
+          - { opensearch_version: 1.3.1 }
 
     steps:
     - uses: actions/checkout@v2
@@ -38,8 +31,8 @@ jobs:
 
     - name: Runs OpenSearch cluster
       run: |
-        export OPENSEARCH_VERSION=${{ matrix.entry.version }}
-        export SECURE_INTEGRATION=${{ matrix.entry.secured }}
+        export OPENSEARCH_VERSION=${{ matrix.entry.opensearch_version }}
+        export SECURE_INTEGRATION=${{ matrix.secured }}
         make cluster.clean cluster.opensearch.build cluster.opensearch.start
 
     - name: Use Node.js 16.x
@@ -52,12 +45,12 @@ jobs:
         npm install
 
     - name: Integration test without security
-      if: ${{ matrix.entry.secured == 'false'}}
+      if: ${{ matrix.secured == 'false'}}
       run: |
         npm run test:integration:helpers
     
     - name: Integration test with security
-      if: ${{ matrix.entry.secured == 'true'}}
+      if: ${{ matrix.secured == 'true'}}
       run: |
         npm run test:integration:helpers-secure
 

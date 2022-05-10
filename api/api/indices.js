@@ -485,43 +485,6 @@ IndicesApi.prototype.existsTemplate = function indicesExistsTemplateApi (params,
   return this.transport.request(request, options, callback)
 }
 
-IndicesApi.prototype.existsType = function indicesExistsTypeApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
-
-  // check required parameters
-  if (params.index == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: index')
-    return handleError(err, callback)
-  }
-  if (params.type == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: type')
-    return handleError(err, callback)
-  }
-
-  // check required url components
-  if (params.type != null && (params.index == null)) {
-    const err = new this[kConfigurationError]('Missing required parameter of the url: index')
-    return handleError(err, callback)
-  }
-
-  let { method, body, index, type, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
-
-  let path = ''
-  if (method == null) method = 'HEAD'
-  path = '/' + encodeURIComponent(index) + '/' + '_mapping' + '/' + encodeURIComponent(type)
-
-  // build request object
-  const request = {
-    method,
-    path,
-    body: null,
-    querystring
-  }
-
-  return this.transport.request(request, options, callback)
-}
-
 IndicesApi.prototype.fieldUsageStats = function indicesFieldUsageStatsApi (params, options, callback) {
   ;[params, options, callback] = normalizeArguments(params, options, callback)
 
@@ -563,27 +526,6 @@ IndicesApi.prototype.flush = function indicesFlushApi (params, options, callback
     if (method == null) method = body == null ? 'GET' : 'POST'
     path = '/' + '_flush'
   }
-
-  // build request object
-  const request = {
-    method,
-    path,
-    body: body || '',
-    querystring
-  }
-
-  return this.transport.request(request, options, callback)
-}
-
-IndicesApi.prototype.flushSynced = function indicesFlushSyncedApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
-
-  let { method, body, index, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
-
-  let path = ''
-  if (method == null) method = body == null ? 'GET' : 'POST'
-  path = '/' + encodeURIComponent(index) + '/' + '_flush' + '/' + 'synced'
 
   // build request object
   const request = {
@@ -1490,9 +1432,7 @@ Object.defineProperties(IndicesApi.prototype, {
   exists_alias: { get () { return this.existsAlias } },
   exists_index_template: { get () { return this.existsIndexTemplate } },
   exists_template: { get () { return this.existsTemplate } },
-  exists_type: { get () { return this.existsType } },
   field_usage_stats: { get () { return this.fieldUsageStats } },
-  flush_synced: { get () { return this.flushSynced } },
   get_alias: { get () { return this.getAlias } },
   get_field_mapping: { get () { return this.getFieldMapping } },
   get_index_template: { get () { return this.getIndexTemplate } },

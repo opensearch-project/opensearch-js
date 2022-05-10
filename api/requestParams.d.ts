@@ -40,7 +40,6 @@ export interface Generic {
 }
 export interface Bulk<T = RequestNDBody> extends Generic {
   index?: string;
-  type?: string;
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   wait_for_active_shards?: string;
@@ -394,7 +393,6 @@ export interface ClusterStats extends Generic {
 
 export interface Count<T = RequestBody> extends Generic {
   index?: string | string[];
-  type?: string | string[];
   ignore_unavailable?: boolean;
   ignore_throttled?: boolean;
   allow_no_indices?: boolean;
@@ -415,7 +413,6 @@ export interface Count<T = RequestBody> extends Generic {
 export interface Create<T = RequestBody> extends Generic {
   id: string;
   index: string;
-  type?: string;
   wait_for_active_shards?: string;
   refresh?: 'wait_for' | boolean;
   routing?: string;
@@ -446,7 +443,6 @@ export interface DanglingIndicesListDanglingIndices extends Generic {
 export interface Delete extends Generic {
   id: string;
   index: string;
-  type?: string;
   wait_for_active_shards?: string;
   refresh?: 'wait_for' | boolean;
   routing?: string;
@@ -459,7 +455,6 @@ export interface Delete extends Generic {
 
 export interface DeleteByQuery<T = RequestBody> extends Generic {
   index: string | string[];
-  type?: string | string[];
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   analyzer?: string;
@@ -512,7 +507,6 @@ export interface DeleteScript extends Generic {
 export interface Exists extends Generic {
   id: string;
   index: string;
-  type?: string;
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   stored_fields?: string | string[];
@@ -530,7 +524,6 @@ export interface Exists extends Generic {
 export interface ExistsSource extends Generic {
   id: string;
   index: string;
-  type?: string;
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   preference?: string;
@@ -547,7 +540,6 @@ export interface ExistsSource extends Generic {
 export interface Explain<T = RequestBody> extends Generic {
   id: string;
   index: string;
-  type?: string;
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   analyze_wildcard?: boolean;
@@ -585,7 +577,6 @@ export interface FieldCaps<T = RequestBody> extends Generic {
 export interface Get extends Generic {
   id: string;
   index: string;
-  type?: string;
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   stored_fields?: string | string[];
@@ -614,7 +605,6 @@ export interface GetScriptLanguages extends Generic {
 export interface GetSource extends Generic {
   id: string;
   index: string;
-  type?: string;
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   preference?: string;
@@ -631,7 +621,6 @@ export interface GetSource extends Generic {
 export interface Index<T = RequestBody> extends Generic {
   id?: string;
   index: string;
-  type?: string;
   wait_for_active_shards?: string;
   op_type?: 'index' | 'create';
   refresh?: 'wait_for' | boolean;
@@ -769,15 +758,6 @@ export interface IndicesExistsTemplate extends Generic {
   local?: boolean;
 }
 
-export interface IndicesExistsType extends Generic {
-  index: string | string[];
-  type: string | string[];
-  ignore_unavailable?: boolean;
-  allow_no_indices?: boolean;
-  expand_wildcards?: 'open' | 'closed' | 'hidden' | 'none' | 'all';
-  local?: boolean;
-}
-
 export interface IndicesFieldUsageStats extends Generic {
   index: string;
   fields?: string | string[];
@@ -793,13 +773,6 @@ export interface IndicesFlush extends Generic {
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
   expand_wildcards?: 'open' | 'closed' | 'hidden' | 'none' | 'all';
-}
-
-export interface IndicesFlushSynced extends Generic {
-  index?: string | string[];
-  ignore_unavailable?: boolean;
-  allow_no_indices?: boolean;
-  expand_wildcards?: 'open' | 'closed' | 'none' | 'all';
 }
 
 export interface IndicesForcemerge extends Generic {
@@ -836,7 +809,6 @@ export interface IndicesGetAlias extends Generic {
 export interface IndicesGetFieldMapping extends Generic {
   fields: string | string[];
   index?: string | string[];
-  type?: string | string[];
   include_type_name?: boolean;
   include_defaults?: boolean;
   ignore_unavailable?: boolean;
@@ -854,7 +826,6 @@ export interface IndicesGetIndexTemplate extends Generic {
 
 export interface IndicesGetMapping extends Generic {
   index?: string | string[];
-  type?: string | string[];
   include_type_name?: boolean;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
@@ -919,7 +890,6 @@ export interface IndicesPutIndexTemplate<T = RequestBody> extends Generic {
 
 export interface IndicesPutMapping<T = RequestBody> extends Generic {
   index?: string | string[];
-  type?: string;
   include_type_name?: boolean;
   timeout?: string;
   master_timeout?: string;
@@ -1064,7 +1034,6 @@ export interface IndicesUpgrade extends Generic {
 
 export interface IndicesValidateQuery<T = RequestBody> extends Generic {
   index?: string | string[];
-  type?: string | string[];
   explain?: boolean;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
@@ -1116,7 +1085,6 @@ export interface IngestSimulate<T = RequestBody> extends Generic {
 
 export interface Mget<T = RequestBody> extends Generic {
   index?: string;
-  type?: string;
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   stored_fields?: string | string[];
@@ -1132,7 +1100,6 @@ export interface Mget<T = RequestBody> extends Generic {
 
 export interface Msearch<T = RequestNDBody> extends Generic {
   index?: string | string[];
-  type?: string | string[];
   search_type?: 'query_then_fetch' | 'dfs_query_then_fetch';
   max_concurrent_searches?: number;
   typed_keys?: boolean;
@@ -1145,7 +1112,6 @@ export interface Msearch<T = RequestNDBody> extends Generic {
 
 export interface MsearchTemplate<T = RequestNDBody> extends Generic {
   index?: string | string[];
-  type?: string | string[];
   search_type?: 'query_then_fetch' | 'dfs_query_then_fetch';
   typed_keys?: boolean;
   max_concurrent_searches?: number;
@@ -1156,7 +1122,6 @@ export interface MsearchTemplate<T = RequestNDBody> extends Generic {
 
 export interface Mtermvectors<T = RequestBody> extends Generic {
   index?: string;
-  type?: string;
   ids?: string | string[];
   term_statistics?: boolean;
   field_statistics?: boolean;
@@ -1280,7 +1245,6 @@ export interface Scroll<T = RequestBody> extends Generic {
 
 export interface Search<T = RequestBody> extends Generic {
   index?: string | string[];
-  type?: string | string[];
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   analyzer?: string;
@@ -1341,7 +1305,6 @@ export interface SearchShards extends Generic {
 
 export interface SearchTemplate<T = RequestBody> extends Generic {
   index?: string | string[];
-  type?: string | string[];
   ignore_unavailable?: boolean;
   ignore_throttled?: boolean;
   allow_no_indices?: boolean;
@@ -1497,7 +1460,6 @@ export interface TermsEnum<T = RequestBody> extends Generic {
 export interface Termvectors<T = RequestBody> extends Generic {
   index: string;
   id?: string;
-  type?: string;
   term_statistics?: boolean;
   field_statistics?: boolean;
   fields?: string | string[];
@@ -1515,7 +1477,6 @@ export interface Termvectors<T = RequestBody> extends Generic {
 export interface Update<T = RequestBody> extends Generic {
   id: string;
   index: string;
-  type?: string;
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   wait_for_active_shards?: string;
@@ -1535,7 +1496,6 @@ export interface Update<T = RequestBody> extends Generic {
 
 export interface UpdateByQuery<T = RequestBody> extends Generic {
   index: string | string[];
-  type?: string | string[];
   _source_exclude?: string | string[];
   _source_include?: string | string[];
   analyzer?: string;

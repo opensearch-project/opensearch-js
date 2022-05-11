@@ -682,7 +682,6 @@ export interface IndicesClose extends Generic {
 
 export interface IndicesCreate<T = RequestBody> extends Generic {
   index: string;
-  include_type_name?: boolean;
   wait_for_active_shards?: string;
   timeout?: string;
   master_timeout?: string;
@@ -787,7 +786,6 @@ export interface IndicesForcemerge extends Generic {
 
 export interface IndicesGet extends Generic {
   index: string | string[];
-  include_type_name?: boolean;
   local?: boolean;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
@@ -809,7 +807,6 @@ export interface IndicesGetAlias extends Generic {
 export interface IndicesGetFieldMapping extends Generic {
   fields: string | string[];
   index?: string | string[];
-  include_type_name?: boolean;
   include_defaults?: boolean;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
@@ -826,7 +823,6 @@ export interface IndicesGetIndexTemplate extends Generic {
 
 export interface IndicesGetMapping extends Generic {
   index?: string | string[];
-  include_type_name?: boolean;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
   expand_wildcards?: 'open' | 'closed' | 'hidden' | 'none' | 'all';
@@ -848,7 +844,6 @@ export interface IndicesGetSettings extends Generic {
 
 export interface IndicesGetTemplate extends Generic {
   name?: string | string[];
-  include_type_name?: boolean;
   flat_settings?: boolean;
   master_timeout?: string;
   local?: boolean;
@@ -890,7 +885,6 @@ export interface IndicesPutIndexTemplate<T = RequestBody> extends Generic {
 
 export interface IndicesPutMapping<T = RequestBody> extends Generic {
   index?: string | string[];
-  include_type_name?: boolean;
   timeout?: string;
   master_timeout?: string;
   ignore_unavailable?: boolean;
@@ -914,7 +908,6 @@ export interface IndicesPutSettings<T = RequestBody> extends Generic {
 
 export interface IndicesPutTemplate<T = RequestBody> extends Generic {
   name: string;
-  include_type_name?: boolean;
   order?: number;
   create?: boolean;
   master_timeout?: string;
@@ -942,7 +935,6 @@ export interface IndicesResolveIndex extends Generic {
 export interface IndicesRollover<T = RequestBody> extends Generic {
   alias: string;
   new_index?: string;
-  include_type_name?: boolean;
   timeout?: string;
   dry_run?: boolean;
   master_timeout?: string;

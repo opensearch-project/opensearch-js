@@ -7158,7 +7158,6 @@ export interface IndicesCloseResponse extends AcknowledgedResponseBase {
 
 export interface IndicesCreateRequest extends RequestBase {
   index: IndexName
-  include_type_name?: boolean
   master_timeout?: Time
   timeout?: Time
   wait_for_active_shards?: WaitForActiveShards
@@ -7283,7 +7282,6 @@ export interface IndicesGetRequest extends RequestBase {
   flat_settings?: boolean
   ignore_unavailable?: boolean
   include_defaults?: boolean
-  include_type_name?: boolean
   local?: boolean
   master_timeout?: Time
 }
@@ -7314,7 +7312,6 @@ export interface IndicesGetFieldMappingRequest extends RequestBase {
   expand_wildcards?: ExpandWildcards
   ignore_unavailable?: boolean
   include_defaults?: boolean
-  include_type_name?: boolean
   local?: boolean
 }
 
@@ -7352,7 +7349,6 @@ export interface IndicesGetIndexTemplateRequest extends RequestBase {
   local?: boolean
   body?: {
     flat_settings?: boolean
-    include_type_name?: boolean
     master_timeout?: Time
   }
 }
@@ -7371,7 +7367,6 @@ export interface IndicesGetMappingRequest extends RequestBase {
   allow_no_indices?: boolean
   expand_wildcards?: ExpandWildcards
   ignore_unavailable?: boolean
-  include_type_name?: boolean
   local?: boolean
   master_timeout?: Time
 }
@@ -7397,7 +7392,6 @@ export interface IndicesGetSettingsResponse extends DictionaryResponseBase<Index
 export interface IndicesGetTemplateRequest extends RequestBase {
   name?: Names
   flat_settings?: boolean
-  include_type_name?: boolean
   local?: boolean
   master_timeout?: Time
 }
@@ -7472,7 +7466,6 @@ export interface IndicesPutMappingRequest extends RequestBase {
   allow_no_indices?: boolean
   expand_wildcards?: ExpandWildcards
   ignore_unavailable?: boolean
-  include_type_name?: boolean
   master_timeout?: Time
   timeout?: Time
   write_index_only?: boolean
@@ -7520,7 +7513,6 @@ export interface IndicesPutTemplateRequest extends RequestBase {
   name: Name
   create?: boolean
   flat_settings?: boolean
-  include_type_name?: boolean
   master_timeout?: Time
   timeout?: Time
   body?: {
@@ -7683,7 +7675,6 @@ export interface IndicesRolloverRequest extends RequestBase {
   alias: IndexAlias
   new_index?: IndexName
   dry_run?: boolean
-  include_type_name?: boolean
   master_timeout?: Time
   timeout?: Time
   wait_for_active_shards?: WaitForActiveShards

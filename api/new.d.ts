@@ -373,9 +373,6 @@ declare class Client {
     existsTemplate<TContext = unknown>(params: T.IndicesExistsTemplateRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.IndicesExistsTemplateResponse, TContext>>
     existsTemplate<TContext = unknown>(params: T.IndicesExistsTemplateRequest, callback: callbackFn<T.IndicesExistsTemplateResponse, TContext>): TransportRequestCallback
     existsTemplate<TContext = unknown>(params: T.IndicesExistsTemplateRequest, options: TransportRequestOptions, callback: callbackFn<T.IndicesExistsTemplateResponse, TContext>): TransportRequestCallback
-    existsType<TContext = unknown>(params: T.IndicesExistsTypeRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.IndicesExistsTypeResponse, TContext>>
-    existsType<TContext = unknown>(params: T.IndicesExistsTypeRequest, callback: callbackFn<T.IndicesExistsTypeResponse, TContext>): TransportRequestCallback
-    existsType<TContext = unknown>(params: T.IndicesExistsTypeRequest, options: TransportRequestOptions, callback: callbackFn<T.IndicesExistsTypeResponse, TContext>): TransportRequestCallback
     fieldUsageStats<TContext = unknown>(params?: TODO, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TODO, TContext>>
     fieldUsageStats<TContext = unknown>(callback: callbackFn<TODO, TContext>): TransportRequestCallback
     fieldUsageStats<TContext = unknown>(params: TODO, callback: callbackFn<TODO, TContext>): TransportRequestCallback
@@ -384,10 +381,6 @@ declare class Client {
     flush<TContext = unknown>(callback: callbackFn<T.IndicesFlushResponse, TContext>): TransportRequestCallback
     flush<TContext = unknown>(params: T.IndicesFlushRequest, callback: callbackFn<T.IndicesFlushResponse, TContext>): TransportRequestCallback
     flush<TContext = unknown>(params: T.IndicesFlushRequest, options: TransportRequestOptions, callback: callbackFn<T.IndicesFlushResponse, TContext>): TransportRequestCallback
-    flushSynced<TContext = unknown>(params?: T.IndicesFlushSyncedRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.IndicesFlushSyncedResponse, TContext>>
-    flushSynced<TContext = unknown>(callback: callbackFn<T.IndicesFlushSyncedResponse, TContext>): TransportRequestCallback
-    flushSynced<TContext = unknown>(params: T.IndicesFlushSyncedRequest, callback: callbackFn<T.IndicesFlushSyncedResponse, TContext>): TransportRequestCallback
-    flushSynced<TContext = unknown>(params: T.IndicesFlushSyncedRequest, options: TransportRequestOptions, callback: callbackFn<T.IndicesFlushSyncedResponse, TContext>): TransportRequestCallback
     forcemerge<TContext = unknown>(params?: T.IndicesForcemergeRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.IndicesForcemergeResponse, TContext>>
     forcemerge<TContext = unknown>(callback: callbackFn<T.IndicesForcemergeResponse, TContext>): TransportRequestCallback
     forcemerge<TContext = unknown>(params: T.IndicesForcemergeRequest, callback: callbackFn<T.IndicesForcemergeResponse, TContext>): TransportRequestCallback

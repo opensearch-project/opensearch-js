@@ -629,14 +629,6 @@ declare class Client {
     existsTemplate<TResponse = boolean, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
     existsTemplate<TResponse = boolean, TContext = Context>(params: RequestParams.IndicesExistsTemplate, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
     existsTemplate<TResponse = boolean, TContext = Context>(params: RequestParams.IndicesExistsTemplate, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    exists_type<TResponse = boolean, TContext = Context>(params?: RequestParams.IndicesExistsType, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
-    exists_type<TResponse = boolean, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    exists_type<TResponse = boolean, TContext = Context>(params: RequestParams.IndicesExistsType, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    exists_type<TResponse = boolean, TContext = Context>(params: RequestParams.IndicesExistsType, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    existsType<TResponse = boolean, TContext = Context>(params?: RequestParams.IndicesExistsType, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
-    existsType<TResponse = boolean, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    existsType<TResponse = boolean, TContext = Context>(params: RequestParams.IndicesExistsType, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    existsType<TResponse = boolean, TContext = Context>(params: RequestParams.IndicesExistsType, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
     field_usage_stats<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.IndicesFieldUsageStats, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
     field_usage_stats<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
     field_usage_stats<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.IndicesFieldUsageStats, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
@@ -649,14 +641,6 @@ declare class Client {
     flush<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
     flush<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.IndicesFlush, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
     flush<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.IndicesFlush, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    flush_synced<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.IndicesFlushSynced, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
-    flush_synced<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    flush_synced<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.IndicesFlushSynced, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    flush_synced<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.IndicesFlushSynced, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    flushSynced<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.IndicesFlushSynced, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
-    flushSynced<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    flushSynced<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.IndicesFlushSynced, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
-    flushSynced<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.IndicesFlushSynced, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
     forcemerge<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.IndicesForcemerge, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
     forcemerge<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
     forcemerge<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.IndicesForcemerge, callback: callbackFn<TResponse, TContext>): TransportRequestCallback

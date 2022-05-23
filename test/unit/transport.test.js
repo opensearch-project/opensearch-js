@@ -28,19 +28,19 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const { test } = require('tap')
-const { URL } = require('url')
-const FakeTimers = require('@sinonjs/fake-timers')
-const { createGunzip, gzipSync } = require('zlib')
-const os = require('os')
-const intoStream = require('into-stream')
+const { test } = require('tap');
+const { URL } = require('url');
+const FakeTimers = require('@sinonjs/fake-timers');
+const { createGunzip, gzipSync } = require('zlib');
+const os = require('os');
+const intoStream = require('into-stream');
 const {
   buildServer,
   skipCompatibleCheck,
-  connection: { MockConnection, MockConnectionTimeout, MockConnectionError }
-} = require('../utils')
+  connection: { MockConnection, MockConnectionTimeout, MockConnectionError },
+} = require('../utils');
 const {
   NoLivingConnectionsError,
   SerializationError,
@@ -49,987 +49,1093 @@ const {
   ResponseError,
   ConnectionError,
   ConfigurationError,
-  RequestAbortedError
-} = require('../../lib/errors')
+  RequestAbortedError,
+} = require('../../lib/errors');
 
-const ConnectionPool = require('../../lib/pool/ConnectionPool')
-const Connection = require('../../lib/Connection')
-const Serializer = require('../../lib/Serializer')
-const Transport = require('../../lib/Transport')
+const ConnectionPool = require('../../lib/pool/ConnectionPool');
+const Connection = require('../../lib/Connection');
+const Serializer = require('../../lib/Serializer');
+const Transport = require('../../lib/Transport');
 
-test('Basic', t => {
-  t.plan(2)
-  function handler (req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.end(JSON.stringify({ hello: 'world' }))
+test('Basic', (t) => {
+  t.plan(2);
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, (err, { body }) => {
-      t.error(err)
-      t.same(body, { hello: 'world' })
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.same(body, { hello: 'world' });
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Basic (promises support)', t => {
-  t.plan(1)
+test('Basic (promises support)', (t) => {
+  t.plan(1);
 
-  const pool = new ConnectionPool({ Connection: MockConnection })
-  pool.addConnection('http://localhost:9200')
+  const pool = new ConnectionPool({ Connection: MockConnection });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
   transport
     .request({
       method: 'GET',
-      path: '/hello'
+      path: '/hello',
     })
     .then(({ body }) => {
-      t.same(body, { hello: 'world' })
+      t.same(body, { hello: 'world' });
     })
-    .catch(t.fail)
-})
+    .catch(t.fail);
+});
 
-test('Basic - failing (promises support)', t => {
-  t.plan(1)
+test('Basic - failing (promises support)', (t) => {
+  t.plan(1);
 
-  const pool = new ConnectionPool({ Connection: MockConnectionTimeout })
-  pool.addConnection('http://localhost:9200')
+  const pool = new ConnectionPool({ Connection: MockConnectionTimeout });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
   transport
     .request({
       method: 'GET',
-      path: '/hello'
+      path: '/hello',
     })
-    .catch(err => {
-      t.ok(err instanceof TimeoutError)
-    })
-})
+    .catch((err) => {
+      t.ok(err instanceof TimeoutError);
+    });
+});
 
-test('Basic (options + promises support)', t => {
-  t.plan(1)
+test('Basic (options + promises support)', (t) => {
+  t.plan(1);
 
-  const pool = new ConnectionPool({ Connection: MockConnection })
-  pool.addConnection('http://localhost:9200')
+  const pool = new ConnectionPool({ Connection: MockConnection });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
   transport
-    .request({
-      method: 'GET',
-      path: '/hello'
-    }, {
-      requestTimeout: 1000
-    })
+    .request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      {
+        requestTimeout: 1000,
+      }
+    )
     .then(({ body }) => {
-      t.same(body, { hello: 'world' })
+      t.same(body, { hello: 'world' });
     })
-    .catch(t.fail)
-})
+    .catch(t.fail);
+});
 
-test('Send POST', t => {
-  t.plan(4)
-  function handler (req, res) {
+test('Send POST', (t) => {
+  t.plan(4);
+  function handler(req, res) {
     t.match(req.headers, {
       'content-type': 'application/json',
-      'content-length': '17'
-    })
-    let json = ''
-    req.setEncoding('utf8')
-    req.on('data', chunk => { json += chunk })
-    req.on('error', err => t.fail(err))
+      'content-length': '17',
+    });
+    let json = '';
+    req.setEncoding('utf8');
+    req.on('data', (chunk) => {
+      json += chunk;
+    });
+    req.on('error', (err) => t.fail(err));
     req.on('end', () => {
-      t.same(JSON.parse(json), { hello: 'world' })
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
-    })
+      t.same(JSON.parse(json), { hello: 'world' });
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
+    });
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'POST',
-      path: '/hello',
-      body: { hello: 'world' }
-    }, (err, { body }) => {
-      t.error(err)
-      t.same(body, { hello: 'world' })
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'POST',
+        path: '/hello',
+        body: { hello: 'world' },
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.same(body, { hello: 'world' });
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Send POST (ndjson)', t => {
-  t.plan(4)
+test('Send POST (ndjson)', (t) => {
+  t.plan(4);
 
-  const bulkBody = [
-    { hello: 'world' },
-    { winter: 'is coming' },
-    { you_know: 'for search' }
-  ]
+  const bulkBody = [{ hello: 'world' }, { winter: 'is coming' }, { you_know: 'for search' }];
 
-  function handler (req, res) {
+  function handler(req, res) {
     t.match(req.headers, {
       'content-type': 'application/x-ndjson',
-      'content-length': '67'
-    })
-    let json = ''
-    req.setEncoding('utf8')
-    req.on('data', chunk => { json += chunk })
-    req.on('error', err => t.fail(err))
+      'content-length': '67',
+    });
+    let json = '';
+    req.setEncoding('utf8');
+    req.on('data', (chunk) => {
+      json += chunk;
+    });
+    req.on('error', (err) => t.fail(err));
     req.on('end', () => {
       t.equal(
         json,
-        JSON.stringify(bulkBody[0]) + '\n' +
-        JSON.stringify(bulkBody[1]) + '\n' +
-        JSON.stringify(bulkBody[2]) + '\n'
-      )
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
-    })
+        JSON.stringify(bulkBody[0]) +
+          '\n' +
+          JSON.stringify(bulkBody[1]) +
+          '\n' +
+          JSON.stringify(bulkBody[2]) +
+          '\n'
+      );
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
+    });
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'POST',
-      path: '/hello',
-      bulkBody
-    }, (err, { body }) => {
-      t.error(err)
-      t.same(body, { hello: 'world' })
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'POST',
+        path: '/hello',
+        bulkBody,
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.same(body, { hello: 'world' });
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Send stream', t => {
-  t.plan(4)
-  function handler (req, res) {
+test('Send stream', (t) => {
+  t.plan(4);
+  function handler(req, res) {
     t.match(req.headers, {
-      'content-type': 'application/json'
-    })
-    let json = ''
-    req.setEncoding('utf8')
-    req.on('data', chunk => { json += chunk })
-    req.on('error', err => t.fail(err))
+      'content-type': 'application/json',
+    });
+    let json = '';
+    req.setEncoding('utf8');
+    req.on('data', (chunk) => {
+      json += chunk;
+    });
+    req.on('error', (err) => t.fail(err));
     req.on('end', () => {
-      t.same(JSON.parse(json), { hello: 'world' })
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
-    })
+      t.same(JSON.parse(json), { hello: 'world' });
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
+    });
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'POST',
-      path: '/hello',
-      body: intoStream(JSON.stringify({ hello: 'world' }))
-    }, (err, { body }) => {
-      t.error(err)
-      t.same(body, { hello: 'world' })
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'POST',
+        path: '/hello',
+        body: intoStream(JSON.stringify({ hello: 'world' })),
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.same(body, { hello: 'world' });
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Send stream (bulkBody)', t => {
-  t.plan(4)
-  function handler (req, res) {
+test('Send stream (bulkBody)', (t) => {
+  t.plan(4);
+  function handler(req, res) {
     t.match(req.headers, {
-      'content-type': 'application/x-ndjson'
-    })
-    let json = ''
-    req.setEncoding('utf8')
-    req.on('data', chunk => { json += chunk })
-    req.on('error', err => t.fail(err))
+      'content-type': 'application/x-ndjson',
+    });
+    let json = '';
+    req.setEncoding('utf8');
+    req.on('data', (chunk) => {
+      json += chunk;
+    });
+    req.on('error', (err) => t.fail(err));
     req.on('end', () => {
-      t.same(JSON.parse(json), { hello: 'world' })
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
-    })
+      t.same(JSON.parse(json), { hello: 'world' });
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
+    });
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'POST',
-      path: '/hello',
-      bulkBody: intoStream(JSON.stringify({ hello: 'world' }))
-    }, (err, { body }) => {
-      t.error(err)
-      t.same(body, { hello: 'world' })
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'POST',
+        path: '/hello',
+        bulkBody: intoStream(JSON.stringify({ hello: 'world' })),
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.same(body, { hello: 'world' });
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Not JSON payload from server', t => {
-  t.plan(2)
-  function handler (req, res) {
-    res.setHeader('Content-Type', 'text/plain')
-    res.end('hello!')
+test('Not JSON payload from server', (t) => {
+  t.plan(2);
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('hello!');
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, (err, { body }) => {
-      t.error(err)
-      t.equal(body, 'hello!')
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.equal(body, 'hello!');
+        server.stop();
+      }
+    );
+  });
+});
 
-test('NoLivingConnectionsError (null connection)', t => {
-  t.plan(3)
-  const pool = new ConnectionPool({ Connection })
-  pool.addConnection('http://localhost:9200')
+test('NoLivingConnectionsError (null connection)', (t) => {
+  t.plan(3);
+  const pool = new ConnectionPool({ Connection });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
     sniffOnStart: false,
-    nodeSelector (connections) {
-      t.equal(connections.length, 1)
-      t.ok(connections[0] instanceof Connection)
-      return null
+    nodeSelector(connections) {
+      t.equal(connections.length, 1);
+      t.ok(connections[0] instanceof Connection);
+      return null;
+    },
+  });
+  skipCompatibleCheck(transport);
+
+  transport.request(
+    {
+      method: 'GET',
+      path: '/hello',
+    },
+    (err, { body }) => {
+      t.ok(err instanceof NoLivingConnectionsError);
     }
-  })
-  skipCompatibleCheck(transport)
+  );
+});
 
-  transport.request({
-    method: 'GET',
-    path: '/hello'
-  }, (err, { body }) => {
-    t.ok(err instanceof NoLivingConnectionsError)
-  })
-})
-
-test('NoLivingConnectionsError (undefined connection)', t => {
-  t.plan(3)
-  const pool = new ConnectionPool({ Connection })
-  pool.addConnection('http://localhost:9200')
+test('NoLivingConnectionsError (undefined connection)', (t) => {
+  t.plan(3);
+  const pool = new ConnectionPool({ Connection });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
     sniffOnStart: false,
-    nodeSelector (connections) {
-      t.equal(connections.length, 1)
-      t.ok(connections[0] instanceof Connection)
-      return undefined
+    nodeSelector(connections) {
+      t.equal(connections.length, 1);
+      t.ok(connections[0] instanceof Connection);
+      return undefined;
+    },
+  });
+  skipCompatibleCheck(transport);
+
+  transport.request(
+    {
+      method: 'GET',
+      path: '/hello',
+    },
+    (err, { body }) => {
+      t.ok(err instanceof NoLivingConnectionsError);
     }
-  })
-  skipCompatibleCheck(transport)
+  );
+});
 
-  transport.request({
-    method: 'GET',
-    path: '/hello'
-  }, (err, { body }) => {
-    t.ok(err instanceof NoLivingConnectionsError)
-  })
-})
-
-test('SerializationError', t => {
-  t.plan(1)
-  const pool = new ConnectionPool({ Connection })
-  pool.addConnection('http://localhost:9200')
+test('SerializationError', (t) => {
+  t.plan(1);
+  const pool = new ConnectionPool({ Connection });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
-  const body = { hello: 'world' }
-  body.o = body
-  transport.request({
-    method: 'POST',
-    path: '/hello',
-    body
-  }, (err, { body }) => {
-    t.ok(err instanceof SerializationError)
-  })
-})
+  const body = { hello: 'world' };
+  body.o = body;
+  transport.request(
+    {
+      method: 'POST',
+      path: '/hello',
+      body,
+    },
+    (err, { body }) => {
+      t.ok(err instanceof SerializationError);
+    }
+  );
+});
 
-test('SerializationError (bulk)', t => {
-  t.plan(1)
-  const pool = new ConnectionPool({ Connection })
-  pool.addConnection('http://localhost:9200')
+test('SerializationError (bulk)', (t) => {
+  t.plan(1);
+  const pool = new ConnectionPool({ Connection });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
-  const bulkBody = { hello: 'world' }
-  bulkBody.o = bulkBody
-  transport.request({
-    method: 'POST',
-    path: '/hello',
-    bulkBody
-  }, (err, { body }) => {
-    t.ok(err instanceof SerializationError)
-  })
-})
+  const bulkBody = { hello: 'world' };
+  bulkBody.o = bulkBody;
+  transport.request(
+    {
+      method: 'POST',
+      path: '/hello',
+      bulkBody,
+    },
+    (err, { body }) => {
+      t.ok(err instanceof SerializationError);
+    }
+  );
+});
 
-test('DeserializationError', t => {
-  t.plan(1)
-  function handler (req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.end('{"hello)')
+test('DeserializationError', (t) => {
+  t.plan(1);
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end('{"hello)');
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, (err, { body }) => {
-      t.ok(err instanceof DeserializationError)
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      (err, { body }) => {
+        t.ok(err instanceof DeserializationError);
+        server.stop();
+      }
+    );
+  });
+});
 
-test('TimeoutError (should call markDead on the failing connection)', t => {
-  t.plan(2)
+test('TimeoutError (should call markDead on the failing connection)', (t) => {
+  t.plan(2);
 
   class CustomConnectionPool extends ConnectionPool {
-    markDead (connection) {
-      t.equal(connection.id, 'node1')
-      super.markDead(connection)
+    markDead(connection) {
+      t.equal(connection.id, 'node1');
+      super.markDead(connection);
     }
   }
 
-  const pool = new CustomConnectionPool({ Connection: MockConnectionTimeout })
+  const pool = new CustomConnectionPool({ Connection: MockConnectionTimeout });
   pool.addConnection({
     url: new URL('http://localhost:9200'),
-    id: 'node1'
-  })
+    id: 'node1',
+  });
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 0,
     requestTimeout: 500,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
-  transport.request({
-    method: 'GET',
-    path: '/hello'
-  }, (err, { body }) => {
-    t.ok(err instanceof TimeoutError)
-  })
-})
+  transport.request(
+    {
+      method: 'GET',
+      path: '/hello',
+    },
+    (err, { body }) => {
+      t.ok(err instanceof TimeoutError);
+    }
+  );
+});
 
-test('ConnectionError (should call markDead on the failing connection)', t => {
-  t.plan(2)
+test('ConnectionError (should call markDead on the failing connection)', (t) => {
+  t.plan(2);
 
   class CustomConnectionPool extends ConnectionPool {
-    markDead (connection) {
-      t.equal(connection.id, 'node1')
-      super.markDead(connection)
+    markDead(connection) {
+      t.equal(connection.id, 'node1');
+      super.markDead(connection);
     }
   }
 
-  const pool = new CustomConnectionPool({ Connection: MockConnectionError })
+  const pool = new CustomConnectionPool({ Connection: MockConnectionError });
   pool.addConnection({
     url: new URL('http://localhost:9200'),
-    id: 'node1'
-  })
+    id: 'node1',
+  });
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 0,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
-  transport.request({
-    method: 'GET',
-    path: '/hello'
-  }, (err, { body }) => {
-    t.ok(err instanceof ConnectionError)
-  })
-})
-
-test('Retry mechanism', t => {
-  t.plan(2)
-
-  let count = 0
-  function handler (req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    if (count > 0) {
-      res.end(JSON.stringify({ hello: 'world' }))
-    } else {
-      res.statusCode = 504
-      res.end(JSON.stringify({ error: true }))
-    }
-    count++
-  }
-
-  buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection([{
-      url: new URL(`http://localhost:${port}`),
-      id: 'node1'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node2'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node3'
-    }])
-
-    const transport = new Transport({
-      emit: () => { },
-      connectionPool: pool,
-      serializer: new Serializer(),
-      maxRetries: 1,
-      sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
-
-    transport.request({
+  transport.request(
+    {
       method: 'GET',
-      path: '/hello'
-    }, (err, { body }) => {
-      t.error(err)
-      t.same(body, { hello: 'world' })
-      server.stop()
-    })
-  })
-})
+      path: '/hello',
+    },
+    (err, { body }) => {
+      t.ok(err instanceof ConnectionError);
+    }
+  );
+});
 
-test('Should not retry if the body is a stream', t => {
-  t.plan(2)
+test('Retry mechanism', (t) => {
+  t.plan(2);
 
-  let count = 0
-  function handler (req, res) {
-    count++
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.statusCode = 504
-    res.end(JSON.stringify({ error: true }))
+  let count = 0;
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    if (count > 0) {
+      res.end(JSON.stringify({ hello: 'world' }));
+    } else {
+      res.statusCode = 504;
+      res.end(JSON.stringify({ error: true }));
+    }
+    count++;
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection([{
-      url: new URL(`http://localhost:${port}`),
-      id: 'node1'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node2'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node3'
-    }])
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection([
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node1',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node2',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node3',
+      },
+    ]);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 1,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'POST',
-      path: '/hello',
-      body: intoStream(JSON.stringify({ hello: 'world' }))
-    }, (err, { body }) => {
-      t.ok(err instanceof ResponseError)
-      t.equal(count, 1)
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.same(body, { hello: 'world' });
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Should not retry if the bulkBody is a stream', t => {
-  t.plan(2)
+test('Should not retry if the body is a stream', (t) => {
+  t.plan(2);
 
-  let count = 0
-  function handler (req, res) {
-    count++
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.statusCode = 504
-    res.end(JSON.stringify({ error: true }))
+  let count = 0;
+  function handler(req, res) {
+    count++;
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.statusCode = 504;
+    res.end(JSON.stringify({ error: true }));
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection([{
-      url: new URL(`http://localhost:${port}`),
-      id: 'node1'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node2'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node3'
-    }])
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection([
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node1',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node2',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node3',
+      },
+    ]);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 1,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'POST',
-      path: '/hello',
-      bulkBody: intoStream(JSON.stringify([{ hello: 'world' }]))
-    }, (err, { body }) => {
-      t.ok(err instanceof ResponseError)
-      t.equal(count, 1)
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'POST',
+        path: '/hello',
+        body: intoStream(JSON.stringify({ hello: 'world' })),
+      },
+      (err, { body }) => {
+        t.ok(err instanceof ResponseError);
+        t.equal(count, 1);
+        server.stop();
+      }
+    );
+  });
+});
 
-test('No retry', t => {
-  t.plan(2)
+test('Should not retry if the bulkBody is a stream', (t) => {
+  t.plan(2);
 
-  let count = 0
-  function handler (req, res) {
-    count++
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.statusCode = 504
-    res.end(JSON.stringify({ error: true }))
+  let count = 0;
+  function handler(req, res) {
+    count++;
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.statusCode = 504;
+    res.end(JSON.stringify({ error: true }));
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection([{
-      url: new URL(`http://localhost:${port}`),
-      id: 'node1'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node2'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node3'
-    }])
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection([
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node1',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node2',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node3',
+      },
+    ]);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
+      connectionPool: pool,
+      serializer: new Serializer(),
+      maxRetries: 1,
+      sniffInterval: false,
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
+
+    transport.request(
+      {
+        method: 'POST',
+        path: '/hello',
+        bulkBody: intoStream(JSON.stringify([{ hello: 'world' }])),
+      },
+      (err, { body }) => {
+        t.ok(err instanceof ResponseError);
+        t.equal(count, 1);
+        server.stop();
+      }
+    );
+  });
+});
+
+test('No retry', (t) => {
+  t.plan(2);
+
+  let count = 0;
+  function handler(req, res) {
+    count++;
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.statusCode = 504;
+    res.end(JSON.stringify({ error: true }));
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection([
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node1',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node2',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node3',
+      },
+    ]);
+
+    const transport = new Transport({
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'POST',
-      path: '/hello',
-      body: intoStream(JSON.stringify({ hello: 'world' }))
-    }, {
-      maxRetries: 0
-    }, (err, { body }) => {
-      t.ok(err instanceof ResponseError)
-      t.equal(count, 1)
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'POST',
+        path: '/hello',
+        body: intoStream(JSON.stringify({ hello: 'world' })),
+      },
+      {
+        maxRetries: 0,
+      },
+      (err, { body }) => {
+        t.ok(err instanceof ResponseError);
+        t.equal(count, 1);
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Custom retry mechanism', t => {
-  t.plan(2)
+test('Custom retry mechanism', (t) => {
+  t.plan(2);
 
-  let count = 0
-  function handler (req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8')
+  let count = 0;
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
     if (count > 0) {
-      res.end(JSON.stringify({ hello: 'world' }))
+      res.end(JSON.stringify({ hello: 'world' }));
     } else {
-      res.statusCode = 504
-      res.end(JSON.stringify({ error: true }))
+      res.statusCode = 504;
+      res.end(JSON.stringify({ error: true }));
     }
-    count++
+    count++;
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection([{
-      url: new URL(`http://localhost:${port}`),
-      id: 'node1'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node2'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node3'
-    }])
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection([
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node1',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node2',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node3',
+      },
+    ]);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 0,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, {
-      maxRetries: 1
-    }, (err, { body }) => {
-      t.error(err)
-      t.same(body, { hello: 'world' })
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      {
+        maxRetries: 1,
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.same(body, { hello: 'world' });
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Should not retry on 429', t => {
-  t.plan(3)
+test('Should not retry on 429', (t) => {
+  t.plan(3);
 
-  let count = 0
-  function handler (req, res) {
-    t.equal(count++, 0)
-    res.statusCode = 429
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.end(JSON.stringify({ hello: 'world' }))
+  let count = 0;
+  function handler(req, res) {
+    t.equal(count++, 0);
+    res.statusCode = 429;
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection([{
-      url: new URL(`http://localhost:${port}`),
-      id: 'node1'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node2'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node3'
-    }])
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection([
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node1',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node2',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node3',
+      },
+    ]);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 5,
       requestTimeout: 250,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, (err, result) => {
-      t.ok(err)
-      t.equal(err.statusCode, 429)
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      (err, result) => {
+        t.ok(err);
+        t.equal(err.statusCode, 429);
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Should call markAlive with a successful response', t => {
-  t.plan(3)
+test('Should call markAlive with a successful response', (t) => {
+  t.plan(3);
 
   class CustomConnectionPool extends ConnectionPool {
-    markAlive (connection) {
-      t.equal(connection.id, 'node1')
-      super.markAlive(connection)
+    markAlive(connection) {
+      t.equal(connection.id, 'node1');
+      super.markAlive(connection);
     }
   }
 
-  const pool = new CustomConnectionPool({ Connection: MockConnection })
+  const pool = new CustomConnectionPool({ Connection: MockConnection });
   pool.addConnection({
     url: new URL('http://localhost:9200'),
-    id: 'node1'
-  })
+    id: 'node1',
+  });
 
   const transport = new Transport({
-    emit: () => { },
-    connectionPool: pool,
-    serializer: new Serializer(),
-    maxRetries: 3,
-    requestTimeout: 30000,
-    sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
-
-  transport.request({
-    method: 'GET',
-    path: '/hello'
-  }, (err, { body }) => {
-    t.error(err)
-    t.same(body, { hello: 'world' })
-  })
-})
-
-test('Should call resurrect on every request', t => {
-  t.plan(5)
-
-  class CustomConnectionPool extends ConnectionPool {
-    resurrect ({ now, requestId, name }) {
-      t.type(now, 'number')
-      t.type(requestId, 'number')
-      t.type(name, 'string')
-    }
-  }
-
-  const pool = new CustomConnectionPool({ Connection: MockConnection })
-  pool.addConnection({
-    url: new URL('http://localhost:9200'),
-    id: 'node1'
-  })
-
-  const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
     sniffOnStart: false,
-    name: 'opensearch-js'
-  })
-  skipCompatibleCheck(transport)
+  });
+  skipCompatibleCheck(transport);
 
-  transport.request({
-    method: 'GET',
-    path: '/hello'
-  }, (err, { body }) => {
-    t.error(err)
-    t.same(body, { hello: 'world' })
-  })
-})
+  transport.request(
+    {
+      method: 'GET',
+      path: '/hello',
+    },
+    (err, { body }) => {
+      t.error(err);
+      t.same(body, { hello: 'world' });
+    }
+  );
+});
 
-test('Should return a request aborter utility', t => {
-  t.plan(1)
+test('Should call resurrect on every request', (t) => {
+  t.plan(5);
 
-  const pool = new ConnectionPool({ Connection: MockConnection })
+  class CustomConnectionPool extends ConnectionPool {
+    resurrect({ now, requestId, name }) {
+      t.type(now, 'number');
+      t.type(requestId, 'number');
+      t.type(name, 'string');
+    }
+  }
+
+  const pool = new CustomConnectionPool({ Connection: MockConnection });
   pool.addConnection({
     url: new URL('http://localhost:9200'),
-    id: 'node1'
-  })
+    id: 'node1',
+  });
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+    name: 'opensearch-js',
+  });
+  skipCompatibleCheck(transport);
 
-  const request = transport.request({
-    method: 'GET',
-    path: '/hello'
-  }, (err, result) => {
-    t.ok(err instanceof RequestAbortedError)
-  })
+  transport.request(
+    {
+      method: 'GET',
+      path: '/hello',
+    },
+    (err, { body }) => {
+      t.error(err);
+      t.same(body, { hello: 'world' });
+    }
+  );
+});
 
-  request.abort()
-})
+test('Should return a request aborter utility', (t) => {
+  t.plan(1);
 
-test('Retry mechanism and abort', t => {
-  t.plan(1)
+  const pool = new ConnectionPool({ Connection: MockConnection });
+  pool.addConnection({
+    url: new URL('http://localhost:9200'),
+    id: 'node1',
+  });
 
-  function handler (req, res) {
+  const transport = new Transport({
+    emit: () => {},
+    connectionPool: pool,
+    serializer: new Serializer(),
+    maxRetries: 3,
+    requestTimeout: 30000,
+    sniffInterval: false,
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
+
+  const request = transport.request(
+    {
+      method: 'GET',
+      path: '/hello',
+    },
+    (err, result) => {
+      t.ok(err instanceof RequestAbortedError);
+    }
+  );
+
+  request.abort();
+});
+
+test('Retry mechanism and abort', (t) => {
+  t.plan(1);
+
+  function handler(req, res) {
     setTimeout(() => {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
-    }, 1000)
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
+    }, 1000);
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection([{
-      url: new URL(`http://localhost:${port}`),
-      id: 'node1'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node2'
-    }, {
-      url: new URL(`http://localhost:${port}`),
-      id: 'node3'
-    }])
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection([
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node1',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node2',
+      },
+      {
+        url: new URL(`http://localhost:${port}`),
+        id: 'node3',
+      },
+    ]);
 
-    let count = 0
+    let count = 0;
     const transport = new Transport({
-      emit: event => {
+      emit: (event) => {
         if (event === 'request' && count++ > 0) {
-          request.abort()
+          request.abort();
         }
       },
       connectionPool: pool,
@@ -1037,1221 +1143,1334 @@ test('Retry mechanism and abort', t => {
       maxRetries: 2,
       requestTimeout: 100,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    const request = transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, (err, result) => {
-      t.ok(err instanceof RequestAbortedError)
-      server.stop()
-    })
-  })
-})
+    const request = transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      (err, result) => {
+        t.ok(err instanceof RequestAbortedError);
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Abort a request with the promise API', t => {
-  t.plan(1)
+test('Abort a request with the promise API', (t) => {
+  t.plan(1);
 
-  const pool = new ConnectionPool({ Connection: MockConnection })
+  const pool = new ConnectionPool({ Connection: MockConnection });
   pool.addConnection({
     url: new URL('http://localhost:9200'),
-    id: 'node1'
-  })
+    id: 'node1',
+  });
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
   const request = transport.request({
     method: 'GET',
-    path: '/hello'
-  })
+    path: '/hello',
+  });
 
   request
     .then(() => {
-      t.fail('Should not be called')
+      t.fail('Should not be called');
     })
-    .catch(err => {
-      t.ok(err instanceof RequestAbortedError)
-    })
+    .catch((err) => {
+      t.ok(err instanceof RequestAbortedError);
+    });
 
-  request.abort()
-})
+  request.abort();
+});
 
-test('ResponseError', t => {
-  t.plan(3)
+test('ResponseError', (t) => {
+  t.plan(3);
 
-  function handler (req, res) {
-    res.statusCode = 500
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.end(JSON.stringify({ status: 500 }))
+  function handler(req, res) {
+    res.statusCode = 500;
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ status: 500 }));
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, (err, { body }) => {
-      t.ok(err instanceof ResponseError)
-      t.same(err.body, { status: 500 })
-      t.equal(err.statusCode, 500)
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      (err, { body }) => {
+        t.ok(err instanceof ResponseError);
+        t.same(err.body, { status: 500 });
+        t.equal(err.statusCode, 500);
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Override requestTimeout', t => {
-  t.plan(2)
-  function handler (req, res) {
+test('Override requestTimeout', (t) => {
+  t.plan(2);
+  function handler(req, res) {
     setTimeout(() => {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
-    }, 1000)
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
+    }, 1000);
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 500,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, {
-      requestTimeout: 2000
-    }, (err, { body }) => {
-      t.error(err)
-      t.same(body, { hello: 'world' })
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      {
+        requestTimeout: 2000,
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.same(body, { hello: 'world' });
+        server.stop();
+      }
+    );
+  });
+});
 
-test('sniff', t => {
-  t.test('sniffOnStart', t => {
-    t.plan(1)
+test('sniff', (t) => {
+  t.test('sniffOnStart', (t) => {
+    t.plan(1);
 
     class MyTransport extends Transport {
-      sniff (opts) {
-        t.equal(opts.reason, Transport.sniffReasons.SNIFF_ON_START)
+      sniff(opts) {
+        t.equal(opts.reason, Transport.sniffReasons.SNIFF_ON_START);
       }
     }
 
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection('http://localhost:9200')
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection('http://localhost:9200');
 
     // eslint-disable-next-line
     new MyTransport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
       sniffOnStart: true,
-      sniffEndpoint: '/sniff'
-    })
-  })
+      sniffEndpoint: '/sniff',
+    });
+  });
 
-  t.test('sniffOnConnectionFault', t => {
-    t.plan(2)
+  t.test('sniffOnConnectionFault', (t) => {
+    t.plan(2);
 
     class MyTransport extends Transport {
-      sniff (opts) {
-        t.equal(opts.reason, Transport.sniffReasons.SNIFF_ON_CONNECTION_FAULT)
+      sniff(opts) {
+        t.equal(opts.reason, Transport.sniffReasons.SNIFF_ON_CONNECTION_FAULT);
       }
     }
 
-    const pool = new ConnectionPool({ Connection: MockConnectionTimeout })
-    pool.addConnection('http://localhost:9200')
+    const pool = new ConnectionPool({ Connection: MockConnectionTimeout });
+    pool.addConnection('http://localhost:9200');
 
     const transport = new MyTransport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 0,
       requestTimeout: 500,
       sniffInterval: false,
       sniffOnConnectionFault: true,
-      sniffEndpoint: '/sniff'
-    })
-    skipCompatibleCheck(transport)
+      sniffEndpoint: '/sniff',
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/'
-    }, (err, { body }) => {
-      t.ok(err instanceof TimeoutError)
-    })
-  })
+    transport.request(
+      {
+        method: 'GET',
+        path: '/',
+      },
+      (err, { body }) => {
+        t.ok(err instanceof TimeoutError);
+      }
+    );
+  });
 
-  t.test('sniffInterval', t => {
-    t.plan(6)
+  t.test('sniffInterval', (t) => {
+    t.plan(6);
 
-    const clock = FakeTimers.install({ toFake: ['Date'] })
-    t.teardown(() => clock.uninstall())
+    const clock = FakeTimers.install({ toFake: ['Date'] });
+    t.teardown(() => clock.uninstall());
 
     class MyTransport extends Transport {
-      sniff (opts) {
-        t.equal(opts.reason, Transport.sniffReasons.SNIFF_INTERVAL)
+      sniff(opts) {
+        t.equal(opts.reason, Transport.sniffReasons.SNIFF_INTERVAL);
       }
     }
 
-    const pool = new ConnectionPool({ Connection: MockConnection })
-    pool.addConnection('http://localhost:9200')
+    const pool = new ConnectionPool({ Connection: MockConnection });
+    pool.addConnection('http://localhost:9200');
 
     const transport = new MyTransport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 3000,
       sniffInterval: 1,
-      sniffEndpoint: '/sniff'
-    })
-    skipCompatibleCheck(transport)
+      sniffEndpoint: '/sniff',
+    });
+    skipCompatibleCheck(transport);
 
-    const params = { method: 'GET', path: '/' }
-    clock.tick(100)
-    transport.request(params, t.error)
+    const params = { method: 'GET', path: '/' };
+    clock.tick(100);
+    transport.request(params, t.error);
 
-    clock.tick(200)
-    transport.request(params, t.error)
+    clock.tick(200);
+    transport.request(params, t.error);
 
-    clock.tick(300)
-    transport.request(params, t.error)
-  })
+    clock.tick(300);
+    transport.request(params, t.error);
+  });
 
-  t.test('errored', t => {
-    t.plan(1)
+  t.test('errored', (t) => {
+    t.plan(1);
 
     class CustomConnectionPool extends ConnectionPool {
-      nodesToHost () {
-        t.fail('This should not be called')
+      nodesToHost() {
+        t.fail('This should not be called');
       }
     }
 
-    const pool = new CustomConnectionPool({ Connection: MockConnectionError })
-    pool.addConnection('http://localhost:9200')
+    const pool = new CustomConnectionPool({ Connection: MockConnectionError });
+    pool.addConnection('http://localhost:9200');
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 0,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffEndpoint: '/sniff'
-    })
-    skipCompatibleCheck(transport)
+      sniffEndpoint: '/sniff',
+    });
+    skipCompatibleCheck(transport);
 
     transport.sniff((err, hosts) => {
-      t.ok(err instanceof ConnectionError)
-    })
-  })
+      t.ok(err instanceof ConnectionError);
+    });
+  });
 
-  t.end()
-})
+  t.end();
+});
 
 test(`Should mark as dead connections where the statusCode is 502/3/4
-      and return a ResponseError if there are no more attempts`, t => {
-  ;[502, 503, 504].forEach(runTest)
+      and return a ResponseError if there are no more attempts`, (t) => {
+  [502, 503, 504].forEach(runTest);
 
-  function runTest (statusCode) {
-    t.test(statusCode, t => {
-      t.plan(3)
+  function runTest(statusCode) {
+    t.test(statusCode, (t) => {
+      t.plan(3);
 
       class CustomConnectionPool extends ConnectionPool {
-        markDead (connection) {
-          t.ok('called')
-          super.markDead(connection)
+        markDead(connection) {
+          t.ok('called');
+          super.markDead(connection);
         }
       }
 
-      const pool = new CustomConnectionPool({ Connection: MockConnection })
-      pool.addConnection('http://localhost:9200')
+      const pool = new CustomConnectionPool({ Connection: MockConnection });
+      pool.addConnection('http://localhost:9200');
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 0,
         requestTimeout: 30000,
         sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
 
-      transport.request({
-        method: 'GET',
-        path: `/${statusCode}`
-      }, (err, { body }) => {
-        t.ok(err instanceof ResponseError)
-        t.match(err, {
-          body: { hello: 'world' },
-          headers: { 'content-type': 'application/json;utf=8' },
-          statusCode: statusCode
-        })
-      })
-    })
+      transport.request(
+        {
+          method: 'GET',
+          path: `/${statusCode}`,
+        },
+        (err, { body }) => {
+          t.ok(err instanceof ResponseError);
+          t.match(err, {
+            body: { hello: 'world' },
+            headers: { 'content-type': 'application/json;utf=8' },
+            statusCode: statusCode,
+          });
+        }
+      );
+    });
   }
 
-  t.end()
-})
+  t.end();
+});
 
-test('Should retry the request if the statusCode is 502/3/4', t => {
-  ;[502, 503, 504].forEach(runTest)
+test('Should retry the request if the statusCode is 502/3/4', (t) => {
+  [502, 503, 504].forEach(runTest);
 
-  function runTest (statusCode) {
-    t.test(statusCode, t => {
-      t.plan(3)
+  function runTest(statusCode) {
+    t.test(statusCode, (t) => {
+      t.plan(3);
 
-      let first = true
-      function handler (req, res) {
+      let first = true;
+      function handler(req, res) {
         if (first) {
-          first = false
-          res.statusCode = statusCode
+          first = false;
+          res.statusCode = statusCode;
         }
-        res.setHeader('Content-Type', 'application/json;utf=8')
-        res.end(JSON.stringify({ hello: 'world' }))
+        res.setHeader('Content-Type', 'application/json;utf=8');
+        res.end(JSON.stringify({ hello: 'world' }));
       }
 
       class CustomConnectionPool extends ConnectionPool {
-        markDead (connection) {
-          t.ok('called')
+        markDead(connection) {
+          t.ok('called');
         }
       }
 
       buildServer(handler, ({ port }, server) => {
-        const pool = new CustomConnectionPool({ Connection })
-        pool.addConnection(`http://localhost:${port}`)
+        const pool = new CustomConnectionPool({ Connection });
+        pool.addConnection(`http://localhost:${port}`);
 
         const transport = new Transport({
-          emit: () => { },
+          emit: () => {},
           connectionPool: pool,
           serializer: new Serializer(),
           maxRetries: 1,
           requestTimeout: 30000,
           sniffInterval: false,
-          sniffOnStart: false
-        })
-        skipCompatibleCheck(transport)
+          sniffOnStart: false,
+        });
+        skipCompatibleCheck(transport);
 
-        transport.request({
-          method: 'GET',
-          path: '/hello'
-        }, (err, { body }) => {
-          t.error(err)
-          t.same(body, { hello: 'world' })
-          server.stop()
-        })
-      })
-    })
+        transport.request(
+          {
+            method: 'GET',
+            path: '/hello',
+          },
+          (err, { body }) => {
+            t.error(err);
+            t.same(body, { hello: 'world' });
+            server.stop();
+          }
+        );
+      });
+    });
   }
 
-  t.end()
-})
+  t.end();
+});
 
-test('Ignore status code', t => {
-  t.plan(4)
+test('Ignore status code', (t) => {
+  t.plan(4);
 
-  const pool = new ConnectionPool({ Connection: MockConnection })
-  pool.addConnection('http://localhost:9200')
+  const pool = new ConnectionPool({ Connection: MockConnection });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
-  transport.request({
-    method: 'GET',
-    path: '/404'
-  }, {
-    ignore: [404]
-  }, (err, { body }) => {
-    t.error(err)
-    t.same(body, { hello: 'world' })
-  })
+  transport.request(
+    {
+      method: 'GET',
+      path: '/404',
+    },
+    {
+      ignore: [404],
+    },
+    (err, { body }) => {
+      t.error(err);
+      t.same(body, { hello: 'world' });
+    }
+  );
 
-  transport.request({
-    method: 'GET',
-    path: '/404'
-  }, (err, { body }) => {
-    t.ok(err instanceof ResponseError)
-  })
+  transport.request(
+    {
+      method: 'GET',
+      path: '/404',
+    },
+    (err, { body }) => {
+      t.ok(err instanceof ResponseError);
+    }
+  );
 
-  transport.request({
-    method: 'GET',
-    path: '/404'
-  }, {
-    ignore: [403, 405]
-  }, (err, { body }) => {
-    t.ok(err instanceof ResponseError)
-  })
-})
+  transport.request(
+    {
+      method: 'GET',
+      path: '/404',
+    },
+    {
+      ignore: [403, 405],
+    },
+    (err, { body }) => {
+      t.ok(err instanceof ResponseError);
+    }
+  );
+});
 
-test('Should serialize the querystring', t => {
-  t.plan(2)
+test('Should serialize the querystring', (t) => {
+  t.plan(2);
 
-  function handler (req, res) {
-    t.equal(req.url, '/hello?hello=world&you_know=for%20search')
-    res.end('ok')
+  function handler(req, res) {
+    t.equal(req.url, '/hello?hello=world&you_know=for%20search');
+    res.end('ok');
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello',
-      querystring: {
-        hello: 'world',
-        you_know: 'for search'
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+        querystring: {
+          hello: 'world',
+          you_know: 'for search',
+        },
+      },
+      (err, { body }) => {
+        t.error(err);
+        server.stop();
       }
-    }, (err, { body }) => {
-      t.error(err)
-      server.stop()
-    })
-  })
-})
+    );
+  });
+});
 
-test('timeout option', t => {
-  function handler (req, res) {
+test('timeout option', (t) => {
+  function handler(req, res) {
     setTimeout(() => {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
-    }, 1000)
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
+    }, 1000);
   }
 
-  t.test('as number', t => {
-    t.test('global', t => {
-      t.plan(1)
+  t.test('as number', (t) => {
+    t.test('global', (t) => {
+      t.plan(1);
 
       buildServer(handler, ({ port }, server) => {
-        const pool = new ConnectionPool({ Connection })
+        const pool = new ConnectionPool({ Connection });
         pool.addConnection({
           url: new URL(`http://localhost:${port}`),
-          id: 'node1'
-        })
+          id: 'node1',
+        });
 
         const transport = new Transport({
-          emit: () => { },
+          emit: () => {},
           connectionPool: pool,
           serializer: new Serializer(),
           maxRetries: 0,
           requestTimeout: 500,
           sniffInterval: false,
-          sniffOnStart: false
-        })
-        skipCompatibleCheck(transport)
+          sniffOnStart: false,
+        });
+        skipCompatibleCheck(transport);
 
-        transport.request({
-          method: 'GET',
-          path: '/hello'
-        }, (err, { body }) => {
-          t.ok(err instanceof TimeoutError)
-          server.stop()
-        })
-      })
-    })
+        transport.request(
+          {
+            method: 'GET',
+            path: '/hello',
+          },
+          (err, { body }) => {
+            t.ok(err instanceof TimeoutError);
+            server.stop();
+          }
+        );
+      });
+    });
 
-    t.test('custom', t => {
-      t.plan(1)
+    t.test('custom', (t) => {
+      t.plan(1);
 
       buildServer(handler, ({ port }, server) => {
-        const pool = new ConnectionPool({ Connection })
+        const pool = new ConnectionPool({ Connection });
         pool.addConnection({
           url: new URL(`http://localhost:${port}`),
-          id: 'node1'
-        })
+          id: 'node1',
+        });
 
         const transport = new Transport({
-          emit: () => { },
+          emit: () => {},
           connectionPool: pool,
           serializer: new Serializer(),
           maxRetries: 0,
           requestTimeout: 30000,
           sniffInterval: false,
-          sniffOnStart: false
-        })
-        skipCompatibleCheck(transport)
+          sniffOnStart: false,
+        });
+        skipCompatibleCheck(transport);
 
-        transport.request({
-          method: 'GET',
-          path: '/hello'
-        }, {
-          requestTimeout: 500
-        }, (err, { body }) => {
-          t.ok(err instanceof TimeoutError)
-          server.stop()
-        })
-      })
-    })
+        transport.request(
+          {
+            method: 'GET',
+            path: '/hello',
+          },
+          {
+            requestTimeout: 500,
+          },
+          (err, { body }) => {
+            t.ok(err instanceof TimeoutError);
+            server.stop();
+          }
+        );
+      });
+    });
 
-    t.end()
-  })
+    t.end();
+  });
 
-  t.test('as string', t => {
-    t.test('global', t => {
-      t.plan(1)
+  t.test('as string', (t) => {
+    t.test('global', (t) => {
+      t.plan(1);
 
       buildServer(handler, ({ port }, server) => {
-        const pool = new ConnectionPool({ Connection })
+        const pool = new ConnectionPool({ Connection });
         pool.addConnection({
           url: new URL(`http://localhost:${port}`),
-          id: 'node1'
-        })
+          id: 'node1',
+        });
 
         const transport = new Transport({
-          emit: () => { },
+          emit: () => {},
           connectionPool: pool,
           serializer: new Serializer(),
           maxRetries: 0,
           requestTimeout: '0.5s',
           sniffInterval: false,
-          sniffOnStart: false
-        })
-        skipCompatibleCheck(transport)
+          sniffOnStart: false,
+        });
+        skipCompatibleCheck(transport);
 
-        transport.request({
-          method: 'GET',
-          path: '/hello'
-        }, (err, { body }) => {
-          t.ok(err instanceof TimeoutError)
-          server.stop()
-        })
-      })
-    })
+        transport.request(
+          {
+            method: 'GET',
+            path: '/hello',
+          },
+          (err, { body }) => {
+            t.ok(err instanceof TimeoutError);
+            server.stop();
+          }
+        );
+      });
+    });
 
-    t.test('custom', t => {
-      t.plan(1)
+    t.test('custom', (t) => {
+      t.plan(1);
 
       buildServer(handler, ({ port }, server) => {
-        const pool = new ConnectionPool({ Connection })
+        const pool = new ConnectionPool({ Connection });
         pool.addConnection({
           url: new URL(`http://localhost:${port}`),
-          id: 'node1'
-        })
+          id: 'node1',
+        });
 
         const transport = new Transport({
-          emit: () => { },
+          emit: () => {},
           connectionPool: pool,
           serializer: new Serializer(),
           maxRetries: 0,
           requestTimeout: '30s',
           sniffInterval: false,
-          sniffOnStart: false
-        })
-        skipCompatibleCheck(transport)
+          sniffOnStart: false,
+        });
+        skipCompatibleCheck(transport);
 
-        transport.request({
-          method: 'GET',
-          path: '/hello'
-        }, {
-          requestTimeout: '0.5s'
-        }, (err, { body }) => {
-          t.ok(err instanceof TimeoutError)
-          server.stop()
-        })
-      })
-    })
+        transport.request(
+          {
+            method: 'GET',
+            path: '/hello',
+          },
+          {
+            requestTimeout: '0.5s',
+          },
+          (err, { body }) => {
+            t.ok(err instanceof TimeoutError);
+            server.stop();
+          }
+        );
+      });
+    });
 
-    t.end()
-  })
+    t.end();
+  });
 
-  t.end()
-})
+  t.end();
+});
 
-test('Should cast to boolean HEAD request', t => {
-  t.test('2xx response', t => {
-    t.plan(3)
-    const pool = new ConnectionPool({ Connection: MockConnection })
-    pool.addConnection('http://localhost:9200')
-
-    const transport = new Transport({
-      emit: () => { },
-      connectionPool: pool,
-      serializer: new Serializer(),
-      maxRetries: 3,
-      requestTimeout: 30000,
-      sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
-
-    transport.request({
-      method: 'HEAD',
-      path: '/200'
-    }, (err, { body, statusCode }) => {
-      t.error(err)
-      t.equal(statusCode, 200)
-      t.equal(body, true)
-    })
-  })
-
-  t.test('404 response', t => {
-    t.plan(3)
-    const pool = new ConnectionPool({ Connection: MockConnection })
-    pool.addConnection('http://localhost:9200')
+test('Should cast to boolean HEAD request', (t) => {
+  t.test('2xx response', (t) => {
+    t.plan(3);
+    const pool = new ConnectionPool({ Connection: MockConnection });
+    pool.addConnection('http://localhost:9200');
 
     const transport = new Transport({
-      emit: () => { },
-      connectionPool: pool,
-      serializer: new Serializer(),
-      maxRetries: 3,
-      requestTimeout: 30000,
-      sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
-
-    transport.request({
-      method: 'HEAD',
-      path: '/404'
-    }, (err, { body, statusCode }) => {
-      t.error(err)
-      t.equal(statusCode, 404)
-      t.equal(body, false)
-    })
-  })
-
-  t.test('4xx response', t => {
-    t.plan(3)
-
-    const pool = new ConnectionPool({ Connection: MockConnection })
-    pool.addConnection('http://localhost:9200')
-
-    const transport = new Transport({
-      emit: () => { },
-      connectionPool: pool,
-      serializer: new Serializer(),
-      maxRetries: 3,
-      requestTimeout: 30000,
-      sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
-
-    transport.request({
-      method: 'HEAD',
-      path: '/400'
-    }, (err, { body, statusCode }) => {
-      t.ok(err instanceof ResponseError)
-      t.notOk(typeof err.body === 'boolean')
-      t.equal(statusCode, 400)
-    })
-  })
-
-  t.test('5xx response', t => {
-    t.plan(3)
-    const pool = new ConnectionPool({ Connection: MockConnection })
-    pool.addConnection('http://localhost:9200')
-
-    const transport = new Transport({
-      emit: () => { },
-      connectionPool: pool,
-      serializer: new Serializer(),
-      maxRetries: 3,
-      requestTimeout: 30000,
-      sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
-
-    transport.request({
-      method: 'HEAD',
-      path: '/500'
-    }, (err, { body, statusCode }) => {
-      t.ok(err instanceof ResponseError)
-      t.notOk(typeof err.body === 'boolean')
-      t.equal(statusCode, 500)
-    })
-  })
-
-  t.end()
-})
-
-test('Suggest compression', t => {
-  t.plan(3)
-  function handler (req, res) {
-    t.match(req.headers, {
-      'accept-encoding': 'gzip,deflate'
-    })
-
-    const body = gzipSync(JSON.stringify({ hello: 'world' }))
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.setHeader('Content-Encoding', 'gzip')
-    res.setHeader('Content-Length', Buffer.byteLength(body))
-    res.end(body)
-  }
-
-  buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
-
-    const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
       sniffOnStart: false,
-      suggestCompression: true
-    })
-    skipCompatibleCheck(transport)
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, (err, { body }) => {
-      t.error(err)
-      t.same(body, { hello: 'world' })
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'HEAD',
+        path: '/200',
+      },
+      (err, { body, statusCode }) => {
+        t.error(err);
+        t.equal(statusCode, 200);
+        t.equal(body, true);
+      }
+    );
+  });
 
-test('Broken compression', t => {
-  t.plan(2)
-  function handler (req, res) {
-    t.match(req.headers, {
-      'accept-encoding': 'gzip,deflate'
-    })
-
-    const body = gzipSync(JSON.stringify({ hello: 'world' }))
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.setHeader('Content-Encoding', 'gzip')
-    // we are not setting the content length on purpose
-    res.end(body.slice(0, -5))
-  }
-
-  buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+  t.test('404 response', (t) => {
+    t.plan(3);
+    const pool = new ConnectionPool({ Connection: MockConnection });
+    pool.addConnection('http://localhost:9200');
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
       sniffOnStart: false,
-      suggestCompression: true
-    })
-    skipCompatibleCheck(transport)
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, (err, { body }) => {
-      t.ok(err)
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'HEAD',
+        path: '/404',
+      },
+      (err, { body, statusCode }) => {
+        t.error(err);
+        t.equal(statusCode, 404);
+        t.equal(body, false);
+      }
+    );
+  });
 
-test('Warning header', t => {
-  t.test('Single warning', t => {
-    t.plan(3)
+  t.test('4xx response', (t) => {
+    t.plan(3);
 
-    const warn = '112 - "cache down" "Wed, 21 Oct 2015 07:28:00 GMT"'
-    function handler (req, res) {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.setHeader('Warning', warn)
-      res.end(JSON.stringify({ hello: 'world' }))
-    }
-
-    buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
-
-      const transport = new Transport({
-        emit: () => { },
-        connectionPool: pool,
-        serializer: new Serializer(),
-        maxRetries: 3,
-        requestTimeout: 30000,
-        sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
-
-      transport.request({
-        method: 'GET',
-        path: '/hello'
-      }, (err, { warnings }) => {
-        t.error(err)
-        t.same(warnings, [warn])
-        warnings.forEach(w => t.type(w, 'string'))
-        server.stop()
-      })
-    })
-  })
-
-  t.test('Multiple warnings', t => {
-    t.plan(4)
-
-    const warn1 = '112 - "cache down" "Wed, 21 Oct 2015 07:28:00 GMT"'
-    const warn2 = '199 agent "Error message" "2015-01-01"'
-    function handler (req, res) {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.setHeader('Warning', warn1 + ',' + warn2)
-      res.end(JSON.stringify({ hello: 'world' }))
-    }
-
-    buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
-
-      const transport = new Transport({
-        emit: () => { },
-        connectionPool: pool,
-        serializer: new Serializer(),
-        maxRetries: 3,
-        requestTimeout: 30000,
-        sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
-
-      transport.request({
-        method: 'GET',
-        path: '/hello'
-      }, (err, { warnings }) => {
-        t.error(err)
-        t.same(warnings, [warn1, warn2])
-        warnings.forEach(w => t.type(w, 'string'))
-        server.stop()
-      })
-    })
-  })
-
-  t.test('No warnings', t => {
-    t.plan(2)
-
-    function handler (req, res) {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
-    }
-
-    buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
-
-      const transport = new Transport({
-        emit: () => { },
-        connectionPool: pool,
-        serializer: new Serializer(),
-        maxRetries: 3,
-        requestTimeout: 30000,
-        sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
-
-      transport.request({
-        method: 'GET',
-        path: '/hello'
-      }, (err, { warnings }) => {
-        t.error(err)
-        t.equal(warnings, null)
-        server.stop()
-      })
-    })
-  })
-
-  t.end()
-})
-
-test('asStream set to true', t => {
-  t.plan(3)
-  function handler (req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.end(JSON.stringify({ hello: 'world' }))
-  }
-
-  buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection: MockConnection });
+    pool.addConnection('http://localhost:9200');
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, {
-      asStream: true
-    }, (err, { body, headers }) => {
-      t.error(err)
-      t.match(headers, {
-        connection: 'keep-alive',
-        'content-type': 'application/json;utf=8'
-      })
+    transport.request(
+      {
+        method: 'HEAD',
+        path: '/400',
+      },
+      (err, { body, statusCode }) => {
+        t.ok(err instanceof ResponseError);
+        t.notOk(typeof err.body === 'boolean');
+        t.equal(statusCode, 400);
+      }
+    );
+  });
 
-      let payload = ''
-      body.setEncoding('utf8')
-      body.on('data', chunk => { payload += chunk })
-      body.on('error', err => t.fail(err))
-      body.on('end', () => {
-        t.same(JSON.parse(payload), { hello: 'world' })
-        server.stop()
-      })
-    })
-  })
-})
+  t.test('5xx response', (t) => {
+    t.plan(3);
+    const pool = new ConnectionPool({ Connection: MockConnection });
+    pool.addConnection('http://localhost:9200');
 
-test('Compress request', t => {
-  t.test('gzip as request option', t => {
-    t.plan(4)
-    function handler (req, res) {
-      t.match(req.headers, {
-        'content-type': 'application/json',
-        'content-encoding': 'gzip'
-      })
-      let json = ''
-      req
-        .pipe(createGunzip())
-        .on('data', chunk => { json += chunk })
-        .on('error', err => t.fail(err))
-        .on('end', () => {
-          t.same(JSON.parse(json), { you_know: 'for search' })
-          res.setHeader('Content-Type', 'application/json;utf=8')
-          res.end(JSON.stringify({ you_know: 'for search' }))
-        })
-    }
+    const transport = new Transport({
+      emit: () => {},
+      connectionPool: pool,
+      serializer: new Serializer(),
+      maxRetries: 3,
+      requestTimeout: 30000,
+      sniffInterval: false,
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+    transport.request(
+      {
+        method: 'HEAD',
+        path: '/500',
+      },
+      (err, { body, statusCode }) => {
+        t.ok(err instanceof ResponseError);
+        t.notOk(typeof err.body === 'boolean');
+        t.equal(statusCode, 500);
+      }
+    );
+  });
 
-      const transport = new Transport({
-        emit: () => { },
-        connectionPool: pool,
-        serializer: new Serializer(),
-        maxRetries: 3,
-        requestTimeout: 30000,
-        sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
+  t.end();
+});
 
-      transport.request({
-        method: 'POST',
+test('Suggest compression', (t) => {
+  t.plan(3);
+  function handler(req, res) {
+    t.match(req.headers, {
+      'accept-encoding': 'gzip,deflate',
+    });
+
+    const body = gzipSync(JSON.stringify({ hello: 'world' }));
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.setHeader('Content-Encoding', 'gzip');
+    res.setHeader('Content-Length', Buffer.byteLength(body));
+    res.end(body);
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
+
+    const transport = new Transport({
+      emit: () => {},
+      connectionPool: pool,
+      serializer: new Serializer(),
+      maxRetries: 3,
+      requestTimeout: 30000,
+      sniffInterval: false,
+      sniffOnStart: false,
+      suggestCompression: true,
+    });
+    skipCompatibleCheck(transport);
+
+    transport.request(
+      {
+        method: 'GET',
         path: '/hello',
-        body: { you_know: 'for search' }
-      }, {
-        compression: 'gzip'
-      }, (err, { body }) => {
-        t.error(err)
-        t.same(body, { you_know: 'for search' })
-        server.stop()
-      })
-    })
-  })
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.same(body, { hello: 'world' });
+        server.stop();
+      }
+    );
+  });
+});
 
-  t.test('gzip as transport option', t => {
-    t.plan(4)
-    function handler (req, res) {
-      t.match(req.headers, {
-        'content-type': 'application/json',
-        'content-encoding': 'gzip'
-      })
-      let json = ''
-      req
-        .pipe(createGunzip())
-        .on('data', chunk => { json += chunk })
-        .on('error', err => t.fail(err))
-        .on('end', () => {
-          t.same(JSON.parse(json), { you_know: 'for search' })
-          res.setHeader('Content-Type', 'application/json;utf=8')
-          res.end(JSON.stringify({ you_know: 'for search' }))
-        })
+test('Broken compression', (t) => {
+  t.plan(2);
+  function handler(req, res) {
+    t.match(req.headers, {
+      'accept-encoding': 'gzip,deflate',
+    });
+
+    const body = gzipSync(JSON.stringify({ hello: 'world' }));
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.setHeader('Content-Encoding', 'gzip');
+    // we are not setting the content length on purpose
+    res.end(body.slice(0, -5));
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
+
+    const transport = new Transport({
+      emit: () => {},
+      connectionPool: pool,
+      serializer: new Serializer(),
+      maxRetries: 3,
+      requestTimeout: 30000,
+      sniffInterval: false,
+      sniffOnStart: false,
+      suggestCompression: true,
+    });
+    skipCompatibleCheck(transport);
+
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      (err, { body }) => {
+        t.ok(err);
+        server.stop();
+      }
+    );
+  });
+});
+
+test('Warning header', (t) => {
+  t.test('Single warning', (t) => {
+    t.plan(3);
+
+    const warn = '112 - "cache down" "Wed, 21 Oct 2015 07:28:00 GMT"';
+    function handler(req, res) {
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.setHeader('Warning', warn);
+      res.end(JSON.stringify({ hello: 'world' }));
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
         requestTimeout: 30000,
         sniffInterval: false,
         sniffOnStart: false,
-        compression: 'gzip'
-      })
-      skipCompatibleCheck(transport)
+      });
+      skipCompatibleCheck(transport);
 
-      transport.request({
-        method: 'POST',
-        path: '/hello',
-        body: { you_know: 'for search' }
-      }, (err, { body }) => {
-        t.error(err)
-        t.same(body, { you_know: 'for search' })
-        server.stop()
-      })
-    })
-  })
+      transport.request(
+        {
+          method: 'GET',
+          path: '/hello',
+        },
+        (err, { warnings }) => {
+          t.error(err);
+          t.same(warnings, [warn]);
+          warnings.forEach((w) => t.type(w, 'string'));
+          server.stop();
+        }
+      );
+    });
+  });
 
-  t.test('gzip stream body', t => {
-    t.plan(4)
-    function handler (req, res) {
-      t.match(req.headers, {
-        'content-type': 'application/json',
-        'content-encoding': 'gzip'
-      })
-      let json = ''
-      req
-        .pipe(createGunzip())
-        .on('data', chunk => { json += chunk })
-        .on('error', err => t.fail(err))
-        .on('end', () => {
-          t.same(JSON.parse(json), { you_know: 'for search' })
-          res.setHeader('Content-Type', 'application/json;utf=8')
-          res.end(JSON.stringify({ you_know: 'for search' }))
-        })
+  t.test('Multiple warnings', (t) => {
+    t.plan(4);
+
+    const warn1 = '112 - "cache down" "Wed, 21 Oct 2015 07:28:00 GMT"';
+    const warn2 = '199 agent "Error message" "2015-01-01"';
+    function handler(req, res) {
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.setHeader('Warning', warn1 + ',' + warn2);
+      res.end(JSON.stringify({ hello: 'world' }));
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
         requestTimeout: 30000,
         sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
 
-      transport.request({
-        method: 'POST',
+      transport.request(
+        {
+          method: 'GET',
+          path: '/hello',
+        },
+        (err, { warnings }) => {
+          t.error(err);
+          t.same(warnings, [warn1, warn2]);
+          warnings.forEach((w) => t.type(w, 'string'));
+          server.stop();
+        }
+      );
+    });
+  });
+
+  t.test('No warnings', (t) => {
+    t.plan(2);
+
+    function handler(req, res) {
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
+    }
+
+    buildServer(handler, ({ port }, server) => {
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
+
+      const transport = new Transport({
+        emit: () => {},
+        connectionPool: pool,
+        serializer: new Serializer(),
+        maxRetries: 3,
+        requestTimeout: 30000,
+        sniffInterval: false,
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
+
+      transport.request(
+        {
+          method: 'GET',
+          path: '/hello',
+        },
+        (err, { warnings }) => {
+          t.error(err);
+          t.equal(warnings, null);
+          server.stop();
+        }
+      );
+    });
+  });
+
+  t.end();
+});
+
+test('asStream set to true', (t) => {
+  t.plan(3);
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
+
+    const transport = new Transport({
+      emit: () => {},
+      connectionPool: pool,
+      serializer: new Serializer(),
+      maxRetries: 3,
+      requestTimeout: 30000,
+      sniffInterval: false,
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
+
+    transport.request(
+      {
+        method: 'GET',
         path: '/hello',
-        body: intoStream(JSON.stringify({ you_know: 'for search' }))
-      }, {
-        compression: 'gzip'
-      }, (err, { body }) => {
-        t.error(err)
-        t.same(body, { you_know: 'for search' })
-        server.stop()
-      })
-    })
-  })
+      },
+      {
+        asStream: true,
+      },
+      (err, { body, headers }) => {
+        t.error(err);
+        t.match(headers, {
+          connection: 'keep-alive',
+          'content-type': 'application/json;utf=8',
+        });
 
-  t.test('Should throw on invalid compression value', t => {
-    t.plan(2)
+        let payload = '';
+        body.setEncoding('utf8');
+        body.on('data', (chunk) => {
+          payload += chunk;
+        });
+        body.on('error', (err) => t.fail(err));
+        body.on('end', () => {
+          t.same(JSON.parse(payload), { hello: 'world' });
+          server.stop();
+        });
+      }
+    );
+  });
+});
+
+test('Compress request', (t) => {
+  t.test('gzip as request option', (t) => {
+    t.plan(4);
+    function handler(req, res) {
+      t.match(req.headers, {
+        'content-type': 'application/json',
+        'content-encoding': 'gzip',
+      });
+      let json = '';
+      req
+        .pipe(createGunzip())
+        .on('data', (chunk) => {
+          json += chunk;
+        })
+        .on('error', (err) => t.fail(err))
+        .on('end', () => {
+          t.same(JSON.parse(json), { you_know: 'for search' });
+          res.setHeader('Content-Type', 'application/json;utf=8');
+          res.end(JSON.stringify({ you_know: 'for search' }));
+        });
+    }
+
+    buildServer(handler, ({ port }, server) => {
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
+
+      const transport = new Transport({
+        emit: () => {},
+        connectionPool: pool,
+        serializer: new Serializer(),
+        maxRetries: 3,
+        requestTimeout: 30000,
+        sniffInterval: false,
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
+
+      transport.request(
+        {
+          method: 'POST',
+          path: '/hello',
+          body: { you_know: 'for search' },
+        },
+        {
+          compression: 'gzip',
+        },
+        (err, { body }) => {
+          t.error(err);
+          t.same(body, { you_know: 'for search' });
+          server.stop();
+        }
+      );
+    });
+  });
+
+  t.test('gzip as transport option', (t) => {
+    t.plan(4);
+    function handler(req, res) {
+      t.match(req.headers, {
+        'content-type': 'application/json',
+        'content-encoding': 'gzip',
+      });
+      let json = '';
+      req
+        .pipe(createGunzip())
+        .on('data', (chunk) => {
+          json += chunk;
+        })
+        .on('error', (err) => t.fail(err))
+        .on('end', () => {
+          t.same(JSON.parse(json), { you_know: 'for search' });
+          res.setHeader('Content-Type', 'application/json;utf=8');
+          res.end(JSON.stringify({ you_know: 'for search' }));
+        });
+    }
+
+    buildServer(handler, ({ port }, server) => {
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
+
+      const transport = new Transport({
+        emit: () => {},
+        connectionPool: pool,
+        serializer: new Serializer(),
+        maxRetries: 3,
+        requestTimeout: 30000,
+        sniffInterval: false,
+        sniffOnStart: false,
+        compression: 'gzip',
+      });
+      skipCompatibleCheck(transport);
+
+      transport.request(
+        {
+          method: 'POST',
+          path: '/hello',
+          body: { you_know: 'for search' },
+        },
+        (err, { body }) => {
+          t.error(err);
+          t.same(body, { you_know: 'for search' });
+          server.stop();
+        }
+      );
+    });
+  });
+
+  t.test('gzip stream body', (t) => {
+    t.plan(4);
+    function handler(req, res) {
+      t.match(req.headers, {
+        'content-type': 'application/json',
+        'content-encoding': 'gzip',
+      });
+      let json = '';
+      req
+        .pipe(createGunzip())
+        .on('data', (chunk) => {
+          json += chunk;
+        })
+        .on('error', (err) => t.fail(err))
+        .on('end', () => {
+          t.same(JSON.parse(json), { you_know: 'for search' });
+          res.setHeader('Content-Type', 'application/json;utf=8');
+          res.end(JSON.stringify({ you_know: 'for search' }));
+        });
+    }
+
+    buildServer(handler, ({ port }, server) => {
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
+
+      const transport = new Transport({
+        emit: () => {},
+        connectionPool: pool,
+        serializer: new Serializer(),
+        maxRetries: 3,
+        requestTimeout: 30000,
+        sniffInterval: false,
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
+
+      transport.request(
+        {
+          method: 'POST',
+          path: '/hello',
+          body: intoStream(JSON.stringify({ you_know: 'for search' })),
+        },
+        {
+          compression: 'gzip',
+        },
+        (err, { body }) => {
+          t.error(err);
+          t.same(body, { you_know: 'for search' });
+          server.stop();
+        }
+      );
+    });
+  });
+
+  t.test('Should throw on invalid compression value', (t) => {
+    t.plan(2);
 
     try {
-      new Transport({ // eslint-disable-line
-        emit: () => { },
+      new Transport({
+        // eslint-disable-line
+        emit: () => {},
         connectionPool: new ConnectionPool({ Connection }),
         serializer: new Serializer(),
         maxRetries: 3,
         requestTimeout: 30000,
         sniffInterval: false,
         sniffOnStart: false,
-        compression: 'deflate'
-      })
-      t.fail('Should throw')
+        compression: 'deflate',
+      });
+      t.fail('Should throw');
     } catch (err) {
-      t.ok(err instanceof ConfigurationError)
-      t.equal(err.message, 'Invalid compression: \'deflate\'')
+      t.ok(err instanceof ConfigurationError);
+      t.equal(err.message, "Invalid compression: 'deflate'");
     }
-  })
+  });
 
-  t.test('Should skip the compression for empty strings/null/undefined', t => {
-    t.plan(9)
+  t.test('Should skip the compression for empty strings/null/undefined', (t) => {
+    t.plan(9);
 
-    function handler (req, res) {
-      t.equal(req.headers['content-encoding'], undefined)
-      t.equal(req.headers['content-type'], undefined)
-      res.end()
+    function handler(req, res) {
+      t.equal(req.headers['content-encoding'], undefined);
+      t.equal(req.headers['content-type'], undefined);
+      res.end();
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
         compression: 'gzip',
         requestTimeout: 30000,
         sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
 
-      transport.request({
-        method: 'DELETE',
-        path: '/hello',
-        body: ''
-      }, (err, { body }) => {
-        t.error(err)
-        transport.request({
-          method: 'GET',
+      transport.request(
+        {
+          method: 'DELETE',
           path: '/hello',
-          body: null
-        }, (err, { body }) => {
-          t.error(err)
-          transport.request({
-            method: 'GET',
-            path: '/hello',
-            body: undefined
-          }, (err, { body }) => {
-            t.error(err)
-            server.stop()
-          })
-        })
-      })
-    })
-  })
+          body: '',
+        },
+        (err, { body }) => {
+          t.error(err);
+          transport.request(
+            {
+              method: 'GET',
+              path: '/hello',
+              body: null,
+            },
+            (err, { body }) => {
+              t.error(err);
+              transport.request(
+                {
+                  method: 'GET',
+                  path: '/hello',
+                  body: undefined,
+                },
+                (err, { body }) => {
+                  t.error(err);
+                  server.stop();
+                }
+              );
+            }
+          );
+        }
+      );
+    });
+  });
 
-  t.test('Retry a gzipped body', t => {
-    t.plan(7)
+  t.test('Retry a gzipped body', (t) => {
+    t.plan(7);
 
-    let count = 0
-    function handler (req, res) {
+    let count = 0;
+    function handler(req, res) {
       t.match(req.headers, {
         'content-type': 'application/json',
-        'content-encoding': 'gzip'
-      })
-      let json = ''
+        'content-encoding': 'gzip',
+      });
+      let json = '';
       req
         .pipe(createGunzip())
-        .on('data', chunk => { json += chunk })
-        .on('error', err => t.fail(err))
+        .on('data', (chunk) => {
+          json += chunk;
+        })
+        .on('error', (err) => t.fail(err))
         .on('end', () => {
-          t.same(JSON.parse(json), { you_know: 'for search' })
-          res.setHeader('Content-Type', 'application/json;utf=8')
+          t.same(JSON.parse(json), { you_know: 'for search' });
+          res.setHeader('Content-Type', 'application/json;utf=8');
           if (count++ > 0) {
-            res.end(JSON.stringify({ you_know: 'for search' }))
+            res.end(JSON.stringify({ you_know: 'for search' }));
           } else {
             setTimeout(() => {
-              res.end(JSON.stringify({ you_know: 'for search' }))
-            }, 1000)
+              res.end(JSON.stringify({ you_know: 'for search' }));
+            }, 1000);
           }
-        })
+        });
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
         requestTimeout: 250,
         sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
 
-      transport.request({
-        method: 'POST',
-        path: '/hello',
-        body: { you_know: 'for search' }
-      }, {
-        compression: 'gzip'
-      }, (err, { body, meta }) => {
-        t.error(err)
-        t.same(body, { you_know: 'for search' })
-        t.equal(count, 2)
-        server.stop()
-      })
-    })
-  })
+      transport.request(
+        {
+          method: 'POST',
+          path: '/hello',
+          body: { you_know: 'for search' },
+        },
+        {
+          compression: 'gzip',
+        },
+        (err, { body, meta }) => {
+          t.error(err);
+          t.same(body, { you_know: 'for search' });
+          t.equal(count, 2);
+          server.stop();
+        }
+      );
+    });
+  });
 
-  t.end()
-})
+  t.end();
+});
 
-test('Headers configuration', t => {
-  t.test('Global option', t => {
-    t.plan(3)
-    function handler (req, res) {
-      t.match(req.headers, { 'x-foo': 'bar' })
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
+test('Headers configuration', (t) => {
+  t.test('Global option', (t) => {
+    t.plan(3);
+    function handler(req, res) {
+      t.match(req.headers, { 'x-foo': 'bar' });
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2259,39 +2478,42 @@ test('Headers configuration', t => {
         sniffInterval: false,
         sniffOnStart: false,
         headers: {
-          'x-foo': 'bar'
+          'x-foo': 'bar',
+        },
+      });
+      skipCompatibleCheck(transport);
+
+      transport.request(
+        {
+          method: 'GET',
+          path: '/hello',
+        },
+        (err, { body }) => {
+          t.error(err);
+          t.same(body, { hello: 'world' });
+          server.stop();
         }
-      })
-      skipCompatibleCheck(transport)
+      );
+    });
+  });
 
-      transport.request({
-        method: 'GET',
-        path: '/hello'
-      }, (err, { body }) => {
-        t.error(err)
-        t.same(body, { hello: 'world' })
-        server.stop()
-      })
-    })
-  })
-
-  t.test('Global option and custom option', t => {
-    t.plan(3)
-    function handler (req, res) {
+  t.test('Global option and custom option', (t) => {
+    t.plan(3);
+    function handler(req, res) {
       t.match(req.headers, {
         'x-foo': 'bar',
-        'x-baz': 'faz'
-      })
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
+        'x-baz': 'faz',
+      });
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2299,38 +2521,42 @@ test('Headers configuration', t => {
         sniffInterval: false,
         sniffOnStart: false,
         headers: {
-          'x-foo': 'bar'
+          'x-foo': 'bar',
+        },
+      });
+      skipCompatibleCheck(transport);
+
+      transport.request(
+        {
+          method: 'GET',
+          path: '/hello',
+        },
+        {
+          headers: { 'x-baz': 'faz' },
+        },
+        (err, { body }) => {
+          t.error(err);
+          t.same(body, { hello: 'world' });
+          server.stop();
         }
-      })
-      skipCompatibleCheck(transport)
+      );
+    });
+  });
 
-      transport.request({
-        method: 'GET',
-        path: '/hello'
-      }, {
-        headers: { 'x-baz': 'faz' }
-      }, (err, { body }) => {
-        t.error(err)
-        t.same(body, { hello: 'world' })
-        server.stop()
-      })
-    })
-  })
-
-  t.test('Custom options should override global option', t => {
-    t.plan(3)
-    function handler (req, res) {
-      t.match(req.headers, { 'x-foo': 'faz' })
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
+  t.test('Custom options should override global option', (t) => {
+    t.plan(3);
+    function handler(req, res) {
+      t.match(req.headers, { 'x-foo': 'faz' });
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
@@ -2338,35 +2564,39 @@ test('Headers configuration', t => {
         sniffInterval: false,
         sniffOnStart: false,
         headers: {
-          'x-foo': 'bar'
+          'x-foo': 'bar',
+        },
+      });
+      skipCompatibleCheck(transport);
+
+      transport.request(
+        {
+          method: 'GET',
+          path: '/hello',
+        },
+        {
+          headers: { 'x-foo': 'faz' },
+        },
+        (err, { body }) => {
+          t.error(err);
+          t.same(body, { hello: 'world' });
+          server.stop();
         }
-      })
-      skipCompatibleCheck(transport)
+      );
+    });
+  });
 
-      transport.request({
-        method: 'GET',
-        path: '/hello'
-      }, {
-        headers: { 'x-foo': 'faz' }
-      }, (err, { body }) => {
-        t.error(err)
-        t.same(body, { hello: 'world' })
-        server.stop()
-      })
-    })
-  })
+  t.end();
+});
 
-  t.end()
-})
+test('nodeFilter and nodeSelector', (t) => {
+  t.plan(4);
 
-test('nodeFilter and nodeSelector', t => {
-  t.plan(4)
-
-  const pool = new ConnectionPool({ Connection: MockConnection })
-  pool.addConnection('http://localhost:9200')
+  const pool = new ConnectionPool({ Connection: MockConnection });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -2374,153 +2604,169 @@ test('nodeFilter and nodeSelector', t => {
     sniffInterval: false,
     sniffOnStart: false,
     nodeFilter: () => {
-      t.ok('called')
-      return true
+      t.ok('called');
+      return true;
     },
-    nodeSelector: conns => {
-      t.ok('called')
-      return conns[0]
+    nodeSelector: (conns) => {
+      t.ok('called');
+      return conns[0];
+    },
+  });
+  skipCompatibleCheck(transport);
+
+  transport.request(
+    {
+      method: 'GET',
+      path: '/hello',
+    },
+    (err, { body }) => {
+      t.error(err);
+      t.same(body, { hello: 'world' });
     }
-  })
-  skipCompatibleCheck(transport)
+  );
+});
 
-  transport.request({
-    method: 'GET',
-    path: '/hello'
-  }, (err, { body }) => {
-    t.error(err)
-    t.same(body, { hello: 'world' })
-  })
-})
+test('Should accept custom querystring in the optons object', (t) => {
+  t.test('Options object', (t) => {
+    t.plan(3);
 
-test('Should accept custom querystring in the optons object', t => {
-  t.test('Options object', t => {
-    t.plan(3)
-
-    function handler (req, res) {
-      t.equal(req.url, '/hello?foo=bar')
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
+    function handler(req, res) {
+      t.equal(req.url, '/hello?foo=bar');
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
         requestTimeout: 30000,
         sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
 
-      transport.request({
-        method: 'GET',
-        path: '/hello'
-      }, {
-        querystring: { foo: 'bar' }
-      }, (err, { body }) => {
-        t.error(err)
-        t.same(body, { hello: 'world' })
-        server.stop()
-      })
-    })
-  })
+      transport.request(
+        {
+          method: 'GET',
+          path: '/hello',
+        },
+        {
+          querystring: { foo: 'bar' },
+        },
+        (err, { body }) => {
+          t.error(err);
+          t.same(body, { hello: 'world' });
+          server.stop();
+        }
+      );
+    });
+  });
 
-  t.test('Options object and params', t => {
-    t.plan(3)
+  t.test('Options object and params', (t) => {
+    t.plan(3);
 
-    function handler (req, res) {
-      t.equal(req.url, '/hello?baz=faz&foo=bar')
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
+    function handler(req, res) {
+      t.equal(req.url, '/hello?baz=faz&foo=bar');
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
         requestTimeout: 30000,
         sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
 
-      transport.request({
-        method: 'GET',
-        path: '/hello',
-        querystring: { baz: 'faz' }
-      }, {
-        querystring: { foo: 'bar' }
-      }, (err, { body }) => {
-        t.error(err)
-        t.same(body, { hello: 'world' })
-        server.stop()
-      })
-    })
-  })
+      transport.request(
+        {
+          method: 'GET',
+          path: '/hello',
+          querystring: { baz: 'faz' },
+        },
+        {
+          querystring: { foo: 'bar' },
+        },
+        (err, { body }) => {
+          t.error(err);
+          t.same(body, { hello: 'world' });
+          server.stop();
+        }
+      );
+    });
+  });
 
-  t.end()
-})
+  t.end();
+});
 
-test('Should add an User-Agent header', t => {
-  t.plan(2)
-  const clientVersion = require('../../package.json').version
-  const userAgent = `opensearch-js/${clientVersion} (${os.platform()} ${os.release()}-${os.arch()}; Node.js ${process.version})`
+test('Should add an User-Agent header', (t) => {
+  t.plan(2);
+  const clientVersion = require('../../package.json').version;
+  const userAgent = `opensearch-js/${clientVersion} (${os.platform()} ${os.release()}-${os.arch()}; Node.js ${
+    process.version
+  })`;
 
-  function handler (req, res) {
+  function handler(req, res) {
     t.match(req.headers, {
-      'user-agent': userAgent
-    })
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.end(JSON.stringify({ hello: 'world' }))
+      'user-agent': userAgent,
+    });
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
   }
 
   buildServer(handler, ({ port }, server) => {
-    const pool = new ConnectionPool({ Connection })
-    pool.addConnection(`http://localhost:${port}`)
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection(`http://localhost:${port}`);
 
     const transport = new Transport({
-      emit: () => { },
+      emit: () => {},
       connectionPool: pool,
       serializer: new Serializer(),
       maxRetries: 3,
       requestTimeout: 30000,
       sniffInterval: false,
-      sniffOnStart: false
-    })
-    skipCompatibleCheck(transport)
+      sniffOnStart: false,
+    });
+    skipCompatibleCheck(transport);
 
-    transport.request({
-      method: 'GET',
-      path: '/hello'
-    }, (err, { body }) => {
-      t.error(err)
-      server.stop()
-    })
-  })
-})
+    transport.request(
+      {
+        method: 'GET',
+        path: '/hello',
+      },
+      (err, { body }) => {
+        t.error(err);
+        server.stop();
+      }
+    );
+  });
+});
 
-test('Should pass request params and options to generateRequestId', t => {
-  t.plan(3)
+test('Should pass request params and options to generateRequestId', (t) => {
+  t.plan(3);
 
-  const pool = new ConnectionPool({ Connection: MockConnection })
-  pool.addConnection('http://localhost:9200')
+  const pool = new ConnectionPool({ Connection: MockConnection });
+  pool.addConnection('http://localhost:9200');
 
-  const params = { method: 'GET', path: '/hello' }
-  const options = { context: { winter: 'is coming' } }
+  const params = { method: 'GET', path: '/hello' };
+  const options = { context: { winter: 'is coming' } };
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
@@ -2528,175 +2774,193 @@ test('Should pass request params and options to generateRequestId', t => {
     sniffInterval: false,
     sniffOnStart: false,
     generateRequestId: function (requestParams, requestOptions) {
-      t.same(requestParams, params)
-      t.same(requestOptions, options)
-      return 'id'
-    }
-  })
-  skipCompatibleCheck(transport)
+      t.same(requestParams, params);
+      t.same(requestOptions, options);
+      return 'id';
+    },
+  });
+  skipCompatibleCheck(transport);
 
-  transport.request(params, options, t.error)
-})
+  transport.request(params, options, t.error);
+});
 
-test('Secure json parsing', t => {
-  t.test('__proto__ protection', t => {
-    t.plan(2)
-    function handler (req, res) {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end('{"__proto__":{"a":1}}')
+test('Secure json parsing', (t) => {
+  t.test('__proto__ protection', (t) => {
+    t.plan(2);
+    function handler(req, res) {
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end('{"__proto__":{"a":1}}');
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
         requestTimeout: 30000,
         sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
 
-      transport.request({
-        method: 'GET',
-        path: '/hello'
-      }, (err, { body }) => {
-        t.ok(err instanceof DeserializationError)
-        t.equal(err.message, 'Object contains forbidden prototype property')
-        server.stop()
-      })
-    })
-  })
+      transport.request(
+        {
+          method: 'GET',
+          path: '/hello',
+        },
+        (err, { body }) => {
+          t.ok(err instanceof DeserializationError);
+          t.equal(err.message, 'Object contains forbidden prototype property');
+          server.stop();
+        }
+      );
+    });
+  });
 
-  t.test('constructor protection', t => {
-    t.plan(2)
-    function handler (req, res) {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end('{"constructor":{"prototype":{"bar":"baz"}}}')
+  t.test('constructor protection', (t) => {
+    t.plan(2);
+    function handler(req, res) {
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end('{"constructor":{"prototype":{"bar":"baz"}}}');
     }
 
     buildServer(handler, ({ port }, server) => {
-      const pool = new ConnectionPool({ Connection })
-      pool.addConnection(`http://localhost:${port}`)
+      const pool = new ConnectionPool({ Connection });
+      pool.addConnection(`http://localhost:${port}`);
 
       const transport = new Transport({
-        emit: () => { },
+        emit: () => {},
         connectionPool: pool,
         serializer: new Serializer(),
         maxRetries: 3,
         requestTimeout: 30000,
         sniffInterval: false,
-        sniffOnStart: false
-      })
-      skipCompatibleCheck(transport)
+        sniffOnStart: false,
+      });
+      skipCompatibleCheck(transport);
 
-      transport.request({
-        method: 'GET',
-        path: '/hello'
-      }, (err, { body }) => {
-        t.ok(err instanceof DeserializationError)
-        t.equal(err.message, 'Object contains forbidden prototype property')
-        server.stop()
-      })
-    })
-  })
+      transport.request(
+        {
+          method: 'GET',
+          path: '/hello',
+        },
+        (err, { body }) => {
+          t.ok(err instanceof DeserializationError);
+          t.equal(err.message, 'Object contains forbidden prototype property');
+          server.stop();
+        }
+      );
+    });
+  });
 
-  t.end()
-})
+  t.end();
+});
 
-test('Lowercase headers utilty', t => {
-  t.plan(4)
-  const { lowerCaseHeaders } = Transport.internals
+test('Lowercase headers utilty', (t) => {
+  t.plan(4);
+  const { lowerCaseHeaders } = Transport.internals;
 
-  t.same(lowerCaseHeaders({
-    Foo: 'bar',
-    Faz: 'baz',
-    'X-Hello': 'world'
-  }), {
-    foo: 'bar',
-    faz: 'baz',
-    'x-hello': 'world'
-  })
+  t.same(
+    lowerCaseHeaders({
+      Foo: 'bar',
+      Faz: 'baz',
+      'X-Hello': 'world',
+    }),
+    {
+      foo: 'bar',
+      faz: 'baz',
+      'x-hello': 'world',
+    }
+  );
 
-  t.same(lowerCaseHeaders({
-    Foo: 'bar',
-    faz: 'baz',
-    'X-hello': 'world'
-  }), {
-    foo: 'bar',
-    faz: 'baz',
-    'x-hello': 'world'
-  })
+  t.same(
+    lowerCaseHeaders({
+      Foo: 'bar',
+      faz: 'baz',
+      'X-hello': 'world',
+    }),
+    {
+      foo: 'bar',
+      faz: 'baz',
+      'x-hello': 'world',
+    }
+  );
 
-  t.equal(lowerCaseHeaders(null), null)
+  t.equal(lowerCaseHeaders(null), null);
 
-  t.equal(lowerCaseHeaders(undefined), undefined)
-})
+  t.equal(lowerCaseHeaders(undefined), undefined);
+});
 
-test('The callback with a sync error should be called in the next tick - json', t => {
-  t.plan(4)
-  const pool = new ConnectionPool({ Connection })
-  pool.addConnection('http://localhost:9200')
+test('The callback with a sync error should be called in the next tick - json', (t) => {
+  t.plan(4);
+  const pool = new ConnectionPool({ Connection });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
-  const body = { a: true }
-  body.o = body
+  const body = { a: true };
+  body.o = body;
 
-  const transportReturn = transport.request({
-    method: 'POST',
-    path: '/hello',
-    body
-  }, (err, { body }) => {
-    t.ok(err instanceof SerializationError)
-  })
+  const transportReturn = transport.request(
+    {
+      method: 'POST',
+      path: '/hello',
+      body,
+    },
+    (err, { body }) => {
+      t.ok(err instanceof SerializationError);
+    }
+  );
 
-  t.type(transportReturn.then, 'function')
-  t.type(transportReturn.catch, 'function')
-  t.type(transportReturn.abort, 'function')
-})
+  t.type(transportReturn.then, 'function');
+  t.type(transportReturn.catch, 'function');
+  t.type(transportReturn.abort, 'function');
+});
 
-test('The callback with a sync error should be called in the next tick - ndjson', t => {
-  t.plan(4)
-  const pool = new ConnectionPool({ Connection })
-  pool.addConnection('http://localhost:9200')
+test('The callback with a sync error should be called in the next tick - ndjson', (t) => {
+  t.plan(4);
+  const pool = new ConnectionPool({ Connection });
+  pool.addConnection('http://localhost:9200');
 
   const transport = new Transport({
-    emit: () => { },
+    emit: () => {},
     connectionPool: pool,
     serializer: new Serializer(),
     maxRetries: 3,
     requestTimeout: 30000,
     sniffInterval: false,
-    sniffOnStart: false
-  })
-  skipCompatibleCheck(transport)
+    sniffOnStart: false,
+  });
+  skipCompatibleCheck(transport);
 
-  const field = { a: true }
-  field.o = field
+  const field = { a: true };
+  field.o = field;
 
-  const transportReturn = transport.request({
-    method: 'POST',
-    path: '/hello',
-    bulkBody: [field]
-  }, (err, { body }) => {
-    t.ok(err instanceof SerializationError)
-  })
+  const transportReturn = transport.request(
+    {
+      method: 'POST',
+      path: '/hello',
+      bulkBody: [field],
+    },
+    (err, { body }) => {
+      t.ok(err instanceof SerializationError);
+    }
+  );
 
-  t.type(transportReturn.then, 'function')
-  t.type(transportReturn.catch, 'function')
-  t.type(transportReturn.abort, 'function')
-})
+  t.type(transportReturn.then, 'function');
+  t.type(transportReturn.catch, 'function');
+  t.type(transportReturn.abort, 'function');
+});

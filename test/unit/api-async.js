@@ -28,79 +28,79 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const { errors } = require('../../index')
-const { Client, buildServer } = require('../utils')
+const { errors } = require('../../index');
+const { Client, buildServer } = require('../utils');
 
-function runAsyncTest (test) {
-  test('async await (search)', t => {
-    t.plan(1)
+function runAsyncTest(test) {
+  test('async await (search)', (t) => {
+    t.plan(1);
 
-    function handler (req, res) {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
+    function handler(req, res) {
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
     }
 
     buildServer(handler, async ({ port }, server) => {
       const client = new Client({
-        node: `http://localhost:${port}`
-      })
+        node: `http://localhost:${port}`,
+      });
 
       try {
         const { body } = await client.search({
           index: 'test',
           type: 'doc',
-          q: 'foo:bar'
-        })
-        t.same(body, { hello: 'world' })
+          q: 'foo:bar',
+        });
+        t.same(body, { hello: 'world' });
       } catch (err) {
-        t.fail(err)
+        t.fail(err);
       }
-      server.stop()
-    })
-  })
+      server.stop();
+    });
+  });
 
-  test('async await (index)', t => {
-    t.plan(1)
+  test('async await (index)', (t) => {
+    t.plan(1);
 
-    function handler (req, res) {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
+    function handler(req, res) {
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
     }
 
     buildServer(handler, async ({ port }, server) => {
       const client = new Client({
-        node: `http://localhost:${port}`
-      })
+        node: `http://localhost:${port}`,
+      });
 
       try {
         await client.index({
           index: 'test',
-          body: { foo: 'bar' }
-        })
-        t.pass('ok')
+          body: { foo: 'bar' },
+        });
+        t.pass('ok');
       } catch (err) {
-        t.fail(err)
+        t.fail(err);
       }
-      server.stop()
-    })
-  })
+      server.stop();
+    });
+  });
 
-  test('async await (ConfigurationError)', async t => {
-    t.plan(1)
+  test('async await (ConfigurationError)', async (t) => {
+    t.plan(1);
 
     const client = new Client({
-      node: 'http://localhost:9200'
-    })
+      node: 'http://localhost:9200',
+    });
 
     try {
-      await client.index({ body: { foo: 'bar' } })
-      t.fail('Should throw')
+      await client.index({ body: { foo: 'bar' } });
+      t.fail('Should throw');
     } catch (err) {
-      t.ok(err instanceof errors.ConfigurationError)
+      t.ok(err instanceof errors.ConfigurationError);
     }
-  })
+  });
 }
 
-module.exports = runAsyncTest
+module.exports = runAsyncTest;

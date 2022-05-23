@@ -6,18 +6,18 @@
 The below matrix shows the compatibility of the [`opensearch-js`](https://www.npmjs.com/package/@opensearch-project/opensearch) with versions of [`OpenSearch`](https://opensearch.org/downloads.html#opensearch).
 
 | OpenSearch Version | Client Version |
-| --- | --- |
-| 1.0.0 | 1.0.0 |
-| 1.0.1 | 1.0.0 |
-| 1.1.0 | 1.1.0 |
-| 1.2.0 | 1.1.0 |
-| 1.2.1 | 1.1.0 |
-| 1.2.2 | 1.1.0 |
-| 1.2.3 | 1.1.0 |
-| 1.2.4 | 1.1.0 |
-| 1.3.0 | 1.1.0 |
-| 1.3.1 | 1.1.0 |
-| 2.0.0 | 2.0.0 |
+| ------------------ | -------------- |
+| 1.0.0              | 1.0.0          |
+| 1.0.1              | 1.0.0          |
+| 1.1.0              | 1.1.0          |
+| 1.2.0              | 1.1.0          |
+| 1.2.1              | 1.1.0          |
+| 1.2.2              | 1.1.0          |
+| 1.2.3              | 1.1.0          |
+| 1.2.4              | 1.1.0          |
+| 1.3.0              | 1.1.0          |
+| 1.3.1              | 1.1.0          |
+| 2.0.0              | 2.0.0          |
 
 ## Upgrading
 

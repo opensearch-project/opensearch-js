@@ -28,19 +28,27 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const { accessSync, mkdirSync } = require('fs')
-const { join } = require('path')
-const Git = require('simple-git')
+const { accessSync, mkdirSync } = require('fs');
+const { join } = require('path');
+const Git = require('simple-git');
 
-const opensearchRepo = 'https://github.com/opensearch-project/OpenSearch.git'
-const opensearchFolder = join(__dirname, '..', '..', 'opensearch')
-const apiFolder = join(opensearchFolder, 'rest-api-spec', 'src', 'main', 'resources', 'rest-api-spec', 'api')
+const opensearchRepo = 'https://github.com/opensearch-project/OpenSearch.git';
+const opensearchFolder = join(__dirname, '..', '..', 'opensearch');
+const apiFolder = join(
+  opensearchFolder,
+  'rest-api-spec',
+  'src',
+  'main',
+  'resources',
+  'rest-api-spec',
+  'api'
+);
 
-function cloneAndCheckout (opts, callback) {
-  const { log, tag, branch } = opts
-  withTag(tag, callback)
+function cloneAndCheckout(opts, callback) {
+  const { log, tag, branch } = opts;
+  withTag(tag, callback);
 
   /**
    * Sets the OpenSearch repository to the given tag.
@@ -51,69 +59,69 @@ function cloneAndCheckout (opts, callback) {
    * @param {string} tag
    * @param {function} callback
    */
-  function withTag (tag, callback) {
-    let fresh = false
-    let retry = 0
+  function withTag(tag, callback) {
+    let fresh = false;
+    let retry = 0;
 
     if (!pathExist(opensearchFolder)) {
       if (!createFolder(opensearchFolder)) {
-        log.fail('Failed folder creation')
-        return
+        log.fail('Failed folder creation');
+        return;
       }
-      fresh = true
+      fresh = true;
     }
 
-    const git = Git(opensearchFolder)
+    const git = Git(opensearchFolder);
 
     if (fresh) {
-      clone(checkout)
+      clone(checkout);
     } else if (opts.branch) {
-      checkout(true)
+      checkout(true);
     } else {
-      checkout()
+      checkout();
     }
 
-    function checkout (alsoPull = false) {
+    function checkout(alsoPull = false) {
       if (branch) {
-        log.text = `Checking out branch '${branch}'`
+        log.text = `Checking out branch '${branch}'`;
       } else {
-        log.text = `Checking out tag '${tag}'`
+        log.text = `Checking out tag '${tag}'`;
       }
-      git.checkout(branch || tag, err => {
+      git.checkout(branch || tag, (err) => {
         if (err) {
           if (retry++ > 0) {
-            callback(new Error(`Cannot checkout tag '${tag}'`), { apiFolder })
-            return
+            callback(new Error(`Cannot checkout tag '${tag}'`), { apiFolder });
+            return;
           }
-          return pull(checkout)
+          return pull(checkout);
         }
         if (alsoPull) {
-          return pull(checkout)
+          return pull(checkout);
         }
-        callback(null, { apiFolder })
-      })
+        callback(null, { apiFolder });
+      });
     }
 
-    function pull (cb) {
-      log.text = 'Pulling opensearch repository...'
-      git.pull(err => {
+    function pull(cb) {
+      log.text = 'Pulling opensearch repository...';
+      git.pull((err) => {
         if (err) {
-          callback(err, { apiFolder })
-          return
+          callback(err, { apiFolder });
+          return;
         }
-        cb()
-      })
+        cb();
+      });
     }
 
-    function clone (cb) {
-      log.text = 'Cloning opensearch repository...'
-      git.clone(opensearchRepo, opensearchFolder, err => {
+    function clone(cb) {
+      log.text = 'Cloning opensearch repository...';
+      git.clone(opensearchRepo, opensearchFolder, (err) => {
         if (err) {
-          callback(err, { apiFolder })
-          return
+          callback(err, { apiFolder });
+          return;
         }
-        cb()
-      })
+        cb();
+      });
     }
   }
 
@@ -122,12 +130,12 @@ function cloneAndCheckout (opts, callback) {
    * @param {string} path
    * @returns {boolean} true if exists, false if not
    */
-  function pathExist (path) {
+  function pathExist(path) {
     try {
-      accessSync(path)
-      return true
+      accessSync(path);
+      return true;
     } catch (err) {
-      return false
+      return false;
     }
   }
 
@@ -136,14 +144,14 @@ function cloneAndCheckout (opts, callback) {
    * @param {string} name
    * @returns {boolean} true on success, false on failure
    */
-  function createFolder (name) {
+  function createFolder(name) {
     try {
-      mkdirSync(name)
-      return true
+      mkdirSync(name);
+      return true;
     } catch (err) {
-      return false
+      return false;
     }
   }
 }
 
-module.exports = cloneAndCheckout
+module.exports = cloneAndCheckout;

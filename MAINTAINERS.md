@@ -18,14 +18,14 @@ This document explains who the maintainers are (see below), what they do in this
 
 ## Current Maintainers
 
-| Maintainer               | GitHub ID                               | Affiliation |
-| ------------------------ | --------------------------------------- | ----------- |
-| Anan Zhuang | [ananzh](https://github.com/ananzh) | Amazon |
-| Bishoy Boktor | [boktorbb-amzn](https://github.com/boktorbb-amzn) | Amazon |
-| Kawika (Rocky) Avilla  | [kavilla](https://github.com/kavilla) | Amazon |
-| Mihir Soni | [mihirsoni](https://github.com/mihirsoni) | Amazon |
-| Sean Neumann | [seanneumann](https://github.com/seanneumann) | Amazon | 
-| Tommy Markley | [tmarkley](https://github.com/tmarkley) | Amazon | 
+| Maintainer            | GitHub ID                                         | Affiliation |
+| --------------------- | ------------------------------------------------- | ----------- |
+| Anan Zhuang           | [ananzh](https://github.com/ananzh)               | Amazon      |
+| Bishoy Boktor         | [boktorbb-amzn](https://github.com/boktorbb-amzn) | Amazon      |
+| Kawika (Rocky) Avilla | [kavilla](https://github.com/kavilla)             | Amazon      |
+| Mihir Soni            | [mihirsoni](https://github.com/mihirsoni)         | Amazon      |
+| Sean Neumann          | [seanneumann](https://github.com/seanneumann)     | Amazon      |
+| Tommy Markley         | [tmarkley](https://github.com/tmarkley)           | Amazon      |
 
 ## Maintainer Responsibilities
 

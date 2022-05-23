@@ -28,14 +28,14 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const { test } = require('tap')
-const { URL } = require('url')
-const FakeTimers = require('@sinonjs/fake-timers')
-const workq = require('workq')
-const { Client, buildCluster } = require('../utils')
-const { Connection, Transport, events, errors } = require('../../index')
+const { test } = require('tap');
+const { URL } = require('url');
+const FakeTimers = require('@sinonjs/fake-timers');
+const workq = require('workq');
+const { Client, buildCluster } = require('../utils');
+const { Connection, Transport, events, errors } = require('../../index');
 
 /**
  * The aim of this test is to verify how the sniffer behaves
@@ -47,31 +47,28 @@ const { Connection, Transport, events, errors } = require('../../index')
  * triggered sniff).
  */
 
-test('Should update the connection pool', t => {
-  t.plan(10)
+test('Should update the connection pool', (t) => {
+  t.plan(10);
 
   buildCluster(({ nodes, shutdown }) => {
     const client = new Client({
-      node: nodes[Object.keys(nodes)[0]].url
-    })
-    t.equal(client.connectionPool.size, 1)
+      node: nodes[Object.keys(nodes)[0]].url,
+    });
+    t.equal(client.connectionPool.size, 1);
 
     client.on(events.SNIFF, (err, request) => {
-      t.error(err)
-      t.equal(
-        request.meta.sniff.reason,
-        Transport.sniffReasons.DEFAULT
-      )
-    })
+      t.error(err);
+      t.equal(request.meta.sniff.reason, Transport.sniffReasons.DEFAULT);
+    });
 
     // run the sniffer
     client.transport.sniff((err, hosts) => {
-      t.error(err)
-      t.equal(hosts.length, 4)
+      t.error(err);
+      t.equal(hosts.length, 4);
 
-      const ids = Object.keys(nodes)
+      const ids = Object.keys(nodes);
       for (let i = 0; i < hosts.length; i++) {
-        const id = ids[i]
+        const id = ids[i];
         // the first node will be an update of the existing one
         if (id === 'node0') {
           t.same(hosts[i], {
@@ -80,9 +77,9 @@ test('Should update the connection pool', t => {
             roles: {
               master: true,
               data: true,
-              ingest: true
-            }
-          })
+              ingest: true,
+            },
+          });
         } else {
           t.same(hosts[i], {
             url: new URL(nodes[id].url),
@@ -90,217 +87,199 @@ test('Should update the connection pool', t => {
             roles: {
               master: true,
               data: true,
-              ingest: true
+              ingest: true,
             },
             ssl: null,
             agent: null,
-            proxy: null
-          })
+            proxy: null,
+          });
         }
       }
 
-      t.equal(client.connectionPool.size, 4)
-    })
-    t.teardown(shutdown)
-  })
-})
+      t.equal(client.connectionPool.size, 4);
+    });
+    t.teardown(shutdown);
+  });
+});
 
-test('Should handle hostnames in publish_address', t => {
-  t.plan(10)
+test('Should handle hostnames in publish_address', (t) => {
+  t.plan(10);
 
   buildCluster({ hostPublishAddress: true }, ({ nodes, shutdown }) => {
     const client = new Client({
-      node: nodes[Object.keys(nodes)[0]].url
-    })
-    t.equal(client.connectionPool.size, 1)
+      node: nodes[Object.keys(nodes)[0]].url,
+    });
+    t.equal(client.connectionPool.size, 1);
 
     client.on(events.SNIFF, (err, request) => {
-      t.error(err)
-      t.equal(
-        request.meta.sniff.reason,
-        Transport.sniffReasons.DEFAULT
-      )
-    })
+      t.error(err);
+      t.equal(request.meta.sniff.reason, Transport.sniffReasons.DEFAULT);
+    });
 
     // run the sniffer
     client.transport.sniff((err, hosts) => {
-      t.error(err)
-      t.equal(hosts.length, 4)
+      t.error(err);
+      t.equal(hosts.length, 4);
 
       for (let i = 0; i < hosts.length; i++) {
         // the first node will be an update of the existing one
-        t.equal(hosts[i].url.hostname, 'localhost')
+        t.equal(hosts[i].url.hostname, 'localhost');
       }
 
-      t.equal(client.connectionPool.size, 4)
-    })
-    t.teardown(shutdown)
-  })
-})
+      t.equal(client.connectionPool.size, 4);
+    });
+    t.teardown(shutdown);
+  });
+});
 
-test('Sniff interval', t => {
-  t.plan(11)
-  const clock = FakeTimers.install({ toFake: ['Date'] })
-  const q = workq()
+test('Sniff interval', (t) => {
+  t.plan(11);
+  const clock = FakeTimers.install({ toFake: ['Date'] });
+  const q = workq();
 
   buildCluster(({ nodes, shutdown, kill }) => {
     const client = new Client({
       node: nodes[Object.keys(nodes)[0]].url,
-      sniffInterval: 50
-    })
+      sniffInterval: 50,
+    });
 
     // this event will be triggered by api calls
     client.on(events.SNIFF, (err, request) => {
-      t.error(err)
-      const { hosts, reason } = request.meta.sniff
-      t.equal(
-        client.connectionPool.size,
-        hosts.length
-      )
-      t.equal(reason, Transport.sniffReasons.SNIFF_INTERVAL)
-    })
+      t.error(err);
+      const { hosts, reason } = request.meta.sniff;
+      t.equal(client.connectionPool.size, hosts.length);
+      t.equal(reason, Transport.sniffReasons.SNIFF_INTERVAL);
+    });
 
-    t.equal(client.connectionPool.size, 1)
+    t.equal(client.connectionPool.size, 1);
 
     q.add((q, done) => {
-      clock.tick(51)
-      client.info(err => {
-        t.error(err)
+      clock.tick(51);
+      client.info((err) => {
+        t.error(err);
         waitSniffEnd(() => {
-          t.equal(client.connectionPool.size, 4)
-          done()
-        })
-      })
-    })
+          t.equal(client.connectionPool.size, 4);
+          done();
+        });
+      });
+    });
 
     q.add((q, done) => {
-      kill('node1', done)
-    })
+      kill('node1', done);
+    });
 
     q.add((q, done) => {
-      clock.tick(51)
-      client.info(err => {
-        t.error(err)
+      clock.tick(51);
+      client.info((err) => {
+        t.error(err);
         waitSniffEnd(() => {
-          t.equal(client.connectionPool.size, 3)
-          done()
-        })
-      })
-    })
+          t.equal(client.connectionPool.size, 3);
+          done();
+        });
+      });
+    });
 
-    t.teardown(shutdown)
+    t.teardown(shutdown);
 
     // it can happen that the sniff operation resolves
     // after the API call that trioggered it, so to
     // be sure that we are checking the connectionPool size
     // at the right moment, we verify that the transport
     // is no longer sniffing
-    function waitSniffEnd (callback) {
+    function waitSniffEnd(callback) {
       if (client.transport._isSniffing) {
-        setTimeout(waitSniffEnd, 500, callback)
+        setTimeout(waitSniffEnd, 500, callback);
       } else {
-        callback()
+        callback();
       }
     }
-  })
-})
+  });
+});
 
-test('Sniff on start', t => {
-  t.plan(4)
+test('Sniff on start', (t) => {
+  t.plan(4);
 
   buildCluster(({ nodes, shutdown, kill }) => {
     const client = new Client({
       node: nodes[Object.keys(nodes)[0]].url,
-      sniffOnStart: true
-    })
+      sniffOnStart: true,
+    });
 
     client.on(events.SNIFF, (err, request) => {
-      t.error(err)
-      const { hosts, reason } = request.meta.sniff
-      t.equal(
-        client.connectionPool.size,
-        hosts.length
-      )
-      t.equal(reason, Transport.sniffReasons.SNIFF_ON_START)
-    })
+      t.error(err);
+      const { hosts, reason } = request.meta.sniff;
+      t.equal(client.connectionPool.size, hosts.length);
+      t.equal(reason, Transport.sniffReasons.SNIFF_ON_START);
+    });
 
-    t.equal(client.connectionPool.size, 1)
-    t.teardown(shutdown)
-  })
-})
+    t.equal(client.connectionPool.size, 1);
+    t.teardown(shutdown);
+  });
+});
 
-test('Should not close living connections', t => {
-  t.plan(3)
+test('Should not close living connections', (t) => {
+  t.plan(3);
 
   buildCluster(({ nodes, shutdown, kill }) => {
     class MyConnection extends Connection {
-      close () {
-        t.fail('Should not be called')
+      close() {
+        t.fail('Should not be called');
       }
     }
 
     const client = new Client({
       node: {
         url: new URL(nodes[Object.keys(nodes)[0]].url),
-        id: 'node1'
+        id: 'node1',
       },
-      Connection: MyConnection
-    })
+      Connection: MyConnection,
+    });
 
-    t.equal(client.connectionPool.size, 1)
+    t.equal(client.connectionPool.size, 1);
     client.transport.sniff((err, hosts) => {
-      t.error(err)
-      t.equal(
-        client.connectionPool.size,
-        hosts.length
-      )
-    })
+      t.error(err);
+      t.equal(client.connectionPool.size, hosts.length);
+    });
 
-    t.teardown(shutdown)
-  })
-})
+    t.teardown(shutdown);
+  });
+});
 
-test('Sniff on connection fault', t => {
-  t.plan(5)
+test('Sniff on connection fault', (t) => {
+  t.plan(5);
 
   buildCluster(({ nodes, shutdown, kill }) => {
     class MyConnection extends Connection {
-      request (params, callback) {
+      request(params, callback) {
         if (this.id === 'http://localhost:9200/') {
-          callback(new errors.ConnectionError('kaboom'), null)
-          return {}
+          callback(new errors.ConnectionError('kaboom'), null);
+          return {};
         } else {
-          return super.request(params, callback)
+          return super.request(params, callback);
         }
       }
     }
 
     const client = new Client({
-      nodes: [
-        'http://localhost:9200',
-        nodes[Object.keys(nodes)[0]].url
-      ],
+      nodes: ['http://localhost:9200', nodes[Object.keys(nodes)[0]].url],
       maxRetries: 0,
       sniffOnConnectionFault: true,
-      Connection: MyConnection
-    })
+      Connection: MyConnection,
+    });
 
-    t.equal(client.connectionPool.size, 2)
+    t.equal(client.connectionPool.size, 2);
     // this event will be triggered by the connection fault
     client.on(events.SNIFF, (err, request) => {
-      t.error(err)
-      const { hosts, reason } = request.meta.sniff
-      t.equal(
-        client.connectionPool.size,
-        hosts.length
-      )
-      t.equal(reason, Transport.sniffReasons.SNIFF_ON_CONNECTION_FAULT)
-    })
+      t.error(err);
+      const { hosts, reason } = request.meta.sniff;
+      t.equal(client.connectionPool.size, hosts.length);
+      t.equal(reason, Transport.sniffReasons.SNIFF_ON_CONNECTION_FAULT);
+    });
 
     client.info((err, result) => {
-      t.ok(err instanceof errors.ConnectionError)
-    })
+      t.ok(err instanceof errors.ConnectionError);
+    });
 
-    t.teardown(shutdown)
-  })
-})
+    t.teardown(shutdown);
+  });
+});

@@ -28,34 +28,34 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path'];
+const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' };
 
-function getScriptContextApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function getScriptContextApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { method, body, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if (method == null) method = 'GET'
-  path = '/' + '_script_context'
+  let path = '';
+  if (method == null) method = 'GET';
+  path = '/' + '_script_context';
 
   // build request object
   const request = {
     method,
     path,
     body: null,
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = getScriptContextApi
+module.exports = getScriptContextApi;

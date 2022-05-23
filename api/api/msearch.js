@@ -28,43 +28,66 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['search_type', 'max_concurrent_searches', 'typed_keys', 'pre_filter_shard_size', 'max_concurrent_shard_requests', 'rest_total_hits_as_int', 'ccs_minimize_roundtrips', 'pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { searchType: 'search_type', maxConcurrentSearches: 'max_concurrent_searches', typedKeys: 'typed_keys', preFilterShardSize: 'pre_filter_shard_size', maxConcurrentShardRequests: 'max_concurrent_shard_requests', restTotalHitsAsInt: 'rest_total_hits_as_int', ccsMinimizeRoundtrips: 'ccs_minimize_roundtrips', errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = [
+  'search_type',
+  'max_concurrent_searches',
+  'typed_keys',
+  'pre_filter_shard_size',
+  'max_concurrent_shard_requests',
+  'rest_total_hits_as_int',
+  'ccs_minimize_roundtrips',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+];
+const snakeCase = {
+  searchType: 'search_type',
+  maxConcurrentSearches: 'max_concurrent_searches',
+  typedKeys: 'typed_keys',
+  preFilterShardSize: 'pre_filter_shard_size',
+  maxConcurrentShardRequests: 'max_concurrent_shard_requests',
+  restTotalHitsAsInt: 'rest_total_hits_as_int',
+  ccsMinimizeRoundtrips: 'ccs_minimize_roundtrips',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+};
 
-function msearchApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function msearchApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
   // check required parameters
   if (params.body == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: body')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: body');
+    return handleError(err, callback);
   }
 
   // check required url components
-  if (params.type != null && (params.index == null)) {
-    const err = new this[kConfigurationError]('Missing required parameter of the url: index')
-    return handleError(err, callback)
+  if (params.type != null && params.index == null) {
+    const err = new this[kConfigurationError]('Missing required parameter of the url: index');
+    return handleError(err, callback);
   }
 
-  let { method, body, index, type, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, index, type, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if ((index) != null && (type) != null) {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_msearch'
-  } else if ((index) != null) {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + encodeURIComponent(index) + '/' + '_msearch'
+  let path = '';
+  if (index != null && type != null) {
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_msearch';
+  } else if (index != null) {
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + encodeURIComponent(index) + '/' + '_msearch';
   } else {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + '_msearch'
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + '_msearch';
   }
 
   // build request object
@@ -72,10 +95,10 @@ function msearchApi (params, options, callback) {
     method,
     path,
     bulkBody: body,
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = msearchApi
+module.exports = msearchApi;

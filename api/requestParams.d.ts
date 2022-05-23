@@ -28,7 +28,7 @@
  * under the License.
  */
 
-import { RequestBody, RequestNDBody } from '../lib/Transport'
+import { RequestBody, RequestNDBody } from '../lib/Transport';
 
 export interface Generic {
   method?: string;
@@ -359,8 +359,7 @@ export interface ClusterPutSettings<T = RequestBody> extends Generic {
   body: T;
 }
 
-export interface ClusterRemoteInfo extends Generic {
-}
+export interface ClusterRemoteInfo extends Generic {}
 
 export interface ClusterReroute<T = RequestBody> extends Generic {
   dry_run?: boolean;
@@ -437,8 +436,7 @@ export interface DanglingIndicesImportDanglingIndex extends Generic {
   master_timeout?: string;
 }
 
-export interface DanglingIndicesListDanglingIndices extends Generic {
-}
+export interface DanglingIndicesListDanglingIndices extends Generic {}
 
 export interface Delete extends Generic {
   id: string;
@@ -561,8 +559,7 @@ export interface FeaturesGetFeatures extends Generic {
   master_timeout?: string;
 }
 
-export interface FeaturesResetFeatures extends Generic {
-}
+export interface FeaturesResetFeatures extends Generic {}
 
 export interface FieldCaps<T = RequestBody> extends Generic {
   index?: string | string[];
@@ -596,11 +593,9 @@ export interface GetScript extends Generic {
   master_timeout?: string;
 }
 
-export interface GetScriptContext extends Generic {
-}
+export interface GetScriptContext extends Generic {}
 
-export interface GetScriptLanguages extends Generic {
-}
+export interface GetScriptLanguages extends Generic {}
 
 export interface GetSource extends Generic {
   id: string;
@@ -856,7 +851,6 @@ export interface IndicesGetUpgrade extends Generic {
   expand_wildcards?: 'open' | 'closed' | 'hidden' | 'none' | 'all';
 }
 
-
 export interface IndicesOpen extends Generic {
   index: string | string[];
   timeout?: string;
@@ -1041,8 +1035,7 @@ export interface IndicesValidateQuery<T = RequestBody> extends Generic {
   body?: T;
 }
 
-export interface Info extends Generic {
-}
+export interface Info extends Generic {}
 
 export interface IngestDeletePipeline extends Generic {
   id: string;
@@ -1050,8 +1043,7 @@ export interface IngestDeletePipeline extends Generic {
   timeout?: string;
 }
 
-export interface IngestGeoIpStats extends Generic {
-}
+export interface IngestGeoIpStats extends Generic {}
 
 export interface IngestGetPipeline extends Generic {
   id?: string;
@@ -1059,8 +1051,7 @@ export interface IngestGetPipeline extends Generic {
   master_timeout?: string;
 }
 
-export interface IngestProcessorGrok extends Generic {
-}
+export interface IngestProcessorGrok extends Generic {}
 
 export interface IngestPutPipeline<T = RequestBody> extends Generic {
   id: string;
@@ -1182,8 +1173,7 @@ export interface NodesUsage extends Generic {
   timeout?: string;
 }
 
-export interface Ping extends Generic {
-}
+export interface Ping extends Generic {}
 
 export interface PutScript<T = RequestBody> extends Generic {
   id: string;
@@ -1532,4 +1522,3 @@ export interface UpdateByQueryRethrottle extends Generic {
   task_id: string;
   requests_per_second: number;
 }
-

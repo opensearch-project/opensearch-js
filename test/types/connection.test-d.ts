@@ -28,10 +28,10 @@
  * under the License.
  */
 
-import { expectType } from 'tsd'
-import { URL } from 'url'
-import { Connection } from '../../'
-import { ConnectionOptions } from '../../lib/Connection'
+import { expectType } from 'tsd';
+import { URL } from 'url';
+import { Connection } from '../../';
+import { ConnectionOptions } from '../../lib/Connection';
 
 {
   const conn = new Connection({
@@ -42,24 +42,24 @@ import { ConnectionOptions } from '../../lib/Connection'
     agent: { keepAlive: false },
     status: 'alive',
     roles: { master: true },
-    auth: { username: 'username', password: 'password' }
-  })
+    auth: { username: 'username', password: 'password' },
+  });
 
-  expectType<Connection>(conn)
-  expectType<URL>(conn.url)
-  expectType<string>(conn.id)
-  expectType<Record<string, any>>(conn.headers)
-  expectType<number>(conn.deadCount)
-  expectType<number>(conn.resurrectTimeout)
-  expectType<string>(conn.status)
+  expectType<Connection>(conn);
+  expectType<URL>(conn.url);
+  expectType<string>(conn.id);
+  expectType<Record<string, any>>(conn.headers);
+  expectType<number>(conn.deadCount);
+  expectType<number>(conn.resurrectTimeout);
+  expectType<string>(conn.status);
 }
 
 {
   const conn = new Connection({
     url: new URL('http://localhost:9200'),
     agent(opts) {
-      expectType<ConnectionOptions>(opts)
-      return 'the agent'
-    }
-  })
+      expectType<ConnectionOptions>(opts);
+      return 'the agent';
+    },
+  });
 }

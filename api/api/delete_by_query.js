@@ -28,44 +28,107 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['analyzer', 'analyze_wildcard', 'default_operator', 'df', 'from', 'ignore_unavailable', 'allow_no_indices', 'conflicts', 'expand_wildcards', 'lenient', 'preference', 'q', 'routing', 'scroll', 'search_type', 'search_timeout', 'size', 'max_docs', 'sort', '_source', '_source_excludes', '_source_exclude', '_source_includes', '_source_include', 'terminate_after', 'stats', 'version', 'request_cache', 'refresh', 'timeout', 'wait_for_active_shards', 'scroll_size', 'wait_for_completion', 'requests_per_second', 'slices', 'pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { analyzeWildcard: 'analyze_wildcard', defaultOperator: 'default_operator', ignoreUnavailable: 'ignore_unavailable', allowNoIndices: 'allow_no_indices', expandWildcards: 'expand_wildcards', searchType: 'search_type', searchTimeout: 'search_timeout', maxDocs: 'max_docs', _sourceExcludes: '_source_excludes', _sourceExclude: '_source_exclude', _sourceIncludes: '_source_includes', _sourceInclude: '_source_include', terminateAfter: 'terminate_after', requestCache: 'request_cache', waitForActiveShards: 'wait_for_active_shards', scrollSize: 'scroll_size', waitForCompletion: 'wait_for_completion', requestsPerSecond: 'requests_per_second', errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = [
+  'analyzer',
+  'analyze_wildcard',
+  'default_operator',
+  'df',
+  'from',
+  'ignore_unavailable',
+  'allow_no_indices',
+  'conflicts',
+  'expand_wildcards',
+  'lenient',
+  'preference',
+  'q',
+  'routing',
+  'scroll',
+  'search_type',
+  'search_timeout',
+  'size',
+  'max_docs',
+  'sort',
+  '_source',
+  '_source_excludes',
+  '_source_exclude',
+  '_source_includes',
+  '_source_include',
+  'terminate_after',
+  'stats',
+  'version',
+  'request_cache',
+  'refresh',
+  'timeout',
+  'wait_for_active_shards',
+  'scroll_size',
+  'wait_for_completion',
+  'requests_per_second',
+  'slices',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+];
+const snakeCase = {
+  analyzeWildcard: 'analyze_wildcard',
+  defaultOperator: 'default_operator',
+  ignoreUnavailable: 'ignore_unavailable',
+  allowNoIndices: 'allow_no_indices',
+  expandWildcards: 'expand_wildcards',
+  searchType: 'search_type',
+  searchTimeout: 'search_timeout',
+  maxDocs: 'max_docs',
+  _sourceExcludes: '_source_excludes',
+  _sourceExclude: '_source_exclude',
+  _sourceIncludes: '_source_includes',
+  _sourceInclude: '_source_include',
+  terminateAfter: 'terminate_after',
+  requestCache: 'request_cache',
+  waitForActiveShards: 'wait_for_active_shards',
+  scrollSize: 'scroll_size',
+  waitForCompletion: 'wait_for_completion',
+  requestsPerSecond: 'requests_per_second',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+};
 
-function deleteByQueryApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function deleteByQueryApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
   // check required parameters
   if (params.index == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: index')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: index');
+    return handleError(err, callback);
   }
   if (params.body == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: body')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: body');
+    return handleError(err, callback);
   }
 
   // check required url components
-  if (params.type != null && (params.index == null)) {
-    const err = new this[kConfigurationError]('Missing required parameter of the url: index')
-    return handleError(err, callback)
+  if (params.type != null && params.index == null) {
+    const err = new this[kConfigurationError]('Missing required parameter of the url: index');
+    return handleError(err, callback);
   }
 
-  let { method, body, index, type, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, index, type, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if ((index) != null && (type) != null) {
-    if (method == null) method = 'POST'
-    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_delete_by_query'
+  let path = '';
+  if (index != null && type != null) {
+    if (method == null) method = 'POST';
+    path =
+      '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_delete_by_query';
   } else {
-    if (method == null) method = 'POST'
-    path = '/' + encodeURIComponent(index) + '/' + '_delete_by_query'
+    if (method == null) method = 'POST';
+    path = '/' + encodeURIComponent(index) + '/' + '_delete_by_query';
   }
 
   // build request object
@@ -73,10 +136,10 @@ function deleteByQueryApi (params, options, callback) {
     method,
     path,
     body: body || '',
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = deleteByQueryApi
+module.exports = deleteByQueryApi;

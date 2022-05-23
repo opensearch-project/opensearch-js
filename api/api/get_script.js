@@ -28,40 +28,51 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['master_timeout', 'pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { masterTimeout: 'master_timeout', errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = [
+  'master_timeout',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+];
+const snakeCase = {
+  masterTimeout: 'master_timeout',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+};
 
-function getScriptApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function getScriptApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
   // check required parameters
   if (params.id == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: id')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: id');
+    return handleError(err, callback);
   }
 
-  let { method, body, id, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, id, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if (method == null) method = 'GET'
-  path = '/' + '_scripts' + '/' + encodeURIComponent(id)
+  let path = '';
+  if (method == null) method = 'GET';
+  path = '/' + '_scripts' + '/' + encodeURIComponent(id);
 
   // build request object
   const request = {
     method,
     path,
     body: null,
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = getScriptApi
+module.exports = getScriptApi;

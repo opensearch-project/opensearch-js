@@ -28,109 +28,148 @@
  * under the License.
  */
 
-import { Readable as ReadableStream } from 'stream'
-import { TransportRequestOptions, ApiError, ApiResponse, RequestBody, Context } from './Transport'
-import { Search, Msearch, Bulk } from '../api/requestParams'
+import { Readable as ReadableStream } from 'stream';
+import { TransportRequestOptions, ApiError, ApiResponse, RequestBody, Context } from './Transport';
+import { Search, Msearch, Bulk } from '../api/requestParams';
 
 export default class Helpers {
-  search<TDocument = unknown, TRequestBody extends RequestBody = Record<string, any>>(params: Search<TRequestBody>, options?: TransportRequestOptions): Promise<TDocument[]>
-  scrollSearch<TDocument = unknown, TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(params: Search<TRequestBody>, options?: TransportRequestOptions): AsyncIterable<ScrollSearchResponse<TDocument, TResponse, TContext>>
-  scrollDocuments<TDocument = unknown, TRequestBody extends RequestBody = Record<string, any>>(params: Search<TRequestBody>, options?: TransportRequestOptions): AsyncIterable<TDocument>
-  msearch(options?: MsearchHelperOptions, reqOptions?: TransportRequestOptions): MsearchHelper
-  bulk<TDocument = unknown>(options: BulkHelperOptions<TDocument>, reqOptions?: TransportRequestOptions): BulkHelper<BulkStats>
+  search<TDocument = unknown, TRequestBody extends RequestBody = Record<string, any>>(
+    params: Search<TRequestBody>,
+    options?: TransportRequestOptions
+  ): Promise<TDocument[]>;
+  scrollSearch<
+    TDocument = unknown,
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    params: Search<TRequestBody>,
+    options?: TransportRequestOptions
+  ): AsyncIterable<ScrollSearchResponse<TDocument, TResponse, TContext>>;
+  scrollDocuments<TDocument = unknown, TRequestBody extends RequestBody = Record<string, any>>(
+    params: Search<TRequestBody>,
+    options?: TransportRequestOptions
+  ): AsyncIterable<TDocument>;
+  msearch(options?: MsearchHelperOptions, reqOptions?: TransportRequestOptions): MsearchHelper;
+  bulk<TDocument = unknown>(
+    options: BulkHelperOptions<TDocument>,
+    reqOptions?: TransportRequestOptions
+  ): BulkHelper<BulkStats>;
 }
 
-export interface ScrollSearchResponse<TDocument = unknown, TResponse = Record<string, any>, TContext = Context> extends ApiResponse<TResponse, TContext> {
-  clear: () => Promise<void>
-  documents: TDocument[]
+export interface ScrollSearchResponse<
+  TDocument = unknown,
+  TResponse = Record<string, any>,
+  TContext = Context
+> extends ApiResponse<TResponse, TContext> {
+  clear: () => Promise<void>;
+  documents: TDocument[];
 }
 
 export interface BulkHelper<T> extends Promise<T> {
-  abort: () => BulkHelper<T>
-  readonly stats: BulkStats
+  abort: () => BulkHelper<T>;
+  readonly stats: BulkStats;
 }
 
 export interface BulkStats {
-  total: number
-  failed: number
-  retry: number
-  successful: number
-  noop: number
-  time: number
-  bytes: number
-  aborted: boolean
+  total: number;
+  failed: number;
+  retry: number;
+  successful: number;
+  noop: number;
+  time: number;
+  bytes: number;
+  aborted: boolean;
 }
 
 interface IndexAction {
   index: {
-    _index: string
-    [key: string]: any
-  }
+    _index: string;
+    [key: string]: any;
+  };
 }
 
 interface CreateAction {
   create: {
-    _index: string
-    [key: string]: any
-  }
+    _index: string;
+    [key: string]: any;
+  };
 }
 
 interface UpdateActionOperation {
   update: {
-    _index: string
-    [key: string]: any
-  }
+    _index: string;
+    [key: string]: any;
+  };
 }
 
 interface DeleteAction {
   delete: {
-    _index: string
-    [key: string]: any
-  }
+    _index: string;
+    [key: string]: any;
+  };
 }
 
-type UpdateAction = [UpdateActionOperation, Record<string, any>]
-type Action = IndexAction | CreateAction | UpdateAction | DeleteAction
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+type UpdateAction = [UpdateActionOperation, Record<string, any>];
+type Action = IndexAction | CreateAction | UpdateAction | DeleteAction;
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export interface BulkHelperOptions<TDocument = unknown> extends Omit<Bulk, 'body'> {
-  datasource: TDocument[] | Buffer | ReadableStream | AsyncIterator<TDocument>
-  onDocument: (doc: TDocument) => Action
-  flushBytes?: number
-  flushInterval?: number
-  concurrency?: number
-  retries?: number
-  wait?: number
-  onDrop?: (doc: OnDropDocument<TDocument>) => void
-  refreshOnCompletion?: boolean | string
+  datasource: TDocument[] | Buffer | ReadableStream | AsyncIterator<TDocument>;
+  onDocument: (doc: TDocument) => Action;
+  flushBytes?: number;
+  flushInterval?: number;
+  concurrency?: number;
+  retries?: number;
+  wait?: number;
+  onDrop?: (doc: OnDropDocument<TDocument>) => void;
+  refreshOnCompletion?: boolean | string;
 }
 
 export interface OnDropDocument<TDocument = unknown> {
-  status: number
+  status: number;
   error: {
-    type: string,
-    reason: string,
+    type: string;
+    reason: string;
     caused_by: {
-      type: string,
-      reason: string
-    }
-  }
-  operation: Action
-  document: TDocument
-  retried: boolean
+      type: string;
+      reason: string;
+    };
+  };
+  operation: Action;
+  document: TDocument;
+  retried: boolean;
 }
 
 export interface MsearchHelperOptions extends Omit<Msearch, 'body'> {
-  operations?: number
-  flushInterval?: number
-  concurrency?: number
-  retries?: number
-  wait?: number
+  operations?: number;
+  flushInterval?: number;
+  concurrency?: number;
+  retries?: number;
+  wait?: number;
 }
 
-declare type callbackFn<Response, Context> = (err: ApiError, result: ApiResponse<Response, Context>) => void;
+declare type callbackFn<Response, Context> = (
+  err: ApiError,
+  result: ApiResponse<Response, Context>
+) => void;
 export interface MsearchHelper extends Promise<void> {
-  stop(error?: Error): void
-  search<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(header: Omit<Search, 'body'>, body: TRequestBody): Promise<ApiResponse<TResponse, TContext>>
-  search<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(header: Omit<Search, 'body'>, body: TRequestBody, callback: callbackFn<TResponse, TContext>): void
+  stop(error?: Error): void;
+  search<
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    header: Omit<Search, 'body'>,
+    body: TRequestBody
+  ): Promise<ApiResponse<TResponse, TContext>>;
+  search<
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    header: Omit<Search, 'body'>,
+    body: TRequestBody,
+    callback: callbackFn<TResponse, TContext>
+  ): void;
 }

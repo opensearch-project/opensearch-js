@@ -663,7 +663,8 @@ test('API', (t) => {
       t.ok(pool.connections.find((c) => c.id === 'a2').roles !== null);
     });
 
-    t.test('Should not update existing connections (same url, different id)', (t) => {
+    // remove this test when master is not supported
+    t.test('Should not update existing connections (master, same url, different id)', (t) => {
       t.plan(3);
       class CustomConnectionPool extends ConnectionPool {
         markAlive(connection) {
@@ -704,6 +705,51 @@ test('API', (t) => {
         undefined
       );
     });
+
+    t.test(
+      'Should not update existing connections (cluster_manager, same url, different id)',
+      (t) => {
+        t.plan(3);
+        class CustomConnectionPool extends ConnectionPool {
+          markAlive(connection) {
+            t.ok('called');
+            super.markAlive(connection);
+          }
+        }
+        const pool = new CustomConnectionPool({ Connection });
+        pool.addConnection([
+          {
+            url: new URL('http://127.0.0.1:9200'),
+            id: 'http://127.0.0.1:9200/',
+            roles: {
+              cluster_manager: true,
+              data: true,
+              ingest: true,
+            },
+          },
+        ]);
+
+        pool.update([
+          {
+            url: new URL('http://127.0.0.1:9200'),
+            id: 'a1',
+            roles: true,
+          },
+        ]);
+
+        // roles will never be updated, we only use it to do
+        // a dummy check to see if the connection has been updated
+        t.same(pool.connections.find((c) => c.id === 'a1').roles, {
+          cluster_manager: true,
+          data: true,
+          ingest: true,
+        });
+        t.equal(
+          pool.connections.find((c) => c.id === 'http://127.0.0.1:9200/'),
+          undefined
+        );
+      }
+    );
 
     t.test('Add a new connection', (t) => {
       t.plan(2);
@@ -817,7 +863,6 @@ test('Node selector', (t) => {
   t.end();
 });
 
-// TODO: modify node roles when master is not supported
 test('Node filter', (t) => {
   t.test('default', (t) => {
     t.plan(1);

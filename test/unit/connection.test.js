@@ -767,7 +767,6 @@ test('should set cluster_manager role', (t) => {
   t.end();
 });
 
-// master role is deprecated
 // TODO: delete this test when maste role is completed removed
 test('should set master role', (t) => {
   t.test('Update the value of a role', (t) => {
@@ -800,6 +799,47 @@ test('should set master role', (t) => {
 
     try {
       connection.setRole('master', 1);
+      t.fail('Shoud throw');
+    } catch (err) {
+      t.ok(err instanceof ConfigurationError);
+      t.equal(err.message, 'enabled should be a boolean');
+    }
+  });
+
+  t.end();
+});
+
+test('should set cluster_manager role', (t) => {
+  t.test('Update the value of a role', (t) => {
+    t.plan(2);
+
+    const connection = new Connection({
+      url: new URL('http://localhost:9200'),
+    });
+
+    t.same(connection.roles, {
+      data: true,
+      ingest: true,
+    });
+
+    connection.setRole('cluster_manager', false);
+
+    t.same(connection.roles, {
+      cluster_manager: false,
+      data: true,
+      ingest: true,
+    });
+  });
+
+  t.test('Invalid value', (t) => {
+    t.plan(2);
+
+    const connection = new Connection({
+      url: new URL('http://localhost:9200'),
+    });
+
+    try {
+      connection.setRole('cluster_manager', 1);
       t.fail('Shoud throw');
     } catch (err) {
       t.ok(err instanceof ConfigurationError);

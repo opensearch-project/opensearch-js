@@ -3,10 +3,10 @@ name: Integration with Unreleased OpenSearch
 on:
   push:
     branches:
-      - "main"
+      - 'main'
   pull_request:
     branches:
-      - "main"
+      - 'main'
 
 jobs:
   test:
@@ -37,7 +37,7 @@ jobs:
         run: |
           docker run -p 9200:9200 -p 9600:9600 -d -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" opensearch:test
           sleep 90
-      
+
       - name: Checkout Javascript Client
         uses: actions/checkout@v2
 

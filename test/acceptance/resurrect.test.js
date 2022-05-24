@@ -28,14 +28,14 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const { test } = require('tap')
-const { URL } = require('url')
-const FakeTimers = require('@sinonjs/fake-timers')
-const workq = require('workq')
-const { Client, buildCluster } = require('../utils')
-const { events } = require('../../index')
+const { test } = require('tap');
+const { URL } = require('url');
+const FakeTimers = require('@sinonjs/fake-timers');
+const workq = require('workq');
+const { Client, buildCluster } = require('../utils');
+const { events } = require('../../index');
 
 /**
  * The aim of this test is to verify how the resurrect logic behaves
@@ -47,178 +47,187 @@ const { events } = require('../../index')
  * triggered resurrections).
  */
 
-test('Should execute the recurrect API with the ping strategy', t => {
-  t.plan(8)
+test('Should execute the recurrect API with the ping strategy', (t) => {
+  t.plan(8);
 
-  const clock = FakeTimers.install({ toFake: ['Date'] })
-  const q = workq()
+  const clock = FakeTimers.install({ toFake: ['Date'] });
+  const q = workq();
 
-  buildCluster({ numberOfNodes: 2 }, cluster => {
+  buildCluster({ numberOfNodes: 2 }, (cluster) => {
     const client = new Client({
-      nodes: [{
-        url: new URL(cluster.nodes[Object.keys(cluster.nodes)[0]].url),
-        id: 'node0'
-      }, {
-        url: new URL(cluster.nodes[Object.keys(cluster.nodes)[1]].url),
-        id: 'node1'
-      }],
-      maxRetries: 0
-    })
+      nodes: [
+        {
+          url: new URL(cluster.nodes[Object.keys(cluster.nodes)[0]].url),
+          id: 'node0',
+        },
+        {
+          url: new URL(cluster.nodes[Object.keys(cluster.nodes)[1]].url),
+          id: 'node1',
+        },
+      ],
+      maxRetries: 0,
+    });
 
     client.on(events.RESURRECT, (err, meta) => {
-      t.error(err)
-      t.equal(meta.strategy, 'ping')
-      t.notOk(meta.isAlive)
-      t.equal(meta.connection.id, 'node0')
-      t.equal(meta.name, 'opensearch-js')
-      t.same(meta.request, { id: 2 })
-    })
+      t.error(err);
+      t.equal(meta.strategy, 'ping');
+      t.notOk(meta.isAlive);
+      t.equal(meta.connection.id, 'node0');
+      t.equal(meta.name, 'opensearch-js');
+      t.same(meta.request, { id: 2 });
+    });
 
     q.add((q, done) => {
-      cluster.kill('node0', done)
-    })
+      cluster.kill('node0', done);
+    });
 
     q.add((q, done) => {
       client.info((err, result) => {
-        t.ok(err)
-        done()
-      })
-    })
+        t.ok(err);
+        done();
+      });
+    });
 
     q.add((q, done) => {
-      clock.tick(1000 * 61)
+      clock.tick(1000 * 61);
       client.info((err, result) => {
-        t.error(err)
-        done()
-      })
-    })
+        t.error(err);
+        done();
+      });
+    });
 
     t.teardown(() => {
-      clock.uninstall()
-      cluster.shutdown()
-    })
-  })
-})
+      clock.uninstall();
+      cluster.shutdown();
+    });
+  });
+});
 
-test('Resurrect a node and handle 502/3/4 status code', t => {
-  t.plan(15)
+test('Resurrect a node and handle 502/3/4 status code', (t) => {
+  t.plan(15);
 
-  const clock = FakeTimers.install({ toFake: ['Date'] })
-  const q = workq()
+  const clock = FakeTimers.install({ toFake: ['Date'] });
+  const q = workq();
 
-  let count = 0
-  function handler (req, res) {
-    res.statusCode = count++ < 2 ? 502 : 200
-    res.setHeader('content-type', 'application/json')
-    res.end(JSON.stringify({ hello: 'world' }))
+  let count = 0;
+  function handler(req, res) {
+    res.statusCode = count++ < 2 ? 502 : 200;
+    res.setHeader('content-type', 'application/json');
+    res.end(JSON.stringify({ hello: 'world' }));
   }
 
   buildCluster({ handler, numberOfNodes: 2 }, ({ nodes, shutdown }) => {
     const client = new Client({
-      nodes: [{
-        url: new URL(nodes[Object.keys(nodes)[0]].url),
-        id: 'node0'
-      }, {
-        url: new URL(nodes[Object.keys(nodes)[1]].url),
-        id: 'node1'
-      }],
-      maxRetries: 0
-    })
-
-    let idCount = 2
-    client.on(events.RESURRECT, (err, meta) => {
-      t.error(err)
-      t.equal(meta.strategy, 'ping')
-      t.equal(meta.connection.id, 'node0')
-      t.equal(meta.name, 'opensearch-js')
-      t.same(meta.request, { id: idCount++ })
-      if (count < 4) {
-        t.notOk(meta.isAlive)
-      } else {
-        t.ok(meta.isAlive)
-      }
-    })
-
-    q.add((q, done) => {
-      client.info((err, result) => {
-        t.ok(err)
-        done()
-      })
-    })
-
-    q.add((q, done) => {
-      clock.tick(1000 * 61)
-      client.info((err, result) => {
-        t.error(err)
-        done()
-      })
-    })
-
-    q.add((q, done) => {
-      clock.tick(1000 * 10 * 60)
-      client.info((err, result) => {
-        t.error(err)
-        done()
-      })
-    })
-
-    t.teardown(() => {
-      clock.uninstall()
-      shutdown()
-    })
-  })
-})
-
-test('Should execute the recurrect API with the optimistic strategy', t => {
-  t.plan(8)
-
-  const clock = FakeTimers.install({ toFake: ['Date'] })
-  const q = workq()
-
-  buildCluster({ numberOfNodes: 2 }, cluster => {
-    const client = new Client({
-      nodes: [{
-        url: new URL(cluster.nodes[Object.keys(cluster.nodes)[0]].url),
-        id: 'node0'
-      }, {
-        url: new URL(cluster.nodes[Object.keys(cluster.nodes)[1]].url),
-        id: 'node1'
-      }],
+      nodes: [
+        {
+          url: new URL(nodes[Object.keys(nodes)[0]].url),
+          id: 'node0',
+        },
+        {
+          url: new URL(nodes[Object.keys(nodes)[1]].url),
+          id: 'node1',
+        },
+      ],
       maxRetries: 0,
-      resurrectStrategy: 'optimistic'
-    })
+    });
 
+    let idCount = 2;
     client.on(events.RESURRECT, (err, meta) => {
-      t.error(err)
-      t.equal(meta.strategy, 'optimistic')
-      t.ok(meta.isAlive)
-      t.equal(meta.connection.id, 'node0')
-      t.equal(meta.name, 'opensearch-js')
-      t.same(meta.request, { id: 2 })
-    })
-
-    q.add((q, done) => {
-      cluster.kill('node0', done)
-    })
+      t.error(err);
+      t.equal(meta.strategy, 'ping');
+      t.equal(meta.connection.id, 'node0');
+      t.equal(meta.name, 'opensearch-js');
+      t.same(meta.request, { id: idCount++ });
+      if (count < 4) {
+        t.notOk(meta.isAlive);
+      } else {
+        t.ok(meta.isAlive);
+      }
+    });
 
     q.add((q, done) => {
       client.info((err, result) => {
-        t.ok(err)
-        done()
-      })
-    })
+        t.ok(err);
+        done();
+      });
+    });
 
     q.add((q, done) => {
-      clock.tick(1000 * 61)
+      clock.tick(1000 * 61);
       client.info((err, result) => {
-        t.error(err)
-        done()
-      })
-    })
+        t.error(err);
+        done();
+      });
+    });
+
+    q.add((q, done) => {
+      clock.tick(1000 * 10 * 60);
+      client.info((err, result) => {
+        t.error(err);
+        done();
+      });
+    });
 
     t.teardown(() => {
-      clock.uninstall()
-      cluster.shutdown()
-    })
-  })
-})
+      clock.uninstall();
+      shutdown();
+    });
+  });
+});
+
+test('Should execute the recurrect API with the optimistic strategy', (t) => {
+  t.plan(8);
+
+  const clock = FakeTimers.install({ toFake: ['Date'] });
+  const q = workq();
+
+  buildCluster({ numberOfNodes: 2 }, (cluster) => {
+    const client = new Client({
+      nodes: [
+        {
+          url: new URL(cluster.nodes[Object.keys(cluster.nodes)[0]].url),
+          id: 'node0',
+        },
+        {
+          url: new URL(cluster.nodes[Object.keys(cluster.nodes)[1]].url),
+          id: 'node1',
+        },
+      ],
+      maxRetries: 0,
+      resurrectStrategy: 'optimistic',
+    });
+
+    client.on(events.RESURRECT, (err, meta) => {
+      t.error(err);
+      t.equal(meta.strategy, 'optimistic');
+      t.ok(meta.isAlive);
+      t.equal(meta.connection.id, 'node0');
+      t.equal(meta.name, 'opensearch-js');
+      t.same(meta.request, { id: 2 });
+    });
+
+    q.add((q, done) => {
+      cluster.kill('node0', done);
+    });
+
+    q.add((q, done) => {
+      client.info((err, result) => {
+        t.ok(err);
+        done();
+      });
+    });
+
+    q.add((q, done) => {
+      clock.tick(1000 * 61);
+      client.info((err, result) => {
+        t.error(err);
+        done();
+      });
+    });
+
+    t.teardown(() => {
+      clock.uninstall();
+      cluster.shutdown();
+    });
+  });
+});

@@ -1,4 +1,3 @@
-
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -10,10 +9,10 @@
  * GitHub history for details.
  */
 
-'use strict'
+'use strict';
 
-const { Client } = require('../../../index')
-const client = new Client({ node: 'http://localhost:9200' })
+const { Client } = require('../../../index');
+const client = new Client({ node: 'http://localhost:9200' });
 client.info((err, result) => {
-  process.exit(err ? 1 : 0)
-})
+  process.exit(err ? 1 : 0);
+});

@@ -32,18 +32,18 @@
 
 /* eslint camelcase: 0 */
 
-'use strict'
+'use strict';
 
-const { join } = require('path')
-const dedent = require('dedent')
+const { join } = require('path');
+const dedent = require('dedent');
 const allowedMethods = {
   noBody: ['GET', 'HEAD', 'DELETE'],
-  body: ['POST', 'PUT', 'DELETE']
-}
+  body: ['POST', 'PUT', 'DELETE'],
+};
 
 // if a parameter is depracted in a minor release
 // we should be able to support it until the next major
-const deprecatedParameters = require('./patch.json')
+const deprecatedParameters = require('./patch.json');
 
 // list of apis that does not need any kind of validation
 // because of how the url is built or the `type` handling in ES7
@@ -67,11 +67,11 @@ const noPathValidation = [
   'nodes.usage',
   'tasks.cancel',
   'termvectors',
-  'update'
-]
+  'update',
+];
 
-function generateNamespace (namespace, nested, specFolder, version) {
-  const common = require(join(specFolder, '_common.json'))
+function generateNamespace(namespace, nested, specFolder, version) {
+  const common = require(join(specFolder, '_common.json'));
   let code = dedent`
   /*
    * Licensed to Elasticsearch B.V. under one or more contributor
@@ -98,20 +98,20 @@ function generateNamespace (namespace, nested, specFolder, version) {
   /* eslint no-unused-vars: 0 */
 
   const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-`
+`;
   if (nested.length > 0) {
-    let getters = ''
+    let getters = '';
     for (const n of nested) {
       if (n.includes('_')) {
         const nameSnaked = n
-          .replace(/\.([a-z])/g, k => k[1].toUpperCase())
-          .replace(/_([a-z])/g, k => k[1].toUpperCase())
-        getters += `${n}: { get () { return this.${nameSnaked} } },\n`
+          .replace(/\.([a-z])/g, (k) => k[1].toUpperCase())
+          .replace(/_([a-z])/g, (k) => k[1].toUpperCase());
+        getters += `${n}: { get () { return this.${nameSnaked} } },\n`;
       }
     }
-    const api = generateMultiApi(version, namespace, nested, common, specFolder)
+    const api = generateMultiApi(version, namespace, nested, common, specFolder);
     if (getters.length > 0) {
-      getters = `Object.defineProperties(${api.namespace}Api.prototype, {\n${getters}})`
+      getters = `Object.defineProperties(${api.namespace}Api.prototype, {\n${getters}})`;
     }
 
     code += `
@@ -128,10 +128,10 @@ function generateNamespace (namespace, nested, specFolder, version) {
   ${getters}
 
   module.exports = ${api.namespace}Api
-    `
+    `;
   } else {
-    const spec = require(join(specFolder, `${namespace}.json`))
-    const api = generateSingleApi(version, spec, common)
+    const spec = require(join(specFolder, `${namespace}.json`));
+    const api = generateSingleApi(version, spec, common);
     code += `
   const acceptedQuerystring = ${JSON.stringify(api.acceptedQuerystring)}
   const snakeCase = ${JSON.stringify(api.snakeCase)}
@@ -139,97 +139,97 @@ function generateNamespace (namespace, nested, specFolder, version) {
   ${api.code}
 
   module.exports = ${api.name}Api
-    `
+    `;
   }
-  return code
+  return code;
 }
 
-function generateMultiApi (version, namespace, nested, common, specFolder) {
+function generateMultiApi(version, namespace, nested, common, specFolder) {
   const namespaceSnaked = namespace
-    .replace(/\.([a-z])/g, k => k[1].toUpperCase())
-    .replace(/_([a-z])/g, k => k[1].toUpperCase())
-  let code = ''
-  const snakeCase = {}
-  const acceptedQuerystring = []
+    .replace(/\.([a-z])/g, (k) => k[1].toUpperCase())
+    .replace(/_([a-z])/g, (k) => k[1].toUpperCase());
+  let code = '';
+  const snakeCase = {};
+  const acceptedQuerystring = [];
   for (const n of nested) {
     const nameSnaked = n
-      .replace(/\.([a-z])/g, k => k[1].toUpperCase())
-      .replace(/_([a-z])/g, k => k[1].toUpperCase())
-    const spec = require(join(specFolder, `${namespace}.${n}.json`))
-    const api = generateSingleApi(version, spec, common)
-    code += `${Uppercase(namespaceSnaked)}Api.prototype.${nameSnaked} = ${api.code}\n\n`
-    Object.assign(snakeCase, api.snakeCase)
+      .replace(/\.([a-z])/g, (k) => k[1].toUpperCase())
+      .replace(/_([a-z])/g, (k) => k[1].toUpperCase());
+    const spec = require(join(specFolder, `${namespace}.${n}.json`));
+    const api = generateSingleApi(version, spec, common);
+    code += `${Uppercase(namespaceSnaked)}Api.prototype.${nameSnaked} = ${api.code}\n\n`;
+    Object.assign(snakeCase, api.snakeCase);
     for (const q of api.acceptedQuerystring) {
       if (!acceptedQuerystring.includes(q)) {
-        acceptedQuerystring.push(q)
+        acceptedQuerystring.push(q);
       }
     }
   }
-  return { code, snakeCase, acceptedQuerystring, namespace: Uppercase(namespaceSnaked) }
+  return { code, snakeCase, acceptedQuerystring, namespace: Uppercase(namespaceSnaked) };
 }
 
-function generateSingleApi (version, spec, common) {
-  const release = version.charAt(0)
-  const api = Object.keys(spec)[0]
+function generateSingleApi(version, spec, common) {
+  const release = version.charAt(0);
+  const api = Object.keys(spec)[0];
   const name = api
-    .replace(/\.([a-z])/g, k => k[1].toUpperCase())
-    .replace(/_([a-z])/g, k => k[1].toUpperCase())
+    .replace(/\.([a-z])/g, (k) => k[1].toUpperCase())
+    .replace(/_([a-z])/g, (k) => k[1].toUpperCase());
 
-  const { paths } = spec[api].url
-  const { params } = spec[api]
-  const acceptedQuerystring = []
-  const required = []
+  const { paths } = spec[api].url;
+  const { params } = spec[api];
+  const acceptedQuerystring = [];
+  const required = [];
 
   const methods = paths.reduce((acc, val) => {
     for (const method of val.methods) {
-      if (!acc.includes(method)) acc.push(method)
+      if (!acc.includes(method)) acc.push(method);
     }
-    return acc
-  }, [])
+    return acc;
+  }, []);
   const parts = paths.reduce((acc, val) => {
-    if (!val.parts) return acc
+    if (!val.parts) return acc;
     for (const part of Object.keys(val.parts)) {
-      if (!acc.includes(part)) acc.push(part)
+      if (!acc.includes(part)) acc.push(part);
     }
-    return acc
-  }, [])
+    return acc;
+  }, []);
 
   // get the required parts from the url
   // if the url has at least one static path,
   // then there are not required parts of the url
-  let allParts = []
+  let allParts = [];
   for (const path of paths) {
     if (path.parts) {
-      allParts.push(Object.keys(path.parts))
+      allParts.push(Object.keys(path.parts));
     } else {
-      allParts = []
-      break
+      allParts = [];
+      break;
     }
   }
   if (allParts.length > 0) {
-    intersect(...allParts).forEach(r => required.push(r))
+    intersect(...allParts).forEach((r) => required.push(r));
   }
 
   for (const key in params) {
     if (params[key].required) {
-      required.push(key)
+      required.push(key);
     }
 
-    acceptedQuerystring.push(key)
+    acceptedQuerystring.push(key);
     if (deprecatedParameters[release] && deprecatedParameters[release][key]) {
-      acceptedQuerystring.push(deprecatedParameters[release][key])
+      acceptedQuerystring.push(deprecatedParameters[release][key]);
     }
   }
 
   for (const key in spec[api]) {
-    const k = spec[api][key]
+    const k = spec[api][key];
     if (k && k.required) {
-      required.push(key)
+      required.push(key);
     }
   }
   if (common && common.params) {
     for (const key in common.params) {
-      acceptedQuerystring.push(key)
+      acceptedQuerystring.push(key);
     }
   }
 
@@ -257,32 +257,30 @@ function generateSingleApi (version, spec, common) {
 
     return this.transport.request(request, options, callback)
   }
-  `.trim() // always call trim to avoid newlines
+  `.trim(); // always call trim to avoid newlines
 
   return {
     name,
     code,
     acceptedQuerystring: acceptedQuerystring,
     snakeCase: genSnakeCaseMap(),
-    documentation: generateDocumentation(spec[api], api)
-  }
+    documentation: generateDocumentation(spec[api], api),
+  };
 
-  function genRequiredChecks (param) {
-    const code = required
-      .map(_genRequiredCheck)
-      .concat(_noBody())
-      .filter(Boolean)
+  function genRequiredChecks(param) {
+    const code = required.map(_genRequiredCheck).concat(_noBody()).filter(Boolean);
 
     if (code.length) {
-      code.unshift('// check required parameters')
+      code.unshift('// check required parameters');
     }
 
-    return code.join('\n        ')
+    return code.join('\n        ');
 
-    function _genRequiredCheck (param) {
-      const camelCased = param[0] === '_'
-        ? '_' + param.slice(1).replace(/_([a-z])/g, k => k[1].toUpperCase())
-        : param.replace(/_([a-z])/g, k => k[1].toUpperCase())
+    function _genRequiredCheck(param) {
+      const camelCased =
+        param[0] === '_'
+          ? '_' + param.slice(1).replace(/_([a-z])/g, (k) => k[1].toUpperCase())
+          : param.replace(/_([a-z])/g, (k) => k[1].toUpperCase());
 
       if (param === camelCased) {
         const check = `
@@ -290,277 +288,287 @@ function generateSingleApi (version, spec, common) {
             const err = new this[kConfigurationError]('Missing required parameter: ${param}')
             return handleError(err, callback)
           }
-        `
-        return check.trim()
+        `;
+        return check.trim();
       } else {
         const check = `
           if (params['${param}'] == null && params['${camelCased}'] == null) {
             const err = new this[kConfigurationError]('Missing required parameter: ${param} or ${camelCased}')
             return handleError(err, callback)
           }
-        `
-        return check.trim()
+        `;
+        return check.trim();
       }
     }
 
-    function _noBody () {
+    function _noBody() {
       const check = `
         if (params.body != null) {
           const err = new this[kConfigurationError]('This API does not require a body')
           return handleError(err, callback)
         }
-      `
-      return spec[api].body === null ? check.trim() : ''
+      `;
+      return spec[api].body === null ? check.trim() : '';
     }
   }
 
-  function genSnakeCaseMap () {
-    const toCamelCase = str => {
+  function genSnakeCaseMap() {
+    const toCamelCase = (str) => {
       return str[0] === '_'
-        ? '_' + str.slice(1).replace(/_([a-z])/g, k => k[1].toUpperCase())
-        : str.replace(/_([a-z])/g, k => k[1].toUpperCase())
-    }
+        ? '_' + str.slice(1).replace(/_([a-z])/g, (k) => k[1].toUpperCase())
+        : str.replace(/_([a-z])/g, (k) => k[1].toUpperCase());
+    };
 
     return acceptedQuerystring.reduce((acc, val, index) => {
       if (toCamelCase(val) !== val) {
-        acc[toCamelCase(val)] = val
+        acc[toCamelCase(val)] = val;
       }
-      return acc
-    }, {})
+      return acc;
+    }, {});
   }
 
-  function genQueryDenylist (addQuotes = true) {
-    const toCamelCase = str => {
+  function genQueryDenylist(addQuotes = true) {
+    const toCamelCase = (str) => {
       return str[0] === '_'
-        ? '_' + str.slice(1).replace(/_([a-z])/g, k => k[1].toUpperCase())
-        : str.replace(/_([a-z])/g, k => k[1].toUpperCase())
-    }
+        ? '_' + str.slice(1).replace(/_([a-z])/g, (k) => k[1].toUpperCase())
+        : str.replace(/_([a-z])/g, (k) => k[1].toUpperCase());
+    };
 
-    const denylist = ['method', 'body']
-    parts.forEach(p => {
-      const camelStr = toCamelCase(p)
-      if (camelStr !== p) denylist.push(`${camelStr}`)
-      denylist.push(`${p}`)
-    })
-    return addQuotes ? denylist.map(q => `'${q}'`) : denylist
+    const denylist = ['method', 'body'];
+    parts.forEach((p) => {
+      const camelStr = toCamelCase(p);
+      if (camelStr !== p) denylist.push(`${camelStr}`);
+      denylist.push(`${p}`);
+    });
+    return addQuotes ? denylist.map((q) => `'${q}'`) : denylist;
   }
 
-  function buildPath () {
-    const toCamelCase = str => {
+  function buildPath() {
+    const toCamelCase = (str) => {
       return str[0] === '_'
-        ? '_' + str.slice(1).replace(/_([a-z])/g, k => k[1].toUpperCase())
-        : str.replace(/_([a-z])/g, k => k[1].toUpperCase())
-    }
+        ? '_' + str.slice(1).replace(/_([a-z])/g, (k) => k[1].toUpperCase())
+        : str.replace(/_([a-z])/g, (k) => k[1].toUpperCase());
+    };
 
-    const genAccessKey = str => {
-      const camelStr = toCamelCase(str)
-      return camelStr === str
-        ? str
-        : `${str} || ${camelStr}`
-    }
+    const genAccessKey = (str) => {
+      const camelStr = toCamelCase(str);
+      return camelStr === str ? str : `${str} || ${camelStr}`;
+    };
 
-    const genCheck = path => {
+    const genCheck = (path) => {
       return path
         .split('/')
         .filter(Boolean)
-        .map(p => p.startsWith('{') ? `(${genAccessKey(p.slice(1, -1))}) != null` : false)
+        .map((p) => (p.startsWith('{') ? `(${genAccessKey(p.slice(1, -1))}) != null` : false))
         .filter(Boolean)
-        .join(' && ')
-    }
+        .join(' && ');
+    };
 
-    const genPath = path => {
+    const genPath = (path) => {
       path = path
         .split('/')
         .filter(Boolean)
-        .map(p => p.startsWith('{') ? `encodeURIComponent(${genAccessKey(p.slice(1, -1))})` : `'${p}'`)
-        .join(' + \'/\' + ')
-      return path.length > 0 ? ('\'/\' + ' + path) : '\'/\''
-    }
+        .map((p) =>
+          p.startsWith('{') ? `encodeURIComponent(${genAccessKey(p.slice(1, -1))})` : `'${p}'`
+        )
+        .join(" + '/' + ");
+      return path.length > 0 ? "'/' + " + path : "'/'";
+    };
 
-    let hasStaticPath = false
+    let hasStaticPath = false;
     let sortedPaths = paths
       // some legacy API have mutliple statis paths
       // this filter removes them
-      .filter(p => {
-        if (p.path.includes('{')) return true
+      .filter((p) => {
+        if (p.path.includes('{')) return true;
         if (hasStaticPath === false && p.deprecated == null) {
-          hasStaticPath = true
-          return true
+          hasStaticPath = true;
+          return true;
         }
-        return false
+        return false;
       })
       // sort by number of parameters (desc)
-      .sort((a, b) => Object.keys(b.parts || {}).length - Object.keys(a.parts || {}).length)
+      .sort((a, b) => Object.keys(b.parts || {}).length - Object.keys(a.parts || {}).length);
 
-    const allDeprecated = paths.filter(path => path.deprecated != null)
-    if (allDeprecated.length === paths.length) sortedPaths = [paths[0]]
+    const allDeprecated = paths.filter((path) => path.deprecated != null);
+    if (allDeprecated.length === paths.length) sortedPaths = [paths[0]];
 
-    let code = ''
+    let code = '';
     for (let i = 0; i < sortedPaths.length; i++) {
-      const { path, methods } = sortedPaths[i]
+      const { path, methods } = sortedPaths[i];
       if (sortedPaths.length === 1) {
         code += `if (method == null) method = ${generatePickMethod(methods)}
           path = ${genPath(path)}
-        `
+        `;
       } else if (i === 0) {
         code += `if (${genCheck(path)}) {
             if (method == null) method = ${generatePickMethod(methods)}
             path = ${genPath(path)}
           }
-        `
+        `;
       } else if (i === sortedPaths.length - 1) {
         code += ` else {
             if (method == null) method = ${generatePickMethod(methods)}
             path = ${genPath(path)}
           }
-        `
+        `;
       } else {
         code += ` else if (${genCheck(path)}) {
             if (method == null) method = ${generatePickMethod(methods)}
             path = ${genPath(path)}
           }
-        `
+        `;
       }
     }
 
-    return code
+    return code;
   }
 }
 
-function generatePickMethod (methods) {
+function generatePickMethod(methods) {
   if (methods.length === 1) {
-    return `'${methods[0]}'`
+    return `'${methods[0]}'`;
   }
-  const bodyMethod = getBodyMethod(methods)
-  const noBodyMethod = getNoBodyMethod(methods)
+  const bodyMethod = getBodyMethod(methods);
+  const noBodyMethod = getNoBodyMethod(methods);
   if (bodyMethod && noBodyMethod) {
-    return `body == null ? '${noBodyMethod}' : '${bodyMethod}'`
+    return `body == null ? '${noBodyMethod}' : '${bodyMethod}'`;
   } else if (bodyMethod) {
-    return `'${bodyMethod}'`
+    return `'${bodyMethod}'`;
   } else {
-    return `'${noBodyMethod}'`
+    return `'${noBodyMethod}'`;
   }
 }
 
-function genBody (api, methods, body, spec) {
-  const bodyMethod = getBodyMethod(methods)
-  const { content_type } = spec[api].headers
+function genBody(api, methods, body, spec) {
+  const bodyMethod = getBodyMethod(methods);
+  const { content_type } = spec[api].headers;
   if (content_type && content_type.includes('application/x-ndjson')) {
-    return 'bulkBody: body,'
+    return 'bulkBody: body,';
   }
   if (body === null && bodyMethod) {
-    return 'body: \'\','
+    return "body: '',";
   } else if (bodyMethod) {
-    return 'body: body || \'\','
+    return "body: body || '',";
   } else {
-    return 'body: null,'
+    return 'body: null,';
   }
 }
 
-function getBodyMethod (methods) {
-  const m = methods.filter(m => ~allowedMethods.body.indexOf(m))
-  if (m.length) return m[0]
-  return null
+function getBodyMethod(methods) {
+  const m = methods.filter((m) => ~allowedMethods.body.indexOf(m));
+  if (m.length) return m[0];
+  return null;
 }
 
-function getNoBodyMethod (methods) {
-  const m = methods.filter(m => ~allowedMethods.noBody.indexOf(m))
-  if (m.length) return m[0]
-  return null
+function getNoBodyMethod(methods) {
+  const m = methods.filter((m) => ~allowedMethods.noBody.indexOf(m));
+  if (m.length) return m[0];
+  return null;
 }
 
-function genUrlValidation (paths, api) {
+function genUrlValidation(paths, api) {
   // this api does not need url validation
-  if (!needsPathValidation(api)) return ''
+  if (!needsPathValidation(api)) return '';
   // gets only the dynamic components of the url in an array
   // then we reverse it. A parameters always require what is
   // at its right in the array.
   const chunks = paths
-    .sort((a, b) => Object.keys(a.parts || {}).length > Object.keys(b.parts || {}).length ? -1 : 1)
+    .sort((a, b) =>
+      Object.keys(a.parts || {}).length > Object.keys(b.parts || {}).length ? -1 : 1
+    )
     .slice(0, 1)
     .reduce((acc, val) => val.path, '')
     // .reduce((a, b) => a.path.split('/').length > b.path.split('/').length ? a.path : b.path)
     .split('/')
-    .filter(s => s.startsWith('{'))
-    .map(s => s.slice(1, -1))
-    .reverse()
+    .filter((s) => s.startsWith('{'))
+    .map((s) => s.slice(1, -1))
+    .reverse();
 
-  let code = ''
+  let code = '';
 
-  const len = chunks.length
+  const len = chunks.length;
   chunks.forEach((chunk, index) => {
-    if (index === len - 1) return
-    const params = []
-    let camelCased = chunk[0] === '_'
-      ? '_' + chunk.slice(1).replace(/_([a-z])/g, k => k[1].toUpperCase())
-      : chunk.replace(/_([a-z])/g, k => k[1].toUpperCase())
+    if (index === len - 1) return;
+    const params = [];
+    let camelCased =
+      chunk[0] === '_'
+        ? '_' + chunk.slice(1).replace(/_([a-z])/g, (k) => k[1].toUpperCase())
+        : chunk.replace(/_([a-z])/g, (k) => k[1].toUpperCase());
 
     if (chunk === camelCased) {
-      code += `${index ? '} else ' : ''}if (params['${chunk}'] != null && (`
+      code += `${index ? '} else ' : ''}if (params['${chunk}'] != null && (`;
     } else {
-      code += `${index ? '} else ' : ''}if ((params['${chunk}'] != null || params['${camelCased}'] != null) && (`
+      code += `${
+        index ? '} else ' : ''
+      }if ((params['${chunk}'] != null || params['${camelCased}'] != null) && (`;
     }
     for (let i = index + 1; i < len; i++) {
-      params.push(chunks[i])
+      params.push(chunks[i]);
       // url parts can be declared in camelCase fashion
-      camelCased = chunks[i][0] === '_'
-        ? '_' + chunks[i].slice(1).replace(/_([a-z])/g, k => k[1].toUpperCase())
-        : chunks[i].replace(/_([a-z])/g, k => k[1].toUpperCase())
+      camelCased =
+        chunks[i][0] === '_'
+          ? '_' + chunks[i].slice(1).replace(/_([a-z])/g, (k) => k[1].toUpperCase())
+          : chunks[i].replace(/_([a-z])/g, (k) => k[1].toUpperCase());
 
       if (chunks[i] === camelCased) {
-        code += `params['${chunks[i]}'] == null${i === len - 1 ? '' : ' || '}`
+        code += `params['${chunks[i]}'] == null${i === len - 1 ? '' : ' || '}`;
       } else {
-        code += `(params['${chunks[i]}'] == null && params['${camelCased}'] == null)${i === len - 1 ? '' : ' || '}`
+        code += `(params['${chunks[i]}'] == null && params['${camelCased}'] == null)${
+          i === len - 1 ? '' : ' || '
+        }`;
       }
     }
     code += `)) {
-      const err = new this[kConfigurationError]('Missing required parameter of the url: ${params.join(', ')}')
+      const err = new this[kConfigurationError]('Missing required parameter of the url: ${params.join(
+        ', '
+      )}')
       return handleError(err, callback)
-    `
-  })
+    `;
+  });
 
   if (chunks.length > 1) {
-    code += '\n}'
+    code += '\n}';
   }
 
   if (code.length) {
-    code = '// check required url components\n' + code
+    code = '// check required url components\n' + code;
   }
 
-  return code.trim()
+  return code.trim();
 }
 
-function generateDocumentation ({ documentation }, op) {
+function generateDocumentation({ documentation }, op) {
   // we use `replace(/\u00A0/g, ' ')` to remove no breaking spaces
   // because some parts of the description fields are using it
 
-  if (documentation == null) return ''
+  if (documentation == null) return '';
 
-  let doc = '/**\n'
-  doc += `     * Perform a ${op} request\n`
+  let doc = '/**\n';
+  doc += `     * Perform a ${op} request\n`;
   if (documentation.description) {
-    doc += `     * ${documentation.description.replace(/\u00A0/g, ' ')}\n`
+    doc += `     * ${documentation.description.replace(/\u00A0/g, ' ')}\n`;
   }
   if (documentation.url) {
-    doc += `     * ${documentation.url}\n`
+    doc += `     * ${documentation.url}\n`;
   }
-  doc += '     */'
+  doc += '     */';
 
-  return doc
+  return doc;
 }
 
-function needsPathValidation (api) {
-  return noPathValidation.indexOf(api) === -1
+function needsPathValidation(api) {
+  return noPathValidation.indexOf(api) === -1;
 }
 
-function intersect (first, ...rest) {
+function intersect(first, ...rest) {
   return rest.reduce((accum, current) => {
-    return accum.filter(x => current.indexOf(x) !== -1)
-  }, first)
+    return accum.filter((x) => current.indexOf(x) !== -1);
+  }, first);
 }
 
-function Uppercase (str) {
-  return str[0].toUpperCase() + str.slice(1)
+function Uppercase(str) {
+  return str[0].toUpperCase() + str.slice(1);
 }
 
-module.exports = generateNamespace
+module.exports = generateNamespace;

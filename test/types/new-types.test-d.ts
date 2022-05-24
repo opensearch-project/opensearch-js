@@ -28,92 +28,101 @@
  * under the License.
  */
 
-import { expectType, expectNotType, expectError } from 'tsd'
-import { Client, RequestEvent, ResurrectEvent, ApiError, ApiResponse, opensearchtypes } from '../../'
-import type { Client as NewTypes } from '../../api/new'
-import { TransportRequestPromise, Context } from '../../lib/Transport'
+import { expectType, expectNotType, expectError } from 'tsd';
+import {
+  Client,
+  RequestEvent,
+  ResurrectEvent,
+  ApiError,
+  ApiResponse,
+  opensearchtypes,
+} from '../../';
+import type { Client as NewTypes } from '../../api/new';
+import { TransportRequestPromise, Context } from '../../lib/Transport';
 
 // @ts-expect-error
 const client: NewTypes = new Client({
-  node: 'http://localhost:9200'
-})
+  node: 'http://localhost:9200',
+});
 
 client.on('request', (err, meta) => {
-  expectType<ApiError>(err)
-  expectType<RequestEvent>(meta)
-})
+  expectType<ApiError>(err);
+  expectType<RequestEvent>(meta);
+});
 
 client.on('response', (err, meta) => {
-  expectType<ApiError>(err)
-  expectType<RequestEvent>(meta)
-})
+  expectType<ApiError>(err);
+  expectType<RequestEvent>(meta);
+});
 
 client.on('sniff', (err, meta) => {
-  expectType<ApiError>(err)
-  expectType<RequestEvent>(meta)
-})
+  expectType<ApiError>(err);
+  expectType<RequestEvent>(meta);
+});
 
 client.on('resurrect', (err, meta) => {
-  expectType<null>(err)
-  expectType<ResurrectEvent>(meta)
-})
+  expectType<null>(err);
+  expectType<ResurrectEvent>(meta);
+});
 
 // No generics
 {
-  const response = await client.cat.count({ index: 'test' })
+  const response = await client.cat.count({ index: 'test' });
 
-  expectType<opensearchtypes.CatCountResponse>(response.body)
-  expectType<Context>(response.meta.context)
+  expectType<opensearchtypes.CatCountResponse>(response.body);
+  expectType<Context>(response.meta.context);
 }
 
 // Define only the context
 {
-  const response = await client.cat.count<string>({ index: 'test' })
+  const response = await client.cat.count<string>({ index: 'test' });
 
-  expectType<opensearchtypes.CatCountResponse>(response.body)
-  expectType<string>(response.meta.context)
+  expectType<opensearchtypes.CatCountResponse>(response.body);
+  expectType<string>(response.meta.context);
 }
 
 // Check API returned type and optional parameters
 {
-  const promise = client.info()
-  expectType<TransportRequestPromise<ApiResponse<opensearchtypes.InfoResponse, Context>>>(promise)
+  const promise = client.info();
+  expectType<TransportRequestPromise<ApiResponse<opensearchtypes.InfoResponse, Context>>>(promise);
   promise
-    .then(result => expectType<ApiResponse<opensearchtypes.InfoResponse, Context>>(result))
-    .catch((err: ApiError) => expectType<ApiError>(err))
-  expectType<void>(promise.abort())
+    .then((result) => expectType<ApiResponse<opensearchtypes.InfoResponse, Context>>(result))
+    .catch((err: ApiError) => expectType<ApiError>(err));
+  expectType<void>(promise.abort());
 }
 
 {
-  const promise = client.info({ pretty: true })
-  expectType<TransportRequestPromise<ApiResponse<opensearchtypes.InfoResponse, Context>>>(promise)
+  const promise = client.info({ pretty: true });
+  expectType<TransportRequestPromise<ApiResponse<opensearchtypes.InfoResponse, Context>>>(promise);
   promise
-    .then(result => expectType<ApiResponse<opensearchtypes.InfoResponse, Context>>(result))
-    .catch((err: ApiError) => expectType<ApiError>(err))
-  expectType<void>(promise.abort())
+    .then((result) => expectType<ApiResponse<opensearchtypes.InfoResponse, Context>>(result))
+    .catch((err: ApiError) => expectType<ApiError>(err));
+  expectType<void>(promise.abort());
 }
 
 {
-  const promise = client.info({ pretty: true }, { ignore: [404] })
-  expectType<TransportRequestPromise<ApiResponse<opensearchtypes.InfoResponse, Context>>>(promise)
+  const promise = client.info({ pretty: true }, { ignore: [404] });
+  expectType<TransportRequestPromise<ApiResponse<opensearchtypes.InfoResponse, Context>>>(promise);
   promise
-    .then(result => expectType<ApiResponse<opensearchtypes.InfoResponse, Context>>(result))
-    .catch((err: ApiError) => expectType<ApiError>(err))
-  expectType<void>(promise.abort())
+    .then((result) => expectType<ApiResponse<opensearchtypes.InfoResponse, Context>>(result))
+    .catch((err: ApiError) => expectType<ApiError>(err));
+  expectType<void>(promise.abort());
 }
 
 // body that does not respect the RequestBody constraint
 expectError(
-  client.search({
-    index: 'hello',
-    body: 42
-  }).then(console.log)
-)
+  client
+    .search({
+      index: 'hello',
+      body: 42,
+    })
+    .then(console.log)
+);
 
 // @ts-expect-error
-client.async_search.get()
+client.async_search.get();
 
 // the child api should return a OpenSearchDashboardsClient instance
-const child = client.child()
-expectType<NewTypes>(child)
-expectNotType<Client>(child)
+const child = client.child();
+expectType<NewTypes>(child);
+expectNotType<Client>(child);

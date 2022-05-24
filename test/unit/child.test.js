@@ -28,278 +28,272 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const { test } = require('tap')
-const { errors } = require('../../index')
+const { test } = require('tap');
+const { errors } = require('../../index');
 const {
   Client,
   buildServer,
-  connection: { MockConnection }
-} = require('../utils')
+  connection: { MockConnection },
+} = require('../utils');
 
-test('Should create a child client (headers check)', t => {
-  t.plan(4)
+test('Should create a child client (headers check)', (t) => {
+  t.plan(4);
 
-  let count = 0
-  function handler (req, res) {
+  let count = 0;
+  function handler(req, res) {
     if (count++ === 0) {
-      t.match(req.headers, { 'x-foo': 'bar' })
+      t.match(req.headers, { 'x-foo': 'bar' });
     } else {
-      t.match(req.headers, { 'x-baz': 'faz' })
+      t.match(req.headers, { 'x-baz': 'faz' });
     }
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.end(JSON.stringify({ hello: 'world' }))
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
   }
 
   buildServer(handler, ({ port }, server) => {
     const client = new Client({
       node: `http://localhost:${port}`,
-      headers: { 'x-foo': 'bar' }
-    })
+      headers: { 'x-foo': 'bar' },
+    });
     const child = client.child({
-      headers: { 'x-baz': 'faz' }
-    })
+      headers: { 'x-baz': 'faz' },
+    });
 
     client.info((err, res) => {
-      t.error(err)
+      t.error(err);
       child.info((err, res) => {
-        t.error(err)
-        server.stop()
-      })
-    })
-  })
-})
+        t.error(err);
+        server.stop();
+      });
+    });
+  });
+});
 
-test('Should create a child client (timeout check)', t => {
-  t.plan(2)
+test('Should create a child client (timeout check)', (t) => {
+  t.plan(2);
 
-  function handler (req, res) {
+  function handler(req, res) {
     setTimeout(() => {
-      res.setHeader('Content-Type', 'application/json;utf=8')
-      res.end(JSON.stringify({ hello: 'world' }))
-    }, 50)
+      res.setHeader('Content-Type', 'application/json;utf=8');
+      res.end(JSON.stringify({ hello: 'world' }));
+    }, 50);
   }
 
   buildServer(handler, ({ port }, server) => {
-    const client = new Client({ node: `http://localhost:${port}` })
-    const child = client.child({ requestTimeout: 25, maxRetries: 0 })
+    const client = new Client({ node: `http://localhost:${port}` });
+    const child = client.child({ requestTimeout: 25, maxRetries: 0 });
 
     client.info((err, res) => {
-      t.error(err)
+      t.error(err);
       child.info((err, res) => {
-        t.ok(err instanceof errors.TimeoutError)
-        server.stop()
-      })
-    })
-  })
-})
+        t.ok(err instanceof errors.TimeoutError);
+        server.stop();
+      });
+    });
+  });
+});
 
-test('Client extensions', t => {
-  t.test('One level', t => {
-    t.plan(1)
+test('Client extensions', (t) => {
+  t.test('One level', (t) => {
+    t.plan(1);
 
-    const client = new Client({ node: 'http://localhost:9200' })
+    const client = new Client({ node: 'http://localhost:9200' });
     client.extend('utility.index', () => {
-      return () => t.ok('called')
-    })
+      return () => t.ok('called');
+    });
 
-    const child = client.child()
-    child.utility.index()
-  })
+    const child = client.child();
+    child.utility.index();
+  });
 
-  t.test('Two levels', t => {
-    t.plan(2)
+  t.test('Two levels', (t) => {
+    t.plan(2);
 
-    const client = new Client({ node: 'http://localhost:9200' })
+    const client = new Client({ node: 'http://localhost:9200' });
     client.extend('utility.index', () => {
-      return () => t.ok('called')
-    })
+      return () => t.ok('called');
+    });
 
-    const child = client.child()
+    const child = client.child();
     child.extend('utility.search', () => {
-      return () => t.ok('called')
-    })
+      return () => t.ok('called');
+    });
 
-    const grandchild = child.child()
-    grandchild.utility.index()
-    grandchild.utility.search()
-  })
+    const grandchild = child.child();
+    grandchild.utility.index();
+    grandchild.utility.search();
+  });
 
-  t.test('The child should not extend the parent', t => {
-    t.plan(1)
+  t.test('The child should not extend the parent', (t) => {
+    t.plan(1);
 
-    const client = new Client({ node: 'http://localhost:9200' })
-    const child = client.child()
+    const client = new Client({ node: 'http://localhost:9200' });
+    const child = client.child();
 
     child.extend('utility.index', () => {
-      return () => t.fail('Should not be called')
-    })
+      return () => t.fail('Should not be called');
+    });
 
     try {
-      client.utility.index()
+      client.utility.index();
     } catch (err) {
-      t.ok(err)
+      t.ok(err);
     }
-  })
+  });
 
-  t.end()
-})
+  t.end();
+});
 
-test('Should share the event emitter', t => {
-  t.test('One level', t => {
-    t.plan(2)
+test('Should share the event emitter', (t) => {
+  t.test('One level', (t) => {
+    t.plan(2);
 
     const client = new Client({
       node: 'http://localhost:9200',
-      Connection: MockConnection
-    })
-    const child = client.child()
+      Connection: MockConnection,
+    });
+    const child = client.child();
 
     client.on('response', (err, meta) => {
-      t.error(err)
-    })
+      t.error(err);
+    });
 
     child.info((err, res) => {
-      t.error(err)
-    })
-  })
+      t.error(err);
+    });
+  });
 
-  t.test('Two levels', t => {
-    t.plan(2)
+  t.test('Two levels', (t) => {
+    t.plan(2);
 
     const client = new Client({
       node: 'http://localhost:9200',
-      Connection: MockConnection
-    })
-    const child = client.child()
-    const grandchild = child.child()
+      Connection: MockConnection,
+    });
+    const child = client.child();
+    const grandchild = child.child();
 
     client.on('response', (err, meta) => {
-      t.error(err)
-    })
+      t.error(err);
+    });
 
     grandchild.info((err, res) => {
-      t.error(err)
-    })
-  })
+      t.error(err);
+    });
+  });
 
-  t.test('Child listener - one level', t => {
-    t.plan(2)
+  t.test('Child listener - one level', (t) => {
+    t.plan(2);
 
     const client = new Client({
       node: 'http://localhost:9200',
-      Connection: MockConnection
-    })
-    const child = client.child()
+      Connection: MockConnection,
+    });
+    const child = client.child();
 
     child.on('response', (err, meta) => {
-      t.error(err)
-    })
+      t.error(err);
+    });
 
     child.info((err, res) => {
-      t.error(err)
-    })
-  })
+      t.error(err);
+    });
+  });
 
-  t.test('Child listener - two levels', t => {
-    t.plan(2)
+  t.test('Child listener - two levels', (t) => {
+    t.plan(2);
 
     const client = new Client({
       node: 'http://localhost:9200',
-      Connection: MockConnection
-    })
-    const child = client.child()
-    const grandchild = child.child()
+      Connection: MockConnection,
+    });
+    const child = client.child();
+    const grandchild = child.child();
 
     child.on('response', (err, meta) => {
-      t.error(err)
-    })
+      t.error(err);
+    });
 
     grandchild.info((err, res) => {
-      t.error(err)
-    })
-  })
+      t.error(err);
+    });
+  });
 
-  t.end()
-})
+  t.end();
+});
 
-test('Should create a child client (generateRequestId check)', t => {
-  t.plan(6)
+test('Should create a child client (generateRequestId check)', (t) => {
+  t.plan(6);
 
-  function generateRequestId1 () {
-    let id = 0
-    return () => `trace-1-${id++}`
+  function generateRequestId1() {
+    let id = 0;
+    return () => `trace-1-${id++}`;
   }
 
-  function generateRequestId2 () {
-    let id = 0
-    return () => `trace-2-${id++}`
+  function generateRequestId2() {
+    let id = 0;
+    return () => `trace-2-${id++}`;
   }
 
   const client = new Client({
     node: 'http://localhost:9200',
     Connection: MockConnection,
-    generateRequestId: generateRequestId1()
-  })
+    generateRequestId: generateRequestId1(),
+  });
   const child = client.child({
     Connection: MockConnection,
-    generateRequestId: generateRequestId2()
-  })
+    generateRequestId: generateRequestId2(),
+  });
 
-  let count = 0
+  let count = 0;
   client.on('request', (err, { meta }) => {
-    t.error(err)
-    t.equal(
-      meta.request.id,
-      count++ === 0 ? 'trace-1-0' : 'trace-2-0'
-    )
-  })
+    t.error(err);
+    t.equal(meta.request.id, count++ === 0 ? 'trace-1-0' : 'trace-2-0');
+  });
 
-  client.info(err => {
-    t.error(err)
-    child.info(t.error)
-  })
-})
+  client.info((err) => {
+    t.error(err);
+    child.info(t.error);
+  });
+});
 
-test('Should create a child client (name check)', t => {
-  t.plan(8)
+test('Should create a child client (name check)', (t) => {
+  t.plan(8);
 
   const client = new Client({
     node: 'http://localhost:9200',
     Connection: MockConnection,
-    name: 'parent'
-  })
+    name: 'parent',
+  });
   const child = client.child({
     Connection: MockConnection,
-    name: 'child'
-  })
+    name: 'child',
+  });
 
-  t.equal(client.name, 'parent')
-  t.equal(child.name, 'child')
+  t.equal(client.name, 'parent');
+  t.equal(child.name, 'child');
 
-  let count = 0
+  let count = 0;
   client.on('request', (err, { meta }) => {
-    t.error(err)
-    t.equal(
-      meta.name,
-      count++ === 0 ? 'parent' : 'child'
-    )
-  })
+    t.error(err);
+    t.equal(meta.name, count++ === 0 ? 'parent' : 'child');
+  });
 
-  client.info(err => {
-    t.error(err)
-    child.info(t.error)
-  })
-})
+  client.info((err) => {
+    t.error(err);
+    child.info(t.error);
+  });
+});
 
-test('Should create a child client (auth check)', t => {
-  t.plan(4)
+test('Should create a child client (auth check)', (t) => {
+  t.plan(4);
 
-  function handler (req, res) {
-    t.match(req.headers, { authorization: 'Basic Zm9vOmJhcg==' })
-    res.setHeader('Content-Type', 'application/json;utf=8')
-    res.end(JSON.stringify({ hello: 'world' }))
+  function handler(req, res) {
+    t.match(req.headers, { authorization: 'Basic Zm9vOmJhcg==' });
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
   }
 
   buildServer(handler, ({ port }, server) => {
@@ -307,21 +301,21 @@ test('Should create a child client (auth check)', t => {
       node: `http://localhost:${port}`,
       auth: {
         username: 'foo',
-        password: 'bar'
-      }
-    })
+        password: 'bar',
+      },
+    });
     const child = client.child({
       auth: {
-        username: 'foobar'
-      }
-    })
+        username: 'foobar',
+      },
+    });
 
     client.info((err, res) => {
-      t.error(err)
+      t.error(err);
       child.info((err, res) => {
-        t.error(err)
-        server.stop()
-      })
-    })
-  })
-})
+        t.error(err);
+        server.stop();
+      });
+    });
+  });
+});

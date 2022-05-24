@@ -17,6 +17,7 @@ OpenSearch Node.js client
 - [Code of Conduct](#code-of-conduct)
 - [License](#license)
 - [Copyright](#copyright)
+
 ## Welcome!
 
 **[opensearch-js](https://www.npmjs.com/package/@opensearch-project/opensearch)** is [a community-driven, open source fork](https://aws.amazon.com/blogs/opensource/introducing-opensearch/) of elasticsearch-js licensed under the [Apache v2.0 License](LICENSE.txt). For more information, see [opensearch.org](https://opensearch.org/).
@@ -40,9 +41,8 @@ If you prefer to add the client manually or just want to examine the source code
 Then require the client:
 
 ```javascript
-const { Client } = require('@opensearch-project/opensearch')
+const { Client } = require('@opensearch-project/opensearch');
 ```
-
 
 ### Sample code
 
@@ -63,115 +63,112 @@ var ca_certs_path = '/full/path/to/root-ca.pem';
 var { Client } = require('@opensearch-project/opensearch');
 var fs = require('fs');
 var client = new Client({
-    node: protocol + '://' + auth + '@' + host + ':' + port,
-    ssl: {
-        ca: fs.readFileSync(ca_certs_path),
-        // You can turn off certificate verification (rejectUnauthorized: false) if you're using self-signed certificates with a hostname mismatch.
-        // cert: fs.readFileSync(client_cert_path),
-        // key: fs.readFileSync(client_key_path)
-    }
-})
+  node: protocol + '://' + auth + '@' + host + ':' + port,
+  ssl: {
+    ca: fs.readFileSync(ca_certs_path),
+    // You can turn off certificate verification (rejectUnauthorized: false) if you're using self-signed certificates with a hostname mismatch.
+    // cert: fs.readFileSync(client_cert_path),
+    // key: fs.readFileSync(client_key_path)
+  },
+});
 
 async function search() {
+  // Create an index with non-default settings.
+  var index_name = 'books';
+  var settings = {
+    settings: {
+      index: {
+        number_of_shards: 4,
+        number_of_replicas: 3,
+      },
+    },
+  };
 
-    // Create an index with non-default settings.
-    var index_name = 'books'
-    var settings = {
-        'settings': {
-            'index': {
-                'number_of_shards': 4,
-                'number_of_replicas': 3
-            }
-        }
-    }
+  var response = await client.indices.create({
+    index: index_name,
+    body: settings,
+  });
 
-    var response = await client.indices.create({
-        index: index_name,
-        body: settings
-    })
+  console.log('Creating index:');
+  console.log(response.body);
 
-    console.log('Creating index:')
-    console.log(response.body)
+  // Add a document to the index.
+  var document = {
+    title: 'The Outsider',
+    author: 'Stephen King',
+    year: '2018',
+    genre: 'Crime fiction',
+  };
 
-    // Add a document to the index.
-    var document = {
-        'title': 'The Outsider',
-        'author': 'Stephen King',
-        'year': '2018',
-        'genre': 'Crime fiction'
-    }
+  var id = '1';
 
-    var id = '1'
+  var response = await client.index({
+    id: id,
+    index: index_name,
+    body: document,
+    refresh: true,
+  });
 
-    var response = await client.index({
-        id: id,
-        index: index_name,
-        body: document,
-        refresh: true
-    })
+  console.log('Adding document:');
+  console.log(response.body);
 
-    console.log('Adding document:')
-    console.log(response.body)
+  // Search for the document.
+  var query = {
+    query: {
+      match: {
+        title: {
+          query: 'The Outsider',
+        },
+      },
+    },
+  };
 
-    // Search for the document.
-    var query = {
-        'query': {
-            'match': {
-                'title': {
-                    'query': 'The Outsider'
-                }
-            }
-        }
-    }
+  var response = await client.search({
+    index: index_name,
+    body: query,
+  });
 
-    var response = await client.search({
-        index: index_name,
-        body: query
-    })
+  console.log('Search results:');
+  console.log(response.body.hits);
 
-    console.log('Search results:')
-    console.log(response.body.hits)
+  // Delete the document.
+  var response = await client.delete({
+    index: index_name,
+    id: id,
+  });
 
-    // Delete the document.
-    var response = await client.delete({
-        index: index_name,
-        id: id
-    })
+  console.log('Deleting document:');
+  console.log(response.body);
 
-    console.log('Deleting document:')
-    console.log(response.body)
+  // Delete the index.
+  var response = await client.indices.delete({
+    index: index_name,
+  });
 
-    // Delete the index.
-    var response = await client.indices.delete({
-        index: index_name
-    })
-
-    console.log('Deleting index:')
-    console.log(response.body)
+  console.log('Deleting index:');
+  console.log(response.body);
 }
 
-search().catch(console.log)
+search().catch(console.log);
 ```
 
 ## Project Resources
 
-* [Project Website](https://opensearch.org/)
-* [Downloads](https://opensearch.org/downloads.html).
-* [Documentation](https://opensearch.org/docs/)
-* Need help? Try [Forums](https://discuss.opendistrocommunity.dev/)
-* [Project Principles](https://opensearch.org/#principles)
-* [Contributing to OpenSearch](CONTRIBUTING.md)
-* [Maintainer Responsibilities](MAINTAINERS.md)
-* [Release Management](RELEASING.md)
-* [Admin Responsibilities](ADMINS.md)
-* [Security](SECURITY.md)
-* [NPM Page](https://www.npmjs.com/package/@opensearch-project/opensearch)
-
+- [Project Website](https://opensearch.org/)
+- [Downloads](https://opensearch.org/downloads.html).
+- [Documentation](https://opensearch.org/docs/)
+- Need help? Try [Forums](https://discuss.opendistrocommunity.dev/)
+- [Project Principles](https://opensearch.org/#principles)
+- [Contributing to OpenSearch](CONTRIBUTING.md)
+- [Maintainer Responsibilities](MAINTAINERS.md)
+- [Release Management](RELEASING.md)
+- [Admin Responsibilities](ADMINS.md)
+- [Security](SECURITY.md)
+- [NPM Page](https://www.npmjs.com/package/@opensearch-project/opensearch)
 
 ## Code of Conduct
 
 This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUCT.md). For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq), or contact [opensource-codeofconduct@amazon.com](mailto:opensource-codeofconduct@amazon.com) with any additional questions or comments.
-
 
 ## License
 

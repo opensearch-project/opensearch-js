@@ -28,28 +28,46 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['fields', 'ignore_unavailable', 'allow_no_indices', 'expand_wildcards', 'include_unmapped', 'pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { ignoreUnavailable: 'ignore_unavailable', allowNoIndices: 'allow_no_indices', expandWildcards: 'expand_wildcards', includeUnmapped: 'include_unmapped', errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = [
+  'fields',
+  'ignore_unavailable',
+  'allow_no_indices',
+  'expand_wildcards',
+  'include_unmapped',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+];
+const snakeCase = {
+  ignoreUnavailable: 'ignore_unavailable',
+  allowNoIndices: 'allow_no_indices',
+  expandWildcards: 'expand_wildcards',
+  includeUnmapped: 'include_unmapped',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+};
 
-function fieldCapsApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function fieldCapsApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { method, body, index, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, index, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if ((index) != null) {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + encodeURIComponent(index) + '/' + '_field_caps'
+  let path = '';
+  if (index != null) {
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + encodeURIComponent(index) + '/' + '_field_caps';
   } else {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + '_field_caps'
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + '_field_caps';
   }
 
   // build request object
@@ -57,10 +75,10 @@ function fieldCapsApi (params, options, callback) {
     method,
     path,
     body: body || '',
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = fieldCapsApi
+module.exports = fieldCapsApi;

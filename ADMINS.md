@@ -4,22 +4,23 @@
   - [Prioritize Security](#prioritize-security)
   - [Enforce Code of Conduct](#enforce-code-of-conduct)
   - [Adopt Organizational Best Practices](#adopt-organizational-best-practices)
+
 ## Overview
 
 This document explains who the admins are (see below), what they do in this repo, and how they should be doing it. If you're interested in becoming a maintainer, see [MAINTAINERS](MAINTAINERS.md). If you're interested in contributing, see [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Current Admins
 
-| Admin                    | GitHub ID                               | Affiliation |
-| -------------------------| --------------------------------------- | ----------- |
-| Anan Zhuang | [ananzh](https://github.com/ananzh) | Amazon |
-| Bishoy Boktor | [boktorbb-amzn](https://github.com/boktorbb-amzn) | Amazon |
-| Charlotte                | [CEHENKLE](https://github.com/CEHENKLE) | Amazon |
-| Henri Yandell            | [hyandell](https://github.com/hyandell) | Amazon      |
-| Kawika (Rocky) Avilla  | [kavilla](https://github.com/kavilla) | Amazon |
-| Mihir Soni | [mihirsoni](https://github.com/mihirsoni) | Amazon |
-| Sean Neumann | [seanneumann](https://github.com/seanneumann) | Amazon | 
-| Tommy Markley | [tmarkley](https://github.com/tmarkley) | Amazon | 
+| Admin                 | GitHub ID                                         | Affiliation |
+| --------------------- | ------------------------------------------------- | ----------- |
+| Anan Zhuang           | [ananzh](https://github.com/ananzh)               | Amazon      |
+| Bishoy Boktor         | [boktorbb-amzn](https://github.com/boktorbb-amzn) | Amazon      |
+| Charlotte             | [CEHENKLE](https://github.com/CEHENKLE)           | Amazon      |
+| Henri Yandell         | [hyandell](https://github.com/hyandell)           | Amazon      |
+| Kawika (Rocky) Avilla | [kavilla](https://github.com/kavilla)             | Amazon      |
+| Mihir Soni            | [mihirsoni](https://github.com/mihirsoni)         | Amazon      |
+| Sean Neumann          | [seanneumann](https://github.com/seanneumann)     | Amazon      |
+| Tommy Markley         | [tmarkley](https://github.com/tmarkley)           | Amazon      |
 
 ## Admin Responsibilities
 

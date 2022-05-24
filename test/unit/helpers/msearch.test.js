@@ -28,377 +28,43 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const { test } = require('tap')
-const { errors } = require('../../../')
-const { Client, connection } = require('../../utils')
-const FakeTimers = require('@sinonjs/fake-timers')
+const { test } = require('tap');
+const { errors } = require('../../../');
+const { Client, connection } = require('../../utils');
+const FakeTimers = require('@sinonjs/fake-timers');
 
-test('Basic', async t => {
+test('Basic', async (t) => {
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
+    onRequest(params) {
       return {
         body: {
-          responses: [{
-            status: 200,
-            hits: {
-              hits: [
-                { _source: { one: 'one' } },
-                { _source: { two: 'two' } },
-                { _source: { three: 'three' } }
-              ]
-            }
-          }]
-        }
-      }
-    }
-  })
-
-  const client = new Client({
-    node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
-
-  const m = client.helpers.msearch({ operations: 1 })
-
-  const result = await m.search(
-    { index: 'test' },
-    { query: { match: { foo: 'bar' } } }
-  )
-
-  t.same(result.body, {
-    status: 200,
-    hits: {
-      hits: [
-        { _source: { one: 'one' } },
-        { _source: { two: 'two' } },
-        { _source: { three: 'three' } }
-      ]
-    }
-  })
-
-  t.same(result.documents, [
-    { one: 'one' },
-    { two: 'two' },
-    { three: 'three' }
-  ])
-
-  t.teardown(() => m.stop())
-})
-
-test('Multiple searches (inside async iterator)', t => {
-  t.plan(6)
-
-  const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
-      return {
-        body: {
-          responses: [{
-            status: 200,
-            hits: {
-              hits: [
-                { _source: { one: 'one' } },
-                { _source: { two: 'two' } },
-                { _source: { three: 'three' } }
-              ]
-            }
-          }, {
-            status: 200,
-            hits: {
-              hits: [
-                { _source: { four: 'four' } },
-                { _source: { five: 'five' } },
-                { _source: { six: 'six' } }
-              ]
-            }
-          }]
-        }
-      }
-    }
-  })
-
-  const client = new Client({
-    node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
-
-  const m = client.helpers.msearch({ operations: 2 })
-
-  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
-    t.error(err)
-    t.same(result.body, {
-      status: 200,
-      hits: {
-        hits: [
-          { _source: { one: 'one' } },
-          { _source: { two: 'two' } },
-          { _source: { three: 'three' } }
-        ]
-      }
-    })
-
-    t.same(result.documents, [
-      { one: 'one' },
-      { two: 'two' },
-      { three: 'three' }
-    ])
-  })
-
-  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
-    t.error(err)
-    t.same(result.body, {
-      status: 200,
-      hits: {
-        hits: [
-          { _source: { four: 'four' } },
-          { _source: { five: 'five' } },
-          { _source: { six: 'six' } }
-        ]
-      }
-    })
-
-    t.same(result.documents, [
-      { four: 'four' },
-      { five: 'five' },
-      { six: 'six' }
-    ])
-  })
-
-  t.teardown(() => m.stop())
-})
-
-test('Multiple searches (async iterator exits)', t => {
-  t.plan(6)
-
-  const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
-      return {
-        body: {
-          responses: [{
-            status: 200,
-            hits: {
-              hits: [
-                { _source: { one: 'one' } },
-                { _source: { two: 'two' } },
-                { _source: { three: 'three' } }
-              ]
-            }
-          }, {
-            status: 200,
-            hits: {
-              hits: [
-                { _source: { four: 'four' } },
-                { _source: { five: 'five' } },
-                { _source: { six: 'six' } }
-              ]
-            }
-          }]
-        }
-      }
-    }
-  })
-
-  const client = new Client({
-    node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
-
-  const m = client.helpers.msearch()
-
-  m.search({ index: 'test' }, { query: {} }, (err, result) => {
-    t.error(err)
-    t.same(result.body, {
-      status: 200,
-      hits: {
-        hits: [
-          { _source: { one: 'one' } },
-          { _source: { two: 'two' } },
-          { _source: { three: 'three' } }
-        ]
-      }
-    })
-
-    t.same(result.documents, [
-      { one: 'one' },
-      { two: 'two' },
-      { three: 'three' }
-    ])
-  })
-
-  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
-    t.error(err)
-    t.same(result.body, {
-      status: 200,
-      hits: {
-        hits: [
-          { _source: { four: 'four' } },
-          { _source: { five: 'five' } },
-          { _source: { six: 'six' } }
-        ]
-      }
-    })
-
-    t.same(result.documents, [
-      { four: 'four' },
-      { five: 'five' },
-      { six: 'six' }
-    ])
-  })
-
-  setImmediate(() => m.stop())
-})
-
-test('Stop a msearch processor (promises)', async t => {
-  const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
-      return {}
-    }
-  })
-
-  const client = new Client({
-    node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
-
-  const m = client.helpers.msearch({ operations: 1 })
-
-  m.stop()
-
-  try {
-    await m.search(
-      { index: 'test' },
-      { query: { match: { foo: 'bar' } } }
-    )
-  } catch (err) {
-    t.equal(err.message, 'The msearch processor has been stopped')
-  }
-
-  t.teardown(() => m.stop())
-})
-
-test('Stop a msearch processor (callbacks)', t => {
-  t.plan(1)
-
-  const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
-      return {}
-    }
-  })
-
-  const client = new Client({
-    node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
-
-  const m = client.helpers.msearch()
-
-  m.stop()
-
-  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
-    t.equal(err.message, 'The msearch processor has been stopped')
-  })
-})
-
-test('Bad header', t => {
-  t.plan(2)
-
-  const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
-      return {}
-    }
-  })
-
-  const client = new Client({
-    node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
-
-  const m = client.helpers.msearch()
-
-  m.search(null, { query: { match: { foo: 'bar' } } }, (err, result) => {
-    t.equal(err.message, 'The header should be an object')
-  })
-
-  m.search(null, { query: { match: { foo: 'bar' } } })
-    .catch(err => {
-      t.equal(err.message, 'The header should be an object')
-    })
-
-  t.teardown(() => m.stop())
-})
-
-test('Bad body', t => {
-  t.plan(2)
-
-  const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
-      return {}
-    }
-  })
-
-  const client = new Client({
-    node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
-
-  const m = client.helpers.msearch()
-
-  m.search({ index: 'test' }, null, (err, result) => {
-    t.equal(err.message, 'The body should be an object')
-  })
-
-  m.search({ index: 'test' }, null)
-    .catch(err => {
-      t.equal(err.message, 'The body should be an object')
-    })
-
-  t.teardown(() => m.stop())
-})
-
-test('Retry on 429', async t => {
-  let count = 0
-  const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
-      if (count++ === 0) {
-        return {
-          body: {
-            responses: [{
-              status: 429,
-              error: {}
-            }]
-          }
-        }
-      } else {
-        return {
-          body: {
-            responses: [{
+          responses: [
+            {
               status: 200,
               hits: {
                 hits: [
                   { _source: { one: 'one' } },
                   { _source: { two: 'two' } },
-                  { _source: { three: 'three' } }
-                ]
-              }
-            }]
-          }
-        }
-      }
-    }
-  })
+                  { _source: { three: 'three' } },
+                ],
+              },
+            },
+          ],
+        },
+      };
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch({ operations: 1, wait: 10 })
+  const m = client.helpers.msearch({ operations: 1 });
 
-  const result = await m.search(
-    { index: 'test' },
-    { query: { match: { foo: 'bar' } } }
-  )
+  const result = await m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } });
 
   t.same(result.body, {
     status: 200,
@@ -406,403 +72,715 @@ test('Retry on 429', async t => {
       hits: [
         { _source: { one: 'one' } },
         { _source: { two: 'two' } },
-        { _source: { three: 'three' } }
-      ]
-    }
-  })
+        { _source: { three: 'three' } },
+      ],
+    },
+  });
 
-  t.same(result.documents, [
-    { one: 'one' },
-    { two: 'two' },
-    { three: 'three' }
-  ])
+  t.same(result.documents, [{ one: 'one' }, { two: 'two' }, { three: 'three' }]);
 
-  t.teardown(() => m.stop())
-})
+  t.teardown(() => m.stop());
+});
 
-test('Single search errors', async t => {
+test('Multiple searches (inside async iterator)', (t) => {
+  t.plan(6);
+
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
+    onRequest(params) {
       return {
         body: {
-          responses: [{
-            status: 400,
-            error: { foo: 'bar' }
-          }]
-        }
-      }
-    }
-  })
+          responses: [
+            {
+              status: 200,
+              hits: {
+                hits: [
+                  { _source: { one: 'one' } },
+                  { _source: { two: 'two' } },
+                  { _source: { three: 'three' } },
+                ],
+              },
+            },
+            {
+              status: 200,
+              hits: {
+                hits: [
+                  { _source: { four: 'four' } },
+                  { _source: { five: 'five' } },
+                  { _source: { six: 'six' } },
+                ],
+              },
+            },
+          ],
+        },
+      };
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch({ operations: 1 })
+  const m = client.helpers.msearch({ operations: 2 });
 
-  try {
-    await m.search(
-      { index: 'test' },
-      { query: { match: { foo: 'bar' } } }
-    )
-  } catch (err) {
-    t.ok(err instanceof errors.ResponseError)
-  }
+  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
+    t.error(err);
+    t.same(result.body, {
+      status: 200,
+      hits: {
+        hits: [
+          { _source: { one: 'one' } },
+          { _source: { two: 'two' } },
+          { _source: { three: 'three' } },
+        ],
+      },
+    });
 
-  t.teardown(() => m.stop())
-})
+    t.same(result.documents, [{ one: 'one' }, { two: 'two' }, { three: 'three' }]);
+  });
 
-test('Entire msearch fails', t => {
-  t.plan(4)
+  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
+    t.error(err);
+    t.same(result.body, {
+      status: 200,
+      hits: {
+        hits: [
+          { _source: { four: 'four' } },
+          { _source: { five: 'five' } },
+          { _source: { six: 'six' } },
+        ],
+      },
+    });
+
+    t.same(result.documents, [{ four: 'four' }, { five: 'five' }, { six: 'six' }]);
+  });
+
+  t.teardown(() => m.stop());
+});
+
+test('Multiple searches (async iterator exits)', (t) => {
+  t.plan(6);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
+    onRequest(params) {
+      return {
+        body: {
+          responses: [
+            {
+              status: 200,
+              hits: {
+                hits: [
+                  { _source: { one: 'one' } },
+                  { _source: { two: 'two' } },
+                  { _source: { three: 'three' } },
+                ],
+              },
+            },
+            {
+              status: 200,
+              hits: {
+                hits: [
+                  { _source: { four: 'four' } },
+                  { _source: { five: 'five' } },
+                  { _source: { six: 'six' } },
+                ],
+              },
+            },
+          ],
+        },
+      };
+    },
+  });
+
+  const client = new Client({
+    node: 'http://localhost:9200',
+    Connection: MockConnection,
+  });
+
+  const m = client.helpers.msearch();
+
+  m.search({ index: 'test' }, { query: {} }, (err, result) => {
+    t.error(err);
+    t.same(result.body, {
+      status: 200,
+      hits: {
+        hits: [
+          { _source: { one: 'one' } },
+          { _source: { two: 'two' } },
+          { _source: { three: 'three' } },
+        ],
+      },
+    });
+
+    t.same(result.documents, [{ one: 'one' }, { two: 'two' }, { three: 'three' }]);
+  });
+
+  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
+    t.error(err);
+    t.same(result.body, {
+      status: 200,
+      hits: {
+        hits: [
+          { _source: { four: 'four' } },
+          { _source: { five: 'five' } },
+          { _source: { six: 'six' } },
+        ],
+      },
+    });
+
+    t.same(result.documents, [{ four: 'four' }, { five: 'five' }, { six: 'six' }]);
+  });
+
+  setImmediate(() => m.stop());
+});
+
+test('Stop a msearch processor (promises)', async (t) => {
+  const MockConnection = connection.buildMockConnection({
+    onRequest(params) {
+      return {};
+    },
+  });
+
+  const client = new Client({
+    node: 'http://localhost:9200',
+    Connection: MockConnection,
+  });
+
+  const m = client.helpers.msearch({ operations: 1 });
+
+  m.stop();
+
+  try {
+    await m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } });
+  } catch (err) {
+    t.equal(err.message, 'The msearch processor has been stopped');
+  }
+
+  t.teardown(() => m.stop());
+});
+
+test('Stop a msearch processor (callbacks)', (t) => {
+  t.plan(1);
+
+  const MockConnection = connection.buildMockConnection({
+    onRequest(params) {
+      return {};
+    },
+  });
+
+  const client = new Client({
+    node: 'http://localhost:9200',
+    Connection: MockConnection,
+  });
+
+  const m = client.helpers.msearch();
+
+  m.stop();
+
+  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
+    t.equal(err.message, 'The msearch processor has been stopped');
+  });
+});
+
+test('Bad header', (t) => {
+  t.plan(2);
+
+  const MockConnection = connection.buildMockConnection({
+    onRequest(params) {
+      return {};
+    },
+  });
+
+  const client = new Client({
+    node: 'http://localhost:9200',
+    Connection: MockConnection,
+  });
+
+  const m = client.helpers.msearch();
+
+  m.search(null, { query: { match: { foo: 'bar' } } }, (err, result) => {
+    t.equal(err.message, 'The header should be an object');
+  });
+
+  m.search(null, { query: { match: { foo: 'bar' } } }).catch((err) => {
+    t.equal(err.message, 'The header should be an object');
+  });
+
+  t.teardown(() => m.stop());
+});
+
+test('Bad body', (t) => {
+  t.plan(2);
+
+  const MockConnection = connection.buildMockConnection({
+    onRequest(params) {
+      return {};
+    },
+  });
+
+  const client = new Client({
+    node: 'http://localhost:9200',
+    Connection: MockConnection,
+  });
+
+  const m = client.helpers.msearch();
+
+  m.search({ index: 'test' }, null, (err, result) => {
+    t.equal(err.message, 'The body should be an object');
+  });
+
+  m.search({ index: 'test' }, null).catch((err) => {
+    t.equal(err.message, 'The body should be an object');
+  });
+
+  t.teardown(() => m.stop());
+});
+
+test('Retry on 429', async (t) => {
+  let count = 0;
+  const MockConnection = connection.buildMockConnection({
+    onRequest(params) {
+      if (count++ === 0) {
+        return {
+          body: {
+            responses: [
+              {
+                status: 429,
+                error: {},
+              },
+            ],
+          },
+        };
+      } else {
+        return {
+          body: {
+            responses: [
+              {
+                status: 200,
+                hits: {
+                  hits: [
+                    { _source: { one: 'one' } },
+                    { _source: { two: 'two' } },
+                    { _source: { three: 'three' } },
+                  ],
+                },
+              },
+            ],
+          },
+        };
+      }
+    },
+  });
+
+  const client = new Client({
+    node: 'http://localhost:9200',
+    Connection: MockConnection,
+  });
+
+  const m = client.helpers.msearch({ operations: 1, wait: 10 });
+
+  const result = await m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } });
+
+  t.same(result.body, {
+    status: 200,
+    hits: {
+      hits: [
+        { _source: { one: 'one' } },
+        { _source: { two: 'two' } },
+        { _source: { three: 'three' } },
+      ],
+    },
+  });
+
+  t.same(result.documents, [{ one: 'one' }, { two: 'two' }, { three: 'three' }]);
+
+  t.teardown(() => m.stop());
+});
+
+test('Single search errors', async (t) => {
+  const MockConnection = connection.buildMockConnection({
+    onRequest(params) {
+      return {
+        body: {
+          responses: [
+            {
+              status: 400,
+              error: { foo: 'bar' },
+            },
+          ],
+        },
+      };
+    },
+  });
+
+  const client = new Client({
+    node: 'http://localhost:9200',
+    Connection: MockConnection,
+  });
+
+  const m = client.helpers.msearch({ operations: 1 });
+
+  try {
+    await m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } });
+  } catch (err) {
+    t.ok(err instanceof errors.ResponseError);
+  }
+
+  t.teardown(() => m.stop());
+});
+
+test('Entire msearch fails', (t) => {
+  t.plan(4);
+
+  const MockConnection = connection.buildMockConnection({
+    onRequest(params) {
       return {
         statusCode: 500,
         body: {
           status: 500,
-          error: { foo: 'bar' }
-        }
-      }
-    }
-  })
+          error: { foo: 'bar' },
+        },
+      };
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch({ operations: 1 })
-
-  m.search({ index: 'test' }, { query: {} }, (err, result) => {
-    t.ok(err instanceof errors.ResponseError)
-    t.same(result.documents, [])
-  })
+  const m = client.helpers.msearch({ operations: 1 });
 
   m.search({ index: 'test' }, { query: {} }, (err, result) => {
-    t.ok(err instanceof errors.ResponseError)
-    t.same(result.documents, [])
-  })
+    t.ok(err instanceof errors.ResponseError);
+    t.same(result.documents, []);
+  });
 
-  t.teardown(() => m.stop())
-})
+  m.search({ index: 'test' }, { query: {} }, (err, result) => {
+    t.ok(err instanceof errors.ResponseError);
+    t.same(result.documents, []);
+  });
 
-test('Resolves the msearch helper', t => {
-  t.plan(1)
+  t.teardown(() => m.stop());
+});
+
+test('Resolves the msearch helper', (t) => {
+  t.plan(1);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
-      return {}
-    }
-  })
+    onRequest(params) {
+      return {};
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch()
+  const m = client.helpers.msearch();
 
-  m.stop()
+  m.stop();
 
   m.then(
     () => t.pass('called'),
-    e => t.fail('Should not fail')
-  )
+    (e) => t.fail('Should not fail')
+  );
 
-  m.catch(e => t.fail('Should not fail'))
-})
+  m.catch((e) => t.fail('Should not fail'));
+});
 
-test('Stop the msearch helper with an error', t => {
-  t.plan(3)
+test('Stop the msearch helper with an error', (t) => {
+  t.plan(3);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
-      return {}
-    }
-  })
+    onRequest(params) {
+      return {};
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch()
+  const m = client.helpers.msearch();
 
-  m.stop(new Error('kaboom'))
+  m.stop(new Error('kaboom'));
 
   m.then(
     () => t.fail('Should fail'),
-    err => t.equal(err.message, 'kaboom')
-  )
+    (err) => t.equal(err.message, 'kaboom')
+  );
 
-  m.catch(err => t.equal(err.message, 'kaboom'))
+  m.catch((err) => t.equal(err.message, 'kaboom'));
 
   m.search({ index: 'test' }, { query: {} }, (err, result) => {
-    t.equal(err.message, 'kaboom')
-  })
-})
+    t.equal(err.message, 'kaboom');
+  });
+});
 
-test('Multiple searches (concurrency = 1)', t => {
-  t.plan(6)
+test('Multiple searches (concurrency = 1)', (t) => {
+  t.plan(6);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
+    onRequest(params) {
       return {
         body: {
-          responses: [{
-            status: 200,
-            hits: {
-              hits: [
-                { _source: { one: 'one' } },
-                { _source: { two: 'two' } },
-                { _source: { three: 'three' } }
-              ]
-            }
-          }]
-        }
-      }
-    }
-  })
+          responses: [
+            {
+              status: 200,
+              hits: {
+                hits: [
+                  { _source: { one: 'one' } },
+                  { _source: { two: 'two' } },
+                  { _source: { three: 'three' } },
+                ],
+              },
+            },
+          ],
+        },
+      };
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch({ operations: 1, concurrency: 1 })
+  const m = client.helpers.msearch({ operations: 1, concurrency: 1 });
 
   m.search({ index: 'test' }, { query: {} }, (err, result) => {
-    t.error(err)
+    t.error(err);
     t.same(result.body, {
       status: 200,
       hits: {
         hits: [
           { _source: { one: 'one' } },
           { _source: { two: 'two' } },
-          { _source: { three: 'three' } }
-        ]
-      }
-    })
+          { _source: { three: 'three' } },
+        ],
+      },
+    });
 
-    t.same(result.documents, [
-      { one: 'one' },
-      { two: 'two' },
-      { three: 'three' }
-    ])
-  })
+    t.same(result.documents, [{ one: 'one' }, { two: 'two' }, { three: 'three' }]);
+  });
 
   m.search({ index: 'test' }, { query: {} }, (err, result) => {
-    t.error(err)
+    t.error(err);
     t.same(result.body, {
       status: 200,
       hits: {
         hits: [
           { _source: { one: 'one' } },
           { _source: { two: 'two' } },
-          { _source: { three: 'three' } }
-        ]
-      }
-    })
+          { _source: { three: 'three' } },
+        ],
+      },
+    });
 
-    t.same(result.documents, [
-      { one: 'one' },
-      { two: 'two' },
-      { three: 'three' }
-    ])
-  })
+    t.same(result.documents, [{ one: 'one' }, { two: 'two' }, { three: 'three' }]);
+  });
 
-  t.teardown(() => m.stop())
-})
+  t.teardown(() => m.stop());
+});
 
-test('Flush interval', t => {
-  t.plan(4)
-  const clock = FakeTimers.install({ toFake: ['setTimeout', 'clearTimeout'] })
-  t.teardown(() => clock.uninstall())
+test('Flush interval', (t) => {
+  t.plan(4);
+  const clock = FakeTimers.install({ toFake: ['setTimeout', 'clearTimeout'] });
+  t.teardown(() => clock.uninstall());
 
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
+    onRequest(params) {
       return {
         body: {
-          responses: [{
-            status: 200,
-            hits: {
-              hits: [
-                { _source: { one: 'one' } },
-                { _source: { two: 'two' } },
-                { _source: { three: 'three' } }
-              ]
-            }
-          }, {
-            status: 200,
-            hits: {
-              hits: [
-                { _source: { four: 'four' } },
-                { _source: { five: 'five' } },
-                { _source: { six: 'six' } }
-              ]
-            }
-          }]
-        }
-      }
-    }
-  })
+          responses: [
+            {
+              status: 200,
+              hits: {
+                hits: [
+                  { _source: { one: 'one' } },
+                  { _source: { two: 'two' } },
+                  { _source: { three: 'three' } },
+                ],
+              },
+            },
+            {
+              status: 200,
+              hits: {
+                hits: [
+                  { _source: { four: 'four' } },
+                  { _source: { five: 'five' } },
+                  { _source: { six: 'six' } },
+                ],
+              },
+            },
+          ],
+        },
+      };
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch()
-
-  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
-    t.error(err)
-    t.equal(result.documents.length, 3)
-  })
+  const m = client.helpers.msearch();
 
   m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
-    t.error(err)
-    t.equal(result.documents.length, 3)
-  })
+    t.error(err);
+    t.equal(result.documents.length, 3);
+  });
 
-  setImmediate(clock.next)
+  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
+    t.error(err);
+    t.equal(result.documents.length, 3);
+  });
 
-  t.teardown(() => m.stop())
-})
+  setImmediate(clock.next);
 
-test('Flush interval - early stop', t => {
-  t.plan(3)
+  t.teardown(() => m.stop());
+});
+
+test('Flush interval - early stop', (t) => {
+  t.plan(3);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
+    onRequest(params) {
       return {
         body: {
-          responses: [{
-            status: 200,
-            hits: {
-              hits: [
-                { _source: { one: 'one' } },
-                { _source: { two: 'two' } },
-                { _source: { three: 'three' } }
-              ]
-            }
-          }]
-        }
-      }
-    }
-  })
+          responses: [
+            {
+              status: 200,
+              hits: {
+                hits: [
+                  { _source: { one: 'one' } },
+                  { _source: { two: 'two' } },
+                  { _source: { three: 'three' } },
+                ],
+              },
+            },
+          ],
+        },
+      };
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch()
+  const m = client.helpers.msearch();
 
   m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
-    t.error(err)
-    t.equal(result.documents.length, 3)
-  })
+    t.error(err);
+    t.equal(result.documents.length, 3);
+  });
 
   setImmediate(() => {
     m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
-      t.ok(err instanceof errors.ConfigurationError)
-    })
-  })
+      t.ok(err instanceof errors.ConfigurationError);
+    });
+  });
 
-  m.stop()
-})
+  m.stop();
+});
 
-test('Stop should resolve the helper', t => {
-  t.plan(1)
+test('Stop should resolve the helper', (t) => {
+  t.plan(1);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
+    onRequest(params) {
       return {
         body: {
-          responses: []
-        }
-      }
-    }
-  })
+          responses: [],
+        },
+      };
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch()
-  setImmediate(m.stop)
+  const m = client.helpers.msearch();
+  setImmediate(m.stop);
 
-  m.then(() => t.pass('Called'))
-    .catch(() => t.fail('Should not fail'))
-})
+  m.then(() => t.pass('Called')).catch(() => t.fail('Should not fail'));
+});
 
-test('Stop should resolve the helper (error)', t => {
-  t.plan(3)
+test('Stop should resolve the helper (error)', (t) => {
+  t.plan(3);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
+    onRequest(params) {
       return {
         body: {
-          responses: []
-        }
-      }
-    }
-  })
+          responses: [],
+        },
+      };
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch()
-  setImmediate(m.stop, new Error('kaboom'))
+  const m = client.helpers.msearch();
+  setImmediate(m.stop, new Error('kaboom'));
 
-  m.then(() => t.fail('Should not fail'))
-    .catch(err => t.equal(err.message, 'kaboom'))
+  m.then(() => t.fail('Should not fail')).catch((err) => t.equal(err.message, 'kaboom'));
 
-  m.catch(err => t.equal(err.message, 'kaboom'))
+  m.catch((err) => t.equal(err.message, 'kaboom'));
 
-  m.then(() => t.fail('Should not fail'), err => t.equal(err.message, 'kaboom'))
-})
+  m.then(
+    () => t.fail('Should not fail'),
+    (err) => t.equal(err.message, 'kaboom')
+  );
+});
 
-test('Should use req options', async t => {
-  t.plan(1)
+test('Should use req options', async (t) => {
+  t.plan(1);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest (params) {
+    onRequest(params) {
       t.match(params.headers, {
-        foo: 'bar'
-      })
+        foo: 'bar',
+      });
 
       return {
         body: {
-          responses: [{
-            status: 200,
-            hits: { hits: [] }
-          }]
-        }
-      }
-    }
-  })
+          responses: [
+            {
+              status: 200,
+              hits: { hits: [] },
+            },
+          ],
+        },
+      };
+    },
+  });
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  const m = client.helpers.msearch({ operations: 1 }, {
-    headers: {
-      foo: 'bar'
+  const m = client.helpers.msearch(
+    { operations: 1 },
+    {
+      headers: {
+        foo: 'bar',
+      },
     }
-  })
+  );
 
-  await m.search(
-    { index: 'test' },
-    { query: { match: { foo: 'bar' } } }
-  )
+  await m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } });
 
-  t.teardown(() => m.stop())
-})
+  t.teardown(() => m.stop());
+});

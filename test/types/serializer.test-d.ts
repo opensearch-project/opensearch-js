@@ -28,12 +28,12 @@
  * under the License.
  */
 
-import { expectType } from 'tsd'
-import { Serializer } from '../../'
+import { expectType } from 'tsd';
+import { Serializer } from '../../';
 
-const serializer = new Serializer()
+const serializer = new Serializer();
 
-expectType<string>(serializer.serialize({}))
-expectType<any>(serializer.deserialize(''))
-expectType<string>(serializer.ndserialize([]))
-expectType<string>(serializer.qserialize({}))
+expectType<string>(serializer.serialize({}));
+expectType<any>(serializer.deserialize(''));
+expectType<string>(serializer.ndserialize([]));
+expectType<string>(serializer.qserialize({}));

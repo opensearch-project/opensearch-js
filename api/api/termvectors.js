@@ -28,40 +28,71 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['term_statistics', 'field_statistics', 'fields', 'offsets', 'positions', 'payloads', 'preference', 'routing', 'realtime', 'version', 'version_type', 'pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { termStatistics: 'term_statistics', fieldStatistics: 'field_statistics', versionType: 'version_type', errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = [
+  'term_statistics',
+  'field_statistics',
+  'fields',
+  'offsets',
+  'positions',
+  'payloads',
+  'preference',
+  'routing',
+  'realtime',
+  'version',
+  'version_type',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+];
+const snakeCase = {
+  termStatistics: 'term_statistics',
+  fieldStatistics: 'field_statistics',
+  versionType: 'version_type',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+};
 
-function termvectorsApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function termvectorsApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
   // check required parameters
   if (params.index == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: index')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: index');
+    return handleError(err, callback);
   }
 
-  let { method, body, index, id, type, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, index, id, type, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if ((index) != null && (type) != null && (id) != null) {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + encodeURIComponent(id) + '/' + '_termvectors'
-  } else if ((index) != null && (id) != null) {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + encodeURIComponent(index) + '/' + '_termvectors' + '/' + encodeURIComponent(id)
-  } else if ((index) != null && (type) != null) {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_termvectors'
+  let path = '';
+  if (index != null && type != null && id != null) {
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path =
+      '/' +
+      encodeURIComponent(index) +
+      '/' +
+      encodeURIComponent(type) +
+      '/' +
+      encodeURIComponent(id) +
+      '/' +
+      '_termvectors';
+  } else if (index != null && id != null) {
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + encodeURIComponent(index) + '/' + '_termvectors' + '/' + encodeURIComponent(id);
+  } else if (index != null && type != null) {
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_termvectors';
   } else {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + encodeURIComponent(index) + '/' + '_termvectors'
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + encodeURIComponent(index) + '/' + '_termvectors';
   }
 
   // build request object
@@ -69,10 +100,10 @@ function termvectorsApi (params, options, callback) {
     method,
     path,
     body: body || '',
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = termvectorsApi
+module.exports = termvectorsApi;

@@ -28,44 +28,57 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['timeout', 'master_timeout', 'context', 'pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { masterTimeout: 'master_timeout', errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = [
+  'timeout',
+  'master_timeout',
+  'context',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+];
+const snakeCase = {
+  masterTimeout: 'master_timeout',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+};
 
-function putScriptApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function putScriptApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
   // check required parameters
   if (params.id == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: id')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: id');
+    return handleError(err, callback);
   }
   if (params.body == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: body')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: body');
+    return handleError(err, callback);
   }
 
   // check required url components
-  if (params.context != null && (params.id == null)) {
-    const err = new this[kConfigurationError]('Missing required parameter of the url: id')
-    return handleError(err, callback)
+  if (params.context != null && params.id == null) {
+    const err = new this[kConfigurationError]('Missing required parameter of the url: id');
+    return handleError(err, callback);
   }
 
-  let { method, body, id, context, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, id, context, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if ((id) != null && (context) != null) {
-    if (method == null) method = 'PUT'
-    path = '/' + '_scripts' + '/' + encodeURIComponent(id) + '/' + encodeURIComponent(context)
+  let path = '';
+  if (id != null && context != null) {
+    if (method == null) method = 'PUT';
+    path = '/' + '_scripts' + '/' + encodeURIComponent(id) + '/' + encodeURIComponent(context);
   } else {
-    if (method == null) method = 'PUT'
-    path = '/' + '_scripts' + '/' + encodeURIComponent(id)
+    if (method == null) method = 'PUT';
+    path = '/' + '_scripts' + '/' + encodeURIComponent(id);
   }
 
   // build request object
@@ -73,10 +86,10 @@ function putScriptApi (params, options, callback) {
     method,
     path,
     body: body || '',
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = putScriptApi
+module.exports = putScriptApi;

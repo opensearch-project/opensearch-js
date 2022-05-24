@@ -28,40 +28,40 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path'];
+const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' };
 
-function termsEnumApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function termsEnumApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
   // check required parameters
   if (params.index == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: index')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: index');
+    return handleError(err, callback);
   }
 
-  let { method, body, index, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, index, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if (method == null) method = body == null ? 'GET' : 'POST'
-  path = '/' + encodeURIComponent(index) + '/' + '_terms_enum'
+  let path = '';
+  if (method == null) method = body == null ? 'GET' : 'POST';
+  path = '/' + encodeURIComponent(index) + '/' + '_terms_enum';
 
   // build request object
   const request = {
     method,
     path,
     body: body || '',
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = termsEnumApi
+module.exports = termsEnumApi;

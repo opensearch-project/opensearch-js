@@ -31,13 +31,13 @@
 /// <reference types="node" />
 
 import { URL } from 'url';
-import { inspect, InspectOptions } from 'util'
+import { inspect, InspectOptions } from 'util';
 import { Readable as ReadableStream } from 'stream';
-import { BasicAuth } from './pool'
-import * as http from 'http'
-import * as https from 'https'
-import * as hpagent from 'hpagent'
-import { ConnectionOptions as TlsConnectionOptions } from 'tls'
+import { BasicAuth } from './pool';
+import * as http from 'http';
+import * as https from 'https';
+import * as hpagent from 'hpagent';
+import { ConnectionOptions as TlsConnectionOptions } from 'tls';
 
 export declare type agentFn = (opts: ConnectionOptions) => any;
 
@@ -54,9 +54,9 @@ export interface ConnectionOptions {
 }
 
 interface ConnectionRoles {
-  master?: boolean
-  data?: boolean
-  ingest?: boolean
+  master?: boolean;
+  data?: boolean;
+  ingest?: boolean;
 }
 
 interface RequestOptions extends http.ClientRequestArgs {
@@ -82,26 +82,29 @@ export default class Connection {
     DATA: string;
     INGEST: string;
   };
-  url: URL
-  ssl: TlsConnectionOptions | null
-  id: string
-  headers: Record<string, any>
-  status: string
-  roles: ConnectionRoles
-  deadCount: number
-  resurrectTimeout: number
-  makeRequest: any
-  _openRequests: number
-  _status: string
-  _agent: http.Agent | https.Agent | hpagent.HttpProxyAgent | hpagent.HttpsProxyAgent
-  constructor(opts?: ConnectionOptions)
-  request(params: RequestOptions, callback: (err: Error | null, response: http.IncomingMessage | null) => void): http.ClientRequest
-  close(): Connection
-  setRole(role: string, enabled: boolean): Connection
-  buildRequestObject(params: any): http.ClientRequestArgs
+  url: URL;
+  ssl: TlsConnectionOptions | null;
+  id: string;
+  headers: Record<string, any>;
+  status: string;
+  roles: ConnectionRoles;
+  deadCount: number;
+  resurrectTimeout: number;
+  makeRequest: any;
+  _openRequests: number;
+  _status: string;
+  _agent: http.Agent | https.Agent | hpagent.HttpProxyAgent | hpagent.HttpsProxyAgent;
+  constructor(opts?: ConnectionOptions);
+  request(
+    params: RequestOptions,
+    callback: (err: Error | null, response: http.IncomingMessage | null) => void
+  ): http.ClientRequest;
+  close(): Connection;
+  setRole(role: string, enabled: boolean): Connection;
+  buildRequestObject(params: any): http.ClientRequestArgs;
   // @ts-ignore
-  [inspect.custom](object: any, options: InspectOptions): string
-  toJSON(): any
+  [inspect.custom](object: any, options: InspectOptions): string;
+  toJSON(): any;
 }
 
-export { };
+export {};

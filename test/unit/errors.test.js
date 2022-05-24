@@ -28,94 +28,94 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint no-prototype-builtins: 0 */
 
-const { test } = require('tap')
-const { errors } = require('../../index')
+const { test } = require('tap');
+const { errors } = require('../../index');
 
-test('OpenSearchClientError', t => {
-  const err = new errors.OpenSearchClientError()
-  t.ok(err instanceof Error)
-  t.end()
-})
+test('OpenSearchClientError', (t) => {
+  const err = new errors.OpenSearchClientError();
+  t.ok(err instanceof Error);
+  t.end();
+});
 
-test('TimeoutError', t => {
-  const err = new errors.TimeoutError()
-  t.ok(err instanceof Error)
-  t.ok(err instanceof errors.OpenSearchClientError)
-  t.ok(err.hasOwnProperty('meta'))
-  t.end()
-})
+test('TimeoutError', (t) => {
+  const err = new errors.TimeoutError();
+  t.ok(err instanceof Error);
+  t.ok(err instanceof errors.OpenSearchClientError);
+  t.ok(err.hasOwnProperty('meta'));
+  t.end();
+});
 
-test('ConnectionError', t => {
-  const err = new errors.ConnectionError()
-  t.ok(err instanceof Error)
-  t.ok(err instanceof errors.OpenSearchClientError)
-  t.ok(err.hasOwnProperty('meta'))
-  t.end()
-})
+test('ConnectionError', (t) => {
+  const err = new errors.ConnectionError();
+  t.ok(err instanceof Error);
+  t.ok(err instanceof errors.OpenSearchClientError);
+  t.ok(err.hasOwnProperty('meta'));
+  t.end();
+});
 
-test('NoLivingConnectionsError', t => {
-  const err = new errors.NoLivingConnectionsError()
-  t.ok(err instanceof Error)
-  t.ok(err instanceof errors.OpenSearchClientError)
-  t.ok(err.hasOwnProperty('meta'))
-  t.end()
-})
+test('NoLivingConnectionsError', (t) => {
+  const err = new errors.NoLivingConnectionsError();
+  t.ok(err instanceof Error);
+  t.ok(err instanceof errors.OpenSearchClientError);
+  t.ok(err.hasOwnProperty('meta'));
+  t.end();
+});
 
-test('SerializationError', t => {
-  const err = new errors.SerializationError()
-  t.ok(err instanceof Error)
-  t.ok(err instanceof errors.OpenSearchClientError)
-  t.notOk(err.hasOwnProperty('meta'))
-  t.ok(err.hasOwnProperty('data'))
-  t.end()
-})
+test('SerializationError', (t) => {
+  const err = new errors.SerializationError();
+  t.ok(err instanceof Error);
+  t.ok(err instanceof errors.OpenSearchClientError);
+  t.notOk(err.hasOwnProperty('meta'));
+  t.ok(err.hasOwnProperty('data'));
+  t.end();
+});
 
-test('DeserializationError', t => {
-  const err = new errors.DeserializationError()
-  t.ok(err instanceof Error)
-  t.ok(err instanceof errors.OpenSearchClientError)
-  t.notOk(err.hasOwnProperty('meta'))
-  t.ok(err.hasOwnProperty('data'))
-  t.end()
-})
+test('DeserializationError', (t) => {
+  const err = new errors.DeserializationError();
+  t.ok(err instanceof Error);
+  t.ok(err instanceof errors.OpenSearchClientError);
+  t.notOk(err.hasOwnProperty('meta'));
+  t.ok(err.hasOwnProperty('data'));
+  t.end();
+});
 
-test('ConfigurationError', t => {
-  const err = new errors.ConfigurationError()
-  t.ok(err instanceof Error)
-  t.ok(err instanceof errors.OpenSearchClientError)
-  t.notOk(err.hasOwnProperty('meta'))
-  t.end()
-})
+test('ConfigurationError', (t) => {
+  const err = new errors.ConfigurationError();
+  t.ok(err instanceof Error);
+  t.ok(err instanceof errors.OpenSearchClientError);
+  t.notOk(err.hasOwnProperty('meta'));
+  t.end();
+});
 
-test('ResponseError', t => {
+test('ResponseError', (t) => {
   const meta = {
     body: 1,
     statusCode: 1,
-    headers: 1
-  }
-  const err = new errors.ResponseError(meta)
-  t.ok(err instanceof Error)
-  t.ok(err instanceof errors.OpenSearchClientError)
-  t.ok(err.hasOwnProperty('meta'))
-  t.ok(err.body)
-  t.ok(err.statusCode)
-  t.ok(err.headers)
-  t.end()
-})
+    headers: 1,
+  };
+  const err = new errors.ResponseError(meta);
+  t.ok(err instanceof Error);
+  t.ok(err instanceof errors.OpenSearchClientError);
+  t.ok(err.hasOwnProperty('meta'));
+  t.ok(err.body);
+  t.ok(err.statusCode);
+  t.ok(err.headers);
+  t.end();
+});
 
-test('RequestAbortedError', t => {
-  const err = new errors.RequestAbortedError()
-  t.ok(err instanceof Error)
-  t.ok(err instanceof errors.OpenSearchClientError)
-  t.ok(err.hasOwnProperty('meta'))
-  t.end()
-})
+test('RequestAbortedError', (t) => {
+  const err = new errors.RequestAbortedError();
+  t.ok(err instanceof Error);
+  t.ok(err instanceof errors.OpenSearchClientError);
+  t.ok(err.hasOwnProperty('meta'));
+  t.end();
+});
 
-test('ResponseError with meaningful message / 1', t => {
+test('ResponseError with meaningful message / 1', (t) => {
   const meta = {
     body: {
       error: {
@@ -126,28 +126,31 @@ test('ResponseError with meaningful message / 1', t => {
             'resource.type': 'index_expression',
             'resource.id': 'foo',
             index_uuid: '_na_',
-            index: 'foo'
-          }
+            index: 'foo',
+          },
         ],
         type: 'index_not_found_exception',
         reason: 'no such index [foo]',
         'resource.type': 'index_expression',
         'resource.id': 'foo',
         index_uuid: '_na_',
-        index: 'foo'
+        index: 'foo',
       },
-      status: 404
+      status: 404,
     },
     statusCode: 404,
-    headers: {}
-  }
-  const err = new errors.ResponseError(meta)
-  t.equal(err.message, 'index_not_found_exception: [index_not_found_exception] Reason: no such index [foo]')
-  t.equal(err.toString(), JSON.stringify(meta.body))
-  t.end()
-})
+    headers: {},
+  };
+  const err = new errors.ResponseError(meta);
+  t.equal(
+    err.message,
+    'index_not_found_exception: [index_not_found_exception] Reason: no such index [foo]'
+  );
+  t.equal(err.toString(), JSON.stringify(meta.body));
+  t.end();
+});
 
-test('ResponseError with meaningful message / 2', t => {
+test('ResponseError with meaningful message / 2', (t) => {
   const meta = {
     body: {
       error: {
@@ -158,7 +161,7 @@ test('ResponseError with meaningful message / 2', t => {
             'resource.type': 'index_expression',
             'resource.id': 'foo',
             index_uuid: '_na_',
-            index: 'foo'
+            index: 'foo',
           },
           {
             type: 'nested_cause',
@@ -166,28 +169,31 @@ test('ResponseError with meaningful message / 2', t => {
             'resource.type': 'index_expression',
             'resource.id': 'foo',
             index_uuid: '_na_',
-            index: 'foo'
-          }
+            index: 'foo',
+          },
         ],
         type: 'index_not_found_exception',
         reason: 'no such index [foo]',
         'resource.type': 'index_expression',
         'resource.id': 'foo',
         index_uuid: '_na_',
-        index: 'foo'
+        index: 'foo',
       },
-      status: 404
+      status: 404,
     },
     statusCode: 404,
-    headers: {}
-  }
-  const err = new errors.ResponseError(meta)
-  t.equal(err.message, 'index_not_found_exception: [index_not_found_exception] Reason: no such index [foo]; [nested_cause] Reason: this is a nested cause')
-  t.equal(err.toString(), JSON.stringify(meta.body))
-  t.end()
-})
+    headers: {},
+  };
+  const err = new errors.ResponseError(meta);
+  t.equal(
+    err.message,
+    'index_not_found_exception: [index_not_found_exception] Reason: no such index [foo]; [nested_cause] Reason: this is a nested cause'
+  );
+  t.equal(err.toString(), JSON.stringify(meta.body));
+  t.end();
+});
 
-test('ResponseError with meaningful message / 3', t => {
+test('ResponseError with meaningful message / 3', (t) => {
   const meta = {
     body: {
       error: {
@@ -196,15 +202,15 @@ test('ResponseError with meaningful message / 3', t => {
         'resource.type': 'index_expression',
         'resource.id': 'foo',
         index_uuid: '_na_',
-        index: 'foo'
+        index: 'foo',
       },
-      status: 404
+      status: 404,
     },
     statusCode: 404,
-    headers: {}
-  }
-  const err = new errors.ResponseError(meta)
-  t.equal(err.message, 'index_not_found_exception')
-  t.equal(err.toString(), JSON.stringify(meta.body))
-  t.end()
-})
+    headers: {},
+  };
+  const err = new errors.ResponseError(meta);
+  t.equal(err.message, 'index_not_found_exception');
+  t.equal(err.toString(), JSON.stringify(meta.body));
+  t.end();
+});

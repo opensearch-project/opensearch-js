@@ -28,28 +28,28 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path'];
+const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' };
 
-function renderSearchTemplateApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function renderSearchTemplateApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { method, body, id, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, id, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if ((id) != null) {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + '_render' + '/' + 'template' + '/' + encodeURIComponent(id)
+  let path = '';
+  if (id != null) {
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + '_render' + '/' + 'template' + '/' + encodeURIComponent(id);
   } else {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + '_render' + '/' + 'template'
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + '_render' + '/' + 'template';
   }
 
   // build request object
@@ -57,10 +57,10 @@ function renderSearchTemplateApi (params, options, callback) {
     method,
     path,
     body: body || '',
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = renderSearchTemplateApi
+module.exports = renderSearchTemplateApi;

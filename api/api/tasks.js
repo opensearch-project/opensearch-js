@@ -28,33 +28,52 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['nodes', 'actions', 'parent_task_id', 'wait_for_completion', 'pretty', 'human', 'error_trace', 'source', 'filter_path', 'timeout', 'detailed', 'group_by']
-const snakeCase = { parentTaskId: 'parent_task_id', waitForCompletion: 'wait_for_completion', errorTrace: 'error_trace', filterPath: 'filter_path', groupBy: 'group_by' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = [
+  'nodes',
+  'actions',
+  'parent_task_id',
+  'wait_for_completion',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+  'timeout',
+  'detailed',
+  'group_by',
+];
+const snakeCase = {
+  parentTaskId: 'parent_task_id',
+  waitForCompletion: 'wait_for_completion',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+  groupBy: 'group_by',
+};
 
-function TasksApi (transport, ConfigurationError) {
-  this.transport = transport
-  this[kConfigurationError] = ConfigurationError
+function TasksApi(transport, ConfigurationError) {
+  this.transport = transport;
+  this[kConfigurationError] = ConfigurationError;
 }
 
-TasksApi.prototype.cancel = function tasksCancelApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+TasksApi.prototype.cancel = function tasksCancelApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { method, body, taskId, task_id, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, taskId, task_id, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
+  let path = '';
   if ((task_id || taskId) != null) {
-    if (method == null) method = 'POST'
-    path = '/' + '_tasks' + '/' + encodeURIComponent(task_id || taskId) + '/' + '_cancel'
+    if (method == null) method = 'POST';
+    path = '/' + '_tasks' + '/' + encodeURIComponent(task_id || taskId) + '/' + '_cancel';
   } else {
-    if (method == null) method = 'POST'
-    path = '/' + '_tasks' + '/' + '_cancel'
+    if (method == null) method = 'POST';
+    path = '/' + '_tasks' + '/' + '_cancel';
   }
 
   // build request object
@@ -62,58 +81,58 @@ TasksApi.prototype.cancel = function tasksCancelApi (params, options, callback) 
     method,
     path,
     body: body || '',
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
-}
+  return this.transport.request(request, options, callback);
+};
 
-TasksApi.prototype.get = function tasksGetApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+TasksApi.prototype.get = function tasksGetApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
   // check required parameters
   if (params.task_id == null && params.taskId == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: task_id or taskId')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: task_id or taskId');
+    return handleError(err, callback);
   }
 
-  let { method, body, taskId, task_id, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, taskId, task_id, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if (method == null) method = 'GET'
-  path = '/' + '_tasks' + '/' + encodeURIComponent(task_id || taskId)
+  let path = '';
+  if (method == null) method = 'GET';
+  path = '/' + '_tasks' + '/' + encodeURIComponent(task_id || taskId);
 
   // build request object
   const request = {
     method,
     path,
     body: null,
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
-}
+  return this.transport.request(request, options, callback);
+};
 
-TasksApi.prototype.list = function tasksListApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+TasksApi.prototype.list = function tasksListApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { method, body, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if (method == null) method = 'GET'
-  path = '/' + '_tasks'
+  let path = '';
+  if (method == null) method = 'GET';
+  path = '/' + '_tasks';
 
   // build request object
   const request = {
     method,
     path,
     body: null,
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
-}
+  return this.transport.request(request, options, callback);
+};
 
-module.exports = TasksApi
+module.exports = TasksApi;

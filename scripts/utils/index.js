@@ -28,18 +28,18 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const generate = require('./generateApis')
-const cloneAndCheckout = require('./clone-opensearch')
-const genFactory = require('./generateMain')
-const generateDocs = require('./generateDocs')
-const generateRequestTypes = require('./generateRequestTypes')
+const generate = require('./generateApis');
+const cloneAndCheckout = require('./clone-opensearch');
+const genFactory = require('./generateMain');
+const generateDocs = require('./generateDocs');
+const generateRequestTypes = require('./generateRequestTypes');
 
 module.exports = {
   generate,
   cloneAndCheckout,
   genFactory,
   generateDocs,
-  generateRequestTypes
-}
+  generateRequestTypes,
+};

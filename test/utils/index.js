@@ -28,41 +28,42 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const { promisify } = require('util')
-const sleep = promisify(setTimeout)
-const buildServer = require('./buildServer')
-const buildCluster = require('./buildCluster')
-const buildProxy = require('./buildProxy')
-const connection = require('./MockConnection')
-const { Client } = require('../../')
+const { promisify } = require('util');
+const sleep = promisify(setTimeout);
+const buildServer = require('./buildServer');
+const buildCluster = require('./buildCluster');
+const buildProxy = require('./buildProxy');
+const connection = require('./MockConnection');
+const { Client } = require('../../');
 
-async function waitCluster (client, waitForStatus = 'green', timeout = '50s', times = 0) {
+async function waitCluster(client, waitForStatus = 'green', timeout = '50s', times = 0) {
   if (!client) {
-    throw new Error('waitCluster helper: missing client instance')
+    throw new Error('waitCluster helper: missing client instance');
   }
   try {
-    await client.cluster.health({ waitForStatus, timeout })
+    await client.cluster.health({ waitForStatus, timeout });
   } catch (err) {
     if (++times < 10) {
-      await sleep(5000)
-      return waitCluster(client, waitForStatus, timeout, times)
+      await sleep(5000);
+      return waitCluster(client, waitForStatus, timeout, times);
     }
-    throw err
+    throw err;
   }
 }
 
-function skipCompatibleCheck (client) {
-  const tSymbol = Object.getOwnPropertySymbols(client.transport || client)
-    .filter(symbol => symbol.description === 'compatible check')[0]
-    ; (client.transport || client)[tSymbol] = 2
+function skipCompatibleCheck(client) {
+  const tSymbol = Object.getOwnPropertySymbols(client.transport || client).filter(
+    (symbol) => symbol.description === 'compatible check'
+  )[0];
+  (client.transport || client)[tSymbol] = 2;
 }
 
 class NoCompatibleCheckClient extends Client {
-  constructor (opts) {
-    super(opts)
-    skipCompatibleCheck(this)
+  constructor(opts) {
+    super(opts);
+    skipCompatibleCheck(this);
   }
 }
 
@@ -73,5 +74,5 @@ module.exports = {
   connection,
   waitCluster,
   skipCompatibleCheck,
-  Client: NoCompatibleCheckClient
-}
+  Client: NoCompatibleCheckClient,
+};

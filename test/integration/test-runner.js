@@ -165,8 +165,8 @@ function build(opts = {}) {
 
   /**
    * Fill the stashed values of a command
-   * let's say the we have stashed the `master` value,
-   *    is_true: nodes.$master.transport.profiles
+   * let's say that we have stashed the `cluster_manager` value,
+   *    is_true: nodes.$cluster_manager.transport.profiles
    * becomes
    *    is_true: nodes.new_value.transport.profiles
    * @param {object|string} the action to update

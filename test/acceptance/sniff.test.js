@@ -62,6 +62,7 @@ test('Should update the connection pool', (t) => {
     });
 
     // run the sniffer
+    // TODO: remove this test when master is not supported
     client.transport.sniff((err, hosts) => {
       t.error(err);
       t.equal(hosts.length, 4);
@@ -86,6 +87,44 @@ test('Should update the connection pool', (t) => {
             id: id,
             roles: {
               master: true,
+              data: true,
+              ingest: true,
+            },
+            ssl: null,
+            agent: null,
+            proxy: null,
+          });
+        }
+      }
+
+      t.equal(client.connectionPool.size, 4);
+    });
+
+    // run the sniffer
+    client.transport.sniff((err, hosts) => {
+      t.error(err);
+      t.equal(hosts.length, 4);
+
+      const ids = Object.keys(nodes);
+      for (let i = 0; i < hosts.length; i++) {
+        const id = ids[i];
+        // the first node will be an update of the existing one
+        if (id === 'node0') {
+          t.same(hosts[i], {
+            url: new URL(nodes[id].url),
+            id: id,
+            roles: {
+              cluster_manager: true,
+              data: true,
+              ingest: true,
+            },
+          });
+        } else {
+          t.same(hosts[i], {
+            url: new URL(nodes[id].url),
+            id: id,
+            roles: {
+              cluster_manager: true,
               data: true,
               ingest: true,
             },

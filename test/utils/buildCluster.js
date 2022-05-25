@@ -73,7 +73,7 @@ function buildCluster(options, callback) {
             ? `localhost/127.0.0.1:${port}`
             : `127.0.0.1:${port}`,
         },
-        roles: ['master', 'data', 'ingest'],
+        roles: ['master', 'data', 'ingest'] || ['cluster_manager', 'data', 'ingest'],
       };
       debug(`Booted cluster node '${opts.id}' on port ${port} (cluster id: '${clusterId}')`);
       done();

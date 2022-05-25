@@ -48,6 +48,7 @@ const acceptedQuerystring = [
   'source',
   'filter_path',
   'bytes',
+  'cluster_manager_timeout',
   'master_timeout',
   'fields',
   'time',
@@ -74,6 +75,7 @@ const snakeCase = {
   expandWildcards: 'expand_wildcards',
   errorTrace: 'error_trace',
   filterPath: 'filter_path',
+  clusterManagerTimeout: 'cluster_manager_timeout',
   masterTimeout: 'master_timeout',
   includeUnloadedSegments: 'include_unloaded_segments',
   allowNoMatch: 'allow_no_match',
@@ -263,6 +265,31 @@ CatApi.prototype.indices = function catIndicesApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
+CatApi.prototype.cluster_manager = function catClusterManagerApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
+
+  let { method, body, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
+
+  let path = '';
+  if (method == null) method = 'GET';
+  path = '/' + '_cat' + '/' + 'cluster_manager';
+
+  // build request object
+  const request = {
+    method,
+    path,
+    body: null,
+    querystring,
+  };
+
+  return this.transport.request(request, options, callback);
+};
+
+/**
+ * // TODO: delete CatApi.prototype.master when it is removed from OpenSearch
+ * @deprecated use CatApi.prototype.cluster_manager instead
+ */
 CatApi.prototype.master = function catMasterApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

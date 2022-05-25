@@ -83,6 +83,7 @@ interface ClientExtendsCallbackOptions {
 declare type extendsCallback = (options: ClientExtendsCallbackOptions) => any;
 // /Extend API
 
+// TODO: delete master role when it is removed from OpenSearch
 interface NodeOptions {
   url: URL;
   id?: string;
@@ -90,7 +91,11 @@ interface NodeOptions {
   ssl?: TlsConnectionOptions;
   headers?: Record<string, any>;
   roles?: {
-    master: boolean;
+    cluster_manager?: boolean
+    /**
+     * @deprecated use cluster_manager instead
+     */
+    master?: boolean;
     data: boolean;
     ingest: boolean;
   };
@@ -191,419 +196,123 @@ declare class Client {
     callback: callbackFn<TResponse, TContext>
   ): TransportRequestCallback;
   cat: {
-    aliases<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatAliases,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    aliases<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    aliases<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatAliases,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    aliases<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatAliases,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    allocation<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatAllocation,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    allocation<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    allocation<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatAllocation,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    allocation<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatAllocation,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    count<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatCount,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    count<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    count<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatCount,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    count<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatCount,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    fielddata<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatFielddata,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    fielddata<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    fielddata<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatFielddata,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    fielddata<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatFielddata,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    health<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatHealth,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    health<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    health<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatHealth,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    health<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatHealth,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    help<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatHelp,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    help<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    help<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatHelp,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    help<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatHelp,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    indices<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatIndices,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    indices<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    indices<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatIndices,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    indices<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatIndices,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    master<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatMaster,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    master<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    master<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatMaster,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    master<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatMaster,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    nodeattrs<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatNodeattrs,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    nodeattrs<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    nodeattrs<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatNodeattrs,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    nodeattrs<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatNodeattrs,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    nodes<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatNodes,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    nodes<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    nodes<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatNodes,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    nodes<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatNodes,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    pending_tasks<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatPendingTasks,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    pending_tasks<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    pending_tasks<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatPendingTasks,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    pending_tasks<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatPendingTasks,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    pendingTasks<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatPendingTasks,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    pendingTasks<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    pendingTasks<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatPendingTasks,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    pendingTasks<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatPendingTasks,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    plugins<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatPlugins,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    plugins<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    plugins<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatPlugins,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    plugins<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatPlugins,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    recovery<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatRecovery,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    recovery<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    recovery<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatRecovery,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    recovery<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatRecovery,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    repositories<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatRepositories,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    repositories<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    repositories<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatRepositories,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    repositories<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatRepositories,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    segments<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatSegments,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    segments<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    segments<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatSegments,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    segments<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatSegments,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    shards<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatShards,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    shards<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    shards<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatShards,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    shards<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatShards,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    snapshots<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatSnapshots,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    snapshots<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    snapshots<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatSnapshots,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    snapshots<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatSnapshots,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    tasks<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatTasks,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    tasks<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    tasks<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatTasks,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    tasks<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatTasks,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    templates<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatTemplates,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    templates<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    templates<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatTemplates,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    templates<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatTemplates,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    thread_pool<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatThreadPool,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    thread_pool<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    thread_pool<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatThreadPool,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    thread_pool<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatThreadPool,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    threadPool<TResponse = Record<string, any>, TContext = Context>(
-      params?: RequestParams.CatThreadPool,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-    threadPool<TResponse = Record<string, any>, TContext = Context>(
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    threadPool<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatThreadPool,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-    threadPool<TResponse = Record<string, any>, TContext = Context>(
-      params: RequestParams.CatThreadPool,
-      options: TransportRequestOptions,
-      callback: callbackFn<TResponse, TContext>
-    ): TransportRequestCallback;
-  };
-  clear_scroll<
-    TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
-  >(
-    params?: RequestParams.ClearScroll<TRequestBody>,
-    options?: TransportRequestOptions
-  ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-  clear_scroll<
-    TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
-  >(callback: callbackFn<TResponse, TContext>): TransportRequestCallback;
-  clear_scroll<
-    TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
-  >(
-    params: RequestParams.ClearScroll<TRequestBody>,
-    callback: callbackFn<TResponse, TContext>
-  ): TransportRequestCallback;
-  clear_scroll<
-    TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
-  >(
-    params: RequestParams.ClearScroll<TRequestBody>,
-    options: TransportRequestOptions,
-    callback: callbackFn<TResponse, TContext>
-  ): TransportRequestCallback;
-  clearScroll<
-    TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
-  >(
-    params?: RequestParams.ClearScroll<TRequestBody>,
-    options?: TransportRequestOptions
-  ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
-  clearScroll<
-    TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
-  >(callback: callbackFn<TResponse, TContext>): TransportRequestCallback;
-  clearScroll<
-    TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
-  >(
-    params: RequestParams.ClearScroll<TRequestBody>,
-    callback: callbackFn<TResponse, TContext>
-  ): TransportRequestCallback;
-  clearScroll<
-    TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
-  >(
-    params: RequestParams.ClearScroll<TRequestBody>,
-    options: TransportRequestOptions,
-    callback: callbackFn<TResponse, TContext>
-  ): TransportRequestCallback;
+    aliases<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatAliases, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    aliases<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    aliases<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatAliases, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    aliases<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatAliases, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    allocation<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatAllocation, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    allocation<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    allocation<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatAllocation, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    allocation<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatAllocation, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    cluster_manager<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatClusterManager, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    cluster_manager<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    cluster_manager<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatClusterManager, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    cluster_manager<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatClusterManager, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    count<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatCount, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    count<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    count<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatCount, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    count<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatCount, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    fielddata<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatFielddata, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    fielddata<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    fielddata<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatFielddata, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    fielddata<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatFielddata, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    health<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatHealth, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    health<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    health<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatHealth, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    health<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatHealth, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    help<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatHelp, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    help<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    help<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatHelp, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    help<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatHelp, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    indices<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatIndices, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    indices<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    indices<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatIndices, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    indices<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatIndices, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    /**
+    * // TODO: delete cat.master when it is removed from OpenSearch
+    * @deprecated use cat.cluster_manager instead
+    */
+    master<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatMaster, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    /**
+    * // TODO: delete cat.master when it is removed from OpenSearch
+    * @deprecated use cat.cluster_manager instead
+    */
+    master<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    /**
+    * // TODO: delete cat.master when it is removed from OpenSearch
+    * @deprecated use cat.cluster_manager instead
+    */
+    master<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatMaster, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    /**
+    * // TODO: delete cat.master when it is removed from OpenSearch
+    * @deprecated use cat.cluster_manager instead
+    */
+    master<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatMaster, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    nodeattrs<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatNodeattrs, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    nodeattrs<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    nodeattrs<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatNodeattrs, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    nodeattrs<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatNodeattrs, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    nodes<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatNodes, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    nodes<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    nodes<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatNodes, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    nodes<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatNodes, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    pending_tasks<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatPendingTasks, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    pending_tasks<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    pending_tasks<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatPendingTasks, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    pending_tasks<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatPendingTasks, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    pendingTasks<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatPendingTasks, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    pendingTasks<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    pendingTasks<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatPendingTasks, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    pendingTasks<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatPendingTasks, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    plugins<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatPlugins, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    plugins<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    plugins<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatPlugins, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    plugins<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatPlugins, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    recovery<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatRecovery, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    recovery<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    recovery<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatRecovery, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    recovery<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatRecovery, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    repositories<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatRepositories, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    repositories<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    repositories<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatRepositories, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    repositories<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatRepositories, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    segments<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatSegments, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    segments<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    segments<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatSegments, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    segments<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatSegments, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    shards<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatShards, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    shards<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    shards<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatShards, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    shards<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatShards, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    snapshots<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatSnapshots, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    snapshots<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    snapshots<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatSnapshots, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    snapshots<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatSnapshots, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    tasks<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatTasks, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    tasks<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    tasks<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatTasks, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    tasks<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatTasks, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    templates<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatTemplates, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    templates<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    templates<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatTemplates, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    templates<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatTemplates, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    thread_pool<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatThreadPool, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    thread_pool<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    thread_pool<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatThreadPool, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    thread_pool<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatThreadPool, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    threadPool<TResponse = Record<string, any>, TContext = Context>(params?: RequestParams.CatThreadPool, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+    threadPool<TResponse = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    threadPool<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatThreadPool, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+    threadPool<TResponse = Record<string, any>, TContext = Context>(params: RequestParams.CatThreadPool, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+  }
+  clear_scroll<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(params?: RequestParams.ClearScroll<TRequestBody>, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+  clear_scroll<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+  clear_scroll<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(params: RequestParams.ClearScroll<TRequestBody>, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+  clear_scroll<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(params: RequestParams.ClearScroll<TRequestBody>, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+  clearScroll<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(params?: RequestParams.ClearScroll<TRequestBody>, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<TResponse, TContext>>
+  clearScroll<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+  clearScroll<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(params: RequestParams.ClearScroll<TRequestBody>, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
+  clearScroll<TResponse = Record<string, any>, TRequestBody extends RequestBody = Record<string, any>, TContext = Context>(params: RequestParams.ClearScroll<TRequestBody>, options: TransportRequestOptions, callback: callbackFn<TResponse, TContext>): TransportRequestCallback
   cluster: {
     allocation_explain<
       TResponse = Record<string, any>,

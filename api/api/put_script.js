@@ -35,6 +35,7 @@
 
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
+  'cluster_manager_timeout',
   'timeout',
   'master_timeout',
   'context',
@@ -45,6 +46,7 @@ const acceptedQuerystring = [
   'filter_path',
 ];
 const snakeCase = {
+  clusterManagerTimeout: 'cluster_manager_timeout',
   masterTimeout: 'master_timeout',
   errorTrace: 'error_trace',
   filterPath: 'filter_path',

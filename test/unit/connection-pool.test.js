@@ -333,6 +333,7 @@ test('API', (t) => {
     t.end();
   });
 
+  // TODO: modify node roles when master is not supported
   t.test('nodesToHost', (t) => {
     t.test('publish_address as ip address (IPv4)', (t) => {
       const pool = new ConnectionPool({ Connection });
@@ -341,7 +342,7 @@ test('API', (t) => {
           http: {
             publish_address: '127.0.0.1:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -356,7 +357,7 @@ test('API', (t) => {
           url: new URL('http://127.0.0.1:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -384,7 +385,7 @@ test('API', (t) => {
           http: {
             publish_address: '[::1]:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -399,7 +400,7 @@ test('API', (t) => {
           url: new URL('http://[::1]:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -427,7 +428,7 @@ test('API', (t) => {
           http: {
             publish_address: 'example.com/127.0.0.1:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -442,7 +443,7 @@ test('API', (t) => {
           url: new URL('http://example.com:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -470,7 +471,7 @@ test('API', (t) => {
           http: {
             publish_address: 'example.com/[::1]:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -485,7 +486,7 @@ test('API', (t) => {
           url: new URL('http://example.com:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -513,7 +514,7 @@ test('API', (t) => {
           http: {
             publish_address: 'example.com/127.0.0.1:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -535,7 +536,7 @@ test('API', (t) => {
           http: {
             publish_address: 'example.com:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['cluster_manager', 'data', 'ingest'],
         },
         a2: {
           http: {
@@ -549,7 +550,7 @@ test('API', (t) => {
           url: new URL('http://example.com:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -558,7 +559,6 @@ test('API', (t) => {
           url: new URL('http://example.com:9201'),
           id: 'a2',
           roles: {
-            master: false,
             data: false,
             ingest: false,
           },
@@ -571,6 +571,7 @@ test('API', (t) => {
     t.end();
   });
 
+  // TODO: modify node roles when master is not supported
   t.test('update', (t) => {
     t.test('Should not update existing connections', (t) => {
       t.plan(2);
@@ -580,7 +581,7 @@ test('API', (t) => {
           url: new URL('http://127.0.0.1:9200'),
           id: 'a1',
           roles: {
-            master: true,
+            cluster_manager: true,
             data: true,
             ingest: true,
           },
@@ -626,7 +627,7 @@ test('API', (t) => {
         url: new URL('http://127.0.0.1:9200'),
         id: 'a1',
         roles: {
-          master: true,
+          cluster_manager: true,
           data: true,
           ingest: true,
         },
@@ -662,7 +663,8 @@ test('API', (t) => {
       t.ok(pool.connections.find((c) => c.id === 'a2').roles !== null);
     });
 
-    t.test('Should not update existing connections (same url, different id)', (t) => {
+    // remove this test when master is not supported
+    t.test('Should not update existing connections (master, same url, different id)', (t) => {
       t.plan(3);
       class CustomConnectionPool extends ConnectionPool {
         markAlive(connection) {
@@ -704,6 +706,51 @@ test('API', (t) => {
       );
     });
 
+    t.test(
+      'Should not update existing connections (cluster_manager, same url, different id)',
+      (t) => {
+        t.plan(3);
+        class CustomConnectionPool extends ConnectionPool {
+          markAlive(connection) {
+            t.ok('called');
+            super.markAlive(connection);
+          }
+        }
+        const pool = new CustomConnectionPool({ Connection });
+        pool.addConnection([
+          {
+            url: new URL('http://127.0.0.1:9200'),
+            id: 'http://127.0.0.1:9200/',
+            roles: {
+              cluster_manager: true,
+              data: true,
+              ingest: true,
+            },
+          },
+        ]);
+
+        pool.update([
+          {
+            url: new URL('http://127.0.0.1:9200'),
+            id: 'a1',
+            roles: true,
+          },
+        ]);
+
+        // roles will never be updated, we only use it to do
+        // a dummy check to see if the connection has been updated
+        t.same(pool.connections.find((c) => c.id === 'a1').roles, {
+          cluster_manager: true,
+          data: true,
+          ingest: true,
+        });
+        t.equal(
+          pool.connections.find((c) => c.id === 'http://127.0.0.1:9200/'),
+          undefined
+        );
+      }
+    );
+
     t.test('Add a new connection', (t) => {
       t.plan(2);
       const pool = new ConnectionPool({ Connection });
@@ -711,7 +758,7 @@ test('API', (t) => {
         url: new URL('http://127.0.0.1:9200'),
         id: 'a1',
         roles: {
-          master: true,
+          cluster_manager: true,
           data: true,
           ingest: true,
         },
@@ -824,6 +871,21 @@ test('Node filter', (t) => {
     t.ok(pool.getConnection({ filter: defaultNodeFilter }) instanceof Connection);
   });
 
+  t.test('Should filter cluster_manager only nodes', (t) => {
+    t.plan(1);
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection({
+      url: new URL('http://localhost:9200/'),
+      roles: {
+        cluster_manager: true,
+        data: false,
+        ingest: false,
+      },
+    });
+    t.equal(pool.getConnection({ filter: defaultNodeFilter }), null);
+  });
+
+  // TODO: delete this test when master is not a node role
   t.test('Should filter master only nodes', (t) => {
     t.plan(1);
     const pool = new ConnectionPool({ Connection });

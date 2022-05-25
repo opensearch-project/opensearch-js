@@ -37,6 +37,7 @@ const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = 
 const acceptedQuerystring = [
   'accept_data_loss',
   'timeout',
+  'cluster_manager_timeout',
   'master_timeout',
   'pretty',
   'human',
@@ -46,6 +47,7 @@ const acceptedQuerystring = [
 ];
 const snakeCase = {
   acceptDataLoss: 'accept_data_loss',
+  clusterManagerTimeout: 'cluster_manager_timeout',
   masterTimeout: 'master_timeout',
   errorTrace: 'error_trace',
   filterPath: 'filter_path',

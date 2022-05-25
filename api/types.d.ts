@@ -28,17 +28,17 @@
  * under the License.
  */
 
-export interface BulkCreateOperation extends BulkOperation {}
+export interface BulkCreateOperation extends BulkOperation { }
 
-export interface BulkCreateResponseItem extends BulkResponseItemBase {}
+export interface BulkCreateResponseItem extends BulkResponseItemBase { }
 
-export interface BulkDeleteOperation extends BulkOperation {}
+export interface BulkDeleteOperation extends BulkOperation { }
 
-export interface BulkDeleteResponseItem extends BulkResponseItemBase {}
+export interface BulkDeleteResponseItem extends BulkResponseItemBase { }
 
-export interface BulkIndexOperation extends BulkOperation {}
+export interface BulkIndexOperation extends BulkOperation { }
 
-export interface BulkIndexResponseItem extends BulkResponseItemBase {}
+export interface BulkIndexResponseItem extends BulkResponseItemBase { }
 
 export interface BulkOperation {
   _id: Id;
@@ -98,9 +98,9 @@ export interface BulkResponseItemContainer {
   delete?: BulkDeleteResponseItem;
 }
 
-export interface BulkUpdateOperation extends BulkOperation {}
+export interface BulkUpdateOperation extends BulkOperation { }
 
-export interface BulkUpdateResponseItem extends BulkResponseItemBase {}
+export interface BulkUpdateResponseItem extends BulkResponseItemBase { }
 
 export interface ClearScrollRequest extends RequestBase {
   scroll_id?: Ids;
@@ -154,7 +154,7 @@ export interface CreateRequest<TDocument = unknown> extends RequestBase {
   body?: TDocument;
 }
 
-export interface CreateResponse extends WriteResponseBase {}
+export interface CreateResponse extends WriteResponseBase { }
 
 export interface DeleteRequest extends RequestBase {
   id: Id;
@@ -169,7 +169,7 @@ export interface DeleteRequest extends RequestBase {
   wait_for_active_shards?: WaitForActiveShards;
 }
 
-export interface DeleteResponse extends WriteResponseBase {}
+export interface DeleteResponse extends WriteResponseBase { }
 
 export interface DeleteByQueryRequest extends RequestBase {
   index: Indices;
@@ -235,15 +235,19 @@ export interface DeleteByQueryRethrottleRequest extends RequestBase {
   requests_per_second?: long;
 }
 
-export interface DeleteByQueryRethrottleResponse extends TaskListResponse {}
+export interface DeleteByQueryRethrottleResponse extends TaskListResponse { }
 
 export interface DeleteScriptRequest extends RequestBase {
-  id: Id;
-  master_timeout?: Time;
-  timeout?: Time;
+  id: Id
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
-export interface DeleteScriptResponse extends AcknowledgedResponseBase {}
+export interface DeleteScriptResponse extends AcknowledgedResponseBase { }
 
 export interface ExistsRequest extends RequestBase {
   id: Id;
@@ -400,8 +404,12 @@ export interface GetResponse<TDocument = unknown> {
 }
 
 export interface GetScriptRequest extends RequestBase {
-  id: Id;
-  master_timeout?: Time;
+  id: Id
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
 export interface GetScriptResponse {
@@ -426,7 +434,7 @@ export interface GetScriptContextContextMethodParam {
   type: string;
 }
 
-export interface GetScriptContextRequest extends RequestBase {}
+export interface GetScriptContextRequest extends RequestBase { }
 
 export interface GetScriptContextResponse {
   contexts: GetScriptContextContext[];
@@ -437,14 +445,14 @@ export interface GetScriptLanguagesLanguageContext {
   language: ScriptLanguage;
 }
 
-export interface GetScriptLanguagesRequest extends RequestBase {}
+export interface GetScriptLanguagesRequest extends RequestBase { }
 
 export interface GetScriptLanguagesResponse {
   language_contexts: GetScriptLanguagesLanguageContext[];
   types_allowed: string[];
 }
 
-export interface GetSourceRequest extends GetRequest {}
+export interface GetSourceRequest extends GetRequest { }
 
 export type GetSourceResponse<TDocument = unknown> = TDocument;
 
@@ -465,9 +473,9 @@ export interface IndexRequest<TDocument = unknown> extends RequestBase {
   body?: TDocument;
 }
 
-export interface IndexResponse extends WriteResponseBase {}
+export interface IndexResponse extends WriteResponseBase { }
 
-export interface InfoRequest extends RequestBase {}
+export interface InfoRequest extends RequestBase { }
 
 export interface InfoResponse {
   cluster_name: Name;
@@ -638,21 +646,25 @@ export interface MtermvectorsTermVectorsResult {
   version: VersionNumber;
 }
 
-export interface PingRequest extends RequestBase {}
+export interface PingRequest extends RequestBase { }
 
 export type PingResponse = boolean;
 
 export interface PutScriptRequest extends RequestBase {
-  id: Id;
-  context?: Name;
-  master_timeout?: Time;
-  timeout?: Time;
+  id: Id
+  context?: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
   body?: {
     script?: StoredScript;
   };
 }
 
-export interface PutScriptResponse extends AcknowledgedResponseBase {}
+export interface PutScriptResponse extends AcknowledgedResponseBase { }
 
 export interface RankEvalDocumentRating {
   _id: Id;
@@ -699,7 +711,7 @@ export interface RankEvalRankEvalMetricExpectedReciprocalRank extends RankEvalRa
 }
 
 export interface RankEvalRankEvalMetricMeanReciprocalRank
-  extends RankEvalRankEvalMetricRatingTreshold {}
+  extends RankEvalRankEvalMetricRatingTreshold { }
 
 export interface RankEvalRankEvalMetricPrecision extends RankEvalRankEvalMetricRatingTreshold {
   ignore_unlabeled?: boolean;
@@ -709,7 +721,7 @@ export interface RankEvalRankEvalMetricRatingTreshold extends RankEvalRankEvalMe
   relevant_rating_threshold?: integer;
 }
 
-export interface RankEvalRankEvalMetricRecall extends RankEvalRankEvalMetricRatingTreshold {}
+export interface RankEvalRankEvalMetricRecall extends RankEvalRankEvalMetricRatingTreshold { }
 
 export interface RankEvalRankEvalQuery {
   query: QueryDslQueryContainer;
@@ -899,7 +911,7 @@ export interface ScrollRequest extends RequestBase {
   };
 }
 
-export interface ScrollResponse<TDocument = unknown> extends SearchResponse<TDocument> {}
+export interface ScrollResponse<TDocument = unknown> extends SearchResponse<TDocument> { }
 
 export interface SearchRequest extends RequestBase {
   index?: Indices;
@@ -1023,7 +1035,7 @@ export interface SearchAggregationProfile {
   children?: SearchAggregationProfileDebug[];
 }
 
-export interface SearchAggregationProfileDebug {}
+export interface SearchAggregationProfileDebug { }
 
 export type SearchBoundaryScanner = 'chars' | 'sentence' | 'word';
 
@@ -1801,7 +1813,7 @@ export interface OpenSearchVersionInfo {
   number: string;
 }
 
-export interface EmptyObject {}
+export interface EmptyObject { }
 
 export type EpochMillis = string | long;
 
@@ -2022,14 +2034,8 @@ export type NodeIds = string;
 
 export type NodeName = string;
 
-export type NodeRole =
-  | 'master'
-  | 'data'
-  | 'client'
-  | 'ingest'
-  | 'voting_only'
-  | 'remote_cluster_client'
-  | 'coordinating_only';
+// TODO: remove master role if it is not supported.
+export type NodeRole = 'cluster_manager' | 'master' | 'data' | 'client' | 'ingest' | 'voting_only' | 'remote_cluster_client' | 'coordinating_only'
 
 export type NodeRoles = NodeRole[];
 
@@ -2107,7 +2113,7 @@ export interface RefreshStats {
 
 export type RelationName = string;
 
-export interface RequestBase extends SpecUtilsCommonQueryParameters {}
+export interface RequestBase extends SpecUtilsCommonQueryParameters { }
 
 export interface RequestCacheStats {
   evictions: long;
@@ -2449,9 +2455,9 @@ export interface AggregationsAutoDateHistogramAggregation
   time_zone?: string;
 }
 
-export interface AggregationsAverageAggregation extends AggregationsFormatMetricAggregationBase {}
+export interface AggregationsAverageAggregation extends AggregationsFormatMetricAggregationBase { }
 
-export interface AggregationsAverageBucketAggregation extends AggregationsPipelineAggregationBase {}
+export interface AggregationsAverageBucketAggregation extends AggregationsPipelineAggregationBase { }
 
 export interface AggregationsBoxPlotAggregate extends AggregationsAggregateBase {
   min: double;
@@ -2504,7 +2510,7 @@ export interface AggregationsBucketSortAggregation extends AggregationsAggregati
   sort?: SearchSort;
 }
 
-export interface AggregationsBucketsPath {}
+export interface AggregationsBucketsPath { }
 
 export interface AggregationsCardinalityAggregation extends AggregationsMetricAggregationBase {
   precision_threshold?: integer;
@@ -2541,7 +2547,7 @@ export interface AggregationsCompositeAggregationSource {
   geotile_grid?: AggregationsGeoTileGridAggregation;
 }
 
-export interface AggregationsCompositeBucketKeys {}
+export interface AggregationsCompositeBucketKeys { }
 export type AggregationsCompositeBucket =
   | AggregationsCompositeBucketKeys
   | { [property: string]: AggregationsAggregate };
@@ -2552,9 +2558,9 @@ export interface AggregationsCompositeBucketAggregate
 }
 
 export interface AggregationsCumulativeCardinalityAggregation
-  extends AggregationsPipelineAggregationBase {}
+  extends AggregationsPipelineAggregationBase { }
 
-export interface AggregationsCumulativeSumAggregation extends AggregationsPipelineAggregationBase {}
+export interface AggregationsCumulativeSumAggregation extends AggregationsPipelineAggregationBase { }
 
 export interface AggregationsDateHistogramAggregation extends AggregationsBucketAggregationBase {
   calendar_interval?: AggregationsDateInterval | Time;
@@ -2573,7 +2579,7 @@ export interface AggregationsDateHistogramAggregation extends AggregationsBucket
   time_zone?: string;
 }
 
-export interface AggregationsDateHistogramBucketKeys {}
+export interface AggregationsDateHistogramBucketKeys { }
 
 export type AggregationsDateHistogramBucket =
   | AggregationsDateHistogramBucketKeys
@@ -2606,7 +2612,7 @@ export interface AggregationsDateRangeExpression {
   doc_count?: long;
 }
 
-export interface AggregationsDerivativeAggregation extends AggregationsPipelineAggregationBase {}
+export interface AggregationsDerivativeAggregation extends AggregationsPipelineAggregationBase { }
 
 export interface AggregationsDiversifiedSamplerAggregation
   extends AggregationsBucketAggregationBase {
@@ -2749,7 +2755,7 @@ export interface AggregationsGeoTileGridAggregation extends AggregationsBucketAg
   bounds?: AggregationsGeoBounds;
 }
 
-export interface AggregationsGlobalAggregation extends AggregationsBucketAggregationBase {}
+export interface AggregationsGlobalAggregation extends AggregationsBucketAggregationBase { }
 
 export interface AggregationsGoogleNormalizedDistanceHeuristic {
   background_is_superset: boolean;
@@ -2823,7 +2829,7 @@ export interface AggregationsIpRangeAggregationRange {
   to?: string;
 }
 
-export interface AggregationsIpRangeBucketKeys {}
+export interface AggregationsIpRangeBucketKeys { }
 export type AggregationsIpRangeBucket =
   | AggregationsIpRangeBucketKeys
   | { [property: string]: AggregationsAggregate };
@@ -2867,9 +2873,9 @@ export interface AggregationsMatrixStatsAggregation extends AggregationsMatrixAg
 
 export type AggregationsMatrixStatsMode = 'avg' | 'min' | 'max' | 'sum' | 'median';
 
-export interface AggregationsMaxAggregation extends AggregationsFormatMetricAggregationBase {}
+export interface AggregationsMaxAggregation extends AggregationsFormatMetricAggregationBase { }
 
-export interface AggregationsMaxBucketAggregation extends AggregationsPipelineAggregationBase {}
+export interface AggregationsMaxBucketAggregation extends AggregationsPipelineAggregationBase { }
 
 export interface AggregationsMedianAbsoluteDeviationAggregation
   extends AggregationsFormatMetricAggregationBase {
@@ -2898,9 +2904,9 @@ export interface AggregationsMetricAggregationBase {
   script?: Script;
 }
 
-export interface AggregationsMinAggregation extends AggregationsFormatMetricAggregationBase {}
+export interface AggregationsMinAggregation extends AggregationsFormatMetricAggregationBase { }
 
-export interface AggregationsMinBucketAggregation extends AggregationsPipelineAggregationBase {}
+export interface AggregationsMinBucketAggregation extends AggregationsPipelineAggregationBase { }
 
 export type AggregationsMinimumInterval = 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year';
 
@@ -2976,7 +2982,7 @@ export interface AggregationsParentAggregation extends AggregationsBucketAggrega
   type?: RelationName;
 }
 
-export interface AggregationsPercentageScoreHeuristic {}
+export interface AggregationsPercentageScoreHeuristic { }
 
 export interface AggregationsPercentileItem {
   percentile: double;
@@ -3020,7 +3026,7 @@ export interface AggregationsRangeAggregation extends AggregationsBucketAggregat
   script?: Script;
 }
 
-export interface AggregationsRangeBucketKeys {}
+export interface AggregationsRangeBucketKeys { }
 export type AggregationsRangeBucket =
   | AggregationsRangeBucketKeys
   | { [property: string]: AggregationsAggregate };
@@ -3035,7 +3041,7 @@ export interface AggregationsRareTermsAggregation extends AggregationsBucketAggr
   value_type?: string;
 }
 
-export interface AggregationsRareTermsBucketKeys<TKey = unknown> {}
+export interface AggregationsRareTermsBucketKeys<TKey = unknown> { }
 export type AggregationsRareTermsBucket<TKey = unknown> =
   | AggregationsRareTermsBucketKeys<TKey>
   | { [property: string]: AggregationsAggregate };
@@ -3106,7 +3112,7 @@ export interface AggregationsSignificantTermsAggregation extends AggregationsBuc
   size?: integer;
 }
 
-export interface AggregationsSignificantTermsBucketKeys<TKey = unknown> {}
+export interface AggregationsSignificantTermsBucketKeys<TKey = unknown> { }
 export type AggregationsSignificantTermsBucket<TKey = unknown> =
   | AggregationsSignificantTermsBucketKeys<TKey>
   | { [property: string]: AggregationsAggregate };
@@ -3154,9 +3160,9 @@ export interface AggregationsStatsAggregate extends AggregationsAggregateBase {
   min?: double;
 }
 
-export interface AggregationsStatsAggregation extends AggregationsFormatMetricAggregationBase {}
+export interface AggregationsStatsAggregation extends AggregationsFormatMetricAggregationBase { }
 
-export interface AggregationsStatsBucketAggregation extends AggregationsPipelineAggregationBase {}
+export interface AggregationsStatsBucketAggregation extends AggregationsPipelineAggregationBase { }
 
 export interface AggregationsStringStatsAggregate extends AggregationsAggregateBase {
   count: long;
@@ -3171,9 +3177,9 @@ export interface AggregationsStringStatsAggregation extends AggregationsMetricAg
   show_distribution?: boolean;
 }
 
-export interface AggregationsSumAggregation extends AggregationsFormatMetricAggregationBase {}
+export interface AggregationsSumAggregation extends AggregationsFormatMetricAggregationBase { }
 
-export interface AggregationsSumBucketAggregation extends AggregationsPipelineAggregationBase {}
+export interface AggregationsSumBucketAggregation extends AggregationsPipelineAggregationBase { }
 
 export interface AggregationsTDigest {
   compression?: integer;
@@ -3282,7 +3288,7 @@ export interface AggregationsValueAggregate extends AggregationsAggregateBase {
 }
 
 export interface AggregationsValueCountAggregation
-  extends AggregationsFormattableMetricAggregation {}
+  extends AggregationsFormattableMetricAggregation { }
 
 export type AggregationsValueType =
   | 'string'
@@ -3388,7 +3394,7 @@ export interface AnalysisFingerprintTokenFilter extends AnalysisTokenFilterBase 
   separator: string;
 }
 
-export interface AnalysisHtmlStripCharFilter extends AnalysisCharFilterBase {}
+export interface AnalysisHtmlStripCharFilter extends AnalysisCharFilterBase { }
 
 export interface AnalysisHunspellTokenFilter extends AnalysisTokenFilterBase {
   dedup: boolean;
@@ -3398,9 +3404,9 @@ export interface AnalysisHunspellTokenFilter extends AnalysisTokenFilterBase {
 }
 
 export interface AnalysisHyphenationDecompounderTokenFilter
-  extends AnalysisCompoundWordTokenFilterBase {}
+  extends AnalysisCompoundWordTokenFilterBase { }
 
-export interface AnalysisKStemTokenFilter extends AnalysisTokenFilterBase {}
+export interface AnalysisKStemTokenFilter extends AnalysisTokenFilterBase { }
 
 export type AnalysisKeepTypesMode = 'include' | 'exclude';
 
@@ -3431,7 +3437,7 @@ export interface AnalysisLengthTokenFilter extends AnalysisTokenFilterBase {
   min: integer;
 }
 
-export interface AnalysisLetterTokenizer extends AnalysisTokenizerBase {}
+export interface AnalysisLetterTokenizer extends AnalysisTokenizerBase { }
 
 export interface AnalysisLimitTokenCountTokenFilter extends AnalysisTokenFilterBase {
   consume_all_tokens: boolean;
@@ -3442,7 +3448,7 @@ export interface AnalysisLowercaseTokenFilter extends AnalysisTokenFilterBase {
   language: string;
 }
 
-export interface AnalysisLowercaseTokenizer extends AnalysisTokenizerBase {}
+export interface AnalysisLowercaseTokenizer extends AnalysisTokenizerBase { }
 
 export interface AnalysisMappingCharFilter extends AnalysisCharFilterBase {
   mappings: string[];
@@ -3498,15 +3504,15 @@ export interface AnalysisPatternReplaceTokenFilter extends AnalysisTokenFilterBa
   replacement: string;
 }
 
-export interface AnalysisPorterStemTokenFilter extends AnalysisTokenFilterBase {}
+export interface AnalysisPorterStemTokenFilter extends AnalysisTokenFilterBase { }
 
 export interface AnalysisPredicateTokenFilter extends AnalysisTokenFilterBase {
   script: Script;
 }
 
-export interface AnalysisRemoveDuplicatesTokenFilter extends AnalysisTokenFilterBase {}
+export interface AnalysisRemoveDuplicatesTokenFilter extends AnalysisTokenFilterBase { }
 
-export interface AnalysisReverseTokenFilter extends AnalysisTokenFilterBase {}
+export interface AnalysisReverseTokenFilter extends AnalysisTokenFilterBase { }
 
 export interface AnalysisShingleTokenFilter extends AnalysisTokenFilterBase {
   filler_token: string;
@@ -3660,7 +3666,7 @@ export interface AnalysisTokenizerBase {
   version?: VersionString;
 }
 
-export interface AnalysisTrimTokenFilter extends AnalysisTokenFilterBase {}
+export interface AnalysisTrimTokenFilter extends AnalysisTokenFilterBase { }
 
 export interface AnalysisTruncateTokenFilter extends AnalysisTokenFilterBase {
   length: integer;
@@ -3674,7 +3680,7 @@ export interface AnalysisUniqueTokenFilter extends AnalysisTokenFilterBase {
   only_on_same_position: boolean;
 }
 
-export interface AnalysisUppercaseTokenFilter extends AnalysisTokenFilterBase {}
+export interface AnalysisUppercaseTokenFilter extends AnalysisTokenFilterBase { }
 
 export interface AnalysisWhitespaceTokenizer extends AnalysisTokenizerBase {
   max_token_length: integer;
@@ -3837,7 +3843,7 @@ export interface MappingFieldAliasProperty extends MappingPropertyBase {
   type: 'alias';
 }
 
-export interface MappingFieldMapping {}
+export interface MappingFieldMapping { }
 
 export interface MappingFieldNamesField {
   enabled: boolean;
@@ -4204,8 +4210,8 @@ export interface MappingTypeMapping {
   dynamic?: boolean | MappingDynamicMapping;
   dynamic_date_formats?: string[];
   dynamic_templates?:
-    | Record<string, MappingDynamicTemplate>
-    | Record<string, MappingDynamicTemplate>[];
+  | Record<string, MappingDynamicTemplate>
+  | Record<string, MappingDynamicTemplate>[];
   _field_names?: MappingFieldNamesField;
   index_field?: MappingIndexField;
   _meta?: Metadata;
@@ -4266,7 +4272,7 @@ export interface QueryDslConstantScoreQuery extends QueryDslQueryBase {
   filter?: QueryDslQueryContainer;
 }
 
-export interface QueryDslDateDecayFunctionKeys extends QueryDslDecayFunctionBase {}
+export interface QueryDslDateDecayFunctionKeys extends QueryDslDecayFunctionBase { }
 export type QueryDslDateDecayFunction =
   | QueryDslDateDecayFunctionKeys
   | { [property: string]: QueryDslDecayPlacement<DateMath, Time> };
@@ -4371,7 +4377,7 @@ export interface QueryDslGeoBoundingBoxQuery extends QueryDslQueryBase {
 
 export type QueryDslGeoCoordinate = string | double[] | QueryDslThreeDimensionalPoint;
 
-export interface QueryDslGeoDecayFunctionKeys extends QueryDslDecayFunctionBase {}
+export interface QueryDslGeoDecayFunctionKeys extends QueryDslDecayFunctionBase { }
 export type QueryDslGeoDecayFunction =
   | QueryDslGeoDecayFunctionKeys
   | { [property: string]: QueryDslDecayPlacement<QueryDslGeoLocation, Distance> };
@@ -4529,7 +4535,7 @@ export interface QueryDslMatchBoolPrefixQuery extends QueryDslQueryBase {
   query?: string;
 }
 
-export interface QueryDslMatchNoneQuery extends QueryDslQueryBase {}
+export interface QueryDslMatchNoneQuery extends QueryDslQueryBase { }
 
 export interface QueryDslMatchPhrasePrefixQuery extends QueryDslQueryBase {
   analyzer?: string;
@@ -4624,7 +4630,7 @@ export interface QueryDslNestedQuery extends QueryDslQueryBase {
 
 export type QueryDslNestedScoreMode = 'avg' | 'sum' | 'min' | 'max' | 'none';
 
-export interface QueryDslNumericDecayFunctionKeys extends QueryDslDecayFunctionBase {}
+export interface QueryDslNumericDecayFunctionKeys extends QueryDslDecayFunctionBase { }
 export type QueryDslNumericDecayFunction =
   | QueryDslNumericDecayFunctionKeys
   | { [property: string]: QueryDslDecayPlacement<double, double> };
@@ -4671,8 +4677,8 @@ export interface QueryDslQueryContainer {
   constant_score?: QueryDslConstantScoreQuery;
   dis_max?: QueryDslDisMaxQuery;
   distance_feature?:
-    | Record<Field, QueryDslDistanceFeatureQuery | string>
-    | QueryDslDistanceFeatureQuery;
+  | Record<Field, QueryDslDistanceFeatureQuery | string>
+  | QueryDslDistanceFeatureQuery;
   exists?: QueryDslExistsQuery;
   function_score?: QueryDslFunctionScoreQuery;
   fuzzy?: Record<Field, QueryDslFuzzyQuery | string>;
@@ -4772,7 +4778,7 @@ export interface QueryDslRangeQuery extends QueryDslQueryBase {
 
 export type QueryDslRangeRelation = 'within' | 'contains' | 'intersects';
 
-export interface QueryDslRankFeatureFunction {}
+export interface QueryDslRankFeatureFunction { }
 
 export interface QueryDslRankFeatureQuery extends QueryDslQueryBase {
   function?: QueryDslRankFeatureFunction;
@@ -4951,7 +4957,7 @@ export interface QueryDslWildcardQuery extends QueryDslQueryBase {
 }
 
 export type QueryDslZeroTermsQuery = 'all' | 'none';
-export interface CatCatRequestBase extends RequestBase, SpecUtilsCommonCatQueryParameters {}
+export interface CatCatRequestBase extends RequestBase, SpecUtilsCommonCatQueryParameters { }
 
 export interface CatAliasesAliasesRecord {
   alias?: string;
@@ -5111,7 +5117,7 @@ export interface CatHelpHelpRecord {
   endpoint: string;
 }
 
-export interface CatHelpRequest extends CatCatRequestBase {}
+export interface CatHelpRequest extends CatCatRequestBase { }
 
 export type CatHelpResponse = CatHelpHelpRecord[];
 
@@ -5416,6 +5422,19 @@ export interface CatIndicesRequest extends CatCatRequestBase {
 
 export type CatIndicesResponse = CatIndicesIndicesRecord[];
 
+export interface CatClusterManagerClusterManagerRecord {
+  id?: string
+  host?: string
+  h?: string
+  ip?: string
+  node?: string
+  n?: string
+}
+
+/**
+* // TODO: delete CatMasterMasterRecord interface when it is removed from OpenSearch
+* @deprecated use CatClusterManagerClusterManagerRecord instead
+*/
 export interface CatMasterMasterRecord {
   id?: string;
   host?: string;
@@ -5425,9 +5444,23 @@ export interface CatMasterMasterRecord {
   n?: string;
 }
 
-export interface CatMasterRequest extends CatCatRequestBase {}
+export interface CatClusterManagerRequest extends CatCatRequestBase {
+}
 
-export type CatMasterResponse = CatMasterMasterRecord[];
+/**
+* // TODO: delete CatMasterRequest interface when it is removed from OpenSearch
+* @deprecated use CatClusterManagerRequest instead
+*/
+export interface CatMasterRequest extends CatCatRequestBase {
+}
+
+export type CatClusterManagerResponse = CatClusterManagerClusterManagerRecord[]
+
+/**
+* // TODO: delete CatMasterResponse type when it is removed from OpenSearch
+* @deprecated use CatClusterManagerResponse instead
+*/
+export type CatMasterResponse = CatMasterMasterRecord[]
 
 export interface CatNodeAttributesNodeAttributesRecord {
   node?: string;
@@ -5442,278 +5475,282 @@ export interface CatNodeAttributesNodeAttributesRecord {
   value?: string;
 }
 
-export interface CatNodeAttributesRequest extends CatCatRequestBase {}
+export interface CatNodeAttributesRequest extends CatCatRequestBase { }
 
 export type CatNodeAttributesResponse = CatNodeAttributesNodeAttributesRecord[];
 
 export interface CatNodesNodesRecord {
-  id?: Id;
-  nodeId?: Id;
-  pid?: string;
-  p?: string;
-  ip?: string;
-  i?: string;
-  port?: string;
-  po?: string;
-  http_address?: string;
-  http?: string;
-  version?: VersionString;
-  v?: VersionString;
-  flavor?: string;
-  f?: string;
-  type?: Type;
-  t?: Type;
-  build?: string;
-  b?: string;
-  jdk?: string;
-  j?: string;
-  'disk.total'?: ByteSize;
-  dt?: ByteSize;
-  diskTotal?: ByteSize;
-  'disk.used'?: ByteSize;
-  du?: ByteSize;
-  diskUsed?: ByteSize;
-  'disk.avail'?: ByteSize;
-  d?: ByteSize;
-  da?: ByteSize;
-  disk?: ByteSize;
-  diskAvail?: ByteSize;
-  'disk.used_percent'?: Percentage;
-  dup?: Percentage;
-  diskUsedPercent?: Percentage;
-  'heap.current'?: string;
-  hc?: string;
-  heapCurrent?: string;
-  'heap.percent'?: Percentage;
-  hp?: Percentage;
-  heapPercent?: Percentage;
-  'heap.max'?: string;
-  hm?: string;
-  heapMax?: string;
-  'ram.current'?: string;
-  rc?: string;
-  ramCurrent?: string;
-  'ram.percent'?: Percentage;
-  rp?: Percentage;
-  ramPercent?: Percentage;
-  'ram.max'?: string;
-  rn?: string;
-  ramMax?: string;
-  'file_desc.current'?: string;
-  fdc?: string;
-  fileDescriptorCurrent?: string;
-  'file_desc.percent'?: Percentage;
-  fdp?: Percentage;
-  fileDescriptorPercent?: Percentage;
-  'file_desc.max'?: string;
-  fdm?: string;
-  fileDescriptorMax?: string;
-  cpu?: string;
-  load_1m?: string;
-  load_5m?: string;
-  load_15m?: string;
-  l?: string;
-  uptime?: string;
-  u?: string;
-  'node.role'?: string;
-  r?: string;
-  role?: string;
-  nodeRole?: string;
-  master?: string;
-  m?: string;
-  name?: Name;
-  n?: Name;
-  'completion.size'?: string;
-  cs?: string;
-  completionSize?: string;
-  'fielddata.memory_size'?: string;
-  fm?: string;
-  fielddataMemory?: string;
-  'fielddata.evictions'?: string;
-  fe?: string;
-  fielddataEvictions?: string;
-  'query_cache.memory_size'?: string;
-  qcm?: string;
-  queryCacheMemory?: string;
-  'query_cache.evictions'?: string;
-  qce?: string;
-  queryCacheEvictions?: string;
-  'query_cache.hit_count'?: string;
-  qchc?: string;
-  queryCacheHitCount?: string;
-  'query_cache.miss_count'?: string;
-  qcmc?: string;
-  queryCacheMissCount?: string;
-  'request_cache.memory_size'?: string;
-  rcm?: string;
-  requestCacheMemory?: string;
-  'request_cache.evictions'?: string;
-  rce?: string;
-  requestCacheEvictions?: string;
-  'request_cache.hit_count'?: string;
-  rchc?: string;
-  requestCacheHitCount?: string;
-  'request_cache.miss_count'?: string;
-  rcmc?: string;
-  requestCacheMissCount?: string;
-  'flush.total'?: string;
-  ft?: string;
-  flushTotal?: string;
-  'flush.total_time'?: string;
-  ftt?: string;
-  flushTotalTime?: string;
-  'get.current'?: string;
-  gc?: string;
-  getCurrent?: string;
-  'get.time'?: string;
-  gti?: string;
-  getTime?: string;
-  'get.total'?: string;
-  gto?: string;
-  getTotal?: string;
-  'get.exists_time'?: string;
-  geti?: string;
-  getExistsTime?: string;
-  'get.exists_total'?: string;
-  geto?: string;
-  getExistsTotal?: string;
-  'get.missing_time'?: string;
-  gmti?: string;
-  getMissingTime?: string;
-  'get.missing_total'?: string;
-  gmto?: string;
-  getMissingTotal?: string;
-  'indexing.delete_current'?: string;
-  idc?: string;
-  indexingDeleteCurrent?: string;
-  'indexing.delete_time'?: string;
-  idti?: string;
-  indexingDeleteTime?: string;
-  'indexing.delete_total'?: string;
-  idto?: string;
-  indexingDeleteTotal?: string;
-  'indexing.index_current'?: string;
-  iic?: string;
-  indexingIndexCurrent?: string;
-  'indexing.index_time'?: string;
-  iiti?: string;
-  indexingIndexTime?: string;
-  'indexing.index_total'?: string;
-  iito?: string;
-  indexingIndexTotal?: string;
-  'indexing.index_failed'?: string;
-  iif?: string;
-  indexingIndexFailed?: string;
-  'merges.current'?: string;
-  mc?: string;
-  mergesCurrent?: string;
-  'merges.current_docs'?: string;
-  mcd?: string;
-  mergesCurrentDocs?: string;
-  'merges.current_size'?: string;
-  mcs?: string;
-  mergesCurrentSize?: string;
-  'merges.total'?: string;
-  mt?: string;
-  mergesTotal?: string;
-  'merges.total_docs'?: string;
-  mtd?: string;
-  mergesTotalDocs?: string;
-  'merges.total_size'?: string;
-  mts?: string;
-  mergesTotalSize?: string;
-  'merges.total_time'?: string;
-  mtt?: string;
-  mergesTotalTime?: string;
-  'refresh.total'?: string;
-  'refresh.time'?: string;
-  'refresh.external_total'?: string;
-  rto?: string;
-  refreshTotal?: string;
-  'refresh.external_time'?: string;
-  rti?: string;
-  refreshTime?: string;
-  'refresh.listeners'?: string;
-  rli?: string;
-  refreshListeners?: string;
-  'script.compilations'?: string;
-  scrcc?: string;
-  scriptCompilations?: string;
-  'script.cache_evictions'?: string;
-  scrce?: string;
-  scriptCacheEvictions?: string;
-  'script.compilation_limit_triggered'?: string;
-  scrclt?: string;
-  scriptCacheCompilationLimitTriggered?: string;
-  'search.fetch_current'?: string;
-  sfc?: string;
-  searchFetchCurrent?: string;
-  'search.fetch_time'?: string;
-  sfti?: string;
-  searchFetchTime?: string;
-  'search.fetch_total'?: string;
-  sfto?: string;
-  searchFetchTotal?: string;
-  'search.open_contexts'?: string;
-  so?: string;
-  searchOpenContexts?: string;
-  'search.query_current'?: string;
-  sqc?: string;
-  searchQueryCurrent?: string;
-  'search.query_time'?: string;
-  sqti?: string;
-  searchQueryTime?: string;
-  'search.query_total'?: string;
-  sqto?: string;
-  searchQueryTotal?: string;
-  'search.scroll_current'?: string;
-  scc?: string;
-  searchScrollCurrent?: string;
-  'search.scroll_time'?: string;
-  scti?: string;
-  searchScrollTime?: string;
-  'search.scroll_total'?: string;
-  scto?: string;
-  searchScrollTotal?: string;
-  'segments.count'?: string;
-  sc?: string;
-  segmentsCount?: string;
-  'segments.memory'?: string;
-  sm?: string;
-  segmentsMemory?: string;
-  'segments.index_writer_memory'?: string;
-  siwm?: string;
-  segmentsIndexWriterMemory?: string;
-  'segments.version_map_memory'?: string;
-  svmm?: string;
-  segmentsVersionMapMemory?: string;
-  'segments.fixed_bitset_memory'?: string;
-  sfbm?: string;
-  fixedBitsetMemory?: string;
-  'suggest.current'?: string;
-  suc?: string;
-  suggestCurrent?: string;
-  'suggest.time'?: string;
-  suti?: string;
-  suggestTime?: string;
-  'suggest.total'?: string;
-  suto?: string;
-  suggestTotal?: string;
-  'bulk.total_operations'?: string;
-  bto?: string;
-  bulkTotalOperations?: string;
-  'bulk.total_time'?: string;
-  btti?: string;
-  bulkTotalTime?: string;
-  'bulk.total_size_in_bytes'?: string;
-  btsi?: string;
-  bulkTotalSizeInBytes?: string;
-  'bulk.avg_time'?: string;
-  bati?: string;
-  bulkAvgTime?: string;
-  'bulk.avg_size_in_bytes'?: string;
-  basi?: string;
-  bulkAvgSizeInBytes?: string;
+  id?: Id
+  nodeId?: Id
+  pid?: string
+  p?: string
+  ip?: string
+  i?: string
+  port?: string
+  po?: string
+  http_address?: string
+  http?: string
+  version?: VersionString
+  v?: VersionString
+  flavor?: string
+  f?: string
+  type?: Type
+  t?: Type
+  build?: string
+  b?: string
+  jdk?: string
+  j?: string
+  'disk.total'?: ByteSize
+  dt?: ByteSize
+  diskTotal?: ByteSize
+  'disk.used'?: ByteSize
+  du?: ByteSize
+  diskUsed?: ByteSize
+  'disk.avail'?: ByteSize
+  d?: ByteSize
+  da?: ByteSize
+  disk?: ByteSize
+  diskAvail?: ByteSize
+  'disk.used_percent'?: Percentage
+  dup?: Percentage
+  diskUsedPercent?: Percentage
+  'heap.current'?: string
+  hc?: string
+  heapCurrent?: string
+  'heap.percent'?: Percentage
+  hp?: Percentage
+  heapPercent?: Percentage
+  'heap.max'?: string
+  hm?: string
+  heapMax?: string
+  'ram.current'?: string
+  rc?: string
+  ramCurrent?: string
+  'ram.percent'?: Percentage
+  rp?: Percentage
+  ramPercent?: Percentage
+  'ram.max'?: string
+  rn?: string
+  ramMax?: string
+  'file_desc.current'?: string
+  fdc?: string
+  fileDescriptorCurrent?: string
+  'file_desc.percent'?: Percentage
+  fdp?: Percentage
+  fileDescriptorPercent?: Percentage
+  'file_desc.max'?: string
+  fdm?: string
+  fileDescriptorMax?: string
+  cpu?: string
+  load_1m?: string
+  load_5m?: string
+  load_15m?: string
+  l?: string
+  uptime?: string
+  u?: string
+  'node.role'?: string
+  r?: string
+  role?: string
+  nodeRole?: string
+  cluster_manager?: string
+  /**
+  * @deprecated use cluster_manager instead
+  */
+  master?: string
+  m?: string
+  name?: Name
+  n?: Name
+  'completion.size'?: string
+  cs?: string
+  completionSize?: string
+  'fielddata.memory_size'?: string
+  fm?: string
+  fielddataMemory?: string
+  'fielddata.evictions'?: string
+  fe?: string
+  fielddataEvictions?: string
+  'query_cache.memory_size'?: string
+  qcm?: string
+  queryCacheMemory?: string
+  'query_cache.evictions'?: string
+  qce?: string
+  queryCacheEvictions?: string
+  'query_cache.hit_count'?: string
+  qchc?: string
+  queryCacheHitCount?: string
+  'query_cache.miss_count'?: string
+  qcmc?: string
+  queryCacheMissCount?: string
+  'request_cache.memory_size'?: string
+  rcm?: string
+  requestCacheMemory?: string
+  'request_cache.evictions'?: string
+  rce?: string
+  requestCacheEvictions?: string
+  'request_cache.hit_count'?: string
+  rchc?: string
+  requestCacheHitCount?: string
+  'request_cache.miss_count'?: string
+  rcmc?: string
+  requestCacheMissCount?: string
+  'flush.total'?: string
+  ft?: string
+  flushTotal?: string
+  'flush.total_time'?: string
+  ftt?: string
+  flushTotalTime?: string
+  'get.current'?: string
+  gc?: string
+  getCurrent?: string
+  'get.time'?: string
+  gti?: string
+  getTime?: string
+  'get.total'?: string
+  gto?: string
+  getTotal?: string
+  'get.exists_time'?: string
+  geti?: string
+  getExistsTime?: string
+  'get.exists_total'?: string
+  geto?: string
+  getExistsTotal?: string
+  'get.missing_time'?: string
+  gmti?: string
+  getMissingTime?: string
+  'get.missing_total'?: string
+  gmto?: string
+  getMissingTotal?: string
+  'indexing.delete_current'?: string
+  idc?: string
+  indexingDeleteCurrent?: string
+  'indexing.delete_time'?: string
+  idti?: string
+  indexingDeleteTime?: string
+  'indexing.delete_total'?: string
+  idto?: string
+  indexingDeleteTotal?: string
+  'indexing.index_current'?: string
+  iic?: string
+  indexingIndexCurrent?: string
+  'indexing.index_time'?: string
+  iiti?: string
+  indexingIndexTime?: string
+  'indexing.index_total'?: string
+  iito?: string
+  indexingIndexTotal?: string
+  'indexing.index_failed'?: string
+  iif?: string
+  indexingIndexFailed?: string
+  'merges.current'?: string
+  mc?: string
+  mergesCurrent?: string
+  'merges.current_docs'?: string
+  mcd?: string
+  mergesCurrentDocs?: string
+  'merges.current_size'?: string
+  mcs?: string
+  mergesCurrentSize?: string
+  'merges.total'?: string
+  mt?: string
+  mergesTotal?: string
+  'merges.total_docs'?: string
+  mtd?: string
+  mergesTotalDocs?: string
+  'merges.total_size'?: string
+  mts?: string
+  mergesTotalSize?: string
+  'merges.total_time'?: string
+  mtt?: string
+  mergesTotalTime?: string
+  'refresh.total'?: string
+  'refresh.time'?: string
+  'refresh.external_total'?: string
+  rto?: string
+  refreshTotal?: string
+  'refresh.external_time'?: string
+  rti?: string
+  refreshTime?: string
+  'refresh.listeners'?: string
+  rli?: string
+  refreshListeners?: string
+  'script.compilations'?: string
+  scrcc?: string
+  scriptCompilations?: string
+  'script.cache_evictions'?: string
+  scrce?: string
+  scriptCacheEvictions?: string
+  'script.compilation_limit_triggered'?: string
+  scrclt?: string
+  scriptCacheCompilationLimitTriggered?: string
+  'search.fetch_current'?: string
+  sfc?: string
+  searchFetchCurrent?: string
+  'search.fetch_time'?: string
+  sfti?: string
+  searchFetchTime?: string
+  'search.fetch_total'?: string
+  sfto?: string
+  searchFetchTotal?: string
+  'search.open_contexts'?: string
+  so?: string
+  searchOpenContexts?: string
+  'search.query_current'?: string
+  sqc?: string
+  searchQueryCurrent?: string
+  'search.query_time'?: string
+  sqti?: string
+  searchQueryTime?: string
+  'search.query_total'?: string
+  sqto?: string
+  searchQueryTotal?: string
+  'search.scroll_current'?: string
+  scc?: string
+  searchScrollCurrent?: string
+  'search.scroll_time'?: string
+  scti?: string
+  searchScrollTime?: string
+  'search.scroll_total'?: string
+  scto?: string
+  searchScrollTotal?: string
+  'segments.count'?: string
+  sc?: string
+  segmentsCount?: string
+  'segments.memory'?: string
+  sm?: string
+  segmentsMemory?: string
+  'segments.index_writer_memory'?: string
+  siwm?: string
+  segmentsIndexWriterMemory?: string
+  'segments.version_map_memory'?: string
+  svmm?: string
+  segmentsVersionMapMemory?: string
+  'segments.fixed_bitset_memory'?: string
+  sfbm?: string
+  fixedBitsetMemory?: string
+  'suggest.current'?: string
+  suc?: string
+  suggestCurrent?: string
+  'suggest.time'?: string
+  suti?: string
+  suggestTime?: string
+  'suggest.total'?: string
+  suto?: string
+  suggestTotal?: string
+  'bulk.total_operations'?: string
+  bto?: string
+  bulkTotalOperations?: string
+  'bulk.total_time'?: string
+  btti?: string
+  bulkTotalTime?: string
+  'bulk.total_size_in_bytes'?: string
+  btsi?: string
+  bulkTotalSizeInBytes?: string
+  'bulk.avg_time'?: string
+  bati?: string
+  bulkAvgTime?: string
+  'bulk.avg_size_in_bytes'?: string
+  basi?: string
+  bulkAvgSizeInBytes?: string
 }
 
 export interface CatNodesRequest extends CatCatRequestBase {
@@ -5734,7 +5771,7 @@ export interface CatPendingTasksPendingTasksRecord {
   s?: string;
 }
 
-export interface CatPendingTasksRequest extends CatCatRequestBase {}
+export interface CatPendingTasksRequest extends CatCatRequestBase { }
 
 export type CatPendingTasksResponse = CatPendingTasksPendingTasksRecord[];
 
@@ -5752,7 +5789,7 @@ export interface CatPluginsPluginsRecord {
   t?: Type;
 }
 
-export interface CatPluginsRequest extends CatCatRequestBase {}
+export interface CatPluginsRequest extends CatCatRequestBase { }
 
 export type CatPluginsResponse = CatPluginsPluginsRecord[];
 
@@ -5830,7 +5867,7 @@ export interface CatRepositoriesRepositoriesRecord {
   t?: string;
 }
 
-export interface CatRepositoriesRequest extends CatCatRequestBase {}
+export interface CatRepositoriesRequest extends CatCatRequestBase { }
 
 export type CatRepositoriesResponse = CatRepositoriesRepositoriesRecord[];
 
@@ -6287,7 +6324,7 @@ export interface ClusterClusterStateIndexLifecycle {
   operation_mode: LifecycleOperationMode;
 }
 
-export interface ClusterClusterStateIndexLifecyclePolicy {}
+export interface ClusterClusterStateIndexLifecyclePolicy { }
 
 export interface ClusterClusterStateIndexLifecycleSummary {
   policy: ClusterClusterStateIndexLifecyclePolicy;
@@ -6337,7 +6374,7 @@ export interface ClusterClusterStateMetadataIndexGraveyard {
   tombstones: ClusterTombstone[];
 }
 
-export interface ClusterClusterStateMetadataTemplate {}
+export interface ClusterClusterStateMetadataTemplate { }
 
 export interface ClusterClusterStateRoutingNodes {
   unassigned: NodeShard[];
@@ -6530,13 +6567,18 @@ export type ClusterAllocationExplainUnassignedInformationReason =
   | 'FORCED_EMPTY_PRIMARY'
   | 'MANUAL_ALLOCATION';
 
+
 export interface ClusterDeleteComponentTemplateRequest extends RequestBase {
-  name: Name;
-  master_timeout?: Time;
-  timeout?: Time;
+  name: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
-export interface ClusterDeleteComponentTemplateResponse extends AcknowledgedResponseBase {}
+export interface ClusterDeleteComponentTemplateResponse extends AcknowledgedResponseBase { }
 
 export interface ClusterDeleteVotingConfigExclusionsRequest extends RequestBase {
   body?: {
@@ -6560,22 +6602,32 @@ export interface ClusterExistsComponentTemplateResponse {
   stub: integer;
 }
 
+
 export interface ClusterGetComponentTemplateRequest extends RequestBase {
-  name?: Name;
-  flat_settings?: boolean;
-  local?: boolean;
-  master_timeout?: Time;
+  name?: Name
+  flat_settings?: boolean
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
 export interface ClusterGetComponentTemplateResponse {
   component_templates: ClusterComponentTemplate[];
 }
 
+
 export interface ClusterGetSettingsRequest extends RequestBase {
-  flat_settings?: boolean;
-  include_defaults?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
+  flat_settings?: boolean
+  include_defaults?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
 export interface ClusterGetSettingsResponse {
@@ -6596,19 +6648,24 @@ export interface ClusterHealthIndexHealthStats {
   unassigned_shards: integer;
 }
 
+
 export interface ClusterHealthRequest extends RequestBase {
-  index?: Indices;
-  expand_wildcards?: ExpandWildcards;
-  level?: Level;
-  local?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
-  wait_for_active_shards?: WaitForActiveShards;
-  wait_for_events?: WaitForEvents;
-  wait_for_nodes?: string;
-  wait_for_no_initializing_shards?: boolean;
-  wait_for_no_relocating_shards?: boolean;
-  wait_for_status?: WaitForStatus;
+  index?: Indices
+  expand_wildcards?: ExpandWildcards
+  level?: Level
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  wait_for_active_shards?: WaitForActiveShards
+  wait_for_events?: WaitForEvents
+  wait_for_nodes?: string
+  wait_for_no_initializing_shards?: boolean
+  wait_for_no_relocating_shards?: boolean
+  wait_for_status?: WaitForStatus
 }
 
 export interface ClusterHealthResponse {
@@ -6647,19 +6704,29 @@ export interface ClusterPendingTasksPendingTask {
   time_in_queue_millis: integer;
 }
 
+
 export interface ClusterPendingTasksRequest extends RequestBase {
-  local?: boolean;
-  master_timeout?: Time;
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
 export interface ClusterPendingTasksResponse {
   tasks: ClusterPendingTasksPendingTask[];
 }
 
+
 export interface ClusterPutComponentTemplateRequest extends RequestBase {
-  name: Name;
-  create?: boolean;
-  master_timeout?: Time;
+  name: Name
+  create?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
   body?: {
     template: IndicesIndexState;
     aliases?: Record<string, IndicesAliasDefinition>;
@@ -6670,12 +6737,17 @@ export interface ClusterPutComponentTemplateRequest extends RequestBase {
   };
 }
 
-export interface ClusterPutComponentTemplateResponse extends AcknowledgedResponseBase {}
+export interface ClusterPutComponentTemplateResponse extends AcknowledgedResponseBase { }
+
 
 export interface ClusterPutSettingsRequest extends RequestBase {
-  flat_settings?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
+  flat_settings?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
   body?: {
     persistent?: Record<string, any>;
     transient?: Record<string, any>;
@@ -6715,7 +6787,7 @@ export interface ClusterRemoteInfoRequest extends RequestBase {
 }
 
 export interface ClusterRemoteInfoResponse
-  extends DictionaryResponseBase<string, ClusterRemoteInfoClusterRemoteInfo> {}
+  extends DictionaryResponseBase<string, ClusterRemoteInfoClusterRemoteInfo> { }
 
 export interface ClusterRerouteCommand {
   cancel?: ClusterRerouteCommandCancelAction;
@@ -6752,13 +6824,18 @@ export interface ClusterRerouteCommandMoveAction {
   to_node: string;
 }
 
+
 export interface ClusterRerouteRequest extends RequestBase {
-  dry_run?: boolean;
-  explain?: boolean;
-  metric?: Metrics;
-  retry_failed?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
+  dry_run?: boolean
+  explain?: boolean
+  metric?: Metrics
+  retry_failed?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
   body?: {
     commands?: ClusterRerouteCommand[];
   };
@@ -6786,18 +6863,19 @@ export interface ClusterRerouteRerouteParameters {
 }
 
 export interface ClusterRerouteRerouteState {
-  cluster_uuid: Uuid;
-  state_uuid?: Uuid;
-  master_node?: string;
-  version?: VersionNumber;
-  blocks?: EmptyObject;
-  nodes?: Record<NodeName, NodeAttributes>;
-  routing_table?: Record<string, EmptyObject>;
-  routing_nodes?: ClusterClusterStateRoutingNodes;
-  security_tokens?: Record<string, string>;
-  snapshots?: ClusterClusterStateSnapshots;
-  snapshot_deletions?: ClusterClusterStateDeletedSnapshots;
-  metadata?: ClusterClusterStateMetadata;
+  cluster_uuid: Uuid
+  state_uuid?: Uuid
+  cluster_manager_node?: string
+  master_node?: string
+  version?: VersionNumber
+  blocks?: EmptyObject
+  nodes?: Record<NodeName, NodeAttributes>
+  routing_table?: Record<string, EmptyObject>
+  routing_nodes?: ClusterClusterStateRoutingNodes
+  security_tokens?: Record<string, string>
+  snapshots?: ClusterClusterStateSnapshots
+  snapshot_deletions?: ClusterClusterStateDeletedSnapshots
+  metadata?: ClusterClusterStateMetadata
 }
 
 export interface ClusterRerouteResponse extends AcknowledgedResponseBase {
@@ -6810,32 +6888,37 @@ export interface ClusterStateClusterStateBlocks {
 }
 
 export interface ClusterStateRequest extends RequestBase {
-  metric?: Metrics;
-  index?: Indices;
-  allow_no_indices?: boolean;
-  expand_wildcards?: ExpandWildcards;
-  flat_settings?: boolean;
-  ignore_unavailable?: boolean;
-  local?: boolean;
-  master_timeout?: Time;
-  wait_for_metadata_version?: VersionNumber;
-  wait_for_timeout?: Time;
+  metric?: Metrics
+  index?: Indices
+  allow_no_indices?: boolean
+  expand_wildcards?: ExpandWildcards
+  flat_settings?: boolean
+  ignore_unavailable?: boolean
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  wait_for_metadata_version?: VersionNumber
+  wait_for_timeout?: Time
 }
 
 export interface ClusterStateResponse {
-  cluster_name: Name;
-  cluster_uuid: Uuid;
-  master_node?: string;
-  state?: string[];
-  state_uuid?: Uuid;
-  version?: VersionNumber;
-  blocks?: ClusterStateClusterStateBlocks;
-  metadata?: ClusterClusterStateMetadata;
-  nodes?: Record<NodeName, NodeAttributes>;
-  routing_table?: Record<string, EmptyObject>;
-  routing_nodes?: ClusterClusterStateRoutingNodes;
-  snapshots?: ClusterClusterStateSnapshots;
-  snapshot_deletions?: ClusterClusterStateDeletedSnapshots;
+  cluster_name: Name
+  cluster_uuid: Uuid
+  cluster_manager_node?: string
+  master_node?: string
+  state?: string[]
+  state_uuid?: Uuid
+  version?: VersionNumber
+  blocks?: ClusterStateClusterStateBlocks
+  metadata?: ClusterClusterStateMetadata
+  nodes?: Record<NodeName, NodeAttributes>
+  routing_table?: Record<string, EmptyObject>
+  routing_nodes?: ClusterClusterStateRoutingNodes
+  snapshots?: ClusterClusterStateSnapshots
+  snapshot_deletions?: ClusterClusterStateDeletedSnapshots
 }
 
 export interface ClusterStatsCharFilterTypes {
@@ -6915,13 +6998,17 @@ export interface ClusterStatsClusterNetworkTypes {
 }
 
 export interface ClusterStatsClusterNodeCount {
-  coordinating_only: integer;
-  data: integer;
-  ingest: integer;
-  master: integer;
-  total: integer;
-  voting_only: integer;
-  remote_cluster_client: integer;
+  coordinating_only: integer
+  data: integer
+  ingest: integer
+  cluster_manager?: integer
+  /**
+  * @deprecated use cluster_manager instead
+  */
+  master?: integer
+  total: integer
+  voting_only: integer
+  remote_cluster_client: integer
 }
 
 export interface ClusterStatsClusterNodes {
@@ -7324,13 +7411,17 @@ export interface IndicesAddBlockIndicesBlockStatus {
 }
 
 export interface IndicesAddBlockRequest extends RequestBase {
-  index: IndexName;
-  block: IndicesAddBlockIndicesBlockOptions;
-  allow_no_indices?: boolean;
-  expand_wildcards?: ExpandWildcards;
-  ignore_unavailable?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
+  index: IndexName
+  block: IndicesAddBlockIndicesBlockOptions
+  allow_no_indices?: boolean
+  expand_wildcards?: ExpandWildcards
+  ignore_unavailable?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
 export interface IndicesAddBlockResponse extends AcknowledgedResponseBase {
@@ -7415,14 +7506,18 @@ export interface IndicesClearCacheRequest extends RequestBase {
   request?: boolean;
 }
 
-export interface IndicesClearCacheResponse extends ShardsOperationResponseBase {}
+export interface IndicesClearCacheResponse extends ShardsOperationResponseBase { }
 
 export interface IndicesCloneRequest extends RequestBase {
-  index: IndexName;
-  target: Name;
-  master_timeout?: Time;
-  timeout?: Time;
-  wait_for_active_shards?: WaitForActiveShards;
+  index: IndexName
+  target: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  wait_for_active_shards?: WaitForActiveShards
   body?: {
     aliases?: Record<IndexName, IndicesAlias>;
     settings?: Record<string, any>;
@@ -7444,13 +7539,17 @@ export interface IndicesCloseCloseShardResult {
 }
 
 export interface IndicesCloseRequest extends RequestBase {
-  index: Indices;
-  allow_no_indices?: boolean;
-  expand_wildcards?: ExpandWildcards;
-  ignore_unavailable?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
-  wait_for_active_shards?: WaitForActiveShards;
+  index: Indices
+  allow_no_indices?: boolean
+  expand_wildcards?: ExpandWildcards
+  ignore_unavailable?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  wait_for_active_shards?: WaitForActiveShards
 }
 
 export interface IndicesCloseResponse extends AcknowledgedResponseBase {
@@ -7459,10 +7558,14 @@ export interface IndicesCloseResponse extends AcknowledgedResponseBase {
 }
 
 export interface IndicesCreateRequest extends RequestBase {
-  index: IndexName;
-  master_timeout?: Time;
-  timeout?: Time;
-  wait_for_active_shards?: WaitForActiveShards;
+  index: IndexName
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  wait_for_active_shards?: WaitForActiveShards
   body?: {
     aliases?: Record<IndexName, IndicesAlias>;
     mappings?: Record<string, MappingTypeMapping> | MappingTypeMapping;
@@ -7476,38 +7579,50 @@ export interface IndicesCreateResponse extends AcknowledgedResponseBase {
 }
 
 export interface IndicesDeleteRequest extends RequestBase {
-  index: Indices;
-  allow_no_indices?: boolean;
-  expand_wildcards?: ExpandWildcards;
-  ignore_unavailable?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
+  index: Indices
+  allow_no_indices?: boolean
+  expand_wildcards?: ExpandWildcards
+  ignore_unavailable?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
-export interface IndicesDeleteResponse extends IndicesResponseBase {}
+export interface IndicesDeleteResponse extends IndicesResponseBase { }
 
 export interface IndicesDeleteAliasRequest extends RequestBase {
-  index: Indices;
-  name: Names;
-  master_timeout?: Time;
-  timeout?: Time;
+  index: Indices
+  name: Names
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
-export interface IndicesDeleteAliasResponse extends AcknowledgedResponseBase {}
+export interface IndicesDeleteAliasResponse extends AcknowledgedResponseBase { }
 
 export interface IndicesDeleteIndexTemplateRequest extends RequestBase {
   name: Name;
 }
 
-export interface IndicesDeleteIndexTemplateResponse extends AcknowledgedResponseBase {}
+export interface IndicesDeleteIndexTemplateResponse extends AcknowledgedResponseBase { }
 
 export interface IndicesDeleteTemplateRequest extends RequestBase {
-  name: Name;
-  master_timeout?: Time;
-  timeout?: Time;
+  name: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
-export interface IndicesDeleteTemplateResponse extends AcknowledgedResponseBase {}
+export interface IndicesDeleteTemplateResponse extends AcknowledgedResponseBase { }
 
 export interface IndicesExistsRequest extends RequestBase {
   index: Indices;
@@ -7533,17 +7648,25 @@ export interface IndicesExistsAliasRequest extends RequestBase {
 export type IndicesExistsAliasResponse = boolean;
 
 export interface IndicesExistsIndexTemplateRequest extends RequestBase {
-  name: Name;
-  master_timeout?: Time;
+  name: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
 export type IndicesExistsIndexTemplateResponse = boolean;
 
 export interface IndicesExistsTemplateRequest extends RequestBase {
-  name: Names;
-  flat_settings?: boolean;
-  local?: boolean;
-  master_timeout?: Time;
+  name: Names
+  flat_settings?: boolean
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
 export type IndicesExistsTemplateResponse = boolean;
@@ -7557,7 +7680,7 @@ export interface IndicesFlushRequest extends RequestBase {
   wait_if_ongoing?: boolean;
 }
 
-export interface IndicesFlushResponse extends ShardsOperationResponseBase {}
+export interface IndicesFlushResponse extends ShardsOperationResponseBase { }
 
 export interface IndicesForcemergeRequest extends RequestBase {
   index?: Indices;
@@ -7569,20 +7692,24 @@ export interface IndicesForcemergeRequest extends RequestBase {
   only_expunge_deletes?: boolean;
 }
 
-export interface IndicesForcemergeResponse extends ShardsOperationResponseBase {}
+export interface IndicesForcemergeResponse extends ShardsOperationResponseBase { }
 
 export interface IndicesGetRequest extends RequestBase {
-  index: Indices;
-  allow_no_indices?: boolean;
-  expand_wildcards?: ExpandWildcards;
-  flat_settings?: boolean;
-  ignore_unavailable?: boolean;
-  include_defaults?: boolean;
-  local?: boolean;
-  master_timeout?: Time;
+  index: Indices
+  allow_no_indices?: boolean
+  expand_wildcards?: ExpandWildcards
+  flat_settings?: boolean
+  ignore_unavailable?: boolean
+  include_defaults?: boolean
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
-export interface IndicesGetResponse extends DictionaryResponseBase<IndexName, IndicesIndexState> {}
+export interface IndicesGetResponse extends DictionaryResponseBase<IndexName, IndicesIndexState> { }
 
 export interface IndicesGetAliasIndexAliases {
   aliases: Record<string, IndicesAliasDefinition>;
@@ -7598,7 +7725,7 @@ export interface IndicesGetAliasRequest extends RequestBase {
 }
 
 export interface IndicesGetAliasResponse
-  extends DictionaryResponseBase<IndexName, IndicesGetAliasIndexAliases> {}
+  extends DictionaryResponseBase<IndexName, IndicesGetAliasIndexAliases> { }
 
 export interface IndicesGetFieldMappingRequest extends RequestBase {
   fields: Fields;
@@ -7611,7 +7738,7 @@ export interface IndicesGetFieldMappingRequest extends RequestBase {
 }
 
 export interface IndicesGetFieldMappingResponse
-  extends DictionaryResponseBase<IndexName, IndicesGetFieldMappingTypeFieldMappings> {}
+  extends DictionaryResponseBase<IndexName, IndicesGetFieldMappingTypeFieldMappings> { }
 
 export interface IndicesGetFieldMappingTypeFieldMappings {
   mappings: Record<Field, MappingFieldMapping>;
@@ -7643,9 +7770,13 @@ export interface IndicesGetIndexTemplateRequest extends RequestBase {
   name?: Name;
   local?: boolean;
   body?: {
-    flat_settings?: boolean;
-    master_timeout?: Time;
-  };
+    flat_settings?: boolean
+    cluster_manager_timeout?: Time
+    /**
+    * @deprecated use cluster_manager_timeout instead
+    */
+    master_timeout?: Time
+  }
 }
 
 export interface IndicesGetIndexTemplateResponse {
@@ -7658,41 +7789,53 @@ export interface IndicesGetMappingIndexMappingRecord {
 }
 
 export interface IndicesGetMappingRequest extends RequestBase {
-  index?: Indices;
-  allow_no_indices?: boolean;
-  expand_wildcards?: ExpandWildcards;
-  ignore_unavailable?: boolean;
-  local?: boolean;
-  master_timeout?: Time;
+  index?: Indices
+  allow_no_indices?: boolean
+  expand_wildcards?: ExpandWildcards
+  ignore_unavailable?: boolean
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
 export interface IndicesGetMappingResponse
-  extends DictionaryResponseBase<IndexName, IndicesGetMappingIndexMappingRecord> {}
+  extends DictionaryResponseBase<IndexName, IndicesGetMappingIndexMappingRecord> { }
 
 export interface IndicesGetSettingsRequest extends RequestBase {
-  index?: Indices;
-  name?: Names;
-  allow_no_indices?: boolean;
-  expand_wildcards?: ExpandWildcards;
-  flat_settings?: boolean;
-  ignore_unavailable?: boolean;
-  include_defaults?: boolean;
-  local?: boolean;
-  master_timeout?: Time;
+  index?: Indices
+  name?: Names
+  allow_no_indices?: boolean
+  expand_wildcards?: ExpandWildcards
+  flat_settings?: boolean
+  ignore_unavailable?: boolean
+  include_defaults?: boolean
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
 export interface IndicesGetSettingsResponse
-  extends DictionaryResponseBase<IndexName, IndicesIndexState> {}
+  extends DictionaryResponseBase<IndexName, IndicesIndexState> { }
 
 export interface IndicesGetTemplateRequest extends RequestBase {
-  name?: Names;
-  flat_settings?: boolean;
-  local?: boolean;
-  master_timeout?: Time;
+  name?: Names
+  flat_settings?: boolean
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
 export interface IndicesGetTemplateResponse
-  extends DictionaryResponseBase<string, IndicesTemplateMapping> {}
+  extends DictionaryResponseBase<string, IndicesTemplateMapping> { }
 
 export interface IndicesGetUpgradeRequest extends RequestBase {
   stub: string;
@@ -7704,13 +7847,17 @@ export interface IndicesGetUpgradeResponse {
 }
 
 export interface IndicesOpenRequest extends RequestBase {
-  index: Indices;
-  allow_no_indices?: boolean;
-  expand_wildcards?: ExpandWildcards;
-  ignore_unavailable?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
-  wait_for_active_shards?: WaitForActiveShards;
+  index: Indices
+  allow_no_indices?: boolean
+  expand_wildcards?: ExpandWildcards
+  ignore_unavailable?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  wait_for_active_shards?: WaitForActiveShards
 }
 
 export interface IndicesOpenResponse extends AcknowledgedResponseBase {
@@ -7718,10 +7865,14 @@ export interface IndicesOpenResponse extends AcknowledgedResponseBase {
 }
 
 export interface IndicesPutAliasRequest extends RequestBase {
-  index: Indices;
-  name: Name;
-  master_timeout?: Time;
-  timeout?: Time;
+  index: Indices
+  name: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
   body?: {
     filter?: QueryDslQueryContainer;
     index_routing?: Routing;
@@ -7731,7 +7882,7 @@ export interface IndicesPutAliasRequest extends RequestBase {
   };
 }
 
-export interface IndicesPutAliasResponse extends AcknowledgedResponseBase {}
+export interface IndicesPutAliasResponse extends AcknowledgedResponseBase { }
 
 export interface IndicesPutIndexTemplateIndexTemplateMapping {
   aliases?: Record<IndexName, IndicesAlias>;
@@ -7752,24 +7903,28 @@ export interface IndicesPutIndexTemplateRequest extends RequestBase {
   };
 }
 
-export interface IndicesPutIndexTemplateResponse extends AcknowledgedResponseBase {}
+export interface IndicesPutIndexTemplateResponse extends AcknowledgedResponseBase { }
 
 export interface IndicesPutMappingRequest extends RequestBase {
-  index?: Indices;
-  allow_no_indices?: boolean;
-  expand_wildcards?: ExpandWildcards;
-  ignore_unavailable?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
-  write_index_only?: boolean;
+  index?: Indices
+  allow_no_indices?: boolean
+  expand_wildcards?: ExpandWildcards
+  ignore_unavailable?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  write_index_only?: boolean
   body?: {
     all_field?: MappingAllField;
     date_detection?: boolean;
     dynamic?: boolean | MappingDynamicMapping;
     dynamic_date_formats?: string[];
     dynamic_templates?:
-      | Record<string, MappingDynamicTemplate>
-      | Record<string, MappingDynamicTemplate>[];
+    | Record<string, MappingDynamicTemplate>
+    | Record<string, MappingDynamicTemplate>[];
     field_names_field?: MappingFieldNamesField;
     index_field?: MappingIndexField;
     meta?: Record<string, any>;
@@ -7782,32 +7937,40 @@ export interface IndicesPutMappingRequest extends RequestBase {
   };
 }
 
-export interface IndicesPutMappingResponse extends IndicesResponseBase {}
+export interface IndicesPutMappingResponse extends IndicesResponseBase { }
 
 export interface IndicesPutSettingsIndexSettingsBody extends IndicesIndexSettings {
   settings?: IndicesIndexSettings;
 }
 
 export interface IndicesPutSettingsRequest extends RequestBase {
-  index?: Indices;
-  allow_no_indices?: boolean;
-  expand_wildcards?: ExpandWildcards;
-  flat_settings?: boolean;
-  ignore_unavailable?: boolean;
-  master_timeout?: Time;
-  preserve_existing?: boolean;
-  timeout?: Time;
-  body?: IndicesPutSettingsIndexSettingsBody;
+  index?: Indices
+  allow_no_indices?: boolean
+  expand_wildcards?: ExpandWildcards
+  flat_settings?: boolean
+  ignore_unavailable?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  preserve_existing?: boolean
+  timeout?: Time
+  body?: IndicesPutSettingsIndexSettingsBody
 }
 
-export interface IndicesPutSettingsResponse extends AcknowledgedResponseBase {}
+export interface IndicesPutSettingsResponse extends AcknowledgedResponseBase { }
 
 export interface IndicesPutTemplateRequest extends RequestBase {
-  name: Name;
-  create?: boolean;
-  flat_settings?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
+  name: Name
+  create?: boolean
+  flat_settings?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
   body?: {
     aliases?: Record<IndexName, IndicesAlias>;
     index_patterns?: string | string[];
@@ -7818,7 +7981,7 @@ export interface IndicesPutTemplateRequest extends RequestBase {
   };
 }
 
-export interface IndicesPutTemplateResponse extends AcknowledgedResponseBase {}
+export interface IndicesPutTemplateResponse extends AcknowledgedResponseBase { }
 
 export interface IndicesRecoveryFileDetails {
   length: long;
@@ -7887,7 +8050,7 @@ export interface IndicesRecoveryRequest extends RequestBase {
 }
 
 export interface IndicesRecoveryResponse
-  extends DictionaryResponseBase<IndexName, IndicesRecoveryRecoveryStatus> {}
+  extends DictionaryResponseBase<IndexName, IndicesRecoveryRecoveryStatus> { }
 
 export interface IndicesRecoveryShardRecovery {
   id: long;
@@ -7931,7 +8094,7 @@ export interface IndicesRefreshRequest extends RequestBase {
   ignore_unavailable?: boolean;
 }
 
-export interface IndicesRefreshResponse extends ShardsOperationResponseBase {}
+export interface IndicesRefreshResponse extends ShardsOperationResponseBase { }
 
 export interface IndicesResolveIndexRequest extends RequestBase {
   name: Names;
@@ -7963,12 +8126,16 @@ export interface IndicesResolveIndexResponse {
 }
 
 export interface IndicesRolloverRequest extends RequestBase {
-  alias: IndexAlias;
-  new_index?: IndexName;
-  dry_run?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
-  wait_for_active_shards?: WaitForActiveShards;
+  alias: IndexAlias
+  new_index?: IndexName
+  dry_run?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  wait_for_active_shards?: WaitForActiveShards
   body?: {
     aliases?: Record<IndexName, IndicesAlias>;
     conditions?: IndicesRolloverRolloverConditions;
@@ -8075,11 +8242,15 @@ export interface IndicesShardStoresShardStoreWrapper {
 }
 
 export interface IndicesShrinkRequest extends RequestBase {
-  index: IndexName;
-  target: IndexName;
-  master_timeout?: Time;
-  timeout?: Time;
-  wait_for_active_shards?: WaitForActiveShards;
+  index: IndexName
+  target: IndexName
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  wait_for_active_shards?: WaitForActiveShards
   body?: {
     aliases?: Record<IndexName, IndicesAlias>;
     settings?: Record<string, any>;
@@ -8101,13 +8272,17 @@ export interface IndicesSimulateIndexTemplateRequest extends RequestBase {
   };
 }
 
-export interface IndicesSimulateIndexTemplateResponse {}
+export interface IndicesSimulateIndexTemplateResponse { }
 
 export interface IndicesSimulateTemplateRequest extends RequestBase {
-  name?: Name;
-  create?: boolean;
-  master_timeout?: Time;
-  body?: IndicesGetIndexTemplateIndexTemplate;
+  name?: Name
+  create?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  body?: IndicesGetIndexTemplateIndexTemplate
 }
 
 export interface IndicesSimulateTemplateResponse {
@@ -8115,11 +8290,15 @@ export interface IndicesSimulateTemplateResponse {
 }
 
 export interface IndicesSplitRequest extends RequestBase {
-  index: IndexName;
-  target: IndexName;
-  master_timeout?: Time;
-  timeout?: Time;
-  wait_for_active_shards?: WaitForActiveShards;
+  index: IndexName
+  target: IndexName
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  wait_for_active_shards?: WaitForActiveShards
   body?: {
     aliases?: Record<IndexName, IndicesAlias>;
     settings?: Record<string, any>;
@@ -8268,17 +8447,21 @@ export interface IndicesStatsShardStats {
   bulk?: BulkStats;
 }
 
-export interface IndicesUpdateAliasesIndicesUpdateAliasBulk {}
+export interface IndicesUpdateAliasesIndicesUpdateAliasBulk { }
 
 export interface IndicesUpdateAliasesRequest extends RequestBase {
-  master_timeout?: Time;
-  timeout?: Time;
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
   body?: {
     actions?: IndicesUpdateAliasesIndicesUpdateAliasBulk[];
   };
 }
 
-export interface IndicesUpdateAliasesResponse extends AcknowledgedResponseBase {}
+export interface IndicesUpdateAliasesResponse extends AcknowledgedResponseBase { }
 
 export interface IndicesUpgradeRequest extends RequestBase {
   stub_b: integer;
@@ -8415,7 +8598,7 @@ export interface IngestDotExpanderProcessor extends IngestProcessorBase {
   path?: string;
 }
 
-export interface IngestDropProcessor extends IngestProcessorBase {}
+export interface IngestDropProcessor extends IngestProcessorBase { }
 
 export interface IngestEnrichProcessor extends IngestProcessorBase {
   field: Field;
@@ -8646,12 +8829,16 @@ export type IngestUserAgentProperty =
   | 'BUILD';
 
 export interface IngestDeletePipelineRequest extends RequestBase {
-  id: Id;
-  master_timeout?: Time;
-  timeout?: Time;
+  id: Id
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
-export interface IngestDeletePipelineResponse extends AcknowledgedResponseBase {}
+export interface IngestDeletePipelineResponse extends AcknowledgedResponseBase { }
 
 export interface IngestGeoIpStatsGeoIpDownloadStatistics {
   successful_downloads: integer;
@@ -8670,7 +8857,7 @@ export interface IngestGeoIpStatsGeoIpNodeDatabases {
   files_in_temp: string[];
 }
 
-export interface IngestGeoIpStatsRequest extends RequestBase {}
+export interface IngestGeoIpStatsRequest extends RequestBase { }
 
 export interface IngestGeoIpStatsResponse {
   stats: IngestGeoIpStatsGeoIpDownloadStatistics;
@@ -8678,23 +8865,31 @@ export interface IngestGeoIpStatsResponse {
 }
 
 export interface IngestGetPipelineRequest extends RequestBase {
-  id?: Id;
-  master_timeout?: Time;
-  summary?: boolean;
+  id?: Id
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  summary?: boolean
 }
 
-export interface IngestGetPipelineResponse extends DictionaryResponseBase<string, IngestPipeline> {}
+export interface IngestGetPipelineResponse extends DictionaryResponseBase<string, IngestPipeline> { }
 
-export interface IngestProcessorGrokRequest extends RequestBase {}
+export interface IngestProcessorGrokRequest extends RequestBase { }
 
 export interface IngestProcessorGrokResponse {
   patterns: Record<string, string>;
 }
 
 export interface IngestPutPipelineRequest extends RequestBase {
-  id: Id;
-  master_timeout?: Time;
-  timeout?: Time;
+  id: Id
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
   body?: {
     description?: string;
     on_failure?: IngestProcessorContainer[];
@@ -8703,7 +8898,7 @@ export interface IngestPutPipelineRequest extends RequestBase {
   };
 }
 
-export interface IngestPutPipelineResponse extends AcknowledgedResponseBase {}
+export interface IngestPutPipelineResponse extends AcknowledgedResponseBase { }
 
 export interface IngestSimulatePipelineDocument {
   _id?: Id;
@@ -9124,10 +9319,11 @@ export interface NodesInfoNodeInfoSettings {
 }
 
 export interface NodesInfoNodeInfoSettingsCluster {
-  name: Name;
-  routing?: IndicesIndexRouting;
-  election: NodesInfoNodeInfoSettingsClusterElection;
-  initial_master_nodes?: string;
+  name: Name
+  routing?: IndicesIndexRouting
+  election: NodesInfoNodeInfoSettingsClusterElection
+  initial_cluster_manager_nodes?: string
+  initial_master_nodes?: string
 }
 
 export interface NodesInfoNodeInfoSettingsClusterElection {
@@ -9161,7 +9357,7 @@ export interface NodesInfoNodeInfoSettingsTransport {
   features?: NodesInfoNodeInfoSettingsTransportFeatures;
 }
 
-export interface NodesInfoNodeInfoSettingsTransportFeatures {}
+export interface NodesInfoNodeInfoSettingsTransportFeatures { }
 
 export interface NodesInfoNodeInfoSettingsTransportType {
   default: string;
@@ -9218,11 +9414,15 @@ export interface NodesInfoNodeThreadPoolInfo {
 }
 
 export interface NodesInfoRequest extends RequestBase {
-  node_id?: NodeIds;
-  metric?: Metrics;
-  flat_settings?: boolean;
-  master_timeout?: Time;
-  timeout?: Time;
+  node_id?: NodeIds
+  metric?: Metrics
+  flat_settings?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
 export interface NodesInfoResponse extends NodesNodesResponseBase {
@@ -9255,19 +9455,23 @@ export interface NodesReloadSecureSettingsResponse extends NodesNodesResponseBas
 }
 
 export interface NodesStatsRequest extends RequestBase {
-  node_id?: NodeIds;
-  metric?: Metrics;
-  index_metric?: Metrics;
-  completion_fields?: Fields;
-  fielddata_fields?: Fields;
-  fields?: Fields;
-  groups?: boolean;
-  include_segment_file_sizes?: boolean;
-  level?: Level;
-  master_timeout?: Time;
-  timeout?: Time;
-  types?: string[];
-  include_unloaded_segments?: boolean;
+  node_id?: NodeIds
+  metric?: Metrics
+  index_metric?: Metrics
+  completion_fields?: Fields
+  fielddata_fields?: Fields
+  fields?: Fields
+  groups?: boolean
+  include_segment_file_sizes?: boolean
+  level?: Level
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  types?: string[]
+  include_unloaded_segments?: boolean
 }
 
 export interface NodesStatsResponse extends NodesNodesResponseBase {
@@ -9444,9 +9648,13 @@ export interface SnapshotCleanupRepositoryCleanupRepositoryResults {
 }
 
 export interface SnapshotCleanupRepositoryRequest extends RequestBase {
-  repository: Name;
-  master_timeout?: Time;
-  timeout?: Time;
+  repository: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
 export interface SnapshotCleanupRepositoryResponse {
@@ -9454,23 +9662,31 @@ export interface SnapshotCleanupRepositoryResponse {
 }
 
 export interface SnapshotCloneRequest extends RequestBase {
-  repository: Name;
-  snapshot: Name;
-  target_snapshot: Name;
-  master_timeout?: Time;
-  timeout?: Time;
+  repository: Name
+  snapshot: Name
+  target_snapshot: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
   body?: {
     indices: string;
   };
 }
 
-export interface SnapshotCloneResponse extends AcknowledgedResponseBase {}
+export interface SnapshotCloneResponse extends AcknowledgedResponseBase { }
 
 export interface SnapshotCreateRequest extends RequestBase {
-  repository: Name;
-  snapshot: Name;
-  master_timeout?: Time;
-  wait_for_completion?: boolean;
+  repository: Name
+  snapshot: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  wait_for_completion?: boolean
   body?: {
     ignore_unavailable?: boolean;
     include_global_state?: boolean;
@@ -9486,10 +9702,14 @@ export interface SnapshotCreateResponse {
 }
 
 export interface SnapshotCreateRepositoryRequest extends RequestBase {
-  repository: Name;
-  master_timeout?: Time;
-  timeout?: Time;
-  verify?: boolean;
+  repository: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
+  verify?: boolean
   body?: {
     repository?: SnapshotRepository;
     type: string;
@@ -9497,32 +9717,44 @@ export interface SnapshotCreateRepositoryRequest extends RequestBase {
   };
 }
 
-export interface SnapshotCreateRepositoryResponse extends AcknowledgedResponseBase {}
+export interface SnapshotCreateRepositoryResponse extends AcknowledgedResponseBase { }
 
 export interface SnapshotDeleteRequest extends RequestBase {
-  repository: Name;
-  snapshot: Name;
-  master_timeout?: Time;
+  repository: Name
+  snapshot: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
-export interface SnapshotDeleteResponse extends AcknowledgedResponseBase {}
+export interface SnapshotDeleteResponse extends AcknowledgedResponseBase { }
 
 export interface SnapshotDeleteRepositoryRequest extends RequestBase {
-  repository: Names;
-  master_timeout?: Time;
-  timeout?: Time;
+  repository: Names
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
-export interface SnapshotDeleteRepositoryResponse extends AcknowledgedResponseBase {}
+export interface SnapshotDeleteRepositoryResponse extends AcknowledgedResponseBase { }
 
 export interface SnapshotGetRequest extends RequestBase {
-  repository: Name;
-  snapshot: Names;
-  ignore_unavailable?: boolean;
-  master_timeout?: Time;
-  verbose?: boolean;
-  index_details?: boolean;
-  human?: boolean;
+  repository: Name
+  snapshot: Names
+  ignore_unavailable?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  verbose?: boolean
+  index_details?: boolean
+  human?: boolean
 }
 
 export interface SnapshotGetResponse {
@@ -9537,19 +9769,27 @@ export interface SnapshotGetSnapshotResponseItem {
 }
 
 export interface SnapshotGetRepositoryRequest extends RequestBase {
-  repository?: Names;
-  local?: boolean;
-  master_timeout?: Time;
+  repository?: Names
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
 export interface SnapshotGetRepositoryResponse
-  extends DictionaryResponseBase<string, SnapshotRepository> {}
+  extends DictionaryResponseBase<string, SnapshotRepository> { }
 
 export interface SnapshotRestoreRequest extends RequestBase {
-  repository: Name;
-  snapshot: Name;
-  master_timeout?: Time;
-  wait_for_completion?: boolean;
+  repository: Name
+  snapshot: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  wait_for_completion?: boolean
   body?: {
     ignore_index_settings?: string[];
     ignore_unavailable?: boolean;
@@ -9574,10 +9814,14 @@ export interface SnapshotRestoreSnapshotRestore {
 }
 
 export interface SnapshotStatusRequest extends RequestBase {
-  repository?: Name;
-  snapshot?: Names;
-  ignore_unavailable?: boolean;
-  master_timeout?: Time;
+  repository?: Name
+  snapshot?: Names
+  ignore_unavailable?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
 }
 
 export interface SnapshotStatusResponse {
@@ -9589,9 +9833,13 @@ export interface SnapshotVerifyRepositoryCompactNodeInfo {
 }
 
 export interface SnapshotVerifyRepositoryRequest extends RequestBase {
-  repository: Name;
-  master_timeout?: Time;
-  timeout?: Time;
+  repository: Name
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  timeout?: Time
 }
 
 export interface SnapshotVerifyRepositoryResponse {
@@ -9693,7 +9941,7 @@ export interface TaskListResponse {
   tasks?: Record<string, TaskInfo> | TaskInfo[];
 }
 
-export interface SpecUtilsAdditionalProperties<TKey = unknown, TValue = unknown> {}
+export interface SpecUtilsAdditionalProperties<TKey = unknown, TValue = unknown> { }
 
 export interface SpecUtilsCommonQueryParameters {
   error_trace?: boolean;
@@ -9704,11 +9952,15 @@ export interface SpecUtilsCommonQueryParameters {
 }
 
 export interface SpecUtilsCommonCatQueryParameters {
-  format?: string;
-  h?: Names;
-  help?: boolean;
-  local?: boolean;
-  master_timeout?: Time;
-  s?: string[];
-  v?: boolean;
+  format?: string
+  h?: Names
+  help?: boolean
+  local?: boolean
+  cluster_manager_timeout?: Time
+  /**
+  * @deprecated use cluster_manager_timeout instead
+  */
+  master_timeout?: Time
+  s?: string[]
+  v?: boolean
 }

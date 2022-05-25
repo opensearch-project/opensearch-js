@@ -118,343 +118,111 @@ declare class Client {
     callback: callbackFn<T.BulkResponse, TContext>
   ): TransportRequestCallback;
   cat: {
-    aliases<TContext = unknown>(
-      params?: T.CatAliasesRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatAliasesResponse, TContext>>;
-    aliases<TContext = unknown>(
-      callback: callbackFn<T.CatAliasesResponse, TContext>
-    ): TransportRequestCallback;
-    aliases<TContext = unknown>(
-      params: T.CatAliasesRequest,
-      callback: callbackFn<T.CatAliasesResponse, TContext>
-    ): TransportRequestCallback;
-    aliases<TContext = unknown>(
-      params: T.CatAliasesRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatAliasesResponse, TContext>
-    ): TransportRequestCallback;
-    allocation<TContext = unknown>(
-      params?: T.CatAllocationRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatAllocationResponse, TContext>>;
-    allocation<TContext = unknown>(
-      callback: callbackFn<T.CatAllocationResponse, TContext>
-    ): TransportRequestCallback;
-    allocation<TContext = unknown>(
-      params: T.CatAllocationRequest,
-      callback: callbackFn<T.CatAllocationResponse, TContext>
-    ): TransportRequestCallback;
-    allocation<TContext = unknown>(
-      params: T.CatAllocationRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatAllocationResponse, TContext>
-    ): TransportRequestCallback;
-    count<TContext = unknown>(
-      params?: T.CatCountRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatCountResponse, TContext>>;
-    count<TContext = unknown>(
-      callback: callbackFn<T.CatCountResponse, TContext>
-    ): TransportRequestCallback;
-    count<TContext = unknown>(
-      params: T.CatCountRequest,
-      callback: callbackFn<T.CatCountResponse, TContext>
-    ): TransportRequestCallback;
-    count<TContext = unknown>(
-      params: T.CatCountRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatCountResponse, TContext>
-    ): TransportRequestCallback;
-    fielddata<TContext = unknown>(
-      params?: T.CatFielddataRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatFielddataResponse, TContext>>;
-    fielddata<TContext = unknown>(
-      callback: callbackFn<T.CatFielddataResponse, TContext>
-    ): TransportRequestCallback;
-    fielddata<TContext = unknown>(
-      params: T.CatFielddataRequest,
-      callback: callbackFn<T.CatFielddataResponse, TContext>
-    ): TransportRequestCallback;
-    fielddata<TContext = unknown>(
-      params: T.CatFielddataRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatFielddataResponse, TContext>
-    ): TransportRequestCallback;
-    health<TContext = unknown>(
-      params?: T.CatHealthRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatHealthResponse, TContext>>;
-    health<TContext = unknown>(
-      callback: callbackFn<T.CatHealthResponse, TContext>
-    ): TransportRequestCallback;
-    health<TContext = unknown>(
-      params: T.CatHealthRequest,
-      callback: callbackFn<T.CatHealthResponse, TContext>
-    ): TransportRequestCallback;
-    health<TContext = unknown>(
-      params: T.CatHealthRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatHealthResponse, TContext>
-    ): TransportRequestCallback;
-    help<TContext = unknown>(
-      params?: T.CatHelpRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatHelpResponse, TContext>>;
-    help<TContext = unknown>(
-      callback: callbackFn<T.CatHelpResponse, TContext>
-    ): TransportRequestCallback;
-    help<TContext = unknown>(
-      params: T.CatHelpRequest,
-      callback: callbackFn<T.CatHelpResponse, TContext>
-    ): TransportRequestCallback;
-    help<TContext = unknown>(
-      params: T.CatHelpRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatHelpResponse, TContext>
-    ): TransportRequestCallback;
-    indices<TContext = unknown>(
-      params?: T.CatIndicesRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatIndicesResponse, TContext>>;
-    indices<TContext = unknown>(
-      callback: callbackFn<T.CatIndicesResponse, TContext>
-    ): TransportRequestCallback;
-    indices<TContext = unknown>(
-      params: T.CatIndicesRequest,
-      callback: callbackFn<T.CatIndicesResponse, TContext>
-    ): TransportRequestCallback;
-    indices<TContext = unknown>(
-      params: T.CatIndicesRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatIndicesResponse, TContext>
-    ): TransportRequestCallback;
-    master<TContext = unknown>(
-      params?: T.CatMasterRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatMasterResponse, TContext>>;
-    master<TContext = unknown>(
-      callback: callbackFn<T.CatMasterResponse, TContext>
-    ): TransportRequestCallback;
-    master<TContext = unknown>(
-      params: T.CatMasterRequest,
-      callback: callbackFn<T.CatMasterResponse, TContext>
-    ): TransportRequestCallback;
-    master<TContext = unknown>(
-      params: T.CatMasterRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatMasterResponse, TContext>
-    ): TransportRequestCallback;
-    nodeattrs<TContext = unknown>(
-      params?: T.CatNodeAttributesRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatNodeAttributesResponse, TContext>>;
-    nodeattrs<TContext = unknown>(
-      callback: callbackFn<T.CatNodeAttributesResponse, TContext>
-    ): TransportRequestCallback;
-    nodeattrs<TContext = unknown>(
-      params: T.CatNodeAttributesRequest,
-      callback: callbackFn<T.CatNodeAttributesResponse, TContext>
-    ): TransportRequestCallback;
-    nodeattrs<TContext = unknown>(
-      params: T.CatNodeAttributesRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatNodeAttributesResponse, TContext>
-    ): TransportRequestCallback;
-    nodes<TContext = unknown>(
-      params?: T.CatNodesRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatNodesResponse, TContext>>;
-    nodes<TContext = unknown>(
-      callback: callbackFn<T.CatNodesResponse, TContext>
-    ): TransportRequestCallback;
-    nodes<TContext = unknown>(
-      params: T.CatNodesRequest,
-      callback: callbackFn<T.CatNodesResponse, TContext>
-    ): TransportRequestCallback;
-    nodes<TContext = unknown>(
-      params: T.CatNodesRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatNodesResponse, TContext>
-    ): TransportRequestCallback;
-    pendingTasks<TContext = unknown>(
-      params?: T.CatPendingTasksRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatPendingTasksResponse, TContext>>;
-    pendingTasks<TContext = unknown>(
-      callback: callbackFn<T.CatPendingTasksResponse, TContext>
-    ): TransportRequestCallback;
-    pendingTasks<TContext = unknown>(
-      params: T.CatPendingTasksRequest,
-      callback: callbackFn<T.CatPendingTasksResponse, TContext>
-    ): TransportRequestCallback;
-    pendingTasks<TContext = unknown>(
-      params: T.CatPendingTasksRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatPendingTasksResponse, TContext>
-    ): TransportRequestCallback;
-    plugins<TContext = unknown>(
-      params?: T.CatPluginsRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatPluginsResponse, TContext>>;
-    plugins<TContext = unknown>(
-      callback: callbackFn<T.CatPluginsResponse, TContext>
-    ): TransportRequestCallback;
-    plugins<TContext = unknown>(
-      params: T.CatPluginsRequest,
-      callback: callbackFn<T.CatPluginsResponse, TContext>
-    ): TransportRequestCallback;
-    plugins<TContext = unknown>(
-      params: T.CatPluginsRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatPluginsResponse, TContext>
-    ): TransportRequestCallback;
-    recovery<TContext = unknown>(
-      params?: T.CatRecoveryRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatRecoveryResponse, TContext>>;
-    recovery<TContext = unknown>(
-      callback: callbackFn<T.CatRecoveryResponse, TContext>
-    ): TransportRequestCallback;
-    recovery<TContext = unknown>(
-      params: T.CatRecoveryRequest,
-      callback: callbackFn<T.CatRecoveryResponse, TContext>
-    ): TransportRequestCallback;
-    recovery<TContext = unknown>(
-      params: T.CatRecoveryRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatRecoveryResponse, TContext>
-    ): TransportRequestCallback;
-    repositories<TContext = unknown>(
-      params?: T.CatRepositoriesRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatRepositoriesResponse, TContext>>;
-    repositories<TContext = unknown>(
-      callback: callbackFn<T.CatRepositoriesResponse, TContext>
-    ): TransportRequestCallback;
-    repositories<TContext = unknown>(
-      params: T.CatRepositoriesRequest,
-      callback: callbackFn<T.CatRepositoriesResponse, TContext>
-    ): TransportRequestCallback;
-    repositories<TContext = unknown>(
-      params: T.CatRepositoriesRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatRepositoriesResponse, TContext>
-    ): TransportRequestCallback;
-    segments<TContext = unknown>(
-      params?: T.CatSegmentsRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatSegmentsResponse, TContext>>;
-    segments<TContext = unknown>(
-      callback: callbackFn<T.CatSegmentsResponse, TContext>
-    ): TransportRequestCallback;
-    segments<TContext = unknown>(
-      params: T.CatSegmentsRequest,
-      callback: callbackFn<T.CatSegmentsResponse, TContext>
-    ): TransportRequestCallback;
-    segments<TContext = unknown>(
-      params: T.CatSegmentsRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatSegmentsResponse, TContext>
-    ): TransportRequestCallback;
-    shards<TContext = unknown>(
-      params?: T.CatShardsRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatShardsResponse, TContext>>;
-    shards<TContext = unknown>(
-      callback: callbackFn<T.CatShardsResponse, TContext>
-    ): TransportRequestCallback;
-    shards<TContext = unknown>(
-      params: T.CatShardsRequest,
-      callback: callbackFn<T.CatShardsResponse, TContext>
-    ): TransportRequestCallback;
-    shards<TContext = unknown>(
-      params: T.CatShardsRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatShardsResponse, TContext>
-    ): TransportRequestCallback;
-    snapshots<TContext = unknown>(
-      params?: T.CatSnapshotsRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatSnapshotsResponse, TContext>>;
-    snapshots<TContext = unknown>(
-      callback: callbackFn<T.CatSnapshotsResponse, TContext>
-    ): TransportRequestCallback;
-    snapshots<TContext = unknown>(
-      params: T.CatSnapshotsRequest,
-      callback: callbackFn<T.CatSnapshotsResponse, TContext>
-    ): TransportRequestCallback;
-    snapshots<TContext = unknown>(
-      params: T.CatSnapshotsRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatSnapshotsResponse, TContext>
-    ): TransportRequestCallback;
-    tasks<TContext = unknown>(
-      params?: T.CatTasksRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatTasksResponse, TContext>>;
-    tasks<TContext = unknown>(
-      callback: callbackFn<T.CatTasksResponse, TContext>
-    ): TransportRequestCallback;
-    tasks<TContext = unknown>(
-      params: T.CatTasksRequest,
-      callback: callbackFn<T.CatTasksResponse, TContext>
-    ): TransportRequestCallback;
-    tasks<TContext = unknown>(
-      params: T.CatTasksRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatTasksResponse, TContext>
-    ): TransportRequestCallback;
-    templates<TContext = unknown>(
-      params?: T.CatTemplatesRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatTemplatesResponse, TContext>>;
-    templates<TContext = unknown>(
-      callback: callbackFn<T.CatTemplatesResponse, TContext>
-    ): TransportRequestCallback;
-    templates<TContext = unknown>(
-      params: T.CatTemplatesRequest,
-      callback: callbackFn<T.CatTemplatesResponse, TContext>
-    ): TransportRequestCallback;
-    templates<TContext = unknown>(
-      params: T.CatTemplatesRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatTemplatesResponse, TContext>
-    ): TransportRequestCallback;
-    threadPool<TContext = unknown>(
-      params?: T.CatThreadPoolRequest,
-      options?: TransportRequestOptions
-    ): TransportRequestPromise<ApiResponse<T.CatThreadPoolResponse, TContext>>;
-    threadPool<TContext = unknown>(
-      callback: callbackFn<T.CatThreadPoolResponse, TContext>
-    ): TransportRequestCallback;
-    threadPool<TContext = unknown>(
-      params: T.CatThreadPoolRequest,
-      callback: callbackFn<T.CatThreadPoolResponse, TContext>
-    ): TransportRequestCallback;
-    threadPool<TContext = unknown>(
-      params: T.CatThreadPoolRequest,
-      options: TransportRequestOptions,
-      callback: callbackFn<T.CatThreadPoolResponse, TContext>
-    ): TransportRequestCallback;
-  };
-  clearScroll<TContext = unknown>(
-    params?: T.ClearScrollRequest,
-    options?: TransportRequestOptions
-  ): TransportRequestPromise<ApiResponse<T.ClearScrollResponse, TContext>>;
-  clearScroll<TContext = unknown>(
-    callback: callbackFn<T.ClearScrollResponse, TContext>
-  ): TransportRequestCallback;
-  clearScroll<TContext = unknown>(
-    params: T.ClearScrollRequest,
-    callback: callbackFn<T.ClearScrollResponse, TContext>
-  ): TransportRequestCallback;
-  clearScroll<TContext = unknown>(
-    params: T.ClearScrollRequest,
-    options: TransportRequestOptions,
-    callback: callbackFn<T.ClearScrollResponse, TContext>
-  ): TransportRequestCallback;
+    aliases<TContext = unknown>(params?: T.CatAliasesRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatAliasesResponse, TContext>>
+    aliases<TContext = unknown>(callback: callbackFn<T.CatAliasesResponse, TContext>): TransportRequestCallback
+    aliases<TContext = unknown>(params: T.CatAliasesRequest, callback: callbackFn<T.CatAliasesResponse, TContext>): TransportRequestCallback
+    aliases<TContext = unknown>(params: T.CatAliasesRequest, options: TransportRequestOptions, callback: callbackFn<T.CatAliasesResponse, TContext>): TransportRequestCallback
+    allocation<TContext = unknown>(params?: T.CatAllocationRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatAllocationResponse, TContext>>
+    allocation<TContext = unknown>(callback: callbackFn<T.CatAllocationResponse, TContext>): TransportRequestCallback
+    allocation<TContext = unknown>(params: T.CatAllocationRequest, callback: callbackFn<T.CatAllocationResponse, TContext>): TransportRequestCallback
+    allocation<TContext = unknown>(params: T.CatAllocationRequest, options: TransportRequestOptions, callback: callbackFn<T.CatAllocationResponse, TContext>): TransportRequestCallback
+    cluster_manager<TContext = unknown>(params?: T.CatClusterManagerRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatClusterManagerResponse, TContext>>
+    cluster_manager<TContext = unknown>(callback: callbackFn<T.CatClusterManagerResponse, TContext>): TransportRequestCallback
+    cluster_manager<TContext = unknown>(params: T.CatClusterManagerRequest, callback: callbackFn<T.CatClusterManagerResponse, TContext>): TransportRequestCallback
+    cluster_manager<TContext = unknown>(params: T.CatClusterManagerRequest, options: TransportRequestOptions, callback: callbackFn<T.CatClusterManagerResponse, TContext>): TransportRequestCallback
+    count<TContext = unknown>(params?: T.CatCountRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatCountResponse, TContext>>
+    count<TContext = unknown>(callback: callbackFn<T.CatCountResponse, TContext>): TransportRequestCallback
+    count<TContext = unknown>(params: T.CatCountRequest, callback: callbackFn<T.CatCountResponse, TContext>): TransportRequestCallback
+    count<TContext = unknown>(params: T.CatCountRequest, options: TransportRequestOptions, callback: callbackFn<T.CatCountResponse, TContext>): TransportRequestCallback
+    fielddata<TContext = unknown>(params?: T.CatFielddataRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatFielddataResponse, TContext>>
+    fielddata<TContext = unknown>(callback: callbackFn<T.CatFielddataResponse, TContext>): TransportRequestCallback
+    fielddata<TContext = unknown>(params: T.CatFielddataRequest, callback: callbackFn<T.CatFielddataResponse, TContext>): TransportRequestCallback
+    fielddata<TContext = unknown>(params: T.CatFielddataRequest, options: TransportRequestOptions, callback: callbackFn<T.CatFielddataResponse, TContext>): TransportRequestCallback
+    health<TContext = unknown>(params?: T.CatHealthRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatHealthResponse, TContext>>
+    health<TContext = unknown>(callback: callbackFn<T.CatHealthResponse, TContext>): TransportRequestCallback
+    health<TContext = unknown>(params: T.CatHealthRequest, callback: callbackFn<T.CatHealthResponse, TContext>): TransportRequestCallback
+    health<TContext = unknown>(params: T.CatHealthRequest, options: TransportRequestOptions, callback: callbackFn<T.CatHealthResponse, TContext>): TransportRequestCallback
+    help<TContext = unknown>(params?: T.CatHelpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatHelpResponse, TContext>>
+    help<TContext = unknown>(callback: callbackFn<T.CatHelpResponse, TContext>): TransportRequestCallback
+    help<TContext = unknown>(params: T.CatHelpRequest, callback: callbackFn<T.CatHelpResponse, TContext>): TransportRequestCallback
+    help<TContext = unknown>(params: T.CatHelpRequest, options: TransportRequestOptions, callback: callbackFn<T.CatHelpResponse, TContext>): TransportRequestCallback
+    indices<TContext = unknown>(params?: T.CatIndicesRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatIndicesResponse, TContext>>
+    indices<TContext = unknown>(callback: callbackFn<T.CatIndicesResponse, TContext>): TransportRequestCallback
+    indices<TContext = unknown>(params: T.CatIndicesRequest, callback: callbackFn<T.CatIndicesResponse, TContext>): TransportRequestCallback
+    indices<TContext = unknown>(params: T.CatIndicesRequest, options: TransportRequestOptions, callback: callbackFn<T.CatIndicesResponse, TContext>): TransportRequestCallback
+    /**
+    * // TODO: delete cat.master when it is removed from OpenSearch
+    * @deprecated use cat.cluster_manager instead
+    */
+    master<TContext = unknown>(params?: T.CatMasterRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatMasterResponse, TContext>>
+    /**
+    * // TODO: delete cat.master when it is removed from OpenSearch
+    * @deprecated use cat.cluster_manager instead
+    */
+    master<TContext = unknown>(callback: callbackFn<T.CatMasterResponse, TContext>): TransportRequestCallback
+    /**
+    * // TODO: delete cat.master when it is removed from OpenSearch
+    * @deprecated use cat.cluster_manager instead
+    */
+    master<TContext = unknown>(params: T.CatMasterRequest, callback: callbackFn<T.CatMasterResponse, TContext>): TransportRequestCallback
+    /**
+    * // TODO: delete cat.master when it is removed from OpenSearch
+    * @deprecated use cat.cluster_manager instead
+    */
+    master<TContext = unknown>(params: T.CatMasterRequest, options: TransportRequestOptions, callback: callbackFn<T.CatMasterResponse, TContext>): TransportRequestCallback
+    nodeattrs<TContext = unknown>(params?: T.CatNodeAttributesRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatNodeAttributesResponse, TContext>>
+    nodeattrs<TContext = unknown>(callback: callbackFn<T.CatNodeAttributesResponse, TContext>): TransportRequestCallback
+    nodeattrs<TContext = unknown>(params: T.CatNodeAttributesRequest, callback: callbackFn<T.CatNodeAttributesResponse, TContext>): TransportRequestCallback
+    nodeattrs<TContext = unknown>(params: T.CatNodeAttributesRequest, options: TransportRequestOptions, callback: callbackFn<T.CatNodeAttributesResponse, TContext>): TransportRequestCallback
+    nodes<TContext = unknown>(params?: T.CatNodesRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatNodesResponse, TContext>>
+    nodes<TContext = unknown>(callback: callbackFn<T.CatNodesResponse, TContext>): TransportRequestCallback
+    nodes<TContext = unknown>(params: T.CatNodesRequest, callback: callbackFn<T.CatNodesResponse, TContext>): TransportRequestCallback
+    nodes<TContext = unknown>(params: T.CatNodesRequest, options: TransportRequestOptions, callback: callbackFn<T.CatNodesResponse, TContext>): TransportRequestCallback
+    pendingTasks<TContext = unknown>(params?: T.CatPendingTasksRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatPendingTasksResponse, TContext>>
+    pendingTasks<TContext = unknown>(callback: callbackFn<T.CatPendingTasksResponse, TContext>): TransportRequestCallback
+    pendingTasks<TContext = unknown>(params: T.CatPendingTasksRequest, callback: callbackFn<T.CatPendingTasksResponse, TContext>): TransportRequestCallback
+    pendingTasks<TContext = unknown>(params: T.CatPendingTasksRequest, options: TransportRequestOptions, callback: callbackFn<T.CatPendingTasksResponse, TContext>): TransportRequestCallback
+    plugins<TContext = unknown>(params?: T.CatPluginsRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatPluginsResponse, TContext>>
+    plugins<TContext = unknown>(callback: callbackFn<T.CatPluginsResponse, TContext>): TransportRequestCallback
+    plugins<TContext = unknown>(params: T.CatPluginsRequest, callback: callbackFn<T.CatPluginsResponse, TContext>): TransportRequestCallback
+    plugins<TContext = unknown>(params: T.CatPluginsRequest, options: TransportRequestOptions, callback: callbackFn<T.CatPluginsResponse, TContext>): TransportRequestCallback
+    recovery<TContext = unknown>(params?: T.CatRecoveryRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatRecoveryResponse, TContext>>
+    recovery<TContext = unknown>(callback: callbackFn<T.CatRecoveryResponse, TContext>): TransportRequestCallback
+    recovery<TContext = unknown>(params: T.CatRecoveryRequest, callback: callbackFn<T.CatRecoveryResponse, TContext>): TransportRequestCallback
+    recovery<TContext = unknown>(params: T.CatRecoveryRequest, options: TransportRequestOptions, callback: callbackFn<T.CatRecoveryResponse, TContext>): TransportRequestCallback
+    repositories<TContext = unknown>(params?: T.CatRepositoriesRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatRepositoriesResponse, TContext>>
+    repositories<TContext = unknown>(callback: callbackFn<T.CatRepositoriesResponse, TContext>): TransportRequestCallback
+    repositories<TContext = unknown>(params: T.CatRepositoriesRequest, callback: callbackFn<T.CatRepositoriesResponse, TContext>): TransportRequestCallback
+    repositories<TContext = unknown>(params: T.CatRepositoriesRequest, options: TransportRequestOptions, callback: callbackFn<T.CatRepositoriesResponse, TContext>): TransportRequestCallback
+    segments<TContext = unknown>(params?: T.CatSegmentsRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatSegmentsResponse, TContext>>
+    segments<TContext = unknown>(callback: callbackFn<T.CatSegmentsResponse, TContext>): TransportRequestCallback
+    segments<TContext = unknown>(params: T.CatSegmentsRequest, callback: callbackFn<T.CatSegmentsResponse, TContext>): TransportRequestCallback
+    segments<TContext = unknown>(params: T.CatSegmentsRequest, options: TransportRequestOptions, callback: callbackFn<T.CatSegmentsResponse, TContext>): TransportRequestCallback
+    shards<TContext = unknown>(params?: T.CatShardsRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatShardsResponse, TContext>>
+    shards<TContext = unknown>(callback: callbackFn<T.CatShardsResponse, TContext>): TransportRequestCallback
+    shards<TContext = unknown>(params: T.CatShardsRequest, callback: callbackFn<T.CatShardsResponse, TContext>): TransportRequestCallback
+    shards<TContext = unknown>(params: T.CatShardsRequest, options: TransportRequestOptions, callback: callbackFn<T.CatShardsResponse, TContext>): TransportRequestCallback
+    snapshots<TContext = unknown>(params?: T.CatSnapshotsRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatSnapshotsResponse, TContext>>
+    snapshots<TContext = unknown>(callback: callbackFn<T.CatSnapshotsResponse, TContext>): TransportRequestCallback
+    snapshots<TContext = unknown>(params: T.CatSnapshotsRequest, callback: callbackFn<T.CatSnapshotsResponse, TContext>): TransportRequestCallback
+    snapshots<TContext = unknown>(params: T.CatSnapshotsRequest, options: TransportRequestOptions, callback: callbackFn<T.CatSnapshotsResponse, TContext>): TransportRequestCallback
+    tasks<TContext = unknown>(params?: T.CatTasksRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatTasksResponse, TContext>>
+    tasks<TContext = unknown>(callback: callbackFn<T.CatTasksResponse, TContext>): TransportRequestCallback
+    tasks<TContext = unknown>(params: T.CatTasksRequest, callback: callbackFn<T.CatTasksResponse, TContext>): TransportRequestCallback
+    tasks<TContext = unknown>(params: T.CatTasksRequest, options: TransportRequestOptions, callback: callbackFn<T.CatTasksResponse, TContext>): TransportRequestCallback
+    templates<TContext = unknown>(params?: T.CatTemplatesRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatTemplatesResponse, TContext>>
+    templates<TContext = unknown>(callback: callbackFn<T.CatTemplatesResponse, TContext>): TransportRequestCallback
+    templates<TContext = unknown>(params: T.CatTemplatesRequest, callback: callbackFn<T.CatTemplatesResponse, TContext>): TransportRequestCallback
+    templates<TContext = unknown>(params: T.CatTemplatesRequest, options: TransportRequestOptions, callback: callbackFn<T.CatTemplatesResponse, TContext>): TransportRequestCallback
+    threadPool<TContext = unknown>(params?: T.CatThreadPoolRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.CatThreadPoolResponse, TContext>>
+    threadPool<TContext = unknown>(callback: callbackFn<T.CatThreadPoolResponse, TContext>): TransportRequestCallback
+    threadPool<TContext = unknown>(params: T.CatThreadPoolRequest, callback: callbackFn<T.CatThreadPoolResponse, TContext>): TransportRequestCallback
+    threadPool<TContext = unknown>(params: T.CatThreadPoolRequest, options: TransportRequestOptions, callback: callbackFn<T.CatThreadPoolResponse, TContext>): TransportRequestCallback
+  }
+  clearScroll<TContext = unknown>(params?: T.ClearScrollRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<T.ClearScrollResponse, TContext>>
+  clearScroll<TContext = unknown>(callback: callbackFn<T.ClearScrollResponse, TContext>): TransportRequestCallback
+  clearScroll<TContext = unknown>(params: T.ClearScrollRequest, callback: callbackFn<T.ClearScrollResponse, TContext>): TransportRequestCallback
+  clearScroll<TContext = unknown>(params: T.ClearScrollRequest, options: TransportRequestOptions, callback: callbackFn<T.ClearScrollResponse, TContext>): TransportRequestCallback
   cluster: {
     allocationExplain<TContext = unknown>(
       params?: T.ClusterAllocationExplainRequest,

@@ -56,7 +56,6 @@ test('Configure host', (t) => {
         deadCount: 0,
         resurrectTimeout: 0,
         roles: {
-          master: true,
           data: true,
           ingest: true,
         },
@@ -79,7 +78,6 @@ test('Configure host', (t) => {
         deadCount: 0,
         resurrectTimeout: 0,
         roles: {
-          master: true,
           data: true,
           ingest: true,
         },
@@ -94,7 +92,6 @@ test('Configure host', (t) => {
         deadCount: 0,
         resurrectTimeout: 0,
         roles: {
-          master: true,
           data: true,
           ingest: true,
         },
@@ -104,7 +101,8 @@ test('Configure host', (t) => {
     t.end();
   });
 
-  t.test('Single object', (t) => {
+  // TODO: modify node roles when master is not supported
+  t.test('Single object with master role', (t) => {
     const client = new Client({
       node: {
         url: new URL('http://localhost:9200'),
@@ -138,6 +136,41 @@ test('Configure host', (t) => {
     t.end();
   });
 
+  t.test('Single object with cluster_manager role', (t) => {
+    const client = new Client({
+      node: {
+        url: new URL('http://localhost:9200'),
+        id: 'node',
+        roles: {
+          cluster_manager: true,
+          data: false,
+          ingest: false,
+        },
+        ssl: 'ssl',
+      },
+    });
+    const pool = client.connectionPool;
+    t.match(
+      pool.connections.find((c) => c.id === 'node'),
+      {
+        url: new URL('http://localhost:9200'),
+        id: 'node',
+        ssl: 'ssl',
+        deadCount: 0,
+        resurrectTimeout: 0,
+      }
+    );
+
+    t.same(pool.connections.find((c) => c.id === 'node').roles, {
+      cluster_manager: true,
+      data: false,
+      ingest: false,
+    });
+
+    t.end();
+  });
+
+  // TODO: modify node roles when master is not supported
   t.test('Array of objects', (t) => {
     const client = new Client({
       nodes: [
@@ -155,7 +188,7 @@ test('Configure host', (t) => {
           url: new URL('http://localhost:9200'),
           id: 'node2',
           roles: {
-            master: false,
+            cluster_manager: false,
             data: true,
             ingest: false,
           },
@@ -193,7 +226,7 @@ test('Configure host', (t) => {
     );
 
     t.same(pool.connections.find((c) => c.id === 'node2').roles, {
-      master: false,
+      cluster_manager: false,
       data: true,
       ingest: false,
     });

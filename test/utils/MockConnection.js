@@ -106,13 +106,13 @@ class MockConnectionSniff extends Connection {
           http: {
             publish_address: 'localhost:9200',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['master', 'data', 'ingest'] || ['cluster_manager', 'data', 'ingest'],
         },
         'node-2': {
           http: {
             publish_address: 'localhost:9201',
           },
-          roles: ['master', 'data', 'ingest'],
+          roles: ['master', 'data', 'ingest'] || ['cluster_manager', 'data', 'ingest'],
         },
       },
     };

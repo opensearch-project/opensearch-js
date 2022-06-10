@@ -13,29 +13,34 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Install
-      run: |
-        npm install
+      - name: Install
+        run: |
+          npm install
 
-    - name: Lint
-      run: |
-        npm run lint
+      - name: Setup Yarn
+        run: |
+          npm uninstall -g yarn
+          npm i -g yarn@1.22.10    
+    
+      - name: Lint
+        run: |
+          yarn lint
 
-    - name: Unit test
-      run: |
-        npm run test:unit
+      - name: Unit test
+        run: |
+          npm run test:unit
 
-    - name: Acceptance test
-      run: |
-        npm run test:acceptance
+      - name: Acceptance test
+        run: |
+          npm run test:acceptance
 
-    - name: Type Definitions
-      run: |
-        npm run test:types
+      - name: Type Definitions
+        run: |
+          npm run test:types

@@ -28,14 +28,9 @@
  * under the License.
  */
 
-import { expectType, expectAssignable } from 'tsd'
-import { URL } from 'url'
-import {
-  BaseConnectionPool,
-  ConnectionPool,
-  CloudConnectionPool,
-  Connection
-} from '../../'
+import { expectType, expectAssignable } from 'tsd';
+import { URL } from 'url';
+import { BaseConnectionPool, ConnectionPool, CloudConnectionPool, Connection } from '../../';
 
 {
   const pool = new BaseConnectionPool({
@@ -43,28 +38,34 @@ import {
     ssl: { ca: 'stirng' },
     emit: (event, ...args) => true,
     agent: { keepAlive: true },
-    auth: { username: 'username', password: 'password' }
-  })
+    auth: { username: 'username', password: 'password' },
+  });
 
-  expectType<BaseConnectionPool>(pool)
-  expectType<Connection[]>(pool.connections)
-  expectType<number>(pool.size)
+  expectType<BaseConnectionPool>(pool);
+  expectType<Connection[]>(pool.connections);
+  expectType<number>(pool.size);
 
-  expectType<BaseConnectionPool>(pool.markAlive(new Connection()))
-  expectType<BaseConnectionPool>(pool.markDead(new Connection()))
-  expectType<Connection | null>(pool.getConnection({
-    filter(node) { return true },
-    selector(connections) { return connections[0] },
-    requestId: 'id',
-    name: 'name',
-    now: Date.now()
-  }))
-  expectType<Connection>(pool.addConnection({}))
-  expectType<BaseConnectionPool>(pool.removeConnection(new Connection()))
-  expectType<BaseConnectionPool>(pool.empty())
-  expectType<BaseConnectionPool>(pool.update([]))
-  expectType<any[]>(pool.nodesToHost([], 'https'))
-  expectType<{ url: URL }>(pool.urlToHost('url'))
+  expectType<BaseConnectionPool>(pool.markAlive(new Connection()));
+  expectType<BaseConnectionPool>(pool.markDead(new Connection()));
+  expectType<Connection | null>(
+    pool.getConnection({
+      filter(node) {
+        return true;
+      },
+      selector(connections) {
+        return connections[0];
+      },
+      requestId: 'id',
+      name: 'name',
+      now: Date.now(),
+    })
+  );
+  expectType<Connection>(pool.addConnection({}));
+  expectType<BaseConnectionPool>(pool.removeConnection(new Connection()));
+  expectType<BaseConnectionPool>(pool.empty());
+  expectType<BaseConnectionPool>(pool.update([]));
+  expectType<any[]>(pool.nodesToHost([], 'https'));
+  expectType<{ url: URL }>(pool.urlToHost('url'));
 }
 
 {
@@ -76,34 +77,42 @@ import {
     auth: { username: 'username', password: 'password' },
     pingTimeout: 1000,
     resurrectStrategy: 'ping',
-    sniffEnabled: true
-  })
+    sniffEnabled: true,
+  });
 
-  expectAssignable<ConnectionPool>(pool)
-  expectType<Connection[]>(pool.connections)
-  expectType<number>(pool.size)
-  expectType<string[]>(pool.dead)
+  expectAssignable<ConnectionPool>(pool);
+  expectType<Connection[]>(pool.connections);
+  expectType<number>(pool.size);
+  expectType<string[]>(pool.dead);
 
-  expectAssignable<ConnectionPool>(pool.markAlive(new Connection()))
-  expectAssignable<ConnectionPool>(pool.markDead(new Connection()))
-  expectType<Connection | null>(pool.getConnection({
-    filter(node) { return true },
-    selector(connections) { return connections[0] },
-    requestId: 'id',
-    name: 'name',
-    now: Date.now()
-  }))
-  expectType<Connection>(pool.addConnection({}))
-  expectAssignable<ConnectionPool>(pool.removeConnection(new Connection()))
-  expectAssignable<ConnectionPool>(pool.empty())
-  expectAssignable<ConnectionPool>(pool.update([]))
-  expectType<any[]>(pool.nodesToHost([], 'https'))
-  expectType<{ url: URL }>(pool.urlToHost('url'))
-  expectType<void>(pool.resurrect({
-    now: Date.now(),
-    requestId: 'id',
-    name: 'name'
-  }))
+  expectAssignable<ConnectionPool>(pool.markAlive(new Connection()));
+  expectAssignable<ConnectionPool>(pool.markDead(new Connection()));
+  expectType<Connection | null>(
+    pool.getConnection({
+      filter(node) {
+        return true;
+      },
+      selector(connections) {
+        return connections[0];
+      },
+      requestId: 'id',
+      name: 'name',
+      now: Date.now(),
+    })
+  );
+  expectType<Connection>(pool.addConnection({}));
+  expectAssignable<ConnectionPool>(pool.removeConnection(new Connection()));
+  expectAssignable<ConnectionPool>(pool.empty());
+  expectAssignable<ConnectionPool>(pool.update([]));
+  expectType<any[]>(pool.nodesToHost([], 'https'));
+  expectType<{ url: URL }>(pool.urlToHost('url'));
+  expectType<void>(
+    pool.resurrect({
+      now: Date.now(),
+      requestId: 'id',
+      name: 'name',
+    })
+  );
 }
 
 {
@@ -112,10 +121,10 @@ import {
     ssl: { ca: 'stirng' },
     emit: (event, ...args) => true,
     agent: { keepAlive: true },
-    auth: { username: 'username', password: 'password' }
-  })
+    auth: { username: 'username', password: 'password' },
+  });
 
-  expectAssignable<CloudConnectionPool>(pool)
-  expectType<Connection | null>(pool.cloudConnection)
-  expectType<Connection | null>(pool.getConnection())
+  expectAssignable<CloudConnectionPool>(pool);
+  expectType<Connection | null>(pool.cloudConnection);
+  expectType<Connection | null>(pool.getConnection());
 }

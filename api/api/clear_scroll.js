@@ -28,28 +28,28 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path'];
+const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' };
 
-function clearScrollApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function clearScrollApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { method, body, scrollId, scroll_id, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, scrollId, scroll_id, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
+  let path = '';
   if ((scroll_id || scrollId) != null) {
-    if (method == null) method = 'DELETE'
-    path = '/' + '_search' + '/' + 'scroll' + '/' + encodeURIComponent(scroll_id || scrollId)
+    if (method == null) method = 'DELETE';
+    path = '/' + '_search' + '/' + 'scroll' + '/' + encodeURIComponent(scroll_id || scrollId);
   } else {
-    if (method == null) method = 'DELETE'
-    path = '/' + '_search' + '/' + 'scroll'
+    if (method == null) method = 'DELETE';
+    path = '/' + '_search' + '/' + 'scroll';
   }
 
   // build request object
@@ -57,10 +57,10 @@ function clearScrollApi (params, options, callback) {
     method,
     path,
     body: body || '',
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = clearScrollApi
+module.exports = clearScrollApi;

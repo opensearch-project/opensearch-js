@@ -28,29 +28,26 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const { test } = require('tap')
-const { events } = require('../../index')
-const { TimeoutError } = require('../../lib/errors')
+const { test } = require('tap');
+const { events } = require('../../index');
+const { TimeoutError } = require('../../lib/errors');
 const {
   Client,
-  connection: {
-    MockConnection,
-    MockConnectionTimeout
-  }
-} = require('../utils')
+  connection: { MockConnection, MockConnectionTimeout },
+} = require('../utils');
 
-test('Should emit a request event when a request is performed', t => {
-  t.plan(3)
+test('Should emit a request event when a request is performed', (t) => {
+  t.plan(3);
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
   client.on(events.REQUEST, (err, request) => {
-    t.error(err)
+    t.error(err);
     t.match(request, {
       body: null,
       statusCode: null,
@@ -64,38 +61,41 @@ test('Should emit a request event when a request is performed', t => {
             method: 'GET',
             path: '/test/_search',
             body: '',
-            querystring: 'q=foo%3Abar'
+            querystring: 'q=foo%3Abar',
           },
           options: {},
-          id: 1
+          id: 1,
         },
         connection: {
-          id: 'http://localhost:9200'
+          id: 'http://localhost:9200',
         },
         attempts: 0,
-        aborted: false
-      }
-    })
-  })
+        aborted: false,
+      },
+    });
+  });
 
-  client.search({
-    index: 'test',
-    q: 'foo:bar'
-  }, (err, result) => {
-    t.error(err)
-  })
-})
+  client.search(
+    {
+      index: 'test',
+      q: 'foo:bar',
+    },
+    (err, result) => {
+      t.error(err);
+    }
+  );
+});
 
-test('Should emit a request event once when a request is performed', t => {
-  t.plan(4)
+test('Should emit a request event once when a request is performed', (t) => {
+  t.plan(4);
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
   client.once(events.REQUEST, (err, request) => {
-    t.error(err)
+    t.error(err);
     t.match(request, {
       body: null,
       statusCode: null,
@@ -109,46 +109,52 @@ test('Should emit a request event once when a request is performed', t => {
             method: 'GET',
             path: '/test/_search',
             body: '',
-            querystring: 'q=foo%3Abar'
+            querystring: 'q=foo%3Abar',
           },
           options: {},
-          id: 1
+          id: 1,
         },
         connection: {
-          id: 'http://localhost:9200'
+          id: 'http://localhost:9200',
         },
         attempts: 0,
-        aborted: false
-      }
-    })
-  })
+        aborted: false,
+      },
+    });
+  });
 
-  client.search({
-    index: 'test',
-    q: 'foo:bar'
-  }, (err, result) => {
-    t.error(err)
-  })
+  client.search(
+    {
+      index: 'test',
+      q: 'foo:bar',
+    },
+    (err, result) => {
+      t.error(err);
+    }
+  );
 
-  client.search({
-    index: 'test',
-    q: 'foo:bar'
-  }, (err, result) => {
-    t.error(err)
-  })
-})
+  client.search(
+    {
+      index: 'test',
+      q: 'foo:bar',
+    },
+    (err, result) => {
+      t.error(err);
+    }
+  );
+});
 
-test('Remove an event', t => {
-  t.plan(4)
+test('Remove an event', (t) => {
+  t.plan(4);
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
-  client.on(events.REQUEST, onRequest)
-  function onRequest (err, request) {
-    t.error(err)
+  client.on(events.REQUEST, onRequest);
+  function onRequest(err, request) {
+    t.error(err);
     t.match(request, {
       body: null,
       statusCode: null,
@@ -162,53 +168,59 @@ test('Remove an event', t => {
             method: 'GET',
             path: '/test/_search',
             body: '',
-            querystring: 'q=foo%3Abar'
+            querystring: 'q=foo%3Abar',
           },
           options: {},
-          id: 1
+          id: 1,
         },
         connection: {
-          id: 'http://localhost:9200'
+          id: 'http://localhost:9200',
         },
         attempts: 0,
-        aborted: false
-      }
-    })
+        aborted: false,
+      },
+    });
 
-    client.off('request', onRequest)
+    client.off('request', onRequest);
   }
 
-  client.search({
-    index: 'test',
-    q: 'foo:bar'
-  }, (err, result) => {
-    t.error(err)
-  })
+  client.search(
+    {
+      index: 'test',
+      q: 'foo:bar',
+    },
+    (err, result) => {
+      t.error(err);
+    }
+  );
 
-  client.search({
-    index: 'test',
-    q: 'foo:bar'
-  }, (err, result) => {
-    t.error(err)
-  })
-})
+  client.search(
+    {
+      index: 'test',
+      q: 'foo:bar',
+    },
+    (err, result) => {
+      t.error(err);
+    }
+  );
+});
 
-test('Should emit a response event in case of a successful response', t => {
-  t.plan(3)
+test('Should emit a response event in case of a successful response', (t) => {
+  t.plan(3);
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
   client.on(events.RESPONSE, (err, request) => {
-    t.error(err)
+    t.error(err);
     t.match(request, {
       body: { hello: 'world' },
       statusCode: 200,
       headers: {
         'content-type': 'application/json;utf=8',
-        connection: 'keep-alive'
+        connection: 'keep-alive',
       },
       warnings: null,
       meta: {
@@ -219,39 +231,42 @@ test('Should emit a response event in case of a successful response', t => {
             method: 'GET',
             path: '/test/_search',
             body: '',
-            querystring: 'q=foo%3Abar'
+            querystring: 'q=foo%3Abar',
           },
           options: {},
-          id: 1
+          id: 1,
         },
         connection: {
-          id: 'http://localhost:9200'
+          id: 'http://localhost:9200',
         },
         attempts: 0,
-        aborted: false
-      }
-    })
-  })
+        aborted: false,
+      },
+    });
+  });
 
-  client.search({
-    index: 'test',
-    q: 'foo:bar'
-  }, (err, result) => {
-    t.error(err)
-  })
-})
+  client.search(
+    {
+      index: 'test',
+      q: 'foo:bar',
+    },
+    (err, result) => {
+      t.error(err);
+    }
+  );
+});
 
-test('Should emit a response event with the error set', t => {
-  t.plan(3)
+test('Should emit a response event with the error set', (t) => {
+  t.plan(3);
 
   const client = new Client({
     node: 'http://localhost:9200',
     Connection: MockConnectionTimeout,
-    maxRetries: 0
-  })
+    maxRetries: 0,
+  });
 
   client.on(events.RESPONSE, (err, request) => {
-    t.ok(err instanceof TimeoutError)
+    t.ok(err instanceof TimeoutError);
     t.match(request, {
       body: null,
       statusCode: null,
@@ -265,44 +280,48 @@ test('Should emit a response event with the error set', t => {
             method: 'GET',
             path: '/test/_search',
             body: '',
-            querystring: 'q=foo%3Abar'
+            querystring: 'q=foo%3Abar',
           },
           options: {
-            requestTimeout: 500
+            requestTimeout: 500,
           },
-          id: 1
+          id: 1,
         },
         connection: {
-          id: 'http://localhost:9200'
+          id: 'http://localhost:9200',
         },
         attempts: 0,
-        aborted: false
-      }
-    })
-  })
+        aborted: false,
+      },
+    });
+  });
 
-  client.search({
-    index: 'test',
-    q: 'foo:bar'
-  }, {
-    requestTimeout: 500
-  }, (err, result) => {
-    t.ok(err instanceof TimeoutError)
-  })
-})
+  client.search(
+    {
+      index: 'test',
+      q: 'foo:bar',
+    },
+    {
+      requestTimeout: 500,
+    },
+    (err, result) => {
+      t.ok(err instanceof TimeoutError);
+    }
+  );
+});
 
-test('Emit event', t => {
-  t.plan(2)
+test('Emit event', (t) => {
+  t.plan(2);
 
   const client = new Client({
     node: 'http://localhost:9200',
-    Connection: MockConnection
-  })
+    Connection: MockConnection,
+  });
 
   client.on(events.REQUEST, (err, request) => {
-    t.error(err)
-    t.same(request, { hello: 'world' })
-  })
+    t.error(err);
+    t.same(request, { hello: 'world' });
+  });
 
-  client.emit(events.REQUEST, null, { hello: 'world' })
-})
+  client.emit(events.REQUEST, null, { hello: 'world' });
+});

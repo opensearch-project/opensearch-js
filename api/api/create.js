@@ -28,42 +28,68 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['wait_for_active_shards', 'refresh', 'routing', 'timeout', 'version', 'version_type', 'pipeline', 'pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { waitForActiveShards: 'wait_for_active_shards', versionType: 'version_type', errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = [
+  'wait_for_active_shards',
+  'refresh',
+  'routing',
+  'timeout',
+  'version',
+  'version_type',
+  'pipeline',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+];
+const snakeCase = {
+  waitForActiveShards: 'wait_for_active_shards',
+  versionType: 'version_type',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+};
 
-function createApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function createApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
   // check required parameters
   if (params.id == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: id')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: id');
+    return handleError(err, callback);
   }
   if (params.index == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: index')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: index');
+    return handleError(err, callback);
   }
   if (params.body == null) {
-    const err = new this[kConfigurationError]('Missing required parameter: body')
-    return handleError(err, callback)
+    const err = new this[kConfigurationError]('Missing required parameter: body');
+    return handleError(err, callback);
   }
 
-  let { method, body, id, index, type, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, id, index, type, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if ((index) != null && (type) != null && (id) != null) {
-    if (method == null) method = 'PUT'
-    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + encodeURIComponent(id) + '/' + '_create'
+  let path = '';
+  if (index != null && type != null && id != null) {
+    if (method == null) method = 'PUT';
+    path =
+      '/' +
+      encodeURIComponent(index) +
+      '/' +
+      encodeURIComponent(type) +
+      '/' +
+      encodeURIComponent(id) +
+      '/' +
+      '_create';
   } else {
-    if (method == null) method = 'PUT'
-    path = '/' + encodeURIComponent(index) + '/' + '_create' + '/' + encodeURIComponent(id)
+    if (method == null) method = 'PUT';
+    path = '/' + encodeURIComponent(index) + '/' + '_create' + '/' + encodeURIComponent(id);
   }
 
   // build request object
@@ -71,10 +97,10 @@ function createApi (params, options, callback) {
     method,
     path,
     body: body || '',
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = createApi
+module.exports = createApi;

@@ -5,7 +5,9 @@ title: '[PROPOSAL]'
 labels: proposal
 assignees: ''
 ---
+
 ## What kind of business use case are you trying to solve? What are your requirements?
+
 A clear and concise description of the business problem, e.g. _My customers are asking for [...]_
 
 **What is the problem? What is preventing you from meeting the requirements?**

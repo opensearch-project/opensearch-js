@@ -28,28 +28,37 @@
  * under the License.
  */
 
-import { ApiResponse, Context } from './Transport'
+import { ApiResponse, Context } from './Transport';
 
 export declare class OpenSearchClientError extends Error {
   name: string;
   message: string;
 }
 
-export declare class TimeoutError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
+export declare class TimeoutError<
+  TResponse = Record<string, any>,
+  TContext = Context
+> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;
   constructor(message: string, meta: ApiResponse);
 }
 
-export declare class ConnectionError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
+export declare class ConnectionError<
+  TResponse = Record<string, any>,
+  TContext = Context
+> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;
   constructor(message: string, meta: ApiResponse);
 }
 
-export declare class NoLivingConnectionsError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
+export declare class NoLivingConnectionsError<
+  TResponse = Record<string, any>,
+  TContext = Context
+> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;
@@ -76,7 +85,10 @@ export declare class ConfigurationError extends OpenSearchClientError {
   constructor(message: string);
 }
 
-export declare class ResponseError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
+export declare class ResponseError<
+  TResponse = Record<string, any>,
+  TContext = Context
+> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;
@@ -86,14 +98,20 @@ export declare class ResponseError<TResponse = Record<string, any>, TContext = C
   constructor(meta: ApiResponse);
 }
 
-export declare class RequestAbortedError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
+export declare class RequestAbortedError<
+  TResponse = Record<string, any>,
+  TContext = Context
+> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;
   constructor(message: string, meta: ApiResponse);
 }
 
-export declare class NotCompatibleError<TResponse = Record<string, any>, TContext = Context> extends OpenSearchClientError {
+export declare class NotCompatibleError<
+  TResponse = Record<string, any>,
+  TContext = Context
+> extends OpenSearchClientError {
   name: string;
   message: string;
   meta: ApiResponse<TResponse, TContext>;

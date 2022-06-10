@@ -28,70 +28,66 @@
  * under the License.
  */
 
-import { URL } from 'url'
-import { expectType, expectError } from 'tsd'
-import { TransportGetConnectionOptions } from '../../lib/Transport'
-import {
-  Client,
-  Serializer,
-  Connection,
-  ConnectionPool,
-  Transport,
-  errors
-} from '../../'
+import { URL } from 'url';
+import { expectType, expectError } from 'tsd';
+import { TransportGetConnectionOptions } from '../../lib/Transport';
+import { Client, Serializer, Connection, ConnectionPool, Transport, errors } from '../../';
 
 /**
  * `node` option
  */
 expectType<Client>(
   new Client({
-    node: 'http://localhost:9200'
+    node: 'http://localhost:9200',
   })
-)
+);
 
 expectType<Client>(
   new Client({
-    nodes: ['http://localhost:9200', 'http://localhost:9200']
+    nodes: ['http://localhost:9200', 'http://localhost:9200'],
   })
-)
+);
 
 expectType<Client>(
   new Client({
     node: {
       url: new URL('http://localhost:9200'),
-      id: 'my-node'
-    }
+      id: 'my-node',
+    },
   })
-)
+);
 
 expectType<Client>(
   new Client({
-    nodes: [{
-      url: new URL('http://localhost:9200'),
-      id: 'my-node-1'
-    }, {
-      url: new URL('http://localhost:9201'),
-      id: 'my-node-2'
-    }]
+    nodes: [
+      {
+        url: new URL('http://localhost:9200'),
+        id: 'my-node-1',
+      },
+      {
+        url: new URL('http://localhost:9201'),
+        id: 'my-node-2',
+      },
+    ],
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
-    node: 42
+    node: 42,
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: {
       url: 'http://localhost:9200',
-      id: 'my-node'
-    }
+      id: 'my-node',
+    },
   })
-)
+);
 
 /**
  * `maxRetries` option
@@ -99,17 +95,17 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    maxRetries: 5
+    maxRetries: 5,
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    maxRetries: 'five'
+    maxRetries: 'five',
   })
-)
+);
 
 /**
  * `requestTimeout` option
@@ -117,17 +113,17 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    requestTimeout: 5
+    requestTimeout: 5,
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    requestTimeout: 'five'
+    requestTimeout: 'five',
   })
-)
+);
 
 /**
  * `pingTimeout` option
@@ -135,17 +131,17 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    pingTimeout: 5
+    pingTimeout: 5,
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    pingTimeout: 'five'
+    pingTimeout: 'five',
   })
-)
+);
 
 /**
  * `sniffInterval` option
@@ -153,24 +149,24 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    sniffInterval: 5
+    sniffInterval: 5,
   })
-)
+);
 
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    sniffInterval: false
+    sniffInterval: false,
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    sniffInterval: 'five'
+    sniffInterval: 'five',
   })
-)
+);
 
 /**
  * `sniffOnStart` option
@@ -178,17 +174,17 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    sniffOnStart: true
+    sniffOnStart: true,
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    sniffOnStart: 'no'
+    sniffOnStart: 'no',
   })
-)
+);
 
 /**
  * `sniffEndpoint` option
@@ -196,17 +192,17 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    sniffEndpoint: '/custom'
+    sniffEndpoint: '/custom',
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    sniffEndpoint: false
+    sniffEndpoint: false,
   })
-)
+);
 
 /**
  * `sniffOnConnectionFault` option
@@ -214,17 +210,17 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    sniffOnConnectionFault: true
+    sniffOnConnectionFault: true,
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    sniffOnConnectionFault: 'yes'
+    sniffOnConnectionFault: 'yes',
   })
-)
+);
 
 /**
  * `resurrectStrategy` option
@@ -232,31 +228,31 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    resurrectStrategy: 'ping'
+    resurrectStrategy: 'ping',
   })
-)
+);
 
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    resurrectStrategy: 'optimistic'
+    resurrectStrategy: 'optimistic',
   })
-)
+);
 
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    resurrectStrategy: 'none'
+    resurrectStrategy: 'none',
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    resurrectStrategy: 'custom'
+    resurrectStrategy: 'custom',
   })
-)
+);
 
 /**
  * `suggestCompression` option
@@ -264,17 +260,17 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    suggestCompression: true
+    suggestCompression: true,
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    suggestCompression: 'no'
+    suggestCompression: 'no',
   })
-)
+);
 
 /**
  * `compression` option
@@ -282,17 +278,17 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    compression: 'gzip'
+    compression: 'gzip',
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    compression: 'deflate'
+    compression: 'deflate',
   })
-)
+);
 
 /**
  * `headers` option
@@ -300,17 +296,17 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    headers: { foo: 'bar' }
+    headers: { foo: 'bar' },
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    headers: 'foo=bar'
+    headers: 'foo=bar',
   })
-)
+);
 
 /**
  * `opaqueIdPrefix` option
@@ -318,17 +314,17 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    opaqueIdPrefix: 'foo-'
+    opaqueIdPrefix: 'foo-',
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    opaqueIdPrefix: 42
+    opaqueIdPrefix: 42,
   })
-)
+);
 
 /**
  * `name` option
@@ -336,24 +332,24 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    name: 'foo'
+    name: 'foo',
   })
-)
+);
 
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    name: Symbol('foo')
+    name: Symbol('foo'),
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    name: 42
+    name: 42,
   })
-)
+);
 
 /**
  * `auth` option
@@ -363,18 +359,18 @@ expectType<Client>(
     node: 'http://localhost:9200',
     auth: {
       username: 'username',
-      password: 'password'
-    }
+      password: 'password',
+    },
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    auth: 'password'
+    auth: 'password',
   })
-)
+);
 
 /**
  * `cloud` option
@@ -382,19 +378,19 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     cloud: {
-      id: 'localhost:9200'
-    }
+      id: 'localhost:9200',
+    },
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     cloud: {
-      id: 42
-    }
+      id: 42,
+    },
   })
-)
+);
 
 /**
  * `agent` option
@@ -406,17 +402,17 @@ expectType<Client>(
       keepAlive: true,
       keepAliveMsecs: 42,
       maxSockets: 42,
-      maxFreeSockets: 42
-    }
+      maxFreeSockets: 42,
+    },
   })
-)
+);
 
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    agent: false
+    agent: false,
   })
-)
+);
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
@@ -428,10 +424,10 @@ expectError<errors.ConfigurationError>(
       keepAliveMsecs: true,
       // @ts-expect-error
       maxSockets: 'all',
-      maxFreeSockets: null
-    }
+      maxFreeSockets: null,
+    },
   })
-)
+);
 
 /**
  * `ssl` option
@@ -441,10 +437,10 @@ expectType<Client>(
     node: 'http://localhost:9200',
     ssl: {
       ca: 'cert',
-      rejectUnauthorized: true
-    }
+      rejectUnauthorized: true,
+    },
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   new Client({
@@ -453,10 +449,10 @@ expectError<errors.ConfigurationError>(
       // @ts-expect-error
       ca: 42,
       // @ts-expect-error
-      rejectUnauthorized: 'yes'
-    }
+      rejectUnauthorized: 'yes',
+    },
   })
-)
+);
 
 /**
  * `generateRequestId` option
@@ -465,18 +461,18 @@ expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
     generateRequestId(params, options) {
-      return 'id'
-    }
+      return 'id';
+    },
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    generateRequestId: 'id'
+    generateRequestId: 'id',
   })
-)
+);
 
 /**
  * `nodeSelector` option
@@ -485,27 +481,27 @@ expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
     nodeSelector(connections) {
-      return connections[0]
-    }
+      return connections[0];
+    },
   })
-)
+);
 
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    nodeSelector: 'round-robin'
+    nodeSelector: 'round-robin',
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
     nodeSelector(connections) {
-      return 'id'
-    }
+      return 'id';
+    },
   })
-)
+);
 
 /**
  * `nodeFilter` option
@@ -514,20 +510,20 @@ expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
     nodeFilter(connection) {
-      return true
-    }
+      return true;
+    },
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
     nodeFilter(connection) {
-      return 'id'
-    }
+      return 'id';
+    },
   })
-)
+);
 
 /**
  * `Serializer` option
@@ -535,16 +531,16 @@ expectError<errors.ConfigurationError>(
 {
   class CustomSerializer extends Serializer {
     deserialize(str: string) {
-      return super.deserialize(str)
+      return super.deserialize(str);
     }
   }
 
   expectType<Client>(
     new Client({
       node: 'http://localhost:9200',
-      Serializer: CustomSerializer
+      Serializer: CustomSerializer,
     })
-  )
+  );
 }
 
 /**
@@ -553,22 +549,22 @@ expectError<errors.ConfigurationError>(
 {
   class CustomConnection extends Connection {
     close() {
-      return super.close()
+      return super.close();
     }
   }
 
   expectType<Client>(
     new Client({
       node: 'http://localhost:9200',
-      Connection: CustomConnection
+      Connection: CustomConnection,
     })
-  )
+  );
 }
 
 {
   class CustomConnection {
     close() {
-      return Promise.resolve()
+      return Promise.resolve();
     }
   }
 
@@ -576,9 +572,9 @@ expectError<errors.ConfigurationError>(
     new Client({
       node: 'http://localhost:9200',
       // @ts-expect-error
-      Connection: CustomConnection
+      Connection: CustomConnection,
     })
-  )
+  );
 }
 
 /**
@@ -587,22 +583,22 @@ expectError<errors.ConfigurationError>(
 {
   class CustomConnectionPool extends ConnectionPool {
     empty() {
-      return super.empty()
+      return super.empty();
     }
   }
 
   expectType<Client>(
     new Client({
       node: 'http://localhost:9200',
-      ConnectionPool: CustomConnectionPool
+      ConnectionPool: CustomConnectionPool,
     })
-  )
+  );
 }
 
 {
   class CustomConnectionPool {
     empty() {
-      return this
+      return this;
     }
   }
 
@@ -610,9 +606,9 @@ expectError<errors.ConfigurationError>(
     // @ts-expect-error
     new Client({
       node: 'http://localhost:9200',
-      ConnectionPool: CustomConnectionPool
+      ConnectionPool: CustomConnectionPool,
     })
-  )
+  );
 }
 
 /**
@@ -621,22 +617,22 @@ expectError<errors.ConfigurationError>(
 {
   class CustomTransport extends Transport {
     getConnection(opts: TransportGetConnectionOptions) {
-      return super.getConnection(opts)
+      return super.getConnection(opts);
     }
   }
 
   expectType<Client>(
     new Client({
       node: 'http://localhost:9200',
-      Transport: CustomTransport
+      Transport: CustomTransport,
     })
-  )
+  );
 }
 
 {
   class CustomTransport {
     getConnection(opts: TransportGetConnectionOptions) {
-      return null
+      return null;
     }
   }
 
@@ -644,9 +640,9 @@ expectError<errors.ConfigurationError>(
     // @ts-expect-error
     new Client({
       node: 'http://localhost:9200',
-      Transport: CustomTransport
+      Transport: CustomTransport,
     })
-  )
+  );
 }
 
 /**
@@ -655,9 +651,9 @@ expectError<errors.ConfigurationError>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    context: { hello: 'world' }
+    context: { hello: 'world' },
   })
-)
+);
 
 /**
  * `proxy` option
@@ -665,21 +661,21 @@ expectType<Client>(
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    proxy: 'http://localhost:8080'
+    proxy: 'http://localhost:8080',
   })
-)
+);
 
 expectType<Client>(
   new Client({
     node: 'http://localhost:9200',
-    proxy: new URL('http://localhost:8080')
+    proxy: new URL('http://localhost:8080'),
   })
-)
+);
 
 expectError<errors.ConfigurationError>(
   // @ts-expect-error
   new Client({
     node: 'http://localhost:9200',
-    proxy: 42
+    proxy: 42,
   })
-)
+);

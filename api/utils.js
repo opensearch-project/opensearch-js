@@ -28,42 +28,42 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const result = { body: null, statusCode: null, headers: null, warnings: null }
-const kConfigurationError = Symbol('configuration error')
+const result = { body: null, statusCode: null, headers: null, warnings: null };
+const kConfigurationError = Symbol('configuration error');
 
-function handleError (err, callback) {
+function handleError(err, callback) {
   if (callback) {
-    process.nextTick(callback, err, result)
-    return { then: noop, catch: noop, abort: noop }
+    process.nextTick(callback, err, result);
+    return { then: noop, catch: noop, abort: noop };
   }
-  return Promise.reject(err)
+  return Promise.reject(err);
 }
 
-function snakeCaseKeys (acceptedQuerystring, snakeCase, querystring) {
-  const target = {}
-  const keys = Object.keys(querystring)
+function snakeCaseKeys(acceptedQuerystring, snakeCase, querystring) {
+  const target = {};
+  const keys = Object.keys(querystring);
   for (let i = 0, len = keys.length; i < len; i++) {
-    const key = keys[i]
-    target[snakeCase[key] || key] = querystring[key]
+    const key = keys[i];
+    target[snakeCase[key] || key] = querystring[key];
   }
-  return target
+  return target;
 }
 
-function normalizeArguments (params, options, callback) {
+function normalizeArguments(params, options, callback) {
   if (typeof options === 'function') {
-    callback = options
-    options = {}
+    callback = options;
+    options = {};
   }
   if (typeof params === 'function' || params == null) {
-    callback = params
-    params = {}
-    options = {}
+    callback = params;
+    params = {};
+    options = {};
   }
-  return [params, options, callback]
+  return [params, options, callback];
 }
 
-function noop () { }
+function noop() {}
 
-module.exports = { handleError, snakeCaseKeys, normalizeArguments, noop, kConfigurationError }
+module.exports = { handleError, snakeCaseKeys, normalizeArguments, noop, kConfigurationError };

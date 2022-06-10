@@ -28,8 +28,8 @@
  * under the License.
  */
 
-import { expectType } from 'tsd'
-import { errors, ApiResponse, Connection } from '../../'
+import { expectType } from 'tsd';
+import { errors, ApiResponse, Connection } from '../../';
 
 const response = {
   body: {},
@@ -42,74 +42,74 @@ const response = {
     request: {
       params: { method: 'GET', path: '/' },
       options: {},
-      id: 42
+      id: 42,
     },
     connection: new Connection(),
     attempts: 0,
     aborted: false,
-  }
+  },
+};
+
+{
+  const err = new errors.OpenSearchClientError();
+  expectType<string>(err.name);
+  expectType<string>(err.message);
 }
 
 {
-  const err = new errors.OpenSearchClientError()
-  expectType<string>(err.name)
-  expectType<string>(err.message)
+  const err = new errors.TimeoutError('message', response);
+  expectType<string>(err.name);
+  expectType<string>(err.message);
+  expectType<ApiResponse>(err.meta);
 }
 
 {
-  const err = new errors.TimeoutError('message', response)
-  expectType<string>(err.name)
-  expectType<string>(err.message)
-  expectType<ApiResponse>(err.meta)
+  const err = new errors.ConnectionError('message', response);
+  expectType<string>(err.name);
+  expectType<string>(err.message);
+  expectType<ApiResponse>(err.meta);
 }
 
 {
-  const err = new errors.ConnectionError('message', response)
-  expectType<string>(err.name)
-  expectType<string>(err.message)
-  expectType<ApiResponse>(err.meta)
+  const err = new errors.NoLivingConnectionsError('message', response);
+  expectType<string>(err.name);
+  expectType<string>(err.message);
+  expectType<ApiResponse>(err.meta);
 }
 
 {
-  const err = new errors.NoLivingConnectionsError('message', response)
-  expectType<string>(err.name)
-  expectType<string>(err.message)
-  expectType<ApiResponse>(err.meta)
+  const err = new errors.SerializationError('message', {});
+  expectType<string>(err.name);
+  expectType<string>(err.message);
+  expectType<any>(err.data);
 }
 
 {
-  const err = new errors.SerializationError('message', {})
-  expectType<string>(err.name)
-  expectType<string>(err.message)
-  expectType<any>(err.data)
+  const err = new errors.DeserializationError('message', 'data');
+  expectType<string>(err.name);
+  expectType<string>(err.message);
+  expectType<string>(err.data);
 }
 
 {
-  const err = new errors.DeserializationError('message', 'data')
-  expectType<string>(err.name)
-  expectType<string>(err.message)
-  expectType<string>(err.data)
+  const err = new errors.ConfigurationError('message');
+  expectType<string>(err.name);
+  expectType<string>(err.message);
 }
 
 {
-  const err = new errors.ConfigurationError('message')
-  expectType<string>(err.name)
-  expectType<string>(err.message)
+  const err = new errors.ResponseError(response);
+  expectType<string>(err.name);
+  expectType<string>(err.message);
+  expectType<ApiResponse>(err.meta);
+  expectType<Record<string, any>>(err.body);
+  expectType<number>(err.statusCode);
+  expectType<Record<string, any>>(err.headers);
 }
 
 {
-  const err = new errors.ResponseError(response)
-  expectType<string>(err.name)
-  expectType<string>(err.message)
-  expectType<ApiResponse>(err.meta)
-  expectType<Record<string, any>>(err.body)
-  expectType<number>(err.statusCode)
-  expectType<Record<string, any>>(err.headers)
-}
-
-{
-  const err = new errors.RequestAbortedError('message', response)
-  expectType<string>(err.name)
-  expectType<string>(err.message)
-  expectType<ApiResponse>(err.meta)
+  const err = new errors.RequestAbortedError('message', response);
+  expectType<string>(err.name);
+  expectType<string>(err.message);
+  expectType<ApiResponse>(err.meta);
 }

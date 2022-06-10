@@ -30,7 +30,7 @@
 
 /// <reference types="node" />
 
-import { URL } from 'url'
+import { URL } from 'url';
 import { SecureContextOptions } from 'tls';
 import Connection, { AgentOptions } from '../Connection';
 import { nodeFilterFn, nodeSelectorFn } from '../Transport';
@@ -79,7 +79,6 @@ interface ResurrectEvent {
   };
 }
 
-
 declare class BaseConnectionPool {
   connections: Connection[];
   size: number;
@@ -109,7 +108,7 @@ declare class BaseConnectionPool {
   /**
    * Returns an alive connection if present,
    * otherwise returns a dead connection.
-   * By default it filters the `master` only nodes.
+   * By default it filters the `cluster_manager` or `master` only nodes.
    * It uses the selector to choose which
    * connection return.
    *
@@ -181,11 +180,14 @@ declare class ConnectionPool extends BaseConnectionPool {
    * @param {object} { now, requestId, name }
    * @param {function} callback (isAlive, connection)
    */
-  resurrect(opts: resurrectOptions, callback?: (isAlive: boolean | null, connection: Connection | null) => void): void;
+  resurrect(
+    opts: resurrectOptions,
+    callback?: (isAlive: boolean | null, connection: Connection | null) => void
+  ): void;
 }
 
 declare class CloudConnectionPool extends BaseConnectionPool {
-  cloudConnection: Connection | null
+  cloudConnection: Connection | null;
   constructor(opts?: BaseConnectionPoolOptions);
   getConnection(): Connection | null;
 }
@@ -211,5 +213,5 @@ export {
   // Classes
   BaseConnectionPool,
   ConnectionPool,
-  CloudConnectionPool
+  CloudConnectionPool,
 };

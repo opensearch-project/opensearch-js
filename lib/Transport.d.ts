@@ -34,13 +34,18 @@ import Connection from './Connection';
 import Serializer from './Serializer';
 import * as errors from './errors';
 
-export type ApiError = errors.ConfigurationError | errors.ConnectionError |
-  errors.DeserializationError | errors.SerializationError |
-  errors.NoLivingConnectionsError | errors.ResponseError |
-  errors.TimeoutError | errors.RequestAbortedError |
-  errors.NotCompatibleError
+export type ApiError =
+  | errors.ConfigurationError
+  | errors.ConnectionError
+  | errors.DeserializationError
+  | errors.SerializationError
+  | errors.NoLivingConnectionsError
+  | errors.ResponseError
+  | errors.TimeoutError
+  | errors.RequestAbortedError
+  | errors.NotCompatibleError;
 
-export type Context = unknown
+export type Context = unknown;
 
 export interface nodeSelectorFn {
   (connections: Connection[]): Connection;
@@ -99,10 +104,16 @@ export interface RequestEvent<TResponse = Record<string, any>, TContext = Contex
 
 // ApiResponse and RequestEvent are the same thing
 // we are doing this for have more clear names
-export interface ApiResponse<TResponse = Record<string, any>, TContext = Context> extends RequestEvent<TResponse, TContext> { }
+export interface ApiResponse<TResponse = Record<string, any>, TContext = Context>
+  extends RequestEvent<TResponse, TContext> {}
 
-export type RequestBody<T = Record<string, any>> = T | string | Buffer | ReadableStream
-export type RequestNDBody<T = Record<string, any>[]> = T | string | string[] | Buffer | ReadableStream
+export type RequestBody<T = Record<string, any>> = T | string | Buffer | ReadableStream;
+export type RequestNDBody<T = Record<string, any>[]> =
+  | T
+  | string
+  | string[]
+  | Buffer
+  | ReadableStream;
 
 export interface TransportRequestParams {
   method: string;
@@ -166,8 +177,15 @@ export default class Transport {
   _nextSniff: number;
   _isSniffing: boolean;
   constructor(opts: TransportOptions);
-  request(params: TransportRequestParams, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
-  request(params: TransportRequestParams, options?: TransportRequestOptions, callback?: (err: ApiError, result: ApiResponse) => void): TransportRequestCallback;
+  request(
+    params: TransportRequestParams,
+    options?: TransportRequestOptions
+  ): TransportRequestPromise<ApiResponse>;
+  request(
+    params: TransportRequestParams,
+    options?: TransportRequestOptions,
+    callback?: (err: ApiError, result: ApiResponse) => void
+  ): TransportRequestCallback;
   getConnection(opts: TransportGetConnectionOptions): Connection | null;
   sniff(opts?: TransportSniffOptions, callback?: (...args: any[]) => void): void;
 }

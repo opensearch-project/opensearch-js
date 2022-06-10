@@ -28,57 +28,57 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
-const debug = require('debug')('opensearch-test')
-const stoppable = require('stoppable')
+const debug = require('debug')('opensearch-test');
+const stoppable = require('stoppable');
 
 // allow self signed certificates for testing purposes
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
-const { readFileSync } = require('fs')
-const { join } = require('path')
-const https = require('https')
-const http = require('http')
+const { readFileSync } = require('fs');
+const { join } = require('path');
+const https = require('https');
+const http = require('http');
 
 const secureOpts = {
   key: readFileSync(join(__dirname, '..', 'fixtures', 'https.key'), 'utf8'),
-  cert: readFileSync(join(__dirname, '..', 'fixtures', 'https.cert'), 'utf8')
-}
+  cert: readFileSync(join(__dirname, '..', 'fixtures', 'https.cert'), 'utf8'),
+};
 
-let id = 0
-function buildServer (handler, opts, cb) {
-  const serverId = id++
-  debug(`Booting server '${serverId}'`)
+let id = 0;
+function buildServer(handler, opts, cb) {
+  const serverId = id++;
+  debug(`Booting server '${serverId}'`);
   if (cb == null) {
-    cb = opts
-    opts = {}
+    cb = opts;
+    opts = {};
   }
 
   const server = opts.secure
     ? stoppable(https.createServer(secureOpts))
-    : stoppable(http.createServer())
+    : stoppable(http.createServer());
 
-  server.on('request', handler)
-  server.on('error', err => {
-    console.log('http server error', err)
-    process.exit(1)
-  })
+  server.on('request', handler);
+  server.on('error', (err) => {
+    console.log('http server error', err);
+    process.exit(1);
+  });
   if (cb === undefined) {
     return new Promise((resolve, reject) => {
       server.listen(0, () => {
-        const port = server.address().port
-        debug(`Server '${serverId}' booted on port ${port}`)
-        resolve([Object.assign({}, secureOpts, { port }), server])
-      })
-    })
+        const port = server.address().port;
+        debug(`Server '${serverId}' booted on port ${port}`);
+        resolve([Object.assign({}, secureOpts, { port }), server]);
+      });
+    });
   } else {
     server.listen(0, () => {
-      const port = server.address().port
-      debug(`Server '${serverId}' booted on port ${port}`)
-      cb(Object.assign({}, secureOpts, { port }), server)
-    })
+      const port = server.address().port;
+      debug(`Server '${serverId}' booted on port ${port}`);
+      cb(Object.assign({}, secureOpts, { port }), server);
+    });
   }
 }
 
-module.exports = buildServer
+module.exports = buildServer;

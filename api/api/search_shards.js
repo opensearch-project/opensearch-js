@@ -28,28 +28,46 @@
  * under the License.
  */
 
-'use strict'
+'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils')
-const acceptedQuerystring = ['preference', 'routing', 'local', 'ignore_unavailable', 'allow_no_indices', 'expand_wildcards', 'pretty', 'human', 'error_trace', 'source', 'filter_path']
-const snakeCase = { ignoreUnavailable: 'ignore_unavailable', allowNoIndices: 'allow_no_indices', expandWildcards: 'expand_wildcards', errorTrace: 'error_trace', filterPath: 'filter_path' }
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = [
+  'preference',
+  'routing',
+  'local',
+  'ignore_unavailable',
+  'allow_no_indices',
+  'expand_wildcards',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+];
+const snakeCase = {
+  ignoreUnavailable: 'ignore_unavailable',
+  allowNoIndices: 'allow_no_indices',
+  expandWildcards: 'expand_wildcards',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+};
 
-function searchShardsApi (params, options, callback) {
-  ;[params, options, callback] = normalizeArguments(params, options, callback)
+function searchShardsApi(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { method, body, index, ...querystring } = params
-  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring)
+  let { method, body, index, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
-  let path = ''
-  if ((index) != null) {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + encodeURIComponent(index) + '/' + '_search_shards'
+  let path = '';
+  if (index != null) {
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + encodeURIComponent(index) + '/' + '_search_shards';
   } else {
-    if (method == null) method = body == null ? 'GET' : 'POST'
-    path = '/' + '_search_shards'
+    if (method == null) method = body == null ? 'GET' : 'POST';
+    path = '/' + '_search_shards';
   }
 
   // build request object
@@ -57,10 +75,10 @@ function searchShardsApi (params, options, callback) {
     method,
     path,
     body: body || '',
-    querystring
-  }
+    querystring,
+  };
 
-  return this.transport.request(request, options, callback)
+  return this.transport.request(request, options, callback);
 }
 
-module.exports = searchShardsApi
+module.exports = searchShardsApi;

@@ -1256,7 +1256,7 @@ test('Issue #253 with promises', async t => {
   }
 })
 
-test('Issue #1521 with callbacks', t => {
+test('Issue #253 with callbacks', t => {
   t.plan(1)
 
   const delay = () => new Promise(resolve => setTimeout(resolve, 10))

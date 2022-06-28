@@ -870,18 +870,17 @@ test('bulk update', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument(doc) {
-        return [
-          {
-            update: {
-              _index: 'test',
-              _id: id++,
-            },
-          },
-          {
-            doc_as_upsert: true,
-          },
-        ];
+      onDocument (doc) {
+        const currentId = id++
+        return [{
+          update: {
+            _index: 'test',
+            _id: currentId
+          }
+        }, {
+          doc: dataset[currentId],
+          doc_as_upsert: true
+        }];
       },
       onDrop(doc) {
         t.fail('This should never be called');
@@ -921,15 +920,14 @@ test('bulk update', (t) => {
       datasource: dataset.map((d) => JSON.stringify(d)),
       flushBytes: 1,
       concurrency: 1,
-      onDocument(doc) {
-        return [
-          {
-            update: {
-              _index: 'test',
-              _id: id++,
-            },
-          },
-        ];
+      onDocument (doc) {
+        const currentId = id++
+        return [{
+          update: {
+            _index: 'test',
+            _id: currentId
+          }
+        }, { doc: dataset[currentId] }];
       },
       onDrop(doc) {
         t.fail('This should never be called');
@@ -969,18 +967,17 @@ test('bulk update', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument(doc) {
-        return [
-          {
-            update: {
-              _index: 'test',
-              _id: id++,
-            },
-          },
-          {
-            doc_as_upsert: true,
-          },
-        ];
+      onDocument (doc) {
+        const currentId = id++
+        return [{
+          update: {
+            _index: 'test',
+            _id: currentId
+          }
+        }, {
+          doc: dataset[currentId],
+          doc_as_upsert: true
+        }];
       },
       onDrop(doc) {
         t.fail('This should never be called');

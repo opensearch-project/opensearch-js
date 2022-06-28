@@ -103,6 +103,18 @@ interface UpdateActionOperation {
   };
 }
 
+interface UpdateActionDocOperation {
+  doc: {
+    [key: string]: any
+  }
+}
+
+interface UpdateActionScriptOperation {
+  script: {
+    [key: string]: any
+  }
+}
+
 interface DeleteAction {
   delete: {
     _index: string;
@@ -110,9 +122,12 @@ interface DeleteAction {
   };
 }
 
-type UpdateAction = [UpdateActionOperation, Record<string, any>];
-type Action = IndexAction | CreateAction | UpdateAction | DeleteAction;
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+type UpdateAction = [
+  UpdateActionOperation,
+  UpdateActionDocOperation | UpdateActionScriptOperation
+];
+type Action = IndexAction | CreateAction | UpdateAction | DeleteAction
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
 export interface BulkHelperOptions<TDocument = unknown> extends Omit<Bulk, 'body'> {
   datasource: TDocument[] | Buffer | ReadableStream | AsyncIterator<TDocument>;

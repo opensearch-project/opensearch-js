@@ -82,14 +82,14 @@ export interface BulkStats {
   aborted: boolean;
 }
 
-interface IndexAction {
+interface IndexActionOperation {
   index: {
     _index: string;
     [key: string]: any;
   };
 }
 
-interface CreateAction {
+interface CreateActionOperation {
   create: {
     _index: string;
     [key: string]: any;
@@ -110,6 +110,8 @@ interface DeleteAction {
   };
 }
 
+type CreateAction = CreateActionOperation | [CreateActionOperation, unknown];
+type IndexAction = IndexActionOperation | [IndexActionOperation, unknown];
 type UpdateAction = [UpdateActionOperation, Record<string, any>];
 type Action = IndexAction | CreateAction | UpdateAction | DeleteAction;
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;

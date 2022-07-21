@@ -29,10 +29,10 @@
  */
 
 import { Readable as ReadableStream } from 'stream';
-import { ConnectionPool, CloudConnectionPool } from './pool';
 import Connection from './Connection';
-import Serializer from './Serializer';
 import * as errors from './errors';
+import { CloudConnectionPool, ConnectionPool } from './pool';
+import Serializer from './Serializer';
 
 export type ApiError =
   | errors.ConfigurationError
@@ -59,6 +59,11 @@ export interface generateRequestIdFn {
   (params: TransportRequestParams, options: TransportRequestOptions): any;
 }
 
+export interface MemoryCircuitBreakerOptions {
+  enabled: boolean;
+  maxPercentage: number;
+}
+
 interface TransportOptions {
   emit: (event: string | symbol, ...args: any[]) => boolean;
   connectionPool: ConnectionPool | CloudConnectionPool;
@@ -77,6 +82,7 @@ interface TransportOptions {
   generateRequestId?: generateRequestIdFn;
   name?: string;
   opaqueIdPrefix?: string;
+  memoryCircuitBreaker?: MemoryCircuitBreakerOptions;
 }
 
 export interface RequestEvent<TResponse = Record<string, any>, TContext = Context> {
@@ -172,6 +178,7 @@ export default class Transport {
   sniffInterval: number;
   sniffOnConnectionFault: boolean;
   opaqueIdPrefix: string | null;
+  memoryCircuitBreaker: MemoryCircuitBreakerOptions | undefined;
   sniffEndpoint: string;
   _sniffEnabled: boolean;
   _nextSniff: number;

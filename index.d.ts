@@ -45,6 +45,7 @@ import Transport, {
   RequestBody,
   RequestNDBody,
   Context,
+  MemoryCircuitBreakerOptions,
 } from './lib/Transport';
 import { URL } from 'url';
 import Connection, { AgentOptions, agentFn } from './lib/Connection';
@@ -137,10 +138,7 @@ interface ClientOptions {
     password?: string;
   };
   disablePrototypePoisoningProtection?: boolean | 'proto' | 'constructor';
-  memoryCircuitBreaker?: {
-    enabled: boolean;
-    maxPercentage: number;
-  };
+  memoryCircuitBreaker?: MemoryCircuitBreakerOptions
 }
 
 declare class Client {

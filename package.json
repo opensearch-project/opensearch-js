@@ -71,8 +71,8 @@
     "simple-statistics": "^7.7.0",
     "split2": "^3.2.2",
     "stoppable": "^1.1.0",
-    "tap": "^15.0.9",
-    "tsd": "^0.15.1",
+    "tap": "^16.3.0",
+    "tsd": "^0.22.0",
     "workq": "^3.0.0",
     "xmlbuilder2": "^2.4.1"
   },
@@ -81,6 +81,9 @@
     "hpagent": "^0.1.1",
     "ms": "^2.1.3",
     "secure-json-parse": "^2.4.0"
+  },
+  "resolutions": {
+    "**/strip-ansi": "^6.0.1"
   },
   "license": "Apache-2.0",
   "repository": {

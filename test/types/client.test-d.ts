@@ -122,7 +122,7 @@ client.on('resurrect', (err, meta) => {
   try {
     expectType<ApiResponse>(await promise);
   } catch (err) {
-    expectType<any>(err);
+    expectType<unknown>(err);
   }
 }
 
@@ -133,7 +133,7 @@ client.on('resurrect', (err, meta) => {
   try {
     expectType<ApiResponse>(await promise);
   } catch (err) {
-    expectType<any>(err);
+    expectType<unknown>(err);
   }
 }
 
@@ -144,6 +144,6 @@ client.on('resurrect', (err, meta) => {
   try {
     expectType<ApiResponse>(await promise);
   } catch (err) {
-    expectType<any>(err);
+    expectType<unknown>(err);
   }
 }

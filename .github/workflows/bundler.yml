@@ -7,10 +7,6 @@ jobs:
     name: Bundler support
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        cluster: ['opendistro', 'opensearch']
-
     steps:
       - uses: actions/checkout@v2
 
@@ -21,9 +17,9 @@ jobs:
           sudo sysctl -w fs.file-max=262144
           sudo sysctl -w vm.max_map_count=262144
 
-      - name: Runs ${{ matrix.cluster }} cluster
+      - name: Runs OpenSearch cluster
         run: |
-          make cluster.clean cluster.${{ matrix.cluster }}.build cluster.${{ matrix.cluster }}.start
+          make cluster.clean cluster.opensearch.build cluster.opensearch.start
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1

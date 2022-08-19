@@ -100,6 +100,42 @@ async function search() {
     genre: 'Crime fiction',
   };
 
+  var bulk_documents = [
+    {
+        index: {
+            _index: 'books-king',
+            _id: '2'
+        }
+    },
+    {
+        title: 'IT',
+        author: 'Stephen Kings',
+        year: '1986',
+    },
+    {
+        create: {
+            _index: 'test',
+            _id: '3'
+        }
+    },
+    {
+        title: 'The Green Mile',
+        author: 'Stephen Kings',
+        year: '1996',
+    },
+    {
+        create: {
+            _index: 'test',
+            _id: '4'
+        }
+    },
+    {
+        title: 'Carrie',
+        author: 'Stephen Kings',
+        year: '1974',
+    }
+  ];
+
   var id = '1';
 
   var response = await client.index({
@@ -110,6 +146,9 @@ async function search() {
   });
 
   console.log('Adding document:');
+  console.log(response.body);
+
+  var response = await client.bulk({ body: bulk_documents });
   console.log(response.body);
 
   // Search for the document.

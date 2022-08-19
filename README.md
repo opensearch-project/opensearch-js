@@ -149,6 +149,7 @@ async function search() {
   console.log(response.body);
 
   var response = await client.bulk({ body: bulk_documents });
+  console.log('Adding documents using the bulk API')
   console.log(response.body);
 
   // Search for the document.

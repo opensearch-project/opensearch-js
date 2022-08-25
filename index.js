@@ -47,7 +47,7 @@ if (clientVersion.includes('-')) {
   // clean prerelease
   clientVersion = clientVersion.slice(0, clientVersion.indexOf('-')) + 'p';
 }
-const AwsV4Signer = require('./lib/AwsV4Signer');
+const AwsV4Signer = require('./lib/aws/AwsV4Signer');
 
 const kInitialOptions = Symbol('opensearchjs-initial-options');
 const kChild = Symbol('opensearchjs-child');

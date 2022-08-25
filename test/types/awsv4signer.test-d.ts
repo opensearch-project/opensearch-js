@@ -30,7 +30,7 @@
 
 import { expectType } from 'tsd';
 import { AwsV4Signer } from '../../';
-import { AwsV4SignerResponse } from '../../lib/AwsV4Signer';
+import { AwsV4SignerResponse } from '../../lib/aws/AwsV4Signer';
 
 const mockCreds = {
   accessKeyId: 'mockCredAccessKeyId',

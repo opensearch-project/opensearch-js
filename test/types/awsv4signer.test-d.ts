@@ -28,14 +28,21 @@
  * under the License.
  */
 
-import mod from './index.js';
+import { expectType } from 'tsd';
+import { AwsV4Signer } from '../../';
+import { AwsV4SignerResponse } from '../../lib/AwsV4Signer';
 
-export default mod;
-export const Client = mod.Client;
-export const Transport = mod.Transport;
-export const ConnectionPool = mod.ConnectionPool;
-export const Connection = mod.Connection;
-export const Serializer = mod.Serializer;
-export const events = mod.events;
-export const errors = mod.errors;
-export const awsV4Signer = mod.AwsV4Signer;
+const mockCreds = {
+  accessKeyId: 'mockCredAccessKeyId',
+  secretAccessKey: 'mockCredSecretAccessKey',
+};
+
+const mockRegion = 'us-west-2';
+
+{
+  const AwsV4SignerOptions = { credentials: mockCreds, region: mockRegion };
+
+  const auth = AwsV4Signer(AwsV4SignerOptions);
+
+  expectType<AwsV4SignerResponse>(auth);
+}

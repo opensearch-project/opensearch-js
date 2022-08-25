@@ -77,6 +77,8 @@
     "xmlbuilder2": "^2.4.1"
   },
   "dependencies": {
+    "@aws-sdk/credential-provider-node": "^3.154.0",
+    "aws4": "^1.11.0",
     "debug": "^4.3.1",
     "hpagent": "^0.1.1",
     "ms": "^2.1.3",

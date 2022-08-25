@@ -47,6 +47,7 @@ if (clientVersion.includes('-')) {
   // clean prerelease
   clientVersion = clientVersion.slice(0, clientVersion.indexOf('-')) + 'p';
 }
+const AwsV4Signer = require('./lib/AwsV4Signer');
 
 const kInitialOptions = Symbol('opensearchjs-initial-options');
 const kChild = Symbol('opensearchjs-child');
@@ -348,4 +349,5 @@ module.exports = {
   Serializer,
   events,
   errors,
+  AwsV4Signer,
 };

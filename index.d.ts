@@ -56,6 +56,7 @@ import {
   ResurrectEvent,
   BasicAuth,
 } from './lib/pool';
+import AwsV4Signer from './lib/AwsV4Signer';
 import Serializer from './lib/Serializer';
 import Helpers from './lib/Helpers';
 import * as errors from './lib/errors';
@@ -5050,4 +5051,5 @@ export {
   ClientOptions,
   NodeOptions,
   ClientExtendsCallbackOptions,
+  AwsV4Signer
 };

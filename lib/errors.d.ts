@@ -117,3 +117,10 @@ export declare class NotCompatibleError<
   meta: ApiResponse<TResponse, TContext>;
   constructor(meta: ApiResponse);
 }
+
+export declare class AwsV4SignerError extends OpenSearchClientError {
+  name: string;
+  message: string;
+  data: any;
+  constructor(message: string, data: any);
+}

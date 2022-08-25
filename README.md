@@ -73,6 +73,7 @@ var client = new Client({
 });
 
 async function search() {
+
   // Create an index with non-default settings.
   var index_name = 'books';
   var settings = {
@@ -100,6 +101,19 @@ async function search() {
     genre: 'Crime fiction',
   };
 
+  var id = '1';
+
+  var response = await client.index({
+    id: id,
+    index: index_name,
+    body: document,
+    refresh: true,
+  });
+
+  console.log('Adding document:');
+  console.log(response.body);
+
+  // Add documents in bulk
   var bulk_documents = [
     {
         index: {
@@ -136,23 +150,12 @@ async function search() {
     }
   ];
 
-  var id = '1';
-
-  var response = await client.index({
-    id: id,
-    index: index_name,
-    body: document,
-    refresh: true,
-  });
-
-  console.log('Adding document:');
-  console.log(response.body);
-
   var response = await client.bulk({ body: bulk_documents });
+
   console.log('Adding documents using the bulk API')
   console.log(response.body);
 
-  // Search for the document.
+  // Search for a document.
   var query = {
     query: {
       match: {
@@ -171,7 +174,7 @@ async function search() {
   console.log('Search results:');
   console.log(response.body.hits);
 
-  // Delete the document.
+  // Delete a document.
   var response = await client.delete({
     index: index_name,
     id: id,

@@ -157,7 +157,7 @@ search().catch(console.log);
 ```javascript
 const endpoint = ""; // OpenSearch domain URL e.g. https://search-xxx.region.es.amazonaws.com
 const { Client } = require('@opensearch-project/opensearch');
-const { AwsSigV4Signer } = require('@opensearch-project/opensearch/aws');
+const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws');
 const { defaultProvider } = require("@aws-sdk/credential-provider-node");
 
 async function getClient() {

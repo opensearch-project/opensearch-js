@@ -29,12 +29,12 @@
  */
 
 import { expectType } from 'tsd';
-import { AwsV4Signer } from '../../';
-import { AwsV4SignerResponse } from '../../lib/aws/AwsV4Signer';
+const { v4: uuidv4 } = require('uuid');
+import AwsV4Signer, { AwsV4SignerResponse } from '../../lib/aws/AwsV4Signer';
 
 const mockCreds = {
-  accessKeyId: 'mockCredAccessKeyId',
-  secretAccessKey: 'mockCredSecretAccessKey',
+  accessKeyId: uuidv4(),
+  secretAccessKey: uuidv4(),
 };
 
 const mockRegion = 'us-west-2';

@@ -154,8 +154,9 @@ search().catch(console.log);
 
 ### With AWS SigV4 signing
 ```javascript
-const host = ""; // Opensearch domain URL e.g. https://search-xxx.region.es.amazonaws.com
-const { Client, AwsV4Signer } = require('@opensearch-project/opensearch');
+const endpoint = ""; // OpenSearch domain URL e.g. https://search-xxx.region.es.amazonaws.com
+const { Client } = require('@opensearch-project/opensearch');
+const AwsV4Signer = require('@opensearch-project/opensearch/AwsV4Signer');
 const { defaultProvider } = require("@aws-sdk/credential-provider-node");
 
 async function getClient() {
@@ -165,7 +166,7 @@ async function getClient() {
       credentials: credentials,
       region: "us-west-2",
     }),
-    node: host,
+    node: endpoint,
   });
   return client;
 }

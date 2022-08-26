@@ -8,6 +8,7 @@
       "require": "./index.js",
       "import": "./index.mjs"
     },
+    "./awsV4Signer": "./lib/aws/AwsV4Signer.js",
     "./": "./"
   },
   "homepage": "https://www.opensearch.org/",

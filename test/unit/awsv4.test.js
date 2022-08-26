@@ -11,7 +11,7 @@
 const { test } = require('tap');
 const { URL } = require('url');
 const { v4: uuidv4 } = require('uuid');
-const { AwsV4Signer } = require('../../index');
+const AwsV4Signer = require('../../lib/aws/AwsV4Signer');
 const { AwsV4SignerError } = require('../../lib/aws/errors');
 const { Connection } = require('../../index');
 

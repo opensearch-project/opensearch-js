@@ -11,8 +11,8 @@
 const { test } = require('tap');
 const { URL } = require('url');
 const { v4: uuidv4 } = require('uuid');
-const AwsV4Signer = require('../../lib/aws/AwsV4Signer');
-const { AwsV4SignerError } = require('../../lib/aws/errors');
+const AwsSigv4Signer = require('../../lib/aws/AwsSigv4Signer');
+const AwsSigv4SignerError = require('../../lib/aws/errors');
 const { Connection } = require('../../index');
 
 test('Sign with SigV4', (t) => {
@@ -25,9 +25,9 @@ test('Sign with SigV4', (t) => {
 
   const mockRegion = 'us-west-2';
 
-  const AwsV4SignerOptions = { credentials: mockCreds, region: mockRegion };
+  const AwsSigv4SignerOptions = { credentials: mockCreds, region: mockRegion };
 
-  const auth = AwsV4Signer(AwsV4SignerOptions);
+  const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
 
   const connection = new Connection({
     url: new URL('https://localhost:9200'),
@@ -53,13 +53,13 @@ test('Sign with SigV4 failure (with empty region)', (t) => {
     secretAccessKey: uuidv4(),
   };
 
-  const AwsV4SignerOptions = { credentials: mockCreds };
+  const AwsSigv4SignerOptions = { credentials: mockCreds };
 
   try {
-    AwsV4Signer(AwsV4SignerOptions);
+    AwsSigv4Signer(AwsSigv4SignerOptions);
     t.fail('Should fail');
   } catch (err) {
-    t.ok(err instanceof AwsV4SignerError);
+    t.ok(err instanceof AwsSigv4SignerError);
     t.equal(err.message, 'Region cannot be empty');
   }
 });
@@ -69,13 +69,13 @@ test('Sign with SigV4 failure (with empty credentials)', (t) => {
 
   const mockRegion = 'us-west-2';
 
-  const AwsV4SignerOptions = { region: mockRegion };
+  const AwsSigv4SignerOptions = { region: mockRegion };
 
   try {
-    AwsV4Signer(AwsV4SignerOptions);
+    AwsSigv4Signer(AwsSigv4SignerOptions);
     t.fail('Should fail');
   } catch (err) {
-    t.ok(err instanceof AwsV4SignerError);
+    t.ok(err instanceof AwsSigv4SignerError);
     t.equal(err.message, 'Credentials cannot be empty');
   }
 });

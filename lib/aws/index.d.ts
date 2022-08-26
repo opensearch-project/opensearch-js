@@ -9,20 +9,30 @@
  * GitHub history for details.
  */
 
+/// <reference types="node" />
+
 import { Credentials } from '@aws-sdk/types';
 import Connection from '../Connection';
 import * as http from 'http';
+import { OpenSearchClientError } from '../errors';
 
-interface AwsV4SignerOptions {
+interface AwsSigv4SignerOptions {
   credentials: Credentials;
   region: string;
 }
 
-export interface AwsV4SignerResponse {
+interface AwsSigv4SignerResponse {
   Connection: Connection;
   buildSignedRequestObject(request: any): http.ClientRequestArgs;
 }
 
-export default function AwsV4Signer(opts: AwsV4SignerOptions): AwsV4SignerResponse;
+declare function AwsSigv4Signer(opts: AwsSigv4SignerOptions): AwsSigv4SignerResponse;
 
-export {};
+declare class AwsSigv4SignerError extends OpenSearchClientError {
+  name: string;
+  message: string;
+  data: any;
+  constructor(message: string, data: any);
+}
+
+export { AwsSigv4Signer, AwsSigv4SignerOptions, AwsSigv4SignerResponse, AwsSigv4SignerError };

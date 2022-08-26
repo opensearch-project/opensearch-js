@@ -13,6 +13,7 @@ OpenSearch Node.js client
 - [Example use](#example-use)
   - [Setup](#setup)
   - [Sample code](#sample-code)
+  - [With AWS SigV4 signing](#with-aws-sigv4-signing)
 - [Project Resources](#project-resources)
 - [Code of Conduct](#code-of-conduct)
 - [License](#license)
@@ -156,7 +157,7 @@ search().catch(console.log);
 ```javascript
 const endpoint = ""; // OpenSearch domain URL e.g. https://search-xxx.region.es.amazonaws.com
 const { Client } = require('@opensearch-project/opensearch');
-const AwsV4Signer = require('@opensearch-project/opensearch/AwsV4Signer');
+const { AwsSigV4Signer } = require('@opensearch-project/opensearch/aws');
 const { defaultProvider } = require("@aws-sdk/credential-provider-node");
 
 async function getClient() {

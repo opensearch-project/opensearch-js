@@ -1,8 +1,8 @@
 # User Guide
 
 - [Initializing a Client](#initializing-a-client)
-- [Initializing a Client with AWS SigV4 Signing](#initializing-a-client-with-aws-sigv4-signing)
-- [Creating an Index](#creating-an-index)
+  - [To authenticate with the Amazon OpenSearch Service use AwsSigv4Signer](#to-authenticate-with-the-amazon-opensearch-service-use-awssigv4signer)
+- [Create an Index](#create-an-index)
 - [Add a Document to the Index](#add-a-document-to-the-index)
 - [Search for the Document](#search-for-the-document)
 - [Delete the document](#delete-the-document)
@@ -37,7 +37,7 @@ var client = new Client({
 });
 ```
 
-## Initializing a Client with AWS SigV4 Signing
+### To authenticate with the [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/) use AwsSigv4Signer
 
 ```javascript
 const endpoint = ""; // OpenSearch domain URL e.g. https://search-xxx.region.es.amazonaws.com
@@ -58,7 +58,7 @@ async function getClient() {
 }
 ```
 
-## Creating an Index
+## Create an Index
 
 ```javascript
   var index_name = 'books';

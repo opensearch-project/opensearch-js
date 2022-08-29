@@ -49,7 +49,6 @@ const { Client } = require('@opensearch-project/opensearch');
 Please see the [USER_GUIDE](USER_GUIDE.md) for code snippets.
 
 
-
 ## Project Resources
 
 - [Project Website](https://opensearch.org/)

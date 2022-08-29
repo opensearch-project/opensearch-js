@@ -46,7 +46,7 @@
     "test:coverage-ui": "tap test/{unit,acceptance}/{*,**/*}.test.js --coverage --coverage-report=html --nyc-arg=\"--exclude=api\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "license-checker": "license-checker --production --onlyAllow='MIT;Apache-2.0;Apache1.1;ISC;BSD-3-Clause;BSD-2-Clause;0BSD'",
+    "license-checker": "license-checker --production --onlyAllow='MIT;Apache-2.0;Apache1.1;ISC;BSD-3-Clause;BSD-2-Clause'",
     "build-esm": "npx gen-esm-wrapper . index.mjs && eslint --fix index.mjs"
   },
   "author": "opensearch-project",
@@ -88,7 +88,6 @@
     "xmlbuilder2": "^2.4.1"
   },
   "dependencies": {
-    "@aws-sdk/credential-provider-node": "^3.154.0",
     "aws4": "^1.11.0",
     "debug": "^4.3.1",
     "hpagent": "^0.1.1",

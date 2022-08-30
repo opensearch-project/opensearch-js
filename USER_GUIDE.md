@@ -48,7 +48,7 @@ const { defaultProvider } = require("@aws-sdk/credential-provider-node");
 async function getClient() {
   const credentials = await defaultProvider()();
   var client = new Client({
-    ...AwsV4Signer({
+    ...AwsSigv4Signer({
       credentials: credentials,
       region: "us-west-2",
     }),

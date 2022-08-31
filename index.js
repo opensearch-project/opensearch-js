@@ -34,7 +34,9 @@ const { EventEmitter } = require('events');
 const { URL } = require('url');
 const debug = require('debug')('opensearch');
 const Transport = require('./lib/Transport');
+const AmazonTransportFactory = require('./lib/AmazonTransport');
 const Connection = require('./lib/Connection');
+const AmazonConnectionFactory = require('./lib/AmazonConnection');
 const { ConnectionPool, CloudConnectionPool } = require('./lib/pool');
 const Helpers = require('./lib/Helpers');
 const Serializer = require('./lib/Serializer');
@@ -343,8 +345,10 @@ const events = {
 module.exports = {
   Client,
   Transport,
+  AmazonTransportFactory,
   ConnectionPool,
   Connection,
+  AmazonConnectionFactory,
   Serializer,
   events,
   errors,

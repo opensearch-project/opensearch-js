@@ -49,6 +49,8 @@ import Transport, {
 } from './lib/Transport';
 import { URL } from 'url';
 import Connection, { AgentOptions, agentFn } from './lib/Connection';
+import AmazonConnectionFactory from './lib/AmazonConnection';
+import AmazonTransportFactory from './lib/AmazonTransport';
 import {
   ConnectionPool,
   BaseConnectionPool,
@@ -5034,10 +5036,12 @@ declare const events: {
 export {
   Client,
   Transport,
+  AmazonTransportFactory,
   ConnectionPool,
   BaseConnectionPool,
   CloudConnectionPool,
   Connection,
+  AmazonConnectionFactory,
   Serializer,
   events,
   errors,

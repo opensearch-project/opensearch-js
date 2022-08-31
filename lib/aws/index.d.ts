@@ -28,7 +28,7 @@ interface AwsSigv4SignerResponse {
   buildSignedRequestObject(request: any): http.ClientRequestArgs;
 }
 
-declare function AwsSigv4Signer(opts: AwsSigv4SignerOptions): Promise<AwsSigv4SignerResponse>;
+type AwsSigv4Signer = (opts: AwsSigv4SignerOptions) => Promise<AwsSigv4SignerResponse>;
 
 declare class AwsSigv4SignerError extends OpenSearchClientError {
   name: string;

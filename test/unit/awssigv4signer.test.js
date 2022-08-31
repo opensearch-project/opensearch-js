@@ -15,7 +15,7 @@ const AwsSigv4Signer = require('../../lib/aws/AwsSigv4Signer');
 const AwsSigv4SignerError = require('../../lib/aws/errors');
 const { Connection } = require('../../index');
 
-test('Sign with SigV4', (t) => {
+test('Sign with SigV4', async (t) => {
   t.plan(2);
 
   const mockCreds = {
@@ -25,9 +25,15 @@ test('Sign with SigV4', (t) => {
 
   const mockRegion = 'us-west-2';
 
-  const AwsSigv4SignerOptions = { credentials: mockCreds, region: mockRegion };
+  const AwsSigv4SignerOptions = {
+    getCredentials: () =>
+      new Promise((resolve) => {
+        setTimeout(() => resolve(mockCreds), 100);
+      }),
+    region: mockRegion,
+  };
 
-  const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
+  const auth = await AwsSigv4Signer(AwsSigv4SignerOptions);
 
   const connection = new Connection({
     url: new URL('https://localhost:9200'),
@@ -40,12 +46,13 @@ test('Sign with SigV4', (t) => {
       'X-Custom-Test': true,
     },
   });
+
   const signedRequest = auth.buildSignedRequestObject(request);
   t.hasProp(signedRequest.headers, 'X-Amz-Date');
   t.hasProp(signedRequest.headers, 'Authorization');
 });
 
-test('Sign with SigV4 failure (with empty region)', (t) => {
+test('Sign with SigV4 failure (with empty region)', async (t) => {
   t.plan(2);
 
   const mockCreds = {
@@ -53,10 +60,15 @@ test('Sign with SigV4 failure (with empty region)', (t) => {
     secretAccessKey: uuidv4(),
   };
 
-  const AwsSigv4SignerOptions = { credentials: mockCreds };
+  const AwsSigv4SignerOptions = {
+    getCredentials: () =>
+      new Promise((resolve) => {
+        setTimeout(() => resolve(mockCreds), 100);
+      }),
+  };
 
   try {
-    AwsSigv4Signer(AwsSigv4SignerOptions);
+    await AwsSigv4Signer(AwsSigv4SignerOptions);
     t.fail('Should fail');
   } catch (err) {
     t.ok(err instanceof AwsSigv4SignerError);
@@ -64,7 +76,7 @@ test('Sign with SigV4 failure (with empty region)', (t) => {
   }
 });
 
-test('Sign with SigV4 failure (with empty credentials)', (t) => {
+test('Sign with SigV4 failure (without getCredentials function)', async (t) => {
   t.plan(2);
 
   const mockRegion = 'us-west-2';
@@ -72,10 +84,10 @@ test('Sign with SigV4 failure (with empty credentials)', (t) => {
   const AwsSigv4SignerOptions = { region: mockRegion };
 
   try {
-    AwsSigv4Signer(AwsSigv4SignerOptions);
+    await AwsSigv4Signer(AwsSigv4SignerOptions);
     t.fail('Should fail');
   } catch (err) {
     t.ok(err instanceof AwsSigv4SignerError);
-    t.equal(err.message, 'Credentials cannot be empty');
+    t.equal(err.message, 'getCredentials function is required');
   }
 });

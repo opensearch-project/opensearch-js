@@ -9,11 +9,12 @@
  * GitHub history for details.
  */
 
+import { Credentials } from '@aws-sdk/types';
 import { expectType } from 'tsd';
 const { v4: uuidv4 } = require('uuid');
 import { AwsSigv4SignerResponse, AwsSigv4Signer } from '../../lib/aws';
 
-const mockCreds = {
+const mockCreds: Credentials = {
   accessKeyId: uuidv4(),
   secretAccessKey: uuidv4(),
 };
@@ -21,9 +22,13 @@ const mockCreds = {
 const mockRegion = 'us-west-2';
 
 {
-  const AwsSigv4SignerOptions = { credentials: mockCreds, region: mockRegion };
+  const AwsSigv4SignerOptions = {
+    getCredentials: () => Promise.resolve(mockCreds),
+    region: mockRegion,
+    refresh: true,
+  };
 
   const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
 
-  expectType<AwsSigv4SignerResponse>(auth);
+  expectType<Promise<AwsSigv4SignerResponse>>(auth);
 }

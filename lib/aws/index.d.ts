@@ -17,8 +17,10 @@ import * as http from 'http';
 import { OpenSearchClientError } from '../errors';
 
 interface AwsSigv4SignerOptions {
-  credentials: Credentials;
+  getCredentials: () => Promise<Credentials>;
   region: string;
+  refresh?: boolean;
+  refreshInterval?: number;
 }
 
 interface AwsSigv4SignerResponse {
@@ -26,7 +28,7 @@ interface AwsSigv4SignerResponse {
   buildSignedRequestObject(request: any): http.ClientRequestArgs;
 }
 
-declare function AwsSigv4Signer(opts: AwsSigv4SignerOptions): AwsSigv4SignerResponse;
+declare function AwsSigv4Signer(opts: AwsSigv4SignerOptions): Promise<AwsSigv4SignerResponse>;
 
 declare class AwsSigv4SignerError extends OpenSearchClientError {
   name: string;

@@ -1,13 +1,13 @@
 # User Guide
 
-- [Initializing a Client](#initializing-a-client)
-  - [To authenticate with the Amazon OpenSearch Service use AwsSigv4Signer](#to-authenticate-with-the-amazon-opensearch-service-use-awssigv4signer)
-- [Create an Index](#create-an-index)
-- [Add a Document to the Index](#add-a-document-to-the-index)
-- [Search for the Document](#search-for-the-document)
-- [Delete the document](#delete-the-document)
-- [Delete the index](#delete-the-index)
-
+- [User Guide](#user-guide)
+  - [Initializing a Client](#initializing-a-client)
+    - [To authenticate with Amazon OpenSearch Service using AwsSigv4Signer](#to-authenticate-with-amazon-opensearch-service-using-awssigv4signer)
+  - [Create an Index](#create-an-index)
+  - [Add a Document to the Index](#add-a-document-to-the-index)
+  - [Search for the Document](#search-for-the-document)
+  - [Delete the document](#delete-the-document)
+  - [Delete the index](#delete-the-index)
 
 ## Initializing a Client
 ```javascript
@@ -37,24 +37,26 @@ var client = new Client({
 });
 ```
 
-### To authenticate with the [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/) use AwsSigv4Signer
+### To authenticate with [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/) using AwsSigv4Signer
 
 ```javascript
-const endpoint = ""; // OpenSearch domain URL e.g. https://search-xxx.region.es.amazonaws.com
+const { defaultProvider } = require("@aws-sdk/credential-provider-node");
 const { Client } = require('@opensearch-project/opensearch');
 const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws');
-const { defaultProvider } = require("@aws-sdk/credential-provider-node");
 
 async function getClient() {
-  const credentials = await defaultProvider()();
-  var client = new Client({
-    ...AwsSigv4Signer({
-      credentials: credentials,
-      region: "us-west-2",
-    }),
+  const connection = await AwsSigv4Signer({
+    getCredentials: async () => {
+      const credentials = await defaultProvider()();
+      return credentials;
+    },
+    refresh: false, // Enable refreshing credentials.
+    refreshInterval: 1000 * 1000 * 60 * 14, // default to 14 minutes, must be set to a value below the expiration time of the credentials.
+  });
+  return new Client({
+    ...connection,
     node: endpoint,
   });
-  return client;
 }
 ```
 
@@ -80,7 +82,7 @@ async function getClient() {
   console.log(response.body);
 ```
 
-## Add a Document to the Index 
+## Add a Document to the Index
 
 ```javascript
   var document = {

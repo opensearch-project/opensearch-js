@@ -44,14 +44,33 @@ const { defaultProvider } = require("@aws-sdk/credential-provider-node");
 const { Client } = require('@opensearch-project/opensearch');
 const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws');
 
+const endpoint = ""; // OpenSearch domain URL e.g. https://search-xxx.region.es.amazonaws.com
+
 async function getClient() {
   const connection = await AwsSigv4Signer({
+    // Must return an AWS.Credential object.
+    // Example with aws sdk V3:
     getCredentials: async () => {
       const credentials = await defaultProvider()();
       return credentials;
     },
-    refresh: false, // Enable refreshing credentials.
-    refreshInterval: 1000 * 1000 * 60 * 14, // default to 14 minutes, must be set to a value below the expiration time of the credentials.
+    // Or with v2 for example:
+    getCredentials: () =>
+      new Promise((resolve, reject) => {
+        const awsConfig = new AWS.Config({
+          region: 'us-east-1',
+          credentialProvider: new AWS.CredentialProviderChain(),
+        });
+        awsConfig.getCredentials((err, credentials) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(credentials);
+          }
+        });
+      }),
+    refresh: true, // Optional, enable refreshing credentials, disabled by default.
+    refreshInterval: 1000 * 60 * 14, // optional, default to 14 minutes, must be set to a value below the expiration time of the credentials.
   });
   return new Client({
     ...connection,

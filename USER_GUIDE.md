@@ -48,7 +48,10 @@ const endpoint = ""; // OpenSearch domain URL e.g. https://search-xxx.region.es.
 
 async function getClient() {
   const connection = await AwsSigv4Signer({
-    // Must return an AWS.Credential object.
+    region: 'us-east-1',
+    // Must return an AWS.Credentials object.
+    // This function is used when initializing the client and
+    // when the credentials are expired.
     // Example with aws sdk V3:
     getCredentials: async () => {
       const credentials = await defaultProvider()();
@@ -69,8 +72,6 @@ async function getClient() {
           }
         });
       }),
-    refresh: true, // Optional, enable refreshing credentials, disabled by default.
-    refreshInterval: 1000 * 60 * 14, // optional, default to 14 minutes, must be set to a value below the expiration time of the credentials.
   });
   return new Client({
     ...connection,

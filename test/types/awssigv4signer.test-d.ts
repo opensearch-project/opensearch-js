@@ -8,24 +8,24 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-
-import { Credentials } from '@aws-sdk/types';
 import { expectType } from 'tsd';
 const { v4: uuidv4 } = require('uuid');
 import { AwsSigv4SignerResponse, AwsSigv4Signer } from '../../lib/aws';
 
-const mockCreds: Credentials = {
+const mockCreds = {
   accessKeyId: uuidv4(),
   secretAccessKey: uuidv4(),
+  expired: false,
+  expiration: new Date(),
+  sessionToken: uuidv4(),
 };
 
-const mockRegion = 'us-west-2';
+const mockRegion = 'us-east-1';
 
 {
   const AwsSigv4SignerOptions = {
     getCredentials: () => Promise.resolve(mockCreds),
     region: mockRegion,
-    refresh: true,
   };
 
   const auth = AwsSigv4Signer(AwsSigv4SignerOptions);

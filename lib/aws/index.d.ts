@@ -13,22 +13,22 @@
 
 import { Credentials } from '@aws-sdk/types';
 import Connection from '../Connection';
+import Transport from '../Transport';
 import * as http from 'http';
 import { OpenSearchClientError } from '../errors';
 
 interface AwsSigv4SignerOptions {
   getCredentials: () => Promise<Credentials>;
   region: string;
-  refresh?: boolean;
-  refreshInterval?: number;
 }
 
 interface AwsSigv4SignerResponse {
   Connection: Connection;
+  Transport: Transport,
   buildSignedRequestObject(request: any): http.ClientRequestArgs;
 }
 
-type AwsSigv4Signer = (opts: AwsSigv4SignerOptions) => Promise<AwsSigv4SignerResponse>;
+declare function AwsSigv4Signer (opts: AwsSigv4SignerOptions): Promise<AwsSigv4SignerResponse>;
 
 declare class AwsSigv4SignerError extends OpenSearchClientError {
   name: string;

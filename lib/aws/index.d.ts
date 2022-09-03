@@ -23,8 +23,8 @@ interface AwsSigv4SignerOptions {
 }
 
 interface AwsSigv4SignerResponse {
-  Connection: Connection;
-  Transport: Transport;
+  Connection: typeof Connection;
+  Transport: typeof Transport;
   buildSignedRequestObject(request: any): http.ClientRequestArgs;
 }
 

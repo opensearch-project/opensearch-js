@@ -284,3 +284,124 @@ test('Basic with expired token and credentials sdk refresh (promises)', (t) => {
       .catch(t.fail);
   });
 });
+
+test('Basic aws (callback)', (t) => {
+  t.plan(6);
+
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockRegion = 'us-east-1';
+
+    let getCredentialsCalled = 0;
+    const AwsSigv4SignerOptions = {
+      region: mockRegion,
+      getCredentials: () =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            getCredentialsCalled++;
+            resolve({
+              accessKeyId: uuidv4(),
+              secretAccessKey: uuidv4(),
+              expiration: new Date(Date.now() + 1000 * 60 * 60),
+            });
+          }, 100);
+        }),
+    };
+    const client = new Client({
+      ...AwsSigv4Signer(AwsSigv4SignerOptions),
+      node: `http://localhost:${port}`,
+    });
+
+    client.search(
+      {
+        index: 'test',
+        q: 'foo:bar',
+      },
+      (err, { body }) => {
+        t.error(err);
+        t.same(body, { hello: 'world' });
+        t.same(getCredentialsCalled, 1);
+        client.search(
+          {
+            index: 'test',
+            q: 'foo:bar',
+          },
+          (err, { body }) => {
+            t.error(err);
+            t.same(body, { hello: 'world' });
+            t.same(getCredentialsCalled, 1);
+            server.stop();
+          }
+        );
+      }
+    );
+  });
+});
+
+test('Basic aws failure to refresh credentials', (t) => {
+  t.plan(4);
+
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockRegion = 'us-east-1';
+
+    let getCredentialsCalled = 0;
+    const AwsSigv4SignerOptions = {
+      region: mockRegion,
+      getCredentials: () =>
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            getCredentialsCalled++;
+            if (getCredentialsCalled === 1) {
+              resolve({
+                accessKeyId: uuidv4(),
+                secretAccessKey: uuidv4(),
+                expireTime: new Date(Date.now() - 1000 * 60 * 60),
+              });
+            } else {
+              reject(new Error('Failed to refresh credentials'));
+            }
+          }, 100);
+        }),
+    };
+    const client = new Client({
+      ...AwsSigv4Signer(AwsSigv4SignerOptions),
+      node: `http://localhost:${port}`,
+    });
+
+    client
+      .search({
+        index: 'test',
+        q: 'foo:bar',
+      })
+      .then(({ body }) => {
+        t.same(body, { hello: 'world' });
+        t.same(getCredentialsCalled, 1);
+        client
+          .search({
+            index: 'test',
+            q: 'foo:bar',
+          })
+          .then(({ body }) => {
+            t.same(getCredentialsCalled, 2);
+            t.fail('Should fail');
+          })
+          .catch((err) => {
+            t.ok(err);
+            t.same(getCredentialsCalled, 2);
+          })
+          .finally(() => {
+            server.stop();
+          });
+      })
+      .catch(t.fail);
+  });
+});

@@ -24,11 +24,11 @@ interface AwsSigv4SignerOptions {
 
 interface AwsSigv4SignerResponse {
   Connection: Connection;
-  Transport: Transport,
+  Transport: Transport;
   buildSignedRequestObject(request: any): http.ClientRequestArgs;
 }
 
-declare function AwsSigv4Signer (opts: AwsSigv4SignerOptions): Promise<AwsSigv4SignerResponse>;
+declare function AwsSigv4Signer (opts: AwsSigv4SignerOptions): AwsSigv4SignerResponse;
 
 declare class AwsSigv4SignerError extends OpenSearchClientError {
   name: string;

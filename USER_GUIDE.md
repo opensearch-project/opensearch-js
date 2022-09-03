@@ -40,31 +40,27 @@ var client = new Client({
 ### To authenticate with [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/) using AwsSigv4Signer
 
 ```javascript
-const { defaultProvider } = require("@aws-sdk/credential-provider-node");
+const AWS = require('aws-sdk'); // V2 SDK.
+const { defaultProvider } = require("@aws-sdk/credential-provider-node"); // V3 SDK.
 const { Client } = require('@opensearch-project/opensearch');
 const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws');
 
-const endpoint = ""; // OpenSearch domain URL e.g. https://search-xxx.region.es.amazonaws.com
-
-async function getClient() {
-  const connection = await AwsSigv4Signer({
+const client = new Client({
+  ...AwsSigv4Signer({
     region: 'us-east-1',
-    // Must return an AWS.Credentials object.
-    // This function is used when initializing the client and
+    // Must return a Promise that resolve to an AWS.Credentials object.
+    // This function is used to acquire the credentials when the client start and
     // when the credentials are expired.
+    // Credentials.refreshPromise is used instead to refresh the credentials
+    // when availabe (aws sdk v2)
+
     // Example with aws sdk V3:
-    getCredentials: async () => {
-      const credentials = await defaultProvider()();
-      return credentials;
-    },
+    getCredentials: defaultProvider(),
+
     // Or with v2 for example:
     getCredentials: () =>
       new Promise((resolve, reject) => {
-        const awsConfig = new AWS.Config({
-          region: 'us-east-1',
-          credentialProvider: new AWS.CredentialProviderChain(),
-        });
-        awsConfig.getCredentials((err, credentials) => {
+        AWS.config.getCredentials((err, credentials) => {
           if (err) {
             reject(err);
           } else {
@@ -72,12 +68,10 @@ async function getClient() {
           }
         });
       }),
-  });
-  return new Client({
-    ...connection,
-    node: endpoint,
-  });
-}
+  }),
+  node: "", // OpenSearch domain URL e.g. https://search-xxx.region.es.amazonaws.com
+});
+
 ```
 
 ## Create an Index

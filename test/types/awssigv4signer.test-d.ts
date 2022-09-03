@@ -16,7 +16,7 @@ const mockCreds = {
   accessKeyId: uuidv4(),
   secretAccessKey: uuidv4(),
   expired: false,
-  expiration: new Date(),
+  expireTime: new Date(),
   sessionToken: uuidv4(),
 };
 
@@ -30,5 +30,5 @@ const mockRegion = 'us-east-1';
 
   const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
 
-  expectType<Promise<AwsSigv4SignerResponse>>(auth);
+  expectType<AwsSigv4SignerResponse>(auth);
 }

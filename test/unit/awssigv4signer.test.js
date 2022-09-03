@@ -16,7 +16,7 @@ const AwsSigv4SignerError = require('../../lib/aws/errors');
 const { Connection } = require('../../index');
 const { Client, buildServer } = require('../utils');
 
-test('Sign with SigV4', async (t) => {
+test('Sign with SigV4', (t) => {
   t.plan(2);
 
   const mockCreds = {
@@ -34,7 +34,7 @@ test('Sign with SigV4', async (t) => {
     region: mockRegion,
   };
 
-  const auth = await AwsSigv4Signer(AwsSigv4SignerOptions);
+  const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
 
   const connection = new Connection({
     url: new URL('https://localhost:9200'),
@@ -53,7 +53,7 @@ test('Sign with SigV4', async (t) => {
   t.hasProp(signedRequest.headers, 'Authorization');
 });
 
-test('Sign with SigV4 failure (with empty region)', async (t) => {
+test('Sign with SigV4 failure (with empty region)', (t) => {
   t.plan(2);
 
   const mockCreds = {
@@ -69,15 +69,15 @@ test('Sign with SigV4 failure (with empty region)', async (t) => {
   };
 
   try {
-    await AwsSigv4Signer(AwsSigv4SignerOptions);
+    AwsSigv4Signer(AwsSigv4SignerOptions);
     t.fail('Should fail');
   } catch (err) {
     t.ok(err instanceof AwsSigv4SignerError);
-    t.equal(err.message, 'Region cannot be empty');
+    t.same(err.message, 'Region cannot be empty');
   }
 });
 
-test('Sign with SigV4 failure (without getCredentials function)', async (t) => {
+test('Sign with SigV4 failure (without getCredentials function)', (t) => {
   t.plan(2);
 
   const mockRegion = 'us-west-2';
@@ -85,16 +85,16 @@ test('Sign with SigV4 failure (without getCredentials function)', async (t) => {
   const AwsSigv4SignerOptions = { region: mockRegion };
 
   try {
-    await AwsSigv4Signer(AwsSigv4SignerOptions);
+    AwsSigv4Signer(AwsSigv4SignerOptions);
     t.fail('Should fail');
   } catch (err) {
     t.ok(err instanceof AwsSigv4SignerError);
-    t.equal(err.message, 'getCredentials function is required');
+    t.same(err.message, 'getCredentials function is required');
   }
 });
 
 test('Basic aws (promises)', (t) => {
-  t.plan(1);
+  t.plan(4);
 
   function handler(req, res) {
     res.setHeader('Content-Type', 'application/json;utf=8');
@@ -102,20 +102,21 @@ test('Basic aws (promises)', (t) => {
   }
 
   buildServer(handler, ({ port }, server) => {
-    const mockCreds = {
-      accessKeyId: uuidv4(),
-      secretAccessKey: uuidv4(),
-      expired: false,
-    };
-
     const mockRegion = 'us-east-1';
 
+    let getCredentialsCalled = 0;
     const AwsSigv4SignerOptions = {
       region: mockRegion,
       getCredentials: () =>
         new Promise((resolve) => {
           setTimeout(() => {
-            resolve(mockCreds);
+            getCredentialsCalled++;
+            resolve({
+              accessKeyId: uuidv4(),
+              secretAccessKey: uuidv4(),
+              expired: false,
+              expireTime: new Date(Date.now() + 1000 * 60 * 60),
+            });
           }, 100);
         }),
     };
@@ -131,56 +132,55 @@ test('Basic aws (promises)', (t) => {
       })
       .then(({ body }) => {
         t.same(body, { hello: 'world' });
-        server.stop();
+        t.same(getCredentialsCalled, 1);
+        client
+          .search({
+            index: 'test',
+            q: 'foo:bar',
+          })
+          .then(({ body }) => {
+            t.same(body, { hello: 'world' });
+            t.same(getCredentialsCalled, 1);
+
+            server.stop();
+          })
+          .catch(t.fail);
       })
       .catch(t.fail);
   });
 });
 
 test('Basic with expired token (promises)', (t) => {
-  t.plan(1);
+  t.plan(4);
 
   function handler(req, res) {
     res.setHeader('Content-Type', 'application/json;utf=8');
     res.end(JSON.stringify({ hello: 'world' }));
   }
 
-  buildServer(handler, async ({ port }, server) => {
-    const mockCredsExpired = {
-      accessKeyId: uuidv4(),
-      secretAccessKey: uuidv4(),
-      expiration: new Date(Date.now() - 1000),
-    };
-
-    const mockCredsRenewed = {
-      accessKeyId: uuidv4(),
-      secretAccessKey: uuidv4(),
-      expiration: new Date(Date.now() - 1000),
-    };
-
+  buildServer(handler, ({ port }, server) => {
     const mockRegion = 'us-east-1';
 
-    const getCredentials = () => {
-      let currentCreds = null;
-      return () =>
-        new Promise((resolve) => {
-          setTimeout(() => {
-            if (currentCreds) {
-              resolve(mockCredsRenewed);
-            } else {
-              currentCreds = mockCredsExpired;
-              resolve(mockCredsExpired);
-            }
-          }, 100);
-        });
-    };
+    let getCredentialsCalled = 0;
+    const getCredentials = () =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          getCredentialsCalled++;
+          resolve({
+            accessKeyId: uuidv4(),
+            secretAccessKey: uuidv4(),
+            expired: true,
+            expireTime: new Date(Date.now() - 1000),
+          });
+        }, 100);
+      });
 
     const AwsSigv4SignerOptions = {
-      getCredentials: getCredentials(),
+      getCredentials: getCredentials,
       region: mockRegion,
     };
 
-    const auth = await AwsSigv4Signer(AwsSigv4SignerOptions);
+    const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
 
     const client = new Client({
       ...auth,
@@ -194,7 +194,92 @@ test('Basic with expired token (promises)', (t) => {
       })
       .then(({ body }) => {
         t.same(body, { hello: 'world' });
-        server.stop();
+        t.same(getCredentialsCalled, 1);
+        client
+          .search({
+            index: 'test',
+            q: 'foo:bar',
+          })
+          .then(({ body }) => {
+            t.same(body, { hello: 'world' });
+            t.same(getCredentialsCalled, 2);
+
+            server.stop();
+          })
+          .catch(t.fail);
+      })
+      .catch(t.fail);
+  });
+});
+
+test('Basic with expired token and credentials sdk refresh (promises)', (t) => {
+  t.plan(6);
+
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockRegion = 'us-east-1';
+
+    let getCredentialsCalled = 0;
+    let refreshPromiseCalled = 0;
+    const getCredentials = () =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          getCredentialsCalled++;
+          resolve({
+            accessKeyId: uuidv4(),
+            secretAccessKey: uuidv4(),
+            needsRefresh: () => true,
+            refreshPromise: () =>
+              new Promise((resolve) => {
+                refreshPromiseCalled++;
+                resolve({
+                  accessKeyId: uuidv4(),
+                  secretAccessKey: uuidv4(),
+                  expired: false,
+                });
+              }),
+          });
+        }, 100);
+      });
+
+    const AwsSigv4SignerOptions = {
+      getCredentials: getCredentials,
+      region: mockRegion,
+    };
+
+    const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
+
+    const client = new Client({
+      ...auth,
+      node: `http://localhost:${port}`,
+    });
+
+    client
+      .search({
+        index: 'test',
+        q: 'foo:bar',
+      })
+      .then(({ body }) => {
+        t.same(body, { hello: 'world' });
+        t.same(getCredentialsCalled, 1);
+        t.same(refreshPromiseCalled, 0);
+        client
+          .search({
+            index: 'test',
+            q: 'foo:bar',
+          })
+          .then(({ body }) => {
+            t.same(body, { hello: 'world' });
+            t.same(getCredentialsCalled, 1);
+            t.same(refreshPromiseCalled, 1);
+
+            server.stop();
+          })
+          .catch(t.fail);
       })
       .catch(t.fail);
   });

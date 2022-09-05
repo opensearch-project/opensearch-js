@@ -34,8 +34,15 @@ const { test } = require('tap');
 const { URL } = require('url');
 const buffer = require('buffer');
 const intoStream = require('into-stream');
-const { ConnectionPool, Transport, Connection, errors } = require('../../index');
-const { Client, buildServer } = require('../utils');
+const {
+  ConnectionPool,
+  Transport,
+  Connection,
+  errors,
+  Client: ProductClient,
+} = require('../../index');
+const { Client, buildServer, connection } = require('../utils');
+const { buildMockConnection } = connection;
 let clientVersion = require('../../package.json').version;
 if (clientVersion.includes('-')) {
   clientVersion = clientVersion.slice(0, clientVersion.indexOf('-')) + 'p';
@@ -1187,5 +1194,92 @@ test('API compatibility header (x-ndjson)', (t) => {
       server.stop();
       delete process.env.OPENSEARCH_CLIENT_APIVERSIONING;
     });
+  });
+});
+
+test('Issue #253 with promises', async (t) => {
+  t.plan(1);
+
+  const delay = () => new Promise((resolve) => setTimeout(resolve, 10));
+
+  const MockConnection = buildMockConnection({
+    onRequest(params) {
+      return {
+        statusCode: 200,
+        headers: {},
+        body: {},
+      };
+    },
+  });
+
+  class MyTransport extends Transport {
+    request(params, options = {}, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+
+      if (typeof callback === 'undefined') {
+        return delay().then(() => super.request(params, options));
+      }
+
+      // Callback support
+      delay().then(() => super.request(params, options, callback));
+    }
+  }
+
+  const client = new ProductClient({
+    node: 'http://localhost:9200',
+    Transport: MyTransport,
+    Connection: MockConnection,
+  });
+
+  try {
+    await client.search({});
+    t.pass('ok');
+  } catch (err) {
+    t.fail(err);
+  }
+});
+
+test('Issue #253 with callbacks', (t) => {
+  t.plan(1);
+
+  const delay = () => new Promise((resolve) => setTimeout(resolve, 10));
+
+  const MockConnection = buildMockConnection({
+    onRequest(params) {
+      return {
+        statusCode: 200,
+        headers: {},
+        body: {},
+      };
+    },
+  });
+
+  class MyTransport extends Transport {
+    request(params, options = {}, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+
+      if (typeof callback === 'undefined') {
+        return delay().then(() => super.request(params, options));
+      }
+
+      // Callback support
+      delay().then(() => super.request(params, options, callback));
+    }
+  }
+
+  const client = new ProductClient({
+    node: 'http://localhost:9200',
+    Transport: MyTransport,
+    Connection: MockConnection,
+  });
+
+  client.search({}, (err, result) => {
+    t.error(err);
   });
 });

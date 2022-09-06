@@ -55,7 +55,7 @@ const client = new Client({
     // With AWS SDK V2, Credentials.refreshPromise is used when available to refresh the credentials.
 
     // Example with AWS SDK V3:
-    getCredentials: async () => {
+    getCredentials: () => {
       // Any other method to acquire a new Credentials object can be used.
       const credentialsProvider = defaultProvider();
       return credentialsProvider();

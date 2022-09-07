@@ -10,10 +10,8 @@
   - [Search for the Document](#search-for-the-document)
   - [Delete the document](#delete-the-document)
   - [Delete the index](#delete-the-index)
-  - [Empty all Pool Connections](#empty-all-pool-connections)
 
 ## Initializing a Client
-
 ```javascript
 'use strict';
 
@@ -52,8 +50,7 @@ const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws');
 
 const client = new Client({
   ...AwsSigv4Signer({
-    region: 'us-west-2',
-    service: 'es', // 'aoss' for OpenSearch Serverless
+    region: 'us-east-1',
     // Must return a Promise that resolve to an AWS.Credentials object.
     // This function is used to acquire the credentials when the client start and
     // when the credentials are expired.
@@ -73,22 +70,20 @@ const client = new Client({
         });
       }),
   }),
-  node: 'https://search-xxx.region.es.amazonaws.com', // OpenSearch domain URL
-  // node: "https://xxx.region.aoss.amazonaws.com" for OpenSearch Serverless
+  node: "https://search-xxx.region.es.amazonaws.com", // OpenSearch domain URL
 });
 ```
 
 #### Using AWS V3 SDK
 
 ```javascript
-const { defaultProvider } = require('@aws-sdk/credential-provider-node'); // V3 SDK.
+const { defaultProvider } = require("@aws-sdk/credential-provider-node"); // V3 SDK.
 const { Client } = require('@opensearch-project/opensearch');
 const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws');
 
 const client = new Client({
   ...AwsSigv4Signer({
     region: 'us-east-1',
-    service: 'es', // 'aoss' for OpenSearch Serverless
     // Must return a Promise that resolve to an AWS.Credentials object.
     // This function is used to acquire the credentials when the client start and
     // when the credentials are expired.
@@ -102,166 +97,101 @@ const client = new Client({
       return credentialsProvider();
     },
   }),
-  node: 'https://search-xxx.region.es.amazonaws.com', // OpenSearch domain URL
-  // node: "https://xxx.region.aoss.amazonaws.com" for OpenSearch Serverless
+  node: "https://search-xxx.region.es.amazonaws.com", // OpenSearch domain URL
 });
 ```
 
 ## Create an Index
 
 ```javascript
-console.log('Creating index:');
-
-var index_name = 'books';
-var settings = {
-  settings: {
-    index: {
-      number_of_shards: 4,
-      number_of_replicas: 3,
+  console.log('Creating index:');
+  
+  var index_name = 'books';
+  var settings = {
+    settings: {
+      index: {
+        number_of_shards: 4,
+        number_of_replicas: 3,
+      },
     },
-  },
-};
+  };
 
-var response = await client.indices.create({
-  index: index_name,
-  body: settings,
-});
+  var response = await client.indices.create({
+    index: index_name,
+    body: settings,
+  });
 
-console.log(response.body);
+  console.log(response.body);
 ```
 
 ## Add a Document to the Index
 
 ```javascript
-console.log('Adding document:');
+  console.log('Adding document:');
 
-var document = {
-  title: 'The Outsider',
-  author: 'Stephen King',
-  year: '2018',
-  genre: 'Crime fiction',
-};
+  var document = {
+    title: 'The Outsider',
+    author: 'Stephen King',
+    year: '2018',
+    genre: 'Crime fiction',
+  };
 
-var id = '1';
+  var id = '1';
 
-var response = await client.index({
-  id: id,
-  index: index_name,
-  body: document,
-  refresh: true,
-});
+  var response = await client.index({
+    id: id,
+    index: index_name,
+    body: document,
+    refresh: true,
+  });
 
-console.log(response.body);
+  console.log(response.body);
 ```
 
 ## Search for the Document
 
 ```javascript
-console.log('Search results:');
+  console.log('Search results:');
 
-var query = {
-  query: {
-    match: {
-      title: {
-        query: 'The Outsider',
+  var query = {
+    query: {
+      match: {
+        title: {
+          query: 'The Outsider',
+        },
       },
     },
-  },
-};
+  };
 
-var response = await client.search({
-  index: index_name,
-  body: query,
-});
+  var response = await client.search({
+    index: index_name,
+    body: query,
+  });
 
-console.log(response.body.hits);
+  console.log(response.body.hits);
 ```
 
 ## Delete the document
 
 ```javascript
-console.log('Deleting document:');
+  console.log('Deleting document:');
 
-var response = await client.delete({
-  index: index_name,
-  id: id,
-});
+  var response = await client.delete({
+    index: index_name,
+    id: id,
+  });
 
-console.log(response.body);
+  console.log(response.body);
 ```
 
 ## Delete the index
 
 ```javascript
-console.log('Deleting index:');
+  console.log('Deleting index:');
 
-var response = await client.indices.delete({
-  index: index_name,
-});
+  var response = await client.indices.delete({
+    index: index_name,
+  });
 
-console.log(response.body);
-```
-
-## Create a Point in Time
-
-```javascript
-console.log('Creating a PIT:');
-
-var response = await client.createPit({
-  index: 'books*',
-  keep_alive: '100m',
-  expand_wildcards: 'all',
-});
-
-console.log(response.body);
-```
-
-## Get all PITs
-
-```javascript
-console.log('Getting all PITs:');
-
-var response = await client.getAllPits();
-
-console.log(response.body);
-```
-
-## Delete a Point in Time
-
-```javascript
-console.log('Deleting a PIT:');
-
-var response = await client.deletePit({
-  body: {
-    pit_id: [
-      'o463QQEPbXktaW5kZXgtMDAwMDAxFkhGN09fMVlPUkVPLXh6MUExZ1hpaEEAFjBGbmVEZHdGU1EtaFhhUFc4ZkR5cWcAAAAAAAAAAAEWaXBPNVJtZEhTZDZXTWFFR05waXdWZwEWSEY3T18xWU9SRU8teHoxQTFnWGloQQAA',
-    ],
-  },
-});
-
-console.log(response.body);
-```
-
-## Delete all PITs
-
-```javascript
-console.log('Deleting all PITs:');
-
-var response = await client.deleteAllPits();
-
-console.log(response.body);
-```
-
-## Empty all Pool Connections
-
-```javascript
-var pool = new ConnectionPool({ Connection });
-pool.addConnection('http://localhost:9200/');
-pool.addConnection('http://localhost:9201/');
-
-pool.empty();
-// OR
-pool.empty(() => {
-  // Do something after emptying the pool
-});
+  console.log(response.body);
 ```

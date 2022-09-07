@@ -11,10 +11,10 @@
 const { test } = require('tap');
 const { URL } = require('url');
 const { v4: uuidv4 } = require('uuid');
-const AwsSigv4Signer = require('../../lib/aws/AwsSigv4Signer');
-const AwsSigv4SignerError = require('../../lib/aws/errors');
-const { Connection } = require('../../index');
-const { Client, buildServer } = require('../utils');
+const AwsSigv4Signer = require('../../../../lib/aws/AwsSigv4Signer');
+const AwsSigv4SignerError = require('../../../../lib/aws/errors');
+const { Connection } = require('../../../../index');
+const { Client, buildServer } = require('../../../utils');
 
 test('Sign with SigV4', (t) => {
   t.plan(2);

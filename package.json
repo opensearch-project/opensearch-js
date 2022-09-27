@@ -6,6 +6,7 @@
   "exports": {
     ".": {
       "require": "./index.js",
+      "types": "./index.d.ts",
       "import": "./index.mjs"
     },
     "./aws": "./lib/aws/index.js",

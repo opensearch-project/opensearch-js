@@ -286,7 +286,7 @@ class Client extends OpenSearchAPI {
 
   close(callback) {
     if (callback == null) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         this.close(resolve);
       });
     }

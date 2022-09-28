@@ -57,10 +57,10 @@ test('bulk index', async (t) => {
   const result = await client.helpers.bulk({
     datasource: stream.pipe(split()),
     refreshOnCompletion: INDEX,
-    onDrop(doc) {
+    onDrop() {
       t.fail('It should not drop any document');
     },
-    onDocument(doc) {
+    onDocument() {
       return {
         index: { _index: INDEX },
       };
@@ -85,7 +85,7 @@ test('bulk index with custom id', async (t) => {
   const stream = createReadStream(datasetPath);
   const result = await client.helpers.bulk({
     datasource: stream.pipe(split(JSON.parse)),
-    onDrop(doc) {
+    onDrop() {
       t.fail('It should not drop any document');
     },
     onDocument(doc) {
@@ -159,7 +159,7 @@ test('bulk delete', async (t) => {
   const indexResult = await client.helpers.bulk({
     datasource: createReadStream(datasetPath).pipe(split(JSON.parse)),
     refreshOnCompletion: true,
-    onDrop(doc) {
+    onDrop() {
       t.fail('It should not drop any document');
     },
     onDocument(doc) {
@@ -188,7 +188,7 @@ test('bulk delete', async (t) => {
   const deleteResult = await client.helpers.bulk({
     datasource: createReadStream(datasetPath).pipe(split(JSON.parse)),
     refreshOnCompletion: true,
-    onDrop(doc) {
+    onDrop() {
       t.fail('It should not drop any document');
     },
     onDocument(doc) {

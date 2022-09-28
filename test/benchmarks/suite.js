@@ -125,7 +125,7 @@ function buildBenchmark(options = {}) {
     }
 
     // task that elaborate the collected stats
-    async function elaborateStats(q) {
+    async function elaborateStats() {
       const times = stats[title].map((s) => s.milliseconds / b.iterations);
       reports.push({
         description: title,

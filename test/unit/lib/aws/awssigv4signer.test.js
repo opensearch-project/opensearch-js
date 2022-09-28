@@ -390,7 +390,7 @@ test('Basic aws failure to refresh credentials', (t) => {
             index: 'test',
             q: 'foo:bar',
           })
-          .then(({ body }) => {
+          .then(() => {
             t.same(getCredentialsCalled, 2);
             t.fail('Should fail');
           })

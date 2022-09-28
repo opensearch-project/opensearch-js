@@ -24,7 +24,7 @@ const { connection } = require('../../utils');
 bench('Initialization', { warmup: 5, measure: 10, iterations: 1000 }, async (b) => {
   b.start();
   for (let i = 0; i < b.iterations; i++) {
-    const client = new Client({
+    new Client({
       // eslint-disable-line
       node: 'http://localhost:9200',
     });

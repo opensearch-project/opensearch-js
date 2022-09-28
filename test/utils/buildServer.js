@@ -65,7 +65,7 @@ function buildServer(handler, opts, cb) {
     process.exit(1);
   });
   if (cb === undefined) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       server.listen(0, () => {
         const port = server.address().port;
         debug(`Server '${serverId}' booted on port ${port}`);

@@ -267,7 +267,7 @@ function generateSingleApi(version, spec, common) {
     documentation: generateDocumentation(spec[api], api),
   };
 
-  function genRequiredChecks(param) {
+  function genRequiredChecks() {
     const code = required.map(_genRequiredCheck).concat(_noBody()).filter(Boolean);
 
     if (code.length) {
@@ -319,7 +319,7 @@ function generateSingleApi(version, spec, common) {
         : str.replace(/_([a-z])/g, (k) => k[1].toUpperCase());
     };
 
-    return acceptedQuerystring.reduce((acc, val, index) => {
+    return acceptedQuerystring.reduce((acc, val) => {
       if (toCamelCase(val) !== val) {
         acc[toCamelCase(val)] = val;
       }

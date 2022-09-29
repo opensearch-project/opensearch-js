@@ -73,12 +73,12 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 1,
         concurrency: 1,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop(doc) {
+        onDrop() {
           t.fail('This should never be called');
         },
       });
@@ -116,12 +116,12 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 1,
         concurrency: 3,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop(doc) {
+        onDrop() {
           t.fail('This should never be called');
         },
       });
@@ -155,12 +155,12 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 5000000,
         concurrency: 1,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop(doc) {
+        onDrop() {
           t.fail('This should never be called');
         },
       });
@@ -203,7 +203,7 @@ test('bulk index', (t) => {
         flushBytes: 1,
         concurrency: 1,
         refreshOnCompletion: true,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
@@ -248,7 +248,7 @@ test('bulk index', (t) => {
         flushBytes: 1,
         concurrency: 1,
         refreshOnCompletion: 'test',
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
@@ -288,7 +288,7 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 1,
         concurrency: 1,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: {
               _index: 'test',
@@ -296,7 +296,7 @@ test('bulk index', (t) => {
             },
           };
         },
-        onDrop(doc) {
+        onDrop() {
           t.fail('This should never be called');
         },
       });
@@ -359,7 +359,7 @@ test('bulk index', (t) => {
         concurrency: 1,
         wait: 10,
         retries: 1,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
@@ -410,7 +410,7 @@ test('bulk index', (t) => {
         concurrency: 1,
         wait: 10,
         retries: 0,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
@@ -485,7 +485,7 @@ test('bulk index', (t) => {
         flushBytes: 1,
         concurrency: 1,
         wait: 10,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
@@ -515,7 +515,7 @@ test('bulk index', (t) => {
 
     t.test('Server error', async (t) => {
       const MockConnection = connection.buildMockConnection({
-        onRequest(params) {
+        onRequest() {
           return {
             statusCode: 500,
             body: { somothing: 'went wrong' },
@@ -531,12 +531,12 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 1,
         concurrency: 1,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop(doc) {
+        onDrop() {
           t.fail('This should never be called');
         },
       });
@@ -551,7 +551,7 @@ test('bulk index', (t) => {
 
     t.test('Server error (high flush size, to trigger the finish error)', async (t) => {
       const MockConnection = connection.buildMockConnection({
-        onRequest(params) {
+        onRequest() {
           return {
             statusCode: 500,
             body: { somothing: 'went wrong' },
@@ -567,12 +567,12 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 5000000,
         concurrency: 1,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop(doc) {
+        onDrop() {
           t.fail('This should never be called');
         },
       });
@@ -632,12 +632,12 @@ test('bulk index', (t) => {
         flushBytes: 1,
         concurrency: 1,
         wait: 10,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop(doc) {
+        onDrop() {
           b.abort();
         },
       });
@@ -658,7 +658,7 @@ test('bulk index', (t) => {
     t.test('Invalid operation', (t) => {
       t.plan(2);
       const MockConnection = connection.buildMockConnection({
-        onRequest(params) {
+        onRequest() {
           return { body: { errors: false, items: [{}] } };
         },
       });
@@ -672,7 +672,7 @@ test('bulk index', (t) => {
           datasource: dataset.slice(),
           flushBytes: 1,
           concurrency: 1,
-          onDocument(doc) {
+          onDocument() {
             return {
               foo: { _index: 'test' },
             };
@@ -718,7 +718,7 @@ test('bulk index', (t) => {
             { ...doc, updatedAt },
           ];
         },
-        onDrop(doc) {
+        onDrop() {
           t.fail('This should never be called');
         },
       });
@@ -765,7 +765,7 @@ test('bulk index', (t) => {
         datasource: stream.pipe(split()),
         flushBytes: 1,
         concurrency: 1,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: {
               _index: 'test',
@@ -773,7 +773,7 @@ test('bulk index', (t) => {
             },
           };
         },
-        onDrop(doc) {
+        onDrop() {
           t.fail('This should never be called');
         },
       });
@@ -822,12 +822,12 @@ test('bulk index', (t) => {
         datasource: generator(),
         flushBytes: 1,
         concurrency: 1,
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop(doc) {
+        onDrop() {
           t.fail('This should never be called');
         },
       });
@@ -871,7 +871,7 @@ test('bulk create', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument(doc) {
+      onDocument() {
         return {
           create: {
             _index: 'test',
@@ -879,7 +879,7 @@ test('bulk create', (t) => {
           },
         };
       },
-      onDrop(doc) {
+      onDrop() {
         t.fail('This should never be called');
       },
     });
@@ -929,7 +929,7 @@ test('bulk create', (t) => {
           { ...doc, updatedAt },
         ];
       },
-      onDrop(doc) {
+      onDrop() {
         t.fail('This should never be called');
       },
     });
@@ -971,7 +971,7 @@ test('bulk update', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument(doc) {
+      onDocument() {
         return [
           {
             update: {
@@ -984,7 +984,7 @@ test('bulk update', (t) => {
           },
         ];
       },
-      onDrop(doc) {
+      onDrop() {
         t.fail('This should never be called');
       },
     });
@@ -1022,7 +1022,7 @@ test('bulk update', (t) => {
       datasource: dataset.map((d) => JSON.stringify(d)),
       flushBytes: 1,
       concurrency: 1,
-      onDocument(doc) {
+      onDocument() {
         return [
           {
             update: {
@@ -1032,7 +1032,7 @@ test('bulk update', (t) => {
           },
         ];
       },
-      onDrop(doc) {
+      onDrop() {
         t.fail('This should never be called');
       },
     });
@@ -1070,7 +1070,7 @@ test('bulk update', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument(doc) {
+      onDocument() {
         return [
           {
             update: {
@@ -1083,7 +1083,7 @@ test('bulk update', (t) => {
           },
         ];
       },
-      onDrop(doc) {
+      onDrop() {
         t.fail('This should never be called');
       },
     });
@@ -1124,7 +1124,7 @@ test('bulk delete', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument(doc) {
+      onDocument() {
         return {
           delete: {
             _index: 'test',
@@ -1132,7 +1132,7 @@ test('bulk delete', (t) => {
           },
         };
       },
-      onDrop(doc) {
+      onDrop() {
         t.fail('This should never be called');
       },
     });
@@ -1195,7 +1195,7 @@ test('bulk delete', (t) => {
       flushBytes: 1,
       concurrency: 1,
       wait: 10,
-      onDocument(doc) {
+      onDocument() {
         return {
           delete: {
             _index: 'test',
@@ -1262,10 +1262,10 @@ test('transport options', (t) => {
         datasource: dataset.slice(),
         flushBytes: 1,
         concurrency: 1,
-        onDocument(doc) {
+        onDocument() {
           return { index: { _index: 'test' } };
         },
-        onDrop(doc) {
+        onDrop() {
           t.fail('This should never be called');
         },
         refreshOnCompletion: true,
@@ -1300,7 +1300,7 @@ test('errors', (t) => {
     try {
       await client.helpers.bulk({
         datasource: 'hello',
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
@@ -1321,7 +1321,7 @@ test('errors', (t) => {
     });
     try {
       await client.helpers.bulk({
-        onDocument(doc) {
+        onDocument() {
           return {
             index: { _index: 'test' },
           };
@@ -1381,12 +1381,12 @@ test('Flush interval', (t) => {
       })(),
       flushBytes: 5000000,
       concurrency: 1,
-      onDocument(doc) {
+      onDocument() {
         return {
           index: { _index: 'test' },
         };
       },
-      onDrop(doc) {
+      onDrop() {
         t.fail('This should never be called');
       },
     });
@@ -1439,12 +1439,12 @@ test('Flush interval', (t) => {
       })(),
       flushBytes: 5000000,
       concurrency: 1,
-      onDocument(doc) {
+      onDocument() {
         return {
           index: { _index: 'test' },
         };
       },
-      onDrop(doc) {
+      onDrop() {
         t.fail('This should never be called');
       },
     });
@@ -1485,12 +1485,12 @@ test('Flush interval', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument(doc) {
+      onDocument() {
         return {
           index: { _index: 'test' },
         };
       },
-      onDrop(doc) {
+      onDrop() {
         t.fail('This should never be called');
       },
     });

@@ -37,7 +37,7 @@ beforeEach(async () => {
   const result = await client.helpers.bulk({
     datasource: stream.pipe(split()),
     refreshOnCompletion: true,
-    onDocument(doc) {
+    onDocument() {
       return {
         index: { _index: INDEX },
       };

@@ -90,8 +90,8 @@ async function release(opts) {
   await writeFile(join(__dirname, '..', '.npmignore'), originalNpmIgnore, 'utf8');
 }
 
-function confirm(question) {
-  return new Promise((resolve, reject) => {
+function confirm() {
+  return new Promise((resolve) => {
     const rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,

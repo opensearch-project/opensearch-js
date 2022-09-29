@@ -27,7 +27,7 @@ const ssl = {
 };
 
 function createProxy() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const server = proxy(http.createServer());
     server.listen(0, '127.0.0.1', () => {
       resolve(server);
@@ -36,7 +36,7 @@ function createProxy() {
 }
 
 function createSecureProxy() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const server = proxy(https.createServer(ssl));
     server.listen(0, '127.0.0.1', () => {
       resolve(server);
@@ -44,8 +44,8 @@ function createSecureProxy() {
   });
 }
 
-function createServer(handler, callback) {
-  return new Promise((resolve, reject) => {
+function createServer() {
+  return new Promise((resolve) => {
     const server = http.createServer();
     server.listen(0, '127.0.0.1', () => {
       resolve(server);
@@ -53,8 +53,8 @@ function createServer(handler, callback) {
   });
 }
 
-function createSecureServer(handler, callback) {
-  return new Promise((resolve, reject) => {
+function createSecureServer() {
+  return new Promise((resolve) => {
     const server = https.createServer(ssl);
     server.listen(0, '127.0.0.1', () => {
       resolve(server);

@@ -49,7 +49,7 @@ beforeEach(async () => {
   const result = await client.helpers.bulk({
     datasource: stream.pipe(split()),
     refreshOnCompletion: true,
-    onDocument(doc) {
+    onDocument() {
       return {
         index: { _index: INDEX },
       };
@@ -90,7 +90,7 @@ test('Bad request', (t) => {
     t.equal(result.body.hits.total.value, 106);
   });
 
-  m.search({ index: INDEX }, { query: { foo: { title: 'ruby' } } }, (err, result) => {
+  m.search({ index: INDEX }, { query: { foo: { title: 'ruby' } } }, (err) => {
     t.ok(err instanceof errors.ResponseError);
   });
 

@@ -657,7 +657,7 @@ test('Extend client APIs', (t) => {
       node: 'http://localhost:9200',
       Transport: MyTransport,
     });
-    client.extend('method', ({ makeRequest, result, ConfigurationError }) => {
+    client.extend('method', ({ makeRequest }) => {
       return (params, options) => makeRequest(params, options);
     });
 
@@ -668,7 +668,7 @@ test('Extend client APIs', (t) => {
     t.plan(2);
 
     const client = new Client({ node: 'http://localhost:9200' });
-    client.extend('method', ({ makeRequest, result, ConfigurationError }) => {
+    client.extend('method', () => {
       return (params, options, callback) => {
         callback(null, { hello: 'world' });
       };
@@ -684,9 +684,9 @@ test('Extend client APIs', (t) => {
     t.plan(1);
 
     const client = new Client({ node: 'http://localhost:9200' });
-    client.extend('method', ({ makeRequest, result, ConfigurationError }) => {
-      return (params, options) => {
-        return new Promise((resolve, reject) => {
+    client.extend('method', () => {
+      return () => {
+        return new Promise((resolve) => {
           resolve({ hello: 'world' });
         });
       };
@@ -935,7 +935,7 @@ test('Bad content length', (t) => {
 
   buildServer(handler, ({ port }, server) => {
     const client = new Client({ node: `http://localhost:${port}`, maxRetries: 1 });
-    client.info((err, { body }) => {
+    client.info((err) => {
       t.ok(err instanceof errors.ConnectionError);
       t.equal(err.message, 'Response aborted while reading the body');
       t.equal(count, 2);
@@ -961,7 +961,7 @@ test('Socket destryed while reading the body', (t) => {
 
   buildServer(handler, ({ port }, server) => {
     const client = new Client({ node: `http://localhost:${port}`, maxRetries: 1 });
-    client.info((err, { body }) => {
+    client.info((err) => {
       t.ok(err instanceof errors.ConnectionError);
       t.equal(err.message, 'Response aborted while reading the body');
       t.equal(count, 2);
@@ -1113,7 +1113,7 @@ test('Prototype poisoning protection enabled by default', (t) => {
     Connection: MockConnection,
   });
 
-  client.info((err, result) => {
+  client.info((err) => {
     t.ok(err instanceof errors.DeserializationError);
   });
 });
@@ -1142,7 +1142,7 @@ test('Disable prototype poisoning protection', (t) => {
     disablePrototypePoisoningProtection: true,
   });
 
-  client.info((err, result) => {
+  client.info((err) => {
     t.error(err);
   });
 });
@@ -1203,7 +1203,7 @@ test('Issue #253 with promises', async (t) => {
   const delay = () => new Promise((resolve) => setTimeout(resolve, 10));
 
   const MockConnection = buildMockConnection({
-    onRequest(params) {
+    onRequest() {
       return {
         statusCode: 200,
         headers: {},
@@ -1248,7 +1248,7 @@ test('Issue #253 with callbacks', (t) => {
   const delay = () => new Promise((resolve) => setTimeout(resolve, 10));
 
   const MockConnection = buildMockConnection({
-    onRequest(params) {
+    onRequest() {
       return {
         statusCode: 200,
         headers: {},
@@ -1279,7 +1279,7 @@ test('Issue #253 with callbacks', (t) => {
     Connection: MockConnection,
   });
 
-  client.search({}, (err, result) => {
+  client.search({}, (err) => {
     t.error(err);
   });
 });

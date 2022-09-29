@@ -289,7 +289,7 @@ test('Timeout support', (t) => {
         method: 'GET',
         timeout: 500,
       },
-      (err, res) => {
+      (err) => {
         t.ok(err instanceof TimeoutError);
         server.stop();
       }
@@ -316,7 +316,7 @@ test('querystring', (t) => {
           method: 'GET',
           querystring: 'hello=world&you_know=for%20search',
         },
-        (err, res) => {
+        (err) => {
           t.error(err);
           server.stop();
         }
@@ -342,7 +342,7 @@ test('querystring', (t) => {
           method: 'GET',
           querystring: null,
         },
-        (err, res) => {
+        (err) => {
           t.error(err);
           server.stop();
         }
@@ -379,7 +379,7 @@ test('Body request', (t) => {
         method: 'POST',
         body: 'hello',
       },
-      (err, res) => {
+      (err) => {
         t.error(err);
         server.stop();
       }
@@ -413,7 +413,7 @@ test('Send body as buffer', (t) => {
         method: 'POST',
         body: Buffer.from('hello'),
       },
-      (err, res) => {
+      (err) => {
         t.error(err);
         server.stop();
       }
@@ -447,7 +447,7 @@ test('Send body as stream', (t) => {
         method: 'POST',
         body: intoStream('hello'),
       },
-      (err, res) => {
+      (err) => {
         t.error(err);
         server.stop();
       }
@@ -558,7 +558,7 @@ test('Url with auth', (t) => {
         path: '/hello',
         method: 'GET',
       },
-      (err, res) => {
+      (err) => {
         t.error(err);
         server.stop();
       }
@@ -584,7 +584,7 @@ test('Url with querystring', (t) => {
         method: 'GET',
         querystring: 'baz=faz',
       },
-      (err, res) => {
+      (err) => {
         t.error(err);
         server.stop();
       }
@@ -616,7 +616,7 @@ test('Custom headers for connection', (t) => {
           'X-Custom-Test': true,
         },
       },
-      (err, res) => {
+      (err) => {
         t.error(err);
         // should not update the default
         t.same(connection.headers, { 'x-foo': 'bar' });
@@ -735,7 +735,7 @@ test('Should disallow two-byte characters in URL path', (t) => {
       path: '/thisisinvalid\uffe2',
       method: 'GET',
     },
-    (err, res) => {
+    (err) => {
       t.equal(err.message, 'ERR_UNESCAPED_CHARACTERS: /thisisinvalid\uffe2');
     }
   );
@@ -1002,7 +1002,7 @@ test('Should not add agent and ssl to the serialized connection', (t) => {
 test('Abort a request syncronously', (t) => {
   t.plan(1);
 
-  function handler(req, res) {
+  function handler() {
     t.fail('The server should not be contacted');
   }
 
@@ -1015,7 +1015,7 @@ test('Abort a request syncronously', (t) => {
         path: '/hello',
         method: 'GET',
       },
-      (err, res) => {
+      (err) => {
         t.ok(err instanceof RequestAbortedError);
         server.stop();
       }
@@ -1041,7 +1041,7 @@ test('Abort a request asyncronously', (t) => {
         path: '/hello',
         method: 'GET',
       },
-      (err, res) => {
+      (err) => {
         t.ok(err instanceof RequestAbortedError);
         server.stop();
       }
@@ -1096,7 +1096,7 @@ test('Abort with a slow body', (t) => {
   });
 
   const slowBody = new Readable({
-    read(size) {
+    read() {
       setTimeout(() => {
         this.push('{"size":1, "query":{"match_all":{}}}');
         this.push(null); // EOF
@@ -1110,7 +1110,7 @@ test('Abort with a slow body', (t) => {
       path: '/',
       body: slowBody,
     },
-    (err, response) => {
+    (err) => {
       t.ok(err instanceof RequestAbortedError);
     }
   );

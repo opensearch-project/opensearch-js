@@ -80,7 +80,7 @@ test('Should emit a request event when a request is performed', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err, result) => {
+    (err) => {
       t.error(err);
     }
   );
@@ -128,7 +128,7 @@ test('Should emit a request event once when a request is performed', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err, result) => {
+    (err) => {
       t.error(err);
     }
   );
@@ -138,7 +138,7 @@ test('Should emit a request event once when a request is performed', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err, result) => {
+    (err) => {
       t.error(err);
     }
   );
@@ -189,7 +189,7 @@ test('Remove an event', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err, result) => {
+    (err) => {
       t.error(err);
     }
   );
@@ -199,7 +199,7 @@ test('Remove an event', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err, result) => {
+    (err) => {
       t.error(err);
     }
   );
@@ -250,7 +250,7 @@ test('Should emit a response event in case of a successful response', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err, result) => {
+    (err) => {
       t.error(err);
     }
   );
@@ -304,7 +304,7 @@ test('Should emit a response event with the error set', (t) => {
     {
       requestTimeout: 500,
     },
-    (err, result) => {
+    (err) => {
       t.ok(err instanceof TimeoutError);
     }
   );

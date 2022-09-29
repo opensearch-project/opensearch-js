@@ -238,7 +238,7 @@ test('Sniff interval', (t) => {
 test('Sniff on start', (t) => {
   t.plan(4);
 
-  buildCluster(({ nodes, shutdown, kill }) => {
+  buildCluster(({ nodes, shutdown }) => {
     const client = new Client({
       node: nodes[Object.keys(nodes)[0]].url,
       sniffOnStart: true,
@@ -259,7 +259,7 @@ test('Sniff on start', (t) => {
 test('Should not close living connections', (t) => {
   t.plan(3);
 
-  buildCluster(({ nodes, shutdown, kill }) => {
+  buildCluster(({ nodes, shutdown }) => {
     class MyConnection extends Connection {
       close() {
         t.fail('Should not be called');
@@ -287,7 +287,7 @@ test('Should not close living connections', (t) => {
 test('Sniff on connection fault', (t) => {
   t.plan(5);
 
-  buildCluster(({ nodes, shutdown, kill }) => {
+  buildCluster(({ nodes, shutdown }) => {
     class MyConnection extends Connection {
       request(params, callback) {
         if (this.id === 'http://localhost:9200/') {
@@ -315,7 +315,7 @@ test('Sniff on connection fault', (t) => {
       t.equal(reason, Transport.sniffReasons.SNIFF_ON_CONNECTION_FAULT);
     });
 
-    client.info((err, result) => {
+    client.info((err) => {
       t.ok(err instanceof errors.ConnectionError);
     });
 

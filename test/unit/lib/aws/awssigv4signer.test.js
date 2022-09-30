@@ -76,20 +76,44 @@ test('Sign with SigV4 failure (with empty region)', (t) => {
   }
 });
 
-test('Sign with SigV4 failure (without getCredentials function)', (t) => {
+test('Sign with SigV4 using default getCredentials provider', (t) => {
   t.plan(2);
 
-  const mockRegion = 'us-west-2';
-
-  const AwsSigv4SignerOptions = { region: mockRegion };
-
-  try {
-    AwsSigv4Signer(AwsSigv4SignerOptions);
-    t.fail('Should fail');
-  } catch (err) {
-    t.ok(err instanceof AwsSigv4SignerError);
-    t.same(err.message, 'getCredentials function is required');
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
   }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockRegion = 'us-east-1';
+
+    const AwsSigv4SignerOptions = {
+      region: mockRegion,
+    };
+    const client = new Client({
+      ...AwsSigv4Signer(AwsSigv4SignerOptions),
+      node: `http://localhost:${port}`,
+    });
+
+    client
+      .search({
+        index: 'test',
+        q: 'foo:bar',
+      })
+      .then(() => {
+        t.fail('Should fail');
+      })
+      .catch((err) => {
+        t.ok(err instanceof AwsSigv4SignerError);
+        t.same(
+          err.message,
+          'Unable to find a valid AWS SDK, please provide a valid getCredentials function to AwsSigv4Signer options.'
+        );
+      })
+      .finally(() => {
+        server.stop();
+      });
+  });
 });
 
 test('Basic aws (promises)', (t) => {

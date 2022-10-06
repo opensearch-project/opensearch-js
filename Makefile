@@ -3,7 +3,7 @@ cluster.opensearch.build:
 
 cluster.opensearch.start:
 	docker-compose --project-directory .ci/opensearch up -d ;
-	sleep 20;
+	sleep 60;
 
 cluster.opensearch.stop:
 	docker-compose --project-directory .ci/opensearch down ;

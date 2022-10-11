@@ -34,6 +34,7 @@ jobs:
           sudo sysctl -w vm.max_map_count=262144
 
       - name: Runs OpenSearch cluster
+        id: start_opensearch_cluster
         run: |
           export OPENSEARCH_VERSION=${{ matrix.entry.opensearch_version }}
           export SECURE_INTEGRATION=${{ matrix.secured }}
@@ -59,5 +60,6 @@ jobs:
           npm run test:integration:helpers-secure
 
       - name: Stop the OpenSearch cluster
+        if: ${{ steps.start_opensearch_cluster.outcome == 'success'}}
         run: |
           make cluster.opensearch.stop

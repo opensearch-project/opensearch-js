@@ -626,6 +626,37 @@ test('Custom headers for connection', (t) => {
   });
 });
 
+test('mutability of connection headers', (t) => {
+  t.plan(3);
+
+  function handler(req, res) {
+    t.match(req.headers, {
+      'x-foo': 'bar',
+    });
+    req.headers['x-custom-test'] = true;
+    res.end('ok');
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const connection = new Connection({
+      url: new URL(`http://localhost:${port}`),
+      headers: { 'x-foo': 'bar' },
+    });
+    connection.request(
+        {
+          path: '/hello',
+          method: 'GET'
+        },
+        (err, res) => {
+          t.error(err);
+          // should not update the default
+          t.same(connection.headers, { 'x-foo': 'bar' });
+          server.stop();
+        }
+    );
+  });
+});
+
 // TODO: add a check that the response is not decompressed
 test('asStream set to true', (t) => {
   t.plan(2);

@@ -646,7 +646,7 @@ test('mutability of connection headers', (t) => {
           path: '/hello',
           method: 'GET'
         },
-        (err, res) => {
+        (err) => {
           t.error(err);
           // should not update the default
           t.same(connection.headers, { 'x-foo': 'bar' });

@@ -642,16 +642,16 @@ test('mutability of connection headers', (t) => {
       headers: { 'x-foo': 'bar' },
     });
     connection.request(
-        {
-          path: '/hello',
-          method: 'GET'
-        },
-        (err) => {
-          t.error(err);
-          // should not update the default
-          t.same(connection.headers, { 'x-foo': 'bar' });
-          server.stop();
-        }
+      {
+        path: '/hello',
+        method: 'GET',
+      },
+      (err) => {
+        t.error(err);
+        // should not update the default
+        t.same(connection.headers, { 'x-foo': 'bar' });
+        server.stop();
+      }
     );
   });
 });

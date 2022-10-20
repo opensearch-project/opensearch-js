@@ -4,4 +4,7 @@ updates:
     package-ecosystem: npm
     schedule:
       interval: weekly
+    labels:
+      - "dependabot"
+      - "dependencies"
 version: 2

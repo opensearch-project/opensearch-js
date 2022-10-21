@@ -14,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- mutability of connection headers ([#291](https://github.com/opensearch-project/opensearch-js/issues/291))
 
 ### Security
 

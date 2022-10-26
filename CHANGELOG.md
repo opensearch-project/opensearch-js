@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Github workflow for changelog verification ([#306](https://github.com/opensearch-project/opensearch-js/pull/306))
 ### Dependencies
 - Bumps `tsd` from 0.22.0 to 0.24.1
+- Bumps `semver` from 7.3.7 to 7.3.8
 
 ### Changed
 

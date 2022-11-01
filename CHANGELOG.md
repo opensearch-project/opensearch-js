@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add GitHub and Jenkins release workflow ([#317](https://github.com/opensearch-project/opensearch-js/pull/317))
 ### Dependencies
 - Bumps `tsd` from 0.22.0 to 0.24.1
+- Bumps `semver` from 7.3.7 to 7.3.8
 
 ### Changed
 

@@ -31,4 +31,5 @@ Repositories create consistent release labels, such as `v1.0.0`, `v1.1.0` and `v
 
 ## Releasing
 
-The release process is standard across repositories in this org and is run by a release manager volunteering from amongst [MAINTAINERS](MAINTAINERS.md).
+The release process includes a [maintainer](MAINTAINERS.md) pushing a tag to this repository. This creates a draft release which then triggers the [jenkins release workflow](https://build.ci.opensearch.org/job/opensearch-js-release/) and releases the client on [npmjs](https://www.npmjs.com/package/@opensearch-project/opensearch).
+See the GitHub [issue](https://github.com/opensearch-project/opensearch-build/issues/1234) for more details on end to end release workflow.

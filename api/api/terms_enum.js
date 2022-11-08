@@ -36,6 +36,7 @@ const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = 
 const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path'];
 const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' };
 
+// TODO: Remove. Added in ES 7.14
 function termsEnumApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

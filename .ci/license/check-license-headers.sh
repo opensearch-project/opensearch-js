@@ -37,13 +37,13 @@ function check_license_header {
 cd "$TOP"
 nErrors=0
 
-for f in $(git ls-files --directory ../ | grep '\.ts$'); do
+for f in $(git ls-files --directory ../ | grep '\.ts$' | grep -v '^docs/'); do
     if ! check_license_header $f; then
         nErrors=$((nErrors+1))
     fi
 done
 
-for f in $(git ls-files --directory ../ | grep '\.js$'); do
+for f in $(git ls-files --directory ../ | grep '\.js$' | grep -v '^docs/'); do
     if ! check_license_header $f; then
         nErrors=$((nErrors+1))
     fi

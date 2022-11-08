@@ -5,6 +5,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Add release details to releasing.md ([319](https://github.com/opensearch-project/opensearch-js/pull/319))
 - Allow overriding the aws service identifier in AwsSigv4Signer ([333](https://github.com/opensearch-project/opensearch-js/pull/333))
+- Added jsdoc for documentation generation ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
+- Documented Transport#request ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
+- Documented all API methods ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 ### Dependencies
 ### Changed
 ### Deprecated

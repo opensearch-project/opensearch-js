@@ -4,6 +4,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 - Add release details to releasing.md ([319](https://github.com/opensearch-project/opensearch-js/pull/319))
+- jsdoc for documentation generation ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
+- Documentation for Transport#request ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
+- Documentation for api/bulk ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 ### Dependencies
 ### Changed
 ### Deprecated

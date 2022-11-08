@@ -32,6 +32,8 @@
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
+/** @namespace API-bulk */
+
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
   'wait_for_active_shards',
@@ -63,6 +65,20 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
+/**
+ * See Also: {@link https://opensearch.org/docs/2.4/api-reference/document-apis/bulk/|OpenSearch - bulk}
+ * @memberOf API-bulk
+ *
+ * @param {Object} params
+ * @param {Object[]} params.body - {@link https://opensearch.org/docs/latest/api-reference/document-apis/bulk/#request-body|Request Body}
+ * @param {string} [params.index] - Specifying the index means you don’t need to include it in the request body.
+ * @param {} [params....] {@link https://opensearch.org/docs/latest/api-reference/document-apis/bulk/#url-parameters|URL parameters}
+ *
+ * @param {Object} options - Options for {@link Transport#request}
+ * @param {function} callback - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/document-apis/bulk/#response|Bulk Response}
+ */
 function bulkApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

@@ -15,9 +15,9 @@ This document explains the release strategy for artifacts in this organization.
 
 Given the current major release of 1.0, projects in this organization maintain the following active branches.
 
-* **main**: The next _major_ release. This is the branch where all merges take place and code moves fast.
-* **1.x**: The next _minor_ release. Once a change is merged into `main`, decide whether to backport it to `1.x`.
-* **1.0**: The _current_ release. In between minor releases, only hotfixes (e.g. security) are backported to `1.0`.
+- **main**: The next _major_ release. This is the branch where all merges take place and code moves fast.
+- **1.x**: The next _minor_ release. Once a change is merged into `main`, decide whether to backport it to `1.x`.
+- **1.0**: The _current_ release. In between minor releases, only hotfixes (e.g. security) are backported to `1.0`.
 
 Label PRs with the next major version label (e.g. `2.0.0`) and merge changes into `main`. Label PRs that you believe need to be backported as `1.x` and `1.0`. Backport PRs by checking out the versioned branch, cherry-pick changes and open a PR against each target backport branch.
 
@@ -34,8 +34,7 @@ Repositories create consistent release labels, such as `v1.0.0`, `v1.1.0` and `v
 The release process is standard across repositories in this org and is run by a release manager volunteering from amongst [maintainers](MAINTAINERS.md).
 
 1. Create a tag, e.g. v2.1.0, and push it to the GitHub repo.
-1. The [release-drafter.yml](.github/workflows/release-drafter.yml) will be automatically kicked off and is responsible for drafting a new release on GitHub.
-1. Before creating a draft release, this workflow creates a GitHub issue asking for approval from the [maintainers](MAINTAINERS.md). See sample [issue](https://github.com/gaiksaya/opensearch-js/issues/1). The maintainers need to approve in order to continue the workflow run.
+1. The [release-drafter.yml](.github/workflows/release-drafter.yml) will be automatically kicked off and a draft release will be created.
 1. This draft release triggers the [jenkins release workflow](https://build.ci.opensearch.org/job/opensearch-js-release/) as a result of which opensearch-js client is released on [npmjs](https://www.npmjs.com/package/@opensearch-project/opensearch).
 1. Once the above release workflow is successful, the drafted release on GitHub is published automatically.
 1. Increment "version" in package.json to the next patch release, e.g. v2.1.1. See [example](https://github.com/opensearch-project/opensearch-js/pull/318)

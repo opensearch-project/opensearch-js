@@ -3,6 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Add release details to releasing.md ([319](https://github.com/opensearch-project/opensearch-js/pull/319))
 ### Dependencies
 ### Changed
 ### Deprecated

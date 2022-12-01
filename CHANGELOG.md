@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Add release details to releasing.md ([319](https://github.com/opensearch-project/opensearch-js/pull/319))
 - Allow overriding the aws service identifier in AwsSigv4Signer ([333](https://github.com/opensearch-project/opensearch-js/pull/333))
+- Added skip-changelog label ([339](https://github.com/opensearch-project/opensearch-js/pull/339))
 ### Dependencies
 ### Changed
 ### Deprecated

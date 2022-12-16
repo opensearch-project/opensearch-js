@@ -47,6 +47,20 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
+/**
+ * Changes the number of requests per second for a particular Reindex operation.
+ *
+ * @memberOf API-Document
+ *
+ * @param {Object} params
+ * @param {string} params.task_id - The task id to rethrottle
+ * @param {number} params.requests_per_second - The throttle to set on this request in floating sub-requests per second. -1 means set no throttle.
+ *
+ * @param {Object} options - Options for {@link Transport#request}
+ * @param {function} callback - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
+ */
 function reindexRethrottleApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

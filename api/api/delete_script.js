@@ -50,6 +50,20 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
+/**
+ * Delete a stored script.
+ * @memberOf API-Script
+ *
+ * @param {Object} params
+ * @param {string} params.id - Stored script or search template name
+ * @param {string} [params.timeout=30s] - Explicit operation timeout
+ * @param {string} [params.cluster_manager_timeout] - Specify timeout for connection to cluster_manager
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
+ */
 function deleteScriptApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

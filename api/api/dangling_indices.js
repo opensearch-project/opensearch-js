@@ -32,6 +32,8 @@
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
+/** @namespace API-Dangling-Indices */
+
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
   'accept_data_loss',
@@ -57,6 +59,22 @@ function DanglingIndicesApi(transport, ConfigurationError) {
   this[kConfigurationError] = ConfigurationError;
 }
 
+/**
+ * Deletes the specified dangling index
+ * <br/> See also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/dangling-index/ OpenSearch - Dangling Indexes}
+ * @memberOf API-Dangling-Indices
+ *
+ * @param {Object} params
+ * @param {string} params.index_uuid - The UUID of the dangling index
+ * @param {boolean} [params.accept_data_loss] - Must be set to true in order to delete the dangling index
+ * @param {string} [params.timeout=30s] - Explicit operation timeout
+ * @param {string} [params.cluster_manager_timeout] - Specify timeout for connection to cluster_manager
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
+ */
 DanglingIndicesApi.prototype.deleteDanglingIndex = function danglingIndicesDeleteDanglingIndexApi(
   params,
   options,
@@ -90,6 +108,22 @@ DanglingIndicesApi.prototype.deleteDanglingIndex = function danglingIndicesDelet
   return this.transport.request(request, options, callback);
 };
 
+/**
+ * Imports the specified dangling index
+ * <br/> See also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/dangling-index/ OpenSearch - Dangling Indexes}
+ * @memberOf API-Dangling-Indices
+ *
+ * @param {Object} params
+ * @param {string} params.index_uuid - The UUID of the dangling index
+ * @param {boolean} [params.accept_data_loss] - Must be set to true in order to delete the dangling index
+ * @param {string} [params.timeout=30s] - Explicit operation timeout
+ * @param {string} [params.cluster_manager_timeout] - Specify timeout for connection to cluster_manager
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
+ */
 DanglingIndicesApi.prototype.importDanglingIndex = function danglingIndicesImportDanglingIndexApi(
   params,
   options,
@@ -123,6 +157,17 @@ DanglingIndicesApi.prototype.importDanglingIndex = function danglingIndicesImpor
   return this.transport.request(request, options, callback);
 };
 
+/**
+ * Retrieve all dangling indices.
+ * <br/> See also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/dangling-index/ OpenSearch - Dangling Indexes}
+ * @memberOf API-Dangling-Indices
+ *
+ * @param {Object} params - (Unused)
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
+ */
 DanglingIndicesApi.prototype.listDanglingIndices = function danglingIndicesListDanglingIndicesApi(
   params,
   options,

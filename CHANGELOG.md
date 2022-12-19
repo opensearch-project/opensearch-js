@@ -9,6 +9,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added jsdoc for documentation generation ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Documented Transport#request ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Documented all API methods ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
+### Dependencies
+- Bumps `xmlbuilder2` from 2.4.1 to 3.0.2
 
 ### Dependencies
 ### Changed

@@ -88,7 +88,7 @@
     "tap": "^16.3.0",
     "tsd": "^0.24.1",
     "workq": "^3.0.0",
-    "xmlbuilder2": "^2.4.1"
+    "xmlbuilder2": "^3.0.2"
   },
   "dependencies": {
     "aws4": "^1.11.0",

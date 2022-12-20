@@ -2,7 +2,7 @@ name: Publish Docs to Github Pages
 on:
   workflow_dispatch:
   push:
-    branches: [main, jsdoc]
+    branches: [main]
 jobs:
   update-docs:
     runs-on: ubuntu-latest
@@ -23,11 +23,7 @@ jobs:
           jsdoc api lib -d $DOC_FOLDER -r --readme README.md
           cp *.md $DOC_FOLDER
           cp *.txt $DOC_FOLDER
-      - name: Commit Docs Change
-        uses: EndBug/add-and-commit@v9
-        with:
-          default_author: github_actions
-          add: 'docs/* -f'
+          cp OpenSearch.svg $DOC_FOLDER
       - name: Deploy Docs to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:

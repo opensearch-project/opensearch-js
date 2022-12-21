@@ -57,9 +57,9 @@
   },
   "devDependencies": {
     "@aws-sdk/types": "^3.160.0",
+    "@babel/eslint-parser": "^7.19.1",
     "@sinonjs/fake-timers": "github:sinonjs/fake-timers#0bfffc1",
     "@types/node": "^15.3.1",
-    "babel-eslint": "^10.1.0",
     "convert-hrtime": "^5.0.0",
     "cross-zip": "^4.0.0",
     "dedent": "^0.7.0",

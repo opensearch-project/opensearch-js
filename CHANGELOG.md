@@ -15,6 +15,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `eslint` from 7.32.0 to 8.30.0
 - Replaced `babel-eslint` with `@babel/eslint-parser`
 - Bumps `eslint-plugin-prettier` from 4.0.0 to 4.2.1
+- Bumps `minimist` from 1.2.6 to 1.2.7
 
 ### Dependencies
 ### Changed

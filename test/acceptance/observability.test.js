@@ -384,10 +384,10 @@ test('Client name', (t) => {
     client.on('resurrect', (err, meta) => {
       t.error(err);
       t.equal(meta.name, 'opensearch-js');
-      clock.uninstall();
     });
 
     client.info({}, { id: 'custom' }, noop);
+    clock.uninstall();
   });
 
   t.test('Resurrect should have the client name configured (child client)', (t) => {
@@ -412,10 +412,10 @@ test('Client name', (t) => {
     client.on('resurrect', (err, meta) => {
       t.error(err);
       t.equal(meta.name, 'child-client');
-      clock.uninstall();
     });
 
     child.info({}, { id: 'custom' }, noop);
+    clock.uninstall();
   });
 
   t.end();

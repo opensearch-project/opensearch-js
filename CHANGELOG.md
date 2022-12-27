@@ -12,6 +12,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `xmlbuilder2` from 2.4.1 to 3.0.2
 - Bumps `minimatch` from 3.0.4 to 3.1.2
+- Bumps `eslint` from 7.32.0 to 8.30.0
+- Replaced `babel-eslint` with `@babel/eslint-parser`
 - Bumps `eslint-plugin-prettier` from 4.0.0 to 4.2.1
 
 ### Dependencies

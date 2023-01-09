@@ -18,6 +18,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `minimist` from 1.2.6 to 1.2.7
 - Bumps `@aws-sdk/types` from 3.190.0 to 3.226.0
 - Bumps `json5` from 2.2.0 to 2.2.3
+- Bumps `split2` from 3.2.2 to 4.1.0
 
 ### Dependencies
 ### Changed

@@ -1228,6 +1228,38 @@ declare class Client {
     options: TransportRequestOptions,
     callback: callbackFn<TResponse, TContext>
   ): TransportRequestCallback;
+  create_pit<TResponse = Record<string, any>, TContext = Context>(
+    params?: RequestParams.CreatePit,
+    options?: TransportRequestOptions
+  ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+  create_pit<TResponse = Record<string, any>, TContext = Context>(
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  create_pit<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.CreatePit,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  create_pit<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.CreatePit,
+    options: TransportRequestOptions,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  createPit<TResponse = Record<string, any>, TContext = Context>(
+    params?: RequestParams.CreatePit,
+    options?: TransportRequestOptions
+  ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+  createPit<TResponse = Record<string, any>, TContext = Context>(
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  createPit<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.CreatePit,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  createPit<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.CreatePit,
+    options: TransportRequestOptions,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
   dangling_indices: {
     delete_dangling_index<TResponse = Record<string, any>, TContext = Context>(
       params?: RequestParams.DanglingIndicesDeleteDanglingIndex,
@@ -1440,6 +1472,38 @@ declare class Client {
     options: TransportRequestOptions,
     callback: callbackFn<TResponse, TContext>
   ): TransportRequestCallback;
+  delete_all_pits<TResponse = Record<string, any>, TContext = Context>(
+    params?: RequestParams.DeleteAllPits,
+    options?: TransportRequestOptions
+  ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+  delete_all_pits<TResponse = Record<string, any>, TContext = Context>(
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  delete_all_pits<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.DeleteAllPits,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  delete_all_pits<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.DeleteAllPits,
+    options: TransportRequestOptions,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  deleteAllPits<TResponse = Record<string, any>, TContext = Context>(
+    params?: RequestParams.DeleteAllPits,
+    options?: TransportRequestOptions
+  ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+  deleteAllPits<TResponse = Record<string, any>, TContext = Context>(
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  deleteAllPits<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.DeleteAllPits,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  deleteAllPits<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.DeleteAllPits,
+    options: TransportRequestOptions,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
   delete_by_query<
     TResponse = Record<string, any>,
     TRequestBody extends RequestBody = Record<string, any>,
@@ -1529,6 +1593,70 @@ declare class Client {
   ): TransportRequestCallback;
   deleteByQueryRethrottle<TResponse = Record<string, any>, TContext = Context>(
     params: RequestParams.DeleteByQueryRethrottle,
+    options: TransportRequestOptions,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  delete_pit<
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    params?: RequestParams.DeletePit<TRequestBody>,
+    options?: TransportRequestOptions
+  ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+  delete_pit<
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  delete_pit<
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    params: RequestParams.DeletePit<TRequestBody>,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  delete_pit<
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    params: RequestParams.DeletePit<TRequestBody>,
+    options: TransportRequestOptions,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  deletePit<
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    params?: RequestParams.DeletePit<TRequestBody>,
+    options?: TransportRequestOptions
+  ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+  deletePit<
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  deletePit<
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    params: RequestParams.DeletePit<TRequestBody>,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  deletePit<
+    TResponse = Record<string, any>,
+    TRequestBody extends RequestBody = Record<string, any>,
+    TContext = Context
+  >(
+    params: RequestParams.DeletePit<TRequestBody>,
     options: TransportRequestOptions,
     callback: callbackFn<TResponse, TContext>
   ): TransportRequestCallback;
@@ -1781,6 +1909,38 @@ declare class Client {
   ): TransportRequestCallback;
   get<TResponse = Record<string, any>, TContext = Context>(
     params: RequestParams.Get,
+    options: TransportRequestOptions,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  get_all_pits<TResponse = Record<string, any>, TContext = Context>(
+    params?: RequestParams.GetAllPits,
+    options?: TransportRequestOptions
+  ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+  get_all_pits<TResponse = Record<string, any>, TContext = Context>(
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  get_all_pits<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.GetAllPits,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  get_all_pits<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.GetAllPits,
+    options: TransportRequestOptions,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  getAllPits<TResponse = Record<string, any>, TContext = Context>(
+    params?: RequestParams.GetAllPits,
+    options?: TransportRequestOptions
+  ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+  getAllPits<TResponse = Record<string, any>, TContext = Context>(
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  getAllPits<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.GetAllPits,
+    callback: callbackFn<TResponse, TContext>
+  ): TransportRequestCallback;
+  getAllPits<TResponse = Record<string, any>, TContext = Context>(
+    params: RequestParams.GetAllPits,
     options: TransportRequestOptions,
     callback: callbackFn<TResponse, TContext>
   ): TransportRequestCallback;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: api/api/clear_scroll.js</title>
+    <title>JSDoc: Source: api/api/create_pit.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: api/api/clear_scroll.js</h1>
+    <h1 class="page-title">Source: api/api/create_pit.js</h1>
 
     
 
@@ -36,62 +36,69 @@
  *
  */
 
-/*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 'use strict';
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
-const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path'];
-const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' };
+const acceptedQuerystring = [
+  'allow_partial_pit_creation',
+  'keep_alive',
+  'preference',
+  'routing',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+];
+const snakeCase = {
+  allowPartialPitCreation: 'allow_partial_pit_creation',
+  keepAlive: 'keep_alive',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+};
 
 /**
- * Close the search context when you’re done scrolling, because the scroll operation continues to consume computing resources until the timeout.
- * &lt;br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/scroll/ OpenSearch - Scroll }
- *
- * @memberOf API-Search
+ * Creates a point in time.
+ * &lt;br/> See Also: {@link https://opensearch.org/docs/latest/opensearch/point-in-time-api#create-a-pit|Opensearch - Create a PIT}
+ * @memberOf API-PIT
  *
  * @param {Object} params
- * @param {string} [params.scroll_id] The ID of the scroll to be terminated. Use `_all` to close all open scroll contexts.
+ * @param {string} params.index - The name(s) of the target index(es) for the PIT. May contain a comma-separated list or a wildcard index pattern.
+ * @param {string} params.keep_alive - The amount of time to keep the PIT
+ * @param {string} [params.preference=random] - The node or the shard used to perform the search.
+ * @param {string} [params.routing] - Specifies to route search requests to a specific shard.
+ * @param {string} [params.expand_wildcards=open] - The type of index that can match the wildcard pattern. Supports comma-separated values.
+ * @param {string} [params.allow_partial_pit_creation=false] - Specifies whether to create a PIT with partial failures.
  *
  * @param {Object} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*} {@link https://opensearch.org/docs/latest/opensearch/point-in-time-api#sample-response|Create PIT Response}
  */
-function clearScrollApi(params, options, callback) {
+
+function createPitApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { method, body, scrollId, scroll_id, ...querystring } = params;
+  // check required parameters
+  if (params['index'] == null) {
+    const err = new this[kConfigurationError]('Missing required parameter: index');
+    return handleError(err, callback);
+  }
+
+  if (params['keep_alive'] == null) {
+    const err = new this[kConfigurationError]('Missing required parameter: keep_alive');
+    return handleError(err, callback);
+  }
+
+  let { method, body, index, ...querystring } = params;
   querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
   let path = '';
-  if ((scroll_id || scrollId) != null) {
-    if (method == null) method = 'DELETE';
-    path = '/' + '_search' + '/' + 'scroll' + '/' + encodeURIComponent(scroll_id || scrollId);
-  } else {
-    if (method == null) method = 'DELETE';
-    path = '/' + '_search' + '/' + 'scroll';
-  }
+  if (method == null) method = 'POST';
+  path = '/' + encodeURIComponent(index) + '/' + '_search' + '/' + 'point_in_time';
 
   // build request object
   const request = {
@@ -104,7 +111,7 @@ function clearScrollApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 }
 
-module.exports = clearScrollApi;
+module.exports = createPitApi;
 </code></pre>
         </article>
     </section>

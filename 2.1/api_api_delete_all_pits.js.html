@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: api/api/clear_scroll.js</title>
+    <title>JSDoc: Source: api/api/delete_all_pits.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: api/api/clear_scroll.js</h1>
+    <h1 class="page-title">Source: api/api/delete_all_pits.js</h1>
 
     
 
@@ -36,25 +36,6 @@
  *
  */
 
-/*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 'use strict';
 
 /* eslint camelcase: 0 */
@@ -65,33 +46,26 @@ const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter
 const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' };
 
 /**
- * Close the search context when you’re done scrolling, because the scroll operation continues to consume computing resources until the timeout.
- * &lt;br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/scroll/ OpenSearch - Scroll }
- *
- * @memberOf API-Search
+ * Deletes all PITs in the OpenSearch cluster. The Delete All PITs API deletes only local PITs or mixed PITs (PITs created in both local and remote clusters). It does not delete fully remote PITs.
+ * &lt;br/> See Also: {@link https://opensearch.org/docs/latest/opensearch/point-in-time-api#delete-pits|Opensearch - Delete PITs}
+ * @memberOf API-PIT
  *
  * @param {Object} params
- * @param {string} [params.scroll_id] The ID of the scroll to be terminated. Use `_all` to close all open scroll contexts.
  *
  * @param {Object} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*} {@link https://opensearch.org/docs/latest/opensearch/point-in-time-api#sample-response-2|Delete all PITs Response}
  */
-function clearScrollApi(params, options, callback) {
+function deleteAllPitsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { method, body, scrollId, scroll_id, ...querystring } = params;
+  let { method, body, ...querystring } = params;
   querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
   let path = '';
-  if ((scroll_id || scrollId) != null) {
-    if (method == null) method = 'DELETE';
-    path = '/' + '_search' + '/' + 'scroll' + '/' + encodeURIComponent(scroll_id || scrollId);
-  } else {
-    if (method == null) method = 'DELETE';
-    path = '/' + '_search' + '/' + 'scroll';
-  }
+  if (method == null) method = 'DELETE';
+  path = '/' + '_search' + '/' + 'point_in_time' + '/' + '_all';
 
   // build request object
   const request = {
@@ -104,7 +78,7 @@ function clearScrollApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 }
 
-module.exports = clearScrollApi;
+module.exports = deleteAllPitsApi;
 </code></pre>
         </article>
     </section>

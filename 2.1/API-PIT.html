@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Namespace: API-Ingest</title>
+    <title>JSDoc: Namespace: API-PIT</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Namespace: API-Ingest</h1>
+    <h1 class="page-title">Namespace: API-PIT</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2>API-Ingest</h2>
+        <h2>API-PIT</h2>
         
     
 </header>
@@ -70,7 +70,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_ingest.js.html">api/api/ingest.js</a>, <a href="api_api_ingest.js.html#line35">line 35</a>
+        <a href="api_api_create_pit.js.html">api/api/create_pit.js</a>, <a href="api_api_create_pit.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -109,7 +109,7 @@
     
 
     
-    <h4 class="name" id="deletePipeline"><span class="type-signature">(static) </span>IngestApi#deletePipeline<span class="signature">(params, options, callback)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
+    <h4 class="name" id=".createPitApi"><span class="type-signature">(static) </span>createPitApi<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
     
 
     
@@ -117,8 +117,8 @@
 
 
 <div class="description">
-    Deletes a pipeline.
-<br/> See Also: <a href="https://opensearch.org/docs/latest/api-reference/ingest-apis/delete-ingest/">OpenSearch - Delete a pipeline</a>
+    Creates a point in time.
+<br/> See Also: <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#create-a-pit">Opensearch - Create a PIT</a>
 </div>
 
 
@@ -131,48 +131,6 @@
 
     <h5>Parameters:</h5>
     
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                <h6>Properties</h6>
-                
 
 <table class="params">
     <thead>
@@ -198,298 +156,6 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Pipeline ID</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cluster_manager_timeout</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Explicit operation timeout for connection to cluster_manager node</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>timeout</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Explicit operation timeout</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Options for <a href="Transport.html#request">Transport#request</a></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Callback that handles errors and response</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_ingest.js.html">api/api/ingest.js</a>, <a href="api_api_ingest.js.html#line78">line 78</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <a href="https://opensearch.org/docs/latest/api-reference/ingest-apis/delete-ingest/#response">Delete Pipeline Response</a>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-|
-
-<span class="param-type">Promise.&lt;never></span>
-|
-
-<span class="param-type">*</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="geoIpStats"><span class="type-signature">(static) </span>IngestApi#geoIpStats<span class="signature">(params, options, callback)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Returns statistical information about geoip databases
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
                 <td class="name"><code>params</code></td>
             
 
@@ -503,213 +169,13 @@
             </td>
 
             
-
-            
-
-            <td class="description last">(Unused)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
+                <td class="attributes">
                 
-<span class="param-type">Object</span>
 
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Options for <a href="Transport.html#request">Transport#request</a></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
                 
-<span class="param-type">function</span>
 
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Callback that handles errors and response</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_ingest.js.html">api/api/ingest.js</a>, <a href="api_api_ingest.js.html#line116">line 116</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-|
-
-<span class="param-type">Promise.&lt;never></span>
-|
-
-<span class="param-type">*</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getPipeline"><span class="type-signature">(static) </span>IngestApi#getPipeline<span class="signature">(params, options, callback)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Returns a pipeline.
-<br/> See Also: <a href="https://opensearch.org/docs/latest/api-reference/ingest-apis/get-ingest/">OpenSearch - Get pipeline</a>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-
-            <td class="type">
-            
                 
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
+                </td>
             
 
             
@@ -744,7 +210,116 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The name(s) of the target index(es) for the PIT. May contain a comma-separated list or a wildcard index pattern.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>keep_alive</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The amount of time to keep the PIT</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>preference</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    random
+                
+                </td>
+            
+
+            <td class="description last">The node or the shard used to perform the search.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>routing</code></td>
             
 
             <td class="type">
@@ -774,20 +349,59 @@
                 </td>
             
 
-            <td class="description last">Comma separated list of pipeline ids. Wildcards supported</td>
+            <td class="description last">Specifies to route search requests to a specific shard.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>summary</code></td>
+                <td class="name"><code>expand_wildcards</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    open
+                
+                </td>
+            
+
+            <td class="description last">The type of index that can match the wildcard pattern. Supports comma-separated values.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>allow_partial_pit_creation</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
 
 
             
@@ -813,44 +427,7 @@
                 </td>
             
 
-            <td class="description last">Return pipelines without their definitions</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cluster_manager_timeout</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">Explicit operation timeout for connection to cluster_manager node</td>
+            <td class="description last">Specifies whether to create a PIT with partial failures.</td>
         </tr>
 
     
@@ -877,6 +454,16 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -899,6 +486,16 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -944,7 +541,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_ingest.js.html">api/api/ingest.js</a>, <a href="api_api_ingest.js.html#line153">line 153</a>
+        <a href="api_api_create_pit.js.html">api/api/create_pit.js</a>, <a href="api_api_create_pit.js.html#line56">line 56</a>
     </li></ul></dd>
     
 
@@ -973,7 +570,7 @@
 
         
 <div class="param-desc">
-    <a href="https://opensearch.org/docs/latest/api-reference/ingest-apis/get-ingest/#response">Get Pipeline Response</a>
+    <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#sample-response">Create PIT Response</a>
 </div>
 
 
@@ -1008,7 +605,7 @@
     
 
     
-    <h4 class="name" id="processorGrok"><span class="type-signature">(static) </span>IngestApi#processorGrok<span class="signature">(params, options, callback)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
+    <h4 class="name" id=".deleteAllPitsApi"><span class="type-signature">(static) </span>deleteAllPitsApi<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
     
 
     
@@ -1016,7 +613,8 @@
 
 
 <div class="description">
-    Returns a list of the built-in patterns.
+    Deletes all PITs in the OpenSearch cluster. The Delete All PITs API deletes only local PITs or mixed PITs (PITs created in both local and remote clusters). It does not delete fully remote PITs.
+<br/> See Also: <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#delete-pits">Opensearch - Delete PITs</a>
 </div>
 
 
@@ -1039,6 +637,8 @@
 
         <th>Type</th>
 
+        
+        <th>Attributes</th>
         
 
         
@@ -1065,10 +665,18 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">(Unused)</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -1087,6 +695,16 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1110,6 +728,16 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1155,7 +783,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_ingest.js.html">api/api/ingest.js</a>, <a href="api_api_ingest.js.html#line190">line 190</a>
+        <a href="api_api_delete_all_pits.js.html">api/api/delete_all_pits.js</a>, <a href="api_api_delete_all_pits.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -1183,6 +811,10 @@
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#sample-response-2">Delete all PITs Response</a>
+</div>
+
 
 
 <dl>
@@ -1215,7 +847,7 @@
     
 
     
-    <h4 class="name" id="putPipeline"><span class="type-signature">(static) </span>IngestApi#putPipeline<span class="signature">(params, options, callback)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
+    <h4 class="name" id=".deletePitApi"><span class="type-signature">(static) </span>deletePitApi<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
     
 
     
@@ -1223,8 +855,8 @@
 
 
 <div class="description">
-    Creates or updates a pipeline.
-<br/> See Also: <a href="https://opensearch.org/docs/latest/api-reference/ingest-apis/create-update-ingest/">OpenSearch - Create/Update pipeline</a>
+    Deletes one or several PITs. PITs are automatically deleted when the keep_alive time period elapses. However, to deallocate resources, you can delete a PIT using the Delete PIT API.
+<br/> See Also: <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#delete-pits">Opensearch - Delete PITs</a>
 </div>
 
 
@@ -1248,6 +880,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1261,6 +895,56 @@
         <tr>
             
                 <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>body</code></td>
             
 
             <td class="type">
@@ -1290,8 +974,6 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -1304,128 +986,30 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>pit_id</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Array.&lt;string></span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">Pipeline ID</td>
+            <td class="description last">The PIT IDs of the PITs to be deleted.</td>
         </tr>
 
     
+    </tbody>
+</table>
 
-        <tr>
-            
-                <td class="name"><code>body</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
             </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Ingest definition</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cluster_manager_timeout</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Explicit operation timeout for connection to cluster_manager node</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>timeout</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Explicit operation timeout</td>
         </tr>
 
     
@@ -1452,6 +1036,16 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1474,6 +1068,16 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1519,7 +1123,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_ingest.js.html">api/api/ingest.js</a>, <a href="api_api_ingest.js.html#line228">line 228</a>
+        <a href="api_api_delete_pit.js.html">api/api/delete_pit.js</a>, <a href="api_api_delete_pit.js.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -1548,7 +1152,7 @@
 
         
 <div class="param-desc">
-    <a href="https://opensearch.org/docs/latest/api-reference/ingest-apis/create-update-ingest/#response">Create/Update Pipeline Response</a>
+    <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#sample-response-2">Delete PIT Response</a>
 </div>
 
 
@@ -1583,7 +1187,7 @@
     
 
     
-    <h4 class="name" id="simulate"><span class="type-signature">(static) </span>IngestApi#simulate<span class="signature">(params, options, callback)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
+    <h4 class="name" id=".getAllPitsApi"><span class="type-signature">(static) </span>getAllPitsApi<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
     
 
     
@@ -1591,8 +1195,8 @@
 
 
 <div class="description">
-    Allows to simulate a pipeline with example documents.
-<br/> See Also: <a href="https://opensearch.org/docs/latest/api-reference/ingest-apis/simulate-ingest/">OpenSearch - Simulate Pipeline</a>
+    Returns all PITs in the OpenSearch cluster.
+<br/> See Also: <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#list-all-pits">Opensearch - List all PITs</a>
 </div>
 
 
@@ -1615,6 +1219,8 @@
 
         <th>Type</th>
 
+        
+        <th>Attributes</th>
         
 
         
@@ -1641,116 +1247,6 @@
             </td>
 
             
-
-            
-
-            <td class="description last">
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Pipeline ID</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>verbose</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Verbose mode. Display data output for each processor in executed pipeline</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>body</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
                 <td class="attributes">
                 
 
@@ -1762,14 +1258,7 @@
 
             
 
-            <td class="description last">Simulate definition</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -1788,6 +1277,16 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1811,6 +1310,16 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1856,7 +1365,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_ingest.js.html">api/api/ingest.js</a>, <a href="api_api_ingest.js.html#line275">line 275</a>
+        <a href="api_api_get_all_pits.js.html">api/api/get_all_pits.js</a>, <a href="api_api_get_all_pits.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -1884,6 +1393,10 @@
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#sample-response-1">List all PITs Response</a>
+</div>
+
 
 
 <dl>

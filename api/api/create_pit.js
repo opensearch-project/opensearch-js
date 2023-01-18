@@ -13,6 +13,8 @@
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
+/** @namespace API-PIT */
+
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
   'allow_partial_pit_creation',

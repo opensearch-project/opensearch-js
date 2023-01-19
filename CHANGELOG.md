@@ -23,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `split2` from 3.2.2 to 4.1.0
 - Bumps `@types/node` from 15.14.7 to 18.11.18
 - Bumps `prettier` from 2.7.1 to 2.8.3
+- Bumps `hpagent` from 0.1.2 to 1.2.0
 
 ### Dependencies
 ### Changed

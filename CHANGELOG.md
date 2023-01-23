@@ -25,6 +25,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `prettier` from 2.7.1 to 2.8.3
 - Bumps `hpagent` from 0.1.2 to 1.2.0
 - Bumps `eslint-config-prettier` from 8.5.0 to 8.6.0
+- Bumps `rimraf` from 3.0.2 to 4.1.1
 
 ### Dependencies
 ### Changed

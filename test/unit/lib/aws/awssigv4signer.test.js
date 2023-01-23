@@ -50,7 +50,10 @@ test('Sign with SigV4', (t) => {
   const signedRequest = auth.buildSignedRequestObject(request);
   t.hasProp(signedRequest.headers, 'X-Amz-Date');
   t.hasProp(signedRequest.headers, 'Authorization');
-  t.hasProp(signedRequest.headers, 'x-amz-content-sha256');
+  t.same(
+    signedRequest.headers['x-amz-content-sha256'],
+    'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+  );
   t.same(signedRequest.service, 'es');
 });
 

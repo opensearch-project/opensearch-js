@@ -16,7 +16,7 @@ const { Connection } = require('../../../../index');
 const { Client, buildServer } = require('../../../utils');
 
 test('Sign with SigV4', (t) => {
-  t.plan(3);
+  t.plan(4);
 
   const mockCreds = {
     accessKeyId: uuidv4(),

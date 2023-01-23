@@ -56,6 +56,9 @@ opensearch*
 # documentation
 docs/
 
+# temporary
+tmp/
+
 test/benchmarks/macro/fixtures/*
 
 *-junit.xml

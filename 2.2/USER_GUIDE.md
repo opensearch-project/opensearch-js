@@ -51,7 +51,8 @@ const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws');
 
 const client = new Client({
   ...AwsSigv4Signer({
-    region: 'us-east-1',
+    region: 'us-west-2',
+    service: 'es', // 'aoss' for OpenSearch Serverless
     // Must return a Promise that resolve to an AWS.Credentials object.
     // This function is used to acquire the credentials when the client start and
     // when the credentials are expired.
@@ -72,6 +73,7 @@ const client = new Client({
       }),
   }),
   node: 'https://search-xxx.region.es.amazonaws.com', // OpenSearch domain URL
+  // node: "https://xxx.region.aoss.amazonaws.com" for OpenSearch Serverless
 });
 ```
 
@@ -85,6 +87,7 @@ const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws');
 const client = new Client({
   ...AwsSigv4Signer({
     region: 'us-east-1',
+    service: 'es',  // 'aoss' for OpenSearch Serverless
     // Must return a Promise that resolve to an AWS.Credentials object.
     // This function is used to acquire the credentials when the client start and
     // when the credentials are expired.
@@ -99,6 +102,7 @@ const client = new Client({
     },
   }),
   node: 'https://search-xxx.region.es.amazonaws.com', // OpenSearch domain URL
+  // node: "https://xxx.region.aoss.amazonaws.com" for OpenSearch Serverless
 });
 ```
 

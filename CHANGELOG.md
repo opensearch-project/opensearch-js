@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Documented all API methods ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Added point in time APIs ([#348](https://github.com/opensearch-project/opensearch-js/pull/348))
 - Added support for Amazon OpenSearch Serverless ([#356](https://github.com/opensearch-project/opensearch-js/issues/356))
+- Added Amazon OpenSearch Serverless in user_guide ([#372](https://github.com/opensearch-project/opensearch-js/issues/372))
 
 ### Dependencies
 - Bumps `xmlbuilder2` from 2.4.1 to 3.0.2

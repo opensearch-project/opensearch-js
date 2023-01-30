@@ -21,7 +21,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Replaced `babel-eslint` with `@babel/eslint-parser`
 - Bumps `eslint-plugin-prettier` from 4.0.0 to 4.2.1
 - Bumps `minimist` from 1.2.6 to 1.2.7
-- Bumps `@aws-sdk/types` from 3.190.0 to 3.226.0
+- Bumps `@aws-sdk/types` from 3.226.0 to 3.257.0
+- Bumps `@aws-sdk/types` from 3.190.0 to 3.257.0
 - Bumps `json5` from 2.2.0 to 2.2.3
 - Bumps `split2` from 3.2.2 to 4.1.0
 - Bumps `@types/node` from 15.14.7 to 18.11.18
@@ -30,6 +31,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `eslint-config-prettier` from 8.5.0 to 8.6.0
 - Bumps `rimraf` from 3.0.2 to 4.1.1
 - Bumps `simple-git` from 3.15.1 to 3.16.0
+- Bumps `secure-json-parse` from 2.4.0 to 2.7.0
 
 ### Dependencies
 ### Changed

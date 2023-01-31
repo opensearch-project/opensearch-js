@@ -32,6 +32,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `rimraf` from 3.0.2 to 4.1.1
 - Bumps `simple-git` from 3.15.1 to 3.16.0
 - Bumps `secure-json-parse` from 2.4.0 to 2.7.0
+- Bumps `ora` from 5.4.1 to 6.1.2
 
 ### Dependencies
 ### Changed

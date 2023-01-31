@@ -54,6 +54,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fix mutability of connection headers ([#291](https://github.com/opensearch-project/opensearch-js/issues/291))
+- Added missing types for AwsSigv4SignerOptions.service ([#374](https://github.com/opensearch-project/opensearch-js/pull/374))
 
 [2.1]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.1.0
 [Unreleased]: https://github.com/opensearch-project/opensearch-js/compare/2.1...HEAD

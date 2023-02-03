@@ -40,12 +40,12 @@ export interface BulkIndexOperation extends BulkOperation { }
 export interface BulkIndexResponseItem extends BulkResponseItemBase { }
 
 export interface BulkOperation {
-  _id: Id;
-  _index: IndexName;
-  retry_on_conflict: integer;
-  routing: Routing;
-  version: VersionNumber;
-  version_type: VersionType;
+  _id?: Id;
+  _index?: IndexName;
+  retry_on_conflict?: integer;
+  routing?: Routing;
+  version?: VersionNumber;
+  version_type?: VersionType;
 }
 
 export interface BulkOperationContainer {

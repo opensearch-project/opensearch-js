@@ -36,6 +36,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `secure-json-parse` from 2.4.0 to 2.7.0
 - Bumps `ora` from 5.4.1 to 6.1.2
 - Bumps `simple-statistics` from 7.7.0 to 7.8.3
+- Bumps `dezalgo` from 1.0.3 to 1.0.4
 
 ### Dependencies
 ### Changed

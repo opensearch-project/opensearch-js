@@ -20,6 +20,7 @@ import { OpenSearchClientError } from '../errors';
 interface AwsSigv4SignerOptions {
   getCredentials: () => Promise<Credentials>;
   region: string;
+  service?: 'es' | 'aoss';
 }
 
 interface AwsSigv4SignerResponse {

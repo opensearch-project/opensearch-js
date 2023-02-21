@@ -8,400 +8,400 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-const { test } = require('tap');
-const { URL } = require('url');
-const { v4: uuidv4 } = require('uuid');
-const AwsSigv4Signer = require('../../../../lib/aws/AwsSigv4Signer');
-const AwsSigv4SignerError = require('../../../../lib/aws/errors');
-const { Connection } = require('../../../../index');
-const { Client, buildServer } = require('../../../utils');
+const { test } = require('tap')
+const { URL } = require('url')
+const { v4: uuidv4 } = require('uuid')
+const AwsSigv4Signer = require('../../../../lib/aws/AwsSigv4Signer')
+const AwsSigv4SignerError = require('../../../../lib/aws/errors')
+const { Connection } = require('../../../../index')
+const { Client, buildServer } = require('../../../utils')
 
 test('Sign with SigV4', (t) => {
-  t.plan(2);
+  t.plan(2)
 
   const mockCreds = {
     accessKeyId: uuidv4(),
-    secretAccessKey: uuidv4(),
-  };
+    secretAccessKey: uuidv4()
+  }
 
-  const mockRegion = 'us-west-2';
+  const mockRegion = 'us-west-2'
 
   const AwsSigv4SignerOptions = {
     getCredentials: () =>
       new Promise((resolve) => {
-        setTimeout(() => resolve(mockCreds), 100);
+        setTimeout(() => resolve(mockCreds), 100)
       }),
-    region: mockRegion,
-  };
+    region: mockRegion
+  }
 
-  const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
+  const auth = AwsSigv4Signer(AwsSigv4SignerOptions)
 
   const connection = new Connection({
-    url: new URL('https://localhost:9200'),
-  });
+    url: new URL('https://localhost:9200')
+  })
 
   const request = connection.buildRequestObject({
     path: '/hello',
     method: 'GET',
     headers: {
-      'X-Custom-Test': true,
-    },
-  });
+      'X-Custom-Test': true
+    }
+  })
 
-  const signedRequest = auth.buildSignedRequestObject(request);
-  t.hasProp(signedRequest.headers, 'X-Amz-Date');
-  t.hasProp(signedRequest.headers, 'Authorization');
-});
+  const signedRequest = auth.buildSignedRequestObject(request)
+  t.hasProp(signedRequest.headers, 'X-Amz-Date')
+  t.hasProp(signedRequest.headers, 'Authorization')
+})
 
 test('Sign with SigV4 failure (with empty region)', (t) => {
-  t.plan(2);
+  t.plan(2)
 
   const mockCreds = {
     accessKeyId: uuidv4(),
-    secretAccessKey: uuidv4(),
-  };
+    secretAccessKey: uuidv4()
+  }
 
   const AwsSigv4SignerOptions = {
     getCredentials: () =>
       new Promise((resolve) => {
-        setTimeout(() => resolve(mockCreds), 100);
-      }),
-  };
+        setTimeout(() => resolve(mockCreds), 100)
+      })
+  }
 
   try {
-    AwsSigv4Signer(AwsSigv4SignerOptions);
-    t.fail('Should fail');
+    AwsSigv4Signer(AwsSigv4SignerOptions)
+    t.fail('Should fail')
   } catch (err) {
-    t.ok(err instanceof AwsSigv4SignerError);
-    t.same(err.message, 'Region cannot be empty');
+    t.ok(err instanceof AwsSigv4SignerError)
+    t.same(err.message, 'Region cannot be empty')
   }
-});
+})
 
 test('Sign with SigV4 failure (without getCredentials function)', (t) => {
-  t.plan(2);
+  t.plan(2)
 
-  const mockRegion = 'us-west-2';
+  const mockRegion = 'us-west-2'
 
-  const AwsSigv4SignerOptions = { region: mockRegion };
+  const AwsSigv4SignerOptions = { region: mockRegion }
 
   try {
-    AwsSigv4Signer(AwsSigv4SignerOptions);
-    t.fail('Should fail');
+    AwsSigv4Signer(AwsSigv4SignerOptions)
+    t.fail('Should fail')
   } catch (err) {
-    t.ok(err instanceof AwsSigv4SignerError);
-    t.same(err.message, 'getCredentials function is required');
+    t.ok(err instanceof AwsSigv4SignerError)
+    t.same(err.message, 'getCredentials function is required')
   }
-});
+})
 
 test('Basic aws (promises)', (t) => {
-  t.plan(4);
+  t.plan(4)
 
-  function handler(req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8');
-    res.end(JSON.stringify({ hello: 'world' }));
+  function handler (req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8')
+    res.end(JSON.stringify({ hello: 'world' }))
   }
 
   buildServer(handler, ({ port }, server) => {
-    const mockRegion = 'us-east-1';
+    const mockRegion = 'us-east-1'
 
-    let getCredentialsCalled = 0;
+    let getCredentialsCalled = 0
     const AwsSigv4SignerOptions = {
       region: mockRegion,
       getCredentials: () =>
         new Promise((resolve) => {
           setTimeout(() => {
-            getCredentialsCalled++;
+            getCredentialsCalled++
             resolve({
               accessKeyId: uuidv4(),
               secretAccessKey: uuidv4(),
               expired: false,
-              expireTime: new Date(Date.now() + 1000 * 60 * 60),
-            });
-          }, 100);
-        }),
-    };
+              expireTime: new Date(Date.now() + 1000 * 60 * 60)
+            })
+          }, 100)
+        })
+    }
     const client = new Client({
       ...AwsSigv4Signer(AwsSigv4SignerOptions),
-      node: `http://localhost:${port}`,
-    });
+      node: `http://localhost:${port}`
+    })
 
     client
       .search({
         index: 'test',
-        q: 'foo:bar',
+        q: 'foo:bar'
       })
       .then(({ body }) => {
-        t.same(body, { hello: 'world' });
-        t.same(getCredentialsCalled, 1);
+        t.same(body, { hello: 'world' })
+        t.same(getCredentialsCalled, 1)
         client
           .search({
             index: 'test',
-            q: 'foo:bar',
+            q: 'foo:bar'
           })
           .then(({ body }) => {
-            t.same(body, { hello: 'world' });
-            t.same(getCredentialsCalled, 1);
+            t.same(body, { hello: 'world' })
+            t.same(getCredentialsCalled, 1)
 
-            server.stop();
+            server.stop()
           })
-          .catch(t.fail);
+          .catch(t.fail)
       })
-      .catch(t.fail);
-  });
-});
+      .catch(t.fail)
+  })
+})
 
 test('Basic with expired token (promises)', (t) => {
-  t.plan(4);
+  t.plan(4)
 
-  function handler(req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8');
-    res.end(JSON.stringify({ hello: 'world' }));
+  function handler (req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8')
+    res.end(JSON.stringify({ hello: 'world' }))
   }
 
   buildServer(handler, ({ port }, server) => {
-    const mockRegion = 'us-east-1';
+    const mockRegion = 'us-east-1'
 
-    let getCredentialsCalled = 0;
+    let getCredentialsCalled = 0
     const getCredentials = () =>
       new Promise((resolve) => {
         setTimeout(() => {
-          getCredentialsCalled++;
+          getCredentialsCalled++
           resolve({
             accessKeyId: uuidv4(),
             secretAccessKey: uuidv4(),
             expired: true,
-            expireTime: new Date(Date.now() - 1000),
-          });
-        }, 100);
-      });
+            expireTime: new Date(Date.now() - 1000)
+          })
+        }, 100)
+      })
 
     const AwsSigv4SignerOptions = {
-      getCredentials: getCredentials,
-      region: mockRegion,
-    };
+      getCredentials,
+      region: mockRegion
+    }
 
-    const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
+    const auth = AwsSigv4Signer(AwsSigv4SignerOptions)
 
     const client = new Client({
       ...auth,
-      node: `http://localhost:${port}`,
-    });
+      node: `http://localhost:${port}`
+    })
 
     client
       .search({
         index: 'test',
-        q: 'foo:bar',
+        q: 'foo:bar'
       })
       .then(({ body }) => {
-        t.same(body, { hello: 'world' });
-        t.same(getCredentialsCalled, 1);
+        t.same(body, { hello: 'world' })
+        t.same(getCredentialsCalled, 1)
         client
           .search({
             index: 'test',
-            q: 'foo:bar',
+            q: 'foo:bar'
           })
           .then(({ body }) => {
-            t.same(body, { hello: 'world' });
-            t.same(getCredentialsCalled, 2);
+            t.same(body, { hello: 'world' })
+            t.same(getCredentialsCalled, 2)
 
-            server.stop();
+            server.stop()
           })
-          .catch(t.fail);
+          .catch(t.fail)
       })
-      .catch(t.fail);
-  });
-});
+      .catch(t.fail)
+  })
+})
 
 test('Basic with expired token and credentials sdk refresh (promises)', (t) => {
-  t.plan(6);
+  t.plan(6)
 
-  function handler(req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8');
-    res.end(JSON.stringify({ hello: 'world' }));
+  function handler (req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8')
+    res.end(JSON.stringify({ hello: 'world' }))
   }
 
   buildServer(handler, ({ port }, server) => {
-    const mockRegion = 'us-east-1';
+    const mockRegion = 'us-east-1'
 
-    let getCredentialsCalled = 0;
-    let refreshPromiseCalled = 0;
+    let getCredentialsCalled = 0
+    let refreshPromiseCalled = 0
     const getCredentials = () =>
       new Promise((resolve) => {
         setTimeout(() => {
-          getCredentialsCalled++;
+          getCredentialsCalled++
           resolve({
             accessKeyId: uuidv4(),
             secretAccessKey: uuidv4(),
             needsRefresh: () => true,
             refreshPromise: () =>
               new Promise((resolve) => {
-                refreshPromiseCalled++;
+                refreshPromiseCalled++
                 resolve({
                   accessKeyId: uuidv4(),
                   secretAccessKey: uuidv4(),
-                  expired: false,
-                });
-              }),
-          });
-        }, 100);
-      });
+                  expired: false
+                })
+              })
+          })
+        }, 100)
+      })
 
     const AwsSigv4SignerOptions = {
-      getCredentials: getCredentials,
-      region: mockRegion,
-    };
+      getCredentials,
+      region: mockRegion
+    }
 
-    const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
+    const auth = AwsSigv4Signer(AwsSigv4SignerOptions)
 
     const client = new Client({
       ...auth,
-      node: `http://localhost:${port}`,
-    });
+      node: `http://localhost:${port}`
+    })
 
     client
       .search({
         index: 'test',
-        q: 'foo:bar',
+        q: 'foo:bar'
       })
       .then(({ body }) => {
-        t.same(body, { hello: 'world' });
-        t.same(getCredentialsCalled, 1);
-        t.same(refreshPromiseCalled, 0);
+        t.same(body, { hello: 'world' })
+        t.same(getCredentialsCalled, 1)
+        t.same(refreshPromiseCalled, 0)
         client
           .search({
             index: 'test',
-            q: 'foo:bar',
+            q: 'foo:bar'
           })
           .then(({ body }) => {
-            t.same(body, { hello: 'world' });
-            t.same(getCredentialsCalled, 1);
-            t.same(refreshPromiseCalled, 1);
+            t.same(body, { hello: 'world' })
+            t.same(getCredentialsCalled, 1)
+            t.same(refreshPromiseCalled, 1)
 
-            server.stop();
+            server.stop()
           })
-          .catch(t.fail);
+          .catch(t.fail)
       })
-      .catch(t.fail);
-  });
-});
+      .catch(t.fail)
+  })
+})
 
 test('Basic aws (callback)', (t) => {
-  t.plan(6);
+  t.plan(6)
 
-  function handler(req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8');
-    res.end(JSON.stringify({ hello: 'world' }));
+  function handler (req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8')
+    res.end(JSON.stringify({ hello: 'world' }))
   }
 
   buildServer(handler, ({ port }, server) => {
-    const mockRegion = 'us-east-1';
+    const mockRegion = 'us-east-1'
 
-    let getCredentialsCalled = 0;
+    let getCredentialsCalled = 0
     const AwsSigv4SignerOptions = {
       region: mockRegion,
       getCredentials: () =>
         new Promise((resolve) => {
           setTimeout(() => {
-            getCredentialsCalled++;
+            getCredentialsCalled++
             resolve({
               accessKeyId: uuidv4(),
               secretAccessKey: uuidv4(),
-              expiration: new Date(Date.now() + 1000 * 60 * 60),
-            });
-          }, 100);
-        }),
-    };
+              expiration: new Date(Date.now() + 1000 * 60 * 60)
+            })
+          }, 100)
+        })
+    }
     const client = new Client({
       ...AwsSigv4Signer(AwsSigv4SignerOptions),
-      node: `http://localhost:${port}`,
-    });
+      node: `http://localhost:${port}`
+    })
 
     client.search(
       {
         index: 'test',
-        q: 'foo:bar',
+        q: 'foo:bar'
       },
       (err, { body }) => {
-        t.error(err);
-        t.same(body, { hello: 'world' });
-        t.same(getCredentialsCalled, 1);
+        t.error(err)
+        t.same(body, { hello: 'world' })
+        t.same(getCredentialsCalled, 1)
         client.search(
           {
             index: 'test',
-            q: 'foo:bar',
+            q: 'foo:bar'
           },
           (err, { body }) => {
-            t.error(err);
-            t.same(body, { hello: 'world' });
-            t.same(getCredentialsCalled, 1);
-            server.stop();
+            t.error(err)
+            t.same(body, { hello: 'world' })
+            t.same(getCredentialsCalled, 1)
+            server.stop()
           }
-        );
+        )
       }
-    );
-  });
-});
+    )
+  })
+})
 
 test('Basic aws failure to refresh credentials', (t) => {
-  t.plan(4);
+  t.plan(4)
 
-  function handler(req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8');
-    res.end(JSON.stringify({ hello: 'world' }));
+  function handler (req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8')
+    res.end(JSON.stringify({ hello: 'world' }))
   }
 
   buildServer(handler, ({ port }, server) => {
-    const mockRegion = 'us-east-1';
+    const mockRegion = 'us-east-1'
 
-    let getCredentialsCalled = 0;
+    let getCredentialsCalled = 0
     const AwsSigv4SignerOptions = {
       region: mockRegion,
       getCredentials: () =>
         new Promise((resolve, reject) => {
           setTimeout(() => {
-            getCredentialsCalled++;
+            getCredentialsCalled++
             if (getCredentialsCalled === 1) {
               resolve({
                 accessKeyId: uuidv4(),
                 secretAccessKey: uuidv4(),
-                expireTime: new Date(Date.now() - 1000 * 60 * 60),
-              });
+                expireTime: new Date(Date.now() - 1000 * 60 * 60)
+              })
             } else {
-              reject(new Error('Failed to refresh credentials'));
+              reject(new Error('Failed to refresh credentials'))
             }
-          }, 100);
-        }),
-    };
+          }, 100)
+        })
+    }
     const client = new Client({
       ...AwsSigv4Signer(AwsSigv4SignerOptions),
-      node: `http://localhost:${port}`,
-    });
+      node: `http://localhost:${port}`
+    })
 
     client
       .search({
         index: 'test',
-        q: 'foo:bar',
+        q: 'foo:bar'
       })
       .then(({ body }) => {
-        t.same(body, { hello: 'world' });
-        t.same(getCredentialsCalled, 1);
+        t.same(body, { hello: 'world' })
+        t.same(getCredentialsCalled, 1)
         client
           .search({
             index: 'test',
-            q: 'foo:bar',
+            q: 'foo:bar'
           })
           .then(({ body }) => {
-            t.same(getCredentialsCalled, 2);
-            t.fail('Should fail');
+            t.same(getCredentialsCalled, 2)
+            t.fail('Should fail')
           })
           .catch((err) => {
-            t.ok(err);
-            t.same(getCredentialsCalled, 2);
+            t.ok(err)
+            t.same(getCredentialsCalled, 2)
           })
           .finally(() => {
-            server.stop();
-          });
+            server.stop()
+          })
       })
-      .catch(t.fail);
-  });
-});
+      .catch(t.fail)
+  })
+})

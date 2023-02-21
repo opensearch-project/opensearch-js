@@ -76,7 +76,7 @@ test('Should update the connection pool', t => {
         if (id === 'node0') {
           t.same(hosts[i], {
             url: new URL(nodes[id].url),
-            id: id,
+            id,
             roles: {
               master: true,
               data: true,
@@ -86,7 +86,7 @@ test('Should update the connection pool', t => {
         } else {
           t.same(hosts[i], {
             url: new URL(nodes[id].url),
-            id: id,
+            id,
             roles: {
               master: true,
               data: true,

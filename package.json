@@ -8,7 +8,18 @@
       "require": "./index.js",
       "import": "./index.mjs"
     },
+    "./aws": "./lib/aws/index.js",
     "./": "./"
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "index.d.ts"
+      ],
+      "aws": [
+        "./lib/aws/index.d.ts"
+      ]
+    }
   },
   "homepage": "https://www.opensearch.org/",
   "version": "1.1.0",
@@ -44,8 +55,9 @@
     "company": "Elasticsearch BV"
   },
   "devDependencies": {
+    "@aws-sdk/types": "^3.272.0",
     "@sinonjs/fake-timers": "github:sinonjs/fake-timers#0bfffc1",
-    "@types/node": "^15.3.1",
+    "@types/node": "^18.14.0",
     "convert-hrtime": "^5.0.0",
     "cross-zip": "^4.0.0",
     "dedent": "^0.7.0",
@@ -73,6 +85,7 @@
     "xmlbuilder2": "^2.4.1"
   },
   "dependencies": {
+    "aws4": "^1.11.0",
     "debug": "^4.3.1",
     "hpagent": "^0.1.1",
     "ms": "^2.1.3",

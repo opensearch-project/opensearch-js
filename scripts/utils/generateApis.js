@@ -262,7 +262,7 @@ function generateSingleApi (version, spec, common) {
   return {
     name,
     code,
-    acceptedQuerystring: acceptedQuerystring,
+    acceptedQuerystring,
     snakeCase: genSnakeCaseMap(),
     documentation: generateDocumentation(spec[api], api)
   }

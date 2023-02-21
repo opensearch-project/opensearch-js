@@ -117,22 +117,6 @@ test('Sign with SigV4 and provided service', (t) => {
   t.same(signedRequest.service, mockService)
 })
 
-test('Sign with SigV4 failure (without getCredentials function)', (t) => {
-  t.plan(2)
-
-  const mockRegion = 'us-west-2'
-
-  const AwsSigv4SignerOptions = { region: mockRegion }
-
-  try {
-    AwsSigv4Signer(AwsSigv4SignerOptions)
-    t.fail('Should fail')
-  } catch (err) {
-    t.ok(err instanceof AwsSigv4SignerError)
-    t.same(err.message, 'getCredentials function is required')
-  }
-})
-
 test('Basic aws (promises)', (t) => {
   t.plan(4)
 

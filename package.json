@@ -57,7 +57,7 @@
   "devDependencies": {
     "@aws-sdk/types": "^3.272.0",
     "@sinonjs/fake-timers": "github:sinonjs/fake-timers#0bfffc1",
-    "@types/node": "^15.3.1",
+    "@types/node": "^18.14.0",
     "convert-hrtime": "^5.0.0",
     "cross-zip": "^4.0.0",
     "dedent": "^0.7.0",

@@ -17,7 +17,7 @@ const { Connection } = require('../../../../index')
 const { Client, buildServer } = require('../../../utils')
 
 test('Sign with SigV4', (t) => {
-  t.plan(2)
+  t.plan(3)
 
   const mockCreds = {
     accessKeyId: uuidv4(),
@@ -51,15 +51,16 @@ test('Sign with SigV4', (t) => {
   const signedRequest = auth.buildSignedRequestObject(request)
   t.hasProp(signedRequest.headers, 'X-Amz-Date')
   t.hasProp(signedRequest.headers, 'Authorization')
+  t.same(signedRequest.service, 'es')
 })
 
 test('Sign with SigV4 failure (with empty region)', (t) => {
-  t.plan(2)
-
   const mockCreds = {
     accessKeyId: uuidv4(),
     secretAccessKey: uuidv4()
   }
+
+  const mockRegions = [{ region: undefined }, { region: null }, { region: '' }, {}]
 
   const AwsSigv4SignerOptions = {
     getCredentials: () =>
@@ -68,13 +69,52 @@ test('Sign with SigV4 failure (with empty region)', (t) => {
       })
   }
 
-  try {
-    AwsSigv4Signer(AwsSigv4SignerOptions)
-    t.fail('Should fail')
-  } catch (err) {
-    t.ok(err instanceof AwsSigv4SignerError)
-    t.same(err.message, 'Region cannot be empty')
+  mockRegions.forEach((region) => {
+    try {
+      AwsSigv4Signer(Object.assign({}, AwsSigv4SignerOptions, region))
+      t.fail('Should fail')
+    } catch (err) {
+      t.ok(err instanceof AwsSigv4SignerError)
+      t.same(err.message, 'Region cannot be empty')
+    }
+  })
+
+  t.end()
+})
+
+test('Sign with SigV4 and provided service', (t) => {
+  t.plan(1)
+
+  const mockCreds = {
+    accessKeyId: uuidv4(),
+    secretAccessKey: uuidv4()
   }
+
+  const mockRegion = 'us-west-2'
+  const mockService = 'foo'
+
+  const AwsSigv4SignerOptions = {
+    getCredentials: () =>
+      new Promise((resolve) => {
+        setTimeout(() => resolve(mockCreds), 100)
+      }),
+    region: mockRegion,
+    service: mockService
+  }
+
+  const auth = AwsSigv4Signer(AwsSigv4SignerOptions)
+
+  const connection = new Connection({
+    url: new URL('https://localhost:9200')
+  })
+
+  const request = connection.buildRequestObject({
+    path: '/hello',
+    method: 'GET'
+  })
+
+  const signedRequest = auth.buildSignedRequestObject(request)
+  t.same(signedRequest.service, mockService)
 })
 
 test('Sign with SigV4 failure (without getCredentials function)', (t) => {

@@ -1323,7 +1323,7 @@ test(`Should mark as dead connections where the statusCode is 502/3/4
         t.match(err, {
           body: { hello: 'world' },
           headers: { 'content-type': 'application/json;utf=8' },
-          statusCode: statusCode
+          statusCode
         })
       })
     })

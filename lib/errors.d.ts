@@ -69,7 +69,6 @@ export declare class SerializationError extends OpenSearchClientError {
   message: string;
   data: any;
   constructor(message: string, data: any);
-  constructor(message: string);
 }
 
 export declare class DeserializationError extends OpenSearchClientError {

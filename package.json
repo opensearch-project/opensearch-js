@@ -10,7 +10,7 @@
       "import": "./index.mjs"
     },
     "./aws": "./lib/aws/index.js",
-    "./": "./"
+    "./*": "./*"
   },
   "typesVersions": {
     "*": {

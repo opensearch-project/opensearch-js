@@ -81,22 +81,9 @@ function runner(opts = {}) {
   });
 }
 
-async function waitCluster(client, times = 0) {
-  try {
-    await client.cluster.health({ waitForStatus: 'green', timeout: '50s' });
-  } catch (err) {
-    if (++times < 10) {
-      await sleep(5000);
-      return waitCluster(client, times);
-    }
-    console.error(err);
-    process.exit(1);
-  }
-}
 
 async function start({ client }) {
   log('Waiting for OpenSearch');
-  await waitCluster(client);
 
   const { body } = await client.info();
   const { number: version, build_hash: hash } = body.version;

@@ -40,6 +40,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Documented all API methods ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Added point in time APIs ([#348](https://github.com/opensearch-project/opensearch-js/pull/348))
 - Added support for Amazon OpenSearch Serverless ([#356](https://github.com/opensearch-project/opensearch-js/issues/356))
+- Added required `array` argument when invoking `SerializationError` ([#419](https://github.com/opensearch-project/opensearch-js/pull/419))
 - Removed unnecessary `data` argument when invoking `OpenSearchClientError` ([#421](https://github.com/opensearch-project/opensearch-js/pull/421))
 
 ### Dependencies

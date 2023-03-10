@@ -42,7 +42,6 @@ const client = new Client({
 });
 
 beforeEach(async () => {
-
   await client.indices.create({ index: INDEX });
 });
 

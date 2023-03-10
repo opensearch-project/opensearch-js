@@ -37,8 +37,6 @@ const buildProxy = require('./buildProxy');
 const connection = require('./MockConnection');
 const { Client } = require('../../');
 
-
-
 function skipCompatibleCheck(client) {
   const tSymbol = Object.getOwnPropertySymbols(client.transport || client).filter(
     (symbol) => symbol.description === 'compatible check'

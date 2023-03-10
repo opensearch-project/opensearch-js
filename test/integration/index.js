@@ -81,7 +81,6 @@ function runner(opts = {}) {
   });
 }
 
-
 async function start({ client }) {
   log('Waiting for OpenSearch');
 

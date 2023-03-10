@@ -17,6 +17,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@aws-sdk/types` from 3.190.0 to 3.257.0
 - Bumps `secure-json-parse` from 2.4.0 to 2.7.0
 - Bumps `simple-git` from 3.15.1 to 3.16.0
+- Bumps `deepmerge` from 4.2.2 to 4.3.0
+- Bumps `tap` from 16.3.0 to 16.3.4
 ### Changed
 - Remove test artifacts from gh_pages workflow ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Make fields in `BulkOperation` optional to match OpenSearch Bulk API requirements ([#378](https://github.com/opensearch-project/opensearch-js/pull/378))
@@ -38,6 +40,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Documented all API methods ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Added point in time APIs ([#348](https://github.com/opensearch-project/opensearch-js/pull/348))
 - Added support for Amazon OpenSearch Serverless ([#356](https://github.com/opensearch-project/opensearch-js/issues/356))
+- Added required `array` argument when invoking `SerializationError` ([#419](https://github.com/opensearch-project/opensearch-js/pull/419))
+- Removed unnecessary `data` argument when invoking `OpenSearchClientError` ([#421](https://github.com/opensearch-project/opensearch-js/pull/421))
 
 ### Dependencies
 - Bumps `xmlbuilder2` from 2.4.1 to 3.0.2

@@ -29,8 +29,6 @@
 
 'use strict';
 
-const { promisify } = require('util');
-const sleep = promisify(setTimeout);
 const buildServer = require('./buildServer');
 const buildCluster = require('./buildCluster');
 const buildProxy = require('./buildProxy');

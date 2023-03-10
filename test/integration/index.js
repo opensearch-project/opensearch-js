@@ -40,7 +40,6 @@ const yaml = require('js-yaml');
 const ms = require('ms');
 const { Client } = require('../../index');
 const build = require('./test-runner');
-const { sleep } = require('./helper');
 const createJunitReporter = require('./reporter');
 const downloadArtifacts = require('../../scripts/download-artifacts');
 

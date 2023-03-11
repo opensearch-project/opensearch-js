@@ -176,6 +176,59 @@ NodesApi.prototype.getMeteringInfo = function nodesGetMeteringInfoApi(params, op
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
+
+// Issue #240. This commented section must be removed, if the same function below this one is approved to be correct solution to the duplication error
+// NodesApi.prototype.hotThreads = function nodesHotThreadsApi(params, options, callback) {
+//   [params, options, callback] = normalizeArguments(params, options, callback);
+
+//   let { method, body, nodeId, node_id, ...querystring } = params;
+//   querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
+
+//   let path = '';
+//   if ((node_id || nodeId) != null) {
+//     if (method == null) method = 'GET';
+//     path = '/' + '_nodes' + '/' + encodeURIComponent(node_id || nodeId) + '/' + 'hot_threads';
+//   } else if ((node_id || nodeId) != null) {
+//     if (method == null) method = 'GET';
+//     path =
+//       '/' +
+//       '_cluster' +
+//       '/' +
+//       'nodes' +
+//       '/' +
+//       encodeURIComponent(node_id || nodeId) +
+//       '/' +
+//       'hotthreads';
+//   } else if ((node_id || nodeId) != null) {
+//     if (method == null) method = 'GET';
+//     path = '/' + '_nodes' + '/' + encodeURIComponent(node_id || nodeId) + '/' + 'hotthreads';
+//   } else if ((node_id || nodeId) != null) {
+//     if (method == null) method = 'GET';
+//     path =
+//       '/' +
+//       '_cluster' +
+//       '/' +
+//       'nodes' +
+//       '/' +
+//       encodeURIComponent(node_id || nodeId) +
+//       '/' +
+//       'hot_threads';
+//   } else {
+//     if (method == null) method = 'GET';
+//     path = '/' + '_nodes' + '/' + 'hot_threads';
+//   }
+
+//   // build request object
+//   const request = {
+//     method,
+//     path,
+//     body: null,
+//     querystring,
+//   };
+
+//   return this.transport.request(request, options, callback);
+// };
+
 NodesApi.prototype.hotThreads = function nodesHotThreadsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -183,34 +236,15 @@ NodesApi.prototype.hotThreads = function nodesHotThreadsApi(params, options, cal
   querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
   let path = '';
-  if ((node_id || nodeId) != null) {
+  if (node_id != null || nodeId != null) {
     if (method == null) method = 'GET';
-    path = '/' + '_nodes' + '/' + encodeURIComponent(node_id || nodeId) + '/' + 'hot_threads';
-  } else if ((node_id || nodeId) != null) {
-    if (method == null) method = 'GET';
-    path =
-      '/' +
-      '_cluster' +
-      '/' +
-      'nodes' +
-      '/' +
-      encodeURIComponent(node_id || nodeId) +
-      '/' +
-      'hotthreads';
-  } else if ((node_id || nodeId) != null) {
-    if (method == null) method = 'GET';
-    path = '/' + '_nodes' + '/' + encodeURIComponent(node_id || nodeId) + '/' + 'hotthreads';
-  } else if ((node_id || nodeId) != null) {
-    if (method == null) method = 'GET';
-    path =
-      '/' +
-      '_cluster' +
-      '/' +
-      'nodes' +
-      '/' +
-      encodeURIComponent(node_id || nodeId) +
-      '/' +
-      'hot_threads';
+    if (node_id != null) {
+      path = '/' + '_nodes' + '/' + encodeURIComponent(node_id) + '/' + 'hot_threads';
+    } else if (nodeId != null) {
+      path = '/' + '_nodes' + '/' + encodeURIComponent(nodeId) + '/' + 'hot_threads';
+    } else {
+      path = '/' + '_nodes' + '/' + 'hot_threads';
+    }
   } else {
     if (method == null) method = 'GET';
     path = '/' + '_nodes' + '/' + 'hot_threads';

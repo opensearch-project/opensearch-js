@@ -1553,6 +1553,58 @@ IndicesApi.prototype.putIndexTemplate = function indicesPutIndexTemplateApi(
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
+
+// Issue #240. This commented section must be removed, if the same function below this one is approved to be correct solution to the duplication error
+// IndicesApi.prototype.putMapping = function indicesPutMappingApi(params, options, callback) {
+//   [params, options, callback] = normalizeArguments(params, options, callback);
+
+//   // check required parameters
+//   if (params.body == null) {
+//     const err = new this[kConfigurationError]('Missing required parameter: body');
+//     return handleError(err, callback);
+//   }
+
+//   let { method, body, index, type, ...querystring } = params;
+//   querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
+
+//   let path = '';
+//   if (index != null && type != null) {
+//     if (method == null) method = 'PUT';
+//     path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_mapping';
+//   } else if (index != null && type != null) {
+//     if (method == null) method = 'PUT';
+//     path = '/' + encodeURIComponent(index) + '/' + '_mapping' + '/' + encodeURIComponent(type);
+//   } else if (index != null && type != null) {
+//     if (method == null) method = 'PUT';
+//     path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_mappings';
+//   } else if (index != null && type != null) {
+//     if (method == null) method = 'PUT';
+//     path = '/' + encodeURIComponent(index) + '/' + '_mappings' + '/' + encodeURIComponent(type);
+//   } else if (index != null) {
+//     if (method == null) method = 'PUT';
+//     path = '/' + encodeURIComponent(index) + '/' + '_mapping';
+//   } else if (type != null) {
+//     if (method == null) method = 'PUT';
+//     path = '/' + '_mappings' + '/' + encodeURIComponent(type);
+//   } else if (index != null) {
+//     if (method == null) method = 'PUT';
+//     path = '/' + encodeURIComponent(index) + '/' + '_mappings';
+//   } else {
+//     if (method == null) method = 'PUT';
+//     path = '/' + '_mapping' + '/' + encodeURIComponent(type);
+//   }
+
+//   // build request object
+//   const request = {
+//     method,
+//     path,
+//     body: body || '',
+//     querystring,
+//   };
+
+//   return this.transport.request(request, options, callback);
+// };
+
 IndicesApi.prototype.putMapping = function indicesPutMappingApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -1568,29 +1620,19 @@ IndicesApi.prototype.putMapping = function indicesPutMappingApi(params, options,
   let path = '';
   if (index != null && type != null) {
     if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_mapping';
-  } else if (index != null && type != null) {
-    if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + '_mapping' + '/' + encodeURIComponent(type);
-  } else if (index != null && type != null) {
-    if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_mappings';
-  } else if (index != null && type != null) {
-    if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + '_mappings' + '/' + encodeURIComponent(type);
+    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/';
   } else if (index != null) {
     if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + '_mapping';
+    path = '/' + encodeURIComponent(index) + '/';
   } else if (type != null) {
     if (method == null) method = 'PUT';
-    path = '/' + '_mappings' + '/' + encodeURIComponent(type);
-  } else if (index != null) {
-    if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + '_mappings';
+    path = '/' + '_mappings' + '/' + encodeURIComponent(type) + '/';
   } else {
     if (method == null) method = 'PUT';
-    path = '/' + '_mapping' + '/' + encodeURIComponent(type);
+    path = '/' + '_mapping' + '/';
   }
+
+  path += '_mapping';
 
   // build request object
   const request = {

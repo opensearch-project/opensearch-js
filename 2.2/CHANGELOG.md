@@ -19,6 +19,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `simple-git` from 3.15.1 to 3.16.0
 - Bumps `deepmerge` from 4.2.2 to 4.3.0
 - Bumps `tap` from 16.3.0 to 16.3.4
+- Bumps `rimraf` from 4.1.1 to 4.4.0
 ### Changed
 - Remove test artifacts from gh_pages workflow ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Make fields in `BulkOperation` optional to match OpenSearch Bulk API requirements ([#378](https://github.com/opensearch-project/opensearch-js/pull/378))

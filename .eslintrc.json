@@ -22,7 +22,7 @@
             }
         ],
         /*temporarily turn off no-dupe-else-if, open an issue to track https://github.com/opensearch-project/opensearch-js/issues/240*/
-        // "no-dupe-else-if": "off",
+        "no-dupe-else-if": "off",
         "no-unused-vars": [
             "error",
             {

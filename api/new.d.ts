@@ -2271,7 +2271,7 @@ declare class Client {
   ): TransportRequestCallback;
 }
 
-export * as opensearchtypes from './types';
+export * as opensearchTypes from './types';
 export {
   Client,
   Transport,

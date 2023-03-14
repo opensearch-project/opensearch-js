@@ -58,7 +58,7 @@ import {
 import Serializer from './lib/Serializer';
 import Helpers from './lib/Helpers';
 import * as errors from './lib/errors';
-import * as opensearchtypes from './api/types';
+import * as opensearchTypes from './api/types';
 import * as RequestParams from './api/requestParams';
 
 declare type callbackFn<TResponse, TContext> = (
@@ -5532,7 +5532,7 @@ export {
   ApiResponse,
   RequestEvent,
   ResurrectEvent,
-  opensearchtypes,
+  opensearchTypes,
   RequestParams,
   ClientOptions,
   NodeOptions,

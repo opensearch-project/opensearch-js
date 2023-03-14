@@ -176,6 +176,7 @@ NodesApi.prototype.getMeteringInfo = function nodesGetMeteringInfoApi(params, op
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
+
 NodesApi.prototype.hotThreads = function nodesHotThreadsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -183,34 +184,15 @@ NodesApi.prototype.hotThreads = function nodesHotThreadsApi(params, options, cal
   querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
 
   let path = '';
-  if ((node_id || nodeId) != null) {
+  if (node_id != null || nodeId != null) {
     if (method == null) method = 'GET';
-    path = '/' + '_nodes' + '/' + encodeURIComponent(node_id || nodeId) + '/' + 'hot_threads';
-  } else if ((node_id || nodeId) != null) {
-    if (method == null) method = 'GET';
-    path =
-      '/' +
-      '_cluster' +
-      '/' +
-      'nodes' +
-      '/' +
-      encodeURIComponent(node_id || nodeId) +
-      '/' +
-      'hotthreads';
-  } else if ((node_id || nodeId) != null) {
-    if (method == null) method = 'GET';
-    path = '/' + '_nodes' + '/' + encodeURIComponent(node_id || nodeId) + '/' + 'hotthreads';
-  } else if ((node_id || nodeId) != null) {
-    if (method == null) method = 'GET';
-    path =
-      '/' +
-      '_cluster' +
-      '/' +
-      'nodes' +
-      '/' +
-      encodeURIComponent(node_id || nodeId) +
-      '/' +
-      'hot_threads';
+    if (node_id != null) {
+      path = '/' + '_nodes' + '/' + encodeURIComponent(node_id) + '/' + 'hot_threads';
+    } else if (nodeId != null) {
+      path = '/' + '_nodes' + '/' + encodeURIComponent(nodeId) + '/' + 'hot_threads';
+    } else {
+      path = '/' + '_nodes' + '/' + 'hot_threads';
+    }
   } else {
     if (method == null) method = 'GET';
     path = '/' + '_nodes' + '/' + 'hot_threads';
@@ -243,6 +225,7 @@ NodesApi.prototype.hotThreads = function nodesHotThreadsApi(params, options, cal
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
+
 NodesApi.prototype.info = function nodesInfoApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

@@ -1553,6 +1553,7 @@ IndicesApi.prototype.putIndexTemplate = function indicesPutIndexTemplateApi(
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
+
 IndicesApi.prototype.putMapping = function indicesPutMappingApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -1568,28 +1569,16 @@ IndicesApi.prototype.putMapping = function indicesPutMappingApi(params, options,
   let path = '';
   if (index != null && type != null) {
     if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_mapping';
-  } else if (index != null && type != null) {
-    if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + '_mapping' + '/' + encodeURIComponent(type);
-  } else if (index != null && type != null) {
-    if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/' + '_mappings';
-  } else if (index != null && type != null) {
-    if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + '_mappings' + '/' + encodeURIComponent(type);
+    path = '/' + encodeURIComponent(index) + '/' + encodeURIComponent(type) + '/';
   } else if (index != null) {
     if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + '_mapping';
+    path = '/' + encodeURIComponent(index) + '/';
   } else if (type != null) {
     if (method == null) method = 'PUT';
-    path = '/' + '_mappings' + '/' + encodeURIComponent(type);
-  } else if (index != null) {
-    if (method == null) method = 'PUT';
-    path = '/' + encodeURIComponent(index) + '/' + '_mappings';
+    path = '/' + '_mappings' + '/' + encodeURIComponent(type) + '/';
   } else {
     if (method == null) method = 'PUT';
-    path = '/' + '_mapping' + '/' + encodeURIComponent(type);
+    path = '/_mapping';
   }
 
   // build request object

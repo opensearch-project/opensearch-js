@@ -35,20 +35,19 @@ Go to your terminal and run:
 
 ```
 cd folder-path
-npm run test:unit
+yarn run test:unit
 ```
 
-To run a specific unit test, you can use the following jest command. `npm test` will not work.
+To run a specific unit test, you can use the following jest command. `yarn test` will not work.
 
 ```
 cd folder-path/to/test
 jest TestName
 ```
 
-If you don't have jest, you can install it via npm or yarn
+If you don't have jest, you can install it via yarn
 
 ```
-npm i -g jest-cli
 yarn global add jest-cli
 ```
 
@@ -69,7 +68,7 @@ If you have not installed docker-compose, you can install it from this [link](ht
 
 2. Run all integration tests.
    ```
-   npm run test:integration:helpers
+   yarn run test:integration:helpers
    ```
 3. Stop and clean containers.
    ```

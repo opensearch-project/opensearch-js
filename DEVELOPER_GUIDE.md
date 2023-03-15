@@ -4,6 +4,8 @@
     - [Install Prerequisites](#install-prerequisites)
       - [Node.js](#nodejs)
       - [Docker](#docker)
+      - [Yarn](#yarn)
+    - [Installing dependencies](#install-dependencies)
     - [Unit Testing](#unit-testing)
     - [Integration Testing](#integration-testing)
       - [Execute integration tests from your terminal](#execute-integration-tests-from-your-terminal)
@@ -25,9 +27,25 @@ e.g. `git clone https://github.com/[your username]/opensearch-js.git`.
 
 The minimum supported version of Node.js is v10.
 
+#### Yarn
+
+This project uses yarn as it's package manager. You can use npm to install yarn:
+
+```
+npm install --global yarn
+```
+
 #### Docker
 
 [Docker](https://docs.docker.com/install/) is required for building some OpenSearch artifacts and executing integration tests.
+
+### Install dependencies
+
+To install all the dependencies needed for this project, run
+
+```
+yarn install
+```
 
 ### Unit Testing
 

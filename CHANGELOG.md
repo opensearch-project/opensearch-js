@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Add release details to releasing.md ([319](https://github.com/opensearch-project/opensearch-js/pull/319))
 - Added Amazon OpenSearch Serverless in user_guide ([#372](https://github.com/opensearch-project/opensearch-js/issues/372))
+- Add guidelines on installing yarn, using yarn to install dependencies in developer_guide ([#439](https://github.com/opensearch-project/opensearch-js/issues/435))
 ### Dependencies
 - Bumps `aws4` from 1.11.0 to 1.12.0
 - Bumps `minimist` from 1.2.6 to 1.2.8
@@ -22,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 - Remove test artifacts from gh_pages workflow ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Make fields in `BulkOperation` optional to match OpenSearch Bulk API requirements ([#378](https://github.com/opensearch-project/opensearch-js/pull/378))
+- Remove guidance on using npm and switch completely to yarn in developer_guide ([#439](https://github.com/opensearch-project/opensearch-js/issues/435))
 ### Deprecated
 ### Removed
 ### Fixed

@@ -5,7 +5,7 @@
       - [Node.js](#nodejs)
       - [Docker](#docker)
       - [Yarn](#yarn)
-    - [Installing dependencies](#installing-dependencies)
+    - [Installing Dependencies](#installing-dependencies)
     - [Using ESLint](#using-ESLint)
     - [Unit Testing](#unit-testing)
     - [Integration Testing](#integration-testing)

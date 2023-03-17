@@ -6,6 +6,7 @@
       - [Docker](#docker)
       - [Yarn](#yarn)
     - [Installing dependencies](#installing-dependencies)
+    - [Using ESLint](#using-ESLint)
     - [Unit Testing](#unit-testing)
     - [Integration Testing](#integration-testing)
       - [Execute integration tests from your terminal](#execute-integration-tests-from-your-terminal)
@@ -46,6 +47,24 @@ To install all the dependencies needed for this project, run
 ```
 yarn install
 ```
+
+## Using ESLint
+
+To do a ESLint check on the project, run:
+
+```
+yarn run lint
+```
+
+To let ESLint to fix errors in your code automatically, run:
+
+```
+yarn run lint:fix
+```
+
+This will instruct ESLint to try to fix as many issues as possible. The fixes are made to the actual files themselves and only the remaining unfixed issues are output.
+
+Not all problems are fixable using this option, and some of them you will need to fix manually.
 
 ### Unit Testing
 

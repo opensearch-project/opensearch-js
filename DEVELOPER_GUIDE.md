@@ -3,10 +3,10 @@
     - [Git Clone OpenSearch Node.js Client Repository](#git-clone-opensearch-nodejs-client-repository)
     - [Install Prerequisites](#install-prerequisites)
       - [Node.js](#nodejs)
-      - [Docker](#docker)
       - [Yarn](#yarn)
+      - [Docker](#docker)
     - [Installing Dependencies](#installing-dependencies)
-    - [Using ESLint](#using-ESLint)
+    - [Using ESLint](#using-eslint)
     - [Unit Testing](#unit-testing)
     - [Integration Testing](#integration-testing)
       - [Execute integration tests from your terminal](#execute-integration-tests-from-your-terminal)
@@ -48,7 +48,7 @@ To install all the dependencies needed for this project, run
 yarn install
 ```
 
-## Using ESLint
+### Using ESLint
 
 To do a ESLint check on the project, run:
 

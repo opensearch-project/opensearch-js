@@ -40,7 +40,7 @@ npm install --global yarn
 
 [Docker](https://docs.docker.com/install/) is required for building some OpenSearch artifacts and executing integration tests.
 
-### Installing dependencies
+### Installing Dependencies
 
 To install all the dependencies needed for this project, run
 

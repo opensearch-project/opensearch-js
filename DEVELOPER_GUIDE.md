@@ -5,7 +5,7 @@
       - [Node.js](#nodejs)
       - [Docker](#docker)
       - [Yarn](#yarn)
-    - [Installing dependencies](#install-dependencies)
+    - [Installing dependencies](#installing-dependencies)
     - [Unit Testing](#unit-testing)
     - [Integration Testing](#integration-testing)
       - [Execute integration tests from your terminal](#execute-integration-tests-from-your-terminal)
@@ -39,7 +39,7 @@ npm install --global yarn
 
 [Docker](https://docs.docker.com/install/) is required for building some OpenSearch artifacts and executing integration tests.
 
-### Install dependencies
+### Installing dependencies
 
 To install all the dependencies needed for this project, run
 

@@ -24,6 +24,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Remove test artifacts from gh_pages workflow ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Make fields in `BulkOperation` optional to match OpenSearch Bulk API requirements ([#378](https://github.com/opensearch-project/opensearch-js/pull/378))
 ### Deprecated
+- Remove deprecation warnings in bulk.test.js ([#434](https://github.com/opensearch-project/opensearch-js/issues/434))
 ### Removed
 - Remove waitCluster in Integration Tests ([#422](https://github.com/opensearch-project/opensearch-js/issues/422))
 ### Fixed

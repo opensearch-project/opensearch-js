@@ -204,7 +204,7 @@ test('Custom http agent', (t) => {
         return agent;
       },
     });
-    t.ok(connection.agent.custom);
+    t.ok(connection._agent.custom);
     connection.request(
       {
         path: '/hello',
@@ -1072,7 +1072,7 @@ test('Proxy agent (http)', (t) => {
     proxy: 'http://localhost:8080',
   });
 
-  t.ok(connection.agent instanceof hpagent.HttpProxyAgent);
+  t.ok(connection._agent instanceof hpagent.HttpProxyAgent);
 });
 
 test('Proxy agent (https)', (t) => {
@@ -1083,7 +1083,7 @@ test('Proxy agent (https)', (t) => {
     proxy: 'http://localhost:8080',
   });
 
-  t.ok(connection.agent instanceof hpagent.HttpsProxyAgent);
+  t.ok(connection._agent instanceof hpagent.HttpsProxyAgent);
 });
 
 test('Abort with a slow body', (t) => {

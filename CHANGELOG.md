@@ -8,7 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `aws4` from 1.11.0 to 1.12.0
 - Bumps `minimist` from 1.2.6 to 1.2.8
-- Bumps `tsd` from 0.24.1 to 0.25.0
+- Bumps `tsd` from 0.24.1 to 0.27.0
 - Bumps `dezalgo` from 1.0.3 to 1.0.4
 - Bumps `simple-statistics` from 7.7.0 to 7.8.3
 - Bumps `eslint` from 8.30.0 to 8.33.0
@@ -19,14 +19,17 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `simple-git` from 3.15.1 to 3.16.0
 - Bumps `deepmerge` from 4.2.2 to 4.3.0
 - Bumps `tap` from 16.3.0 to 16.3.4
+- Bumps `rimraf` from 4.1.1 to 4.4.0
 ### Changed
 - Remove test artifacts from gh_pages workflow ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Make fields in `BulkOperation` optional to match OpenSearch Bulk API requirements ([#378](https://github.com/opensearch-project/opensearch-js/pull/378))
 ### Deprecated
 ### Removed
+- Remove waitCluster in Integration Tests ([#422](https://github.com/opensearch-project/opensearch-js/issues/422))
 ### Fixed
 - Added missing types for AwsSigv4SignerOptions.service ([#377](https://github.com/opensearch-project/opensearch-js/pull/377))
-- 
+- Fixed deprecated folder mapping "./" in the "exports" field module resolution ([#416](https://github.com/opensearch-project/opensearch-js/pull/416))
+
 ### Security
 - [CVE-2022-25912] Bumps simple-git from 3.4.0 to 3.15.0 ([#341](https://github.com/opensearch-project/opensearch-js/pull/341))
 

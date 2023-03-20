@@ -9,7 +9,7 @@
       "types": "./index.d.ts",
       "import": "./index.mjs"
     },
-    "./aws": "./lib/aws/index.js",
+    "./aws": "./lib/aws/index.js", 
     "./*": "./",
     "./opensearch/*": "./lib/opensearch/*",
     "./lib/*": "./lib/*"

@@ -9,8 +9,10 @@
       "types": "./index.d.ts",
       "import": "./index.mjs"
     },
-    "./aws": "./lib/aws/index.js",
-    "./*": "./*"
+    "./aws": "./lib/aws/index.js", 
+    "./*": "./",
+    "./opensearch/*": "./lib/opensearch/*",
+    "./lib/*": "./lib/*"
   },
   "typesVersions": {
     "*": {
@@ -91,6 +93,7 @@
     "xmlbuilder2": "^3.0.2"
   },
   "dependencies": {
+    "@types/react": "17.0.53",
     "aws4": "^1.11.0",
     "debug": "^4.3.1",
     "hpagent": "^1.2.0",

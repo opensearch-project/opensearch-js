@@ -1591,7 +1591,7 @@ IndicesApi.prototype.putMapping = function indicesPutMappingApi(params, options,
     if (method == null) method = 'PUT';
     path = '/' + '_mapping' + '/' + encodeURIComponent(type);
   }
-
+  
   // build request object
   const request = {
     method,

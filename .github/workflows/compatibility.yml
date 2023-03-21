@@ -1,9 +1,9 @@
 name: Integration for Compatibility
 
-# trigger on every commit push and PR for all branches except pushes for backport branches
+# trigger on every commit push and PR for all branches
 on:
   push:
-    branches: ['**', '!backport/**']
+    branches: ['**']
     paths-ignore:
       - '**/*.md'
   pull_request:

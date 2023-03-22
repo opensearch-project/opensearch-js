@@ -80,6 +80,17 @@ test('API', (t) => {
     t.end();
   });
 
+  t.test('call markDead twice', (t) => {
+    const pool = new BaseConnectionPool({ Connection, sniffEnabled: true });
+    const href = 'http://localhost:9200/';
+    let connection = pool.addConnection(href);
+    t.same(pool.markDead(connection), pool);
+    t.same(pool.markDead(connection), pool);
+    connection = pool.connections.find((c) => c.id === href);
+    t.equal(connection.status, Connection.statuses.DEAD);
+    t.end();
+  });
+
   t.test('markAlive', (t) => {
     const pool = new BaseConnectionPool({ Connection, sniffEnabled: true });
     const href = 'http://localhost:9200/';
@@ -87,6 +98,31 @@ test('API', (t) => {
     t.same(pool.markAlive(connection), pool);
     connection = pool.connections.find((c) => c.id === href);
     t.equal(connection.status, Connection.statuses.ALIVE);
+    t.end();
+  });
+
+  t.test('call markAlive twice', (t) => {
+    const pool = new BaseConnectionPool({ Connection, sniffEnabled: true });
+    const href = 'http://localhost:9200/';
+    let connection = pool.addConnection(href);
+    t.same(pool.markAlive(connection), pool);
+    t.same(pool.markAlive(connection), pool);
+    connection = pool.connections.find((c) => c.id === href);
+    t.equal(connection.status, Connection.statuses.ALIVE);
+    t.end();
+  });
+
+  t.test('call markDead and markAlive', (t) => {
+    const pool = new BaseConnectionPool({ Connection, sniffEnabled: true });
+    const href = 'http://localhost:9200/';
+    let connection = pool.addConnection(href);
+    t.same(pool.markDead(connection), pool);
+    t.equal(connection.status, Connection.statuses.DEAD);
+    t.same(pool.markAlive(connection), pool);
+    t.equal(connection.status, Connection.statuses.ALIVE);
+    connection = pool.connections.find((c) => c.id === href);
+    t.equal(connection.status, Connection.statuses.ALIVE);
+    t.not(connection.status, Connection.statuses.DEAD);
     t.end();
   });
 

@@ -1,7 +1,6 @@
 name: Bundler
 
-# trigger on every commit push and PR for all branches
-on:
+# trigger on every commit push and PR for all branches 
   push:
     branches: ['**']
     paths-ignore:
@@ -31,20 +30,9 @@ jobs:
           make cluster.clean cluster.opensearch.build cluster.opensearch.start
 
       - name: Use Node.js 14.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
           node-version: 14.x
-
-      # NPM started understanding yarn.lock file starting from v7
-      - name: Update NPM
-        shell: bash
-        run: |
-          export NPM_VERSION=$(npm -v)
-          export IS_NPM_SUITABLE=$(node -p "parseInt(process.env.NPM_ROOT, 10) >= 7")
-          if [ "$IS_NPM_SUITABLE" == "false" ]; then
-            echo "NPM needs upgrading!"
-            npm i npm@7 -g
-          fi
 
       - name: Install
         run: |

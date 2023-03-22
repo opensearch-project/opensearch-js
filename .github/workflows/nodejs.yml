@@ -1,6 +1,15 @@
 name: Node CI
 
-on: [push, pull_request]
+# trigger on every commit push and PR for all branches
+on:
+  push:
+    branches: ['**']
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    branches: ['**']
+    paths-ignore:
+      - '**/*.md'
 
 jobs:
   test:
@@ -27,8 +36,8 @@ jobs:
       - name: Setup Yarn
         run: |
           npm uninstall -g yarn
-          npm i -g yarn@1.22.10    
-    
+          npm i -g yarn@1.22.10
+
       - name: Lint
         if: matrix.node-version == '16.x'
         run: |

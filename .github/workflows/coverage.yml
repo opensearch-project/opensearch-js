@@ -1,7 +1,15 @@
 name: Coverage
 
-on: [push, pull_request]
-
+# trigger on every commit push and PR for all branches
+on:
+  push:
+    branches: ['**']
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    branches: ['**']
+    paths-ignore:
+      - '**/*.md'
 jobs:
   code-coverage:
     name: Code coverage

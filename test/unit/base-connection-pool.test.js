@@ -76,7 +76,7 @@ test('API', (t) => {
     let connection = pool.addConnection(href);
     t.same(pool.markDead(connection), pool);
     connection = pool.connections.find((c) => c.id === href);
-    t.equal(connection.status, Connection.statuses.ALIVE);
+    t.equal(connection.status, Connection.statuses.DEAD);
     t.end();
   });
 

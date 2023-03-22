@@ -45,6 +45,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Added missing types for AwsSigv4SignerOptions.service ([#377](https://github.com/opensearch-project/opensearch-js/pull/377))
 - Fixed deprecated folder mapping "./" in the "exports" field module resolution ([#416](https://github.com/opensearch-project/opensearch-js/pull/416))
+- Fixed `BaseConnectionPool` markAlive and markDead and their tests ([#449](https://github.com/opensearch-project/opensearch-js/pull/449))
 
 ### Security
 

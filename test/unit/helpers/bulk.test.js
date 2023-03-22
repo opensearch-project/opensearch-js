@@ -1051,11 +1051,11 @@ test('bulk update', (t) => {
     let count = 0;
     const MockConnection = connection.buildMockConnection({
       onRequest(params) {
-        t.strictEqual(params.path, '/_bulk');
+        t.equal(params.path, '/_bulk');
         t.match(params.headers, { 'content-type': 'application/x-ndjson' });
         const [action, payload] = params.body.split('\n');
-        t.deepEqual(JSON.parse(action), { update: { _index: 'test', _id: count } });
-        t.deepEqual(JSON.parse(payload), { doc: dataset[count++], doc_as_upsert: true });
+        t.same(JSON.parse(action), { update: { _index: 'test', _id: count } });
+        t.same(JSON.parse(payload), { doc: dataset[count++], doc_as_upsert: true });
         return { body: { errors: false, items: [{ update: { result: 'noop' } }] } };
       },
     });
@@ -1465,13 +1465,13 @@ test('Flush interval', (t) => {
     let count = 0;
     const MockConnection = connection.buildMockConnection({
       onRequest(params) {
-        t.strictEqual(params.path, '/_bulk');
+        t.equal(params.path, '/_bulk');
         t.match(params.headers, {
           'content-type': 'application/x-ndjson',
         });
         const [action, payload] = params.body.split('\n');
-        t.deepEqual(JSON.parse(action), { index: { _index: 'test' } });
-        t.deepEqual(JSON.parse(payload), dataset[count++]);
+        t.same(JSON.parse(action), { index: { _index: 'test' } });
+        t.same(JSON.parse(payload), dataset[count++]);
         return { body: { errors: false, items: [{}] } };
       },
     });

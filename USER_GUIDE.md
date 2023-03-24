@@ -250,3 +250,18 @@ var response = await client.deleteAllPits();
 
 console.log(response.body);
 ```
+
+## Empty all pool connections
+```javascript
+console.log('Emptying all pool connections:');
+
+var pool = new ConnectionPool({ Connection });
+pool.addConnection('http://localhost:9200/');
+pool.addConnection('http://localhost:9201/');
+
+pool.empty()
+// OR
+pool.empty(() => {
+  console.log('All connections are empty');
+})
+```

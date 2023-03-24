@@ -47,6 +47,16 @@ To install all the dependencies needed for this project, run
 ```
 yarn install
 ```
+There might be an issue on Windows OS:
+```
+yarn. ps1 cannot be loaded because running scripts is disabled on this system
+```
+If it occurs, open Windows PowerShell as an administrator and run:
+```
+Set-ExecutionPolicy unrestricted
+```
+Then type `Y`
+Now you can run `yarn install`
 
 ### Using ESLint
 

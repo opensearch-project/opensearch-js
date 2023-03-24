@@ -1,0 +1,30 @@
+name: Apply 'CCI' label if a CCI is mentioned in the issue
+
+on:
+  issues:
+    types: [opened, reopened, transferred]
+
+jobs:
+  apply-label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        if : ${{ !contains(github.event.issue.body, '[CCI]') }}
+        with:
+          script: |
+            github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'CCI'
+            })
+
+        if : ${{ contains(github.event.issue.body, '[CCI]') }}
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['CCI']
+            })

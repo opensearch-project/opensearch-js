@@ -102,7 +102,7 @@ import { ConnectionOptions } from '../../lib/Connection';
   );
   expectType<Connection>(pool.addConnection({ url: new URL('url') }));
   expectAssignable<ConnectionPool>(pool.removeConnection(new Connection()));
-  expectAssignable<void>(pool.empty());
+  expectType<void>(pool.empty());
   expectAssignable<ConnectionPool>(pool.update([]));
   expectType<any[]>(pool.nodesToHost([], 'https'));
   expectType<ConnectionOptions>(pool.urlToHost('url'));

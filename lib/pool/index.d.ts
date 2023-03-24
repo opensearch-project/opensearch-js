@@ -134,7 +134,7 @@ declare class BaseConnectionPool {
    *
    * @returns {ConnectionPool}
    */
-  empty(): this;
+  empty(callback?: () => void): this;
   /**
    * Update the ConnectionPool with new connections.
    *

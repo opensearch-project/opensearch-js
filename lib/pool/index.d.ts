@@ -31,7 +31,7 @@
 
 import { URL } from 'url';
 import { SecureContextOptions } from 'tls';
-import Connection, { AgentOptions } from '../Connection';
+import Connection, { AgentOptions, ConnectionOptions } from '../Connection';
 import { nodeFilterFn, nodeSelectorFn } from '../Transport';
 
 interface BaseConnectionPoolOptions {
@@ -121,7 +121,7 @@ declare class BaseConnectionPool {
    * @param {object|string} host
    * @returns {ConnectionPool}
    */
-  addConnection(opts: any): Connection;
+  addConnection(opts: ConnectionOptions | ConnectionOptions[]): Connection;
   /**
    * Removes a new connection to the pool.
    *
@@ -155,7 +155,7 @@ declare class BaseConnectionPool {
    * @param {string} url
    * @returns {object} host
    */
-  urlToHost(url: string): { url: URL };
+  urlToHost(url: string): ConnectionOptions;
 }
 
 declare class ConnectionPool extends BaseConnectionPool {

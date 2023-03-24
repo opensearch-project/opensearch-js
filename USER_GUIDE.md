@@ -10,6 +10,7 @@
   - [Search for the Document](#search-for-the-document)
   - [Delete the document](#delete-the-document)
   - [Delete the index](#delete-the-index)
+  - [Empty all Pool Connections](#empty-all-pool-connections)
 
 ## Initializing a Client
 
@@ -87,7 +88,7 @@ const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws');
 const client = new Client({
   ...AwsSigv4Signer({
     region: 'us-east-1',
-    service: 'es',  // 'aoss' for OpenSearch Serverless
+    service: 'es', // 'aoss' for OpenSearch Serverless
     // Must return a Promise that resolve to an AWS.Credentials object.
     // This function is used to acquire the credentials when the client start and
     // when the credentials are expired.
@@ -251,15 +252,16 @@ var response = await client.deleteAllPits();
 console.log(response.body);
 ```
 
-## Empty all pool connections
+## Empty all Pool Connections
+
 ```javascript
 var pool = new ConnectionPool({ Connection });
 pool.addConnection('http://localhost:9200/');
 pool.addConnection('http://localhost:9201/');
 
-pool.empty()
+pool.empty();
 // OR
 pool.empty(() => {
   // Do something after emptying the pool
-})
+});
 ```

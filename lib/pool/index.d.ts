@@ -134,14 +134,14 @@ declare class BaseConnectionPool {
    *
    * @returns {ConnectionPool}
    */
-  empty(callback?: () => void): this;
+  empty(callback?: () => void): void;
   /**
    * Update the ConnectionPool with new connections.
    *
    * @param {array} array of connections
    * @returns {ConnectionPool}
    */
-  update(connections: any[]): this;
+  update(connections: Connection[]): this;
   /**
    * Transforms the nodes objects to a host object.
    *
@@ -183,12 +183,35 @@ declare class ConnectionPool extends BaseConnectionPool {
     opts: resurrectOptions,
     callback?: (isAlive: boolean | null, connection: Connection | null) => void
   ): void;
+
+  /**
+   * Empties the connection pool.
+   */
+  empty(callback?: () => void): void;
+  /**
+   * Update the ConnectionPool with new connections.
+   *
+   * @param {array} array of connections
+   * @returns {ConnectionPool}
+   */
+  update(connections: Connection[]): this;
 }
 
 declare class CloudConnectionPool extends BaseConnectionPool {
   cloudConnection: Connection | null;
   constructor(opts?: BaseConnectionPoolOptions);
   getConnection(): Connection | null;
+  /**
+   * Empties the connection pool.
+   */
+  empty(callback?: () => void): void;
+  /**
+   * Update the ConnectionPool with new connections.
+   *
+   * @param {array} array of connections
+   * @returns {ConnectionPool}
+   */
+  update(connections: Connection[]): this;
 }
 
 declare function defaultNodeFilter(node: Connection): boolean;

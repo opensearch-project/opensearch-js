@@ -121,7 +121,7 @@ declare class BaseConnectionPool {
    * @param {object|string} host
    * @returns {ConnectionPool}
    */
-  addConnection(opts: ConnectionOptions | ConnectionOptions[]): Connection;
+  addConnection(opts: string | ConnectionOptions | ConnectionOptions[]): Connection;
   /**
    * Removes a new connection to the pool.
    *

@@ -56,3 +56,12 @@ test('pool.empty should reset cloudConnection', (t) => {
     t.end();
   });
 });
+
+test('empty with no callback', (t) => {
+  const pool = new CloudConnectionPool({ Connection });
+  pool.addConnection('http://localhost:9200/');
+  t.ok(pool.cloudConnection instanceof Connection);
+  pool.empty();
+  t.equal(pool.cloudConnection, null);
+  t.end();
+});

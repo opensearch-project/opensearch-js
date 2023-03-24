@@ -325,6 +325,16 @@ test('API', (t) => {
     });
   });
 
+  t.test('empty with no callback', (t) => {
+    const pool = new ConnectionPool({ Connection });
+    pool.addConnection('http://localhost:9200/');
+    pool.addConnection('http://localhost:9201/');
+    pool.empty();
+    t.equal(pool.size, 0);
+    t.same(pool.dead, []);
+    t.end();
+  });
+
   t.test('urlToHost', (t) => {
     const pool = new ConnectionPool({ Connection });
     const url = 'http://localhost:9200';

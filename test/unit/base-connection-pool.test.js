@@ -70,6 +70,15 @@ test('API', (t) => {
     t.end();
   });
 
+  t.test('addConnection with only URL', (t) => {
+    const pool = new BaseConnectionPool({ Connection });
+    const href = 'http://localhost:9200/';
+    pool.addConnection({ url: new URL(href) });
+    t.ok(pool.connections.find((c) => c.id === href) instanceof Connection);
+    t.equal(pool.connections.find((c) => c.id === href).status, Connection.statuses.ALIVE);
+    t.end();
+  });
+
   t.test('markDead', (t) => {
     const pool = new BaseConnectionPool({ Connection, sniffEnabled: true });
     const href = 'http://localhost:9200/';

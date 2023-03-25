@@ -61,7 +61,7 @@ If the problem persists, you can try to open Windows PowerShell as an administra
 ```
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted
 ```
-It is recommended to change the execution policy to RemoteSigned or Undefined.
+
 ### Using ESLint
 
 To do a ESLint check on the project, run:

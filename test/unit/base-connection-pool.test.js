@@ -599,5 +599,18 @@ test('API', (t) => {
     }
   });
 
+  t.test('Create Connection with a Connection instance', (t) => {
+    t.plan(1);
+    const pool = new BaseConnectionPool({ Connection });
+    const conn = pool.createConnection('http://localhost:9200');
+    pool.connections.push(conn);
+    try {
+      pool.createConnection(conn);
+      t.fail('Should throw');
+    } catch (err) {
+      t.pass();
+    }
+  });
+
   t.end();
 });

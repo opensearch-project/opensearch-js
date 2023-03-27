@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added Amazon OpenSearch Serverless in user_guide ([#372](https://github.com/opensearch-project/opensearch-js/issues/372))
 - Add guidelines on installing yarn, dependencies; instructions on running ESLint in developer_guide ([#439](https://github.com/opensearch-project/opensearch-js/issues/435))
 - Added pull_request_template ([440](https://github.com/opensearch-project/opensearch-js/pull/440))
+- Added test for creating a connection with an instance of Connection ([#451](https://github.com/opensearch-project/opensearch-js/pull/451))
 
 ### Dependencies
 

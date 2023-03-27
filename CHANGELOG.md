@@ -27,7 +27,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `deepmerge` from 4.2.2 to 4.3.0
 - Bumps `tap` from 16.3.0 to 16.3.4
 - Bumps `rimraf` from 4.1.1 to 4.4.0
-- Bumps `@types/node` from 17.0.45 to 18.15.3
+- Bumps `@types/node` from 17.0.45 to 18.15.10
 - Bumps `caniuse-lite` from 1.0.30001249 to 1.0.30001469
 
 ### Changed

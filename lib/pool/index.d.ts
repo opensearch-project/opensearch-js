@@ -132,7 +132,6 @@ declare class BaseConnectionPool {
   /**
    * Empties the connection pool.
    *
-   * @returns {ConnectionPool}
    */
   empty(callback?: () => void): void;
   /**

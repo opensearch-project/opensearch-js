@@ -28,6 +28,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `tap` from 16.3.0 to 16.3.4
 - Bumps `rimraf` from 4.1.1 to 4.4.0
 - Bumps `@types/node` from 17.0.45 to 18.15.3
+- Bumps `caniuse-lite` from 1.0.30001249 to 1.0.30001469
 
 ### Changed
 
@@ -35,6 +36,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Make fields in `BulkOperation` optional to match OpenSearch Bulk API requirements ([#378](https://github.com/opensearch-project/opensearch-js/pull/378))
 - Remove guidance on using npm and switch completely to yarn in developer_guide ([#439](https://github.com/opensearch-project/opensearch-js/issues/435))
 - Change coverage, compatability, integration, integration with unreleased Open Search, node ci, bundler tests not to run on documentation change ([441](https://github.com/opensearch-project/opensearch-js/pull/441))
+- Change the Windows yarn installation troubleshoot steps ([455](https://github.com/opensearch-project/opensearch-js/issues/455))
 - Make `callback` arg in `BaseConnectionPool`, `CloudConnectionPool` and `ConnectionPool` optional ([#451](https://github.com/opensearch-project/opensearch-js/pull/451))
 
 ### Deprecated
@@ -69,6 +71,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added required `array` argument when invoking `SerializationError` ([#419](https://github.com/opensearch-project/opensearch-js/pull/419))
 - Removed unnecessary `data` argument when invoking `OpenSearchClientError` ([#421](https://github.com/opensearch-project/opensearch-js/pull/421))
 - Fixed typos in `ConnectionPool` ([#427](https://github.com/opensearch-project/opensearch-js/pull/427))
+- Added the solution for the possible error during yarn installation on Windows OS ([#435](https://github.com/opensearch-project/opensearch-js/issues/435))
 
 ### Dependencies
 

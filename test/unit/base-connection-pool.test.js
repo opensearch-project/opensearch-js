@@ -140,6 +140,22 @@ test('API', (t) => {
     t.end();
   });
 
+  t.test('call empty twice', (t) => {
+    const pool = new BaseConnectionPool({ Connection });
+    pool.addConnection('http://localhost:9200/');
+    pool.addConnection('http://localhost:9201/');
+    try {
+      pool.empty();
+      pool.empty(() => {
+        t.equal(pool.size, 0);
+        t.pass();
+      });
+    } catch (error) {
+      t.fail('Should not throw');
+    }
+    t.end();
+  });
+
   t.test('urlToHost', (t) => {
     const pool = new BaseConnectionPool({ Connection });
     const url = 'http://localhost:9200';

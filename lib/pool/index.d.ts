@@ -32,7 +32,7 @@
 
 import { URL } from 'url';
 import { SecureContextOptions } from 'tls';
-import Connection, { AgentOptions } from '../Connection';
+import Connection, { AgentOptions, ConnectionOptions } from '../Connection';
 import { nodeFilterFn, nodeSelectorFn } from '../Transport';
 
 interface BaseConnectionPoolOptions {
@@ -122,7 +122,7 @@ declare class BaseConnectionPool {
    * @param {object|string} host
    * @returns {ConnectionPool}
    */
-  addConnection(opts: any): Connection;
+  addConnection(opts: string | ConnectionOptions | ConnectionOptions[]): Connection;
   /**
    * Removes a new connection to the pool.
    *
@@ -133,16 +133,15 @@ declare class BaseConnectionPool {
   /**
    * Empties the connection pool.
    *
-   * @returns {ConnectionPool}
    */
-  empty(): this;
+  empty(callback?: () => void): void;
   /**
    * Update the ConnectionPool with new connections.
    *
    * @param {array} array of connections
    * @returns {ConnectionPool}
    */
-  update(connections: any[]): this;
+  update(connections: Connection[]): this;
   /**
    * Transforms the nodes objects to a host object.
    *
@@ -156,7 +155,7 @@ declare class BaseConnectionPool {
    * @param {string} url
    * @returns {object} host
    */
-  urlToHost(url: string): { url: URL };
+  urlToHost(url: string): ConnectionOptions;
 }
 
 declare class ConnectionPool extends BaseConnectionPool {
@@ -184,12 +183,35 @@ declare class ConnectionPool extends BaseConnectionPool {
     opts: resurrectOptions,
     callback?: (isAlive: boolean | null, connection: Connection | null) => void
   ): void;
+
+  /**
+   * Empties the connection pool.
+   */
+  empty(callback?: () => void): void;
+  /**
+   * Update the ConnectionPool with new connections.
+   *
+   * @param {array} array of connections
+   * @returns {ConnectionPool}
+   */
+  update(connections: Connection[]): this;
 }
 
 declare class CloudConnectionPool extends BaseConnectionPool {
   cloudConnection: Connection | null;
   constructor(opts?: BaseConnectionPoolOptions);
   getConnection(): Connection | null;
+  /**
+   * Empties the connection pool.
+   */
+  empty(callback?: () => void): void;
+  /**
+   * Update the ConnectionPool with new connections.
+   *
+   * @param {array} array of connections
+   * @returns {ConnectionPool}
+   */
+  update(connections: Connection[]): this;
 }
 
 declare function defaultNodeFilter(node: Connection): boolean;

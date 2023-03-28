@@ -70,6 +70,15 @@ test('API', (t) => {
     t.end();
   });
 
+  t.test('addConnection with only URL', (t) => {
+    const pool = new BaseConnectionPool({ Connection });
+    const href = 'http://localhost:9200/';
+    pool.addConnection({ url: new URL(href) });
+    t.ok(pool.connections.find((c) => c.id === href) instanceof Connection);
+    t.equal(pool.connections.find((c) => c.id === href).status, Connection.statuses.ALIVE);
+    t.end();
+  });
+
   t.test('markDead', (t) => {
     const pool = new BaseConnectionPool({ Connection, sniffEnabled: true });
     const href = 'http://localhost:9200/';
@@ -120,6 +129,31 @@ test('API', (t) => {
       t.equal(pool.size, 0);
       t.end();
     });
+  });
+
+  t.test('empty with no callback', (t) => {
+    const pool = new BaseConnectionPool({ Connection });
+    pool.addConnection('http://localhost:9200/');
+    pool.addConnection('http://localhost:9201/');
+    pool.empty();
+    t.equal(pool.size, 0);
+    t.end();
+  });
+
+  t.test('call empty twice', (t) => {
+    const pool = new BaseConnectionPool({ Connection });
+    pool.addConnection('http://localhost:9200/');
+    pool.addConnection('http://localhost:9201/');
+    try {
+      pool.empty();
+      pool.empty(() => {
+        t.equal(pool.size, 0);
+        t.pass();
+      });
+    } catch (error) {
+      t.fail('Should not throw');
+    }
+    t.end();
   });
 
   t.test('urlToHost', (t) => {
@@ -578,6 +612,19 @@ test('API', (t) => {
       t.fail('Should throw');
     } catch (err) {
       t.equal(err.message, "Connection with id 'http://localhost:9200/' is already present");
+    }
+  });
+
+  t.test('Create Connection with a Connection instance', (t) => {
+    t.plan(1);
+    const pool = new BaseConnectionPool({ Connection });
+    const conn = pool.createConnection('http://localhost:9200');
+    pool.connections.push(conn);
+    try {
+      pool.createConnection(conn);
+      t.fail('Should throw');
+    } catch (err) {
+      t.pass();
     }
   });
 

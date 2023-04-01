@@ -30,7 +30,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 17.0.45 to 18.15.10
 - Bumps `caniuse-lite` from 1.0.30001249 to 1.0.30001469
 - Bumps `eslint-config-prettier` from 8.6.0 to 8.8.0
-
+- Adds  `babel-core`   7.21.4
 ### Changed
 
 - Remove test artifacts from gh_pages workflow ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
@@ -52,6 +52,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Added missing types for AwsSigv4SignerOptions.service ([#377](https://github.com/opensearch-project/opensearch-js/pull/377))
 - Fixed deprecated folder mapping "./" in the "exports" field module resolution ([#416](https://github.com/opensearch-project/opensearch-js/pull/416))
+- Fixed peer dependency warning 'unmet peer dependency "@babel/core@>=7.11.0"'
 
 ### Security
 

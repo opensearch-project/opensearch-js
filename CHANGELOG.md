@@ -24,7 +24,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@aws-sdk/types` from 3.190.0 to 3.257.0
 - Bumps `secure-json-parse` from 2.4.0 to 2.7.0
 - Bumps `simple-git` from 3.15.1 to 3.17.0
-- Bumps `deepmerge` from 4.2.2 to 4.3.0
+- Bumps `deepmerge` from 4.2.2 to 4.3.1
 - Bumps `tap` from 16.3.0 to 16.3.4
 - Bumps `rimraf` from 4.1.1 to 4.4.0
 - Bumps `@types/node` from 17.0.45 to 18.15.10

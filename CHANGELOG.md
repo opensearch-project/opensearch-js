@@ -30,6 +30,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 17.0.45 to 18.15.10
 - Bumps `caniuse-lite` from 1.0.30001249 to 1.0.30001469
 - Bumps `eslint-config-prettier` from 8.6.0 to 8.8.0
+- Bumps `split2` from 4.1.0 to 4.2.0
 
 ### Changed
 

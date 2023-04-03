@@ -31,6 +31,7 @@
 import { expectType, expectAssignable } from 'tsd';
 import { URL } from 'url';
 import { BaseConnectionPool, ConnectionPool, CloudConnectionPool, Connection } from '../../';
+import { ConnectionOptions } from '../../lib/Connection';
 
 {
   const pool = new BaseConnectionPool({
@@ -60,12 +61,12 @@ import { BaseConnectionPool, ConnectionPool, CloudConnectionPool, Connection } f
       now: Date.now(),
     })
   );
-  expectType<Connection>(pool.addConnection({}));
+  expectType<Connection>(pool.addConnection({ url: new URL('url') }));
   expectType<BaseConnectionPool>(pool.removeConnection(new Connection()));
-  expectType<BaseConnectionPool>(pool.empty());
+  expectType<void>(pool.empty());
   expectType<BaseConnectionPool>(pool.update([]));
   expectType<any[]>(pool.nodesToHost([], 'https'));
-  expectType<{ url: URL }>(pool.urlToHost('url'));
+  expectType<ConnectionOptions>(pool.urlToHost('url'));
 }
 
 {
@@ -100,12 +101,12 @@ import { BaseConnectionPool, ConnectionPool, CloudConnectionPool, Connection } f
       now: Date.now(),
     })
   );
-  expectType<Connection>(pool.addConnection({}));
+  expectType<Connection>(pool.addConnection({ url: new URL('url') }));
   expectAssignable<ConnectionPool>(pool.removeConnection(new Connection()));
-  expectAssignable<ConnectionPool>(pool.empty());
+  expectType<void>(pool.empty());
   expectAssignable<ConnectionPool>(pool.update([]));
   expectType<any[]>(pool.nodesToHost([], 'https'));
-  expectType<{ url: URL }>(pool.urlToHost('url'));
+  expectType<ConnectionOptions>(pool.urlToHost('url'));
   expectType<void>(
     pool.resurrect({
       now: Date.now(),

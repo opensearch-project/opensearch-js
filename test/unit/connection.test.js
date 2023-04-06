@@ -1116,3 +1116,28 @@ test('Abort with a slow body', (t) => {
 
   setImmediate(() => request.abort());
 });
+
+test('Connection markDead', (t) => {
+  t.plan(2);
+
+  const connection = new Connection({
+    url: new URL('http://localhost:9200'),
+  });
+
+  connection.markDead();
+  t.equal(connection.status, Connection.statuses.DEAD);
+  t.equal(connection.deadCount, 1);
+});
+
+test('Connection markAlive', (t) => {
+  t.plan(2);
+
+  const connection = new Connection({
+    url: new URL('http://localhost:9200'),
+  });
+
+  connection.markDead();
+  connection.markAlive();
+  t.equal(connection.status, Connection.statuses.ALIVE);
+  t.equal(connection.deadCount, 0);
+});

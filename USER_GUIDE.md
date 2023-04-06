@@ -11,6 +11,7 @@
   - [Delete the document](#delete-the-document)
   - [Delete the index](#delete-the-index)
   - [Empty all Pool Connections](#empty-all-pool-connections)
+  - [Change Connection Status](#change-connection-status)
 
 ## Initializing a Client
 
@@ -264,4 +265,14 @@ pool.empty();
 pool.empty(() => {
   // Do something after emptying the pool
 });
+```
+
+## Change Connection Status
+
+```javascript
+var connection = new Connection({
+  url: new URL('http://localhost:9200'),
+});
+connection.markDead();
+connection.markAlive();
 ```

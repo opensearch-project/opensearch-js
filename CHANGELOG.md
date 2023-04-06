@@ -94,6 +94,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 
 - Remove test artifacts from gh_pages workflow ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
+- Make `TimeoutError` and `RequestAbortedError` classes' `meta` argument optional ([#478](https://github.com/opensearch-project/opensearch-js/pull/478/))
 
 ### Deprecated
 

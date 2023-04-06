@@ -1116,3 +1116,35 @@ test('Abort with a slow body', (t) => {
 
   setImmediate(() => request.abort());
 });
+
+test('Abort with message', (t) => {
+  t.plan(2);
+
+  const connection = new Connection({
+    url: new URL('https://localhost:9200'),
+    proxy: 'http://localhost:8080',
+  });
+
+  const slowBody = new Readable({
+    read() {
+      setTimeout(() => {
+        this.push('{"size":1, "query":{"match_all":{}}}');
+        this.push(null); // EOF
+      }, 1000).unref();
+    },
+  });
+
+  const request = connection.request(
+    {
+      method: 'GET',
+      path: '/',
+      body: slowBody,
+    },
+    (err) => {
+      t.ok(err instanceof RequestAbortedError);
+      t.equal(err.message, 'Request aborted');
+    }
+  );
+
+  setImmediate(() => request.abort());
+});

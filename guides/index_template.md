@@ -40,8 +40,6 @@ client.indices.put_index_template({
   }
 }).then(resp => {
   console.log(`Index template created: ${resp}`);
-}).catch(err => {
-  console.trace(err.message);
 });
 ```
 
@@ -55,9 +53,6 @@ client.indices.create({ index: 'books-nonfiction' })
 })
 .then(response => {
   console.log(response);
-})
-.catch(error => {
-  console.trace(error.message);
 });
 ```
 
@@ -79,9 +74,6 @@ client.indices.put_index_template({
 })
 .then(resp => {
   console.log(`Index template created: ${resp}`);
-})
-.catch(err => {
-  console.trace(err.message);
 });
 
 client.indices.put_index_template({
@@ -101,9 +93,6 @@ client.indices.put_index_template({
 })
 .then(resp => {
   console.log(`Index template created: ${resp}`);
-})
-.catch(err => {
-  console.trace(err.message);
 });
 ```
 
@@ -116,9 +105,6 @@ client.indices.create({ index: 'books-fiction-romance' })
 })
 .then(response => {
   console.log(response);
-})
-.catch(error => {
-  console.trace(error.message);
 });
 ```
 
@@ -143,9 +129,6 @@ client.cluster.put_component_template({
 })
 .then(resp => {
   console.log(`Component template created: ${resp}`);
-})
-.catch(err => {
-  console.trace(err.message);
 });
 
 client.indices.put_index_template({
@@ -166,9 +149,6 @@ client.indices.put_index_template({
 })
 .then(resp => {
   console.log(`Index template created: ${resp}`);
-})
-.catch(err => {
-  console.trace(err.message);
 });
 
 client.indices.put_index_template({
@@ -189,9 +169,6 @@ client.indices.put_index_template({
 })
 .then(resp => {
   console.log(`Index template created: ${resp}`);
-})
-.catch(err => {
-  console.trace(err.message);
 });
 ``` 
 
@@ -204,9 +181,6 @@ client.indices.create({ index: 'books-fiction-horror' })
 })
 .then(response => {
   console.log(response);
-})
-.catch(error => {
-  console.trace(error.message);
 });
 ```
 
@@ -216,8 +190,6 @@ You can get an index template with the `get_index_template` API action:
 ```javascript
 client.indices.get_index_template({name: 'books'}).then(response => {
   console.log(response.body);
-}).catch(error => {
-  console.trace(error.message);
 });
 ```
 
@@ -229,8 +201,6 @@ client.indices.delete_index_template({
   name: 'books'
 }).then((response) => {
   console.log(`Index template deleted: ${response}`);
-}).catch((error) => {
-  console.trace(error.message);
 });
 ```
 
@@ -242,23 +212,17 @@ client.indices.delete({
   index: 'books-*'
 }).then(response => {
   console.log(`Index deleted: ${response}`)
-}).catch(error => {
-  console.error(error)
-})
+});
 
 client.indices.delete_index_template({
   name: 'books-fiction'
 }).then(response => {
   console.log(`Index template deleted: ${response}`)
-}).catch(error => {
-  console.error(error)
-})
+});
 
 client.cluster.delete_index_template({
   name: 'books_mappings'
 }).then(response => {
   console.log(`Component template deleted: ${response}`)
-}).catch(error => {
-  console.error(error)
-})
+});
 ```

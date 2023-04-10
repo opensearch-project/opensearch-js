@@ -61,7 +61,7 @@ You can clone an index to create a new index with the same mappings, data, and M
 ```javascript
 client.indices.add_block({index: 'movies', block: 'write'})
 client.indices.clone({index: 'movies', target: 'movies_clone'})
-client.indices.put_settings({index: 'movies', body: { index: { blocks: { write: false } } }})
+client.indices.put_settings({index: 'movies', body: { index: { blocks: { write: false } } } })
 ```
 
 ### Split index

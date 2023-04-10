@@ -64,6 +64,14 @@ test('NoLivingConnectionsError', (t) => {
   t.end();
 });
 
+test('NotCompatibleError', (t) => {
+  const err = new errors.NotCompatibleError();
+  t.ok(err instanceof Error);
+  t.ok(err instanceof errors.OpenSearchClientError);
+  t.ok(err.hasOwnProperty('meta'));
+  t.end();
+});
+
 test('SerializationError', (t) => {
   const err = new errors.SerializationError();
   t.ok(err instanceof Error);

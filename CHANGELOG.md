@@ -32,6 +32,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `eslint-config-prettier` from 8.6.0 to 8.8.0
 - Bumps `split2` from 4.1.0 to 4.2.0
 - Bumps `prettier` from 2.8.4 to 2.8.7
+- Bumps `jsdoc` from 4.0.0 to 4.0.2
 
 ### Changed
 

@@ -60,6 +60,7 @@ import { ConnectionOptions } from '../../lib/Connection';
       now: Date.now(),
     })
   );
+  expectType<Connection>(pool.createConnection({ url: new URL('url') }));
   expectType<Connection>(pool.addConnection({ url: new URL('url') }));
   expectType<BaseConnectionPool>(pool.removeConnection(new Connection()));
   expectType<void>(pool.empty());

@@ -115,6 +115,13 @@ declare class BaseConnectionPool {
    * @returns {object|null} connection
    */
   getConnection(opts?: getConnectionOptions): Connection | null;
+
+  /**
+   * Creates a new connection instance.
+   * @param {object|string} opts
+   * @returns {Connection}
+   */
+  createConnection(opts: ConnectionOptions | string): Connection;
   /**
    * Adds a new connection to the pool.
    *

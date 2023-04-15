@@ -36,6 +36,7 @@ import {
   ScrollSearchResponse,
   OnDropDocument,
   MsearchHelper,
+  UpdateActionDocOperation,
 } from '../../lib/Helpers';
 import { ApiResponse, ApiError, Context } from '../../lib/Transport';
 
@@ -107,7 +108,7 @@ expectError(
   const options: BulkHelperOptions<Record<string, any>> = {
     datasource: [],
     onDocument(doc: Record<string, any>) {
-      return [{ update: { _index: 'test' } }, doc];
+      return [{ update: { _index: 'test' } }, doc as UpdateActionDocOperation];
     },
   };
   expectAssignable<BulkHelperOptions<Record<string, any>>>(options);

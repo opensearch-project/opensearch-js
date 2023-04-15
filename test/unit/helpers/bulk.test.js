@@ -971,14 +971,16 @@ test('bulk update', (t) => {
       flushBytes: 1,
       concurrency: 1,
       onDocument() {
+        const currentId = id++;
         return [
           {
             update: {
               _index: 'test',
-              _id: id++,
+              _id: currentId,
             },
           },
           {
+            doc: dataset[currentId],
             doc_as_upsert: true,
           },
         ];
@@ -1022,13 +1024,15 @@ test('bulk update', (t) => {
       flushBytes: 1,
       concurrency: 1,
       onDocument() {
+        const currentId = id++;
         return [
           {
             update: {
               _index: 'test',
-              _id: id++,
+              _id: currentId,
             },
           },
+          { doc: dataset[currentId] },
         ];
       },
       onDrop() {
@@ -1070,14 +1074,16 @@ test('bulk update', (t) => {
       flushBytes: 1,
       concurrency: 1,
       onDocument() {
+        const currentId = id++;
         return [
           {
             update: {
               _index: 'test',
-              _id: id++,
+              _id: currentId,
             },
           },
           {
+            doc: dataset[currentId],
             doc_as_upsert: true,
           },
         ];

@@ -19,7 +19,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `tsd` from 0.24.1 to 0.27.0
 - Bumps `dezalgo` from 1.0.3 to 1.0.4
 - Bumps `simple-statistics` from 7.7.0 to 7.8.3
-- Bumps `eslint` from 8.30.0 to 8.33.0
+- Bumps `eslint` from 8.30.0 to 8.38.0
 - Downgrades `@types/node` from 18.11.19 to 17.0.45
 - Bumps `ora` from 5.4.1 to 6.1.2
 - Bumps `@aws-sdk/types` from 3.190.0 to 3.257.0

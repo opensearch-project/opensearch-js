@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Fixed malformed `bundler.yml` ([#497](https://github.com/opensearch-project/opensearch-js/pull/497))
 ### Security
 
 ## [2.2.1]
@@ -140,4 +141,5 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 [2.1.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.1.0
 [2.2.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.2.0
-[Unreleased]: https://github.com/opensearch-project/opensearch-js/compare/2.2.0...HEAD
+[2.2.1]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.2.1
+[Unreleased]: https://github.com/opensearch-project/opensearch-js/compare/2.2.1...HEAD

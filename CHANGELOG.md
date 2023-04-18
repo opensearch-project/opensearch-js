@@ -5,6 +5,16 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 
 ### Added
+### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.2.1]
+
+### Added
 
 - Add release details to releasing.md ([319](https://github.com/opensearch-project/opensearch-js/pull/319))
 - Added Amazon OpenSearch Serverless in user_guide ([#372](https://github.com/opensearch-project/opensearch-js/issues/372))
@@ -62,7 +72,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - [CVE-2022-25912] Bumps simple-git from 3.4.0 to 3.15.0 ([#341](https://github.com/opensearch-project/opensearch-js/pull/341))
 
-## [2.2]
+## [2.2.0]
 
 ### Added
 
@@ -112,7 +122,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - [CVE-2022-25912] Bumps simple-git from 3.4.0 to 3.15.0 ([#341](https://github.com/opensearch-project/opensearch-js/pull/341))
 
-## [2.1]
+## [2.1.0]
 
 ### Added
 
@@ -128,6 +138,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Fix mutability of connection headers ([#291](https://github.com/opensearch-project/opensearch-js/issues/291))
 
-[2.1]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.1.0
-[2.2]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.2.0
-[Unreleased]: https://github.com/opensearch-project/opensearch-js/compare/2.2...HEAD
+[2.1.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.1.0
+[2.2.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.2.0
+[Unreleased]: https://github.com/opensearch-project/opensearch-js/compare/2.2.0...HEAD

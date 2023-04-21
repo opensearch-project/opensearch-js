@@ -37,6 +37,7 @@ import {
   OnDropDocument,
   MsearchHelper,
   UpdateActionDocOperation,
+  UpdateActionScriptOperation,
 } from '../../lib/Helpers';
 import { ApiResponse, ApiError, Context } from '../../lib/Transport';
 
@@ -109,6 +110,19 @@ expectError(
     datasource: [],
     onDocument(doc: Record<string, any>) {
       return [{ update: { _index: 'test' } }, doc as UpdateActionDocOperation];
+    },
+  };
+  expectAssignable<BulkHelperOptions<Record<string, any>>>(options);
+}
+// update
+{
+  // without `:BulkHelperOptions` this test cannot pass
+  // but if we write these options inline inside
+  // a `.helper.bulk`, it works as expected
+  const options: BulkHelperOptions<Record<string, any>> = {
+    datasource: [],
+    onDocument(doc: Record<string, any>) {
+      return [{ update: { _index: 'test' } }, doc as UpdateActionScriptOperation];
     },
   };
   expectAssignable<BulkHelperOptions<Record<string, any>>>(options);

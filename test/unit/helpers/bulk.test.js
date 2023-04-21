@@ -947,7 +947,7 @@ test('bulk create', (t) => {
   t.end();
 });
 
-test('bulk update', (t) => {
+test('bulk update by doc operation', (t) => {
   t.test('Should perform a bulk request', async (t) => {
     let count = 0;
     const MockConnection = connection.buildMockConnection({
@@ -1085,6 +1085,213 @@ test('bulk update', (t) => {
           {
             doc: dataset[currentId],
             doc_as_upsert: true,
+          },
+        ];
+      },
+      onDrop() {
+        t.fail('This should never be called');
+      },
+    });
+
+    t.type(result.time, 'number');
+    t.type(result.bytes, 'number');
+    t.match(result, {
+      total: 3,
+      successful: 3,
+      noop: 3,
+      retry: 0,
+      failed: 0,
+      aborted: false,
+    });
+  });
+
+  t.end();
+});
+
+test('bulk update by script operation', (t) => {
+  t.test('Should perform a bulk request', async (t) => {
+    let count = 0;
+    const MockConnection = connection.buildMockConnection({
+      onRequest(params) {
+        t.equal(params.path, '/_bulk');
+        t.match(params.headers, { 'content-type': 'application/x-ndjson' });
+        const [action, payload] = params.body.split('\n');
+        t.same(JSON.parse(action), { update: { _index: 'test', _id: count } });
+        t.same(JSON.parse(payload), {
+          script: {
+            source: 'ctx._source.user = params.user; ctx._source.age = params.age;',
+            lang: 'painless',
+            params: {
+              ...dataset[count++],
+            },
+          },
+          scripted_upsert: true,
+        });
+        return { body: { errors: false, items: [{}] } };
+      },
+    });
+
+    const client = new Client({
+      node: 'http://localhost:9200',
+      Connection: MockConnection,
+    });
+    let id = 0;
+    const result = await client.helpers.bulk({
+      datasource: dataset.slice(),
+      flushBytes: 1,
+      concurrency: 1,
+      onDocument() {
+        const currentId = id++;
+        return [
+          {
+            update: {
+              _index: 'test',
+              _id: currentId,
+            },
+          },
+          {
+            script: {
+              source: 'ctx._source.user = params.user; ctx._source.age = params.age;',
+              lang: 'painless',
+              params: {
+                ...dataset[currentId],
+              },
+            },
+            scripted_upsert: true,
+          },
+        ];
+      },
+      onDrop() {
+        t.fail('This should never be called');
+      },
+    });
+
+    t.type(result.time, 'number');
+    t.type(result.bytes, 'number');
+    t.match(result, {
+      total: 3,
+      successful: 3,
+      retry: 0,
+      failed: 0,
+      aborted: false,
+    });
+  });
+
+  t.test('Should perform a bulk request dataset as string)', async (t) => {
+    let count = 0;
+    const MockConnection = connection.buildMockConnection({
+      onRequest(params) {
+        t.equal(params.path, '/_bulk');
+        t.match(params.headers, { 'content-type': 'application/x-ndjson' });
+        const [action, payload] = params.body.split('\n');
+        t.same(JSON.parse(action), { update: { _index: 'test', _id: count } });
+        t.same(JSON.parse(payload), {
+          script: {
+            source: 'ctx._source.user = params.user; ctx._source.age = params.age;',
+            lang: 'painless',
+            params: {
+              ...dataset[count++],
+            },
+          },
+        });
+        return { body: { errors: false, items: [{}] } };
+      },
+    });
+
+    const client = new Client({
+      node: 'http://localhost:9200',
+      Connection: MockConnection,
+    });
+    let id = 0;
+    const result = await client.helpers.bulk({
+      datasource: dataset.map((d) => JSON.stringify(d)),
+      flushBytes: 1,
+      concurrency: 1,
+      onDocument() {
+        const currentId = id++;
+        return [
+          {
+            update: {
+              _index: 'test',
+              _id: currentId,
+            },
+          },
+          {
+            script: {
+              source: 'ctx._source.user = params.user; ctx._source.age = params.age;',
+              lang: 'painless',
+              params: {
+                ...dataset[currentId],
+              },
+            },
+          },
+        ];
+      },
+      onDrop() {
+        t.fail('This should never be called');
+      },
+    });
+
+    t.type(result.time, 'number');
+    t.type(result.bytes, 'number');
+    t.match(result, {
+      total: 3,
+      successful: 3,
+      retry: 0,
+      failed: 0,
+      aborted: false,
+    });
+  });
+
+  t.test('Should track the number of noop results', async (t) => {
+    let count = 0;
+    const MockConnection = connection.buildMockConnection({
+      onRequest(params) {
+        t.equal(params.path, '/_bulk');
+        t.match(params.headers, { 'content-type': 'application/x-ndjson' });
+        const [action, payload] = params.body.split('\n');
+        t.same(JSON.parse(action), { update: { _index: 'test', _id: count } });
+        t.same(JSON.parse(payload), {
+          script: {
+            source: 'ctx._source.user = params.user; ctx._source.age = params.age;',
+            lang: 'painless',
+            params: {
+              ...dataset[count++],
+            },
+          },
+          scripted_upsert: true,
+        });
+        return { body: { errors: false, items: [{ update: { result: 'noop' } }] } };
+      },
+    });
+
+    const client = new Client({
+      node: 'http://localhost:9200',
+      Connection: MockConnection,
+    });
+    let id = 0;
+    const result = await client.helpers.bulk({
+      datasource: dataset.slice(),
+      flushBytes: 1,
+      concurrency: 1,
+      onDocument() {
+        const currentId = id++;
+        return [
+          {
+            update: {
+              _index: 'test',
+              _id: currentId,
+            },
+          },
+          {
+            script: {
+              source: 'ctx._source.user = params.user; ctx._source.age = params.age;',
+              lang: 'painless',
+              params: {
+                ...dataset[currentId],
+              },
+            },
+            scripted_upsert: true,
           },
         ];
       },

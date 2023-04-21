@@ -1,6 +1,7 @@
 name: Bundler
 
-# trigger on every commit push and PR for all branches 
+# trigger on every commit push and PR for all branches
+on:
   push:
     branches: ['**']
     paths-ignore:

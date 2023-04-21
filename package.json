@@ -23,7 +23,7 @@
     }
   },
   "homepage": "https://www.opensearch.org/",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "versionCanary": "7.10.0-canary.6",
   "keywords": [
     "opensearch",
@@ -79,7 +79,7 @@
     "prettier": "^2.6.2",
     "pretty-hrtime": "^1.0.3",
     "proxy": "^1.0.2",
-    "rimraf": "^4.1.1",
+    "rimraf": "^5.0.0",
     "semver": "^7.3.5",
     "simple-git": "^3.15.0",
     "simple-statistics": "^7.7.0",

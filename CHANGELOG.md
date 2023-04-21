@@ -5,6 +5,18 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 
 ### Added
+### Dependencies
+### Changed
+- Implemented Docker Image caching for `integration-unreleased` workflow ([#387](https://github.com/opensearch-project/opensearch-js/issues/387))
+### Deprecated
+### Removed
+### Fixed
+- Fixed malformed `bundler.yml` ([#497](https://github.com/opensearch-project/opensearch-js/pull/497))
+### Security
+
+## [2.2.1]
+
+### Added
 
 - Add release details to releasing.md ([319](https://github.com/opensearch-project/opensearch-js/pull/319))
 - Added Amazon OpenSearch Serverless in user_guide ([#372](https://github.com/opensearch-project/opensearch-js/issues/372))
@@ -20,7 +32,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `tsd` from 0.24.1 to 0.27.0
 - Bumps `dezalgo` from 1.0.3 to 1.0.4
 - Bumps `simple-statistics` from 7.7.0 to 7.8.3
-- Bumps `eslint` from 8.30.0 to 8.33.0
+- Bumps `eslint` from 8.30.0 to 8.38.0
 - Downgrades `@types/node` from 18.11.19 to 17.0.45
 - Bumps `ora` from 5.4.1 to 6.1.2
 - Bumps `@aws-sdk/types` from 3.190.0 to 3.257.0
@@ -28,8 +40,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `simple-git` from 3.15.1 to 3.17.0
 - Bumps `deepmerge` from 4.2.2 to 4.3.1
 - Bumps `tap` from 16.3.0 to 16.3.4
-- Bumps `rimraf` from 4.1.1 to 4.4.0
-- Bumps `@types/node` from 17.0.45 to 18.15.10
+- Bumps `rimraf` from 4.1.1 to 5.0.0
+- Bumps `@types/node` from 17.0.45 to 18.15.11
 - Bumps `caniuse-lite` from 1.0.30001249 to 1.0.30001469
 - Bumps `eslint-config-prettier` from 8.6.0 to 8.8.0
 - Bumps `split2` from 4.1.0 to 4.2.0
@@ -63,7 +75,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - [CVE-2022-25912] Bumps simple-git from 3.4.0 to 3.15.0 ([#341](https://github.com/opensearch-project/opensearch-js/pull/341))
 
-## [2.2]
+## [2.2.0]
 
 ### Added
 
@@ -113,7 +125,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - [CVE-2022-25912] Bumps simple-git from 3.4.0 to 3.15.0 ([#341](https://github.com/opensearch-project/opensearch-js/pull/341))
 
-## [2.1]
+## [2.1.0]
 
 ### Added
 
@@ -129,6 +141,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Fix mutability of connection headers ([#291](https://github.com/opensearch-project/opensearch-js/issues/291))
 
-[2.1]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.1.0
-[2.2]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.2.0
-[Unreleased]: https://github.com/opensearch-project/opensearch-js/compare/2.2...HEAD
+[2.1.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.1.0
+[2.2.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.2.0
+[2.2.1]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.2.1
+[Unreleased]: https://github.com/opensearch-project/opensearch-js/compare/2.2.1...HEAD

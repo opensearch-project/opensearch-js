@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 - Bumps `prettier` from 2.8.7 to 2.8.8
+- Bumps `ora` from 6.1.2 to 6.3.0
 ### Changed
 - Implemented Docker Image caching for `integration-unreleased` workflow ([#387](https://github.com/opensearch-project/opensearch-js/issues/387))
 ### Deprecated

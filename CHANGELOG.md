@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 18.15.11 to 18.16.0
 - Bumps `eslint` from 8.38.0 to 8.39.0
 - Bumps `xmlbuilder2` from 3.0.2 to 3.1.0
+- Bumps `tsd` from 0.27.0 to 0.28.1
 ### Changed
 - Implemented Docker Image caching for `integration-unreleased` workflow ([#387](https://github.com/opensearch-project/opensearch-js/issues/387))
 ### Deprecated

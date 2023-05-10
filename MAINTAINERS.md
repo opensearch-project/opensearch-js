@@ -13,6 +13,7 @@ This document contains a list of maintainers in this repo. See [opensearch-proje
 | Vacha Shah            | [VachaShah](https://github.com/VachaShah)     | Amazon      |
 | Theo Truong           | [nhtruong](https://github.com/nhtruong)       | Amazon      |
 | Harsha Vamsi Kalluri  | [harshavamsi](https://github.com/harshavamsi) | Amazon      |
+| Timur Bolotov         | [timursaurus](https://github.com/timursaurus) |             |
 
 ## Emeritus
 

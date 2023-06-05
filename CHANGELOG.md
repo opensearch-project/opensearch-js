@@ -13,7 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `xmlbuilder2` from 3.0.2 to 3.1.1
 - Bumps `simple-git` from 3.17.0 to 3.18.0
 - Bumps `@babel/eslint-parser` from 7.21.3 to 7.21.8
-- Bumps `@aws-sdk/types` from 3.257.0 to 3.341.0
+- Bumps `@aws-sdk/types` from 3.257.0 to 3.342.0
 - Bumps `semver` from 7.3.8 to 7.5.1
 - Bumps `node-fetch` from 3.2.10 to 3.3.1
 ### Changed

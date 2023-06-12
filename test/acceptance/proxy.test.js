@@ -112,12 +112,9 @@ test('http basic authentication', async (t) => {
     res.end(JSON.stringify({ hello: 'world' }));
   });
 
-  proxy.authenticate = function (req, fn) {
-    fn(
-      null,
-      req.headers['proxy-authorization'] ===
-        `Basic ${Buffer.from('hello:world').toString('base64')}`
-    );
+  proxy.authenticate = (req) => {
+    const basic = `Basic ${Buffer.from('hello:world').toString('base64')}`;
+    return req.headers['proxy-authorization'] === basic;
   };
 
   const client = new Client({
@@ -141,12 +138,9 @@ test('https basic authentication', async (t) => {
     res.end(JSON.stringify({ hello: 'world' }));
   });
 
-  proxy.authenticate = function (req, fn) {
-    fn(
-      null,
-      req.headers['proxy-authorization'] ===
-        `Basic ${Buffer.from('hello:world').toString('base64')}`
-    );
+  proxy.authenticate = (req) => {
+    const basic = `Basic ${Buffer.from('hello:world').toString('base64')}`;
+    return req.headers['proxy-authorization'] === basic;
   };
 
   const client = new Client({

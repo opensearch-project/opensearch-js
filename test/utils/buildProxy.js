@@ -14,7 +14,7 @@
 
 'use strict';
 
-const proxy = require('proxy');
+const { createProxy: proxy } = require('proxy');
 const { readFileSync } = require('fs');
 const { join } = require('path');
 const http = require('http');

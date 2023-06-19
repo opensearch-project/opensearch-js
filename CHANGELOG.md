@@ -8,7 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `prettier` from 2.8.7 to 2.8.8
 - Bumps `ora` from 6.1.2 to 6.3.1
-- Bumps `@types/node` from 18.15.11 to 20.2.5
+- Bumps `@types/node` from 18.15.11 to 20.3.1
 - Bumps `eslint` from 8.38.0 to 8.41.0
 - Bumps `xmlbuilder2` from 3.0.2 to 3.1.1
 - Bumps `simple-git` from 3.17.0 to 3.18.0

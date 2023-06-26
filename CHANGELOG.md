@@ -14,7 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `simple-git` from 3.17.0 to 3.18.0
 - Bumps `@babel/eslint-parser` from 7.21.3 to 7.21.8
 - Bumps `@aws-sdk/types` from 3.257.0 to 3.341.0
-- Bumps `semver` from 7.3.8 to 7.5.1
+- Bumps `semver` from 7.3.8 to 7.5.3
 - Bumps `node-fetch` from 3.2.10 to 3.3.1
 ### Changed
 - Implemented Docker Image caching for `integration-unreleased` workflow ([#387](https://github.com/opensearch-project/opensearch-js/issues/387))

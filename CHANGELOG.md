@@ -11,7 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 18.15.11 to 20.2.5
 - Bumps `eslint` from 8.38.0 to 8.41.0
 - Bumps `xmlbuilder2` from 3.0.2 to 3.1.1
-- Bumps `simple-git` from 3.17.0 to 3.18.0
+- Bumps `simple-git` from 3.17.0 to 3.19.1
 - Bumps `@babel/eslint-parser` from 7.21.3 to 7.21.8
 - Bumps `@aws-sdk/types` from 3.257.0 to 3.341.0
 - Bumps `semver` from 7.3.8 to 7.5.1

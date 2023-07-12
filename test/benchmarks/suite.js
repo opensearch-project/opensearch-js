@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 'use strict';
@@ -125,7 +124,7 @@ function buildBenchmark(options = {}) {
     }
 
     // task that elaborate the collected stats
-    async function elaborateStats(q) {
+    async function elaborateStats() {
       const times = stats[title].map((s) => s.milliseconds / b.iterations);
       reports.push({
         description: title,

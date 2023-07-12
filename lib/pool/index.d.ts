@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /*
@@ -116,6 +115,13 @@ declare class BaseConnectionPool {
    * @returns {object|null} connection
    */
   getConnection(opts?: getConnectionOptions): Connection | null;
+
+  /**
+   * Creates a new connection instance.
+   * @param {object|string} opts
+   * @returns {Connection}
+   */
+  createConnection(opts: ConnectionOptions | string): Connection;
   /**
    * Adds a new connection to the pool.
    *

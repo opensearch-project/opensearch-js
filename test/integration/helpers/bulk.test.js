@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /*
@@ -34,7 +33,6 @@ const { createReadStream } = require('fs');
 const { join } = require('path');
 const split = require('split2');
 const { test, beforeEach, afterEach } = require('tap');
-const { waitCluster } = require('../../utils');
 const { Client } = require('../../../');
 
 const datasetPath = join(__dirname, '..', '..', 'fixtures', 'stackoverflow.ndjson');
@@ -44,7 +42,6 @@ const client = new Client({
 });
 
 beforeEach(async () => {
-  await waitCluster(client);
   await client.indices.create({ index: INDEX });
 });
 
@@ -57,10 +54,10 @@ test('bulk index', async (t) => {
   const result = await client.helpers.bulk({
     datasource: stream.pipe(split()),
     refreshOnCompletion: INDEX,
-    onDrop(doc) {
+    onDrop() {
       t.fail('It should not drop any document');
     },
-    onDocument(doc) {
+    onDocument() {
       return {
         index: { _index: INDEX },
       };
@@ -85,7 +82,7 @@ test('bulk index with custom id', async (t) => {
   const stream = createReadStream(datasetPath);
   const result = await client.helpers.bulk({
     datasource: stream.pipe(split(JSON.parse)),
-    onDrop(doc) {
+    onDrop() {
       t.fail('It should not drop any document');
     },
     onDocument(doc) {
@@ -159,7 +156,7 @@ test('bulk delete', async (t) => {
   const indexResult = await client.helpers.bulk({
     datasource: createReadStream(datasetPath).pipe(split(JSON.parse)),
     refreshOnCompletion: true,
-    onDrop(doc) {
+    onDrop() {
       t.fail('It should not drop any document');
     },
     onDocument(doc) {
@@ -188,7 +185,7 @@ test('bulk delete', async (t) => {
   const deleteResult = await client.helpers.bulk({
     datasource: createReadStream(datasetPath).pipe(split(JSON.parse)),
     refreshOnCompletion: true,
-    onDrop(doc) {
+    onDrop() {
       t.fail('It should not drop any document');
     },
     onDocument(doc) {

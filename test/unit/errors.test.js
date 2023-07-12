@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /*
@@ -59,6 +58,14 @@ test('ConnectionError', (t) => {
 
 test('NoLivingConnectionsError', (t) => {
   const err = new errors.NoLivingConnectionsError();
+  t.ok(err instanceof Error);
+  t.ok(err instanceof errors.OpenSearchClientError);
+  t.ok(err.hasOwnProperty('meta'));
+  t.end();
+});
+
+test('NotCompatibleError', (t) => {
+  const err = new errors.NotCompatibleError();
   t.ok(err instanceof Error);
   t.ok(err instanceof errors.OpenSearchClientError);
   t.ok(err.hasOwnProperty('meta'));

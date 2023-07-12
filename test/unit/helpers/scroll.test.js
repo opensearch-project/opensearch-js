@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /*
@@ -191,7 +190,7 @@ test('Scroll search (retry throws and maxRetries)', async (t) => {
   const expectedAttempts = maxRetries + 1;
   let count = 0;
   const MockConnection = connection.buildMockConnection({
-    onRequest(params) {
+    onRequest() {
       count += 1;
       return { body: {}, statusCode: 429 };
     },
@@ -215,8 +214,8 @@ test('Scroll search (retry throws and maxRetries)', async (t) => {
   );
 
   try {
+    // eslint-disable-next-line no-unused-vars
     for await (const result of scrollSearch) {
-      // eslint-disable-line
       t.fail('we should not be here');
     }
   } catch (err) {
@@ -340,7 +339,7 @@ test('Should not retry if maxRetries = 0', async (t) => {
   const expectedAttempts = 1;
   let count = 0;
   const MockConnection = connection.buildMockConnection({
-    onRequest(params) {
+    onRequest() {
       count += 1;
       return { body: {}, statusCode: 429 };
     },
@@ -364,8 +363,8 @@ test('Should not retry if maxRetries = 0', async (t) => {
   );
 
   try {
+    // eslint-disable-next-line no-unused-vars
     for await (const result of scrollSearch) {
-      // eslint-disable-line
       t.fail('we should not be here');
     }
   } catch (err) {

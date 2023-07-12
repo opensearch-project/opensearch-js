@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /*
@@ -61,9 +60,9 @@ test('Should create a child client (headers check)', (t) => {
       headers: { 'x-baz': 'faz' },
     });
 
-    client.info((err, res) => {
+    client.info((err) => {
       t.error(err);
-      child.info((err, res) => {
+      child.info((err) => {
         t.error(err);
         server.stop();
       });
@@ -85,9 +84,9 @@ test('Should create a child client (timeout check)', (t) => {
     const client = new Client({ node: `http://localhost:${port}` });
     const child = client.child({ requestTimeout: 25, maxRetries: 0 });
 
-    client.info((err, res) => {
+    client.info((err) => {
       t.error(err);
-      child.info((err, res) => {
+      child.info((err) => {
         t.ok(err instanceof errors.TimeoutError);
         server.stop();
       });
@@ -156,11 +155,11 @@ test('Should share the event emitter', (t) => {
     });
     const child = client.child();
 
-    client.on('response', (err, meta) => {
+    client.on('response', (err) => {
       t.error(err);
     });
 
-    child.info((err, res) => {
+    child.info((err) => {
       t.error(err);
     });
   });
@@ -175,11 +174,11 @@ test('Should share the event emitter', (t) => {
     const child = client.child();
     const grandchild = child.child();
 
-    client.on('response', (err, meta) => {
+    client.on('response', (err) => {
       t.error(err);
     });
 
-    grandchild.info((err, res) => {
+    grandchild.info((err) => {
       t.error(err);
     });
   });
@@ -193,11 +192,11 @@ test('Should share the event emitter', (t) => {
     });
     const child = client.child();
 
-    child.on('response', (err, meta) => {
+    child.on('response', (err) => {
       t.error(err);
     });
 
-    child.info((err, res) => {
+    child.info((err) => {
       t.error(err);
     });
   });
@@ -212,11 +211,11 @@ test('Should share the event emitter', (t) => {
     const child = client.child();
     const grandchild = child.child();
 
-    child.on('response', (err, meta) => {
+    child.on('response', (err) => {
       t.error(err);
     });
 
-    grandchild.info((err, res) => {
+    grandchild.info((err) => {
       t.error(err);
     });
   });
@@ -310,9 +309,9 @@ test('Should create a child client (auth check)', (t) => {
       },
     });
 
-    client.info((err, res) => {
+    client.info((err) => {
       t.error(err);
-      child.info((err, res) => {
+      child.info((err) => {
         t.error(err);
         server.stop();
       });

@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /*
@@ -82,14 +81,14 @@ export interface BulkStats {
   aborted: boolean;
 }
 
-interface IndexAction {
+interface IndexActionOperation {
   index: {
     _index: string;
     [key: string]: any;
   };
 }
 
-interface CreateAction {
+interface CreateActionOperation {
   create: {
     _index: string;
     [key: string]: any;
@@ -110,6 +109,8 @@ interface DeleteAction {
   };
 }
 
+type CreateAction = CreateActionOperation | [CreateActionOperation, unknown];
+type IndexAction = IndexActionOperation | [IndexActionOperation, unknown];
 type UpdateAction = [UpdateActionOperation, Record<string, any>];
 type Action = IndexAction | CreateAction | UpdateAction | DeleteAction;
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;

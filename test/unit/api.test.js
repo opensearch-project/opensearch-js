@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /*
@@ -106,7 +105,7 @@ test('Error (callback)', (t) => {
         index: 'test',
         q: 'foo:bar',
       },
-      (err, { body }) => {
+      (err) => {
         t.ok(err);
         server.stop();
       }
@@ -306,7 +305,7 @@ test('If the API uses the same key for both url and query parameter, the url sho
         index: 'index',
         body: [],
       },
-      (err, { body, warnings }) => {
+      (err) => {
         t.error(err);
         server.stop();
       }
@@ -325,7 +324,7 @@ test('ConfigurationError (callback)', (t) => {
     {
       body: { foo: 'bar' },
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof errors.ConfigurationError);
     }
   );
@@ -353,7 +352,7 @@ test('The callback with a sync error should be called in the next tick', (t) => 
     node: 'http://localhost:9200',
   });
 
-  const transportReturn = client.index({ body: { foo: 'bar' } }, (err, result) => {
+  const transportReturn = client.index({ body: { foo: 'bar' } }, (err) => {
     t.ok(err instanceof errors.ConfigurationError);
   });
 

@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /*
@@ -524,6 +523,14 @@ export interface Create<T = RequestBody> extends Generic {
   body: T;
 }
 
+export interface CreatePit extends Generic {
+  index: string | string[];
+  allow_partial_pit_creation?: boolean;
+  keep_alive: string;
+  preference?: string;
+  routing?: string | string[];
+}
+
 export interface DanglingIndicesDeleteDanglingIndex extends Generic {
   index_uuid: string;
   accept_data_loss?: boolean;
@@ -560,6 +567,8 @@ export interface Delete extends Generic {
   version?: number;
   version_type?: 'internal' | 'external' | 'external_gte' | 'force';
 }
+
+export interface DeleteAllPits extends Generic { }
 
 export interface DeleteByQuery<T = RequestBody> extends Generic {
   index: string | string[];
@@ -604,6 +613,10 @@ export interface DeleteByQuery<T = RequestBody> extends Generic {
 export interface DeleteByQueryRethrottle extends Generic {
   task_id: string;
   requests_per_second: number;
+}
+
+export interface DeletePit<T = RequestBody> extends Generic {
+  body: T;
 }
 
 export interface DeleteScript extends Generic {
@@ -705,6 +718,8 @@ export interface Get extends Generic {
   version?: number;
   version_type?: 'internal' | 'external' | 'external_gte' | 'force';
 }
+
+export interface GetAllPits extends Generic { }
 
 export interface GetScript extends Generic {
   id: string;

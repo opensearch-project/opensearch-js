@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 // Licensed to Elasticsearch B.V under one or more agreements.
@@ -27,7 +26,7 @@ const ssl = {
 };
 
 function createProxy() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const server = proxy(http.createServer());
     server.listen(0, '127.0.0.1', () => {
       resolve(server);
@@ -36,7 +35,7 @@ function createProxy() {
 }
 
 function createSecureProxy() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const server = proxy(https.createServer(ssl));
     server.listen(0, '127.0.0.1', () => {
       resolve(server);
@@ -44,8 +43,8 @@ function createSecureProxy() {
   });
 }
 
-function createServer(handler, callback) {
-  return new Promise((resolve, reject) => {
+function createServer() {
+  return new Promise((resolve) => {
     const server = http.createServer();
     server.listen(0, '127.0.0.1', () => {
       resolve(server);
@@ -53,8 +52,8 @@ function createServer(handler, callback) {
   });
 }
 
-function createSecureServer(handler, callback) {
-  return new Promise((resolve, reject) => {
+function createSecureServer() {
+  return new Promise((resolve) => {
     const server = https.createServer(ssl);
     server.listen(0, '127.0.0.1', () => {
       resolve(server);

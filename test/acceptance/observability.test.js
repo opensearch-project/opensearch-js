@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 'use strict';
@@ -385,10 +384,10 @@ test('Client name', (t) => {
     client.on('resurrect', (err, meta) => {
       t.error(err);
       t.equal(meta.name, 'opensearch-js');
-      clock.uninstall();
     });
 
     client.info({}, { id: 'custom' }, noop);
+    clock.uninstall();
   });
 
   t.test('Resurrect should have the client name configured (child client)', (t) => {
@@ -413,10 +412,10 @@ test('Client name', (t) => {
     client.on('resurrect', (err, meta) => {
       t.error(err);
       t.equal(meta.name, 'child-client');
-      clock.uninstall();
     });
 
     child.info({}, { id: 'custom' }, noop);
+    clock.uninstall();
   });
 
   t.end();

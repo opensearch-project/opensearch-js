@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /*
@@ -42,6 +41,7 @@ function ShutdownApi(transport, ConfigurationError) {
   this[kConfigurationError] = ConfigurationError;
 }
 
+// TODO: Remove. Added in ES 7.15
 ShutdownApi.prototype.deleteNode = function shutdownDeleteNodeApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -69,6 +69,7 @@ ShutdownApi.prototype.deleteNode = function shutdownDeleteNodeApi(params, option
   return this.transport.request(request, options, callback);
 };
 
+// TODO: Remove. Added in ES 7.15
 ShutdownApi.prototype.getNode = function shutdownGetNodeApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -95,6 +96,7 @@ ShutdownApi.prototype.getNode = function shutdownGetNodeApi(params, options, cal
   return this.transport.request(request, options, callback);
 };
 
+// TODO: Remove. Added in ES 7.15
 ShutdownApi.prototype.putNode = function shutdownPutNodeApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

@@ -1,12 +1,11 @@
 /*
+ * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
  */
 
 /*
@@ -452,7 +451,7 @@ test('NoLivingConnectionsError (null connection)', (t) => {
       method: 'GET',
       path: '/hello',
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof NoLivingConnectionsError);
     }
   );
@@ -484,7 +483,7 @@ test('NoLivingConnectionsError (undefined connection)', (t) => {
       method: 'GET',
       path: '/hello',
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof NoLivingConnectionsError);
     }
   );
@@ -514,7 +513,7 @@ test('SerializationError', (t) => {
       path: '/hello',
       body,
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof SerializationError);
     }
   );
@@ -544,7 +543,7 @@ test('SerializationError (bulk)', (t) => {
       path: '/hello',
       bulkBody,
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof SerializationError);
     }
   );
@@ -577,7 +576,7 @@ test('DeserializationError', (t) => {
         method: 'GET',
         path: '/hello',
       },
-      (err, { body }) => {
+      (err) => {
         t.ok(err instanceof DeserializationError);
         server.stop();
       }
@@ -617,7 +616,7 @@ test('TimeoutError (should call markDead on the failing connection)', (t) => {
       method: 'GET',
       path: '/hello',
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof TimeoutError);
     }
   );
@@ -655,7 +654,7 @@ test('ConnectionError (should call markDead on the failing connection)', (t) => 
       method: 'GET',
       path: '/hello',
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof ConnectionError);
     }
   );
@@ -761,7 +760,7 @@ test('Should not retry if the body is a stream', (t) => {
         path: '/hello',
         body: intoStream(JSON.stringify({ hello: 'world' })),
       },
-      (err, { body }) => {
+      (err) => {
         t.ok(err instanceof ResponseError);
         t.equal(count, 1);
         server.stop();
@@ -814,7 +813,7 @@ test('Should not retry if the bulkBody is a stream', (t) => {
         path: '/hello',
         bulkBody: intoStream(JSON.stringify([{ hello: 'world' }])),
       },
-      (err, { body }) => {
+      (err) => {
         t.ok(err instanceof ResponseError);
         t.equal(count, 1);
         server.stop();
@@ -870,7 +869,7 @@ test('No retry', (t) => {
       {
         maxRetries: 0,
       },
-      (err, { body }) => {
+      (err) => {
         t.ok(err instanceof ResponseError);
         t.equal(count, 1);
         server.stop();
@@ -982,7 +981,7 @@ test('Should not retry on 429', (t) => {
         method: 'GET',
         path: '/hello',
       },
-      (err, result) => {
+      (err) => {
         t.ok(err);
         t.equal(err.statusCode, 429);
         server.stop();
@@ -1096,7 +1095,7 @@ test('Should return a request aborter utility', (t) => {
       method: 'GET',
       path: '/hello',
     },
-    (err, result) => {
+    (err) => {
       t.ok(err instanceof RequestAbortedError);
     }
   );
@@ -1152,7 +1151,7 @@ test('Retry mechanism and abort', (t) => {
         method: 'GET',
         path: '/hello',
       },
-      (err, result) => {
+      (err) => {
         t.ok(err instanceof RequestAbortedError);
         server.stop();
       }
@@ -1225,7 +1224,7 @@ test('ResponseError', (t) => {
         method: 'GET',
         path: '/hello',
       },
-      (err, { body }) => {
+      (err) => {
         t.ok(err instanceof ResponseError);
         t.same(err.body, { status: 500 });
         t.equal(err.statusCode, 500);
@@ -1331,7 +1330,7 @@ test('sniff', (t) => {
         method: 'GET',
         path: '/',
       },
-      (err, { body }) => {
+      (err) => {
         t.ok(err instanceof TimeoutError);
       }
     );
@@ -1397,7 +1396,7 @@ test('sniff', (t) => {
     });
     skipCompatibleCheck(transport);
 
-    transport.sniff((err, hosts) => {
+    transport.sniff((err) => {
       t.ok(err instanceof ConnectionError);
     });
   });
@@ -1439,7 +1438,7 @@ test(`Should mark as dead connections where the statusCode is 502/3/4
           method: 'GET',
           path: `/${statusCode}`,
         },
-        (err, { body }) => {
+        (err) => {
           t.ok(err instanceof ResponseError);
           t.match(err, {
             body: { hello: 'world' },
@@ -1472,7 +1471,7 @@ test('Should retry the request if the statusCode is 502/3/4', (t) => {
       }
 
       class CustomConnectionPool extends ConnectionPool {
-        markDead(connection) {
+        markDead() {
           t.ok('called');
         }
       }
@@ -1546,7 +1545,7 @@ test('Ignore status code', (t) => {
       method: 'GET',
       path: '/404',
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof ResponseError);
     }
   );
@@ -1559,7 +1558,7 @@ test('Ignore status code', (t) => {
     {
       ignore: [403, 405],
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof ResponseError);
     }
   );
@@ -1597,7 +1596,7 @@ test('Should serialize the querystring', (t) => {
           you_know: 'for search',
         },
       },
-      (err, { body }) => {
+      (err) => {
         t.error(err);
         server.stop();
       }
@@ -1640,7 +1639,7 @@ test('timeout option', (t) => {
             method: 'GET',
             path: '/hello',
           },
-          (err, { body }) => {
+          (err) => {
             t.ok(err instanceof TimeoutError);
             server.stop();
           }
@@ -1677,7 +1676,7 @@ test('timeout option', (t) => {
           {
             requestTimeout: 500,
           },
-          (err, { body }) => {
+          (err) => {
             t.ok(err instanceof TimeoutError);
             server.stop();
           }
@@ -1715,7 +1714,7 @@ test('timeout option', (t) => {
             method: 'GET',
             path: '/hello',
           },
-          (err, { body }) => {
+          (err) => {
             t.ok(err instanceof TimeoutError);
             server.stop();
           }
@@ -1752,7 +1751,7 @@ test('timeout option', (t) => {
           {
             requestTimeout: '0.5s',
           },
-          (err, { body }) => {
+          (err) => {
             t.ok(err instanceof TimeoutError);
             server.stop();
           }
@@ -1847,7 +1846,7 @@ test('Should cast to boolean HEAD request', (t) => {
         method: 'HEAD',
         path: '/400',
       },
-      (err, { body, statusCode }) => {
+      (err, { statusCode }) => {
         t.ok(err instanceof ResponseError);
         t.notOk(typeof err.body === 'boolean');
         t.equal(statusCode, 400);
@@ -1876,7 +1875,7 @@ test('Should cast to boolean HEAD request', (t) => {
         method: 'HEAD',
         path: '/500',
       },
-      (err, { body, statusCode }) => {
+      (err, { statusCode }) => {
         t.ok(err instanceof ResponseError);
         t.notOk(typeof err.body === 'boolean');
         t.equal(statusCode, 500);
@@ -1966,7 +1965,7 @@ test('Broken compression', (t) => {
         method: 'GET',
         path: '/hello',
       },
-      (err, { body }) => {
+      (err) => {
         t.ok(err);
         server.stop();
       }
@@ -2362,7 +2361,7 @@ test('Compress request', (t) => {
           path: '/hello',
           body: '',
         },
-        (err, { body }) => {
+        (err) => {
           t.error(err);
           transport.request(
             {
@@ -2370,7 +2369,7 @@ test('Compress request', (t) => {
               path: '/hello',
               body: null,
             },
-            (err, { body }) => {
+            (err) => {
               t.error(err);
               transport.request(
                 {
@@ -2378,7 +2377,7 @@ test('Compress request', (t) => {
                   path: '/hello',
                   body: undefined,
                 },
-                (err, { body }) => {
+                (err) => {
                   t.error(err);
                   server.stop();
                 }
@@ -2443,7 +2442,7 @@ test('Compress request', (t) => {
         {
           compression: 'gzip',
         },
-        (err, { body, meta }) => {
+        (err, { body }) => {
           t.error(err);
           t.same(body, { you_know: 'for search' });
           t.equal(count, 2);
@@ -2748,7 +2747,7 @@ test('Should add an User-Agent header', (t) => {
         method: 'GET',
         path: '/hello',
       },
-      (err, { body }) => {
+      (err) => {
         t.error(err);
         server.stop();
       }
@@ -2812,7 +2811,7 @@ test('Secure json parsing', (t) => {
           method: 'GET',
           path: '/hello',
         },
-        (err, { body }) => {
+        (err) => {
           t.ok(err instanceof DeserializationError);
           t.equal(err.message, 'Object contains forbidden prototype property');
           server.stop();
@@ -2848,7 +2847,7 @@ test('Secure json parsing', (t) => {
           method: 'GET',
           path: '/hello',
         },
-        (err, { body }) => {
+        (err) => {
           t.ok(err instanceof DeserializationError);
           t.equal(err.message, 'Object contains forbidden prototype property');
           server.stop();
@@ -2920,7 +2919,7 @@ test('The callback with a sync error should be called in the next tick - json', 
       path: '/hello',
       body,
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof SerializationError);
     }
   );
@@ -2955,7 +2954,7 @@ test('The callback with a sync error should be called in the next tick - ndjson'
       path: '/hello',
       bulkBody: [field],
     },
-    (err, { body }) => {
+    (err) => {
       t.ok(err instanceof SerializationError);
     }
   );

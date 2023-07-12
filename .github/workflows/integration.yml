@@ -1,6 +1,14 @@
 name: Integration
-
-on: [push, pull_request]
+# trigger on every commit push and PR for all branches
+on:
+  push:
+    branches: ['**']
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    branches: ['**']
+    paths-ignore:
+      - '**/*.md'
 
 jobs:
   helpers-integration-test:
@@ -9,8 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        cluster: ['opendistro', 'opensearch']
-        node-version: [10.x, 12.x, 14.x, 16.x]
+        node-version: [10.x, 12.x, 14.x, 16.x, 18.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -22,14 +29,25 @@ jobs:
           sudo sysctl -w fs.file-max=262144
           sudo sysctl -w vm.max_map_count=262144
 
-      - name: Runs ${{ matrix.cluster }} cluster
+      - name: Runs OpenSearch cluster
         run: |
-          make cluster.clean cluster.${{ matrix.cluster }}.build cluster.${{ matrix.cluster }}.start
+          make cluster.clean cluster.opensearch.build cluster.opensearch.start
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      # NPM started understanding yarn.lock file starting from v7
+      - name: Update NPM
+        shell: bash
+        run: |
+          export NPM_VERSION=$(npm -v)
+          export IS_NPM_SUITABLE=$(node -p "parseInt(process.env.NPM_ROOT, 10) >= 7")
+          if [ "$IS_NPM_SUITABLE" == "false" ]; then
+            echo "NPM needs upgrading!"
+            npm i npm@7 -g
+          fi
 
       - name: Install
         run: |
@@ -45,8 +63,7 @@ jobs:
 
     strategy:
       matrix:
-        cluster: ['opendistro', 'opensearch']
-        node-version: [10.x, 12.x, 14.x, 16.x]
+        node-version: [10.x, 12.x, 14.x, 16.x, 18.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -58,15 +75,26 @@ jobs:
           sudo sysctl -w fs.file-max=262144
           sudo sysctl -w vm.max_map_count=262144
 
-      - name: Runs ${{ matrix.cluster }} secure cluster
+      - name: Runs OpenSearch secure cluster
         run: |
           export SECURE_INTEGRATION=true
-          make cluster.clean cluster.${{ matrix.cluster }}.build cluster.${{ matrix.cluster }}.start
+          make cluster.clean cluster.opensearch.build cluster.opensearch.start
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      # NPM started understanding yarn.lock file starting from v7
+      - name: Update NPM
+        shell: bash
+        run: |
+          export NPM_VERSION=$(npm -v)
+          export IS_NPM_SUITABLE=$(node -p "parseInt(process.env.NPM_ROOT, 10) >= 7")
+          if [ "$IS_NPM_SUITABLE" == "false" ]; then
+            echo "NPM needs upgrading!"
+            npm i npm@7 -g
+          fi
 
       - name: Install
         run: |

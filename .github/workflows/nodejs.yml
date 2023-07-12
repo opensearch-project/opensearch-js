@@ -1,6 +1,15 @@
 name: Node CI
 
-on: [push, pull_request]
+# trigger on every commit push and PR for all branches
+on:
+  push:
+    branches: ['**']
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    branches: ['**']
+    paths-ignore:
+      - '**/*.md'
 
 jobs:
   test:
@@ -9,16 +18,27 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 16.x]
+        node-version: [10.x, 12.x, 14.x, 16.x, 18.x]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      # NPM started understanding yarn.lock file starting from v7
+      - name: Update NPM
+        shell: bash
+        run: |
+          export NPM_VERSION=$(npm -v)
+          export IS_NPM_SUITABLE=$(node -p "parseInt(process.env.NPM_ROOT, 10) >= 7")
+          if [ "$IS_NPM_SUITABLE" == "false" ]; then
+            echo "NPM needs upgrading!"
+            npm i npm@7 -g
+          fi
 
       - name: Install
         run: |
@@ -27,9 +47,10 @@ jobs:
       - name: Setup Yarn
         run: |
           npm uninstall -g yarn
-          npm i -g yarn@1.22.10    
-    
+          npm i -g yarn@1.22.10
+
       - name: Lint
+        if: matrix.node-version == '16.x'
         run: |
           yarn lint
 

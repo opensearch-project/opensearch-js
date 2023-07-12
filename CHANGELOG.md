@@ -3,6 +3,15 @@
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
+### Added
+### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.3.0]
 
 ### Added
 - Add serialization and deserialization of numerals larger than `Number.MAX_SAFE_INTEGER` ([#544](https://github.com/opensearch-project/opensearch-js/pull/544))

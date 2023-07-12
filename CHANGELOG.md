@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 
 ### Added
+- Add serialization and deserialization of numerals larger than `Number.MAX_SAFE_INTEGER` ([#544](https://github.com/opensearch-project/opensearch-js/pull/544))
 ### Dependencies
 - Bumps `prettier` from 2.8.7 to 2.8.8
 - Bumps `ora` from 6.1.2 to 6.3.1

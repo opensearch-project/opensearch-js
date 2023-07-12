@@ -20,6 +20,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 - Implemented Docker Image caching for `integration-unreleased` workflow ([#387](https://github.com/opensearch-project/opensearch-js/issues/387))
 - Add upgrading NPM to all workflows running older Node.js versions ([#545](https://github.com/opensearch-project/opensearch-js/issues/545))
+- Upgrade and secure the backport workflow ([#547](https://github.com/opensearch-project/opensearch-js/issues/547))
 ### Deprecated
 ### Removed
 ### Fixed

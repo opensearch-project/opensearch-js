@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -56,27 +57,27 @@ test('No errors', (t) => {
 
   const order = [events.SERIALIZATION, events.REQUEST, events.DESERIALIZATION, events.RESPONSE];
 
-  client.on(events.SERIALIZATION, (err) => {
+  client.on(events.SERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.SERIALIZATION);
   });
 
-  client.on(events.REQUEST, (err) => {
+  client.on(events.REQUEST, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.REQUEST);
   });
 
-  client.on(events.DESERIALIZATION, (err) => {
+  client.on(events.DESERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.DESERIALIZATION);
   });
 
-  client.on(events.RESPONSE, (err) => {
+  client.on(events.RESPONSE, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.RESPONSE);
   });
 
-  client.info((err) => {
+  client.info((err, result) => {
     t.error(err);
     t.equal(order.length, 0);
   });
@@ -93,26 +94,26 @@ test('Connection error', (t) => {
 
   const order = [events.SERIALIZATION, events.REQUEST, events.REQUEST, events.RESPONSE];
 
-  client.on(events.SERIALIZATION, (err) => {
+  client.on(events.SERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.SERIALIZATION);
   });
 
-  client.on(events.REQUEST, (err) => {
+  client.on(events.REQUEST, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.REQUEST);
   });
 
-  client.on(events.DESERIALIZATION, () => {
+  client.on(events.DESERIALIZATION, (_err, request) => {
     t.fail('Should not be called');
   });
 
-  client.on(events.RESPONSE, (err) => {
+  client.on(events.RESPONSE, (err, request) => {
     t.ok(err instanceof ConnectionError);
     t.equal(order.shift(), events.RESPONSE);
   });
 
-  client.info((err) => {
+  client.info((err, result) => {
     t.ok(err instanceof ConnectionError);
     t.equal(order.length, 0);
   });
@@ -129,26 +130,26 @@ test('TimeoutError error', (t) => {
 
   const order = [events.SERIALIZATION, events.REQUEST, events.REQUEST, events.RESPONSE];
 
-  client.on(events.SERIALIZATION, (err) => {
+  client.on(events.SERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.SERIALIZATION);
   });
 
-  client.on(events.REQUEST, (err) => {
+  client.on(events.REQUEST, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.REQUEST);
   });
 
-  client.on(events.DESERIALIZATION, () => {
+  client.on(events.DESERIALIZATION, (_err, request) => {
     t.fail('Should not be called');
   });
 
-  client.on(events.RESPONSE, (err) => {
+  client.on(events.RESPONSE, (err, request) => {
     t.ok(err instanceof TimeoutError);
     t.equal(order.shift(), events.RESPONSE);
   });
 
-  client.info((err) => {
+  client.info((err, result) => {
     t.ok(err instanceof TimeoutError);
     t.equal(order.length, 0);
   });
@@ -165,26 +166,26 @@ test('RequestAbortedError error', (t) => {
 
   const order = [events.SERIALIZATION, events.REQUEST, events.RESPONSE];
 
-  client.on(events.SERIALIZATION, (err) => {
+  client.on(events.SERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.SERIALIZATION);
   });
 
-  client.on(events.REQUEST, (err) => {
+  client.on(events.REQUEST, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.REQUEST);
   });
 
-  client.on(events.DESERIALIZATION, () => {
+  client.on(events.DESERIALIZATION, (_err, request) => {
     t.fail('Should not be called');
   });
 
-  client.on(events.RESPONSE, (err) => {
+  client.on(events.RESPONSE, (err, request) => {
     t.ok(err instanceof RequestAbortedError);
     t.equal(order.shift(), events.RESPONSE);
   });
 
-  const request = client.info((err) => {
+  const request = client.info((err, result) => {
     t.ok(err instanceof RequestAbortedError);
     t.equal(order.length, 0);
   });
@@ -196,7 +197,7 @@ test('ResponseError error (no retry)', (t) => {
   t.plan(10);
 
   const MockConnection = buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         statusCode: 400,
         body: { hello: 'world' },
@@ -212,27 +213,27 @@ test('ResponseError error (no retry)', (t) => {
 
   const order = [events.SERIALIZATION, events.REQUEST, events.DESERIALIZATION, events.RESPONSE];
 
-  client.on(events.SERIALIZATION, (err) => {
+  client.on(events.SERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.SERIALIZATION);
   });
 
-  client.on(events.REQUEST, (err) => {
+  client.on(events.REQUEST, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.REQUEST);
   });
 
-  client.on(events.DESERIALIZATION, (err) => {
+  client.on(events.DESERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.DESERIALIZATION);
   });
 
-  client.on(events.RESPONSE, (err) => {
+  client.on(events.RESPONSE, (err, request) => {
     t.ok(err instanceof ResponseError);
     t.equal(order.shift(), events.RESPONSE);
   });
 
-  client.info((err) => {
+  client.info((err, result) => {
     t.ok(err instanceof ResponseError);
     t.equal(order.length, 0);
   });
@@ -242,7 +243,7 @@ test('ResponseError error (with retry)', (t) => {
   t.plan(14);
 
   const MockConnection = buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         statusCode: 504,
         body: { hello: 'world' },
@@ -265,27 +266,27 @@ test('ResponseError error (with retry)', (t) => {
     events.RESPONSE,
   ];
 
-  client.on(events.SERIALIZATION, (err) => {
+  client.on(events.SERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.SERIALIZATION);
   });
 
-  client.on(events.REQUEST, (err) => {
+  client.on(events.REQUEST, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.REQUEST);
   });
 
-  client.on(events.DESERIALIZATION, (err) => {
+  client.on(events.DESERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.DESERIALIZATION);
   });
 
-  client.on(events.RESPONSE, (err) => {
+  client.on(events.RESPONSE, (err, request) => {
     t.ok(err instanceof ResponseError);
     t.equal(order.shift(), events.RESPONSE);
   });
 
-  client.info((err) => {
+  client.info((err, result) => {
     t.ok(err instanceof ResponseError);
     t.equal(order.length, 0);
   });
@@ -302,27 +303,27 @@ test('Serialization Error', (t) => {
 
   const order = [events.SERIALIZATION, events.REQUEST];
 
-  client.on(events.SERIALIZATION, (err) => {
+  client.on(events.SERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.SERIALIZATION);
   });
 
-  client.on(events.REQUEST, (err) => {
+  client.on(events.REQUEST, (err, request) => {
     t.ok(err instanceof SerializationError);
     t.equal(order.shift(), events.REQUEST);
   });
 
-  client.on(events.DESERIALIZATION, () => {
+  client.on(events.DESERIALIZATION, (_err, request) => {
     t.fail('Should not be called');
   });
 
-  client.on(events.RESPONSE, () => {
+  client.on(events.RESPONSE, (_err, request) => {
     t.fail('Should not be called');
   });
 
   const body = {};
   body.o = body;
-  client.index({ index: 'test', body }, (err) => {
+  client.index({ index: 'test', body }, (err, result) => {
     t.ok(err instanceof SerializationError);
     t.equal(order.length, 0);
   });
@@ -356,27 +357,27 @@ test('Deserialization Error', (t) => {
 
   const order = [events.SERIALIZATION, events.REQUEST, events.DESERIALIZATION, events.RESPONSE];
 
-  client.on(events.SERIALIZATION, (err) => {
+  client.on(events.SERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.SERIALIZATION);
   });
 
-  client.on(events.REQUEST, (err) => {
+  client.on(events.REQUEST, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.REQUEST);
   });
 
-  client.on(events.DESERIALIZATION, (err) => {
+  client.on(events.DESERIALIZATION, (err, request) => {
     t.error(err);
     t.equal(order.shift(), events.DESERIALIZATION);
   });
 
-  client.on(events.RESPONSE, (err) => {
+  client.on(events.RESPONSE, (err, request) => {
     t.ok(err instanceof DeserializationError);
     t.equal(order.shift(), events.RESPONSE);
   });
 
-  client.info((err) => {
+  client.info((err, result) => {
     t.ok(err instanceof DeserializationError);
     t.equal(order.length, 0);
   });
@@ -407,27 +408,27 @@ test('Socket destroyed while reading the body', (t) => {
       events.RESPONSE,
     ];
 
-    client.on(events.SERIALIZATION, (err) => {
+    client.on(events.SERIALIZATION, (err, request) => {
       t.error(err);
       t.equal(order.shift(), events.SERIALIZATION);
     });
 
-    client.on(events.REQUEST, (err) => {
+    client.on(events.REQUEST, (err, request) => {
       t.error(err);
       t.equal(order.shift(), events.REQUEST);
     });
 
-    client.on(events.DESERIALIZATION, (err) => {
+    client.on(events.DESERIALIZATION, (err, request) => {
       t.error(err);
       t.equal(order.shift(), events.DESERIALIZATION);
     });
 
-    client.on(events.RESPONSE, (err) => {
+    client.on(events.RESPONSE, (err, request) => {
       t.ok(err instanceof ConnectionError);
       t.equal(order.shift(), events.RESPONSE);
     });
 
-    client.info((err) => {
+    client.info((err, result) => {
       t.ok(err instanceof ConnectionError);
       t.equal(order.length, 0);
       server.stop();

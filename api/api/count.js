@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -31,8 +32,6 @@
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
-
-/** @namespace API-Count */
 
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
@@ -68,32 +67,6 @@ const snakeCase = {
   errorTrace: 'error_trace',
   filterPath: 'filter_path',
 };
-
-/**
- * The count API gives you quick access to the number of documents that match a query. You can also use it to check the document count of an index, data stream, or cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/count/ OpenSearch - Bulk}
- *
- * @memberOf API-Count
- *
- * @param {Object} params
- * @param {boolean} [params.allow_no_indices=false] - If false, the request returns an error if any wildcard expression or index alias targets any closed or missing indices.
- * @param {string} [params.analyzer] - The analyzer to use in the query string.
- * @param {boolean} [params.analyze_wildcard=false] - Specifies whether to analyze wildcard and prefix queries.
- * @param {string} [params.default_operator='OR'] - Indicates whether the default operator for a string query should be 'AND' or 'OR'.
- * @param {string} [params.df] - The default field in case a field prefix is not provided in the query string.
- * @param {string} [params.expand_wildcards=open] - Expands wildcard expressions to concrete indices. Combine multiple values with commas. Supported values are 'all', 'open', 'closed', 'hidden', and 'none'.
- * @param {boolean} [params.ignore_unavailable=false] - Specifies whether to include missing or closed indices in the response.
- * @param {boolean} [params.lenient=false] - Specifies whether OpenSearch should accept requests if queries have format errors (for example, querying a text field for an integer).
- * @param {number} [params.min_score] - Include only documents with a minimum '_score' value in the result.
- * @param {string} [params.routing] - Value used to route the operation to a specific shard.
- * @param {string} [params.preference] - Specifies which shard or node OpenSearch should perform the count operation on.
- * @param {number} [params.terminate_after] - The maximum number of documents OpenSearch should process before terminating the request.
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/count/#response Count Response}
- */
 
 function countApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);

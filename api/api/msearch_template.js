@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -55,25 +56,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Allows to execute several search template operations in one request.
- *
- * @memberOf API-Search
- *
- * @param {Object} params
- * @param {string} params.index - A comma-separated list of index names to use as default
- * @param {Object} params.body - The request definitions (metadata-search request definition pairs), separated by newlines
- * @param {string} [params.search_type] - Search operation type (options: query_then_fetch, dfs_query_then_fetch)
- * @param {boolean} [params.typed_keys] - Specify whether aggregation and suggester names should be prefixed by their respective types in the response
- * @param {number} [params.max_concurrent_searches] - Controls the maximum number of concurrent searches the multi search api will execute
- * @param {boolean} [params.rest_total_hits_as_int] - Indicates whether hits.total should be rendered as an integer or an object in the rest search response
- * @param {boolean} [params.ccs_minimize_roundtrips] - Indicates whether network round-trips should be minimized as part of cross-cluster search requests execution
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 function msearchTemplateApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

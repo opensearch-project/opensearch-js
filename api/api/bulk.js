@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -63,29 +64,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * The bulk operation lets you add, update, or delete many documents in a single request.
- * Compared to individual OpenSearch indexing requests, the bulk operation has significant performance benefits.
- * Whenever practical, we recommend batching indexing operations into bulk requests.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/bulk/|OpenSearch - Bulk}
- *
- * @memberOf API-Document
- *
- * @param {Object} params
- * @param {Object[]} params.body - {@link https://opensearch.org/docs/latest/api-reference/document-apis/bulk/#request-body|Request Body}
- * @param {string} [params.index] - Specifying the index means you don’t need to include it in the request body.
- * @param {string} [params.pipeline] - The pipeline ID for preprocessing documents.
- * @param {string} [params.routing] - Routes the request to the specified shard.
- * @param {string} [params.refresh=false] - If true, OpenSearch refreshes shards to make the operation visible to searching. Valid options are 'true', 'false', and 'wait_for', which tells OpenSearch to wait for a refresh before executing the operation.
- * @param {string} [params.timeout=1m] - How long to wait for a response from the cluster.
- * @param {string} [params.wait_for_active_shards] - The number of active shards that must be available before OpenSearch processes the request. Default is 1 (only the primary shard). Set to all or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the operation to succeed.
- * @param {boolean} [params.require_alias=false] - Specifies whether the target index must be an index alias.
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/document-apis/bulk/#response|Bulk Response}
- */
 function bulkApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

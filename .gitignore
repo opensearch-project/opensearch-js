@@ -53,12 +53,6 @@ opensearch*
 !opensearch_dashboards*
 !opensearchDashboards*
 
-# documentation
-docs/
-
-# temporary
-tmp/
-
 test/benchmarks/macro/fixtures/*
 
 *-junit.xml

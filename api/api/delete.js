@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -57,29 +58,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Delete a document
- * <br/> See Also: {@link https://opensearch.org/docs/2.4/api-reference/document-apis/update-document/ OpenSearch - Update Document}
- *
- * @memberOf API-Document
- *
- * @param {Object} params
- * @param {string} params.index - Name of the index.
- * @param {string} params.id - A unique identifier to attach to the document.
- * @param {number} [params.if_seq_no] - Only perform the delete operation if the document has the specified sequence number.
- * @param {number} [params.if_primary_term] - Only perform the delete operation if the document has the specified primary term.
- * @param {string} [params.routing] - Value used to assign the index operation to a specific shard.
- * @param {string} [params.refresh=false] - If true, OpenSearch refreshes shards to make the operation visible to searching. Valid options are 'true', 'false', and 'wait_for', which tells OpenSearch to wait for a refresh before executing the operation.
- * @param {string} [params.timeout=1m] - How long to wait for a response from the cluster.
- * @param {string} [params.wait_for_active_shards] - The number of active shards that must be available before OpenSearch processes the request. Default is 1 (only the primary shard). Set to all or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the operation to succeed.
- * @param {number} [params.version] - The document’s version number.
- * @param {number} [params.version_type] - Specific version type (options: 'external' and 'external_gte')
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/2.4/api-reference/document-apis/update-document/#response Update Response}
- */
 function deleteApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

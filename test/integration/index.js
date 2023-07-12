@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -40,6 +41,7 @@ const yaml = require('js-yaml');
 const ms = require('ms');
 const { Client } = require('../../index');
 const build = require('./test-runner');
+const { sleep } = require('./helper');
 const createJunitReporter = require('./reporter');
 const downloadArtifacts = require('../../scripts/download-artifacts');
 
@@ -80,8 +82,22 @@ function runner(opts = {}) {
   });
 }
 
+async function waitCluster(client, times = 0) {
+  try {
+    await client.cluster.health({ waitForStatus: 'green', timeout: '50s' });
+  } catch (err) {
+    if (++times < 10) {
+      await sleep(5000);
+      return waitCluster(client, times);
+    }
+    console.error(err);
+    process.exit(1);
+  }
+}
+
 async function start({ client }) {
   log('Waiting for OpenSearch');
+  await waitCluster(client);
 
   const { body } = await client.info();
   const { number: version, build_hash: hash } = body.version;

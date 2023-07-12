@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -66,33 +67,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Allows to use the Mustache language to pre-render a search definition.
- *
- * @memberOf API-Search
- *
- * @param {Object} params
- * @param {string} params.index - A comma-separated list of index names to search; use `_all` or empty string to perform the operation on all indices
- * @param {Object} params.body - The search definition template and its params
- * @param {boolean} [params.ignore_unavailable] - Whether specified concrete indices should be ignored when unavailable (missing or closed)
- * @param {boolean} [params.ignore_throttled] - Whether specified concrete, expanded or aliased indices should be ignored when throttled
- * @param {boolean} [params.allow_no_indices] - Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified)
- * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indices that are open, closed or both. (options: open, closed, hidden, none, all)
- * @param {string} [params.preference] - Specify the node or shard the operation should be performed on (default: random)
- * @param {string} [params.routing] - A comma-separated list of specific routing values
- * @param {string} [params.scroll] - Specify how long a consistent view of the index should be maintained for scrolled search
- * @param {string} [params.search_type] - Search operation type (options: query_then_fetch, dfs_query_then_fetch)
- * @param {boolean} [params.explain] - Specify whether to return detailed information about score computation as part of a hit
- * @param {boolean} [params.profile] - Specify whether to profile the query execution
- * @param {boolean} [params.typed_keys] - Specify whether aggregation and suggester names should be prefixed by their respective types in the response
- * @param {boolean} [params.rest_total_hits_as_int] - Indicates whether hits.total should be rendered as an integer or an object in the rest search response
- * @param {boolean} [params.ccs_minimize_roundtrips] - Indicates whether network round-trips should be minimized as part of cross-cluster search requests execution
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 function searchTemplateApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

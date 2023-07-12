@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -32,31 +33,6 @@
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-/**
- * Check whether a document source exists
- * <br/> See Also: {@link https://opensearch.org/docs/2.4/api-reference/document-apis/get-documents/ OpenSearch - Get Document}
- *
- * @memberOf API-Document
- *
- * @param {Object} params
- * @param {string} params.index - Name of the index.
- * @param {string} params.id - Document ID.
- * @param {string} [params.preference] - Specifies a preference of which shard to retrieve results from. Available options are '_local', which tells the operation to retrieve results from a locally allocated shard replica, and a custom string value assigned to a specific shard replica. By default, OpenSearch executes get document operations on random shards.
- * @param {boolean} [params.realtime=true] - Specifies whether the operation should run in realtime. If false, the operation waits for the index to refresh to analyze the source to retrieve data, which makes the operation near-realtime.
- * @param {boolean} [params.refresh=false] - If true, OpenSearch refreshes shards to make the get operation available to search results. Valid options are 'true', 'false', and 'wait_for', which tells OpenSearch to wait for a refresh before executing the operation.
- * @param {string} [params.routing] - A value used to route the operation to a specific shard.
- * @param {boolean} [params.stored_fields=false] - Whether the get operation should retrieve fields stored in the index.
- * @param {string} [params._source=true] - Whether to include the '_source' field in the response body.
- * @param {string} [params._source_excludes] - A comma-separated list of source fields to exclude in the query response.
- * @param {string} [params._source_includes] - A comma-separated list of source fields to include in the query response.
- * @param {number} [params.version] - The document’s version number.
- * @param {number} [params.version_type] - Specific version type (options: 'external' and 'external_gte')
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/2.4/api-reference/document-apis/get-documents/#response Get Response}
- */
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
   'preference',

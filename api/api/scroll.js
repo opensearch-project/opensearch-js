@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -50,23 +51,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Allows to retrieve a large numbers of results from a single search request.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/scroll/ OpenSearch - Scroll }
- *
- * @memberOf API-Search
- *
- * @param {Object} params
- * @param {string} [params.scroll_id] - The scroll ID *Deprecated*
- * @param {string} [params.scroll] - Specify how long a consistent view of the index should be maintained for scrolled search
- * @param {boolean} [params.rest_total_hits_as_int] - Indicates whether hits.total should be rendered as an integer or an object in the rest search response
- * @param {Object} [params.body] - The scroll ID if not passed by URL or query parameter.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 function scrollApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

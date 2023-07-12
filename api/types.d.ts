@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -40,12 +41,12 @@ export interface BulkIndexOperation extends BulkOperation { }
 export interface BulkIndexResponseItem extends BulkResponseItemBase { }
 
 export interface BulkOperation {
-  _id?: Id;
-  _index?: IndexName;
-  retry_on_conflict?: integer;
-  routing?: Routing;
-  version?: VersionNumber;
-  version_type?: VersionType;
+  _id: Id;
+  _index: IndexName;
+  retry_on_conflict: integer;
+  routing: Routing;
+  version: VersionNumber;
+  version_type: VersionType;
 }
 
 export interface BulkOperationContainer {
@@ -9962,51 +9963,4 @@ export interface SpecUtilsCommonCatQueryParameters {
   master_timeout?: Time
   s?: string[]
   v?: boolean
-}
-
-export interface PointInTime {
-  pit_id: string;
-  creation_time: Time;
-  keep_alive: Time
-}
-
-export interface PointInTimeDelete {
-  pit_id: string;
-  successful: boolean
-}
-
-export interface PointInTimeCreateRequest extends RequestBase {
-  index: Indices;
-  keep_alive: string;
-  preference?: string;
-  routing?: string;
-  expand_wildcards?: ExpandWildcards;
-  allow_partial_pit_creation?: boolean
-}
-
-export interface PointInTimeCreateResponse extends ShardsOperationResponseBase {
-  pit_id: string;
-  creation_time: Time;
-}
-
-export interface PointInTimeGetAllRequest extends RequestBase { }
-
-export interface PointInTimeGetAllResponse {
-  pits: PointInTime[];
-}
-
-export interface PointInTimeDeleteAllRequest extends RequestBase { }
-
-export interface PointInTimeDeleteAllResponse {
-  pits: PointInTimeDelete[];
-}
-
-export interface PointInTimeDeleteRequest extends RequestBase {
-  body?: {
-    pit_id: string[]
-  };
-}
-
-export interface PointInTimeDeleteResponse {
-  pits: PointInTimeDelete[];
 }

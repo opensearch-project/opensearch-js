@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -31,8 +32,6 @@
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
-
-/** @namespace API-Nodes */
 
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
@@ -157,25 +156,6 @@ NodesApi.prototype.getMeteringInfo = function nodesGetMeteringInfoApi(params, op
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns information about hot threads on each node in the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/ OpenSearch - Nodes Hot Threads}
- * @memberOf API-Nodes
- *
- * @param {Object} params
- * @param {string} [params.node_id] - A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes
- * @param {string} [params.interval] - The interval for the second sampling of threads
- * @param {number} [params.snapshots] - Number of samples of thread stacktrace (default: 10)
- * @param {number} [params.threads] - Specify the number of threads to provide information for (default: 3)
- * @param {boolean} [params.ignore_idle_threads] - Don't show threads that are in known-idle places, such as waiting on a socket select or pulling from an empty task queue (default: true)
- * @param {string} [params.type] - The type to sample (default: cpu) (options: cpu, wait, block)
- * @param {string} [params.timeout] - Explicit operation timeout
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 NodesApi.prototype.hotThreads = function nodesHotThreadsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -227,22 +207,6 @@ NodesApi.prototype.hotThreads = function nodesHotThreadsApi(params, options, cal
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns information about hot threads on each node in the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-info/ OpenSearch - Nodes Info}
- * @memberOf API-Nodes
- *
- * @param {Object} params
- * @param {string} [params.node_id] - A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes
- * @param {string} [params.metric] - A comma-separated list of metrics you wish returned. Leave empty to return all. (options: settings, os, process, jvm, thread_pool, transport, http, plugins, ingest)
- * @param {boolean} [params.flat_settings] - Return settings in flat format (default: false)
- * @param {string} [params.timeout] - Explicit operation timeout
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 NodesApi.prototype.info = function nodesInfoApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -281,21 +245,6 @@ NodesApi.prototype.info = function nodesInfoApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Reloads secure settings.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-reload-secure/ OpenSearch - Nodes Reload Security Settings}
- * @memberOf API-Nodes
- *
- * @param {Object} params
- * @param {string} [params.node_id] - A comma-separated list of node IDs to span the reload/reinit call. Should stay empty because reloading usually involves all cluster nodes.
- * @param {string} [params.timeout] - Explicit operation timeout
- * @param {Object} [params.body] - An object containing the password for the opensearch keystore
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 NodesApi.prototype.reloadSecureSettings = function nodesReloadSecureSettingsApi(
   params,
   options,
@@ -327,30 +276,6 @@ NodesApi.prototype.reloadSecureSettings = function nodesReloadSecureSettingsApi(
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns statistical information about nodes in the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-stats/ OpenSearch - Nodes Stats}
- * @memberOf API-Nodes
- *
- * @param {Object} params
- * @param {string} [params.node_id] - A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes
- * @param {string} [params.metric] - Limit the information returned to the specified metrics (options: _all, breaker, fs, http, indices, jvm, os, process, thread_pool, transport, discovery, indexing_pressure)
- * @param {string} [params.index_metric] - Limit the information returned for `indices` metric to the specific index metrics. Isn't used if `indices` (or `all`) metric isn't specified. (options: _all, completion, docs, fielddata, query_cache, flush, get, indexing, merge, request_cache, refresh, search, segments, store, warmer, suggest)
- * @param {string} [params.completion_fields] - A comma-separated list of fields for `fielddata` and `suggest` index metric (supports wildcards)
- * @param {string} [params.fielddata_fields] - A comma-separated list of fields for `fielddata` index metric (supports wildcards)
- * @param {string} [params.fields] - A comma-separated list of fields for `fielddata` and `completion` index metric (supports wildcards)
- * @param {boolean} [params.groups] - A comma-separated list of search groups for `search` index metric
- * @param {string} [params.level] - Return indices stats aggregated at index, node or shard level (options: indices, node, shards)
- * @param {string} [params.types] - A comma-separated list of document types for the `indexing` index metric
- * @param {string} [params.timeout] - Explicit operation timeout
- * @param {boolean} [params.include_segment_file_sizes] - Whether to report the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested)
- * @param {boolean} [params.include_unloaded_segments] - If set to true segment stats will include stats for segments that are not currently loaded into memory
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 NodesApi.prototype.stats = function nodesStatsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -415,21 +340,6 @@ NodesApi.prototype.stats = function nodesStatsApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns low-level information about REST actions usage on nodes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-usage/ OpenSearch - Nodes Usage}
- * @memberOf API-Nodes
- *
- * @param {Object} params
- * @param {string} [params.node_id] - A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes
- * @param {string} [params.metric] - Limit the information returned to the specified metrics (options: _all, rest_actions)
- * @param {string} [params.timeout] - Explicit operation timeout
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 NodesApi.prototype.usage = function nodesUsageApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

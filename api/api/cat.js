@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -31,8 +32,6 @@
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
-
-/** @namespace API-CAT */
 
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
@@ -71,7 +70,6 @@ const acceptedQuerystring = [
   'nodes',
   'actions',
   'parent_task_id',
-  'pri',
 ];
 const snakeCase = {
   expandWildcards: 'expand_wildcards',
@@ -95,22 +93,6 @@ function CatApi(transport, ConfigurationError) {
   this[kConfigurationError] = ConfigurationError;
 }
 
-/**
- * The CAT aliases operation lists the mapping of aliases to indices, plus routing and filtering information.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-aliases/ OpenSearch - CAT aliases}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.name] - To limit the information to specific aliases, provide the alias names seperated by commas.
- * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.
- * @param {string} [params.expand_wildcards=open] - Expands wildcard expressions to concrete indices. Combine multiple values with commas. Supported values are 'all', 'open', 'closed', 'hidden', and 'none'. Default is 'open'.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-aliases/#response CAT aliases Response}
- */
 CatApi.prototype.aliases = function catAliasesApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -137,23 +119,6 @@ CatApi.prototype.aliases = function catAliasesApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT allocation operation lists the allocation of disk space for indices and the number of shards on each node.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-allocation/ OpenSearch - CAT allocation}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.node_id] - To limit the information to specific nodes, provide the node names seperated by commas.
- * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- * @param {string} [params.bytes] - Specify the units for byte size. For example, '7kb' or '6gb'.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-allocation/#response CAT allocation Response}
- */
 CatApi.prototype.allocation = function catAllocationApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -180,20 +145,6 @@ CatApi.prototype.allocation = function catAllocationApi(params, options, callbac
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT count operation lists the number of documents in your cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-count/ OpenSearch - CAT count}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.index] - To see the number of documents in specific indices or aliases, provide the index/alias names seperated by commas.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-count/#response CAT count Response}
- */
 CatApi.prototype.count = function catCountApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -220,20 +171,6 @@ CatApi.prototype.count = function catCountApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT fielddata operation lists the memory size used by each field per node.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-field-data/ OpenSearch - CAT fielddata}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.fields] - To limit the information to specific fields, provide the field names seperated by commas.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-field-data/#response CAT fielddata Response}
- */
 CatApi.prototype.fielddata = function catFielddataApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -260,22 +197,6 @@ CatApi.prototype.fielddata = function catFielddataApi(params, options, callback)
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT health operation lists the status of the cluster, how long the cluster has been up, the number of nodes,
- * and other useful information that helps you analyze the health of your cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-health/ OpenSearch - CAT health}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.time] - Specify the units for time. For example, '5d' or '7h'.
- * @param {boolean} [params.ts=true] - If true, returns HH:MM:SS and Unix epoch timestamps.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-health/#response CAT health Response}
- */
 CatApi.prototype.health = function catHealthApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -297,18 +218,6 @@ CatApi.prototype.health = function catHealthApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * See the available operations in the CAT API
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/index OpenSearch - CAT}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - (ignored)
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 CatApi.prototype.help = function catHelpApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -330,27 +239,6 @@ CatApi.prototype.help = function catHelpApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT indices operation lists information related to indices—how much disk space they are using, how many shards they have, their health status, and so on.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-indices/ OpenSearch - CAT indices}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.index] - To limit the information to specific indices, provide the index names seperated by commas.
- * @param {string} [params.bytes] - Specify the units for byte size. For example, '7kb' or '6gb'.
- * @param {string} [params.health] - Limit indices based on their health status. Supported values are 'green', 'yellow', and 'red'.
- * @param {boolean} [params.include_unloaded_segments=false] - Whether to include information from segments not loaded into memory.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- * @param {boolean} [params.pri=false] - Whether to return information only from the primary shards.
- * @param {string} [params.time] - Specify the units for time. For example, '5d' or '7h'.
- * @param {string} [params.expand_wildcards=open] - Expands wildcard expressions to concrete indices. Combine multiple values with commas. Supported values are 'all', 'open', 'closed', 'hidden', and 'none'.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-indices/#response CAT indices Response}
- */
 CatApi.prototype.indices = function catIndicesApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -377,18 +265,6 @@ CatApi.prototype.indices = function catIndicesApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT cluster manager operation lists information that helps identify the elected cluster manager node.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-cluster_manager/ OpenSearch - CAT cluster manager}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters}
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-cluster_manager/#response CAT cluster manager Response}
- */
 CatApi.prototype.cluster_manager = function catClusterManagerApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -435,21 +311,6 @@ CatApi.prototype.master = function catMasterApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT nodeattrs operation lists the attributes of custom nodes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-nodeattrs/ OpenSearch - CAT aliases}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-nodeattrs/#response CAT nodeattrs Response}
- */
 CatApi.prototype.nodeattrs = function catNodeattrsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -471,25 +332,6 @@ CatApi.prototype.nodeattrs = function catNodeattrsApi(params, options, callback)
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT nodes operation lists node-level information, including node roles and load metrics.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-nodes/ OpenSearch - CAT nodes}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.bytes] - Specify the units for byte size. For example, '7kb' or '6gb'.
- * @param {boolean} [params.full_id=false] - If true, return the full node ID. If false, return the shortened node ID.
- * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster_manager node.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- * @param {string} [params.time] - Specify the units for time. For example, '5d' or '7h'.
- * @param {boolean} [params.include_unloaded_segments=false] - Whether to include information from segments not loaded into memory.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-nodes/#response CAT nodes Response}
- */
 CatApi.prototype.nodes = function catNodesApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -511,22 +353,6 @@ CatApi.prototype.nodes = function catNodesApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT pending tasks operation lists the progress of all pending tasks, including task priority and time in queue.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-pending-tasks/ OpenSearch - CAT pending tasks}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster_manager node.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- * @param {string} [params.time] - Specify the units for time. For example, '5d' or '7h'.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-pending-tasks/#response CAT pending tasks Response}
- */
 CatApi.prototype.pendingTasks = function catPendingTasksApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -548,21 +374,6 @@ CatApi.prototype.pendingTasks = function catPendingTasksApi(params, options, cal
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT plugins operation lists the names, components, and versions of the installed plugins.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-plugins/ OpenSearch - CAT plugins}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster_manager node.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-plugins/#response CAT plugins Response}
- */
 CatApi.prototype.plugins = function catPluginsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -584,23 +395,6 @@ CatApi.prototype.plugins = function catPluginsApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT recovery operation lists all completed and ongoing index and shard recoveries.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-recovery/ OpenSearch - CAT recovery}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.bytes] - Specify the units for byte size. For example, '7kb' or '6gb'.
- * @param {string} [params.time] - Specify the units for time. For example, '5d' or '7h'.
- * @param {boolean} [params.active_only=false] - Whether to only include ongoing shard recoveries.
- * @param {boolean} [params.detailed=false] - Whether to only include ongoing shard recoveries.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-recovery/#response CAT recovery Response}
- */
 CatApi.prototype.recovery = function catRecoveryApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -627,21 +421,6 @@ CatApi.prototype.recovery = function catRecoveryApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT repositories operation lists all completed and ongoing index and shard recoveries.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-repositories/ OpenSearch - CAT repositories}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster_manager node.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-repositories/#response CAT repositories Response}
- */
 CatApi.prototype.repositories = function catRepositoriesApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -663,22 +442,6 @@ CatApi.prototype.repositories = function catRepositoriesApi(params, options, cal
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The cat segments operation lists Lucene segment-level information for each index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-segments/ OpenSearch - CAT segments}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.index] - To see only the information about segments of specific indices, provide the index names seperated by commas.
- * @param {string} [params.bytes] - Specify the units for byte size. For example, '7kb' or '6gb'.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-segments/#response CAT segments Response}
- */
 CatApi.prototype.segments = function catSegmentsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -705,24 +468,6 @@ CatApi.prototype.segments = function catSegmentsApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT shards operation lists the state of all primary and replica shards and how they are distributed.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-shards/ OpenSearch - CAT shards}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.index] - To see only the information about shards of specific indices, provide the index names seperated by commas.
- * @param {string} [params.bytes] - Specify the units for byte size. For example, '7kb' or '6gb'.
- * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster_manager node.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- * @param {string} [params.time] - Specify the units for time. For example, '5d' or '7h'.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-shards/#response CAT shards Response}
- */
 CatApi.prototype.shards = function catShardsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -749,21 +494,6 @@ CatApi.prototype.shards = function catShardsApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT snapshots operation lists all snapshots for a repository.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-snapshots/ OpenSearch - CAT snapshots}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- * @param {string} [params.time] - Specify the units for time. For example, '5d' or '7h'.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-snapshots/#response CAT snapshots Response}
- */
 CatApi.prototype.snapshots = function catSnapshotsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -790,23 +520,6 @@ CatApi.prototype.snapshots = function catSnapshotsApi(params, options, callback)
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT tasks operation lists the progress of all tasks currently running on your cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-tasks/ OpenSearch - CAT tasks}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {string} [params.nodes] - A comma-separated list of node IDs or names to limit the returned information. Use '_local' to return information from the node you’re connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get information from all nodes.
- * @param {string} [params.time] - Specify the units for time. For example, '5d' or '7h'.
- * @param {boolean} [params.detailed=false] - Returns detailed task information.
- * @param {string} [params.parent_task_id] - Returns tasks with a specified parent task ID (node_id:task_number). Keep empty or set to -1 to return all.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-tasks/#response CAT tasks Response}
- */
 CatApi.prototype.tasks = function catTasksApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -828,22 +541,6 @@ CatApi.prototype.tasks = function catTasksApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT templates operation lists the names, patterns, order numbers, and version numbers of index templates.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-templates/ OpenSearch - CAT templates}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {boolean} [params.name] - If you want to limit it to a specific template or pattern, provide the template name or pattern.
- * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-templates/#response CAT templates Response}
- */
 CatApi.prototype.templates = function catTemplatesApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -870,21 +567,6 @@ CatApi.prototype.templates = function catTemplatesApi(params, options, callback)
   return this.transport.request(request, options, callback);
 };
 
-/**
- * The CAT thread pool operation lists the active, queued, and rejected threads of different thread pools on each node.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-thread-pool/ OpenSearch - CAT thread pool}
- *
- * @memberOf API-CAT
- *
- * @param {Object} params - Accepts {@link https://opensearch.org/docs/latest/api-reference/cat/index#optional-query-parameters - common CAT parameters} along with the following unique parameters:
- * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.
- * @param {string} [params.cluster_manager_timeout=30s] - The amount of time to wait for a connection to the cluster manager node.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/cat/cat-thread-pool/#response CAT thread pool Response}
- */
 CatApi.prototype.threadPool = function catThreadPoolApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

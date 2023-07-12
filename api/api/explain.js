@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -66,33 +67,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Returns information about why a specific matches (or doesn't match) a query.
- * <br/> See also: {@link https://opensearch.org/docs/latest/api-reference/explain/ OpenSearch - Explain}
- * @memberOf API-Search
- *
- * @param {Object} params
- * @param {string} [params.id] - The document ID
- * @param {string} [params.index] - The name of the index
- * @param {Object} [params.body] - The query definition using the Query DSL
- * @param {string} [params.analyzer] - The analyzer to use for the query string
- * @param {boolean} [params.analyze_wildcard=false] - Specify whether wildcard and prefix queries should be analyzed
- * @param {string} [params.default_operator=OR] - The default operator for query string query (options: AND, OR)
- * @param {string} [params.df] - The default field for query string query (default: _all)
- * @param {string} [params.stored_fields] - A comma-separated list of stored fields to return in the response
- * @param {boolean} [params.lenient] - Specify whether format-based query failures (such as providing text to a numeric field) should be ignored
- * @param {string} [params.preference] - Specify the node or shard the operation should be performed on (default: random)
- * @param {string} [params.q] - Query in the Lucene query string syntax
- * @param {string} [params.routing] - Specific routing value
- * @param {string} [params._source=true] - Whether to include the '_source' field in the response body.
- * @param {string} [params._source_excludes] - A comma-separated list of source fields to exclude in the query response.
- * @param {string} [params._source_includes] - A comma-separated list of source fields to include in the query response.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 function explainApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

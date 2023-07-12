@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -487,22 +488,6 @@ declare class Client {
     options: TransportRequestOptions,
     callback: callbackFn<T.CreateResponse, TContext>
   ): TransportRequestCallback;
-  createPit<TContext = unknown>(
-    params?: T.PointInTimeCreateRequest,
-    options?: TransportRequestOptions
-  ): TransportRequestPromise<ApiResponse<T.PointInTimeCreateResponse, TContext>>;
-  createPit<TContext = unknown>(
-    callback: callbackFn<T.PointInTimeCreateResponse, TContext>
-  ): TransportRequestCallback;
-  createPit<TContext = unknown>(
-    params: T.PointInTimeCreateRequest,
-    callback: callbackFn<T.PointInTimeCreateResponse, TContext>
-  ): TransportRequestCallback;
-  createPit<TContext = unknown>(
-    params: T.PointInTimeCreateRequest,
-    options: TransportRequestOptions,
-    callback: callbackFn<T.PointInTimeCreateResponse, TContext>
-  ): TransportRequestCallback;
   danglingIndices: {
     deleteDanglingIndex<TContext = unknown>(
       params?: TODO,
@@ -566,22 +551,6 @@ declare class Client {
     options: TransportRequestOptions,
     callback: callbackFn<T.DeleteResponse, TContext>
   ): TransportRequestCallback;
-  deleteAllPits<TContext = unknown>(
-    params?: T.PointInTimeDeleteAllRequest,
-    options?: TransportRequestOptions
-  ): TransportRequestPromise<ApiResponse<T.PointInTimeDeleteAllResponse, TContext>>;
-  deleteAllPits<TContext = unknown>(
-    callback: callbackFn<T.PointInTimeDeleteAllResponse, TContext>
-  ): TransportRequestCallback;
-  deleteAllPits<TContext = unknown>(
-    params: T.PointInTimeDeleteAllRequest,
-    callback: callbackFn<T.PointInTimeDeleteAllResponse, TContext>
-  ): TransportRequestCallback;
-  deleteAllPits<TContext = unknown>(
-    params: T.PointInTimeDeleteAllRequest,
-    options: TransportRequestOptions,
-    callback: callbackFn<T.PointInTimeDeleteAllResponse, TContext>
-  ): TransportRequestCallback;
   deleteByQuery<TContext = unknown>(
     params: T.DeleteByQueryRequest,
     options?: TransportRequestOptions
@@ -607,22 +576,6 @@ declare class Client {
     params: T.DeleteByQueryRethrottleRequest,
     options: TransportRequestOptions,
     callback: callbackFn<T.DeleteByQueryRethrottleResponse, TContext>
-  ): TransportRequestCallback;
-  deletePit<TContext = unknown>(
-    params?: T.PointInTimeDeleteRequest,
-    options?: TransportRequestOptions
-  ): TransportRequestPromise<ApiResponse<T.PointInTimeDeleteResponse, TContext>>;
-  deletePit<TContext = unknown>(
-    callback: callbackFn<T.PointInTimeDeleteResponse, TContext>
-  ): TransportRequestCallback;
-  deletePit<TContext = unknown>(
-    params: T.PointInTimeDeleteRequest,
-    callback: callbackFn<T.PointInTimeDeleteResponse, TContext>
-  ): TransportRequestCallback;
-  deletePit<TContext = unknown>(
-    params: T.PointInTimeDeleteRequest,
-    options: TransportRequestOptions,
-    callback: callbackFn<T.PointInTimeDeleteResponse, TContext>
   ): TransportRequestCallback;
   deleteScript<TContext = unknown>(
     params: T.DeleteScriptRequest,
@@ -736,22 +689,6 @@ declare class Client {
     params: T.GetRequest,
     options: TransportRequestOptions,
     callback: callbackFn<T.GetResponse<TDocument>, TContext>
-  ): TransportRequestCallback;
-  getAllPits<TContext = unknown>(
-    params?: T.PointInTimeGetAllRequest,
-    options?: TransportRequestOptions
-  ): TransportRequestPromise<ApiResponse<T.PointInTimeGetAllResponse, TContext>>;
-  getAllPits<TContext = unknown>(
-    callback: callbackFn<T.PointInTimeGetAllResponse, TContext>
-  ): TransportRequestCallback;
-  getAllPits<TContext = unknown>(
-    params: T.PointInTimeGetAllRequest,
-    callback: callbackFn<T.PointInTimeGetAllResponse, TContext>
-  ): TransportRequestCallback;
-  getAllPits<TContext = unknown>(
-    params: T.PointInTimeGetAllRequest,
-    options: TransportRequestOptions,
-    callback: callbackFn<T.PointInTimeGetAllResponse, TContext>
   ): TransportRequestCallback;
   getScript<TContext = unknown>(
     params: T.GetScriptRequest,

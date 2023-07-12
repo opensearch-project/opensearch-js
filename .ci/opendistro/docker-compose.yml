@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  opensearch:
+  elasticsearch:
     build:
       context: .
-      dockerfile: Dockerfile.opensearch
+      dockerfile: Dockerfile.opendistro
       args:
         - SECURE_INTEGRATION=${SECURE_INTEGRATION:-false}
-        - OPENSEARCH_VERSION=${OPENSEARCH_VERSION:-latest}
+        - OPENDISTRO_VERSION=${OPENDISTRO_VERSION:-latest}
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
     ports:
       - '9200:9200'
-    user: opensearch
+    user: elasticsearch

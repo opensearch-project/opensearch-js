@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -41,32 +42,6 @@ test('Basic', (t) => {
   const json = JSON.stringify(obj);
   t.equal(s.serialize(obj), json);
   t.same(s.deserialize(json), obj);
-});
-
-test('Long numerals', (t) => {
-  t.plan(7);
-  const s = new Serializer();
-  const longPositive = BigInt(Number.MAX_SAFE_INTEGER) * 2n; // eslint-disable-line no-undef
-  const longNegative = BigInt(Number.MIN_SAFE_INTEGER) * 2n; // eslint-disable-line no-undef
-  const json =
-    `{` +
-    // The space before and after the values, and the lack of spaces before comma are intentional
-    `"\\":${longPositive}": "[ ${longNegative.toString()}, ${longPositive.toString()} ]", ` +
-    `"positive": ${longPositive.toString()}, ` +
-    `"array": [ ${longNegative.toString()}, ${longPositive.toString()} ], ` +
-    `"negative": ${longNegative.toString()},` +
-    `"hardcoded": 102931203123987` +
-    `}`;
-  const obj = s.deserialize(json);
-  const res = s.serialize(obj);
-  t.equal(obj.positive, longPositive);
-  t.equal(obj.negative, longNegative);
-  t.same(obj.array, [longNegative, longPositive]);
-  // The space before and after the values, and the lack of spaces before comma are intentional
-  t.equal(obj['":' + longPositive], `[ ${longNegative.toString()}, ${longPositive.toString()} ]`);
-  t.equal(obj.hardcoded, 102931203123987);
-  t.equal(res.replace(/\s+/g, ''), json.replace(/\s+/g, ''));
-  t.match(res, `"[ ${longNegative.toString()}, ${longPositive.toString()} ]"`);
 });
 
 test('ndserialize', (t) => {

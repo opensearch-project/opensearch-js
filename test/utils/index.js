@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -29,11 +30,28 @@
 
 'use strict';
 
+const { promisify } = require('util');
+const sleep = promisify(setTimeout);
 const buildServer = require('./buildServer');
 const buildCluster = require('./buildCluster');
 const buildProxy = require('./buildProxy');
 const connection = require('./MockConnection');
 const { Client } = require('../../');
+
+async function waitCluster(client, waitForStatus = 'green', timeout = '50s', times = 0) {
+  if (!client) {
+    throw new Error('waitCluster helper: missing client instance');
+  }
+  try {
+    await client.cluster.health({ waitForStatus, timeout });
+  } catch (err) {
+    if (++times < 10) {
+      await sleep(5000);
+      return waitCluster(client, waitForStatus, timeout, times);
+    }
+    throw err;
+  }
+}
 
 function skipCompatibleCheck(client) {
   const tSymbol = Object.getOwnPropertySymbols(client.transport || client).filter(
@@ -54,6 +72,7 @@ module.exports = {
   buildCluster,
   buildProxy,
   connection,
+  waitCluster,
   skipCompatibleCheck,
   Client: NoCompatibleCheckClient,
 };

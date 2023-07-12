@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -59,28 +60,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Allows to execute several search operations in one request.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/multi-search/ OpenSearch - Multi-Search}
- *
- * @memberOf API-Search
- *
- * @param {Object} params
- * @param {string} params.index - A comma-separated list of index names to use as default
- * @param {Object} params.body - The request definitions (metadata-search request definition pairs), separated by newlines
- * @param {string} [params.search_type] - Search operation type (options: query_then_fetch, dfs_query_then_fetch)
- * @param {number} [params.max_concurrent_searches] - Controls the maximum number of concurrent searches the multi search api will execute
- * @param {boolean} [params.typed_keys] - Specify whether aggregation and suggester names should be prefixed by their respective types in the response
- * @param {number} [params.pre_filter_shard_size] - A threshold that enforces a pre-filter roundtrip to prefilter search shards based on query rewriting if the number of shards the search request expands to exceeds the threshold. This filter roundtrip can limit the number of shards significantly if for instance a shard can not match any documents based on its rewrite method ie. if date filters are mandatory to match but the shard bounds and the query are disjoint.
- * @param {number} [params.max_concurrent_shard_requests] - The number of concurrent shard requests each sub search executes concurrently per node. This value should be used to limit the impact of the search on the cluster in order to limit the number of concurrent shard requests
- * @param {boolean} [params.rest_total_hits_as_int] - Indicates whether hits.total should be rendered as an integer or an object in the rest search response
- * @param {boolean} [params.ccs_minimize_roundtrips] - Indicates whether network round-trips should be minimized as part of cross-cluster search requests execution
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/multi-search/#response Multi-search Response}
- */
 function msearchApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

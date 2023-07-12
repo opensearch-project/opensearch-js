@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -32,8 +33,6 @@
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-/** @namespace API-Features */
-
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
   'cluster_manager_timeout',
@@ -56,18 +55,6 @@ function FeaturesApi(transport, ConfigurationError) {
   this[kConfigurationError] = ConfigurationError;
 }
 
-/**
- * Gets a list of features
- * @memberOf API-Features
- *
- * @param {Object} params
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 FeaturesApi.prototype.getFeatures = function featuresGetFeaturesApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -89,16 +76,6 @@ FeaturesApi.prototype.getFeatures = function featuresGetFeaturesApi(params, opti
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Resets the internal state of features, usually by deleting system indices
- * @memberOf API-Features
- *
- * @param {Object} params - (Unused)
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 FeaturesApi.prototype.resetFeatures = function featuresResetFeaturesApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

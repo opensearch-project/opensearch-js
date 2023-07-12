@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -35,13 +36,10 @@ const clearScrollApi = require('./api/clear_scroll');
 const ClusterApi = require('./api/cluster');
 const countApi = require('./api/count');
 const createApi = require('./api/create');
-const createPitApi = require('./api/create_pit');
 const DanglingIndicesApi = require('./api/dangling_indices');
 const deleteApi = require('./api/delete');
-const deleteAllPitsApi = require('./api/delete_all_pits');
 const deleteByQueryApi = require('./api/delete_by_query');
 const deleteByQueryRethrottleApi = require('./api/delete_by_query_rethrottle');
-const deletePitApi = require('./api/delete_pit');
 const deleteScriptApi = require('./api/delete_script');
 const existsApi = require('./api/exists');
 const existsSourceApi = require('./api/exists_source');
@@ -49,7 +47,6 @@ const explainApi = require('./api/explain');
 const FeaturesApi = require('./api/features');
 const fieldCapsApi = require('./api/field_caps');
 const getApi = require('./api/get');
-const getAllPitsApi = require('./api/get_all_pits');
 const getScriptApi = require('./api/get_script');
 const getScriptContextApi = require('./api/get_script_context');
 const getScriptLanguagesApi = require('./api/get_script_languages');
@@ -113,19 +110,15 @@ OpenSearchAPI.prototype.bulk = bulkApi;
 OpenSearchAPI.prototype.clearScroll = clearScrollApi;
 OpenSearchAPI.prototype.count = countApi;
 OpenSearchAPI.prototype.create = createApi;
-OpenSearchAPI.prototype.createPit = createPitApi;
 OpenSearchAPI.prototype.delete = deleteApi;
-OpenSearchAPI.prototype.deleteAllPits = deleteAllPitsApi;
 OpenSearchAPI.prototype.deleteByQuery = deleteByQueryApi;
 OpenSearchAPI.prototype.deleteByQueryRethrottle = deleteByQueryRethrottleApi;
-OpenSearchAPI.prototype.deletePit = deletePitApi;
 OpenSearchAPI.prototype.deleteScript = deleteScriptApi;
 OpenSearchAPI.prototype.exists = existsApi;
 OpenSearchAPI.prototype.existsSource = existsSourceApi;
 OpenSearchAPI.prototype.explain = explainApi;
 OpenSearchAPI.prototype.fieldCaps = fieldCapsApi;
 OpenSearchAPI.prototype.get = getApi;
-OpenSearchAPI.prototype.getAllPits = getAllPitsApi;
 OpenSearchAPI.prototype.getScript = getScriptApi;
 OpenSearchAPI.prototype.getScriptContext = getScriptContextApi;
 OpenSearchAPI.prototype.getScriptLanguages = getScriptLanguagesApi;
@@ -175,11 +168,6 @@ Object.defineProperties(OpenSearchAPI.prototype, {
       return this[kCluster];
     },
   },
-  create_pit: {
-    get() {
-      return this.createPit;
-    },
-  },
   danglingIndices: {
     get() {
       if (this[kDanglingIndices] === null) {
@@ -193,11 +181,6 @@ Object.defineProperties(OpenSearchAPI.prototype, {
       return this.danglingIndices;
     },
   },
-  delete_all_pits: {
-    get() {
-      return this.deleteAllPits;
-    },
-  },
   delete_by_query: {
     get() {
       return this.deleteByQuery;
@@ -206,11 +189,6 @@ Object.defineProperties(OpenSearchAPI.prototype, {
   delete_by_query_rethrottle: {
     get() {
       return this.deleteByQueryRethrottle;
-    },
-  },
-  delete_pit: {
-    get() {
-      return this.deletePit;
     },
   },
   delete_script: {
@@ -234,11 +212,6 @@ Object.defineProperties(OpenSearchAPI.prototype, {
   field_caps: {
     get() {
       return this.fieldCaps;
-    },
-  },
-  get_all_pits: {
-    get() {
-      return this.getAllPits;
     },
   },
   get_script: {

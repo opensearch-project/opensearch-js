@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -68,34 +69,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Update an existing document
- * <br/> See Also: {@link https://opensearch.org/docs/2.4/api-reference/document-apis/update-document/ OpenSearch - Update Document}
- *
- * @memberOf API-Document
- *
- * @param {Object} params
- * @param {string} params.index - Name of the index.
- * @param {string} params.id - A unique identifier to attach to the document.
- * @param {Object} params.body - The request definition requires either `script` or partial `doc`.
- * @param {number} [params.if_seq_no] - Only perform the update operation if the document has the specified sequence number.
- * @param {number} [params.if_primary_term] - Only perform the update operation if the document has the specified primary term.
- * @param {string} [params.lang=painless] - Language of the script.
- * @param {string} [params.routing] - Value used to assign the index operation to a specific shard.
- * @param {string} [params._source=true] - Whether to include the '_source' field in the response body.
- * @param {string} [params._source_excludes] - A comma-separated list of source fields to exclude in the query response.
- * @param {string} [params._source_includes] - A comma-separated list of source fields to include in the query response.
- * @param {string} [params.refresh=false] - If true, OpenSearch refreshes shards to make the operation visible to searching. Valid options are 'true', 'false', and 'wait_for', which tells OpenSearch to wait for a refresh before executing the operation.
- * @param {number} [params.retry_on_conflict=0] - The amount of times OpenSearch should retry the operation if there’s a document conflict.
- * @param {string} [params.timeout=1m] - How long to wait for a response from the cluster.
- * @param {string} [params.wait_for_active_shards] - The number of active shards that must be available before OpenSearch processes the request. Default is 1 (only the primary shard). Set to all or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the operation to succeed.
- * @param {boolean} [params.require_alias=false] - Specifies whether the target index must be an index alias.
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/2.4/api-reference/document-apis/update-document/#response Update Response}
- */
 function updateApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

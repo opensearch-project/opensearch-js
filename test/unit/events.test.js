@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -79,7 +80,7 @@ test('Should emit a request event when a request is performed', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err) => {
+    (err, result) => {
       t.error(err);
     }
   );
@@ -127,7 +128,7 @@ test('Should emit a request event once when a request is performed', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err) => {
+    (err, result) => {
       t.error(err);
     }
   );
@@ -137,7 +138,7 @@ test('Should emit a request event once when a request is performed', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err) => {
+    (err, result) => {
       t.error(err);
     }
   );
@@ -188,7 +189,7 @@ test('Remove an event', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err) => {
+    (err, result) => {
       t.error(err);
     }
   );
@@ -198,7 +199,7 @@ test('Remove an event', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err) => {
+    (err, result) => {
       t.error(err);
     }
   );
@@ -249,7 +250,7 @@ test('Should emit a response event in case of a successful response', (t) => {
       index: 'test',
       q: 'foo:bar',
     },
-    (err) => {
+    (err, result) => {
       t.error(err);
     }
   );
@@ -303,7 +304,7 @@ test('Should emit a response event with the error set', (t) => {
     {
       requestTimeout: 500,
     },
-    (err) => {
+    (err, result) => {
       t.ok(err instanceof TimeoutError);
     }
   );

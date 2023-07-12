@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -31,8 +32,6 @@
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
-
-/** @namespace API-Tasks */
 
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
@@ -62,24 +61,6 @@ function TasksApi(transport, ConfigurationError) {
   this[kConfigurationError] = ConfigurationError;
 }
 
-/**
- * Cancels a task, if it can be cancelled through an API.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/tasks/#task-canceling OpenSearch - Task Cancelling}
- *
- * @memberOf API-Tasks
- *
- * @param {Object} params
- * @param {string} [params.task_id] - Cancel the task with specified task id (node_id:task_number)
- * @param {string} [params.nodes] - A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes
- * @param {string} [params.actions] - A comma-separated list of actions that should be cancelled. Leave empty to cancel all.
- * @param {string} [params.parent_task_id] - Cancel tasks with specified parent task id (node_id:task_number). Set to -1 to cancel all.
- * @param {boolean} [params.wait_for_completion] - Should the request block until the cancellation of the task and its descendant tasks is completed. Defaults to false
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 TasksApi.prototype.cancel = function tasksCancelApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -106,22 +87,6 @@ TasksApi.prototype.cancel = function tasksCancelApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns information about a task.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/tasks OpenSearch - Tasks}
- *
- * @memberOf API-Tasks
- *
- * @param {Object} params
- * @param {string} [params.task_id] - Return the task with specified id (node_id:task_number)
- * @param {boolean} [params.wait_for_completion] - Wait for the matching tasks to complete (default: false)
- * @param {string} [params.timeout] - Explicit operation timeoutompletion] - Should the request block until the cancellation of the task and its descendant tasks is completed. Defaults to false
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 TasksApi.prototype.get = function tasksGetApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -149,26 +114,6 @@ TasksApi.prototype.get = function tasksGetApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns a list of tasks.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/tasks OpenSearch - Tasks}
- *
- * @memberOf API-Tasks
- *
- * @param {Object} params
- * @param {string} [params.nodes] - A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes
- * @param {string} [params.actions] - A comma-separated list of actions that should be returned. Leave empty to return all.
- * @param {boolean} [params.detailed] - Return detailed task information (default: false)
- * @param {string} [params.parent_task_id] - Return tasks with specified parent task id (node_id:task_number). Set to -1 to return all.
- * @param {boolean} [params.wait_for_completion] - Wait for the matching tasks to complete (default: false)
- * @param {string} [params.group_by] - Group tasks by nodes or parent/child relationships (options: nodes, parents, none)
- * @param {string} [params.timeout] - Explicit operation timeout
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 TasksApi.prototype.list = function tasksListApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

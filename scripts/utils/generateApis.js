@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -266,7 +267,7 @@ function generateSingleApi(version, spec, common) {
     documentation: generateDocumentation(spec[api], api),
   };
 
-  function genRequiredChecks() {
+  function genRequiredChecks(param) {
     const code = required.map(_genRequiredCheck).concat(_noBody()).filter(Boolean);
 
     if (code.length) {
@@ -318,7 +319,7 @@ function generateSingleApi(version, spec, common) {
         : str.replace(/_([a-z])/g, (k) => k[1].toUpperCase());
     };
 
-    return acceptedQuerystring.reduce((acc, val) => {
+    return acceptedQuerystring.reduce((acc, val, index) => {
       if (toCamelCase(val) !== val) {
         acc[toCamelCase(val)] = val;
       }

@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -32,8 +33,6 @@
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-/** @namespace API-Script */
-
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
   'cluster_manager_timeout',
@@ -51,20 +50,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Retrieves a stored script.
- * <br/> See also: {@link https://opensearch.org/docs/latest/api-reference/script-apis/get-stored-script/ OpenSearch - Get Stored Script}
- * @memberOf API-Script
- *
- * @param {Object} params
- * @param {string} params.id - Stored script or search template name
- * @param {string} [params.cluster_manager_timeout] - Specify timeout for connection to cluster_manager
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 function getScriptApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

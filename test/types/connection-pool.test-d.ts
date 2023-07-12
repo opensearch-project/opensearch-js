@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -60,7 +61,6 @@ import { ConnectionOptions } from '../../lib/Connection';
       now: Date.now(),
     })
   );
-  expectType<Connection>(pool.createConnection({ url: new URL('url') }));
   expectType<Connection>(pool.addConnection({ url: new URL('url') }));
   expectType<BaseConnectionPool>(pool.removeConnection(new Connection()));
   expectType<void>(pool.empty());

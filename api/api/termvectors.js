@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -59,32 +60,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Returns information and statistics about terms in the fields of a particular document.
- *
- * @memberOf API-Document
- *
- * @param {Object} params
- * @param {string} params.index - The index in which the document resides.
- * @param {string} [params.id] - The id of the document, when not specified a doc param should be supplied.
- * @param {boolean} [params.term_statistics] - Specifies if total term frequency and document frequency should be returned.
- * @param {boolean} [params.field_statistics] - Specifies if document count, sum of document frequencies and sum of total term frequencies should be returned.
- * @param {string} [params.fields] - A comma-separated list of fields to return.
- * @param {boolean} [params.offsets] - Specifies if term offsets should be returned.
- * @param {boolean} [params.positions] - Specifies if term positions should be returned.
- * @param {boolean} [params.payloads] - Specifies if term payloads should be returned.
- * @param {string} [params.preference] - Specify the node or shard the operation should be performed on (default: random).
- * @param {string} [params.routing] - Specific routing value.
- * @param {boolean} [params.realtime] - Specifies if request is real-time as opposed to near-real-time (default: true).
- * @param {number} [params.version] - Explicit version number for concurrency control
- * @param {string} [params.version_type] - Specific version type (options: internal, external, external_gte, force)
- * @param {Object} [params.body] - Define parameters and or supply a document to get termvectors for. See documentation.
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 function termvectorsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

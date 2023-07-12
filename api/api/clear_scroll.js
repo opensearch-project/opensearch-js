@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -36,20 +37,6 @@ const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = 
 const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path'];
 const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' };
 
-/**
- * Close the search context when you’re done scrolling, because the scroll operation continues to consume computing resources until the timeout.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/scroll/ OpenSearch - Scroll }
- *
- * @memberOf API-Search
- *
- * @param {Object} params
- * @param {string} [params.scroll_id] The ID of the scroll to be terminated. Use `_all` to close all open scroll contexts.
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 function clearScrollApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -33,15 +34,8 @@ const { test } = require('tap');
 const { URL } = require('url');
 const buffer = require('buffer');
 const intoStream = require('into-stream');
-const {
-  ConnectionPool,
-  Transport,
-  Connection,
-  errors,
-  Client: ProductClient,
-} = require('../../index');
-const { Client, buildServer, connection } = require('../utils');
-const { buildMockConnection } = connection;
+const { ConnectionPool, Transport, Connection, errors } = require('../../index');
+const { Client, buildServer } = require('../utils');
 let clientVersion = require('../../package.json').version;
 if (clientVersion.includes('-')) {
   clientVersion = clientVersion.slice(0, clientVersion.indexOf('-')) + 'p';
@@ -656,7 +650,7 @@ test('Extend client APIs', (t) => {
       node: 'http://localhost:9200',
       Transport: MyTransport,
     });
-    client.extend('method', ({ makeRequest }) => {
+    client.extend('method', ({ makeRequest, result, ConfigurationError }) => {
       return (params, options) => makeRequest(params, options);
     });
 
@@ -667,7 +661,7 @@ test('Extend client APIs', (t) => {
     t.plan(2);
 
     const client = new Client({ node: 'http://localhost:9200' });
-    client.extend('method', () => {
+    client.extend('method', ({ makeRequest, result, ConfigurationError }) => {
       return (params, options, callback) => {
         callback(null, { hello: 'world' });
       };
@@ -683,9 +677,9 @@ test('Extend client APIs', (t) => {
     t.plan(1);
 
     const client = new Client({ node: 'http://localhost:9200' });
-    client.extend('method', () => {
-      return () => {
-        return new Promise((resolve) => {
+    client.extend('method', ({ makeRequest, result, ConfigurationError }) => {
+      return (params, options) => {
+        return new Promise((resolve, reject) => {
           resolve({ hello: 'world' });
         });
       };
@@ -934,7 +928,7 @@ test('Bad content length', (t) => {
 
   buildServer(handler, ({ port }, server) => {
     const client = new Client({ node: `http://localhost:${port}`, maxRetries: 1 });
-    client.info((err) => {
+    client.info((err, { body }) => {
       t.ok(err instanceof errors.ConnectionError);
       t.equal(err.message, 'Response aborted while reading the body');
       t.equal(count, 2);
@@ -960,7 +954,7 @@ test('Socket destryed while reading the body', (t) => {
 
   buildServer(handler, ({ port }, server) => {
     const client = new Client({ node: `http://localhost:${port}`, maxRetries: 1 });
-    client.info((err) => {
+    client.info((err, { body }) => {
       t.ok(err instanceof errors.ConnectionError);
       t.equal(err.message, 'Response aborted while reading the body');
       t.equal(count, 2);
@@ -1112,7 +1106,7 @@ test('Prototype poisoning protection enabled by default', (t) => {
     Connection: MockConnection,
   });
 
-  client.info((err) => {
+  client.info((err, result) => {
     t.ok(err instanceof errors.DeserializationError);
   });
 });
@@ -1141,7 +1135,7 @@ test('Disable prototype poisoning protection', (t) => {
     disablePrototypePoisoningProtection: true,
   });
 
-  client.info((err) => {
+  client.info((err, result) => {
     t.error(err);
   });
 });
@@ -1193,92 +1187,5 @@ test('API compatibility header (x-ndjson)', (t) => {
       server.stop();
       delete process.env.OPENSEARCH_CLIENT_APIVERSIONING;
     });
-  });
-});
-
-test('Issue #253 with promises', async (t) => {
-  t.plan(1);
-
-  const delay = () => new Promise((resolve) => setTimeout(resolve, 10));
-
-  const MockConnection = buildMockConnection({
-    onRequest() {
-      return {
-        statusCode: 200,
-        headers: {},
-        body: {},
-      };
-    },
-  });
-
-  class MyTransport extends Transport {
-    request(params, options = {}, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-
-      if (typeof callback === 'undefined') {
-        return delay().then(() => super.request(params, options));
-      }
-
-      // Callback support
-      delay().then(() => super.request(params, options, callback));
-    }
-  }
-
-  const client = new ProductClient({
-    node: 'http://localhost:9200',
-    Transport: MyTransport,
-    Connection: MockConnection,
-  });
-
-  try {
-    await client.search({});
-    t.pass('ok');
-  } catch (err) {
-    t.fail(err);
-  }
-});
-
-test('Issue #253 with callbacks', (t) => {
-  t.plan(1);
-
-  const delay = () => new Promise((resolve) => setTimeout(resolve, 10));
-
-  const MockConnection = buildMockConnection({
-    onRequest() {
-      return {
-        statusCode: 200,
-        headers: {},
-        body: {},
-      };
-    },
-  });
-
-  class MyTransport extends Transport {
-    request(params, options = {}, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-
-      if (typeof callback === 'undefined') {
-        return delay().then(() => super.request(params, options));
-      }
-
-      // Callback support
-      delay().then(() => super.request(params, options, callback));
-    }
-  }
-
-  const client = new ProductClient({
-    node: 'http://localhost:9200',
-    Transport: MyTransport,
-    Connection: MockConnection,
-  });
-
-  client.search({}, (err) => {
-    t.error(err);
   });
 });

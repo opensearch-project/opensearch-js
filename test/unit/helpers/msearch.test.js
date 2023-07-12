@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -36,7 +37,7 @@ const FakeTimers = require('@sinonjs/fake-timers');
 
 test('Basic', async (t) => {
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         body: {
           responses: [
@@ -85,7 +86,7 @@ test('Multiple searches (inside async iterator)', (t) => {
   t.plan(6);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         body: {
           responses: [
@@ -161,7 +162,7 @@ test('Multiple searches (async iterator exits)', (t) => {
   t.plan(6);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         body: {
           responses: [
@@ -235,7 +236,7 @@ test('Multiple searches (async iterator exits)', (t) => {
 
 test('Stop a msearch processor (promises)', async (t) => {
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {};
     },
   });
@@ -262,7 +263,7 @@ test('Stop a msearch processor (callbacks)', (t) => {
   t.plan(1);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {};
     },
   });
@@ -276,7 +277,7 @@ test('Stop a msearch processor (callbacks)', (t) => {
 
   m.stop();
 
-  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err) => {
+  m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
     t.equal(err.message, 'The msearch processor has been stopped');
   });
 });
@@ -285,7 +286,7 @@ test('Bad header', (t) => {
   t.plan(2);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {};
     },
   });
@@ -297,7 +298,7 @@ test('Bad header', (t) => {
 
   const m = client.helpers.msearch();
 
-  m.search(null, { query: { match: { foo: 'bar' } } }, (err) => {
+  m.search(null, { query: { match: { foo: 'bar' } } }, (err, result) => {
     t.equal(err.message, 'The header should be an object');
   });
 
@@ -312,7 +313,7 @@ test('Bad body', (t) => {
   t.plan(2);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {};
     },
   });
@@ -324,7 +325,7 @@ test('Bad body', (t) => {
 
   const m = client.helpers.msearch();
 
-  m.search({ index: 'test' }, null, (err) => {
+  m.search({ index: 'test' }, null, (err, result) => {
     t.equal(err.message, 'The body should be an object');
   });
 
@@ -338,7 +339,7 @@ test('Bad body', (t) => {
 test('Retry on 429', async (t) => {
   let count = 0;
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       if (count++ === 0) {
         return {
           body: {
@@ -398,7 +399,7 @@ test('Retry on 429', async (t) => {
 
 test('Single search errors', async (t) => {
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         body: {
           responses: [
@@ -432,7 +433,7 @@ test('Entire msearch fails', (t) => {
   t.plan(4);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         statusCode: 500,
         body: {
@@ -467,7 +468,7 @@ test('Resolves the msearch helper', (t) => {
   t.plan(1);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {};
     },
   });
@@ -483,17 +484,17 @@ test('Resolves the msearch helper', (t) => {
 
   m.then(
     () => t.pass('called'),
-    () => t.fail('Should not fail')
+    (e) => t.fail('Should not fail')
   );
 
-  m.catch(() => t.fail('Should not fail'));
+  m.catch((e) => t.fail('Should not fail'));
 });
 
 test('Stop the msearch helper with an error', (t) => {
   t.plan(3);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {};
     },
   });
@@ -514,7 +515,7 @@ test('Stop the msearch helper with an error', (t) => {
 
   m.catch((err) => t.equal(err.message, 'kaboom'));
 
-  m.search({ index: 'test' }, { query: {} }, (err) => {
+  m.search({ index: 'test' }, { query: {} }, (err, result) => {
     t.equal(err.message, 'kaboom');
   });
 });
@@ -523,7 +524,7 @@ test('Multiple searches (concurrency = 1)', (t) => {
   t.plan(6);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         body: {
           responses: [
@@ -591,7 +592,7 @@ test('Flush interval', (t) => {
   t.teardown(() => clock.uninstall());
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         body: {
           responses: [
@@ -647,7 +648,7 @@ test('Flush interval - early stop', (t) => {
   t.plan(3);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         body: {
           responses: [
@@ -680,7 +681,7 @@ test('Flush interval - early stop', (t) => {
   });
 
   setImmediate(() => {
-    m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err) => {
+    m.search({ index: 'test' }, { query: { match: { foo: 'bar' } } }, (err, result) => {
       t.ok(err instanceof errors.ConfigurationError);
     });
   });
@@ -692,7 +693,7 @@ test('Stop should resolve the helper', (t) => {
   t.plan(1);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         body: {
           responses: [],
@@ -716,7 +717,7 @@ test('Stop should resolve the helper (error)', (t) => {
   t.plan(3);
 
   const MockConnection = connection.buildMockConnection({
-    onRequest() {
+    onRequest(params) {
       return {
         body: {
           responses: [],

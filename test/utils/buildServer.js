@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -64,7 +65,7 @@ function buildServer(handler, opts, cb) {
     process.exit(1);
   });
   if (cb === undefined) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       server.listen(0, () => {
         const port = server.address().port;
         debug(`Server '${serverId}' booted on port ${port}`);

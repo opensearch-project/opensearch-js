@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -31,8 +32,6 @@
 
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
-
-/** @namespace API-Snapshot */
 
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
@@ -85,21 +84,6 @@ function SnapshotApi(transport, ConfigurationError) {
   this[kConfigurationError] = ConfigurationError;
 }
 
-/**
- * Removes stale data from repository.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} params.repository - A repository name
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- * @param {string} [params.timeout] - Explicit operation timeout
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.cleanupRepository = function snapshotCleanupRepositoryApi(
   params,
   options,
@@ -131,23 +115,6 @@ SnapshotApi.prototype.cleanupRepository = function snapshotCleanupRepositoryApi(
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Clones indices from one snapshot into another snapshot in the same repository.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} params.repository - A repository name
- * @param {string} params.snapshot - The name of the snapshot to clone from
- * @param {Object} params.body - The snapshot clone definition
- * @param {string} [params.target_snapshot] - The name of the cloned snapshot to create
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.clone = function snapshotCloneApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -214,23 +181,6 @@ SnapshotApi.prototype.clone = function snapshotCloneApi(params, options, callbac
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Creates a snapshot in a repository.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} params.repository - A repository name
- * @param {string} params.snapshot - A snapshot name
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- * @param {boolean} [params.wait_for_completion] - Should this request wait until the operation has completed before returning
- * @param {Object} [params.body] - The snapshot definition
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.create = function snapshotCreateApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -269,23 +219,6 @@ SnapshotApi.prototype.create = function snapshotCreateApi(params, options, callb
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Creates a repository.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} params.repository - A repository name
- * @param {Object} params.body - The repository definition
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- * @param {string} [params.timeout] - Explicit operation timeout
- * @param {boolean} [params.verify] - Whether to verify the repository after creation
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.createRepository = function snapshotCreateRepositoryApi(
   params,
   options,
@@ -321,22 +254,6 @@ SnapshotApi.prototype.createRepository = function snapshotCreateRepositoryApi(
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Deletes a snapshot.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} [params.repository] - A repository name
- * @param {string} [params.snapshot] - A snapshot name
- * @param {string} [params.master_timeout] - (DEPRECATED: use cluster_manager_timeout instead) Explicit operation timeout for connection to master node
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.delete = function snapshotDeleteApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -375,22 +292,6 @@ SnapshotApi.prototype.delete = function snapshotDeleteApi(params, options, callb
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Deletes a repository.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} [params.repository] - Name of the snapshot repository to unregister. Wildcard (`*`) patterns are supported.
- * @param {string} [params.master_timeout] - (DEPRECATED: use cluster_manager_timeout instead) Explicit operation timeout for connection to master node
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- * @param {string} [params.timeout] - Explicit operation timeout
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.deleteRepository = function snapshotDeleteRepositoryApi(
   params,
   options,
@@ -422,26 +323,6 @@ SnapshotApi.prototype.deleteRepository = function snapshotDeleteRepositoryApi(
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns information about a snapshot.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} [params.repository] - A repository name
- * @param {string} [params.snapshot] - A comma-separated list of snapshot names
- * @param {string} [params.master_timeout] - (DEPRECATED: use cluster_manager_timeout instead) Explicit operation timeout for connection to master node
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- * @param {boolean} [params.ignore_unavailable] - Whether to ignore unavailable snapshots, defaults to false which means a SnapshotMissingException is thrown
- * @param {boolean} [params.index_details] - Whether to include details of each index in the snapshot, if those details are available. Defaults to false.
- * @param {boolean} [params.include_repository] - Whether to include the repository name in the snapshot info. Defaults to true.
- * @param {boolean} [params.verbose] - Whether to show verbose snapshot info or only show the basic info found in the repository index blob
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.get = function snapshotGetApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -480,21 +361,6 @@ SnapshotApi.prototype.get = function snapshotGetApi(params, options, callback) {
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns information about a snapshot.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} [params.repository] - A comma-separated list of repository names
- * @param {string} [params.master_timeout] - (DEPRECATED: use cluster_manager_timeout instead) Explicit operation timeout for connection to cluster_manager node
- * @param {boolean} [params.local] - Return local information, do not retrieve the state from cluster_manager node (default: false)
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.getRepository = function snapshotGetRepositoryApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -521,30 +387,6 @@ SnapshotApi.prototype.getRepository = function snapshotGetRepositoryApi(params, 
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Analyzes a repository for correctness and performance
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} [params.repository] - A repository name
- * @param {number} [params.blob_count] - Number of blobs to create during the test. Defaults to 100.
- * @param {number} [params.concurrency] - Number of operations to run concurrently during the test. Defaults to 10.
- * @param {number} [params.read_node_count] - Number of nodes on which to read a blob after writing. Defaults to 10.
- * @param {number} [params.early_read_node_count] - Number of nodes on which to perform an early read on a blob, i.e. before writing has completed. Early reads are rare actions so the 'rare_action_probability' parameter is also relevant. Defaults to 2.
- * @param {number} [params.seed] - Seed for the random number generator used to create the test workload. Defaults to a random value.
- * @param {number} [params.rare_action_probability] - Probability of taking a rare action such as an early read or an overwrite. Defaults to 0.02.
- * @param {string} [params.max_blob_size] - Maximum size of a blob to create during the test, e.g '1gb' or '100mb'. Defaults to '10mb'.
- * @param {string} [params.max_total_data_size] - Maximum total size of all blobs to create during the test, e.g '1tb' or '100gb'. Defaults to '1gb'.
- * @param {string} [params.timeout] - Explicit operation timeout. Defaults to '30s'.
- * @param {boolean} [params.detailed] - Whether to return detailed results or a summary. Defaults to 'false' so that only the summary is returned.
- * @param {boolean} [params.rarely_abort_writes] - Whether to rarely abort writes before they complete. Defaults to 'true'.
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.repositoryAnalyze = function snapshotRepositoryAnalyzeApi(
   params,
   options,
@@ -576,24 +418,6 @@ SnapshotApi.prototype.repositoryAnalyze = function snapshotRepositoryAnalyzeApi(
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Restores a snapshot.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} [params.repository] - A repository name
- * @param {string} [params.snapshot] - A snapshot name
- * @param {string} [params.master_timeout] - (DEPRECATED: use cluster_manager_timeout instead) Explicit operation timeout for connection to master node
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- * @param {boolean} [params.wait_for_completion] - Should this request wait until the operation has completed before returning
- * @param {Object} [params.body] - Details of what to restore
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.restore = function snapshotRestoreApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -639,23 +463,6 @@ SnapshotApi.prototype.restore = function snapshotRestoreApi(params, options, cal
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns information about the status of a snapshot.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} [params.repository] - A repository name
- * @param {string} [params.snapshot] - A comma-separated list of snapshot names
- * @param {string} [params.master_timeout] - (DEPRECATED: use cluster_manager_timeout instead) Explicit operation timeout for connection to master node
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- * @param {boolean} [params.ignore_unavailable] - Whether to ignore unavailable snapshots, defaults to false which means a SnapshotMissingException is thrown
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.status = function snapshotStatusApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -699,22 +506,6 @@ SnapshotApi.prototype.status = function snapshotStatusApi(params, options, callb
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Verifies a repository.
- *
- * @memberOf API-Snapshot
- *
- * @param {Object} params
- * @param {string} [params.repository] - A repository name
- * @param {string} [params.master_timeout] - (DEPRECATED: use cluster_manager_timeout instead) Explicit operation timeout for connection to master node
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- * @param {string} [params.timeout] - Explicit operation timeout
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 SnapshotApi.prototype.verifyRepository = function snapshotVerifyRepositoryApi(
   params,
   options,

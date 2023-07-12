@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 'use strict';
@@ -23,7 +24,7 @@ const { connection } = require('../../utils');
 bench('Initialization', { warmup: 5, measure: 10, iterations: 1000 }, async (b) => {
   b.start();
   for (let i = 0; i < b.iterations; i++) {
-    new Client({
+    const client = new Client({
       // eslint-disable-line
       node: 'http://localhost:9200',
     });

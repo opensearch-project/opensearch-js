@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -36,20 +37,6 @@ const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = 
 const acceptedQuerystring = ['pretty', 'human', 'error_trace', 'source', 'filter_path'];
 const snakeCase = { errorTrace: 'error_trace', filterPath: 'filter_path' };
 
-/**
- * Allows to use the Mustache language to pre-render a search definition.
- *
- * @memberOf API-Search
- *
- * @param {Object} params
- * @param {string} [params.id] - The id of the stored search template
- * @param {Object} [params.body] - The search definition template and its params
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 function renderSearchTemplateApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

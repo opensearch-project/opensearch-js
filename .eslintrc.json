@@ -7,10 +7,7 @@
         "eslint:recommended",
         "prettier"
     ],
-    "parser": "@babel/eslint-parser",
-    "parserOptions": {
-        "requireConfigFile": false
-    },
+    "parser": "babel-eslint",
     "plugins": [
         "prettier"
     ],
@@ -21,14 +18,9 @@
                 "endOfLine": "auto"
             }
         ],
+        /*temporarily turn off no-unused-vars, open an issue to track https://github.com/opensearch-project/opensearch-js/issues/241*/
+        "no-unused-vars": "off",
         /*temporarily turn off no-dupe-else-if, open an issue to track https://github.com/opensearch-project/opensearch-js/issues/240*/
-        "no-dupe-else-if": "off",
-        "no-unused-vars": [
-            "error",
-            {
-                "varsIgnorePattern": "^_.*",
-                "argsIgnorePattern": "^_.*"
-            }
-        ]
+        "no-dupe-else-if": "off"
     }
 }

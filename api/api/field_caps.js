@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -54,25 +55,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Returns the information about the capabilities of fields among multiple indices.
- * <br/> See also: {@link https://opensearch.org/docs/latest/opensearch/supported-field-types/alias/#using-aliases-in-field-capabilities-api-operations OpenSearch - Alias}
- * @memberOf API-Index
- *
- * @param {Object} params
- * @param {string} [params.index] - A comma-separated list of index names; use `_all` or empty string to perform the operation on all indices
- * @param {string} [params.fields] - A comma-separated list of field names
- * @param {boolean} [params.ignore_unavailable] - Whether specified concrete indices should be ignored when unavailable (missing or closed)
- * @param {boolean} [params.allow_no_indices] - Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified)
- * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indices that are open, closed or both. (options: open, closed, hidden, none, all)
- * @param {boolean} [params.include_unmapped] - Indicates whether unmapped fields should be included in the response.
- * @param {Object} [params.body] - An index filter specified with the Query DSL
- *
- * @param {Object} [options] - Options for {@link Transport#request}
- * @param {function} [callback] - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 function fieldCapsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

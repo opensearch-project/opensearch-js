@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -33,7 +34,7 @@ const { createReadStream } = require('fs');
 const { join } = require('path');
 const split = require('split2');
 const { test, beforeEach, afterEach } = require('tap');
-
+const { waitCluster } = require('../../utils');
 const { Client, errors } = require('../../../');
 
 const INDEX = `test-helpers-${process.pid}`;
@@ -42,12 +43,13 @@ const client = new Client({
 });
 
 beforeEach(async () => {
+  await waitCluster(client);
   await client.indices.create({ index: INDEX });
   const stream = createReadStream(join(__dirname, '..', '..', 'fixtures', 'stackoverflow.ndjson'));
   const result = await client.helpers.bulk({
     datasource: stream.pipe(split()),
     refreshOnCompletion: true,
-    onDocument() {
+    onDocument(doc) {
       return {
         index: { _index: INDEX },
       };
@@ -88,7 +90,7 @@ test('Bad request', (t) => {
     t.equal(result.body.hits.total.value, 106);
   });
 
-  m.search({ index: INDEX }, { query: { foo: { title: 'ruby' } } }, (err) => {
+  m.search({ index: INDEX }, { query: { foo: { title: 'ruby' } } }, (err, result) => {
     t.ok(err instanceof errors.ResponseError);
   });
 

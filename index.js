@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -285,7 +286,7 @@ class Client extends OpenSearchAPI {
 
   close(callback) {
     if (callback == null) {
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         this.close(resolve);
       });
     }

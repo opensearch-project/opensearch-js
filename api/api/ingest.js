@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -32,8 +33,6 @@
 /* eslint camelcase: 0 */
 /* eslint no-unused-vars: 0 */
 
-/** @namespace API-Ingest */
-
 const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
 const acceptedQuerystring = [
   'cluster_manager_timeout',
@@ -59,22 +58,6 @@ function IngestApi(transport, ConfigurationError) {
   this[kConfigurationError] = ConfigurationError;
 }
 
-/**
- * Deletes a pipeline.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/delete-ingest/ OpenSearch - Delete a pipeline}
- *
- * @memberOf API-Ingest
- *
- * @param {Object} params
- * @param {string} params.id - Pipeline ID
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- * @param {string} [params.timeout] - Explicit operation timeout
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/delete-ingest/#response Delete Pipeline Response}
- */
 IngestApi.prototype.deletePipeline = function ingestDeletePipelineApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -102,17 +85,6 @@ IngestApi.prototype.deletePipeline = function ingestDeletePipelineApi(params, op
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns statistical information about geoip databases
- *
- * @memberOf API-Ingest
- *
- * @param {Object} params - (Unused)
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 IngestApi.prototype.geoIpStats = function ingestGeoIpStatsApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -134,22 +106,6 @@ IngestApi.prototype.geoIpStats = function ingestGeoIpStatsApi(params, options, c
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns a pipeline.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/get-ingest/ OpenSearch - Get pipeline}
- *
- * @memberOf API-Ingest
- *
- * @param {Object} params
- * @param {string} [params.id] - Comma separated list of pipeline ids. Wildcards supported
- * @param {boolean} [params.summary=false] - Return pipelines without their definitions
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/get-ingest/#response Get Pipeline Response}
- */
 IngestApi.prototype.getPipeline = function ingestGetPipelineApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -176,17 +132,6 @@ IngestApi.prototype.getPipeline = function ingestGetPipelineApi(params, options,
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Returns a list of the built-in patterns.
- *
- * @memberOf API-Ingest
- *
- * @param {Object} params - (Unused)
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 IngestApi.prototype.processorGrok = function ingestProcessorGrokApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -208,23 +153,6 @@ IngestApi.prototype.processorGrok = function ingestProcessorGrokApi(params, opti
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Creates or updates a pipeline.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/create-update-ingest/ OpenSearch - Create/Update pipeline}
- *
- * @memberOf API-Ingest
- *
- * @param {Object} params
- * @param {string} params.id - Pipeline ID
- * @param {Object} params.body - Ingest definition
- * @param {string} [params.cluster_manager_timeout] - Explicit operation timeout for connection to cluster_manager node
- * @param {string} [params.timeout] - Explicit operation timeout
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/create-update-ingest/#response Create/Update Pipeline Response}
- */
 IngestApi.prototype.putPipeline = function ingestPutPipelineApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
@@ -256,22 +184,6 @@ IngestApi.prototype.putPipeline = function ingestPutPipelineApi(params, options,
   return this.transport.request(request, options, callback);
 };
 
-/**
- * Allows to simulate a pipeline with example documents.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/simulate-ingest/ OpenSearch - Simulate Pipeline}
- *
- * @memberOf API-Ingest
- *
- * @param {Object} params
- * @param {string} [params.id] - Pipeline ID
- * @param {boolean} [params.verbose] - Verbose mode. Display data output for each processor in executed pipeline
- * @param {Object} params.body - Simulate definition
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
- */
 IngestApi.prototype.simulate = function ingestSimulateApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

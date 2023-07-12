@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -57,28 +58,6 @@ const snakeCase = {
   filterPath: 'filter_path',
 };
 
-/**
- * Copy all or a subset of your data from a source index into a destination index.
- * <br/> See Also: {@link https://opensearch.org/docs/2.4/api-reference/document-apis/reindex/ OpenSearch - Reindex Document}
- *
- * @memberOf API-Document
- *
- * @param {Object} params
- * @param {Object} params.body The search definition using the Query DSL and the prototype for the index request.
- * @param {boolean} [params.refresh=false] Should the affected indexes be refreshed?
- * @param {string} [params.timeout=30s] Time each individual bulk request should wait for shards that are unavailable.
- * @param {string} [params.wait_for_active_shards] Sets the number of shard copies that must be active before proceeding with the reindex operation. Defaults to 1, meaning the primary shard only. Set to `all` for all shard copies, otherwise set to any non-negative value less than or equal to the total number of copies for the shard (number of replicas + 1)
- * @param {boolean} [params.wait_for_completion=false] Should the request should block until the reindex is complete.
- * @param {number} [params.requests_per_second=-1] The throttle to set on this request in sub-requests per second. -1 means no throttle.
- * @param {string} [params.scroll=5m] Control how long to keep the search context alive
- * @param {number|string} [params.slices=1] The number of slices this task should be divided into. 1 means the task isn't sliced into subtasks. Can be set to `auto`.
- * @param {number} [params.max_docs] Maximum number of documents to process (default: all documents)
- *
- * @param {Object} options - Options for {@link Transport#request}
- * @param {function} callback - Callback that handles errors and response
- *
- * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*} {@link https://opensearch.org/docs/2.4/api-reference/document-apis/reindex/#response Reindex Document Response}
- */
 function reindexApi(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 

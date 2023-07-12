@@ -1,11 +1,12 @@
 /*
- * Copyright OpenSearch Contributors
  * SPDX-License-Identifier: Apache-2.0
  *
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
  *
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 /*
@@ -72,12 +73,12 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 1,
         concurrency: 1,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop() {
+        onDrop(doc) {
           t.fail('This should never be called');
         },
       });
@@ -115,12 +116,12 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 1,
         concurrency: 3,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop() {
+        onDrop(doc) {
           t.fail('This should never be called');
         },
       });
@@ -154,12 +155,12 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 5000000,
         concurrency: 1,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop() {
+        onDrop(doc) {
           t.fail('This should never be called');
         },
       });
@@ -202,7 +203,7 @@ test('bulk index', (t) => {
         flushBytes: 1,
         concurrency: 1,
         refreshOnCompletion: true,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
@@ -247,7 +248,7 @@ test('bulk index', (t) => {
         flushBytes: 1,
         concurrency: 1,
         refreshOnCompletion: 'test',
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
@@ -287,7 +288,7 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 1,
         concurrency: 1,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: {
               _index: 'test',
@@ -295,7 +296,7 @@ test('bulk index', (t) => {
             },
           };
         },
-        onDrop() {
+        onDrop(doc) {
           t.fail('This should never be called');
         },
       });
@@ -358,7 +359,7 @@ test('bulk index', (t) => {
         concurrency: 1,
         wait: 10,
         retries: 1,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
@@ -409,7 +410,7 @@ test('bulk index', (t) => {
         concurrency: 1,
         wait: 10,
         retries: 0,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
@@ -484,7 +485,7 @@ test('bulk index', (t) => {
         flushBytes: 1,
         concurrency: 1,
         wait: 10,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
@@ -514,7 +515,7 @@ test('bulk index', (t) => {
 
     t.test('Server error', async (t) => {
       const MockConnection = connection.buildMockConnection({
-        onRequest() {
+        onRequest(params) {
           return {
             statusCode: 500,
             body: { somothing: 'went wrong' },
@@ -530,12 +531,12 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 1,
         concurrency: 1,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop() {
+        onDrop(doc) {
           t.fail('This should never be called');
         },
       });
@@ -550,7 +551,7 @@ test('bulk index', (t) => {
 
     t.test('Server error (high flush size, to trigger the finish error)', async (t) => {
       const MockConnection = connection.buildMockConnection({
-        onRequest() {
+        onRequest(params) {
           return {
             statusCode: 500,
             body: { somothing: 'went wrong' },
@@ -566,12 +567,12 @@ test('bulk index', (t) => {
         datasource: dataset.slice(),
         flushBytes: 5000000,
         concurrency: 1,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop() {
+        onDrop(doc) {
           t.fail('This should never be called');
         },
       });
@@ -631,12 +632,12 @@ test('bulk index', (t) => {
         flushBytes: 1,
         concurrency: 1,
         wait: 10,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop() {
+        onDrop(doc) {
           b.abort();
         },
       });
@@ -657,7 +658,7 @@ test('bulk index', (t) => {
     t.test('Invalid operation', (t) => {
       t.plan(2);
       const MockConnection = connection.buildMockConnection({
-        onRequest() {
+        onRequest(params) {
           return { body: { errors: false, items: [{}] } };
         },
       });
@@ -671,7 +672,7 @@ test('bulk index', (t) => {
           datasource: dataset.slice(),
           flushBytes: 1,
           concurrency: 1,
-          onDocument() {
+          onDocument(doc) {
             return {
               foo: { _index: 'test' },
             };
@@ -681,56 +682,6 @@ test('bulk index', (t) => {
           t.ok(err instanceof errors.ConfigurationError);
           t.equal(err.message, "Bulk helper invalid action: 'foo'");
         });
-    });
-
-    t.test('Should use payload returned by `onDocument`', async (t) => {
-      let count = 0;
-      const updatedAt = '1970-01-01T12:00:00.000Z';
-      const MockConnection = connection.buildMockConnection({
-        onRequest(params) {
-          t.equal(params.path, '/_bulk');
-          t.match(params.headers, {
-            'content-type': 'application/x-ndjson',
-          });
-          const [action, payload] = params.body.split('\n');
-          t.same(JSON.parse(action), { index: { _index: 'test' } });
-          t.same(JSON.parse(payload), { ...dataset[count++], updatedAt });
-          return { body: { errors: false, items: [{}] } };
-        },
-      });
-
-      const client = new Client({
-        node: 'http://localhost:9200',
-        Connection: MockConnection,
-      });
-      const result = await client.helpers.bulk({
-        datasource: dataset.slice(),
-        flushBytes: 1,
-        concurrency: 1,
-        onDocument(doc) {
-          return [
-            {
-              index: {
-                _index: 'test',
-              },
-            },
-            { ...doc, updatedAt },
-          ];
-        },
-        onDrop() {
-          t.fail('This should never be called');
-        },
-      });
-
-      t.type(result.time, 'number');
-      t.type(result.bytes, 'number');
-      t.match(result, {
-        total: 3,
-        successful: 3,
-        retry: 0,
-        failed: 0,
-        aborted: false,
-      });
     });
 
     t.end();
@@ -764,7 +715,7 @@ test('bulk index', (t) => {
         datasource: stream.pipe(split()),
         flushBytes: 1,
         concurrency: 1,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: {
               _index: 'test',
@@ -772,7 +723,7 @@ test('bulk index', (t) => {
             },
           };
         },
-        onDrop() {
+        onDrop(doc) {
           t.fail('This should never be called');
         },
       });
@@ -821,12 +772,12 @@ test('bulk index', (t) => {
         datasource: generator(),
         flushBytes: 1,
         concurrency: 1,
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
         },
-        onDrop() {
+        onDrop(doc) {
           t.fail('This should never be called');
         },
       });
@@ -870,7 +821,7 @@ test('bulk create', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument() {
+      onDocument(doc) {
         return {
           create: {
             _index: 'test',
@@ -878,7 +829,7 @@ test('bulk create', (t) => {
           },
         };
       },
-      onDrop() {
+      onDrop(doc) {
         t.fail('This should never be called');
       },
     });
@@ -893,57 +844,6 @@ test('bulk create', (t) => {
       aborted: false,
     });
   });
-
-  t.test('Should perform a bulk request', async (t) => {
-    let count = 0;
-    const updatedAt = '1970-01-01T12:00:00.000Z';
-    const MockConnection = connection.buildMockConnection({
-      onRequest(params) {
-        t.equal(params.path, '/_bulk');
-        t.match(params.headers, { 'content-type': 'application/x-ndjson' });
-        const [action, payload] = params.body.split('\n');
-        t.same(JSON.parse(action), { create: { _index: 'test', _id: count } });
-        t.same(JSON.parse(payload), { ...dataset[count++], updatedAt });
-        return { body: { errors: false, items: [{}] } };
-      },
-    });
-
-    const client = new Client({
-      node: 'http://localhost:9200',
-      Connection: MockConnection,
-    });
-    let id = 0;
-    const result = await client.helpers.bulk({
-      datasource: dataset.slice(),
-      flushBytes: 1,
-      concurrency: 1,
-      onDocument(doc) {
-        return [
-          {
-            create: {
-              _index: 'test',
-              _id: id++,
-            },
-          },
-          { ...doc, updatedAt },
-        ];
-      },
-      onDrop() {
-        t.fail('This should never be called');
-      },
-    });
-
-    t.type(result.time, 'number');
-    t.type(result.bytes, 'number');
-    t.match(result, {
-      total: 3,
-      successful: 3,
-      retry: 0,
-      failed: 0,
-      aborted: false,
-    });
-  });
-
   t.end();
 });
 
@@ -970,7 +870,7 @@ test('bulk update', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument() {
+      onDocument(doc) {
         return [
           {
             update: {
@@ -983,7 +883,7 @@ test('bulk update', (t) => {
           },
         ];
       },
-      onDrop() {
+      onDrop(doc) {
         t.fail('This should never be called');
       },
     });
@@ -1021,7 +921,7 @@ test('bulk update', (t) => {
       datasource: dataset.map((d) => JSON.stringify(d)),
       flushBytes: 1,
       concurrency: 1,
-      onDocument() {
+      onDocument(doc) {
         return [
           {
             update: {
@@ -1031,7 +931,7 @@ test('bulk update', (t) => {
           },
         ];
       },
-      onDrop() {
+      onDrop(doc) {
         t.fail('This should never be called');
       },
     });
@@ -1051,11 +951,11 @@ test('bulk update', (t) => {
     let count = 0;
     const MockConnection = connection.buildMockConnection({
       onRequest(params) {
-        t.equal(params.path, '/_bulk');
+        t.strictEqual(params.path, '/_bulk');
         t.match(params.headers, { 'content-type': 'application/x-ndjson' });
         const [action, payload] = params.body.split('\n');
-        t.same(JSON.parse(action), { update: { _index: 'test', _id: count } });
-        t.same(JSON.parse(payload), { doc: dataset[count++], doc_as_upsert: true });
+        t.deepEqual(JSON.parse(action), { update: { _index: 'test', _id: count } });
+        t.deepEqual(JSON.parse(payload), { doc: dataset[count++], doc_as_upsert: true });
         return { body: { errors: false, items: [{ update: { result: 'noop' } }] } };
       },
     });
@@ -1069,7 +969,7 @@ test('bulk update', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument() {
+      onDocument(doc) {
         return [
           {
             update: {
@@ -1082,7 +982,7 @@ test('bulk update', (t) => {
           },
         ];
       },
-      onDrop() {
+      onDrop(doc) {
         t.fail('This should never be called');
       },
     });
@@ -1123,7 +1023,7 @@ test('bulk delete', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument() {
+      onDocument(doc) {
         return {
           delete: {
             _index: 'test',
@@ -1131,7 +1031,7 @@ test('bulk delete', (t) => {
           },
         };
       },
-      onDrop() {
+      onDrop(doc) {
         t.fail('This should never be called');
       },
     });
@@ -1194,7 +1094,7 @@ test('bulk delete', (t) => {
       flushBytes: 1,
       concurrency: 1,
       wait: 10,
-      onDocument() {
+      onDocument(doc) {
         return {
           delete: {
             _index: 'test',
@@ -1261,10 +1161,10 @@ test('transport options', (t) => {
         datasource: dataset.slice(),
         flushBytes: 1,
         concurrency: 1,
-        onDocument() {
+        onDocument(doc) {
           return { index: { _index: 'test' } };
         },
-        onDrop() {
+        onDrop(doc) {
           t.fail('This should never be called');
         },
         refreshOnCompletion: true,
@@ -1299,7 +1199,7 @@ test('errors', (t) => {
     try {
       await client.helpers.bulk({
         datasource: 'hello',
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
@@ -1320,7 +1220,7 @@ test('errors', (t) => {
     });
     try {
       await client.helpers.bulk({
-        onDocument() {
+        onDocument(doc) {
           return {
             index: { _index: 'test' },
           };
@@ -1380,12 +1280,12 @@ test('Flush interval', (t) => {
       })(),
       flushBytes: 5000000,
       concurrency: 1,
-      onDocument() {
+      onDocument(doc) {
         return {
           index: { _index: 'test' },
         };
       },
-      onDrop() {
+      onDrop(doc) {
         t.fail('This should never be called');
       },
     });
@@ -1438,12 +1338,12 @@ test('Flush interval', (t) => {
       })(),
       flushBytes: 5000000,
       concurrency: 1,
-      onDocument() {
+      onDocument(doc) {
         return {
           index: { _index: 'test' },
         };
       },
-      onDrop() {
+      onDrop(doc) {
         t.fail('This should never be called');
       },
     });
@@ -1465,13 +1365,13 @@ test('Flush interval', (t) => {
     let count = 0;
     const MockConnection = connection.buildMockConnection({
       onRequest(params) {
-        t.equal(params.path, '/_bulk');
+        t.strictEqual(params.path, '/_bulk');
         t.match(params.headers, {
           'content-type': 'application/x-ndjson',
         });
         const [action, payload] = params.body.split('\n');
-        t.same(JSON.parse(action), { index: { _index: 'test' } });
-        t.same(JSON.parse(payload), dataset[count++]);
+        t.deepEqual(JSON.parse(action), { index: { _index: 'test' } });
+        t.deepEqual(JSON.parse(payload), dataset[count++]);
         return { body: { errors: false, items: [{}] } };
       },
     });
@@ -1484,12 +1384,12 @@ test('Flush interval', (t) => {
       datasource: dataset.slice(),
       flushBytes: 1,
       concurrency: 1,
-      onDocument() {
+      onDocument(doc) {
         return {
           index: { _index: 'test' },
         };
       },
-      onDrop() {
+      onDrop(doc) {
         t.fail('This should never be called');
       },
     });

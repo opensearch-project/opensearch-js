@@ -44,10 +44,11 @@ test('Basic', (t) => {
 });
 
 test('Long numerals', (t) => {
-  t.plan(7);
+  t.plan(12);
   const s = new Serializer();
   const longPositive = BigInt(Number.MAX_SAFE_INTEGER) * 2n; // eslint-disable-line no-undef
   const longNegative = BigInt(Number.MIN_SAFE_INTEGER) * 2n; // eslint-disable-line no-undef
+
   const json =
     `{` +
     // The space before and after the values, and the lack of spaces before comma are intentional
@@ -55,16 +56,28 @@ test('Long numerals', (t) => {
     `"positive": ${longPositive.toString()}, ` +
     `"array": [ ${longNegative.toString()}, ${longPositive.toString()} ], ` +
     `"negative": ${longNegative.toString()},` +
-    `"hardcoded": 102931203123987` +
+    `"hardcoded": 102931203123987,` +
+    `"a": "෴102931203123988",` +
+    `"b": "߷102931203123989",` +
+    `"c": "֍102931203123990",` +
+    `"d": "෴֍߷102931203123991",` +
+    `"e": "123෴֍߷102931203123991"` +
     `}`;
+
   const obj = s.deserialize(json);
-  const res = s.serialize(obj);
   t.equal(obj.positive, longPositive);
   t.equal(obj.negative, longNegative);
   t.same(obj.array, [longNegative, longPositive]);
   // The space before and after the values, and the lack of spaces before comma are intentional
   t.equal(obj['":' + longPositive], `[ ${longNegative.toString()}, ${longPositive.toString()} ]`);
   t.equal(obj.hardcoded, 102931203123987);
+  t.equal(obj.a, '෴102931203123988');
+  t.equal(obj.b, '߷102931203123989');
+  t.equal(obj.c, '֍102931203123990');
+  t.equal(obj.d, '෴֍߷102931203123991');
+  t.equal(obj.e, '123෴֍߷102931203123991');
+
+  const res = s.serialize(obj);
   t.equal(res.replace(/\s+/g, ''), json.replace(/\s+/g, ''));
   t.match(res, `"[ ${longNegative.toString()}, ${longPositive.toString()} ]"`);
 });

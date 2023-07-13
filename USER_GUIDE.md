@@ -297,3 +297,26 @@ if (connection !== null) {
   client.connectionPool.markAlive(connection)
 }
 ```
+## Mark connection as `dead`
+```javascript
+console.log('Marking connection as dead:');
+
+var connection = client.connectionPool.getConnection()
+// or var connection = client.connectionPool.connections[0]
+
+if (connection !== null) {
+  client.connectionPool.markDead(connection)
+}
+```
+
+## Mark connection as `alive`
+```javascript
+console.log('Marking connection as alive:');
+
+var connection = client.connectionPool.getConnection()
+// or var connection = client.connectionPool.connections[0]
+
+if (connection !== null) {
+  client.connectionPool.markAlive(connection)
+}
+```

@@ -3,8 +3,19 @@
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
+### Added
+### Dependencies
+### Changed
+- Make handling of long numerals an option that is disabled by default ([#557](https://github.com/opensearch-project/opensearch-js/pull/557))
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.3.0]
 
 ### Added
+- Add serialization and deserialization of numerals larger than `Number.MAX_SAFE_INTEGER` ([#544](https://github.com/opensearch-project/opensearch-js/pull/544))
 ### Dependencies
 - Bumps `prettier` from 2.8.7 to 2.8.8
 - Bumps `ora` from 6.1.2 to 6.3.1
@@ -19,6 +30,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `proxy` from 1.0.2 to 2.1.1
 ### Changed
 - Implemented Docker Image caching for `integration-unreleased` workflow ([#387](https://github.com/opensearch-project/opensearch-js/issues/387))
+- Add upgrading NPM to all workflows running older Node.js versions ([#545](https://github.com/opensearch-project/opensearch-js/issues/545))
+- Upgrade and secure the backport workflow ([#547](https://github.com/opensearch-project/opensearch-js/issues/547))
 ### Deprecated
 ### Removed
 ### Fixed

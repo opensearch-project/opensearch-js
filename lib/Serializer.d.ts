@@ -29,6 +29,7 @@
 
 export interface SerializerOptions {
   disablePrototypePoisoningProtection: boolean | 'proto' | 'constructor';
+  enableLongNumeralSupport: boolean;
 }
 
 export default class Serializer {

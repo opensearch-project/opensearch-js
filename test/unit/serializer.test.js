@@ -43,9 +43,9 @@ test('Basic', (t) => {
   t.same(s.deserialize(json), obj);
 });
 
-test('Long numerals', (t) => {
-  t.plan(7);
-  const s = new Serializer();
+test('Long numerals enabled', (t) => {
+  t.plan(3);
+  const s = new Serializer({ enableLongNumeralSupport: true });
   const longPositive = BigInt(Number.MAX_SAFE_INTEGER) * 2n; // eslint-disable-line no-undef
   const longNegative = BigInt(Number.MIN_SAFE_INTEGER) * 2n; // eslint-disable-line no-undef
   const json =
@@ -55,18 +55,47 @@ test('Long numerals', (t) => {
     `"positive": ${longPositive.toString()}, ` +
     `"array": [ ${longNegative.toString()}, ${longPositive.toString()} ], ` +
     `"negative": ${longNegative.toString()},` +
+    `"false-positive-1": "෴${longNegative.toString()}", ` +
+    `"false-positive-2": "[ ߷${longPositive.toString()} ]", ` +
+    `"false-positive-3": "\\": ֍${longPositive.toString()}\\"", ` +
+    `"false-positive-4": "෴߷֍${longPositive.toString()}", ` +
     `"hardcoded": 102931203123987` +
     `}`;
   const obj = s.deserialize(json);
   const res = s.serialize(obj);
-  t.equal(obj.positive, longPositive);
-  t.equal(obj.negative, longNegative);
-  t.same(obj.array, [longNegative, longPositive]);
+  t.same(obj, {
+    hardcoded: 102931203123987,
+    'false-positive-4': `෴߷֍${longPositive.toString()}`,
+    'false-positive-3': `": ֍${longPositive.toString()}"`,
+    'false-positive-2': `[ ߷${longPositive.toString()} ]`,
+    'false-positive-1': `෴${longNegative.toString()}`,
+    negative: longNegative,
+    array: [longNegative, longPositive],
+    positive: longPositive,
+    ['":' + longPositive]: `[ ${longNegative.toString()}, ${longPositive.toString()} ]`,
+  });
   // The space before and after the values, and the lack of spaces before comma are intentional
-  t.equal(obj['":' + longPositive], `[ ${longNegative.toString()}, ${longPositive.toString()} ]`);
-  t.equal(obj.hardcoded, 102931203123987);
   t.equal(res.replace(/\s+/g, ''), json.replace(/\s+/g, ''));
   t.match(res, `"[ ${longNegative.toString()}, ${longPositive.toString()} ]"`);
+});
+
+test('long numerals not enabled', (t) => {
+  t.plan(5);
+  const s = new Serializer({ enableLongNumeralSupport: false });
+  const longPositive = BigInt(Number.MAX_SAFE_INTEGER) * 3n; // eslint-disable-line no-undef
+  const longNegative = BigInt(Number.MIN_SAFE_INTEGER) * 3n; // eslint-disable-line no-undef
+  const json =
+    `{` +
+    `"positive": ${longPositive.toString()}, ` +
+    `"negative": ${longNegative.toString()}` +
+    `}`;
+  const obj = s.deserialize(json);
+  const res = s.serialize(obj);
+  t.not(obj.positive, longPositive);
+  t.not(obj.negative, longNegative);
+  t.equal(typeof obj.positive, 'number');
+  t.equal(typeof obj.negative, 'number');
+  t.not(res.replace(/\s+/g, ''), json.replace(/\s+/g, ''));
 });
 
 test('ndserialize', (t) => {

@@ -62,7 +62,7 @@
     "@types/node": "^20.1.4",
     "convert-hrtime": "^5.0.0",
     "cross-zip": "^4.0.0",
-    "dedent": "^0.7.0",
+    "dedent": "^1.0.2",
     "deepmerge": "^4.2.2",
     "dezalgo": "^1.0.3",
     "eslint": "^8.30.0",

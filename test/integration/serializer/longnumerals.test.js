@@ -39,6 +39,7 @@ const { Client } = require('../../../');
 const INDEX = `test-serializer-${process.pid}`;
 const client = new Client({
   node: process.env.TEST_OPENSEARCH_SERVER || 'http://localhost:9200',
+  enableLongNumeralSupport: true,
 });
 
 beforeEach(async () => {
@@ -77,14 +78,16 @@ test('long numerals', async (t) => {
       },
     },
   });
-  t.equal(results.length, 3);
+  t.equal(results.length, 5);
   const object = {};
   for (const result of results) {
     object[result.description] = result.number;
   }
   t.same(object, {
     '-18014398509481982 , -1 , 1 , 18014398509481982': 18014398509481982n,
-    '෴18014398509481982': -18014398509481982n,
+    '෴߷֍෴18014398509481982': -18014398509481982n,
     'Safer than [18014398509481982]': 9007199254740891,
+    18014398509481982: 18014398509481982n,
+    '["෴߷֍෴18014398509481982"]': 18014398509481982n,
   });
 });

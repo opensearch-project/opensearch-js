@@ -11,6 +11,16 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 ### Security
 
+## [2.3.1]
+### Added
+### Dependencies
+### Changed
+- Made the new Long Number logic added in 2.3.0 optional and disabled by default ([561](https://github.com/opensearch-project/opensearch-js/pull/561)
+### Deprecated
+### Removed
+### Fixed
+### Security
+
 ## [2.3.0]
 
 ### Added
@@ -155,4 +165,5 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 [2.1.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.1.0
 [2.2.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.2.0
-[Unreleased]: https://github.com/opensearch-project/opensearch-js/compare/2.2.0...HEAD
+[2.3.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.3.0
+[Unreleased]: https://github.com/opensearch-project/opensearch-js/compare/2.3.0...HEAD

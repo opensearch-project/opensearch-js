@@ -5,6 +5,7 @@
     - [Authenticate with Amazon OpenSearch Service](#authenticate-with-amazon-opensearch-service)
       - [Using AWS V2 SDK](#using-aws-v2-sdk)
       - [Using AWS V3 SDK](#using-aws-v3-sdk)
+    - [Enable Handling of Long Numerals](#enable-handling-of-long-numerals) 
   - [Create an Index](#create-an-index)
   - [Add a Document to the Index](#add-a-document-to-the-index)
   - [Search for the Document](#search-for-the-document)
@@ -104,6 +105,21 @@ const client = new Client({
   }),
   node: 'https://search-xxx.region.es.amazonaws.com', // OpenSearch domain URL
   // node: "https://xxx.region.aoss.amazonaws.com" for OpenSearch Serverless
+});
+```
+
+### Enable Handling of Long Numerals
+
+JavaScript can safely work with integers from -(2<sup>53</sup> - 1) to 2<sup>53</sup> - 1. However, 
+serialized JSON texts from other languages can potentially have numeric values beyond that range and the native
+serialization and deserialization methods of JavaScript's JSON, incapable of parsing them with precision; these
+values get rounded to fit the IEEE-754 representation.
+
+The `Client` can be configured to appropriately deserialize long numerals as `BigInt` values and vice versa:
+
+```javascript
+const client = new Client({
+  enableLongNumeralSupport: true,
 });
 ```
 

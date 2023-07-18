@@ -128,6 +128,7 @@ class Client extends OpenSearchAPI {
               proxy: null,
               enableMetaHeader: true,
               disablePrototypePoisoningProtection: false,
+              enableLongNumeralSupport: false,
             },
             opts
           );
@@ -151,6 +152,7 @@ class Client extends OpenSearchAPI {
       this[kEventEmitter] = new EventEmitter();
       this.serializer = new options.Serializer({
         disablePrototypePoisoningProtection: options.disablePrototypePoisoningProtection,
+        enableLongNumeralSupport: options.enableLongNumeralSupport,
       });
       this.connectionPool = new options.ConnectionPool({
         pingTimeout: options.pingTimeout,

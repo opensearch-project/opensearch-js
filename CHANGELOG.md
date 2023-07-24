@@ -9,6 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `eslint` from 8.41.0 to 8.45.0
 - Bumps `dedent` from 0.7.0 to 1.1.0
 - Bumps `@types/node` from 20.2.5 to 20.4.4
+- Bumps `@aws-sdk/types` from 3.341.0 to 3.370.0
 ### Changed
 - Make handling of long numerals an option that is disabled by default ([#557](https://github.com/opensearch-project/opensearch-js/pull/557))
 ### Deprecated

@@ -76,7 +76,7 @@
     "minimist": "^1.2.5",
     "node-fetch": "^3.2.10",
     "ora": "^6.1.2",
-    "prettier": "^2.6.2",
+    "prettier": "^3.0.1",
     "pretty-hrtime": "^1.0.3",
     "proxy": "^1.0.2",
     "rimraf": "^5.0.0",

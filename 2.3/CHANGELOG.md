@@ -14,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `prettier` from 2.8.8 to 3.0.1
 - Bumps `eslint-plugin-prettier` from 4.0.0 to 5.0.0
 - Bumps `node-fetch` from 3.3.1 to 3.3.2
+- Bumps `tap` from 16.3.4 to 16.3.8
 ### Changed
 - Make handling of long numerals an option that is disabled by default ([#557](https://github.com/opensearch-project/opensearch-js/pull/557))
 ### Deprecated

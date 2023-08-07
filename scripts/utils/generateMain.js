@@ -152,8 +152,8 @@ function genFactory(folder, specFolder, namespaces) {
         get () {
           if (this[k${toPascalCase(camelify(namespace))}] === null) {
             this[k${toPascalCase(camelify(namespace))}] = new ${toPascalCase(
-        camelify(namespace)
-      )}Api(this.transport, this[kConfigurationError])
+              camelify(namespace)
+            )}Api(this.transport, this[kConfigurationError])
           }
           return this[k${toPascalCase(camelify(namespace))}]
         }

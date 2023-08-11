@@ -20,6 +20,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Fix wrong documentation for file serach.md regarding `search_after` param ([#584](https://github.com/opensearch-project/opensearch-js/pull/584))
 ### Security
 
 ## [2.3.0]

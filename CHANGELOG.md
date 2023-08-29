@@ -19,6 +19,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `ora` from 6.3.1 to 7.0.1
 ### Changed
 - Make handling of long numerals an option that is disabled by default ([#557](https://github.com/opensearch-project/opensearch-js/pull/557))
+- Refactor BaseConnectionPool empty method so that callback will always get called even when there is no connection ([#585](https://github.com/opensearch-project/opensearch-js/pull/585)) 
 ### Deprecated
 ### Removed
 ### Fixed

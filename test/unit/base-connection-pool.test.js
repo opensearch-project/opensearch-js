@@ -156,6 +156,14 @@ test('API', (t) => {
     t.end();
   });
 
+  t.test('empty with no connection', (t) => {
+    const pool = new BaseConnectionPool({ Connection });
+    t.equal(pool.connections.length, 0);
+    pool.empty();
+    t.equal(pool.size, 0);
+    t.end();
+  });
+
   t.test('urlToHost', (t) => {
     const pool = new BaseConnectionPool({ Connection });
     const url = 'http://localhost:9200';

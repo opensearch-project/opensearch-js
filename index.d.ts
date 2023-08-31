@@ -138,6 +138,7 @@ interface ClientOptions {
   };
   disablePrototypePoisoningProtection?: boolean | 'proto' | 'constructor';
   memoryCircuitBreaker?: MemoryCircuitBreakerOptions;
+  enableLongNumeralSupport?: boolean;
 }
 
 declare class Client {

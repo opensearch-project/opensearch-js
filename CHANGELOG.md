@@ -11,7 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 20.2.5 to 20.5.0
 - Bumps `@aws-sdk/types` from 3.341.0 to 3.387.0
 - Bumps `@babel/eslint-parser` from 7.21.8 to 7.22.11
-- Bumps `prettier` from 2.8.8 to 3.0.2
+- Bumps `prettier` from 2.8.8 to 3.0.3
 - Bumps `eslint-plugin-prettier` from 4.0.0 to 5.0.0
 - Bumps `node-fetch` from 3.3.1 to 3.3.2
 - Bumps `tap` from 16.3.4 to 16.3.8

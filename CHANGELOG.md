@@ -9,7 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `eslint` from 8.41.0 to 8.48.0
 - Bumps `dedent` from 0.7.0 to 1.1.0
 - Bumps `@types/node` from 20.2.5 to 20.5.9
-- Bumps `@aws-sdk/types` from 3.341.0 to 3.387.0
+- Bumps `@aws-sdk/types` from 3.341.0 to 3.408.0
 - Bumps `@babel/eslint-parser` from 7.21.8 to 7.22.11
 - Bumps `prettier` from 2.8.8 to 3.0.3
 - Bumps `eslint-plugin-prettier` from 4.0.0 to 5.0.0

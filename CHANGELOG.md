@@ -4,6 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Added Security API
 ### Dependencies
 - Bumps `rimraf` from 5.0.0 to 5.0.1
 - Bumps `eslint` from 8.41.0 to 8.49.0

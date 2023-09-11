@@ -40,6 +40,11 @@ function handleError(err, callback) {
   return Promise.reject(err);
 }
 
+function encodePathParam(camelName, snakeName = null) {
+  if (camelName == null && snakeName == null) return null;
+  return encodeURIComponent(snakeName || camelName);
+}
+
 function snakeCaseKeys(acceptedQuerystring, snakeCase, querystring) {
   const target = {};
   const keys = Object.keys(querystring);
@@ -65,4 +70,11 @@ function normalizeArguments(params, options, callback) {
 
 function noop() {}
 
-module.exports = { handleError, snakeCaseKeys, normalizeArguments, noop, kConfigurationError };
+module.exports = {
+  handleError,
+  snakeCaseKeys,
+  normalizeArguments,
+  noop,
+  kConfigurationError,
+  encodePathParam,
+};

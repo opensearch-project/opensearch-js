@@ -71,6 +71,7 @@ const reindexRethrottleApi = require('./api/reindex_rethrottle');
 const renderSearchTemplateApi = require('./api/render_search_template');
 const scriptsPainlessExecuteApi = require('./api/scripts_painless_execute');
 const scrollApi = require('./api/scroll');
+const SecurityApi = require('./api/security');
 const searchApi = require('./api/search');
 const searchShardsApi = require('./api/search_shards');
 const searchTemplateApi = require('./api/search_template');
@@ -91,6 +92,7 @@ const kFeatures = Symbol('Features');
 const kIndices = Symbol('Indices');
 const kIngest = Symbol('Ingest');
 const kNodes = Symbol('Nodes');
+const kSecurity = Symbol('Security');
 const kShutdown = Symbol('Shutdown');
 const kSnapshot = Symbol('Snapshot');
 const kTasks = Symbol('Tasks');
@@ -104,6 +106,7 @@ function OpenSearchAPI(opts) {
   this[kIndices] = null;
   this[kIngest] = null;
   this[kNodes] = null;
+  this[kSecurity] = null;
   this[kShutdown] = null;
   this[kSnapshot] = null;
   this[kTasks] = null;
@@ -323,6 +326,14 @@ Object.defineProperties(OpenSearchAPI.prototype, {
   search_template: {
     get() {
       return this.searchTemplate;
+    },
+  },
+  security: {
+    get() {
+      if (this[kSecurity] === null) {
+        this[kSecurity] = new SecurityApi(this.transport, this[kConfigurationError]);
+      }
+      return this[kSecurity];
     },
   },
   shutdown: {

@@ -1946,6 +1946,891 @@ declare class Client {
     options: TransportRequestOptions,
     callback: callbackFn<T.SearchTemplateResponse<TDocument>, TContext>
   ): TransportRequestCallback;
+  security: {
+
+    changePassword<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    changePassword<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    changePassword<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    createActionGroup<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    createActionGroup<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    createActionGroup<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    createRole<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    createRole<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    createRole<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    createRoleMapping<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    createRoleMapping<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    createRoleMapping<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    createTenant<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    createTenant<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    createTenant<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    createUser<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    createUser<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    createUser<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    deleteActionGroup<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    deleteActionGroup<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    deleteActionGroup<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    deleteDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    deleteDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    deleteDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    deleteRole<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    deleteRole<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    deleteRole<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    deleteRoleMapping<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    deleteRoleMapping<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    deleteRoleMapping<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    deleteTenant<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    deleteTenant<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    deleteTenant<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    deleteUser<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    deleteUser<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    deleteUser<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    flushCache<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    flushCache<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    flushCache<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    flushCache<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    flushCache<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    flushCache<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    flushCache<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getAccountDetails<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getAccountDetails<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getAccountDetails<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getAccountDetails<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getAccountDetails<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getAccountDetails<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getAccountDetails<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getActionGroup<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getActionGroup<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getActionGroup<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getActionGroups<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getActionGroups<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getActionGroups<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getActionGroups<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getActionGroups<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getActionGroups<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getActionGroups<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getAuditConfiguration<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getAuditConfiguration<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getCertificates<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getCertificates<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getCertificates<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getCertificates<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getCertificates<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getCertificates<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getCertificates<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getConfiguration<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getConfiguration<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getConfiguration<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getConfiguration<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getConfiguration<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getConfiguration<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getConfiguration<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getDistinguishedNames<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getDistinguishedNames<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getRole<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getRole<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getRole<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getRoleMapping<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getRoleMapping<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getRoleMapping<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getRoleMappings<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getRoleMappings<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getRoleMappings<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getRoleMappings<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getRoleMappings<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getRoleMappings<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getRoleMappings<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getRoles<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getRoles<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getRoles<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getRoles<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getRoles<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getRoles<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getRoles<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getTenant<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getTenant<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getTenant<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getTenants<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getTenants<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getTenants<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getTenants<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getTenants<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getTenants<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getTenants<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getUser<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getUser<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getUser<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getUsers<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getUsers<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getUsers<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getUsers<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    getUsers<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    getUsers<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    getUsers<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    health<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    health<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    health<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    health<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    health<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    health<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    health<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchActionGroup<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchActionGroup<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchActionGroup<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchActionGroups<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchActionGroups<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchActionGroups<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchConfiguration<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchConfiguration<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchConfiguration<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchRole<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchRole<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchRole<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchRoleMapping<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchRoleMapping<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchRoleMapping<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchRoleMappings<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchRoleMappings<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchRoleMappings<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchRoles<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchRoles<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchRoles<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchTenant<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchTenant<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchTenant<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchTenants<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchTenants<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchTenants<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchUser<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchUser<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchUser<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    patchUsers<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    patchUsers<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    patchUsers<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    reloadHttpCertificates<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    reloadHttpCertificates<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    reloadHttpCertificates<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    reloadHttpCertificates<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    reloadHttpCertificates<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    reloadHttpCertificates<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    reloadHttpCertificates<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    reloadTransportCertificates<TContext = unknown>(
+      params?: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    reloadTransportCertificates<TContext = unknown>(
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    reloadTransportCertificates<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    reloadTransportCertificates<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    reloadTransportCertificates<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    reloadTransportCertificates<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    reloadTransportCertificates<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    updateAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    updateAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    updateAuditConfiguration<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    updateConfiguration<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    updateConfiguration<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    updateConfiguration<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+    updateDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    updateDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+    updateDistinguishedNames<TContext = unknown>(
+      params: TODO,
+      options: TransportRequestOptions,
+      callback: callbackFn<TODO, TContext>
+    ): TransportRequestCallback;
+
+  };
   shutdown: {
     deleteNode<TContext = unknown>(
       params?: TODO,

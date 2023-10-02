@@ -5,7 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
-- Bumps `rimraf` from 5.0.0 to 5.0.1
+- Bumps `rimraf` from 5.0.0 to 5.0.5
 - Bumps `eslint` from 8.41.0 to 8.50.0
 - Bumps `dedent` from 0.7.0 to 1.5.1
 - Bumps `@types/node` from 20.2.5 to 20.6.5

@@ -52,7 +52,7 @@ client.bulk({
 ```
 As you can see, each bulk operation is comprised of two objects. The first object contains the operation type and the target document's `_index` and `_id`. The second object contains the document's data. As a result, the body of the request above contains six objects for three index actions.
 
-Alternatively, the `bulk` method can accept an array of hashes where hashes are in pairs, except for delete which is singular. In each pair, the first item contains the action like `create` and, `_index` and `id` specify which index and document id the action has to be performed on. The second item in the pair is the document itself.
+Alternatively, the `bulk` method can accept an array of objects where objects are in pairs, except for delete which is singular. In each pair, the first item contains the action like `create` and, `_index` and `id` specify which index and document id the action has to be performed on. The second item in the pair is the document itself.
 
 ```javascript
 client.bulk({

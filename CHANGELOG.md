@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 - Added Security API
+- Documentation for edge-case in Sigv4Signer (todo pr)
 ### Dependencies
 - Bumps `rimraf` from 5.0.0 to 5.0.5
 - Bumps `eslint` from 8.41.0 to 8.50.0

@@ -4,7 +4,16 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
-- Added Security API
+### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.4.0]
+### Added
+- Added Security API ([#606](https://github.com/opensearch-project/opensearch-js/pull/606))
 - Documentation for edge-case in Sigv4Signer ([#622](https://github.com/opensearch-project/opensearch-js/pull/622))
 ### Dependencies
 - Bumps `rimraf` from 5.0.0 to 5.0.5
@@ -178,8 +187,3 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 
 - Fix mutability of connection headers ([#291](https://github.com/opensearch-project/opensearch-js/issues/291))
-
-[2.1.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.1.0
-[2.2.0]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.2.0
-[2.2.1]: https://github.com/opensearch-project/opensearch-js/releases/tag/2.2.1
-[Unreleased]: https://github.com/opensearch-project/opensearch-js/compare/2.2.1...HEAD

@@ -65,6 +65,7 @@ const client = new Client({
     getCredentials: () =>
       new Promise((resolve, reject) => {
         // Any other method to acquire a new Credentials object can be used.
+        // If you use profiles, make sure to pass role assumer, or use default provider fromNodeProviderChain
         AWS.config.getCredentials((err, credentials) => {
           if (err) {
             reject(err);

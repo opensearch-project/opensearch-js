@@ -182,5 +182,9 @@ client.bulk({
 To clean up the resources created in this guide, delete the `movies` and `books` indices:
 
 ```javascript
-client.indices.delete({ index: [movies, books] });
+client.indices.delete({
+    index: [movies, books]
+}).then((response) => {
+    console.log(response);
+});
 ```

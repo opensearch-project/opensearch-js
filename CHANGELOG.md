@@ -22,6 +22,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 - Make handling of long numerals an option that is disabled by default ([#557](https://github.com/opensearch-project/opensearch-js/pull/557))
 - Add `enableLongNumeralSupport` to the type definition for `ClientOptions` ([#598](https://github.com/opensearch-project/opensearch-js/pull/598))
+- Corrected documentation for bulk.md ([#XXX])
 ### Deprecated
 ### Removed
 ### Fixed

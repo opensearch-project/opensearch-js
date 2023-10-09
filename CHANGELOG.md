@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+- Bumps `@aws-sdk/types` from 3.418.0 to 3.425.0
 ### Changed
 ### Deprecated
 ### Removed

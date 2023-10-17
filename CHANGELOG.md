@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `eslint` from 8.50.0 to 8.51.0
 - Bumps `@babel/traverse` from 7.15.0 to 7.23.2
 - Bumps `eslint-plugin-prettier` from 5.0.0 to 5.0.1
+- Bumps `tap` from 16.3.8 to 18.5.2
 ### Changed
 ### Deprecated
 ### Removed

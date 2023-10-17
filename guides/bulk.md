@@ -52,18 +52,25 @@ client.bulk({
 ```
 As you can see, each bulk operation is comprised of two objects. The first object contains the operation type and the target document's `_index` and `_id`. The second object contains the document's data. As a result, the body of the request above contains six objects for three index actions.
 
-Alternatively, the `bulk` method can accept an array of hashes where each hash represents a single operation. The following code is equivalent to the previous example:
+Alternatively, the `bulk` method can accept an array of objects where objects are in pairs, except for delete which is singular. In each pair, the first item contains the action like `create` and, `_index` and `id` specify which index and document id the action has to be performed on. The second item in the pair is the document itself.
 
 ```javascript
 client.bulk({
-  body: [
-    { index: { _index: movies, _id: 1, data: { title: 'Beauty and the Beast', year: 1991 }  } },
-    { index: { _index: movies, _id: 2, data: { title: 'Beauty and the Beast - Live Action', year: 2017 } } },
-    { index: { _index: books, _id: 1, data: { title: 'The Lion King', year: 1994 } } }
-  ]
-}).then((response) => {
-  console.log(response);
-});
+    index: movies,
+    body: [
+      { create: { _id: 1} },
+      { title: 'Beauty and the Beast 1', year: 2050 },
+      { delete: { _id: 1 } },
+      { create: { _id: 2 } },
+      { title: 'Beauty and the Beast 2', year: 2051 },
+      { create: {} },
+      { title: 'Beauty and the Beast 2', year: 2051 },
+      { create: { _index: books } },
+      { title: '2012', year: 2012 },
+    ]
+  }).then((response) => {
+    console.log(response.body.items);
+  });
 ```
 
 We will use this format for the rest of the examples in this guide.
@@ -76,10 +83,14 @@ Similarly, instead of calling the `create` method for each document, you can use
 client.bulk({
   index: movies,
   body: [
-    { create: { data: { title: 'Beauty and the Beast 2', year: 2030 } } },
-    { create: { data: { title: 'Beauty and the Beast 3', year: 2031 } } },
-    { create: { data: { title: 'Beauty and the Beast 4', year: 2049 } } },
-    { create: { _index: books, data: { title: 'The Lion King 2', year: 1998 } } }
+    { create: {} },
+    { title: 'Beauty and the Beast 2', year: 2030 }, 
+    { create: {} },
+    { title: 'Beauty and the Beast 3', year: 2031 },
+    { create: {} },
+    { title: 'Beauty and the Beast 4', year: 2049 },
+    { create: { _index: books } },
+    { title: 'The Lion King 2', year: 1998 } 
   ]
 }).then((response) => {
   console.log(response);
@@ -92,8 +103,10 @@ Note that we specified only the `_index` for the last document in the request bo
 client.bulk({
   index: movies,
   body: [
-    { update: { _id: 1, data: { doc: { year: 1992 } } } },
-    { update: { _id: 2, data: { doc: { year: 2018 } } } }
+    { update: { _id: 1 } },
+    { doc: { year: 1992 } },
+    { update: { _id: 2 } },
+    { doc: { year: 2018 } }
   ]
 }).then((response) => {
   console.log(response);
@@ -122,9 +135,12 @@ You can mix and match the different operations in a single request. The followin
 client.bulk({
   index: movies,
   body: [
-    { create: { data: { title: 'Beauty and the Beast 5', year: 2050 } } },
-    { create: { data: { title: 'Beauty and the Beast 6', year: 2051 } } },
-    { update: { _id: 3, data: { doc: { year: 2052 } } } },
+    { create: {} },
+    { title: 'Beauty and the Beast 5', year: 2050 },
+    { create: {} },
+    { title: 'Beauty and the Beast 6', year: 2051 },
+    { update: { _id: 3 } },
+    { doc: { year: 2052 } },
     { delete: { _id: 4 } }
   ]
 }).then((response) => {
@@ -141,10 +157,14 @@ The following code shows how to look for errors in the response:
 client.bulk({
   index: movies,
   body: [
-    { create: { _id: 1, data: { title: 'Beauty and the Beast', year: 1991 } } },
-    { create: { _id: 2, data: { title: 'Beauty and the Beast 2', year: 2030 } } },
-    { create: { _id: 1, data: { title: 'Beauty and the Beast 3', year: 2031 } } }, // document already exists error
-    { create: { _id: 2, data: { title: 'Beauty and the Beast 4', year: 2049 } } }  // document already exists error
+    { create: { _id: 1 } },
+    { title: 'Beauty and the Beast', year: 1991 },
+    { create: { _id: 2} },
+    { title: 'Beauty and the Beast 2', year: 2030 },
+    { create: { _id: 1 } },
+    { title: 'Beauty and the Beast 3', year: 2031 }, // document already exists error
+    { create: { _id: 2 } },
+    { title: 'Beauty and the Beast 4', year: 2049 }  // document already exists error
   ]
 }).then((response) => {
   response.body.forEach((item) => {
@@ -162,5 +182,9 @@ client.bulk({
 To clean up the resources created in this guide, delete the `movies` and `books` indices:
 
 ```javascript
-client.indices.delete({ index: [movies, books] });
+client.indices.delete({
+    index: [movies, books]
+}).then((response) => {
+    console.log(response);
+});
 ```

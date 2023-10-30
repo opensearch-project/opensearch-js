@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `eslint` from 8.50.0 to 8.51.0
 - Bumps `@babel/traverse` from 7.15.0 to 7.23.2
 - Bumps `eslint-plugin-prettier` from 5.0.0 to 5.0.1
+- Bumps `react-devtools-core` from 4.25.0 to 4.28.4
 ### Changed
 ### Deprecated
 ### Removed

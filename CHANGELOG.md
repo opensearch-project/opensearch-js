@@ -4,6 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Added deprecation warnings for Index Template APIs
 ### Dependencies
 - Bumps `@aws-sdk/types` from 3.418.0 to 3.433.0
 - Bumps `@types/node` from 20.6.5 to 20.8.9

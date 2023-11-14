@@ -951,14 +951,17 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<T.IndicesDeleteIndexTemplateResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use deleteIndexTemplate instead */
     deleteTemplate<TContext = unknown>(
       params: T.IndicesDeleteTemplateRequest,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<T.IndicesDeleteTemplateResponse, TContext>>;
+    /** @deprecated use deleteIndexTemplate instead */
     deleteTemplate<TContext = unknown>(
       params: T.IndicesDeleteTemplateRequest,
       callback: callbackFn<T.IndicesDeleteTemplateResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use deleteIndexTemplate instead */
     deleteTemplate<TContext = unknown>(
       params: T.IndicesDeleteTemplateRequest,
       options: TransportRequestOptions,
@@ -1017,14 +1020,17 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<T.IndicesExistsIndexTemplateResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use existsIndexTemplate instead */
     existsTemplate<TContext = unknown>(
       params: T.IndicesExistsTemplateRequest,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<T.IndicesExistsTemplateResponse, TContext>>;
+    /** @deprecated use existsIndexTemplate instead */
     existsTemplate<TContext = unknown>(
       params: T.IndicesExistsTemplateRequest,
       callback: callbackFn<T.IndicesExistsTemplateResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use existsIndexTemplate instead */
     existsTemplate<TContext = unknown>(
       params: T.IndicesExistsTemplateRequest,
       options: TransportRequestOptions,
@@ -1168,17 +1174,21 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<T.IndicesGetSettingsResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use getIndexTemplate instead */
     getTemplate<TContext = unknown>(
       params?: T.IndicesGetTemplateRequest,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<T.IndicesGetTemplateResponse, TContext>>;
+    /** @deprecated use getIndexTemplate instead */
     getTemplate<TContext = unknown>(
       callback: callbackFn<T.IndicesGetTemplateResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use getIndexTemplate instead */
     getTemplate<TContext = unknown>(
       params: T.IndicesGetTemplateRequest,
       callback: callbackFn<T.IndicesGetTemplateResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use getIndexTemplate instead */
     getTemplate<TContext = unknown>(
       params: T.IndicesGetTemplateRequest,
       options: TransportRequestOptions,
@@ -1269,14 +1279,17 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<T.IndicesPutSettingsResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use putIndexTemplate instead */
     putTemplate<TContext = unknown>(
       params: T.IndicesPutTemplateRequest,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<T.IndicesPutTemplateResponse, TContext>>;
+    /** @deprecated use putIndexTemplate instead */
     putTemplate<TContext = unknown>(
       params: T.IndicesPutTemplateRequest,
       callback: callbackFn<T.IndicesPutTemplateResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use putIndexTemplate instead */
     putTemplate<TContext = unknown>(
       params: T.IndicesPutTemplateRequest,
       options: TransportRequestOptions,
@@ -1401,17 +1414,21 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<T.IndicesSimulateIndexTemplateResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use simulateIndexTemplate instead */
     simulateTemplate<TContext = unknown>(
       params?: TODO,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TODO, TContext>>;
+    /** @deprecated use simulateIndexTemplate instead */
     simulateTemplate<TContext = unknown>(
       callback: callbackFn<TODO, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use simulateIndexTemplate instead */
     simulateTemplate<TContext = unknown>(
       params: TODO,
       callback: callbackFn<TODO, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use simulateIndexTemplate instead */
     simulateTemplate<TContext = unknown>(
       params: TODO,
       options: TransportRequestOptions,

@@ -1336,7 +1336,7 @@ IndicesApi.prototype.getTemplate = function indicesGetTemplateApi(params, option
 };
 
 /**
- * Returns a progress status of current upgrade. (Deprecated. Use API-Document#reindex instead)
+ * Returns a progress status of current upgrade.
  *
  * @memberOf API-Index
  *

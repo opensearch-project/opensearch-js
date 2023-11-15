@@ -6,7 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 - Bumps `@aws-sdk/types` from 3.418.0 to 3.433.0
-- Bumps `@types/node` from 20.6.5 to 20.8.9
+- Bumps `@types/node` from 20.6.5 to 20.9.0
 - Bumps `eslint` from 8.50.0 to 8.53.0
 - Bumps `@babel/traverse` from 7.15.0 to 7.23.2
 - Bumps `eslint-plugin-prettier` from 5.0.0 to 5.0.1

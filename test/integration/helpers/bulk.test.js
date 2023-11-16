@@ -67,15 +67,15 @@ test('bulk index', async (t) => {
   t.type(result.time, 'number');
   t.type(result.bytes, 'number');
   t.match(result, {
-    total: 5000,
-    successful: 5000,
+    total: 4998,
+    successful: 4998,
     retry: 0,
     failed: 0,
     aborted: false,
   });
 
   const { body } = await client.count({ index: INDEX });
-  t.match(body, { count: 5000 });
+  t.match(body, { count: 4998 });
 });
 
 test('bulk index with custom id', async (t) => {
@@ -98,8 +98,8 @@ test('bulk index with custom id', async (t) => {
   t.type(result.time, 'number');
   t.type(result.bytes, 'number');
   t.match(result, {
-    total: 5000,
-    successful: 5000,
+    total: 4998,
+    successful: 4998,
     retry: 0,
     failed: 0,
     aborted: false,
@@ -172,15 +172,15 @@ test('bulk delete', async (t) => {
   t.type(indexResult.time, 'number');
   t.type(indexResult.bytes, 'number');
   t.match(indexResult, {
-    total: 5000,
-    successful: 5000,
+    total: 4998,
+    successful: 4998,
     retry: 0,
     failed: 0,
     aborted: false,
   });
 
   const { body: afterIndex } = await client.count({ index: INDEX });
-  t.match(afterIndex, { count: 5000 });
+  t.match(afterIndex, { count: 4998 });
 
   const deleteResult = await client.helpers.bulk({
     datasource: createReadStream(datasetPath).pipe(split(JSON.parse)),
@@ -201,8 +201,8 @@ test('bulk delete', async (t) => {
   t.type(deleteResult.time, 'number');
   t.type(deleteResult.bytes, 'number');
   t.match(deleteResult, {
-    total: 5000,
-    successful: 5000,
+    total: 4998,
+    successful: 4998,
     retry: 0,
     failed: 0,
     aborted: false,

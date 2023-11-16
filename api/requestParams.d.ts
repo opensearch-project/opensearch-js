@@ -750,6 +750,13 @@ export interface GetSource extends Generic {
   version_type?: 'internal' | 'external' | 'external_gte' | 'force';
 }
 
+export interface HttpParams extends Generic {
+  path: string;
+  querystring?: Record<string, any>;
+  headers?: Record<string, any>;
+  body?: Record<string, any> | string | Array<string | Record<string, any>>;
+}
+
 export interface Index<T = RequestBody> extends Generic {
   id?: string;
   index: string;

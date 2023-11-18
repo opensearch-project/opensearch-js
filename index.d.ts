@@ -2360,33 +2360,41 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use delete_index_template instead */
     delete_template<TResponse = Record<string, any>, TContext = Context>(
       params?: RequestParams.IndicesDeleteTemplate,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    /** @deprecated use delete_index_template instead */
     delete_template<TResponse = Record<string, any>, TContext = Context>(
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use delete_index_template instead */
     delete_template<TResponse = Record<string, any>, TContext = Context>(
       params: RequestParams.IndicesDeleteTemplate,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use delete_index_template instead */
     delete_template<TResponse = Record<string, any>, TContext = Context>(
       params: RequestParams.IndicesDeleteTemplate,
       options: TransportRequestOptions,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use deleteIndexTemplate instead */
     deleteTemplate<TResponse = Record<string, any>, TContext = Context>(
       params?: RequestParams.IndicesDeleteTemplate,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    /** @deprecated use deleteIndexTemplate instead */
     deleteTemplate<TResponse = Record<string, any>, TContext = Context>(
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use deleteIndexTemplate instead */
     deleteTemplate<TResponse = Record<string, any>, TContext = Context>(
       params: RequestParams.IndicesDeleteTemplate,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use deleteIndexTemplate instead */
     deleteTemplate<TResponse = Record<string, any>, TContext = Context>(
       params: RequestParams.IndicesDeleteTemplate,
       options: TransportRequestOptions,
@@ -2504,33 +2512,41 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use exists_index_template instead */
     exists_template<TResponse = boolean, TContext = Context>(
       params?: RequestParams.IndicesExistsTemplate,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    /** @deprecated use exists_index_template instead */
     exists_template<TResponse = boolean, TContext = Context>(
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use exists_index_template instead */
     exists_template<TResponse = boolean, TContext = Context>(
       params: RequestParams.IndicesExistsTemplate,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use exists_index_template instead */
     exists_template<TResponse = boolean, TContext = Context>(
       params: RequestParams.IndicesExistsTemplate,
       options: TransportRequestOptions,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use existsIndexTemplate instead */
     existsTemplate<TResponse = boolean, TContext = Context>(
       params?: RequestParams.IndicesExistsTemplate,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    /** @deprecated use existsIndexTemplate instead */
     existsTemplate<TResponse = boolean, TContext = Context>(
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use existsIndexTemplate instead */
     existsTemplate<TResponse = boolean, TContext = Context>(
       params: RequestParams.IndicesExistsTemplate,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use existsIndexTemplate instead */
     existsTemplate<TResponse = boolean, TContext = Context>(
       params: RequestParams.IndicesExistsTemplate,
       options: TransportRequestOptions,
@@ -2776,33 +2792,41 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use get_index_template instead */
     get_template<TResponse = Record<string, any>, TContext = Context>(
       params?: RequestParams.IndicesGetTemplate,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    /** @deprecated use get_index_template instead */
     get_template<TResponse = Record<string, any>, TContext = Context>(
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use get_index_template instead */
     get_template<TResponse = Record<string, any>, TContext = Context>(
       params: RequestParams.IndicesGetTemplate,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use get_index_template instead */
     get_template<TResponse = Record<string, any>, TContext = Context>(
       params: RequestParams.IndicesGetTemplate,
       options: TransportRequestOptions,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use getIndexTemplate instead */
     getTemplate<TResponse = Record<string, any>, TContext = Context>(
       params?: RequestParams.IndicesGetTemplate,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    /** @deprecated use getIndexTemplate instead */
     getTemplate<TResponse = Record<string, any>, TContext = Context>(
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use getIndexTemplate instead */
     getTemplate<TResponse = Record<string, any>, TContext = Context>(
       params: RequestParams.IndicesGetTemplate,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use getIndexTemplate instead */
     getTemplate<TResponse = Record<string, any>, TContext = Context>(
       params: RequestParams.IndicesGetTemplate,
       options: TransportRequestOptions,
@@ -3112,6 +3136,7 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use put_index_template instead */
     put_template<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3120,6 +3145,7 @@ declare class Client {
       params?: RequestParams.IndicesPutTemplate<TRequestBody>,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    /** @deprecated use put_index_template instead */
     put_template<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3127,6 +3153,7 @@ declare class Client {
     >(
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use put_index_template instead */
     put_template<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3135,6 +3162,7 @@ declare class Client {
       params: RequestParams.IndicesPutTemplate<TRequestBody>,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use put_index_template instead */
     put_template<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3144,6 +3172,7 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use putIndexTemplate instead */
     putTemplate<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3152,6 +3181,7 @@ declare class Client {
       params?: RequestParams.IndicesPutTemplate<TRequestBody>,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    /** @deprecated use putIndexTemplate instead */
     putTemplate<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3159,6 +3189,7 @@ declare class Client {
     >(
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use putIndexTemplate instead */
     putTemplate<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3167,6 +3198,7 @@ declare class Client {
       params: RequestParams.IndicesPutTemplate<TRequestBody>,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use putIndexTemplate instead */
     putTemplate<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3416,6 +3448,7 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use simulate_index_template instead */
     simulate_template<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3424,6 +3457,7 @@ declare class Client {
       params?: RequestParams.IndicesSimulateTemplate<TRequestBody>,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    /** @deprecated use simulate_index_template instead */
     simulate_template<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3431,6 +3465,7 @@ declare class Client {
     >(
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use simulate_index_template instead */
     simulate_template<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3439,6 +3474,7 @@ declare class Client {
       params: RequestParams.IndicesSimulateTemplate<TRequestBody>,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use simulate_index_template instead */
     simulate_template<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3448,6 +3484,7 @@ declare class Client {
       options: TransportRequestOptions,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use simulateIndexTemplate instead */
     simulateTemplate<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3456,6 +3493,7 @@ declare class Client {
       params?: RequestParams.IndicesSimulateTemplate<TRequestBody>,
       options?: TransportRequestOptions
     ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    /** @deprecated use simulateIndexTemplate instead */
     simulateTemplate<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3463,6 +3501,7 @@ declare class Client {
     >(
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use simulateIndexTemplate instead */
     simulateTemplate<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,
@@ -3471,6 +3510,7 @@ declare class Client {
       params: RequestParams.IndicesSimulateTemplate<TRequestBody>,
       callback: callbackFn<TResponse, TContext>
     ): TransportRequestCallback;
+    /** @deprecated use simulateIndexTemplate instead */
     simulateTemplate<
       TResponse = Record<string, any>,
       TRequestBody extends RequestBody = Record<string, any>,

@@ -54,6 +54,7 @@ const getScriptApi = require('./api/get_script');
 const getScriptContextApi = require('./api/get_script_context');
 const getScriptLanguagesApi = require('./api/get_script_languages');
 const getSourceApi = require('./api/get_source');
+const HttpApi = require('./api/http');
 const indexApi = require('./api/index');
 const IndicesApi = require('./api/indices');
 const infoApi = require('./api/info');
@@ -89,6 +90,7 @@ const kCat = Symbol('Cat');
 const kCluster = Symbol('Cluster');
 const kDanglingIndices = Symbol('DanglingIndices');
 const kFeatures = Symbol('Features');
+const kHttp = Symbol('Http');
 const kIndices = Symbol('Indices');
 const kIngest = Symbol('Ingest');
 const kNodes = Symbol('Nodes');
@@ -103,6 +105,7 @@ function OpenSearchAPI(opts) {
   this[kCluster] = null;
   this[kDanglingIndices] = null;
   this[kFeatures] = null;
+  this[kHttp] = null;
   this[kIndices] = null;
   this[kIngest] = null;
   this[kNodes] = null;
@@ -262,6 +265,14 @@ Object.defineProperties(OpenSearchAPI.prototype, {
   get_source: {
     get() {
       return this.getSource;
+    },
+  },
+  http: {
+    get() {
+      if (this[kHttp] === null) {
+        this[kHttp] = new HttpApi(this.transport, this[kConfigurationError]);
+      }
+      return this[kHttp];
     },
   },
   indices: {

@@ -71,8 +71,8 @@ export interface CatAllocation extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -121,8 +121,8 @@ export interface CatIndices extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   health?: 'green' | 'yellow' | 'red';
@@ -146,16 +146,16 @@ export interface CatClusterManager extends Generic {
 }
 
 /**
-* // TODO: delete CatMaster interface when it is removed from OpenSearch
-* @deprecated use CatClusterManager instead
-*/
+ * // TODO: delete CatMaster interface when it is removed from OpenSearch
+ * @deprecated use CatClusterManager instead
+ */
 export interface CatMaster extends Generic {
   format?: string;
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -168,8 +168,8 @@ export interface CatNodeattrs extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -184,8 +184,8 @@ export interface CatNodes extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -200,8 +200,8 @@ export interface CatPendingTasks extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -215,8 +215,8 @@ export interface CatPlugins extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -243,8 +243,8 @@ export interface CatRepositories extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -269,8 +269,8 @@ export interface CatShards extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -285,8 +285,8 @@ export interface CatSnapshots extends Generic {
   ignore_unavailable?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -314,8 +314,8 @@ export interface CatTemplates extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -330,8 +330,8 @@ export interface CatThreadPool extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   h?: string | string[];
   help?: boolean;
@@ -355,8 +355,8 @@ export interface ClusterDeleteComponentTemplate extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -368,8 +368,8 @@ export interface ClusterExistsComponentTemplate extends Generic {
   name: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   local?: boolean;
 }
@@ -378,8 +378,8 @@ export interface ClusterGetComponentTemplate extends Generic {
   name?: string | string[];
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   local?: boolean;
 }
@@ -388,8 +388,8 @@ export interface ClusterGetSettings extends Generic {
   flat_settings?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
   include_defaults?: boolean;
@@ -402,8 +402,8 @@ export interface ClusterHealth extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
   wait_for_active_shards?: string;
@@ -418,8 +418,8 @@ export interface ClusterPendingTasks extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -435,8 +435,8 @@ export interface ClusterPutComponentTemplate<T = RequestBody> extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   body: T;
 }
@@ -445,8 +445,8 @@ export interface ClusterPutSettings<T = RequestBody> extends Generic {
   flat_settings?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
   body: T;
@@ -461,8 +461,8 @@ export interface ClusterReroute<T = RequestBody> extends Generic {
   metric?: string | string[];
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
   body?: T;
@@ -474,8 +474,8 @@ export interface ClusterState extends Generic {
   local?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   flat_settings?: boolean;
   wait_for_metadata_version?: number;
@@ -537,8 +537,8 @@ export interface DanglingIndicesDeleteDanglingIndex extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -548,8 +548,8 @@ export interface DanglingIndicesImportDanglingIndex extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -624,8 +624,8 @@ export interface DeleteScript extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -685,8 +685,8 @@ export interface Explain<T = RequestBody> extends Generic {
 export interface FeaturesGetFeatures extends Generic {
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -725,8 +725,8 @@ export interface GetScript extends Generic {
   id: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -748,6 +748,13 @@ export interface GetSource extends Generic {
   _source_includes?: string | string[];
   version?: number;
   version_type?: 'internal' | 'external' | 'external_gte' | 'force';
+}
+
+export interface HttpParams extends Generic {
+  path: string;
+  querystring?: Record<string, any>;
+  headers?: Record<string, any>;
+  body?: Record<string, any> | string | Array<string | Record<string, any>>;
 }
 
 export interface Index<T = RequestBody> extends Generic {
@@ -773,8 +780,8 @@ export interface IndicesAddBlock extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
@@ -803,8 +810,8 @@ export interface IndicesClone<T = RequestBody> extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   wait_for_active_shards?: string;
   body?: T;
@@ -815,8 +822,8 @@ export interface IndicesClose extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
@@ -830,8 +837,8 @@ export interface IndicesCreate<T = RequestBody> extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   body?: T;
 }
@@ -841,8 +848,8 @@ export interface IndicesDelete extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
@@ -855,8 +862,8 @@ export interface IndicesDeleteAlias extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -865,8 +872,8 @@ export interface IndicesDeleteIndexTemplate extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -875,8 +882,8 @@ export interface IndicesDeleteTemplate extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -913,8 +920,8 @@ export interface IndicesExistsIndexTemplate extends Generic {
   flat_settings?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   local?: boolean;
 }
@@ -924,8 +931,8 @@ export interface IndicesExistsTemplate extends Generic {
   flat_settings?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   local?: boolean;
 }
@@ -967,8 +974,8 @@ export interface IndicesGet extends Generic {
   include_defaults?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -996,8 +1003,8 @@ export interface IndicesGetIndexTemplate extends Generic {
   flat_settings?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   local?: boolean;
 }
@@ -1009,8 +1016,8 @@ export interface IndicesGetMapping extends Generic {
   expand_wildcards?: 'open' | 'closed' | 'hidden' | 'none' | 'all';
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   local?: boolean;
 }
@@ -1020,8 +1027,8 @@ export interface IndicesGetSettings extends Generic {
   name?: string | string[];
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
@@ -1036,8 +1043,8 @@ export interface IndicesGetTemplate extends Generic {
   flat_settings?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   local?: boolean;
 }
@@ -1054,8 +1061,8 @@ export interface IndicesOpen extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
@@ -1069,8 +1076,8 @@ export interface IndicesPutAlias<T = RequestBody> extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   body?: T;
 }
@@ -1081,8 +1088,8 @@ export interface IndicesPutIndexTemplate<T = RequestBody> extends Generic {
   cause?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   body: T;
 }
@@ -1092,8 +1099,8 @@ export interface IndicesPutMapping<T = RequestBody> extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   ignore_unavailable?: boolean;
   allow_no_indices?: boolean;
@@ -1106,8 +1113,8 @@ export interface IndicesPutSettings<T = RequestBody> extends Generic {
   index?: string | string[];
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
   preserve_existing?: boolean;
@@ -1124,8 +1131,8 @@ export interface IndicesPutTemplate<T = RequestBody> extends Generic {
   create?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   body: T;
 }
@@ -1155,8 +1162,8 @@ export interface IndicesRollover<T = RequestBody> extends Generic {
   dry_run?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   wait_for_active_shards?: string;
   body?: T;
@@ -1185,8 +1192,8 @@ export interface IndicesShrink<T = RequestBody> extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   wait_for_active_shards?: string;
   body?: T;
@@ -1198,8 +1205,8 @@ export interface IndicesSimulateIndexTemplate<T = RequestBody> extends Generic {
   cause?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   body?: T;
 }
@@ -1210,8 +1217,8 @@ export interface IndicesSimulateTemplate<T = RequestBody> extends Generic {
   cause?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   body?: T;
 }
@@ -1223,8 +1230,8 @@ export interface IndicesSplit<T = RequestBody> extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   wait_for_active_shards?: string;
   body?: T;
@@ -1249,8 +1256,8 @@ export interface IndicesUpdateAliases<T = RequestBody> extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   body: T;
 }
@@ -1287,8 +1294,8 @@ export interface IngestDeletePipeline extends Generic {
   id: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
 }
@@ -1300,8 +1307,8 @@ export interface IngestGetPipeline extends Generic {
   summary?: boolean;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -1311,8 +1318,8 @@ export interface IngestPutPipeline<T = RequestBody> extends Generic {
   id: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
   body: T;
@@ -1439,8 +1446,8 @@ export interface PutScript<T = RequestBody> extends Generic {
   timeout?: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   body: T;
 }
@@ -1582,8 +1589,8 @@ export interface SnapshotCleanupRepository extends Generic {
   repository: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
 }
@@ -1594,8 +1601,8 @@ export interface SnapshotClone<T = RequestBody> extends Generic {
   target_snapshot: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   body: T;
 }
@@ -1605,8 +1612,8 @@ export interface SnapshotCreate<T = RequestBody> extends Generic {
   snapshot: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   wait_for_completion?: boolean;
   body?: T;
@@ -1616,8 +1623,8 @@ export interface SnapshotCreateRepository<T = RequestBody> extends Generic {
   repository: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
   verify?: boolean;
@@ -1629,8 +1636,8 @@ export interface SnapshotDelete extends Generic {
   snapshot: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
 }
 
@@ -1638,8 +1645,8 @@ export interface SnapshotDeleteRepository extends Generic {
   repository: string | string[];
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
 }
@@ -1649,8 +1656,8 @@ export interface SnapshotGet extends Generic {
   snapshot: string | string[];
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   ignore_unavailable?: boolean;
   index_details?: boolean;
@@ -1662,8 +1669,8 @@ export interface SnapshotGetRepository extends Generic {
   repository?: string | string[];
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   local?: boolean;
 }
@@ -1688,8 +1695,8 @@ export interface SnapshotRestore<T = RequestBody> extends Generic {
   snapshot: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   wait_for_completion?: boolean;
   body?: T;
@@ -1700,8 +1707,8 @@ export interface SnapshotStatus extends Generic {
   snapshot?: string | string[];
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   ignore_unavailable?: boolean;
 }
@@ -1710,8 +1717,8 @@ export interface SnapshotVerifyRepository extends Generic {
   repository: string;
   cluster_manager_timeout?: string;
   /**
-  * @deprecated use cluster_manager_timeout instead
-  */
+   * @deprecated use cluster_manager_timeout instead
+   */
   master_timeout?: string;
   timeout?: string;
 }

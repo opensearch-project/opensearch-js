@@ -2073,6 +2073,48 @@ declare class Client {
     options: TransportRequestOptions,
     callback: callbackFn<TResponse, TContext>
   ): TransportRequestCallback;
+  http: {
+    connect<TResponse = Record<string, any>, TContext = Context>(
+      params: RequestParams.HttpParams,
+      options?: TransportRequestOptions,
+      callback?: callbackFn<TResponse, TContext>
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    delete<TResponse = Record<string, any>, TContext = Context>(
+      params: RequestParams.HttpParams,
+      options?: TransportRequestOptions,
+      callback?: callbackFn<TResponse, TContext>
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    get<TResponse = Record<string, any>, TContext = Context>(
+      params: RequestParams.HttpParams,
+      options?: TransportRequestOptions,
+      callback?: callbackFn<TResponse, TContext>
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    head<TResponse = Record<string, any>, TContext = Context>(
+      params: RequestParams.HttpParams,
+      options?: TransportRequestOptions,
+      callback?: callbackFn<TResponse, TContext>
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    options<TResponse = Record<string, any>, TContext = Context>(
+      params: RequestParams.HttpParams,
+      options?: TransportRequestOptions,
+      callback?: callbackFn<TResponse, TContext>
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    post<TResponse = Record<string, any>, TContext = Context>(
+      params: RequestParams.HttpParams,
+      options?: TransportRequestOptions,
+      callback?: callbackFn<TResponse, TContext>
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    put<TResponse = Record<string, any>, TContext = Context>(
+      params: RequestParams.HttpParams,
+      options?: TransportRequestOptions,
+      callback?: callbackFn<TResponse, TContext>
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    trace<TResponse = Record<string, any>, TContext = Context>(
+      params: RequestParams.HttpParams,
+      options?: TransportRequestOptions,
+      callback?: callbackFn<TResponse, TContext>
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+  };
   index<
     TResponse = Record<string, any>,
     TRequestBody extends RequestBody = Record<string, any>,

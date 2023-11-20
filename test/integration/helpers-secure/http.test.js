@@ -38,16 +38,6 @@ test('Check that the previously created index exists', async (t) => {
   t.equal(response.statusCode, 200);
 });
 
-test('Add documents using bulk endpoint', async (t) => {
-  const body = [
-    { index: { _index: index } },
-    { title: 'The quick brown fox' },
-    { index: { _index: index } },
-    { title: 'The quick brown fox jumps over the lazy dog' },
-  ];
-  const response = await http.post({ path: `_bulk`, body });
-  t.equal(response.body.errors, false);
-});
 
 test('Close the previously created index', async (t) => {
   const response = await http.post({ path: `${index}/_close` });

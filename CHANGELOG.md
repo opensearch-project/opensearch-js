@@ -6,7 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Added deprecation warnings for Index Template APIs ([654](https://github.com/opensearch-project/opensearch-js/pull/645))
 ### Dependencies
-- Bumps `@aws-sdk/types` from 3.418.0 to 3.433.0
+- Bumps `@aws-sdk/types` from 3.418.0 to 3.451.0
 - Bumps `@types/node` from 20.6.5 to 20.9.0
 - Bumps `eslint` from 8.50.0 to 8.54.0
 - Bumps `@babel/traverse` from 7.15.0 to 7.23.2

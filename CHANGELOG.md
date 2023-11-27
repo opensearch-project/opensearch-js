@@ -14,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `react-devtools-core` from 4.25.0 to 4.28.4
 - Bumps `simple-git` from 3.20.0 to 3.21.0
 - Bumps `prettier` from 3.0.3 to 3.1.0
+- Bumps `@babel/eslint-parser` from 7.22.15 to 7.23.3
 ### Changed
 ### Deprecated
 ### Removed

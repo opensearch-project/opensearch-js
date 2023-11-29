@@ -95,7 +95,7 @@ const searchMovies = async (query) => {
     body: query,
   });
 
-  console.log('Search Results:');
+  console.log('\nSearch Results:');
   response.body.hits.hits.forEach((element) => {
     console.log(element._source);
   });
@@ -120,7 +120,7 @@ const start = async () => {
 
     // Refresh the 'movies' index
     await refreshIndex('movies');
-    console.log('Refreshed `movies` Index');
+    console.log('\nRefreshed `movies` Index');
 
     // List all movies using search
     await searchMovies({});

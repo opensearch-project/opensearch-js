@@ -4,6 +4,15 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.5.0]
+### Added
 - Added deprecation warnings for Index Template APIs ([654](https://github.com/opensearch-project/opensearch-js/pull/645))
 - Added `http` functions: `connect`, `delete`, `get`, `head`, `options`, `patch`, `post`, `put`, and `trace` ([#649](https://github.com/opensearch-project/opensearch-js/pull/649))
 ### Dependencies

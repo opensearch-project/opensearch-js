@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Added deprecation warnings for Index Template APIs ([654](https://github.com/opensearch-project/opensearch-js/pull/645))
 - Added `http` functions: `connect`, `delete`, `get`, `head`, `options`, `patch`, `post`, `put`, and `trace` ([#649](https://github.com/opensearch-project/opensearch-js/pull/649))
+- Added `samples/msearch.js` and `guides/msearch.md` to provide example to multi-search functionality ([#657](https://github.com/opensearch-project/opensearch-js/pull/656))
 ### Dependencies
 - Bumps `@aws-sdk/types` from 3.418.0 to 3.451.0
 - Bumps `@types/node` from 20.6.5 to 20.9.0

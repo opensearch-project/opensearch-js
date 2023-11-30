@@ -1,5 +1,5 @@
 # Search
-OpenSearch provides a powerful search API that allows you to search for documents in an index. The search API supports a number of parameters that allow you to customize the search operation. In this guide, we will explore the search API and its parameters.
+OpenSearch provides a powerful search API that allows you to search for documents in an index. The search API supports a number of parameters that allow you to customize the search operation. In this guide, we will explore the search API and its parameters. To complement your exploration of the OpenSearch Search API and its parameters, a working sample is available in [`../samples/search.js`](../samples/search.js).
 # Setup
 Let's start by creating an index and adding some documents to it:
 ```javascript

@@ -1,7 +1,6 @@
 # Multi-Search (msearch)
 
-OpenSearch provides a powerful Multi-Search (msearch) API that enables you to perform multiple search operations for documents in an index. The `msearch` API supports various parameters that allow you to customize the search operation. In this guide, we will explore functionalities such as creating an index, adding documents, performing a multi-search, and cleaning up the index afterward. To complement your exploration of the OpenSearch Multi-Search API and its parameters, a working sample is available in [`../samples/msearch.js`](../samples/msearch.js).
-
+OpenSearch's Multi-Search (`msearch`) API is a tool that allows you to execute multiple search operations for documents within an index efficiently. This API supports various parameters that provide flexibility in customizing your search operations. It's crucial to understand the key differences between `msearch` and a regular `search` operation in OpenSearch. Unlike a single search operation, `msearch` enables you to perform multiple searches in a single API call, significantly reducing network overhead as it need not initialize a new network connection for each search. This proves particularly advantageous for batch operations or scenarios where searches span multiple indices. By combining searches into one request, `msearch` streamlines the process and enhances overall efficiency. Explore the functionalities of the msearch API with the provided sample code in [../samples/msearch.js](../samples/msearch.js).
 
 # Setup
 
@@ -9,24 +8,14 @@ OpenSearch provides a powerful Multi-Search (msearch) API that enables you to pe
 const host = "localhost";
 const protocol = "https";
 const port = 9200;
-const auth = "admin:admin"; // For testing only. Avoid storing credentials in the code.
+const auth = "admin:admin";
 const ca_certs_path = "/full/path/to/root-ca.pem";
-
-// Optional client certificates if you don't want to use HTTP basic authentication.
-// const client_cert_path = '/full/path/to/client.pem';
-// const client_key_path = '/full/path/to/client-key.pem';
-
-// Create a client with SSL/TLS enabled.
 const { Client } = require("@opensearch-project/opensearch");
 const fs = require("fs");
 const client = new Client({
   node: `${protocol}://${auth}@${host}:${port}`,
   ssl: {
     ca: fs.readFileSync(ca_certs_path),
-    // You can turn off certificate verification (rejectUnauthorized: false) if using
-    // self-signed certificates with a hostname mismatch.
-    // cert: fs.readFileSync(client_cert_path),
-    // key: fs.readFileSync(client_key_path)
   },
 });
 
@@ -39,7 +28,7 @@ await client.bulk({
   ],
 });
 
-await client.index({ index: 'movies', refresh: true });
+await client.index.refresh({ index: 'movies' });
 ```
 
 # Multi Search API

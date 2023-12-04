@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+- Bumps `@types/node` from 20.9.0 to 20.10.3
 ### Changed
 ### Deprecated
 ### Removed

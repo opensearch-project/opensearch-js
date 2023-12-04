@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 - Bumps `@types/node` from 20.9.0 to 20.10.3
+- Bumps `eslint` from 8.54.0 to 8.55.0
 ### Changed
 ### Deprecated
 ### Removed

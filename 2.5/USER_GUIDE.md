@@ -5,12 +5,17 @@
     - [Authenticate with Amazon OpenSearch Service](#authenticate-with-amazon-opensearch-service)
       - [Using AWS V2 SDK](#using-aws-v2-sdk)
       - [Using AWS V3 SDK](#using-aws-v3-sdk)
-    - [Enable Handling of Long Numerals](#enable-handling-of-long-numerals) 
+    - [Enable Handling of Long Numerals](#enable-handling-of-long-numerals)
   - [Create an Index](#create-an-index)
   - [Add a Document to the Index](#add-a-document-to-the-index)
   - [Search for the Document](#search-for-the-document)
+  - [Multi-Search (msearch)](#multi-search-msearch)
   - [Delete the document](#delete-the-document)
   - [Delete the index](#delete-the-index)
+  - [Create a Point in Time](#create-a-point-in-time)
+  - [Get all PITs](#get-all-pits)
+  - [Delete a Point in Time](#delete-a-point-in-time)
+  - [Delete all PITs](#delete-all-pits)
   - [Empty all Pool Connections](#empty-all-pool-connections)
 
 ## Initializing a Client
@@ -193,6 +198,30 @@ var response = await client.search({
 
 console.log(response.body.hits);
 ```
+
+## Multi-Search (msearch)
+
+```javascript
+const queries = [
+    {},
+    { query: { match: { author: 'Stephen King' } } },
+    {},
+    { query: { match: { title: 'The Outsider' } } },
+  ];
+
+  const multiSearchResponse = await client.msearch({
+    index: index_name,
+    body: queries,
+  });
+
+  multiSearchResponse.body.responses.map((res) =>
+    res.hits.hits.map((movie) => {
+      console.log(movie._source);
+    })
+  );
+```
+
+Explore `msearch` further with a detailed guide in [msearch.md](guides/msearch.md) and find sample code in [msearch.js](samples/msearch.js).
 
 ## Delete the document
 

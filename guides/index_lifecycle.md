@@ -139,9 +139,9 @@ client.indices.delete({index: 'movies'})
 We can also delete multiple indices at once:
 
 ```javascript
-client.indices.delete({index: ['movies', 'paintings', 'burner'], ignore: 404})
+client.indices.delete({index: ['movies', 'paintings', 'burner'], ignore_unavailable: true,})
 ```
-Notice that we are passing `ignore: 404` to the request. This tells the client to ignore the `404` error if the index doesn't exist for deletion. Without it, the above `delete` request will throw an error because the `movies` index has already been deleted in the previous example.
+Notice that we are passing `ignore_unavailable: true` to the request. This tells the client to ignore throwing error and deleting the index if it doesn't exist. Without it, the above `delete` request will throw an error because the `movies` index has already been deleted in the previous example.
 
 ## Cleanup
 

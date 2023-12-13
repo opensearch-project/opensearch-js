@@ -6,7 +6,7 @@ Let's start by creating an index and adding some documents to it:
 var host = "localhost";
 var protocol = "https";
 var port = 9200;
-var auth = "admin:${initialAdminPassword}"; // For testing only. Don't store credentials in code.
+var auth = `admin:${initialAdminPassword}`; // For testing only. Don't store credentials in code.
 var ca_certs_path = "/full/path/to/root-ca.pem";
 
 // Optional client certificates if you don't want to use HTTP basic authentication.

@@ -7,7 +7,7 @@ Let's create a client instance, and an index named `movies`:
 ```javascript
 const { Client } = require('@opensearch-project/opensearch');
 const client = new Client({
-  node: 'https://admin:admin@localhost:9200',
+  node: `https://admin:${initialAdminPassword}@localhost:9200`,
   ssl: { rejectUnauthorized: false }
 });
 client.indices.create({index: 'movies'})

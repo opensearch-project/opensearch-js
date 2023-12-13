@@ -8,7 +8,7 @@ OpenSearch's Multi-Search (`msearch`) API allows you to execute multiple search 
 const host = "localhost";
 const protocol = "https";
 const port = 9200;
-const auth = "admin:admin";
+const auth = "admin:${initialAdminPassword}";
 const ca_certs_path = "/full/path/to/root-ca.pem";
 const { Client } = require("@opensearch-project/opensearch");
 const fs = require("fs");

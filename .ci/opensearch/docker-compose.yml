@@ -13,7 +13,7 @@ services:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
       - SECURE_INTEGRATION=${SECURE_INTEGRATION:-false}
-      - initialAdminPassword=myStrongPassword123!
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=myStrongPassword123!
     ports:
       - '9200:9200'
     user: opensearch

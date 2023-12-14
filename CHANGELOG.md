@@ -11,7 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@aws-sdk/types` from 3.451.0 to 3.468.0
 - Bumps `prettier` from 3.1.0 to 3.1.1
 ### Changed
-- Pass in initialAdminPassword to docker and update instances of admin:admin in READMEs. ([669](https://github.com/opensearch-project/opensearch-js/pull/669))
+- Pass in `OPENSEARCH_INITIAL_ADMIN_PASSWORD` to docker and update instances of admin:admin in READMEs. ([669](https://github.com/opensearch-project/opensearch-js/pull/669))
 ### Deprecated
 ### Removed
 ### Fixed

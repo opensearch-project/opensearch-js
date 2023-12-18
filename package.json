@@ -9,6 +9,12 @@
       "types": "./index.d.ts",
       "import": "./index.mjs"
     },
+    "./api/new": {
+      "types": "./api/new.d.ts"
+    },
+    "./api/types": {
+      "types": "./api/types.d.ts"
+    },
     "./aws": "./lib/aws/index.js",
     "./*": "./*"
   },

@@ -7,7 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Updated `guides/index_lifecycle.md` to provide example of `ignore_unavailable: true` while deleting indices. ([665](https://github.com/opensearch-project/opensearch-js/pull/665))
 ### Dependencies
 - Bumps `@types/node` from 20.9.0 to 20.10.5
-- Bumps `eslint` from 8.54.0 to 8.55.0
+- Bumps `eslint` from 8.54.0 to 8.56.0
 - Bumps `@aws-sdk/types` from 3.451.0 to 3.468.0
 - Bumps `prettier` from 3.1.0 to 3.1.1
 ### Changed

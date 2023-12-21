@@ -472,3 +472,125 @@ test('Basic aws failure to refresh credentials', (t) => {
       .catch(t.fail);
   });
 });
+
+test('Basic aws sdk v3 when token TTL value is smaller than 2*requestTimeout', (t) => {
+  t.plan(4);
+
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockRegion = 'us-east-1';
+
+    let getCredentialsCalled = 0;
+
+    const AwsSigv4SignerOptions = {
+      getCredentials: () =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            getCredentialsCalled++;
+            resolve({
+              accessKeyId: uuidv4(),
+              secretAccessKey: uuidv4(),
+              expiration: new Date(Date.now() + 1000 * 55),
+            });
+          }, 100);
+        }),
+      region: mockRegion,
+    };
+
+    const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
+
+    const client = new Client({
+      ...auth,
+      node: `http://localhost:${port}`,
+      requestTimeout: 1000 * 30,
+    });
+
+    client
+      .search({
+        index: 'test',
+        q: 'foo:bar',
+      })
+      .then(({ body }) => {
+        t.same(body, { hello: 'world' });
+        t.same(getCredentialsCalled, 1);
+        client
+          .search({
+            index: 'test',
+            q: 'foo:bar',
+          })
+          .then(({ body }) => {
+            t.same(body, { hello: 'world' });
+            t.same(getCredentialsCalled, 2);
+
+            server.stop();
+          })
+          .catch(t.fail);
+      })
+      .catch(t.fail);
+  });
+});
+
+test('Basic aws sdk v3 when token TTL value is slightly bigger than 2*requestTimeout', (t) => {
+  t.plan(4);
+
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockRegion = 'us-east-1';
+
+    let getCredentialsCalled = 0;
+
+    const AwsSigv4SignerOptions = {
+      getCredentials: () =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            getCredentialsCalled++;
+            resolve({
+              accessKeyId: uuidv4(),
+              secretAccessKey: uuidv4(),
+              expiration: new Date(Date.now() + 1000 * 65),
+            });
+          }, 100);
+        }),
+      region: mockRegion,
+    };
+
+    const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
+
+    const client = new Client({
+      ...auth,
+      node: `http://localhost:${port}`,
+      requestTimeout: 1000 * 30,
+    });
+
+    client
+      .search({
+        index: 'test',
+        q: 'foo:bar',
+      })
+      .then(({ body }) => {
+        t.same(body, { hello: 'world' });
+        t.same(getCredentialsCalled, 1);
+        client
+          .search({
+            index: 'test',
+            q: 'foo:bar',
+          })
+          .then(({ body }) => {
+            t.same(body, { hello: 'world' });
+            t.same(getCredentialsCalled, 1);
+
+            server.stop();
+          })
+          .catch(t.fail);
+      })
+      .catch(t.fail);
+  });
+});

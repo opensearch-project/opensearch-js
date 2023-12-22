@@ -473,7 +473,7 @@ test('Basic aws failure to refresh credentials', (t) => {
   });
 });
 
-test('Basic aws sdk v3 when token TTL value is smaller than 2*requestTimeout', (t) => {
+test('Basic aws sdk v3 when token expires earlier than `requestTimeout` ms in the future.', (t) => {
   t.plan(4);
 
   function handler(req, res) {
@@ -494,7 +494,7 @@ test('Basic aws sdk v3 when token TTL value is smaller than 2*requestTimeout', (
             resolve({
               accessKeyId: uuidv4(),
               secretAccessKey: uuidv4(),
-              expiration: new Date(Date.now() + 1000 * 55),
+              expiration: new Date(Date.now() + 1000 * 25),
             });
           }, 100);
         }),
@@ -534,7 +534,7 @@ test('Basic aws sdk v3 when token TTL value is smaller than 2*requestTimeout', (
   });
 });
 
-test('Basic aws sdk v3 when token TTL value is slightly bigger than 2*requestTimeout', (t) => {
+test('Basic aws sdk v3 when token expires later than `requestTimeout` ms in the future.', (t) => {
   t.plan(4);
 
   function handler(req, res) {
@@ -555,7 +555,7 @@ test('Basic aws sdk v3 when token TTL value is slightly bigger than 2*requestTim
             resolve({
               accessKeyId: uuidv4(),
               secretAccessKey: uuidv4(),
-              expiration: new Date(Date.now() + 1000 * 65),
+              expiration: new Date(Date.now() + 1000 * 45),
             });
           }, 100);
         }),

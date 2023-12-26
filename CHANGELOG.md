@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 - Updated `guides/index_lifecycle.md` to provide example of `ignore_unavailable: true` while deleting indices. ([665](https://github.com/opensearch-project/opensearch-js/pull/665))
+- Add expiration buffer to prevent credentials to expire earlier than request may finish in case AWS SDK v3 is used. ([678](https://github.com/opensearch-project/opensearch-js/pull/678))
 ### Dependencies
 - Bumps `@types/node` from 20.9.0 to 20.10.5
 - Bumps `eslint` from 8.54.0 to 8.56.0

@@ -1,0 +1,44 @@
+/**
+ * {{{method_description}}}
+ * <br/> See Also: {{{reference}}}
+ *
+ * @memberOf {{jsDoc_namespace}}
+ *
+ * @param {object} {{params_container}}{{params_container_description}}
+ {{#parameter_descriptions}}
+ * @param {{{type}}} {{{jsdoc_name}}} {{#deprecated}}DEPRECATED {{/deprecated}}{{{description}}}
+ {{/parameter_descriptions}}
+{{^params_container_description}}
+ *
+{{/params_container_description}}
+ * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{{return_type}}}
+ */
+{{{prototype_assignment}}}function {{function_name}}(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
+
+  {{#required_params}}
+  if (params.{{.}} == null) {
+    const err = new this[kConfigurationError]('Missing required parameter: {{.}}');
+    return handleError(err, callback);
+  }
+
+  {{/required_params}}
+  let { method, body, {{#path_params}}{{name}}, {{/path_params}}...querystring } = params;
+  {{#path_params}}
+  {{name}} = encodePathParam({{name}});
+  {{/path_params}}
+
+  let path = [{{{path_components}}}].filter((c) => c != null).join('/');
+  method = {{{http_verb}}};
+  body = body || '';
+
+  {{#bulk_body}}
+  return this.transport.request({ method, path, querystring, bulkBody: body }, options, callback);
+  {{/bulk_body}}
+  {{^bulk_body}}
+  return this.transport.request({ method, path, querystring, body }, options, callback);
+  {{/bulk_body}}
+};

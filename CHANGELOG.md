@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@aws-sdk/types` from 3.451.0 to 3.468.0
 - Bumps `prettier` from 3.1.0 to 3.1.1
 - Bumps `eslint-plugin-prettier` from 5.0.1 to 5.1.2
+- Bumps `eslint-config-prettier` from 9.0.0 to 9.1.0
 ### Changed
 ### Deprecated
 ### Removed

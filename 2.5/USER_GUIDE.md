@@ -99,8 +99,8 @@ const client = new Client({
     // Must return a Promise that resolve to an AWS.Credentials object.
     // This function is used to acquire the credentials when the client start and
     // when the credentials are expired.
-    // The Client will refresh the Credentials only when they are expired.
-    // With AWS SDK V2, Credentials.refreshPromise is used when available to refresh the credentials.
+    // The Client will treat the Credentials as expired if within
+    // `requestTimeout` ms of expiration (default is 30000 ms).
 
     // Example with AWS SDK V3:
     getCredentials: () => {
@@ -109,6 +109,7 @@ const client = new Client({
       return credentialsProvider();
     },
   }),
+  requestTimeout: 60000, // Also used for refreshing credentials in advance
   node: 'https://search-xxx.region.es.amazonaws.com', // OpenSearch domain URL
   // node: "https://xxx.region.aoss.amazonaws.com" for OpenSearch Serverless
 });

@@ -14,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `eslint-plugin-prettier` from 5.0.1 to 5.1.2
 - Bumps `eslint-config-prettier` from 9.0.0 to 9.1.0
 - Bumps `ora` from 7.0.1 to 8.0.1
+- Bumps `simple-git` from 3.21.0 to 3.22.0
 ### Changed
 ### Deprecated
 ### Removed

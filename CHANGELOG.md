@@ -19,6 +19,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Add new types to `package.json` exports configuration for ESM support ([#674](https://github.com/opensearch-project/opensearch-js/pull/674))
 ### Security
 
 ## [2.5.0]

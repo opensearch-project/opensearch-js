@@ -4,9 +4,31 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.5.0]
+### Added
+- Added deprecation warnings for Index Template APIs ([654](https://github.com/opensearch-project/opensearch-js/pull/645))
+- Added `http` functions: `connect`, `delete`, `get`, `head`, `options`, `patch`, `post`, `put`, and `trace` ([#649](https://github.com/opensearch-project/opensearch-js/pull/649))
+- Added `samples/search.js` and updated `guides/search.md` to provide example to search functionality ([#656](https://github.com/opensearch-project/opensearch-js/pull/656))
+- Added `samples/msearch.js` and `guides/msearch.md` to provide example to multi-search functionality ([#657](https://github.com/opensearch-project/opensearch-js/pull/657))
 - Updated `guides/index_lifecycle.md` to provide example of `ignore_unavailable: true` while deleting indices. ([665](https://github.com/opensearch-project/opensearch-js/pull/665))
 - Add expiration buffer to prevent credentials to expire earlier than request may finish in case AWS SDK v3 is used. ([678](https://github.com/opensearch-project/opensearch-js/pull/678))
 ### Dependencies
+- Bumps `@aws-sdk/types` from 3.418.0 to 3.451.0
+- Bumps `@types/node` from 20.6.5 to 20.9.0
+- Bumps `eslint` from 8.50.0 to 8.54.0
+- Bumps `@babel/traverse` from 7.15.0 to 7.23.2
+- Bumps `eslint-plugin-prettier` from 5.0.0 to 5.0.1
+- Bumps `react-devtools-core` from 4.25.0 to 4.28.4
+- Bumps `simple-git` from 3.20.0 to 3.21.0
+- Bumps `prettier` from 3.0.3 to 3.1.0
+- Bumps `@babel/eslint-parser` from 7.22.15 to 7.23.3
 - Bumps `@types/node` from 20.9.0 to 20.10.7
 - Bumps `eslint` from 8.54.0 to 8.56.0
 - Bumps `@aws-sdk/types` from 3.451.0 to 3.485.0
@@ -18,31 +40,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 ### Deprecated
 ### Removed
-### Fixed
-- Add new types to `package.json` exports configuration for ESM support ([#674](https://github.com/opensearch-project/opensearch-js/pull/674))
-### Security
-
-## [2.5.0]
-### Added
-- Added deprecation warnings for Index Template APIs ([654](https://github.com/opensearch-project/opensearch-js/pull/645))
-- Added `http` functions: `connect`, `delete`, `get`, `head`, `options`, `patch`, `post`, `put`, and `trace` ([#649](https://github.com/opensearch-project/opensearch-js/pull/649))
-- Added `samples/search.js` and updated `guides/search.md` to provide example to search functionality ([#656](https://github.com/opensearch-project/opensearch-js/pull/656))
-- Added `samples/msearch.js` and `guides/msearch.md` to provide example to multi-search functionality ([#657](https://github.com/opensearch-project/opensearch-js/pull/657))
-### Dependencies
-- Bumps `@aws-sdk/types` from 3.418.0 to 3.451.0
-- Bumps `@types/node` from 20.6.5 to 20.9.0
-- Bumps `eslint` from 8.50.0 to 8.54.0
-- Bumps `@babel/traverse` from 7.15.0 to 7.23.2
-- Bumps `eslint-plugin-prettier` from 5.0.0 to 5.0.1
-- Bumps `react-devtools-core` from 4.25.0 to 4.28.4
-- Bumps `simple-git` from 3.20.0 to 3.21.0
-- Bumps `prettier` from 3.0.3 to 3.1.0
-- Bumps `@babel/eslint-parser` from 7.22.15 to 7.23.3
-### Changed
-### Deprecated
-### Removed
 - Removed fixture lines that git-secrets wrongly flagged as passwords/secrets ([654](https://github.com/opensearch-project/opensearch-js/pull/645))
 ### Fixed
+- Add new types to `package.json` exports configuration for ESM support ([#674](https://github.com/opensearch-project/opensearch-js/pull/674))
 ### Security
 
 ## [2.4.0]

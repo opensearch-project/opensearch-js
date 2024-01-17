@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+- Bumps `prettier` from 3.1.1 to 3.2.2
 ### Changed
 ### Deprecated
 ### Removed

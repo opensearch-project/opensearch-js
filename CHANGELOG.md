@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 - Bumps `prettier` from 3.1.1 to 3.2.2
+- Bumps `@aws-sdk/types` from 3.485.0 to 3.489.0
 ### Changed
 ### Deprecated
 ### Removed

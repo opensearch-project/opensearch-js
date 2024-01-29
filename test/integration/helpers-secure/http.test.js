@@ -9,18 +9,9 @@
  */
 
 const { test } = require('tap');
-const { Client } = require('../../../');
+const { createSecuredClient } = require('../helper');
 
-const client = new Client({
-  ssl: {
-    rejectUnauthorized: false,
-  },
-  node: 'https://localhost:9200',
-  auth: {
-    username: 'admin',
-    password: 'admin',
-  },
-});
+const client = createSecuredClient();
 const http = client.http;
 const index = 'books';
 

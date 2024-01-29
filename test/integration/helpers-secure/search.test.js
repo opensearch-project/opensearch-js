@@ -14,20 +14,10 @@ const { createReadStream } = require('fs');
 const { join } = require('path');
 const split = require('split2');
 const { test, beforeEach, afterEach } = require('tap');
-
-const { Client } = require('../../..');
+const { createSecuredClient } = require('../helper');
 
 const INDEX = `test-helpers-${process.pid}`;
-const client = new Client({
-  ssl: {
-    rejectUnauthorized: false,
-  },
-  node: 'https://localhost:9200',
-  auth: {
-    username: 'admin',
-    password: 'admin',
-  },
-});
+const client = createSecuredClient();
 
 beforeEach(async () => {
   await client.indices.create({ index: INDEX });

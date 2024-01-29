@@ -7,14 +7,7 @@ First, create a client instance with the following code to interact with an Open
 
 ```javascript
 const client = new Client({
-  ssl: {
-    rejectUnauthorized: false,
-  },
-  node: 'https://localhost:9200',
-  auth: {
-    username: 'admin',
-    password: 'admin',
-  },
+  node: 'http://localhost:9200',
 });
 ```
 

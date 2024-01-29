@@ -12,17 +12,7 @@ services:
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - SECURE_INTEGRATION=${SECURE_INTEGRATION:-false}
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=myStrongPassword123!
     ports:
       - '9200:9200'
     user: opensearch
-  autoheal:
-    restart: always
-    image: willfarrell/autoheal
-    environment:
-      - AUTOHEAL_CONTAINER_LABEL=all
-      - AUTOHEAL_START_PERIOD=30
-      - AUTOHEAL_INTERVAL=5
-      - AUTOHEAL_DEFAULT_STOP_TIMEOUT=30
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock

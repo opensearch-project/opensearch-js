@@ -11,8 +11,11 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `eslint-plugin-prettier` from 5.1.2 to 5.1.3
 - Bumps `@babel/eslint-parser` from 7.23.3 to 7.23.9
 ### Changed
+- Updated integration tests to use strong password in OS 2.12 and up ([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
+- Simplified client creation in the guides ([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
 ### Deprecated
 ### Removed
+- Removed AutoHeal([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
 ### Fixed
 ### Security
 

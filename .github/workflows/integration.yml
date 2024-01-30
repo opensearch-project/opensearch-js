@@ -10,6 +10,9 @@ on:
     paths-ignore:
       - '**/*.md'
 
+env:
+  OPENSEARCH_VERSION: latest
+
 jobs:
   helpers-integration-test:
     name: Helpers integration test
@@ -20,7 +23,6 @@ jobs:
         node-version: [10.x, 12.x, 14.x, 16.x, 18.x]
 
     env:
-      OPENSEARCH_VERSION: latest
       SECURE_INTEGRATION: false
 
     steps:
@@ -70,7 +72,6 @@ jobs:
         node-version: [10.x, 12.x, 14.x, 16.x, 18.x]
 
     env:
-      OPENSEARCH_VERSION: latest
       SECURE_INTEGRATION: true
 
     steps:

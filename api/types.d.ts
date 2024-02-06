@@ -3907,17 +3907,17 @@ export interface MappingFloatRangeProperty extends MappingRangePropertyBase {
 }
 
 export interface MappingGenericProperty extends MappingDocValuesPropertyBase {
-  analyzer: string;
-  boost: double;
-  fielddata: IndicesStringFielddata;
-  ignore_malformed: boolean;
-  index: boolean;
-  index_options: MappingIndexOptions;
-  norms: boolean;
-  null_value: string;
-  position_increment_gap: integer;
-  search_analyzer: string;
-  term_vector: MappingTermVectorOption;
+  analyzer?: string;
+  boost?: double;
+  fielddata?: IndicesStringFielddata;
+  ignore_malformed?: boolean;
+  index?: boolean;
+  index_options?: MappingIndexOptions;
+  norms?: boolean;
+  null_value?: string;
+  position_increment_gap?: integer;
+  search_analyzer?: string;
+  term_vector?: MappingTermVectorOption;
   type: string;
 }
 

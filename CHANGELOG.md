@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 20.10.7 to 20.11.16
 - Bumps `eslint-plugin-prettier` from 5.1.2 to 5.1.3
 - Bumps `@babel/eslint-parser` from 7.23.3 to 7.23.10
+- Bumps `semver` from 7.5.1 to 7.6.0
 ### Changed
 ### Deprecated
 ### Removed

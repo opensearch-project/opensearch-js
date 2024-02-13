@@ -54,6 +54,7 @@ const acceptedQuerystring = [
   'q',
   'routing',
   'scroll',
+  'search_pipeline',
   'search_type',
   'size',
   'sort',
@@ -97,6 +98,7 @@ const snakeCase = {
   ignoreThrottled: 'ignore_throttled',
   allowNoIndices: 'allow_no_indices',
   expandWildcards: 'expand_wildcards',
+  searchPipeline: 'search_pipeline',
   searchType: 'search_type',
   _sourceExcludes: '_source_excludes',
   _sourceExclude: '_source_exclude',
@@ -148,6 +150,7 @@ const snakeCase = {
  * @param {string} [params.q] - Query in the Lucene query string syntax
  * @param {string} [params.routing] - A comma-separated list of specific routing values
  * @param {string} [params.scroll] - Specify how long a consistent view of the index should be maintained for scrolled search
+ * @param {string} [params.search_pipeline] - Customizable sequence of processing stages applied to search queries.
  * @param {string} [params.search_type] - Search operation type (options: query_then_fetch, dfs_query_then_fetch)
  * @param {number} [params.size] - Number of hits to return (default: 10)
  * @param {string} [params.sort] - A comma-separated list of <field>:<direction> pairs

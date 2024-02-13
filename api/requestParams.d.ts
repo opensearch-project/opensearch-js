@@ -1516,6 +1516,7 @@ export interface Search<T = RequestBody> extends Generic {
   q?: string;
   routing?: string | string[];
   scroll?: string;
+  search_pipeline?: string;
   search_type?: 'query_then_fetch' | 'dfs_query_then_fetch';
   size?: number;
   sort?: string | string[];

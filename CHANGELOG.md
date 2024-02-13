@@ -12,6 +12,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@babel/eslint-parser` from 7.23.3 to 7.23.10
 - Bumps `semver` from 7.5.1 to 7.6.0
 ### Changed
+- Added `search_pipeline` ([716](https://github.com/opensearch-project/opensearch-js/pull/716))
 ### Deprecated
 ### Removed
 ### Fixed

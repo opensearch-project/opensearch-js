@@ -54,6 +54,7 @@ import {
   CloudConnectionPool,
   ResurrectEvent,
   BasicAuth,
+  AwsSigv4Auth,
 } from './lib/pool';
 import Serializer from './lib/Serializer';
 import Helpers from './lib/Helpers';
@@ -126,7 +127,7 @@ interface ClientOptions {
   opaqueIdPrefix?: string;
   generateRequestId?: generateRequestIdFn;
   name?: string | symbol;
-  auth?: BasicAuth;
+  auth?: BasicAuth | AwsSigv4Auth;
   context?: Context;
   proxy?: string | URL;
   enableMetaHeader?: boolean;

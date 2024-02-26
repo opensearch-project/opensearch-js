@@ -6,10 +6,11 @@ In this guide, we will look at some advanced index actions that are not covered 
 Let's create a client instance, and an index named `movies`:
 ```javascript
 const { Client } = require('@opensearch-project/opensearch');
+
 const client = new Client({
-  node: 'https://admin:admin@localhost:9200',
-  ssl: { rejectUnauthorized: false }
+  node: 'http://localhost:9200',
 });
+
 client.indices.create({index: 'movies'})
 ```
 ## API Actions

@@ -29,6 +29,22 @@
 
 'use strict';
 
+const { strongPasswordRequired } = require('../../lib/tools');
+
+function createSecuredClient() {
+  const { Client } = require('../../');
+  return new Client({
+    ssl: {
+      rejectUnauthorized: false,
+    },
+    node: 'https://localhost:9200',
+    auth: {
+      username: 'admin',
+      password: strongPasswordRequired() ? 'myStrongPassword123!' : 'admin',
+    },
+  });
+}
+
 function runInParallel(client, operation, options, clientOptions) {
   if (options.length === 0) return Promise.resolve();
   const operations = options.map((opts) => {
@@ -62,4 +78,4 @@ function to(promise) {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-module.exports = { runInParallel, delve, to, sleep };
+module.exports = { runInParallel, delve, to, sleep, createSecuredClient };

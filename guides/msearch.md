@@ -5,18 +5,8 @@ OpenSearch's Multi-Search (`msearch`) API allows you to execute multiple search 
 # Setup
 
 ```javascript
-const host = "localhost";
-const protocol = "https";
-const port = 9200;
-const auth = "admin:admin";
-const ca_certs_path = "/full/path/to/root-ca.pem";
-const { Client } = require("@opensearch-project/opensearch");
-const fs = require("fs");
 const client = new Client({
-  node: `${protocol}://${auth}@${host}:${port}`,
-  ssl: {
-    ca: fs.readFileSync(ca_certs_path),
-  },
+  node: 'http://localhost:9200',
 });
 
 await client.bulk({

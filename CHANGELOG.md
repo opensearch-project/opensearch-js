@@ -13,8 +13,11 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `semver` from 7.5.1 to 7.6.0
 - Bumps `cross-zip` from 4.0.0 to 4.0.1
 ### Changed
+- Updated integration tests to use strong password in OS 2.12 and up ([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
+- Simplified client creation in the guides ([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
 ### Deprecated
 ### Removed
+- Removed AutoHeal([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
 ### Fixed
 - Make optional fields optional in `MappingGenericProperty` ([708](https://github.com/opensearch-project/opensearch-js/pull/708))
 ### Security

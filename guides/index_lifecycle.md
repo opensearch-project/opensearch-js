@@ -3,23 +3,13 @@ This guide covers OpenSearch JavaScript Client API actions for Index Lifecycle. 
 
 ## Setup
 
-In this guide, we will need an OpenSearch cluster with more than one node. Let's use the sample [docker-compose.yml](https://opensearch.org/samples/docker-compose.yml) to start a cluster with two nodes. The cluster's API will be available at `localhost:9200` with basic authentication enabled with default username and password of `admin:admin`.
-
-To start the cluster, run the following command:
-
-```bash
-cd /path/to/docker-compose.yml
-docker-compose up -d
-```
-
-Let's create a client instance to access this cluster:
+Let's create a client instance to access an OpenSearch cluster:
 
 ```javascript
 const { Client } = require('@opensearch-project/opensearch');
 
 const client = new Client({
-  node: 'https://admin:admin@localhost:9200',
-  ssl: { rejectUnauthorized: false }
+  node: 'http://localhost:9200',
 });
 
 client.info().then(response => {

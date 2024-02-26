@@ -9,18 +9,9 @@
  */
 
 const { test } = require('tap');
-const { Client } = require('../../../');
+const { createSecuredClient } = require('../helper');
 
-const client = new Client({
-  ssl: {
-    rejectUnauthorized: false,
-  },
-  node: 'https://localhost:9200',
-  auth: {
-    username: 'admin',
-    password: 'admin',
-  },
-});
+const client = createSecuredClient();
 const security = client.security;
 
 test('Security: User', async (t) => {

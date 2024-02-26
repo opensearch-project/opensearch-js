@@ -12,6 +12,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@babel/eslint-parser` from 7.23.3 to 7.23.10
 - Bumps `semver` from 7.5.1 to 7.6.0
 - Bumps `cross-zip` from 4.0.0 to 4.0.1
+- Bumps `eslint` from 8.56.0 to 8.57.0
 ### Changed
 - Updated integration tests to use strong password in OS 2.12 and up ([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
 - Simplified client creation in the guides ([#707](https://github.com/opensearch-project/opensearch-js/pull/707))

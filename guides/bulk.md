@@ -147,7 +147,7 @@ client.bulk({
     { create: { _id: 2, data: { title: 'Beauty and the Beast 4', year: 2049 } } }  // document already exists error
   ]
 }).then((response) => {
-  response.body.forEach((item) => {
+  response.body.items.forEach((item) => {
     const createStatus = item.create && item.create.status;
     if (createStatus && !createStatus.toString().match(/2\d{2}/)) {
       console.log(item.create.error.reason);

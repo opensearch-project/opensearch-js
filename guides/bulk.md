@@ -19,143 +19,103 @@ Next, create an index named `movies` and another named `books` with the default 
 const movies = 'movies';
 const books = 'books';
 
-client.indices.create({ index: movies }).then(() => {
-  console.log(`Index ${movies} created`);
-});
+if ((await client.indices.exists({ index: movies })).body)
+  await client.indices.delete({ index: movies });
+if ((await client.indices.exists({ index: books })).body)
+  await client.indices.delete({ index: books });
 
-client.indices.create({ index: books }).then(() => {
-  console.log(`Index ${books} created`);
-});
+await client.indices.create({ index: movies });
+await client.indices.create({ index: books });
 ```
 
 
 ## Bulk API
 
-The `bulk` API action allows you to perform document operations in a single request. The body of the request is an array of objects that contains the bulk operations and the target documents to index, create, update, or delete.
+The `bulk` API action allows you to perform multiple document operations in a single request. The body of the request is an array of objects that contains the bulk operations and the target documents to index, create, update, or delete.
 
 ### Indexing multiple documents
-The following code creates two documents in the `movies` index and one document in the `books` index:
+
+The following code create 3 documents in the `movies` index and one in the `books` index using the `bulk` API action:
+
 
 ```javascript
-client.bulk({
-  body: [
-    { index: { _index: movies, _id: 1 } },
-    { title: 'Beauty and the Beast', year: 1991 },
-    { index: { _index: movies, _id: 2 } },
-    { title: 'Beauty and the Beast - Live Action', year: 2017 },
-    { index: { _index: books, _id: 1 } },
-    { title: 'The Lion King', year: 1994 }
-  ]
-}).then((response) => {
-  console.log(response);
-});
-```
-As you can see, each bulk operation is comprised of two objects. The first object contains the operation type and the target document's `_index` and `_id`. The second object contains the document's data. As a result, the body of the request above contains six objects for three index actions.
-
-Alternatively, the `bulk` method can accept an array of hashes where each hash represents a single operation. The following code is equivalent to the previous example:
-
-```javascript
-client.bulk({
-  body: [
-    { index: { _index: movies, _id: 1, data: { title: 'Beauty and the Beast', year: 1991 }  } },
-    { index: { _index: movies, _id: 2, data: { title: 'Beauty and the Beast - Live Action', year: 2017 } } },
-    { index: { _index: books, _id: 1, data: { title: 'The Lion King', year: 1994 } } }
-  ]
-}).then((response) => {
-  console.log(response);
-});
-```
-
-We will use this format for the rest of the examples in this guide.
-
-### Creating multiple documents
-
-Similarly, instead of calling the `create` method for each document, you can use the `bulk` API to create multiple documents in a single request. The following code creates three documents in the `movies` index and one in the `books` index:
-
-```javascript
-client.bulk({
-  index: movies,
-  body: [
-    { create: { data: { title: 'Beauty and the Beast 2', year: 2030 } } },
-    { create: { data: { title: 'Beauty and the Beast 3', year: 2031 } } },
-    { create: { data: { title: 'Beauty and the Beast 4', year: 2049 } } },
-    { create: { _index: books, data: { title: 'The Lion King 2', year: 1998 } } }
-  ]
-}).then((response) => {
-  console.log(response);
-});
-```
-Note that we specified only the `_index` for the last document in the request body. This is because the `bulk` method accepts an `index` parameter that specifies the default `_index` for all bulk operations in the request body. Moreover, we omit the `_id` for each document and let OpenSearch generate them for us in this example, just like we can with the `create` method.
-
-### Updating multiple documents
-```javascript
-client.bulk({
-  index: movies,
-  body: [
-    { update: { _id: 1, data: { doc: { year: 1992 } } } },
-    { update: { _id: 2, data: { doc: { year: 2018 } } } }
-  ]
-}).then((response) => {
-  console.log(response);
-});
-```
-Note that the updated data is specified in the `doc` field of the `data` object.
-
-
-### Deleting multiple documents
-```javascript
-client.bulk({
-  index: movies,
-  body: [
-    { delete: { _id: 1 } },
-    { delete: { _id: 2 } }
-  ]
-}).then((response) => {
-  console.log(response);
-});
-```
-
-### Mix and match operations
-You can mix and match the different operations in a single request. The following code creates two documents, updates one document, and deletes another document:
-
-```javascript
-client.bulk({
-  index: movies,
-  body: [
-    { create: { data: { title: 'Beauty and the Beast 5', year: 2050 } } },
-    { create: { data: { title: 'Beauty and the Beast 6', year: 2051 } } },
-    { update: { _id: 3, data: { doc: { year: 2052 } } } },
-    { delete: { _id: 4 } }
-  ]
-}).then((response) => {
-  console.log(response);
-});
-```
-
-### Handling errors
-The `bulk` API returns an array of responses for each operation in the request body. Each response contains a `status` field that indicates whether the operation was successful or not. If the operation was successful, the `status` field is set to a `2xx` code. Otherwise, the response contains an error message in the `error` field.
-
-The following code shows how to look for errors in the response:
-
-```javascript
-client.bulk({
-  index: movies,
-  body: [
-    { create: { _id: 1, data: { title: 'Beauty and the Beast', year: 1991 } } },
-    { create: { _id: 2, data: { title: 'Beauty and the Beast 2', year: 2030 } } },
-    { create: { _id: 1, data: { title: 'Beauty and the Beast 3', year: 2031 } } }, // document already exists error
-    { create: { _id: 2, data: { title: 'Beauty and the Beast 4', year: 2049 } } }  // document already exists error
-  ]
-}).then((response) => {
-  response.body.forEach((item) => {
-    const createStatus = item.create && item.create.status;
-    if (createStatus && !createStatus.toString().match(/2\d{2}/)) {
-      console.log(item.create.error.reason);
-    }
+client
+  .bulk({
+    index: movies, // the default index
+    body: [
+      { create: {} },
+      { title: 'Beauty and the Beast', year: 2030, director: 'Ella' },
+      { index : {} },
+      { title: 'Snow White', year: 2031, director: 'Jake' },
+      { create: {} },
+      { title: 'Cinderella', year: 2032, director: 'Clyde' },
+      { index: { _index: books } },
+      { title: 'The Lion King', year: 1994, author: 'John' },
+    ],
+  })
+  .then((response) => {
+    console.log(response.body.items);
   });
-}).catch((error) => {
-  console.error(error);
-});
+```
+As you can see, each `create` operation comprises 2 objects: the first object contain the directive for the operation, and the second object is the document to be indexed. Notice that the first 3 operations do not specify the index name, so the `movies` index is used by default. 
+
+### Mixing Operations
+
+Take a look at the code block below:
+
+```javascript
+client
+  .bulk({
+    index: movies, // The default index
+    body: [
+      { create: { _id: 1 } },
+      { title: 'Beauty and the Beast 1', year: 2050 },
+      
+      { delete: { _id: 1 } },
+      
+      { create: { _id: 2 } },
+      { title: 'Beauty and the Beast 2', year: 2051 },
+      
+      { create: {} },
+      { title: 'Beauty and the Beast 2', year: 2051 },
+      
+      { create: { _index: books } },
+      { title: '2012', year: 2012 },
+    ],
+  })
+  .then((response) => {
+    console.log(response.body.items);
+  });
+```
+
+This single `bulk` request contains 5 operations:
+- Creates a document with the ID `1` in the `movies` index.
+- Deletes the document with the ID `1` in the `movies` index.
+- Creates a document with the ID `2` in the `movies` index.
+- Creates a document in the `movies` index (since `_id` is not specified, a new ID is generated automatically).
+- Creates a document in the `books` index (since `movies` is the default index, you have to specify `books` for `_index`).
+
+
+## Bulk Helper
+
+The OpenSearch JavaScript client provides a `bulk` helper that simplifies the process of creating a bulk request for operations of the same type. The following code block demonstrates how to use the `bulk` helper to create one document in the `movies` index for each item in the `docs` array:
+
+```javascript
+const docs = [
+  { title: 'Beauty and the Beast 1', year: 2050 },
+  { title: 'Beauty and the Beast 2', year: 2051 },
+];
+
+client.helpers
+  .bulk({
+    datasource: docs,
+    onDocument(_) {
+      return { index: { _index: movies } };
+    },
+  })
+  .then((result) => {
+    console.log(result);
+  });
 ```
 
 ## Cleanup

@@ -16,6 +16,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 - Updated integration tests to use strong password in OS 2.12 and up ([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
 - Simplified client creation in the guides ([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
+- Corrected `guides/bulk.md` ([#616](https://github.com/opensearch-project/opensearch-js/issues/616))
 ### Deprecated
 ### Removed
 - Removed AutoHeal([#707](https://github.com/opensearch-project/opensearch-js/pull/707))

@@ -9,6 +9,7 @@
  */
 const { Client } = require('@opensearch-project/opensearch');
 
+// Instantiate a client with basic auth as setup in the README.md file
 const client = new Client({
   ssl: {
     rejectUnauthorized: false,
@@ -16,7 +17,7 @@ const client = new Client({
   node: 'https://localhost:9200',
   auth: {
     username: 'admin',
-    password: 'admin',
+    password: 'myStrongPassword123!',
   },
 });
 

@@ -14,6 +14,7 @@ const AwsSigv4Signer = require('../../../../lib/aws/AwsSigv4Signer');
 const AwsSigv4SignerError = require('../../../../lib/aws/errors');
 const { Connection } = require('../../../../index');
 const { Client, buildServer } = require('../../../utils');
+const { debug } = require('console');
 
 test('Sign with SigV4', (t) => {
   t.plan(4);
@@ -596,7 +597,7 @@ test('Basic aws sdk v3 when token expires later than `requestTimeout` ms in the 
 });
 
 test('Should create child client (auth check)', (t) => {
-  t.plan(6);
+  t.plan(8);
   const childClientCred = {
     auth: {
       credentials: {
@@ -606,6 +607,17 @@ test('Should create child client (auth check)', (t) => {
       },
       region: 'eu-west-1',
       service: 'es',
+    },
+  };
+  const childClientCred2 = {
+    auth: {
+      credentials: {
+        accessKeyId: 'foo2',
+        secretAccessKey: 'bar2',
+        sessionToken: 'foobar2',
+      },
+      region: 'eu-west-2',
+      service: 'es-2',
     },
   };
   let count = 0;
@@ -642,6 +654,7 @@ test('Should create child client (auth check)', (t) => {
       node: `http://localhost:${port}`,
     });
     const child = client.child(childClientCred);
+    const child2 = client.child(childClientCred2);
 
     client
       .search({
@@ -659,17 +672,31 @@ test('Should create child client (auth check)', (t) => {
           .then(({ body }) => {
             t.same(body, { hello: 'world' });
             t.same(getCredentialsCalled, 1);
-            server.stop();
+            child2
+              .search({
+                index: 'test',
+                q: 'foo:bar',
+              })
+              .then(() => {
+                server.stop();
+              })
+              .catch(t.fail);
           })
           .catch(t.fail);
       })
       .catch(t.fail);
 
     child.on('request', (err, { meta }) => {
-      t.equal(
-        JSON.stringify(meta.request.params.auth),
-        count++ === 0 ? 'null' : JSON.stringify(childClientCred.auth)
-      );
+      debug('Count', count);
+      if (count === 0) {
+        t.equal(JSON.stringify(meta.request.params.auth), 'null');
+      } else if (count === 1) {
+        t.equal(JSON.stringify(meta.request.params.auth), JSON.stringify(childClientCred.auth));
+      } else if (count === 2) {
+        t.equal(JSON.stringify(meta.request.params.auth), JSON.stringify(childClientCred2.auth));
+      }
+      count++;
     });
+    t.not_same(child.transport._auth, child2.transport._auth);
   });
 });

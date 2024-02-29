@@ -192,6 +192,7 @@ class Client extends OpenSearchAPI {
       opaqueIdPrefix: options.opaqueIdPrefix,
       context: options.context,
       memoryCircuitBreaker: options.memoryCircuitBreaker,
+      auth: options.auth,
     });
 
     this.helpers = new Helpers({

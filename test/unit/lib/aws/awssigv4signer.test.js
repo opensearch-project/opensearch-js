@@ -594,3 +594,82 @@ test('Basic aws sdk v3 when token expires later than `requestTimeout` ms in the 
       .catch(t.fail);
   });
 });
+
+test('Should create child client (auth check)', (t) => {
+  t.plan(6);
+  const childClientCred = {
+    auth: {
+      credentials: {
+        accessKeyId: 'foo',
+        secretAccessKey: 'bar',
+        sessionToken: 'foobar',
+      },
+      region: 'eu-west-1',
+      service: 'es',
+    },
+  };
+  let count = 0;
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockRegion = 'us-east-1';
+
+    let getCredentialsCalled = 0;
+    const getCredentials = () =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          getCredentialsCalled++;
+          resolve({
+            accessKeyId: uuidv4(),
+            secretAccessKey: uuidv4(),
+            sessionToken: uuidv4(),
+          });
+        }, 100);
+      });
+
+    const AwsSigv4SignerOptions = {
+      getCredentials: getCredentials,
+      region: mockRegion,
+    };
+
+    const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
+
+    const client = new Client({
+      ...auth,
+      node: `http://localhost:${port}`,
+    });
+    const child = client.child(childClientCred);
+
+    client
+      .search({
+        index: 'test',
+        q: 'foo:bar',
+      })
+      .then(({ body }) => {
+        t.same(body, { hello: 'world' });
+        t.same(getCredentialsCalled, 1);
+        child
+          .search({
+            index: 'test',
+            q: 'foo:bar',
+          })
+          .then(({ body }) => {
+            t.same(body, { hello: 'world' });
+            t.same(getCredentialsCalled, 1);
+            server.stop();
+          })
+          .catch(t.fail);
+      })
+      .catch(t.fail);
+
+    child.on('request', (err, { meta }) => {
+      t.equal(
+        JSON.stringify(meta.request.params.auth),
+        count++ === 0 ? 'null' : JSON.stringify(childClientCred.auth)
+      );
+    });
+  });
+});

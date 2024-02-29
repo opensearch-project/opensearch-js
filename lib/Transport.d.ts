@@ -82,6 +82,7 @@ interface TransportOptions {
   name?: string;
   opaqueIdPrefix?: string;
   memoryCircuitBreaker?: MemoryCircuitBreakerOptions;
+  auth?: BasicAuth | AwsSigv4Auth;
 }
 
 export interface RequestEvent<TResponse = Record<string, any>, TContext = Context> {

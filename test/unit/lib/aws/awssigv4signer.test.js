@@ -596,7 +596,7 @@ test('Basic aws sdk v3 when token expires later than `requestTimeout` ms in the 
   });
 });
 
-test('Should create child client (auth check)', (t) => {
+test('Should create child client', (t) => {
   t.plan(8);
   const childClientCred = {
     auth: {
@@ -689,7 +689,7 @@ test('Should create child client (auth check)', (t) => {
     child.on('request', (err, { meta }) => {
       debug('Count', count);
       if (count === 0) {
-        t.equal(JSON.stringify(meta.request.params.auth), 'null');
+        t.equal(JSON.stringify(meta.request.params.auth), undefined);
       } else if (count === 1) {
         t.equal(JSON.stringify(meta.request.params.auth), JSON.stringify(childClientCred.auth));
       } else if (count === 2) {

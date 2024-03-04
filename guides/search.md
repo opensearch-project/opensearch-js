@@ -100,24 +100,27 @@ const page_1 = await client.search({
   size: 2,
   body: search_body
 });
+const documents_1 = page_1.body.hits.hits;
 
 const page_2 = await client.search({
   index: 'movies',
   size: 2,
   body: {
     ...search_body,
-    search_after: page_1[page_1.length - 1].sort
+    search_after: documents_1[documents_1.length - 1].sort
   }
 });
+const documents_2 = page_2.body.hits.hits;
 
 const page_3 = await client.search({
   index: 'movies',
   size: 2,
   body: {
     ...search_body,
-    search_after: page_2[page_2.length - 1].sort
+    search_after: documents_2[documents_2.length - 1].sort
   }
-})
+});
+const documents_3 = page_3.body.hits.hits;
 ```
 ### Pagination with scroll
 When retrieving large amounts of non-real-time data, you can use the `scroll` parameter to paginate through the search results.
@@ -162,25 +165,28 @@ const page_1 = await client.search({
   size: 2,
   body: pit_search_body
 });
-console.log(page_1.body.hits.hits);
+const documents_1 = page_1.body.hits.hits;
+console.log(documents_1);
 
 const page_2 = await client.search({
   size: 2,
   body: {
     ...pit_search_body,
-    search_after: page_1[page_1.length - 1].sort  
+    search_after: documents_1[documents_1.length - 1].sort  
   }
 });
-console.log(page_2.body.hits.hits);
+const documents_2 = page_2.body.hits.hits;
+console.log(documents_2);
 
 const page_3 = await client.search({
   size: 2,
   body: {
     ...pit_search_body,
-    search_after: page2[page_2.length-1].sort
+    search_after: documents_2[documents_2.length-1].sort
   }
 });
-console.log(page_3.body.hits.hits);
+const documents_3 = page_3.body.hits.hits;
+console.log(documents_3);
 
 /** Print out the titles of the first 3 pages of results */
 console.log(page_1.map(hit => hit._source.title));

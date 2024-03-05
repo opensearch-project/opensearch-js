@@ -14,6 +14,7 @@ const AwsSigv4Signer = require('../../../../lib/aws/AwsSigv4Signer');
 const AwsSigv4SignerError = require('../../../../lib/aws/errors');
 const { Connection } = require('../../../../index');
 const { Client, buildServer } = require('../../../utils');
+const { debug } = require('console');
 
 test('Sign with SigV4', (t) => {
   t.plan(4);
@@ -592,5 +593,110 @@ test('Basic aws sdk v3 when token expires later than `requestTimeout` ms in the 
           .catch(t.fail);
       })
       .catch(t.fail);
+  });
+});
+
+test('Should create child client', (t) => {
+  t.plan(8);
+  const childClientCred = {
+    auth: {
+      credentials: {
+        accessKeyId: 'foo',
+        secretAccessKey: 'bar',
+        sessionToken: 'foobar',
+      },
+      region: 'eu-west-1',
+      service: 'es',
+    },
+  };
+  const childClientCred2 = {
+    auth: {
+      credentials: {
+        accessKeyId: 'foo2',
+        secretAccessKey: 'bar2',
+        sessionToken: 'foobar2',
+      },
+      region: 'eu-west-2',
+      service: 'es-2',
+    },
+  };
+  let count = 0;
+  function handler(req, res) {
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockRegion = 'us-east-1';
+
+    let getCredentialsCalled = 0;
+    const getCredentials = () =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          getCredentialsCalled++;
+          resolve({
+            accessKeyId: uuidv4(),
+            secretAccessKey: uuidv4(),
+            sessionToken: uuidv4(),
+          });
+        }, 100);
+      });
+
+    const AwsSigv4SignerOptions = {
+      getCredentials: getCredentials,
+      region: mockRegion,
+    };
+
+    const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
+
+    const client = new Client({
+      ...auth,
+      node: `http://localhost:${port}`,
+    });
+    const child = client.child(childClientCred);
+    const child2 = client.child(childClientCred2);
+
+    client
+      .search({
+        index: 'test',
+        q: 'foo:bar',
+      })
+      .then(({ body }) => {
+        t.same(body, { hello: 'world' });
+        t.same(getCredentialsCalled, 1);
+        child
+          .search({
+            index: 'test',
+            q: 'foo:bar',
+          })
+          .then(({ body }) => {
+            t.same(body, { hello: 'world' });
+            t.same(getCredentialsCalled, 1);
+            child2
+              .search({
+                index: 'test',
+                q: 'foo:bar',
+              })
+              .then(() => {
+                server.stop();
+              })
+              .catch(t.fail);
+          })
+          .catch(t.fail);
+      })
+      .catch(t.fail);
+
+    child.on('request', (err, { meta }) => {
+      debug('Count', count);
+      if (count === 0) {
+        t.equal(JSON.stringify(meta.request.params.auth), undefined);
+      } else if (count === 1) {
+        t.equal(JSON.stringify(meta.request.params.auth), JSON.stringify(childClientCred.auth));
+      } else if (count === 2) {
+        t.equal(JSON.stringify(meta.request.params.auth), JSON.stringify(childClientCred2.auth));
+      }
+      count++;
+    });
+    t.not_same(child.transport._auth, child2.transport._auth);
   });
 });

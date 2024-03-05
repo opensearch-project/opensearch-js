@@ -30,7 +30,7 @@
 import { Readable as ReadableStream } from 'stream';
 import Connection from './Connection';
 import * as errors from './errors';
-import { CloudConnectionPool, ConnectionPool } from './pool';
+import { CloudConnectionPool, ConnectionPool, BasicAuth, AwsSigv4Auth } from './pool';
 import Serializer from './Serializer';
 
 export type ApiError =
@@ -82,6 +82,7 @@ interface TransportOptions {
   name?: string;
   opaqueIdPrefix?: string;
   memoryCircuitBreaker?: MemoryCircuitBreakerOptions;
+  auth?: BasicAuth | AwsSigv4Auth;
 }
 
 export interface RequestEvent<TResponse = Record<string, any>, TContext = Context> {

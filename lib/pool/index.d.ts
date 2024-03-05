@@ -38,7 +38,7 @@ interface BaseConnectionPoolOptions {
   ssl?: SecureContextOptions;
   agent?: AgentOptions;
   proxy?: string | URL;
-  auth?: BasicAuth;
+  auth?: BasicAuth | AwsSigv4Auth;
   emit: (event: string | symbol, ...args: any[]) => boolean;
   Connection: typeof Connection;
 }
@@ -60,6 +60,16 @@ interface getConnectionOptions {
 interface BasicAuth {
   username: string;
   password: string;
+}
+
+interface AwsSigv4Auth {
+  credentials : {
+    accessKeyId: string;
+    secretAccessKey: string;
+    sessionToken: string;
+  }
+  region: string;
+  service: string;
 }
 
 interface resurrectOptions {
@@ -85,7 +95,7 @@ declare class BaseConnectionPool {
   _ssl: SecureContextOptions | null;
   _agent: AgentOptions | null;
   _proxy: string | URL;
-  auth: BasicAuth;
+  auth: BasicAuth | AwsSigv4Auth;
   Connection: typeof Connection;
   constructor(opts?: BaseConnectionPoolOptions);
   /**
@@ -235,6 +245,7 @@ export {
   ConnectionPoolOptions,
   getConnectionOptions,
   BasicAuth,
+  AwsSigv4Auth,
   internals,
   resurrectOptions,
   ResurrectEvent,

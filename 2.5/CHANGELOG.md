@@ -4,6 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Inherit AwsSigV4 in .child ([#725](https://github.com/opensearch-project/opensearch-js/pull/725))
 ### Dependencies
 - Bumps `prettier` from 3.1.1 to 3.2.5
 - Bumps `@aws-sdk/types` from 3.485.0 to 3.523.0

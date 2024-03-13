@@ -1,0 +1,45 @@
+{{{opensearch_license}}}
+{{{elastic_license}}}
+{{{generated_code_warning}}}
+
+'use strict';
+
+{{#root_namespaces}}
+{{#.}}
+const {
+  {{#methods}}
+  {{function_name}},
+  {{/methods}}
+} = require('./api/{{{filename}}}');
+
+{{/.}}
+{{/root_namespaces}}
+{{#leaf_namespaces}}
+const {{function_name}} = required('./api/{{{filename}}}');
+{{/leaf_namespaces}}
+
+const { kConfigurationError } = require('./utils');
+{{#leaf_namespaces}}
+const {{symbol_name}} = Symbol('{{symbol_desc}}');
+{{/leaf_namespaces}}
+
+function OpenSearchAPI(opts) {
+  this[kConfigurationError] = opts.ConfigurationError;
+  {{#leaf_namespaces}}
+  this[{{symbol_name}}] = null;
+  {{/leaf_namespaces}}
+}
+
+{{#root_namespaces}}
+{{#methods}}
+OpenSearchAPI.prototype.{{prototype_name}} = {{function_name}};
+{{/methods}}
+{{/root_namespaces}}
+
+Object.defineProperties(OpenSearchAPI.prototype, {
+  {{#leaf_namespaces}}
+  {{prototype_name}}: { get() { return this[{{symbol_name}}] ? (this[{{symbol_name}}] = new {{function_name}}(this.transport, this[kConfigurationError])) : this[{{symbol_name}}] } },
+  {{/leaf_namespaces}}
+});
+
+module.exports = OpenSearchAPI;

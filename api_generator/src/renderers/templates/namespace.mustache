@@ -1,0 +1,31 @@
+{{{opensearch_license}}}
+{{{elastic_license}}}
+{{{generated_code_warning}}}
+
+'use strict';
+
+/* eslint camelcase: 0 */
+/* eslint no-unused-vars: 0 */
+
+/** @namespace {{jsDoc_namespace}} */
+
+const { handleError, encodePathParam, normalizeArguments, kConfigurationError } = require('../utils');
+{{^root}}
+
+function {{namespace_function}}(transport, ConfigurationError) {
+  this.transport = transport;
+  this[kConfigurationError] = ConfigurationError;
+}
+{{/root}}
+{{{method_definitions}}}
+
+{{^root}}
+module.exports = {{namespace_function}};
+{{/root}}
+{{#root}}
+module.exports = {
+{{#functions}}
+  {{.}},
+{{/functions}}
+};
+{{/root}}

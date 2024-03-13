@@ -1,0 +1,24 @@
+{
+  "name": "opensearch_api_generator",
+  "version": "1.0.0",
+  "description": "Tool to generate API methods for OpenSearch JS client",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --loader ts-node/esm index.ts",
+    "generate_api": "ts-node generate_api.ts",
+    "download_spec": "curl -X GET \"https://raw.githubusercontent.com/opensearch-project/opensearch-api-specification/main/OpenSearch.openapi.json\" -o OpenSearch.openapi.json"
+  },
+  "keywords": [],
+  "author": "opensearch-project",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^10.1.0",
+    "@types/lodash": "^4.14.202",
+    "@types/mustache": "^4.2.5",
+    "@types/node": "^20.10.3",
+    "lodash": "^4.17.21",
+    "mustache": "^4.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+}

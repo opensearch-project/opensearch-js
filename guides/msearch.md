@@ -18,7 +18,7 @@ await client.bulk({
   ],
 });
 
-await client.index.refresh({ index: 'movies' });
+await client.indices.refresh({ index: 'movies' });
 ```
 
 # Multi Search API

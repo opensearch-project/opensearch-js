@@ -102,6 +102,18 @@ interface UpdateActionOperation {
   };
 }
 
+interface UpdateActionDocOperation {
+  doc: {
+    [key: string]: any;
+  };
+}
+
+interface UpdateActionScriptOperation {
+  script: {
+    [key: string]: any;
+  };
+}
+
 interface DeleteAction {
   delete: {
     _index: string;
@@ -111,7 +123,10 @@ interface DeleteAction {
 
 type CreateAction = CreateActionOperation | [CreateActionOperation, unknown];
 type IndexAction = IndexActionOperation | [IndexActionOperation, unknown];
-type UpdateAction = [UpdateActionOperation, Record<string, any>];
+type UpdateAction = [
+  UpdateActionOperation,
+  UpdateActionDocOperation | UpdateActionScriptOperation
+];
 type Action = IndexAction | CreateAction | UpdateAction | DeleteAction;
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 

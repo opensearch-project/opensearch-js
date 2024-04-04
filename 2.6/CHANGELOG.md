@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 20.11.25 to 20.12.2
 - Bumps `@babel/eslint-parser` from 7.23.10 to 7.24.1
 ### Changed
+- Added `search_pipeline` ([716](https://github.com/opensearch-project/opensearch-js/pull/716))
 ### Deprecated
 ### Removed
 ### Fixed

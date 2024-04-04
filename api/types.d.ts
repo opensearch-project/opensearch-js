@@ -935,6 +935,7 @@ export interface SearchRequest extends RequestBase {
   request_cache?: boolean;
   routing?: Routing;
   scroll?: Time;
+  search_pipeline?: string;
   search_type?: SearchType;
   stats?: string[];
   stored_fields?: Fields;
@@ -973,6 +974,7 @@ export interface SearchRequest extends RequestBase {
     query?: QueryDslQueryContainer;
     rescore?: SearchRescore | SearchRescore[];
     script_fields?: Record<string, ScriptField>;
+    search_pipeline?: Record<string, any>;
     search_after?: (integer | string)[];
     size?: integer;
     slice?: SlicedScroll;

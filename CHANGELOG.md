@@ -5,6 +5,14 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+
+## [2.7.0]
+### Added
+### Dependencies
 - Bumps `@aws-sdk/types` from 3.523.0 to 3.535.0
 - Bumps `simple-git` from 3.22.0 to 3.24.0
 - Bumps `@types/node` from 20.11.25 to 20.12.5

@@ -67,5 +67,5 @@ jobs:
           npm start --prefix test/bundlers/parcel-test
           npm start --prefix test/bundlers/rollup-test
           npm start --prefix test/bundlers/webpack-test
-          npm start:aws --prefix test/bundlers/bundlers/esbuild-test
-          npm start:awsv3 --prefix test/bundlers/bundlers/esbuild-test
+          npm run start:aws --prefix test/bundlers/bundlers/esbuild-test
+          npm run start:awsv3 --prefix test/bundlers/bundlers/esbuild-test

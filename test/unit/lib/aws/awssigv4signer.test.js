@@ -163,7 +163,7 @@ test('Sign with SigV4 using default getCredentials provider', (t) => {
 });
 
 test('Sign with SigV4 using default getCredentials provider aws sdk v3', (t) => {
-  t.plan(2);
+  t.plan(1);
 
   function handler(req, res) {
     res.setHeader('Content-Type', 'application/json;utf=8');
@@ -190,11 +190,10 @@ test('Sign with SigV4 using default getCredentials provider aws sdk v3', (t) => 
         t.fail('Should fail');
       })
       .catch((err) => {
-        t.ok(err instanceof AwsSigv4SignerError);
-        t.same(
-          err.message,
-          "Missing '@aws-sdk/credential-provider-node' module. Install it as a dependency."
-        );
+        // now that we are installing the aws-sdk v3 as a dev dependency
+        // when we try to load the v3 credentials module it works
+        // but it won't find any credentials so it would throw the following error
+        t.same(err.message, 'Could not load credentials from any providers');
       })
       .finally(() => {
         server.stop();

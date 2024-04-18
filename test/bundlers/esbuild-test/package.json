@@ -2,7 +2,7 @@
   "name": "esbuild-test-v3",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "aws-v3.js",
   "scripts": {
     "start:aws": "node bundle-aws.js",
     "start:awsv3": "node bundle-aws-v3.js",

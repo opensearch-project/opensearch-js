@@ -4,10 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
-- A new import that only uses aws-sdk v3 for aws default credentials.
-```js
-const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws-v3');
-```
+- Added `@opensearch-project/opensearch/aws-v3` import ([758](https://github.com/opensearch-project/opensearch-js/pull/758)).
 ### Dependencies
 - Bumps `@types/node` from 20.12.5 to 20.12.7
 ### Changed

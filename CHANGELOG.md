@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `@types/node` from 20.12.5 to 20.12.7
 - Bumps `semver` from 5.7.1 to 7.6.0
+- Bumps `dedent` from 1.5.1 to 1.5.3
 ### Changed
 - Disabled fail_ci_if_error for upload coverage step in coverage workflow ([#755](https://github.com/opensearch-project/opensearch-js/issues/755)
 ### Deprecated

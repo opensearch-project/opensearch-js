@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `@types/node` from 20.12.5 to 20.12.7
 ### Changed
+- Disabled fail_ci_if_error for upload coverage step in coverage workflow ([#755](https://github.com/opensearch-project/opensearch-js/issues/755)
 ### Deprecated
 ### Removed
 ### Fixed
@@ -19,7 +20,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 20.11.25 to 20.12.5
 - Bumps `@babel/eslint-parser` from 7.23.10 to 7.24.1
 ### Changed
-- Added `search_pipeline` ([716](https://github.com/opensearch-project/opensearch-js/pull/716))
+- Added `search_pipeline` ([#716](https://github.com/opensearch-project/opensearch-js/pull/716))
 ### Deprecated
 ### Removed
 ### Fixed

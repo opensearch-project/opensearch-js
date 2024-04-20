@@ -62,10 +62,6 @@
     "name": "Spencer Alger",
     "company": "Elasticsearch BV"
   },
-  "peerDependencies": {
-    "@aws-sdk/credential-provider-node": "3.x.x",
-    "aws-sdk": "2.x.x"
-  },
   "devDependencies": {
     "@aws-sdk/types": "^3.160.0",
     "@babel/eslint-parser": "^7.19.1",

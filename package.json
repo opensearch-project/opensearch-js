@@ -67,12 +67,10 @@
     "aws-sdk": "2.x.x"
   },
   "devDependencies": {
-    "@aws-sdk/credential-provider-node": "^3.556.0",
     "@aws-sdk/types": "^3.160.0",
     "@babel/eslint-parser": "^7.19.1",
     "@sinonjs/fake-timers": "github:sinonjs/fake-timers#0bfffc1",
     "@types/node": "^20.1.4",
-    "aws-sdk": "^2.1601.0",
     "convert-hrtime": "^5.0.0",
     "cross-zip": "^4.0.0",
     "dedent": "^1.1.0",

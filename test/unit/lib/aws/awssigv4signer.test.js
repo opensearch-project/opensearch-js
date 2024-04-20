@@ -11,7 +11,6 @@ const { test } = require('tap');
 const { URL } = require('url');
 const { v4: uuidv4 } = require('uuid');
 const AwsSigv4Signer = require('../../../../lib/aws/AwsSigv4Signer');
-const AwsSigv4SignerV3 = require('../../../../lib/aws/AwsSigv4Signer-sdk-v3');
 const AwsSigv4SignerError = require('../../../../lib/aws/errors');
 const { Connection } = require('../../../../index');
 const { Client, buildServer } = require('../../../utils');
@@ -155,45 +154,6 @@ test('Sign with SigV4 using default getCredentials provider', (t) => {
           err.message,
           'Unable to find a valid AWS SDK, please provide a valid getCredentials function to AwsSigv4Signer options.'
         );
-      })
-      .finally(() => {
-        server.stop();
-      });
-  });
-});
-
-test('Sign with SigV4 using default getCredentials provider aws sdk v3', (t) => {
-  t.plan(1);
-
-  function handler(req, res) {
-    res.setHeader('Content-Type', 'application/json;utf=8');
-    res.end(JSON.stringify({ hello: 'world' }));
-  }
-
-  buildServer(handler, ({ port }, server) => {
-    const mockRegion = 'us-east-1';
-
-    const AwsSigv4SignerOptions = {
-      region: mockRegion,
-    };
-    const client = new Client({
-      ...AwsSigv4SignerV3(AwsSigv4SignerOptions),
-      node: `http://localhost:${port}`,
-    });
-
-    client
-      .search({
-        index: 'test',
-        q: 'foo:bar',
-      })
-      .then(() => {
-        t.fail('Should fail');
-      })
-      .catch((err) => {
-        // now that we are installing the aws-sdk v3 as a dev dependency
-        // when we try to load the v3 credentials module it works
-        // but it won't find any credentials so it would throw the following error
-        t.same(err.message, 'Could not load credentials from any providers');
       })
       .finally(() => {
         server.stop();

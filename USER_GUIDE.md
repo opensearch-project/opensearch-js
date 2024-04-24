@@ -90,7 +90,9 @@ const client = new Client({
 ```javascript
 const { defaultProvider } = require('@aws-sdk/credential-provider-node'); // V3 SDK.
 const { Client } = require('@opensearch-project/opensearch');
-const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws');
+const { AwsSigv4Signer } = require('@opensearch-project/opensearch/aws-v3'); // use aws-v3 import path if you are using aws-sdk v3
+// Unlike the import path in the v2 example above that lazy loads both aws-sdk v3 credential providers & entire aws-sdk v2 if available
+// This will only lazy load the aws-sdk v3 credential providers
 
 const client = new Client({
   ...AwsSigv4Signer({

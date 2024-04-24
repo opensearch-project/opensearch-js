@@ -16,6 +16,7 @@
       "types": "./api/types.d.ts"
     },
     "./aws": "./lib/aws/index.js",
+    "./aws-v3": "./lib/aws/index-v3.js",
     "./*": "./*"
   },
   "typesVersions": {
@@ -53,7 +54,7 @@
     "test:coverage-ui": "tap test/{unit,acceptance}/{*,**/*,**/**/*}.test.js --coverage --coverage-report=html --nyc-arg=\"--exclude=api\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "license-checker": "license-checker --production --onlyAllow='MIT;Apache-2.0;Apache1.1;ISC;BSD-3-Clause;BSD-2-Clause'",
+    "license-checker": "license-checker --production --onlyAllow='MIT;Apache-2.0;Apache1.1;0BSD;ISC;BSD-3-Clause;BSD-2-Clause'",
     "build-esm": "npx gen-esm-wrapper . index.mjs && eslint --fix index.mjs"
   },
   "author": "opensearch-project",

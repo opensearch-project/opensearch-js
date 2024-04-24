@@ -1,0 +1,19 @@
+{
+  "name": "esbuild-test-v3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "aws-v3.js",
+  "scripts": {
+    "start:aws": "node bundle-aws.js",
+    "start:awsv3": "node bundle-aws-v3.js",
+    "build:aws": "./node_modules/esbuild/bin/esbuild aws.js --bundle --platform=node --outfile=./bundle-aws.js --allow-overwrite",
+    "build:awsv3": "./node_modules/esbuild/bin/esbuild aws-v3.js --bundle --platform=node --outfile=./bundle-aws-v3.js --allow-overwrite"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/credential-provider-node": "^3.556.0",
+    "aws-sdk": "^2.1601.0",
+    "esbuild": "^0.20.2"
+  }
+}

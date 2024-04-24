@@ -52,15 +52,20 @@ jobs:
           npm install --prefix test/bundlers/parcel-test
           npm install --prefix test/bundlers/rollup-test
           npm install --prefix test/bundlers/webpack-test
+          npm install --prefix test/bundlers/esbuild-test
 
       - name: Build
         run: |
           npm run build --prefix test/bundlers/parcel-test
           npm run build --prefix test/bundlers/rollup-test
           npm run build --prefix test/bundlers/webpack-test
+          npm run build:aws --prefix test/bundlers/esbuild-test
+          npm run build:awsv3 --prefix test/bundlers/esbuild-test
 
       - name: Run bundle
         run: |
           npm start --prefix test/bundlers/parcel-test
           npm start --prefix test/bundlers/rollup-test
           npm start --prefix test/bundlers/webpack-test
+          npm run start:aws --prefix test/bundlers/esbuild-test
+          npm run start:awsv3 --prefix test/bundlers/esbuild-test

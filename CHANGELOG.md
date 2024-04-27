@@ -146,6 +146,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add guidelines on installing yarn, dependencies; instructions on running ESLint in developer_guide ([#439](https://github.com/opensearch-project/opensearch-js/issues/435))
 - Added pull_request_template ([440](https://github.com/opensearch-project/opensearch-js/pull/440))
 - Added guide for Search ([#473](https://github.com/opensearch-project/opensearch-js/pull/489))
+- Added support script operations in the update action of the client.helpers.bulk ([#210](https://github.com/opensearch-project/opensearch-js/issues/209))
 
 ### Dependencies
 

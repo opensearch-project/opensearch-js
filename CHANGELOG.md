@@ -4,6 +4,15 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.8.0]
+### Added
 - Added `@opensearch-project/opensearch/aws-v3` import ([758](https://github.com/opensearch-project/opensearch-js/pull/758)).
 ### Dependencies
 - Bumps `@types/node` from 20.12.5 to 20.12.7
@@ -11,12 +20,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `dedent` from 1.5.1 to 1.5.3
 ### Changed
 - Disabled fail_ci_if_error for upload coverage step in coverage workflow ([#755](https://github.com/opensearch-project/opensearch-js/issues/755)
-### Deprecated
-### Removed
-### Fixed
 
 ## [2.7.0]
-### Added
 ### Dependencies
 - Bumps `@aws-sdk/types` from 3.523.0 to 3.535.0
 - Bumps `simple-git` from 3.22.0 to 3.24.0
@@ -24,9 +29,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@babel/eslint-parser` from 7.23.10 to 7.24.1
 ### Changed
 - Added `search_pipeline` ([#716](https://github.com/opensearch-project/opensearch-js/pull/716))
-### Deprecated
-### Removed
-### Fixed
 
 ## [2.6.0]
 ### Added
@@ -44,12 +46,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Updated integration tests to use strong password in OS 2.12 and up ([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
 - Simplified client creation in the guides ([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
 - Corrected `guides/bulk.md` ([#616](https://github.com/opensearch-project/opensearch-js/issues/616))
-### Deprecated
 ### Removed
 - Removed AutoHeal([#707](https://github.com/opensearch-project/opensearch-js/pull/707))
 ### Fixed
 - Make optional fields optional in `MappingGenericProperty` ([708](https://github.com/opensearch-project/opensearch-js/pull/708))
-### Security
 
 ## [2.5.0]
 ### Added
@@ -77,8 +77,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `eslint-config-prettier` from 9.0.0 to 9.1.0
 - Bumps `ora` from 7.0.1 to 8.0.1
 - Bumps `simple-git` from 3.21.0 to 3.22.0
-### Changed
-### Deprecated
 ### Removed
 - Removed fixture lines that git-secrets wrongly flagged as passwords/secrets ([654](https://github.com/opensearch-project/opensearch-js/pull/645))
 ### Fixed
@@ -106,11 +104,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 - Make handling of long numerals an option that is disabled by default ([#557](https://github.com/opensearch-project/opensearch-js/pull/557))
 - Add `enableLongNumeralSupport` to the type definition for `ClientOptions` ([#598](https://github.com/opensearch-project/opensearch-js/pull/598))
-### Deprecated
-### Removed
 ### Fixed
 - Fix wrong documentation for file serach.md regarding `search_after` param ([#584](https://github.com/opensearch-project/opensearch-js/pull/584))
-### Security
 
 ## [2.3.0]
 
@@ -131,24 +126,18 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Implemented Docker Image caching for `integration-unreleased` workflow ([#387](https://github.com/opensearch-project/opensearch-js/issues/387))
 - Add upgrading NPM to all workflows running older Node.js versions ([#545](https://github.com/opensearch-project/opensearch-js/issues/545))
 - Upgrade and secure the backport workflow ([#547](https://github.com/opensearch-project/opensearch-js/issues/547))
-### Deprecated
-### Removed
 ### Fixed
 - Fixed malformed `bundler.yml` ([#497](https://github.com/opensearch-project/opensearch-js/pull/497))
-### Security
 
 ## [2.2.1]
 
 ### Added
-
 - Add release details to releasing.md ([319](https://github.com/opensearch-project/opensearch-js/pull/319))
 - Added Amazon OpenSearch Serverless in user_guide ([#372](https://github.com/opensearch-project/opensearch-js/issues/372))
 - Add guidelines on installing yarn, dependencies; instructions on running ESLint in developer_guide ([#439](https://github.com/opensearch-project/opensearch-js/issues/435))
 - Added pull_request_template ([440](https://github.com/opensearch-project/opensearch-js/pull/440))
 - Added guide for Search ([#473](https://github.com/opensearch-project/opensearch-js/pull/489))
-
 ### Dependencies
-
 - Bumps `aws4` from 1.11.0 to 1.12.0
 - Bumps `minimist` from 1.2.6 to 1.2.8
 - Bumps `tsd` from 0.24.1 to 0.27.0
@@ -170,37 +159,26 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `prettier` from 2.8.4 to 2.8.7
 - Bumps `jsdoc` from 4.0.0 to 4.0.2
 - Bumps `@babel/eslint-parser` from 7.19.1 to 7.21.3
-
 ### Changed
-
 - Remove test artifacts from gh_pages workflow ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Make fields in `BulkOperation` optional to match OpenSearch Bulk API requirements ([#378](https://github.com/opensearch-project/opensearch-js/pull/378))
 - Remove guidance on using npm and switch completely to yarn in developer_guide ([#439](https://github.com/opensearch-project/opensearch-js/issues/435))
 - Change coverage, compatability, integration, integration with unreleased Open Search, node ci, bundler tests not to run on documentation change ([441](https://github.com/opensearch-project/opensearch-js/pull/441))
 - Change the Windows yarn installation troubleshoot steps ([455](https://github.com/opensearch-project/opensearch-js/issues/455))
 - Make `callback` arg in `BaseConnectionPool`, `CloudConnectionPool` and `ConnectionPool` optional ([#451](https://github.com/opensearch-project/opensearch-js/pull/451))
-
 ### Deprecated
-
 - Remove deprecation warnings in bulk.test.js ([#434](https://github.com/opensearch-project/opensearch-js/issues/434))
-
 ### Removed
-
 - Remove waitCluster in Integration Tests ([#422](https://github.com/opensearch-project/opensearch-js/issues/422))
-
 ### Fixed
-
 - Added missing types for AwsSigv4SignerOptions.service ([#377](https://github.com/opensearch-project/opensearch-js/pull/377))
 - Fixed deprecated folder mapping "./" in the "exports" field module resolution ([#416](https://github.com/opensearch-project/opensearch-js/pull/416))
-
-### Security
 
 - [CVE-2022-25912] Bumps simple-git from 3.4.0 to 3.15.0 ([#341](https://github.com/opensearch-project/opensearch-js/pull/341))
 
 ## [2.2.0]
 
 ### Added
-
 - Add release details to releasing.md ([319](https://github.com/opensearch-project/opensearch-js/pull/319))
 - Allow overriding the aws service identifier in AwsSigv4Signer ([333](https://github.com/opensearch-project/opensearch-js/pull/333))
 - Added skip-changelog label ([339](https://github.com/opensearch-project/opensearch-js/pull/339))
@@ -214,9 +192,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fixed typos in `ConnectionPool` ([#427](https://github.com/opensearch-project/opensearch-js/pull/427))
 - Added the solution for the possible error during yarn installation on Windows OS ([#435](https://github.com/opensearch-project/opensearch-js/issues/435))
 - Added missing `createConnection` method type definition in `BaseConnectionPool` )([#490](https://github.com/opensearch-project/opensearch-js/pull/490))
-
 ### Dependencies
-
 - Bumps `xmlbuilder2` from 2.4.1 to 3.0.2
 - Bumps `minimatch` from 3.0.4 to 3.1.2
 - Bumps `eslint` from 7.32.0 to 8.32.0
@@ -229,36 +205,18 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `hpagent` from 0.1.2 to 1.2.0
 - Bumps `eslint-config-prettier` from 8.5.0 to 8.6.0
 - Bumps `rimraf` from 3.0.2 to 4.1.1
-
-### Dependencies
-
 ### Changed
-
 - Remove test artifacts from gh_pages workflow ([#335](https://github.com/opensearch-project/opensearch-js/issues/335))
 - Make `TimeoutError` and `RequestAbortedError` classes' `meta` argument optional ([#478](https://github.com/opensearch-project/opensearch-js/pull/478/))
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
 ### Security
-
 - [CVE-2022-25912] Bumps simple-git from 3.4.0 to 3.15.0 ([#341](https://github.com/opensearch-project/opensearch-js/pull/341))
 
 ## [2.1.0]
-
 ### Added
-
 - Github workflow for changelog verification ([#306](https://github.com/opensearch-project/opensearch-js/pull/306))
 - Add GitHub and Jenkins release workflow ([#317](https://github.com/opensearch-project/opensearch-js/pull/317))
-
 ### Dependencies
-
 - Bumps `tsd` from 0.22.0 to 0.24.1
 - Bumps `semver` from 7.3.7 to 7.3.8
-
 ### Fixed
-
 - Fix mutability of connection headers ([#291](https://github.com/opensearch-project/opensearch-js/issues/291))

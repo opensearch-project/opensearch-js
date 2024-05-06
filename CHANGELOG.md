@@ -6,7 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Added `@opensearch-project/opensearch/aws-v3` import ([758](https://github.com/opensearch-project/opensearch-js/pull/758)).
 ### Dependencies
-- Bumps `@types/node` from 20.12.5 to 20.12.7
+- Bumps `@types/node` from 20.12.5 to 20.12.9
 - Bumps `semver` from 5.7.1 to 7.6.0
 - Bumps `dedent` from 1.5.1 to 1.5.3
 ### Changed

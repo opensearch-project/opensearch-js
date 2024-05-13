@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 - Bumps `@aws-sdk/types` from 3.535.0 to 3.567.0
+- Bumps `@babel/eslint-parser` from 7.24.1 to 7.24.5
 ### Changed
 ### Deprecated
 ### Removed

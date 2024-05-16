@@ -13,6 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Missing type definitions for `@opensearch-project/opensearch/aws-v3` ([776](https://github.com/opensearch-project/opensearch-js/pull/776)).
 ### Security
 
 ## [2.8.0]

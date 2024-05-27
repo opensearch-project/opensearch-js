@@ -6,7 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 - Bumps `@aws-sdk/types` from 3.535.0 to 3.577.0
-- Bumps `@babel/eslint-parser` from 7.24.1 to 7.24.5
+- Bumps `@babel/eslint-parser` from 7.24.1 to 7.24.6
 - Bumps `@types/node` from 20.12.9 to 20.12.12
 - Bumps `semver` from 7.6.0 to 7.6.2
 - Bumps `rimraf` from 5.0.5 to 5.0.7

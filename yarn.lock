@@ -2224,6 +2224,11 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
+json11@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/json11/-/json11-1.0.4.tgz#47df69bc54bc0239211020f5ef234f4fe8ffac5f"
+  integrity sha512-4o9dcmRyqy2O4wDaUnv8YtrVEm1NBVVIPCN/z6en8PH+LyFdZsE2trW7hbl4+CwI4pTBKZa/JKKoT8zqO7EV8w==
+
 json5@^2.1.2:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"

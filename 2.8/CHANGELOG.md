@@ -14,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `prettier` from 3.2.5 to 3.3.0
 - Bumps `debug` from 4.3.4 to 4.3.5
 ### Changed
+- Upgraded the parsing and serialization of long numerals to employ JSON11 ([784](https://github.com/opensearch-project/opensearch-js/pull/784)).
 ### Deprecated
 ### Removed
 ### Fixed

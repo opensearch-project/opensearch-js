@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `semver` from 7.6.0 to 7.6.2
 - Bumps `rimraf` from 5.0.5 to 5.0.7
 - Bumps `aws4` from 1.12.0 to 1.13.0
+- Bumps `prettier` from 3.2.5 to 3.3.0
 ### Changed
 ### Deprecated
 ### Removed

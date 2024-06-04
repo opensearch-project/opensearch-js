@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: api/api/http.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: api/api/http.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+ * Copyright OpenSearch Contributors
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ *
+ */
+
+'use strict';
+
+/** @namespace API-HTTP */
+
+const { normalizeArguments, kConfigurationError } = require('../utils');
+
+function HttpApi(transport, ConfigurationError) {
+  this.transport = transport;
+  this[kConfigurationError] = ConfigurationError;
+}
+
+HttpApi.prototype.request = function (method, params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
+  if (Array.isArray(params.body)) {
+    const { path, querystring, headers, body } = params;
+    params = { path, querystring, headers, bulkBody: body };
+  }
+  options = options || {};
+  options.headers = params.headers || options.headers;
+  return this.transport.request({ ...params, method }, options, callback);
+};
+
+/**
+ * Make a customized CONNECT request.
+ *
+ * @memberOf API-HTTP
+ *
+ * @param {Object} params
+ * @param {Object} params.path - The URL of the request
+ * @param {Object} [params.querystring] - The querystring parameters
+ * @param {Object} [params.headers] - The request headers
+ * @param {Object} [params.body] - The request body
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+HttpApi.prototype.connect = function (params, options, callback) {
+  return this.request('CONNECT', params, options, callback);
+};
+
+/**
+ * Make a customized DELETE request.
+ *
+ * @memberOf API-HTTP
+ *
+ * @param {Object} params
+ * @param {Object} params.path - The URL of the request
+ * @param {Object} [params.querystring] - The querystring parameters
+ * @param {Object} [params.headers] - The request headers
+ * @param {Object} [params.body] - The request body
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+HttpApi.prototype.delete = function (params, options, callback) {
+  return this.request('DELETE', params, options, callback);
+};
+
+/**
+ * Make a customized GET request.
+ *
+ * @memberOf API-HTTP
+ *
+ * @param {Object} params
+ * @param {Object} params.path - The URL of the request
+ * @param {Object} [params.querystring] - The querystring parameters
+ * @param {Object} [params.headers] - The request headers
+ * @param {Object} [params.body] - The request body
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+HttpApi.prototype.get = function (params, options, callback) {
+  return this.request('GET', params, options, callback);
+};
+
+/**
+ * Make a customized HEAD request.
+ *
+ * @memberOf API-HTTP
+ *
+ * @param {Object} params
+ * @param {Object} params.path - The URL of the request
+ * @param {Object} [params.querystring] - The querystring parameters
+ * @param {Object} [params.headers] - The request headers
+ * @param {Object} [params.body] - The request body
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+HttpApi.prototype.head = function (params, options, callback) {
+  return this.request('HEAD', params, options, callback);
+};
+
+/**
+ * Make a customized OPTIONS request.
+ *
+ * @memberOf API-HTTP
+ *
+ * @param {Object} params
+ * @param {Object} params.path - The URL of the request
+ * @param {Object} [params.querystring] - The querystring parameters
+ * @param {Object} [params.headers] - The request headers
+ * @param {Object} [params.body] - The request body
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+HttpApi.prototype.options = function (params, options, callback) {
+  return this.request('OPTIONS', params, options, callback);
+};
+
+/**
+ * Make a customized PATCH request.
+ *
+ * @memberOf API-HTTP
+ *
+ * @param {Object} params
+ * @param {Object} params.path - The URL of the request
+ * @param {Object} [params.querystring] - The querystring parameters
+ * @param {Object} [params.headers] - The request headers
+ * @param {Object} [params.body] - The request body
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+HttpApi.prototype.patch = function (params, options, callback) {
+  return this.request('PATCH', params, options, callback);
+};
+
+/**
+ * Make a customized POST request.
+ *
+ * @memberOf API-HTTP
+ *
+ * @param {Object} params
+ * @param {Object} params.path - The URL of the request
+ * @param {Object} [params.querystring] - The querystring parameters
+ * @param {Object} [params.headers] - The request headers
+ * @param {Object} [params.body] - The request body
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+HttpApi.prototype.post = function (params, options, callback) {
+  return this.request('POST', params, options, callback);
+};
+
+/**
+ * Make a customized PUT request.
+ *
+ * @memberOf API-HTTP
+ *
+ * @param {Object} params
+ * @param {Object} params.path - The URL of the request
+ * @param {Object} [params.querystring] - The querystring parameters
+ * @param {Object} [params.headers] - The request headers
+ * @param {Object} [params.body] - The request body
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+HttpApi.prototype.put = function (params, options, callback) {
+  return this.request('PUT', params, options, callback);
+};
+
+/**
+ * Make a customized TRACE request.
+ *
+ * @memberOf API-HTTP
+ *
+ * @param {Object} params
+ * @param {Object} params.path - The URL of the request
+ * @param {Object} [params.querystring] - The querystring parameters
+ * @param {Object} [params.headers] - The request headers
+ * @param {Object} [params.body] - The request body
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+HttpApi.prototype.trace = function (params, options, callback) {
+  return this.request('TRACE', params, options, callback);
+};
+
+module.exports = HttpApi;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="API-CAT.html">API-CAT</a></li><li><a href="API-Cluster.html">API-Cluster</a></li><li><a href="API-Count.html">API-Count</a></li><li><a href="API-Dangling-Indices.html">API-Dangling-Indices</a></li><li><a href="API-Document.html">API-Document</a></li><li><a href="API-Features.html">API-Features</a></li><li><a href="API-HTTP.html">API-HTTP</a></li><li><a href="API-Index.html">API-Index</a></li><li><a href="API-Ingest.html">API-Ingest</a></li><li><a href="API-Nodes.html">API-Nodes</a></li><li><a href="API-PIT.html">API-PIT</a></li><li><a href="API-Script.html">API-Script</a></li><li><a href="API-Search.html">API-Search</a></li><li><a href="API-Security.html">API-Security</a></li><li><a href="API-Snapshot.html">API-Snapshot</a></li><li><a href="API-Tasks.html">API-Tasks</a></li></ul><h3>Classes</h3><ul><li><a href="Transport.html">Transport</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Jun 04 2024 17:55:32 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

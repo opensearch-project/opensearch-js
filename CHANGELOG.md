@@ -5,6 +5,14 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.9.0]
+### Dependencies
 - Bumps `@aws-sdk/types` from 3.535.0 to 3.577.0
 - Bumps `@babel/eslint-parser` from 7.24.1 to 7.24.6
 - Bumps `@types/node` from 20.12.9 to 20.14.0
@@ -15,11 +23,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `debug` from 4.3.4 to 4.3.5
 ### Changed
 - Upgraded the parsing and serialization of long numerals to employ JSON11 ([784](https://github.com/opensearch-project/opensearch-js/pull/784)).
-### Deprecated
-### Removed
 ### Fixed
 - Missing type definitions for `@opensearch-project/opensearch/aws-v3` ([776](https://github.com/opensearch-project/opensearch-js/pull/776)).
-### Security
 
 ## [2.8.0]
 ### Added

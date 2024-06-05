@@ -1,0 +1,8 @@
+{
+  {{#properties}}
+  {{{name}}}{{^required}}?{{/required}}: {{{type}}};
+  {{/properties}}
+  {{#additional_properties}}
+  [key: string]: {{{additional_properties}}};
+  {{/additional_properties}}
+}

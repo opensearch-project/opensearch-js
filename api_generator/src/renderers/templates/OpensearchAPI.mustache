@@ -1,0 +1,43 @@
+{{{opensearch_license}}}
+{{{generated_code_warning}}}
+
+'use strict';
+
+const { kConfigErr } = require('./utils')
+const kApiModules = Symbol('api modules')
+
+class OpenSearchAPI {
+  constructor (opts) {
+    this[kConfigErr] = opts.ConfigurationError
+    this[kApiModules] = {
+      {{#api_modules}}
+      {{{prototype_name}}}: new(require('{{{path}}}'))(this),
+      {{/api_modules}}
+    }
+
+    // Setup Root API Functions
+    /** @namespace {{{doc_namespace}}} */
+    {{#root_functions}}
+    this.{{{prototype_name}}} = require('{{{path}}}').bind(this)
+    {{/root_functions}}
+
+    {{#deprecated_root_functions}}
+    // Deprecated: Use {{{prototype_name}}} instead.
+    this.{{{snake_cased_name}}} = require('{{{path}}}').bind(this)
+    {{/deprecated_root_functions}}
+
+    // Setup API Modules
+    Object.defineProperties(this, {
+    {{#api_modules}}
+      {{{prototype_name}}}: { get() { return this[kApiModules].{{{prototype_name}}} } },
+    {{/api_modules}}
+
+    {{#deprecated_api_modules}}
+      // Deprecated: Use {{{prototype_name}}} instead.
+      {{{snake_cased_name}}}: { get() { return this[kApiModules].{{{prototype_name}}} } },
+    {{/deprecated_api_modules}}
+    })
+  }
+}
+
+module.exports = OpenSearchAPI;

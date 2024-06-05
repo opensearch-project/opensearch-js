@@ -1,0 +1,36 @@
+{{{opensearch_license}}}
+{{{generated_code_warning}}}
+
+'use strict'
+
+const { normalizeArguments, handleMissingParam } = require('../utils');
+
+/**
+* Make a customized {{{capitalized_method}}} request.
+*
+* @memberOf {{{doc_namespace}}}
+*
+* @param {Object} params
+* @param {string} params.path - URL of the request
+* @param {Object} [params.querystring] - Querystring parameters
+* @param {Object} [params.headers] - Request headers
+* @param {Object | Object[] | string} [params.body] - Request body
+*
+* @param {Object} [options] - Options for {@link Transport#request}
+* @param {function} [callback] - Callback that handles errors and response
+*
+* @returns {{{return_type}}}
+*/
+function {{{function_name}}}(params, options, callback) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.path == null) return handleMissingParam('path', this, callback);
+  if (Array.isArray(params.body)) {
+    const { path, querystring, headers, body } = params;
+    params = { path, querystring, headers, bulkBody: body };
+  }
+  options = options || {};
+  options.headers = params.headers || options.headers;
+  return this.transport.request({ ...params, method: '{{{capitalized_method}}}' }, options, callback);
+}
+
+module.exports = {{{function_name}}};

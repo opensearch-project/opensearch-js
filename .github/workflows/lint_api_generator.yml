@@ -1,0 +1,28 @@
+name: Lint API Generator
+on:
+  pull_request:
+    paths:
+      - 'api_generator/**'
+      - '.github/workflows/lint_api_generator.yml'
+jobs:
+  lint-api-generator:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./api_generator
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint API Generator
+        run: npm run lint

@@ -1,0 +1,10 @@
+{{#params_required}}
+{{{function}}} (params: {{{request}}}, options?: TransportRequestOptions): TransportRequestPromise<{{{response}}}>;
+{{/params_required}}
+{{^params_required}}
+{{{function}}} (params?: {{{request}}}, options?: TransportRequestOptions): TransportRequestPromise<{{{response}}}>;
+{{{function}}} (callback: callbackFn<{{{response}}}>): TransportRequestCallback;
+{{/params_required}}
+{{{function}}} (params: {{{request}}}, callback: callbackFn<{{{response}}}>): TransportRequestCallback;
+{{{function}}} (params: {{{request}}}, options: TransportRequestOptions, callback: callbackFn<{{{response}}}>): TransportRequestCallback;
+

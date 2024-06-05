@@ -1,0 +1,45 @@
+{{{opensearch_license}}}
+{{{generated_code_warning}}}
+
+import * as Global from './_types/_global';
+import * as API from './index';
+import {
+  ApiError,
+  ApiResponse,
+  TransportRequestOptions,
+  TransportRequestCallback,
+  TransportRequestPromise,
+} from '../lib/Transport';
+
+declare type callbackFn<TResponse> = (err: ApiError, result: TResponse) => void;
+
+declare interface HttpRequest {
+  path: string;
+  querystring?: Global.Params;
+  headers?: Record<string, any>;
+  body?: Record<string, any> | Record<string, any>[] | string;
+}
+
+export default class OpenSearchAPI {
+  {{#namespaces}}
+  {{{name}}}: {
+    {{#functions}}
+    {{> type.function.mustache}}
+    {{/functions}}
+  };
+
+  {{/namespaces}}
+
+  http: {
+    {{#http_methods}}
+    {{{.}}} (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
+    {{{.}}} (params: HttpRequest, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+    {{{.}}} (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+
+    {{/http_methods}}
+  };
+
+  {{#core_functions}}
+  {{> type.function.mustache}}
+  {{/core_functions}}
+}

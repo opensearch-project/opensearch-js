@@ -11,6 +11,15 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 ### Security
 
+## [2.9.1]
+### Dependencies
+- Bumps `json11` from 1.0.4 to 1.1.2
+- Bumps `graceful-fs` from 4.2.8 to 4.2.10
+- Bumps `picomatch` from 2.3.0 to 2.3.1
+### Security
+- [CVE-2024-4068] Bumps `braces` from 3.0.2 to 3.0.3
+- [CVE-2024-4067] Bumps `micromatch` from 4.0.4 to 4.0.7
+
 ## [2.9.0]
 ### Dependencies
 - Bumps `@aws-sdk/types` from 3.535.0 to 3.577.0

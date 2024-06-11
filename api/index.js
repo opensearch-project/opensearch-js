@@ -70,6 +70,7 @@ const rankEvalApi = require('./api/rank_eval');
 const reindexApi = require('./api/reindex');
 const reindexRethrottleApi = require('./api/reindex_rethrottle');
 const renderSearchTemplateApi = require('./api/render_search_template');
+const RollupsApi = require('./api/rollups');
 const scriptsPainlessExecuteApi = require('./api/scripts_painless_execute');
 const scrollApi = require('./api/scroll');
 const SecurityApi = require('./api/security');
@@ -81,6 +82,7 @@ const SnapshotApi = require('./api/snapshot');
 const TasksApi = require('./api/tasks');
 const termsEnumApi = require('./api/terms_enum');
 const termvectorsApi = require('./api/termvectors');
+const TransformsAPi = require('./api/transforms');
 const updateApi = require('./api/update');
 const updateByQueryApi = require('./api/update_by_query');
 const updateByQueryRethrottleApi = require('./api/update_by_query_rethrottle');
@@ -94,10 +96,12 @@ const kHttp = Symbol('Http');
 const kIndices = Symbol('Indices');
 const kIngest = Symbol('Ingest');
 const kNodes = Symbol('Nodes');
+const kRollups = Symbol('Rollups');
 const kSecurity = Symbol('Security');
 const kShutdown = Symbol('Shutdown');
 const kSnapshot = Symbol('Snapshot');
 const kTasks = Symbol('Tasks');
+const kTransforms = Symbol('Transforms');
 
 function OpenSearchAPI(opts) {
   this[kConfigurationError] = opts.ConfigurationError;
@@ -109,10 +113,12 @@ function OpenSearchAPI(opts) {
   this[kIndices] = null;
   this[kIngest] = null;
   this[kNodes] = null;
+  this[kRollups] = null;
   this[kSecurity] = null;
   this[kShutdown] = null;
   this[kSnapshot] = null;
   this[kTasks] = null;
+  this[kTransforms] = null;
 }
 
 OpenSearchAPI.prototype.bulk = bulkApi;
@@ -324,6 +330,14 @@ Object.defineProperties(OpenSearchAPI.prototype, {
       return this.renderSearchTemplate;
     },
   },
+  rollups: {
+    get() {
+      if (this[kRollups] === null) {
+        this[kRollups] = new RollupsApi(this.transport, this[kConfigurationError]);
+      }
+      return this[kRollups];
+    },
+  },
   scripts_painless_execute: {
     get() {
       return this.scriptsPainlessExecute;
@@ -374,6 +388,14 @@ Object.defineProperties(OpenSearchAPI.prototype, {
   terms_enum: {
     get() {
       return this.termsEnum;
+    },
+  },
+  transforms: {
+    get() {
+      if (this[kTransforms] === null) {
+        this[kTransforms] = new TransformsAPi(this.transport, this[kConfigurationError]);
+      }
+      return this[kTransforms];
     },
   },
   update_by_query: {

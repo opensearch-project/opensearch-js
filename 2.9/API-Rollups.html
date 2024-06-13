@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Namespace: API-PIT</title>
+    <title>JSDoc: Namespace: API-Rollups</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Namespace: API-PIT</h1>
+    <h1 class="page-title">Namespace: API-Rollups</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2>API-PIT</h2>
+        <h2>API-Rollups</h2>
         
     
 </header>
@@ -70,7 +70,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_create_pit.js.html">api/api/create_pit.js</a>, <a href="api_api_create_pit.js.html#line16">line 16</a>
+        <a href="api_api_rollups.js.html">api/api/rollups.js</a>, <a href="api_api_rollups.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -109,7 +109,7 @@
     
 
     
-    <h4 class="name" id=".createPitApi"><span class="type-signature">(static) </span>createPitApi<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
+    <h4 class="name" id="delete"><span class="type-signature">(static) </span>RollupsApi#delete<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
     
 
     
@@ -117,8 +117,8 @@
 
 
 <div class="description">
-    Creates a point in time.
-<br/> See Also: <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#create-a-pit">Opensearch - Create a PIT</a>
+    Delete index rollup.
+<br/> See Also: <a href="https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#delete-an-index-rollup-job">- rollups.delete</a>
 </div>
 
 
@@ -162,7 +162,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -194,11 +194,7 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -210,7 +206,7 @@
 
         <tr>
             
-                <td class="name"><code>index</code></td>
+                <td class="name"><code>id</code></td>
             
 
             <td class="type">
@@ -223,211 +219,10 @@
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">The name(s) of the target index(es) for the PIT. May contain a comma-separated list or a wildcard index pattern.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>keep_alive</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">The amount of time to keep the PIT</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>preference</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    random
-                
-                </td>
-            
-
-            <td class="description last">The node or the shard used to perform the search.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>routing</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">Specifies to route search requests to a specific shard.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>expand_wildcards</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    open
-                
-                </td>
-            
-
-            <td class="description last">The type of index that can match the wildcard pattern. Supports comma-separated values.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>allow_partial_pit_creation</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
-
-            <td class="description last">Specifies whether to create a PIT with partial failures.</td>
+            <td class="description last">Rollup to access</td>
         </tr>
 
     
@@ -447,7 +242,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">TransportRequestOptions</span>
 
 
             
@@ -541,7 +336,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_create_pit.js.html">api/api/create_pit.js</a>, <a href="api_api_create_pit.js.html#line56">line 56</a>
+        <a href="api_api_rollups.js.html">api/api/rollups.js</a>, <a href="api_api_rollups.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -569,10 +364,6 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#sample-response">Create PIT Response</a>
-</div>
-
 
 
 <dl>
@@ -605,7 +396,7 @@
     
 
     
-    <h4 class="name" id=".deleteAllPitsApi"><span class="type-signature">(static) </span>deleteAllPitsApi<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
+    <h4 class="name" id="explain"><span class="type-signature">(static) </span>RollupsApi#explain<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
     
 
     
@@ -613,8 +404,8 @@
 
 
 <div class="description">
-    Deletes all PITs in the OpenSearch cluster. The Delete All PITs API deletes only local PITs or mixed PITs (PITs created in both local and remote clusters). It does not delete fully remote PITs.
-<br/> See Also: <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#delete-pits">Opensearch - Delete PITs</a>
+    Get a rollup's current status.
+<br/> See Also: <a href="https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#explain-an-index-rollup-job">- rollups.explain</a>
 </div>
 
 
@@ -658,7 +449,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -676,7 +467,56 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Rollup to access</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -689,7 +529,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">TransportRequestOptions</span>
 
 
             
@@ -783,7 +623,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_delete_all_pits.js.html">api/api/delete_all_pits.js</a>, <a href="api_api_delete_all_pits.js.html#line32">line 32</a>
+        <a href="api_api_rollups.js.html">api/api/rollups.js</a>, <a href="api_api_rollups.js.html#line167">line 167</a>
     </li></ul></dd>
     
 
@@ -811,10 +651,6 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#sample-response-2">Delete all PITs Response</a>
-</div>
-
 
 
 <dl>
@@ -847,7 +683,7 @@
     
 
     
-    <h4 class="name" id=".deletePitApi"><span class="type-signature">(static) </span>deletePitApi<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
+    <h4 class="name" id="get"><span class="type-signature">(static) </span>RollupsApi#get<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
     
 
     
@@ -855,8 +691,8 @@
 
 
 <div class="description">
-    Deletes one or several PITs. PITs are automatically deleted when the keep_alive time period elapses. However, to deallocate resources, you can delete a PIT using the Delete PIT API.
-<br/> See Also: <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#delete-pits">Opensearch - Delete PITs</a>
+    Get an index rollup.
+<br/> See Also: <a href="https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#get-an-index-rollup-job">- rollups.get</a>
 </div>
 
 
@@ -900,7 +736,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -940,6 +776,392 @@
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Rollup to access</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TransportRequestOptions</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Options for <a href="Transport.html#request">Transport#request</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Callback that handles errors and response</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_api_rollups.js.html">api/api/rollups.js</a>, <a href="api_api_rollups.js.html#line100">line 100</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">Promise.&lt;never></span>
+|
+
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="put"><span class="type-signature">(static) </span>RollupsApi#put<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Create or update index rollup.
+<br/> See Also: <a href="https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#create-or-update-an-index-rollup-job">- rollups.put</a>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>if_seq_no</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Only perform the operation if the document has this sequence number.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>if_primary_term</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Only perform the operation if the document has this primary term.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Rollup to access</td>
+        </tr>
+
     
 
         <tr>
@@ -950,66 +1172,27 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
             </td>
 
             
-
-            
-
-            <td class="description last">
-                <h6>Properties</h6>
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>pit_id</code></td>
-            
-
-            <td class="type">
-            
                 
-<span class="param-type">Array.&lt;string></span>
 
-
-            
-            </td>
-
+                
+                </td>
             
 
             
 
-            <td class="description last">The PIT IDs of the PITs to be deleted.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -1029,7 +1212,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">TransportRequestOptions</span>
 
 
             
@@ -1123,7 +1306,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_delete_pit.js.html">api/api/delete_pit.js</a>, <a href="api_api_delete_pit.js.html#line34">line 34</a>
+        <a href="api_api_rollups.js.html">api/api/rollups.js</a>, <a href="api_api_rollups.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -1151,10 +1334,6 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#sample-response-2">Delete PIT Response</a>
-</div>
-
 
 
 <dl>
@@ -1187,7 +1366,7 @@
     
 
     
-    <h4 class="name" id=".getAllPitsApi"><span class="type-signature">(static) </span>getAllPitsApi<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
+    <h4 class="name" id="start"><span class="type-signature">(static) </span>RollupsApi#start<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
     
 
     
@@ -1195,8 +1374,8 @@
 
 
 <div class="description">
-    Returns all PITs in the OpenSearch cluster.
-<br/> See Also: <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#list-all-pits">Opensearch - List all PITs</a>
+    Start rollup.
+<br/> See Also: <a href="https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#start-or-stop-an-index-rollup-job">- rollups.start</a>
 </div>
 
 
@@ -1240,7 +1419,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
             
@@ -1258,7 +1437,56 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Rollup to access</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1271,7 +1499,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">TransportRequestOptions</span>
 
 
             
@@ -1365,7 +1593,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_api_get_all_pits.js.html">api/api/get_all_pits.js</a>, <a href="api_api_get_all_pits.js.html#line32">line 32</a>
+        <a href="api_api_rollups.js.html">api/api/rollups.js</a>, <a href="api_api_rollups.js.html#line199">line 199</a>
     </li></ul></dd>
     
 
@@ -1393,10 +1621,293 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    <a href="https://opensearch.org/docs/latest/opensearch/point-in-time-api#sample-response-1">List all PITs Response</a>
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">Promise.&lt;never></span>
+|
+
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="stop"><span class="type-signature">(static) </span>RollupsApi#stop<span class="signature">(params, options<span class="signature-attributes">opt</span>, callback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object|Promise.&lt;never>|*}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Stop rollup.
+<br/> See Also: <a href="https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#start-or-stop-an-index-rollup-job">- rollups.stop</a>
 </div>
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Rollup to access</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">TransportRequestOptions</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Options for <a href="Transport.html#request">Transport#request</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Callback that handles errors and response</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_api_rollups.js.html">api/api/rollups.js</a>, <a href="api_api_rollups.js.html#line231">line 231</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
 
 
 <dl>

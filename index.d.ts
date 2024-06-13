@@ -4621,6 +4621,104 @@ declare class Client {
     options: TransportRequestOptions,
     callback: callbackFn<TResponse, TContext>
   ): TransportRequestCallback;
+  rollups: {
+    delete<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    delete<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    delete<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    delete<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    get<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    get<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    get<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    get<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    put<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    put<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    put<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    put<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    explain<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    explain<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    explain<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    explain<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    start<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    start<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    start<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    start<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    stop<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    stop<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    stop<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    stop<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+  };
   scripts_painless_execute<
     TResponse = Record<string, any>,
     TRequestBody extends RequestBody = Record<string, any>,
@@ -5473,6 +5571,136 @@ declare class Client {
     options: TransportRequestOptions,
     callback: callbackFn<TResponse, TContext>
   ): TransportRequestCallback;
+  transforms: {
+    search<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    search<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    search<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    search<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    preview<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    preview<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    preview<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    preview<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    delete<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    delete<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    delete<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    delete<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    get<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    get<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    get<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    get<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    put<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    put<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    put<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    put<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    explain<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    explain<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    explain<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    explain<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    start<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    start<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    start<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    start<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    stop<TResponse = Record<string, any>, TContext = Context>(
+      params?: Record<string, any>,
+      options?: TransportRequestOptions
+    ): TransportRequestPromise<ApiResponse<TResponse, TContext>>;
+    stop<TResponse = Record<string, any>, TContext = Context>(
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    stop<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+    stop<TResponse = Record<string, any>, TContext = Context>(
+      params: Record<string, any>,
+      options: TransportRequestOptions,
+      callback: callbackFn<TResponse, TContext>
+    ): TransportRequestCallback;
+  };
   update<
     TResponse = Record<string, any>,
     TRequestBody extends RequestBody = Record<string, any>,

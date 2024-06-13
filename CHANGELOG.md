@@ -4,17 +4,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.10.0]
+### Added
 - Added Rollups API ([744](https://github.com/opensearch-project/opensearch-js/issues/744))
 - Added Transforms API ([744](https://github.com/opensearch-project/opensearch-js/issues/744))
 ### Dependencies
 - Bumps `@types/node` from 20.14.0 to 20.14.2
 - Bumps `@babel/eslint-parser` from 7.24.6 to 7.24.7
 - Bumps `prettier` from 3.3.0 to 3.3.1
-### Changed
-### Deprecated
-### Removed
-### Fixed
-### Security
 
 ## [2.9.1]
 ### Dependencies

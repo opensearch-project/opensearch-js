@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+- Bumps `simple-git` from 3.24.0 to 3.25.0
 ### Changed
 ### Deprecated
 ### Removed

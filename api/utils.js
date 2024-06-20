@@ -5,7 +5,6 @@
  * The OpenSearch Contributors require contributions made to
  * this file be licensed under the Apache-2.0 license or a
  * compatible open source license.
- *
  */
 
 /*
@@ -27,32 +26,25 @@
  * under the License.
  */
 
-'use strict';
+'use strict'
 
 const result = { body: null, statusCode: null, headers: null, warnings: null };
-const kConfigurationError = Symbol('configuration error');
+const kConfigErr = Symbol('configuration error');
 
-function handleError(err, callback) {
+function noop () {}
+
+function parsePathParam(param) {
+  if (param == null) return null;
+  return encodeURIComponent(param);
+}
+
+function handleMissingParam(param, apiModule, callback) {
+  const err = new apiModule[kConfigErr]('Missing required parameter: ' + param);
   if (callback) {
     process.nextTick(callback, err, result);
     return { then: noop, catch: noop, abort: noop };
   }
   return Promise.reject(err);
-}
-
-function encodePathParam(camelName, snakeName = null) {
-  if (camelName == null && snakeName == null) return null;
-  return encodeURIComponent(snakeName || camelName);
-}
-
-function snakeCaseKeys(acceptedQuerystring, snakeCase, querystring) {
-  const target = {};
-  const keys = Object.keys(querystring);
-  for (let i = 0, len = keys.length; i < len; i++) {
-    const key = keys[i];
-    target[snakeCase[key] || key] = querystring[key];
-  }
-  return target;
 }
 
 function normalizeArguments(params, options, callback) {
@@ -68,13 +60,28 @@ function normalizeArguments(params, options, callback) {
   return [params, options, callback];
 }
 
-function noop() {}
+function apiFunc (bindObj, cache, path) {
+  return function (...args) {
+    if (!cache[path]) cache[path] = require(path).bind(bindObj);
+    return cache[path](...args);
+  }
+}
+
+function logMemoryUsage(context = '') {
+  const memoryUsage = process.memoryUsage();
+  console.log(`Memory usage: ${context}
+    RSS: ${Math.round(memoryUsage.rss / 1024 / 1024 * 100) / 100} MB
+    Heap Total: ${Math.round(memoryUsage.heapTotal / 1024 / 1024 * 100) / 100} MB
+    Heap Used: ${Math.round(memoryUsage.heapUsed / 1024 / 1024 * 100) / 100} MB
+    External: ${Math.round(memoryUsage.external / 1024 / 1024 * 100) / 100} MB`);
+}
 
 module.exports = {
-  handleError,
-  snakeCaseKeys,
+  handleMissingParam,
+  parsePathParam,
   normalizeArguments,
   noop,
-  kConfigurationError,
-  encodePathParam,
+  kConfigErr,
+  apiFunc,
+  logMemoryUsage,
 };

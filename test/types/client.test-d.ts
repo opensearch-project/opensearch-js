@@ -28,7 +28,7 @@
  */
 
 import { expectType } from 'tsd';
-import { Client, ApiError, ApiResponse, RequestEvent, ResurrectEvent } from '../../';
+import { Client, ApiError, ApiResponse, ResurrectEvent } from '../../';
 import { TransportRequestCallback, TransportRequestPromise } from '../../lib/Transport';
 
 const client = new Client({
@@ -37,17 +37,17 @@ const client = new Client({
 
 client.on('request', (err, meta) => {
   expectType<ApiError>(err);
-  expectType<RequestEvent>(meta);
+  expectType<ApiResponse>(meta);
 });
 
 client.on('response', (err, meta) => {
   expectType<ApiError>(err);
-  expectType<RequestEvent>(meta);
+  expectType<ApiResponse>(meta);
 });
 
 client.on('sniff', (err, meta) => {
   expectType<ApiError>(err);
-  expectType<RequestEvent>(meta);
+  expectType<ApiResponse>(meta);
 });
 
 client.on('resurrect', (err, meta) => {

@@ -23,12 +23,12 @@ client.info().then(response => {
 You can quickly create an index with default settings and mappings by using the `indices.create` API action. The following example creates an index named `paintings` with default settings and mappings:
 
 ```javascript
-client.indices.create({index: 'paintings'})
+await client.indices.create({index: 'paintings'})
 ```
 To specify settings and mappings, you can pass them as the `body` of the request. The following example creates an index named `movies` with custom settings and mappings:
 
 ```javascript
-client.indices.create({
+await client.indices.create({
   index: 'movies',
   body: {
     settings: {
@@ -52,7 +52,7 @@ When you create a new document for an index, OpenSearch will automatically creat
 client.indices.exists({ index: 'burner' }).then((exists) => {
   console.log(exists); // => false
 });
-client.create({index: 'burner', body: { lorem: 'ipsum' }});
+await client.create({index: 'burner', body: { lorem: 'ipsum' }});
 client.indices.exists({ index: 'burner' }).then((exists) => {
   console.log(exists); // => true
 });
@@ -60,12 +60,12 @@ client.indices.exists({ index: 'burner' }).then((exists) => {
 
 
 ### Update an Index
-You can update an index's settings and mappings by using the `indices.put_settings` and `indices.put_mapping` API actions. 
+You can update an index's settings and mappings by using the `indices.putSettings` and `indices.putMapping` API actions. 
 
 The following example updates the `movies` index's number of replicas to `0`:
 
 ```javascript
-client.indices.put_settings({
+await client.indices.putSettings({
   index: 'movies',
   body: {
     index: {
@@ -77,7 +77,7 @@ client.indices.put_settings({
 The following example updates the `movies` index's mappings to add a new field named `director`:
 
 ```javascript
-client.indices.put_mapping({
+await client.indices.putMapping({
   index: 'movies',
   body: {
     properties: {
@@ -96,7 +96,7 @@ client.indices.get({ index: 'movies' })
 ```
 The response body contains the index's settings and mappings:
 
-```javascript
+```json
 {
   "movies": {
     "aliases": {},
@@ -124,19 +124,11 @@ The response body contains the index's settings and mappings:
 Let's delete the `movies` index by using the `indices.delete` API action:
 
 ```javascript
-client.indices.delete({index: 'movies'})
+await client.indices.delete({index: 'movies'})
 ```
 We can also delete multiple indices at once:
 
 ```javascript
-client.indices.delete({index: ['movies', 'paintings', 'burner'], ignore_unavailable: true,})
+await client.indices.delete({index: ['movies', 'paintings', 'burner'], ignore_unavailable: true,})
 ```
 Notice that we are passing `ignore_unavailable: true` to the request. This tells the client to ignore throwing error and deleting the index if it doesn't exist. Without it, the above `delete` request will throw an error because the `movies` index has already been deleted in the previous example.
-
-## Cleanup
-
-All resources created in this guide are automatically deleted when the cluster is stopped. You can stop the cluster by running the following command:
-
-```bash
-docker-compose down
-```

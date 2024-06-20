@@ -249,7 +249,7 @@ test('Disable keep alive', (t) => {
   buildServer(handler, ({ port }, server) => {
     const connection = new Connection({
       url: new URL(`http://localhost:${port}`),
-      agent: false,
+      headers: { connection: 'close' },
     });
     connection.request(
       {

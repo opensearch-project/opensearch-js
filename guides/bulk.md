@@ -122,5 +122,5 @@ client.helpers
 To clean up the resources created in this guide, delete the `movies` and `books` indices:
 
 ```javascript
-client.indices.delete({ index: [movies, books] });
+await client.indices.delete({ index: [movies, books] });
 ```

@@ -2,8 +2,10 @@
 
 Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-## [Unreleased]
+## [3.0.0]
 ### Added
+- Added missing API functions and modules.
+- Added missing request and response types.
 ### Dependencies
 - Bumps `micromatch` from 4.0.7 to 4.0.8
 - Bumps `debug` from 4.3.6 to 4.3.7
@@ -12,8 +14,15 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 22.5.0 to 22.5.4
 - Bumps `aws4` from 1.13.1 to 1.13.2
 ### Changed
+- All API functions are now generated from the OpenSearch API specification.
+- API request and response types are now generated from the OpenSearch API specification.
+- Overhauled API codebase and break it into smaller, more manageable files for better readability and maintainability.
 ### Deprecated
+- Support for snake_cased API function aliases have been deprecated to conform to JavaScript naming conventions.
 ### Removed
+- Removed support for API param aliases. That is, the API functions now only accept params with the exact names specified in the OpenSearch API specification.
+- Removed support for overriding HTTP methods in API functions.
+- Removed support for Node.js 10 through 16. The minimum supported Node.js version is now 18.
 ### Fixed
 ### Security
 

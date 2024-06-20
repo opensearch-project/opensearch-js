@@ -19,7 +19,7 @@ const client = new Client({
 You can create an index template to define default settings and mappings for indices of certain patterns. The following example creates an index template named `books` with default settings and mappings for indices of the `books-*` pattern:
 
 ```javascript
-client.indices.put_index_template({
+client.indices.putIndexTemplate({
   name: 'books',
   body: {
     index_patterns: ['books-*'],
@@ -60,7 +60,7 @@ client.indices.create({ index: 'books-nonfiction' })
 If multiple index templates match the index's name, OpenSearch will apply the template with the highest priority. The following example creates two index templates named `books-*` and `books-fiction-*` with different settings:
 
 ```javascript
-client.indices.put_index_template({
+client.indices.putIndexTemplate({
   name: 'books',
   body: {
     index_patterns: ['books-*'],
@@ -76,11 +76,11 @@ client.indices.put_index_template({
   console.log(`Index template created: ${resp}`);
 });
 
-client.indices.put_index_template({
+client.indices.putIndexTemplate({
   name: 'books-fiction',
   body: {
     index_patterns: ['books-fiction-*'],
-    priority: 1, # higher priority than the `books` template
+    priority: 1, // higher priority than the `books` template
     template: {
       settings: {
         index: {
@@ -112,7 +112,7 @@ client.indices.create({ index: 'books-fiction-romance' })
 Composable index templates are a new type of index template that allow you to define multiple component templates and compose them into a final template. The following example creates a component template named `books_mappings` with default mappings for indices of the `books-*` and `books-fiction-*` patterns:
 
 ```javascript
-client.cluster.put_component_template({
+client.cluster.putComponentTemplate({
   name: 'books_mappings',
   body: {
     template: {
@@ -131,11 +131,11 @@ client.cluster.put_component_template({
   console.log(`Component template created: ${resp}`);
 });
 
-client.indices.put_index_template({
+client.indices.putIndexTemplate({
   name: 'books',
   body: {
     index_patterns: ['books-*'],
-    composed_of: ['books_mappings'], # use the `books_mappings` component template
+    composed_of: ['books_mappings'], // use the `books_mappings` component template
     priority: 0,
     template: {
       settings: {
@@ -151,11 +151,11 @@ client.indices.put_index_template({
   console.log(`Index template created: ${resp}`);
 });
 
-client.indices.put_index_template({
+client.indices.putIndexTemplate({
   name: 'books',
   body: {
     index_patterns: ['books-*'],
-    composed_of: ['books_mappings'], # use the `books_mappings` component template
+    composed_of: ['books_mappings'], // use the `books_mappings` component template
     priority: 1,
     template: {
       settings: {
@@ -185,10 +185,10 @@ client.indices.create({ index: 'books-fiction-horror' })
 ```
 
 ### Get an Index Template
-You can get an index template with the `get_index_template` API action:
+You can get an index template with the `getIndexTemplate` API action:
 
 ```javascript
-client.indices.get_index_template({name: 'books'}).then(response => {
+client.indices.getIndexTemplate({name: 'books'}).then(response => {
   console.log(response.body);
 });
 ```
@@ -197,7 +197,7 @@ client.indices.get_index_template({name: 'books'}).then(response => {
 You can delete an index template with the `delete_template` API action:
 
 ```javascript
-client.indices.delete_index_template({
+client.indices.deleteIndexTemplate({
   name: 'books'
 }).then((response) => {
   console.log(`Index template deleted: ${response}`);
@@ -214,13 +214,13 @@ client.indices.delete({
   console.log(`Index deleted: ${response}`)
 });
 
-client.indices.delete_index_template({
+client.indices.deleteIndexTemplate({
   name: 'books-fiction'
 }).then(response => {
   console.log(`Index template deleted: ${response}`)
 });
 
-client.cluster.delete_index_template({
+client.cluster.deleteIndexTemplate({
   name: 'books_mappings'
 }).then(response => {
   console.log(`Component template deleted: ${response}`)

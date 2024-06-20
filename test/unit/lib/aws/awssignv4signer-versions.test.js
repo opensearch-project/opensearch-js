@@ -7,6 +7,7 @@
  * compatible open source license.
  *
  */
+
 const { test } = require('tap');
 
 const AwsSigv4Signer = require('../../../../lib/aws/AwsSigv4Signer');

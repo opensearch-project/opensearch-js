@@ -44,8 +44,6 @@ export type ApiError =
   | errors.RequestAbortedError
   | errors.NotCompatibleError;
 
-export type Context = unknown;
-
 export interface nodeSelectorFn {
   (connections: Connection[]): Connection;
 }
@@ -85,13 +83,13 @@ interface TransportOptions {
   auth?: BasicAuth | AwsSigv4Auth;
 }
 
-export interface RequestEvent<TResponse = Record<string, any>, TContext = Context> {
-  body: TResponse;
+export interface ApiResponse {
+  body: any;
   statusCode: number | null;
   headers: Record<string, any> | null;
   warnings: string[] | null;
   meta: {
-    context: TContext;
+    context: unknown;
     name: string | symbol;
     request: {
       params: TransportRequestParams;
@@ -107,11 +105,6 @@ export interface RequestEvent<TResponse = Record<string, any>, TContext = Contex
     };
   };
 }
-
-// ApiResponse and RequestEvent are the same thing
-// we are doing this for have more clear names
-export interface ApiResponse<TResponse = Record<string, any>, TContext = Context>
-  extends RequestEvent<TResponse, TContext> {}
 
 export type RequestBody<T = Record<string, any>> = T | string | Buffer | ReadableStream;
 export type RequestNDBody<T = Record<string, any>[]> =
@@ -138,7 +131,7 @@ export interface TransportRequestOptions {
   querystring?: Record<string, any>;
   compression?: 'gzip';
   id?: any;
-  context?: Context;
+  context?: unknown;
   warnings?: string[];
   opaqueId?: string;
 }

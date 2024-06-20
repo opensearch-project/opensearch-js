@@ -49,7 +49,6 @@ jspm_packages
 .idea
 
 # opensearch repo or binary files
-opensearch*
 !opensearch_dashboards*
 !opensearchDashboards*
 

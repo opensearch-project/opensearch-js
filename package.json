@@ -9,12 +9,6 @@
       "types": "./index.d.ts",
       "import": "./index.mjs"
     },
-    "./api/new": {
-      "types": "./api/new.d.ts"
-    },
-    "./api/types": {
-      "types": "./api/types.d.ts"
-    },
     "./aws": "./lib/aws/index.js",
     "./aws-v3": "./lib/aws/index-v3.js",
     "./*": "./*"
@@ -32,8 +26,12 @@
       ]
     }
   },
+  "files": [
+    "api/", "lib/",
+    "index.d.ts", "index.js", "index.mjs",
+    "README.md", "LICENSE.txt"],
   "homepage": "https://www.opensearch.org/",
-  "version": "2.11.0",
+  "version": "3.0.0-beta.5",
   "versionCanary": "7.10.0-canary.6",
   "keywords": [
     "opensearch",
@@ -121,7 +119,7 @@
     "url": "https://github.com/opensearch-project/opensearch-js/issues"
   },
   "engines": {
-    "node": ">=10",
+    "node": ">=18",
     "yarn": "^1.22.10"
   },
   "tsd": {

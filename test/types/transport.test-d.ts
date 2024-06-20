@@ -35,11 +35,10 @@ import {
   TransportRequestOptions,
   TransportRequestCallback,
   TransportRequestPromise,
-  RequestEvent,
+  ApiResponse,
   ApiError,
   RequestBody,
   RequestNDBody,
-  ApiResponse,
 } from '../../lib/Transport';
 
 const params = {
@@ -84,7 +83,7 @@ const response = {
 expectAssignable<TransportRequestParams>(params);
 expectAssignable<TransportRequestParams>({ method: 'GET', path: '/' });
 expectAssignable<TransportRequestOptions>(options);
-expectAssignable<RequestEvent>(response);
+expectAssignable<ApiResponse>(response);
 expectAssignable<ApiResponse>(response);
 
 // verify that RequestBody, RequestNDBody and ResponseBody works as expected

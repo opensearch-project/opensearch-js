@@ -2,6 +2,22 @@
 
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [3.0.0]
+### Added
+### Dependencies
+### Changed
+- All API functions are now generated from the OpenSearch API specification.
+- API request and response types are now generated from the OpenSearch API specification.
+- Overhauled API codebase and break it into smaller, more manageable files for better readability and maintainability.
+- API modules and functions are now lazily loaded to improve performance.
+### Deprecated
+### Removed
+- *BREAKING* Removed support for API param aliases. That is, the API functions now only accept params with the exact names specified in the OpenSearch API specification.
+- *BREAKING* Removed support for snake_cased API function names. All API functions are now camelCased only to conform to JavaScript naming conventions.
+- *BREAKING* Removed support for Node.js 10 through 16. The minimum supported Node.js version is now 18.
+### Fixed
+### Security
+
 ## [Unreleased]
 ### Added
 ### Dependencies

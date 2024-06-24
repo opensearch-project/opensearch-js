@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `ws` from 7.5.9 to 7.5.10
 - Bumps `@types/node` from 20.14.2 to 20.14.8
 - Bumps `faker` from 5.5.3 to 6.6.6
+- Bumps `tsd` from 0.27.0 to 0.31.1
 ### Changed
 ### Deprecated
 ### Removed

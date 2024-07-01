@@ -86,7 +86,7 @@
     "ora": "^8.0.1",
     "prettier": "^3.0.1",
     "pretty-hrtime": "^1.0.3",
-    "proxy": "^1.0.2",
+    "proxy": "^2.2.0",
     "rimraf": "^5.0.0",
     "semver": "^7.3.5",
     "simple-git": "^3.15.0",

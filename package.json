@@ -26,6 +26,9 @@
       ],
       "aws": [
         "./lib/aws/index.d.ts"
+      ],
+      "aws-v3": [
+        "./lib/aws/index-v3.d.ts"
       ]
     }
   },

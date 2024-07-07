@@ -15,6 +15,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Add missing types in `package.json` for `aws-v3` ([810](https://github.com/opensearch-project/opensearch-js/pull/810))
 ### Security
 
 ## [2.10.0]

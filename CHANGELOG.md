@@ -7,7 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `simple-git` from 3.24.0 to 3.25.0
 - Bumps `prettier` from 3.3.1 to 3.3.2
-- Bumps `@aws-sdk/types` from 3.577.0 to 3.598.0
+- Bumps `@aws-sdk/types` from 3.577.0 to 3.609.0
 - Bumps `ws` from 7.5.9 to 7.5.10
 - Bumps `@types/node` from 20.14.2 to 20.14.10
 - Bumps `faker` from 5.5.3 to 6.6.6

@@ -33,7 +33,7 @@
     }
   },
   "homepage": "https://www.opensearch.org/",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "versionCanary": "7.10.0-canary.6",
   "keywords": [
     "opensearch",

@@ -12,6 +12,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 20.14.2 to 20.14.10
 - Bumps `faker` from 5.5.3 to 6.6.6
 - Bumps `rimraf` from 5.0.7 to 6.0.1
+- Bumps `@babel/eslint-parser` from 7.24.7 to 7.24.8
 ### Changed
 ### Deprecated
 ### Removed

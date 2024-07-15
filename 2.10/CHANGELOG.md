@@ -5,6 +5,14 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.10.1]
+### Dependencies
 - Bumps `simple-git` from 3.24.0 to 3.25.0
 - Bumps `prettier` from 3.3.1 to 3.3.3
 - Bumps `@aws-sdk/types` from 3.577.0 to 3.609.0
@@ -13,12 +21,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `faker` from 5.5.3 to 6.6.6
 - Bumps `rimraf` from 5.0.7 to 6.0.1
 - Bumps `@babel/eslint-parser` from 7.24.7 to 7.24.8
-### Changed
-### Deprecated
-### Removed
 ### Fixed
 - Add missing types in `package.json` for `aws-v3` ([810](https://github.com/opensearch-project/opensearch-js/pull/810))
-### Security
 
 ## [2.10.0]
 ### Added

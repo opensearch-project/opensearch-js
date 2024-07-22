@@ -15,6 +15,7 @@ const AwsSigv4SignerError = require('../../../../lib/aws/errors');
 const { Connection } = require('../../../../index');
 const { Client, buildServer } = require('../../../utils');
 const { debug } = require('console');
+const { RequestAbortedError } = require('../../../../lib/errors');
 
 test('Sign with SigV4', (t) => {
   t.plan(4);
@@ -697,6 +698,151 @@ test('Should create child client', (t) => {
       }
       count++;
     });
-    t.not_same(child.transport._auth, child2.transport._auth);
+    t.notSame(child.transport._auth, child2.transport._auth);
+  });
+});
+
+test('pre-request abort (promises)', (t) => {
+  t.plan(1);
+
+  function handler() {
+    t.fail('Request should have been aborted');
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockCreds = {
+      accessKeyId: uuidv4(),
+      secretAccessKey: uuidv4(),
+    };
+
+    const AwsSigv4SignerOptions = {
+      region: 'us-east-1',
+      getCredentials: () =>
+        new Promise((resolve) => {
+          setTimeout(() => resolve(mockCreds), 100);
+        }),
+    };
+
+    const client = new Client({
+      ...AwsSigv4Signer(AwsSigv4SignerOptions),
+      node: `http://localhost:${port}`,
+    });
+
+    const promise = client.search({
+      index: 'test',
+      q: 'foo:bar',
+    });
+
+    promise
+      .then(() => {
+        t.fail('Should fail');
+      })
+      .catch((err) => {
+        t.ok(err instanceof RequestAbortedError);
+      })
+      .finally(() => {
+        server.stop();
+      });
+
+    promise.abort();
+  });
+});
+
+test('pre-request abort (callback)', (t) => {
+  t.plan(1);
+
+  function handler() {
+    t.fail('Request should have been aborted');
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockCreds = {
+      accessKeyId: uuidv4(),
+      secretAccessKey: uuidv4(),
+    };
+
+    const AwsSigv4SignerOptions = {
+      region: 'us-east-1',
+      getCredentials: () =>
+        new Promise((resolve) => {
+          setTimeout(() => resolve(mockCreds), 100);
+        }),
+    };
+
+    const client = new Client({
+      ...AwsSigv4Signer(AwsSigv4SignerOptions),
+      node: `http://localhost:${port}`,
+    });
+
+    const cb = client.search(
+      {
+        index: 'test',
+        q: 'foo:bar',
+      },
+      (err) => {
+        t.ok(err instanceof RequestAbortedError);
+        server.stop();
+      }
+    );
+
+    cb.abort();
+  });
+});
+
+test('in-flight abort', (t) => {
+  t.plan(4);
+
+  let handlerStartFn = null;
+  const handleStart = new Promise((resolve) => {
+    handlerStartFn = resolve;
+  });
+
+  function handler(req) {
+    t.ok(req);
+    req.on('close', () => {
+      t.ok(true);
+    });
+    handlerStartFn();
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const mockCreds = {
+      accessKeyId: uuidv4(),
+      secretAccessKey: uuidv4(),
+    };
+
+    const AwsSigv4SignerOptions = {
+      region: 'us-east-1',
+      getCredentials: () =>
+        new Promise((resolve) => {
+          setTimeout(() => resolve(mockCreds), 100);
+        }),
+    };
+
+    const client = new Client({
+      ...AwsSigv4Signer(AwsSigv4SignerOptions),
+      node: `http://localhost:${port}`,
+    });
+
+    const promise = client.search({
+      index: 'test',
+      q: 'foo:bar',
+    });
+
+    promise
+      .then(() => {
+        t.fail('Should fail');
+      })
+      .catch((err) => {
+        t.ok(err instanceof RequestAbortedError);
+      })
+      .finally(() => {
+        server.stop();
+      });
+
+    handleStart.then(() => {
+      t.ok(true);
+      promise.abort();
+    });
   });
 });

@@ -5,26 +5,26 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
-- Bumps `@types/node` from 20.14.10 to 20.14.11
-- Bumps `eslint-plugin-prettier` from 5.1.3 to 5.2.1
-- Bumps `semver` from 7.6.2 to 7.6.3
 ### Changed
-- Return a transport object from `AwsSigv4SignerTransport.request` that has an `.abort()` method that allows in-flight requests to be canceled
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
 
-## [2.10.1]
+## [2.11.0]
+### Changed
+- Return a transport object from `AwsSigv4SignerTransport.request` that has an `.abort()` method that allows in-flight requests to be canceled
 ### Dependencies
-- Bumps `simple-git` from 3.24.0 to 3.25.0
-- Bumps `prettier` from 3.3.1 to 3.3.3
 - Bumps `@aws-sdk/types` from 3.577.0 to 3.609.0
-- Bumps `ws` from 7.5.9 to 7.5.10
-- Bumps `@types/node` from 20.14.2 to 20.14.10
-- Bumps `faker` from 5.5.3 to 6.6.6
-- Bumps `rimraf` from 5.0.7 to 6.0.1
 - Bumps `@babel/eslint-parser` from 7.24.7 to 7.24.8
+- Bumps `@types/node` from20.14.2 to 20.14.11
+- Bumps `eslint-plugin-prettier` from 5.1.3 to 5.2.1
+- Bumps `faker` from 5.5.3 to 6.6.6
+- Bumps `prettier` from 3.3.1 to 3.3.3
+- Bumps `rimraf` from 5.0.7 to 6.0.1
+- Bumps `semver` from 7.6.2 to 7.6.3
+- Bumps `simple-git` from 3.24.0 to 3.25.0
+- Bumps `ws` from 7.5.9 to 7.5.10
 ### Fixed
 - Add missing types in `package.json` for `aws-v3` ([810](https://github.com/opensearch-project/opensearch-js/pull/810))
 

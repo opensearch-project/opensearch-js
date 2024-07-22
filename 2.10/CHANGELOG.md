@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 - Bumps `@types/node` from 20.14.10 to 20.14.11
+- Bumps `eslint-plugin-prettier` from 5.1.3 to 5.2.1
 ### Changed
 ### Deprecated
 ### Removed

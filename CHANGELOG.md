@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@types/node` from 20.14.10 to 20.14.11
 - Bumps `eslint-plugin-prettier` from 5.1.3 to 5.2.1
 ### Changed
+- Return a transport object from `AwsSigv4SignerTransport.request` that has an `.abort()` method that allows in-flight requests to be canceled
 ### Deprecated
 ### Removed
 ### Fixed

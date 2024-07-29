@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+- Bumps `@babel/eslint-parser` from 7.24.8 to 7.25.1
 ### Changed
 ### Deprecated
 ### Removed

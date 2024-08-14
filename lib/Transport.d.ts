@@ -83,8 +83,8 @@ interface TransportOptions {
   auth?: BasicAuth | AwsSigv4Auth;
 }
 
-export interface RequestEvent<TResponse = Record<string, any>> {
-  body: TResponse;
+export interface ApiResponse {
+  body: any;
   statusCode: number | null;
   headers: Record<string, any> | null;
   warnings: string[] | null;
@@ -105,11 +105,6 @@ export interface RequestEvent<TResponse = Record<string, any>> {
     };
   };
 }
-
-// ApiResponse and RequestEvent are the same thing
-// we are doing this for have more clear names
-export interface ApiResponse<TResponse = Record<string, any>>
-  extends RequestEvent<TResponse> {}
 
 export type RequestBody<T = Record<string, any>> = T | string | Buffer | ReadableStream;
 export type RequestNDBody<T = Record<string, any>[]> =

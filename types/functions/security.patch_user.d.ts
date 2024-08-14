@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Security_Common from '../components/security._common'
 
@@ -21,7 +22,10 @@ export interface Request extends Global.Params {
   username: string;
 }
 
-export type Response = Security_Common.Ok
+export type ResponseBody = Security_Common.Ok
 
 export type RequestBody = Security_Common.PatchOperation[]
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

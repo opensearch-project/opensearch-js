@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Snapshot_Common from '../components/snapshot._common'
@@ -25,7 +26,10 @@ export interface Request extends Global.Params {
   snapshot?: Common.Names;
 }
 
-export interface Response {
+export interface ResponseBody {
   snapshots: Snapshot_Common.Status[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

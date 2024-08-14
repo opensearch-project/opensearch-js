@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Nodes_ReloadSecureSettings from '../components/nodes.reload_secure_settings'
@@ -23,9 +24,12 @@ export interface Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export type Response = Nodes_ReloadSecureSettings.ResponseBase
+export type ResponseBody = Nodes_ReloadSecureSettings.ResponseBase
 
 export interface RequestBody {
   secure_settings_password?: Common.Password;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

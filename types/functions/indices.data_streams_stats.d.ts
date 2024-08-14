@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_DataStreamsStats from '../components/indices.data_streams_stats'
@@ -21,7 +22,7 @@ export interface Request extends Global.Params {
   name?: Common.Indices;
 }
 
-export interface Response {
+export interface ResponseBody {
   _shards: Common.ShardStatistics;
   backing_indices: number;
   data_stream_count: number;
@@ -30,3 +31,6 @@ export interface Response {
   total_store_sizes?: Common.ByteSize;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

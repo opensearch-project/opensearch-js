@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Core_Search from '../components/_core.search'
 import * as Common from '../components/_common'
@@ -36,7 +37,7 @@ export interface Request extends Global.Params {
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export type Response = Core_Update.UpdateWriteResponseBase
+export type ResponseBody = Core_Update.UpdateWriteResponseBase
 
 export interface RequestBody {
   _source?: Core_Search.SourceConfig;
@@ -48,3 +49,6 @@ export interface RequestBody {
   upsert?: Record<string, any>;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

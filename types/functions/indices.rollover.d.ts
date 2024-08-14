@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_Common from '../components/indices._common'
@@ -30,7 +31,7 @@ export interface Request extends Global.Params {
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export interface Response {
+export interface ResponseBody {
   acknowledged: boolean;
   conditions: Record<string, boolean>;
   dry_run: boolean;
@@ -47,3 +48,6 @@ export interface RequestBody {
   settings?: Record<string, Record<string, any>>;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

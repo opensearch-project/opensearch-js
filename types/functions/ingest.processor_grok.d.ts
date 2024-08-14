@@ -13,11 +13,15 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 
 export type Request = Global.Params & Record<string, any>
 
-export interface Response {
+export interface ResponseBody {
   patterns: Record<string, string>;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

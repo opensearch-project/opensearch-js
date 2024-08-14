@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Snapshot_Restore from '../components/snapshot.restore'
@@ -27,7 +28,7 @@ export interface Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface Response {
+export interface ResponseBody {
   snapshot: Snapshot_Restore.SnapshotRestore;
 }
 
@@ -44,3 +45,6 @@ export interface RequestBody {
   rename_replacement?: string;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cluster_Common from '../components/cluster._common'
@@ -24,7 +25,10 @@ export interface Request extends Global.Params {
   name?: Common.Name;
 }
 
-export interface Response {
+export interface ResponseBody {
   component_templates: Cluster_Common.ComponentTemplate[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

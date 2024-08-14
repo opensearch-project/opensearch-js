@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Core_Msearch from '../components/_core.msearch'
@@ -28,7 +29,10 @@ export interface Request extends Global.Params {
   typed_keys?: boolean;
 }
 
-export type Response = Core_Msearch.MultiSearchResult
+export type ResponseBody = Core_Msearch.MultiSearchResult
 
 export type RequestBody = Core_MsearchTemplate.RequestItem[]
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

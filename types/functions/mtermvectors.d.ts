@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Core_Mtermvectors from '../components/_core.mtermvectors'
@@ -34,7 +35,7 @@ export interface Request extends Global.Params {
   version_type?: Common.VersionType;
 }
 
-export interface Response {
+export interface ResponseBody {
   docs: Core_Mtermvectors.TermVectorsResult[];
 }
 
@@ -43,3 +44,6 @@ export interface RequestBody {
   ids?: Common.Id[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

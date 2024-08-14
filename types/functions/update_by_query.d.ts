@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Common_QueryDsl from '../components/_common.query_dsl'
@@ -56,7 +57,7 @@ export interface Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface Response {
+export interface ResponseBody {
   batches?: number;
   deleted?: number;
   failures?: Common.BulkIndexByScrollFailure[];
@@ -83,3 +84,6 @@ export interface RequestBody {
   slice?: Common.SlicedScroll;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

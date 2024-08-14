@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Nodes_Usage from '../components/nodes.usage'
 import * as Common from '../components/_common'
@@ -23,5 +24,8 @@ export interface Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export type Response = Nodes_Usage.ResponseBase
+export type ResponseBody = Nodes_Usage.ResponseBase
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

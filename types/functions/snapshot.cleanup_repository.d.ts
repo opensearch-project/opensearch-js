@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Snapshot_CleanupRepository from '../components/snapshot.cleanup_repository'
@@ -24,7 +25,10 @@ export interface Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export interface Response {
+export interface ResponseBody {
   results: Snapshot_CleanupRepository.CleanupRepositoryResults;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

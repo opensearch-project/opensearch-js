@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cluster_Health from '../components/cluster.health'
@@ -34,5 +35,8 @@ export interface Request extends Global.Params {
   wait_for_status?: Common.HealthStatus;
 }
 
-export type Response = Cluster_Health.HealthResponseBody
+export type ResponseBody = Cluster_Health.HealthResponseBody
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

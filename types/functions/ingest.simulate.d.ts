@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Ingest_Simulate from '../components/ingest.simulate'
@@ -24,7 +25,7 @@ export interface Request extends Global.Params {
   verbose?: boolean;
 }
 
-export interface Response {
+export interface ResponseBody {
   docs: Ingest_Simulate.PipelineSimulation[];
 }
 
@@ -33,3 +34,6 @@ export interface RequestBody {
   pipeline?: Ingest_Common.Pipeline;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

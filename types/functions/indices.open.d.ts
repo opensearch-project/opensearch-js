@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 
@@ -29,10 +30,13 @@ export interface Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export type Response = {
+export type ResponseBody = {
   task?: Common.TaskId;
 } | {
   acknowledged: boolean;
   shards_acknowledged: boolean;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

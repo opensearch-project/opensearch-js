@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_Segments from '../components/indices.segments'
@@ -25,8 +26,11 @@ export interface Request extends Global.Params {
   verbose?: boolean;
 }
 
-export interface Response {
+export interface ResponseBody {
   _shards: Common.ShardStatistics;
   indices: Record<string, Indices_Segments.IndexSegment>;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

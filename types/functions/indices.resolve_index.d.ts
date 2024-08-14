@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_ResolveIndex from '../components/indices.resolve_index'
@@ -22,9 +23,12 @@ export interface Request extends Global.Params {
   name: Common.Names;
 }
 
-export interface Response {
+export interface ResponseBody {
   aliases: Indices_ResolveIndex.ResolveIndexAliasItem[];
   data_streams: Indices_ResolveIndex.ResolveIndexDataStreamsItem[];
   indices: Indices_ResolveIndex.ResolveIndexItem[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Knn_Common from '../components/knn._common'
 import * as Common from '../components/_common'
@@ -63,7 +64,10 @@ export interface Request extends Global.Params {
   version?: boolean;
 }
 
-export type Response = Record<string, any>
+export type ResponseBody = Record<string, any>
 
 export type RequestBody = Record<string, any>
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

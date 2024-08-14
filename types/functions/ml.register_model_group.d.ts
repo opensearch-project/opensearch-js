@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Ml_Common from '../components/ml._common'
 
@@ -20,7 +21,7 @@ export interface Request extends Global.Params {
   body?: RequestBody;
 }
 
-export type Response = Ml_Common.ModelGroupRegistration
+export type ResponseBody = Ml_Common.ModelGroupRegistration
 
 export interface RequestBody {
   access_mode?: 'private' | 'public' | 'restricted';
@@ -30,3 +31,6 @@ export interface RequestBody {
   name: string;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

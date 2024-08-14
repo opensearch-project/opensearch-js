@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_GetMapping from '../components/indices.get_mapping'
@@ -27,5 +28,8 @@ export interface Request extends Global.Params {
   master_timeout?: Common.Duration;
 }
 
-export type Response = Record<string, Indices_GetMapping.IndexMappingRecord>
+export type ResponseBody = Record<string, Indices_GetMapping.IndexMappingRecord>
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

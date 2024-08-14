@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cat_Recovery from '../components/cat.recovery'
@@ -30,5 +31,8 @@ export interface Request extends Global.Params {
   v?: boolean;
 }
 
-export type Response = Cat_Recovery.RecoveryRecord[]
+export type ResponseBody = Cat_Recovery.RecoveryRecord[]
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

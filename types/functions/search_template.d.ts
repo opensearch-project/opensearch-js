@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Common_Aggregations from '../components/_common.aggregations'
@@ -36,7 +37,7 @@ export interface Request extends Global.Params {
   typed_keys?: boolean;
 }
 
-export interface Response {
+export interface ResponseBody {
   _clusters?: Common.ClusterStatistics;
   _scroll_id?: Common.ScrollId;
   _shards: Common.ShardStatistics;
@@ -61,3 +62,6 @@ export interface RequestBody {
   source?: string;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

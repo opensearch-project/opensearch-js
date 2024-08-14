@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Core_FieldCaps from '../components/_core.field_caps'
@@ -29,7 +30,7 @@ export interface Request extends Global.Params {
   index?: Common.Indices;
 }
 
-export interface Response {
+export interface ResponseBody {
   fields: Record<string, Record<string, Core_FieldCaps.FieldCapability>>;
   indices: Common.Indices;
 }
@@ -40,3 +41,6 @@ export interface RequestBody {
   runtime_mappings?: Common_Mapping.RuntimeFields;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

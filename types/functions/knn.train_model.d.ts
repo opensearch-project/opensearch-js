@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 
 export interface Request extends Global.Params {
@@ -21,7 +22,7 @@ export interface Request extends Global.Params {
   preference?: string;
 }
 
-export type Response = Record<string, any>
+export type ResponseBody = Record<string, any>
 
 export interface RequestBody {
   description?: string;
@@ -33,3 +34,6 @@ export interface RequestBody {
   training_index: string;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

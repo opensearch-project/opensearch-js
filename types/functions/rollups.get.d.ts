@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Rollups_Common from '../components/rollups._common'
@@ -21,5 +22,8 @@ export interface Request extends Global.Params {
   id: Common.Id;
 }
 
-export type Response = Rollups_Common.RollupEntity
+export type ResponseBody = Rollups_Common.RollupEntity
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

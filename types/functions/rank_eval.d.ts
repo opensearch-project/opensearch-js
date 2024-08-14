@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Core_RankEval from '../components/_core.rank_eval'
@@ -26,7 +27,7 @@ export interface Request extends Global.Params {
   search_type?: string;
 }
 
-export interface Response {
+export interface ResponseBody {
   details: Record<string, Core_RankEval.RankEvalMetricDetail>;
   failures: Record<string, Record<string, any>>;
   metric_score: number;
@@ -37,3 +38,6 @@ export interface RequestBody {
   requests: Core_RankEval.RankEvalRequestItem[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

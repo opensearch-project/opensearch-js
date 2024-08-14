@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 
@@ -21,7 +22,7 @@ export interface Request extends Global.Params {
   id?: Common.Id;
 }
 
-export interface Response {
+export interface ResponseBody {
   template_output: Record<string, Record<string, any>>;
 }
 
@@ -31,3 +32,6 @@ export interface RequestBody {
   source?: string;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

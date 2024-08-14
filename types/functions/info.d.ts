@@ -13,12 +13,13 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 
 export type Request = Global.Params & Record<string, any>
 
-export interface Response {
+export interface ResponseBody {
   cluster_name: Common.Name;
   cluster_uuid: Common.Uuid;
   name: Common.Name;
@@ -26,3 +27,6 @@ export interface Response {
   version: Common.OpenSearchVersionInfo;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_Common from '../components/indices._common'
@@ -21,7 +22,10 @@ export interface Request extends Global.Params {
   name?: Common.DataStreamNames;
 }
 
-export interface Response {
+export interface ResponseBody {
   data_streams: Indices_Common.DataStream[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

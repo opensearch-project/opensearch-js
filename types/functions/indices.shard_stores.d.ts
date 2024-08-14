@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_ShardStores from '../components/indices.shard_stores'
@@ -25,7 +26,10 @@ export interface Request extends Global.Params {
   status?: Indices_ShardStores.ShardStoreStatus | Indices_ShardStores.ShardStoreStatus[];
 }
 
-export interface Response {
+export interface ResponseBody {
   indices: Record<string, Indices_ShardStores.IndicesShardStores>;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

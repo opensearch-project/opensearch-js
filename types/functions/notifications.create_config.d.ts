@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Notifications_Common from '../components/notifications._common'
 
@@ -20,7 +21,10 @@ export interface Request extends Global.Params {
   body: Notifications_Common.NotificationsConfig;
 }
 
-export interface Response {
+export interface ResponseBody {
   config_id?: string;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

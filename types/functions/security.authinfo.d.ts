@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Security_Common from '../components/security._common'
 
@@ -21,5 +22,8 @@ export interface Request extends Global.Params {
   verbose?: boolean;
 }
 
-export type Response = Security_Common.AuthInfo
+export type ResponseBody = Security_Common.AuthInfo
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

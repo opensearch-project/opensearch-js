@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Transforms_Common from '../components/transforms._common'
 import * as Common from '../components/_common'
@@ -24,5 +25,8 @@ export interface Request extends Global.Params {
   if_seq_no?: Common.SequenceNumber;
 }
 
-export type Response = Transforms_Common.TransformEntity
+export type ResponseBody = Transforms_Common.TransformEntity
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

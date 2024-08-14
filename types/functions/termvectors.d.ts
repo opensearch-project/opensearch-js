@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Core_Termvectors from '../components/_core.termvectors'
@@ -34,7 +35,7 @@ export interface Request extends Global.Params {
   version_type?: Common.VersionType;
 }
 
-export interface Response {
+export interface ResponseBody {
   _id: Common.Id;
   _index: Common.IndexName;
   _version: Common.VersionNumber;
@@ -49,3 +50,6 @@ export interface RequestBody {
   per_field_analyzer?: Record<string, string>;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

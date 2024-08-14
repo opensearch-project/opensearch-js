@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_Close from '../components/indices.close'
@@ -28,9 +29,12 @@ export interface Request extends Global.Params {
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export interface Response {
+export interface ResponseBody {
   acknowledged: boolean;
   indices: Record<string, Indices_Close.CloseIndexResult>;
   shards_acknowledged: boolean;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

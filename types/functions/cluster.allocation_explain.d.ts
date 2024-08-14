@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cluster_AllocationExplain from '../components/cluster.allocation_explain'
@@ -23,7 +24,7 @@ export interface Request extends Global.Params {
   include_yes_decisions?: boolean;
 }
 
-export interface Response {
+export interface ResponseBody {
   allocate_explanation?: string;
   allocation_delay?: Common.Duration;
   allocation_delay_in_millis?: Common.DurationValueUnitMillis;
@@ -58,3 +59,6 @@ export interface RequestBody {
   shard?: number;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

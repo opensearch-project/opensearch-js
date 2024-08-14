@@ -13,12 +13,16 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Core_GetScriptContext from '../components/_core.get_script_context'
 
 export type Request = Global.Params & Record<string, any>
 
-export interface Response {
+export interface ResponseBody {
   contexts: Core_GetScriptContext.Context[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

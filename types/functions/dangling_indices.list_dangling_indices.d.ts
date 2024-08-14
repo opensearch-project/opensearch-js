@@ -13,15 +13,19 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as DanglingIndices_ListDanglingIndices from '../components/dangling_indices.list_dangling_indices'
 
 export type Request = Global.Params & Record<string, any>
 
-export interface Response {
+export interface ResponseBody {
   _nodes?: Common.NodeStatistics;
   cluster_name?: Common.Name;
   dangling_indices: DanglingIndices_ListDanglingIndices.DanglingIndex[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

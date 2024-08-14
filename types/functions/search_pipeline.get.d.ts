@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as SearchPipeline_Common from '../components/search_pipeline._common'
@@ -22,5 +23,8 @@ export interface Request extends Global.Params {
   id?: string;
 }
 
-export type Response = SearchPipeline_Common.SearchPipelineMap
+export type ResponseBody = SearchPipeline_Common.SearchPipelineMap
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Sql_Common from '../components/sql._common'
 
@@ -21,7 +22,10 @@ export interface Request extends Global.Params {
   format?: string;
 }
 
-export type Response = Sql_Common.SqlSettingsResponse
+export type ResponseBody = Sql_Common.SqlSettingsResponse
 
 export type RequestBody = Sql_Common.SqlSettingsPlain | Sql_Common.SqlSettings
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

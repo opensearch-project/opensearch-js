@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cluster_PendingTasks from '../components/cluster.pending_tasks'
@@ -23,7 +24,10 @@ export interface Request extends Global.Params {
   master_timeout?: Common.Duration;
 }
 
-export interface Response {
+export interface ResponseBody {
   tasks: Cluster_PendingTasks.PendingTask[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Transforms_Common from '../components/transforms._common'
 
@@ -24,5 +25,8 @@ export interface Request extends Global.Params {
   sortField?: string;
 }
 
-export type Response = Transforms_Common.TransformsResponse
+export type ResponseBody = Transforms_Common.TransformsResponse
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

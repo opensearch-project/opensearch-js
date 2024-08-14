@@ -13,15 +13,19 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Notifications_Common from '../components/notifications._common'
 
 export type Request = Global.Params & Record<string, any>
 
-export interface Response {
+export interface ResponseBody {
   channel_list?: Notifications_Common.NotificationChannel[];
   start_index?: number;
   total_hit_relation?: Notifications_Common.TotalHitRelation;
   total_hits?: number;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

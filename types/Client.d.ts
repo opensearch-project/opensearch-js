@@ -304,7 +304,6 @@ import * as Tasks_Get from './functions/tasks.get';
 import Transport, {
   ApiError,
   ApiResponse,
-  RequestEvent,
   TransportRequestOptions,
   TransportRequestCallback,
   TransportRequestPromise,
@@ -314,10 +313,9 @@ import Serializer from '../lib/Serializer';
 import Helpers from '../lib/Helpers';
 import { ClientOptions, ClientExtendsCallbackOptions } from './client_options';
 
-declare type callbackFn<TResponse> = (err: ApiError, result: ApiResponse<TResponse>) => void;
+declare type callbackFn<TResponse> = (err: ApiError, result: TResponse) => void;
 declare type extendsCallback = (options: ClientExtendsCallbackOptions) => any;
 
-declare type HttpResponse = any
 declare interface HttpRequest {
   path: string;
   querystring?: Global.Params;
@@ -337,133 +335,133 @@ declare class Client {
   close(callback: Function): void;
   close(): Promise<void>;
   emit(event: string | symbol, ...args: any[]): boolean;
-  on(event: 'request', listener: (err: ApiError, meta: RequestEvent) => void): this;
-  on(event: 'response', listener: (err: ApiError, meta: RequestEvent) => void): this;
-  on(event: 'sniff', listener: (err: ApiError, meta: RequestEvent) => void): this;
+  on(event: 'request', listener: (err: ApiError, meta: ApiResponse) => void): this;
+  on(event: 'response', listener: (err: ApiError, meta: ApiResponse) => void): this;
+  on(event: 'sniff', listener: (err: ApiError, meta: ApiResponse) => void): this;
   on(event: 'resurrect', listener: (err: null, meta: ResurrectEvent) => void): this;
-  once(event: 'request', listener: (err: ApiError, meta: RequestEvent) => void): this;
-  once(event: 'response', listener: (err: ApiError, meta: RequestEvent) => void): this;
-  once(event: 'sniff', listener: (err: ApiError, meta: RequestEvent) => void): this;
+  once(event: 'request', listener: (err: ApiError, meta: ApiResponse) => void): this;
+  once(event: 'response', listener: (err: ApiError, meta: ApiResponse) => void): this;
+  once(event: 'sniff', listener: (err: ApiError, meta: ApiResponse) => void): this;
   once(event: 'resurrect', listener: (err: null, meta: ResurrectEvent) => void): this;
   off(event: string | symbol, listener: (...args: any[]) => void): this;
 
   cat: {
-    help (params?: Cat_Help.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Help.Response>>;
+    help (params?: Cat_Help.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Help.Response>;
     help (callback: callbackFn<Cat_Help.Response>): TransportRequestCallback;
     help (params: Cat_Help.Request, callback: callbackFn<Cat_Help.Response>): TransportRequestCallback;
     help (params: Cat_Help.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Help.Response>): TransportRequestCallback;
 
-    aliases (params?: Cat_Aliases.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Aliases.Response>>;
+    aliases (params?: Cat_Aliases.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Aliases.Response>;
     aliases (callback: callbackFn<Cat_Aliases.Response>): TransportRequestCallback;
     aliases (params: Cat_Aliases.Request, callback: callbackFn<Cat_Aliases.Response>): TransportRequestCallback;
     aliases (params: Cat_Aliases.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Aliases.Response>): TransportRequestCallback;
 
-    allocation (params?: Cat_Allocation.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Allocation.Response>>;
+    allocation (params?: Cat_Allocation.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Allocation.Response>;
     allocation (callback: callbackFn<Cat_Allocation.Response>): TransportRequestCallback;
     allocation (params: Cat_Allocation.Request, callback: callbackFn<Cat_Allocation.Response>): TransportRequestCallback;
     allocation (params: Cat_Allocation.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Allocation.Response>): TransportRequestCallback;
 
-    clusterManager (params?: Cat_ClusterManager.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_ClusterManager.Response>>;
+    clusterManager (params?: Cat_ClusterManager.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_ClusterManager.Response>;
     clusterManager (callback: callbackFn<Cat_ClusterManager.Response>): TransportRequestCallback;
     clusterManager (params: Cat_ClusterManager.Request, callback: callbackFn<Cat_ClusterManager.Response>): TransportRequestCallback;
     clusterManager (params: Cat_ClusterManager.Request, options: TransportRequestOptions, callback: callbackFn<Cat_ClusterManager.Response>): TransportRequestCallback;
 
-    count (params?: Cat_Count.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Count.Response>>;
+    count (params?: Cat_Count.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Count.Response>;
     count (callback: callbackFn<Cat_Count.Response>): TransportRequestCallback;
     count (params: Cat_Count.Request, callback: callbackFn<Cat_Count.Response>): TransportRequestCallback;
     count (params: Cat_Count.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Count.Response>): TransportRequestCallback;
 
-    fielddata (params?: Cat_Fielddata.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Fielddata.Response>>;
+    fielddata (params?: Cat_Fielddata.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Fielddata.Response>;
     fielddata (callback: callbackFn<Cat_Fielddata.Response>): TransportRequestCallback;
     fielddata (params: Cat_Fielddata.Request, callback: callbackFn<Cat_Fielddata.Response>): TransportRequestCallback;
     fielddata (params: Cat_Fielddata.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Fielddata.Response>): TransportRequestCallback;
 
-    health (params?: Cat_Health.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Health.Response>>;
+    health (params?: Cat_Health.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Health.Response>;
     health (callback: callbackFn<Cat_Health.Response>): TransportRequestCallback;
     health (params: Cat_Health.Request, callback: callbackFn<Cat_Health.Response>): TransportRequestCallback;
     health (params: Cat_Health.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Health.Response>): TransportRequestCallback;
 
-    indices (params?: Cat_Indices.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Indices.Response>>;
+    indices (params?: Cat_Indices.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Indices.Response>;
     indices (callback: callbackFn<Cat_Indices.Response>): TransportRequestCallback;
     indices (params: Cat_Indices.Request, callback: callbackFn<Cat_Indices.Response>): TransportRequestCallback;
     indices (params: Cat_Indices.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Indices.Response>): TransportRequestCallback;
 
-    master (params?: Cat_Master.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Master.Response>>;
+    master (params?: Cat_Master.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Master.Response>;
     master (callback: callbackFn<Cat_Master.Response>): TransportRequestCallback;
     master (params: Cat_Master.Request, callback: callbackFn<Cat_Master.Response>): TransportRequestCallback;
     master (params: Cat_Master.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Master.Response>): TransportRequestCallback;
 
-    nodeattrs (params?: Cat_Nodeattrs.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Nodeattrs.Response>>;
+    nodeattrs (params?: Cat_Nodeattrs.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Nodeattrs.Response>;
     nodeattrs (callback: callbackFn<Cat_Nodeattrs.Response>): TransportRequestCallback;
     nodeattrs (params: Cat_Nodeattrs.Request, callback: callbackFn<Cat_Nodeattrs.Response>): TransportRequestCallback;
     nodeattrs (params: Cat_Nodeattrs.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Nodeattrs.Response>): TransportRequestCallback;
 
-    nodes (params?: Cat_Nodes.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Nodes.Response>>;
+    nodes (params?: Cat_Nodes.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Nodes.Response>;
     nodes (callback: callbackFn<Cat_Nodes.Response>): TransportRequestCallback;
     nodes (params: Cat_Nodes.Request, callback: callbackFn<Cat_Nodes.Response>): TransportRequestCallback;
     nodes (params: Cat_Nodes.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Nodes.Response>): TransportRequestCallback;
 
-    pendingTasks (params?: Cat_PendingTasks.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_PendingTasks.Response>>;
+    pendingTasks (params?: Cat_PendingTasks.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_PendingTasks.Response>;
     pendingTasks (callback: callbackFn<Cat_PendingTasks.Response>): TransportRequestCallback;
     pendingTasks (params: Cat_PendingTasks.Request, callback: callbackFn<Cat_PendingTasks.Response>): TransportRequestCallback;
     pendingTasks (params: Cat_PendingTasks.Request, options: TransportRequestOptions, callback: callbackFn<Cat_PendingTasks.Response>): TransportRequestCallback;
 
-    pitSegments (params?: Cat_PitSegments.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_PitSegments.Response>>;
+    pitSegments (params?: Cat_PitSegments.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_PitSegments.Response>;
     pitSegments (callback: callbackFn<Cat_PitSegments.Response>): TransportRequestCallback;
     pitSegments (params: Cat_PitSegments.Request, callback: callbackFn<Cat_PitSegments.Response>): TransportRequestCallback;
     pitSegments (params: Cat_PitSegments.Request, options: TransportRequestOptions, callback: callbackFn<Cat_PitSegments.Response>): TransportRequestCallback;
 
-    allPitSegments (params?: Cat_AllPitSegments.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_AllPitSegments.Response>>;
+    allPitSegments (params?: Cat_AllPitSegments.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_AllPitSegments.Response>;
     allPitSegments (callback: callbackFn<Cat_AllPitSegments.Response>): TransportRequestCallback;
     allPitSegments (params: Cat_AllPitSegments.Request, callback: callbackFn<Cat_AllPitSegments.Response>): TransportRequestCallback;
     allPitSegments (params: Cat_AllPitSegments.Request, options: TransportRequestOptions, callback: callbackFn<Cat_AllPitSegments.Response>): TransportRequestCallback;
 
-    plugins (params?: Cat_Plugins.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Plugins.Response>>;
+    plugins (params?: Cat_Plugins.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Plugins.Response>;
     plugins (callback: callbackFn<Cat_Plugins.Response>): TransportRequestCallback;
     plugins (params: Cat_Plugins.Request, callback: callbackFn<Cat_Plugins.Response>): TransportRequestCallback;
     plugins (params: Cat_Plugins.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Plugins.Response>): TransportRequestCallback;
 
-    recovery (params?: Cat_Recovery.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Recovery.Response>>;
+    recovery (params?: Cat_Recovery.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Recovery.Response>;
     recovery (callback: callbackFn<Cat_Recovery.Response>): TransportRequestCallback;
     recovery (params: Cat_Recovery.Request, callback: callbackFn<Cat_Recovery.Response>): TransportRequestCallback;
     recovery (params: Cat_Recovery.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Recovery.Response>): TransportRequestCallback;
 
-    repositories (params?: Cat_Repositories.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Repositories.Response>>;
+    repositories (params?: Cat_Repositories.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Repositories.Response>;
     repositories (callback: callbackFn<Cat_Repositories.Response>): TransportRequestCallback;
     repositories (params: Cat_Repositories.Request, callback: callbackFn<Cat_Repositories.Response>): TransportRequestCallback;
     repositories (params: Cat_Repositories.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Repositories.Response>): TransportRequestCallback;
 
-    segmentReplication (params?: Cat_SegmentReplication.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_SegmentReplication.Response>>;
+    segmentReplication (params?: Cat_SegmentReplication.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_SegmentReplication.Response>;
     segmentReplication (callback: callbackFn<Cat_SegmentReplication.Response>): TransportRequestCallback;
     segmentReplication (params: Cat_SegmentReplication.Request, callback: callbackFn<Cat_SegmentReplication.Response>): TransportRequestCallback;
     segmentReplication (params: Cat_SegmentReplication.Request, options: TransportRequestOptions, callback: callbackFn<Cat_SegmentReplication.Response>): TransportRequestCallback;
 
-    segments (params?: Cat_Segments.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Segments.Response>>;
+    segments (params?: Cat_Segments.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Segments.Response>;
     segments (callback: callbackFn<Cat_Segments.Response>): TransportRequestCallback;
     segments (params: Cat_Segments.Request, callback: callbackFn<Cat_Segments.Response>): TransportRequestCallback;
     segments (params: Cat_Segments.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Segments.Response>): TransportRequestCallback;
 
-    shards (params?: Cat_Shards.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Shards.Response>>;
+    shards (params?: Cat_Shards.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Shards.Response>;
     shards (callback: callbackFn<Cat_Shards.Response>): TransportRequestCallback;
     shards (params: Cat_Shards.Request, callback: callbackFn<Cat_Shards.Response>): TransportRequestCallback;
     shards (params: Cat_Shards.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Shards.Response>): TransportRequestCallback;
 
-    snapshots (params?: Cat_Snapshots.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Snapshots.Response>>;
+    snapshots (params?: Cat_Snapshots.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Snapshots.Response>;
     snapshots (callback: callbackFn<Cat_Snapshots.Response>): TransportRequestCallback;
     snapshots (params: Cat_Snapshots.Request, callback: callbackFn<Cat_Snapshots.Response>): TransportRequestCallback;
     snapshots (params: Cat_Snapshots.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Snapshots.Response>): TransportRequestCallback;
 
-    tasks (params?: Cat_Tasks.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Tasks.Response>>;
+    tasks (params?: Cat_Tasks.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Tasks.Response>;
     tasks (callback: callbackFn<Cat_Tasks.Response>): TransportRequestCallback;
     tasks (params: Cat_Tasks.Request, callback: callbackFn<Cat_Tasks.Response>): TransportRequestCallback;
     tasks (params: Cat_Tasks.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Tasks.Response>): TransportRequestCallback;
 
-    templates (params?: Cat_Templates.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_Templates.Response>>;
+    templates (params?: Cat_Templates.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_Templates.Response>;
     templates (callback: callbackFn<Cat_Templates.Response>): TransportRequestCallback;
     templates (params: Cat_Templates.Request, callback: callbackFn<Cat_Templates.Response>): TransportRequestCallback;
     templates (params: Cat_Templates.Request, options: TransportRequestOptions, callback: callbackFn<Cat_Templates.Response>): TransportRequestCallback;
 
-    threadPool (params?: Cat_ThreadPool.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cat_ThreadPool.Response>>;
+    threadPool (params?: Cat_ThreadPool.Request, options?: TransportRequestOptions): TransportRequestPromise<Cat_ThreadPool.Response>;
     threadPool (callback: callbackFn<Cat_ThreadPool.Response>): TransportRequestCallback;
     threadPool (params: Cat_ThreadPool.Request, callback: callbackFn<Cat_ThreadPool.Response>): TransportRequestCallback;
     threadPool (params: Cat_ThreadPool.Request, options: TransportRequestOptions, callback: callbackFn<Cat_ThreadPool.Response>): TransportRequestCallback;
@@ -471,99 +469,99 @@ declare class Client {
   };
 
   cluster: {
-    allocationExplain (params?: Cluster_AllocationExplain.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_AllocationExplain.Response>>;
+    allocationExplain (params?: Cluster_AllocationExplain.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_AllocationExplain.Response>;
     allocationExplain (callback: callbackFn<Cluster_AllocationExplain.Response>): TransportRequestCallback;
     allocationExplain (params: Cluster_AllocationExplain.Request, callback: callbackFn<Cluster_AllocationExplain.Response>): TransportRequestCallback;
     allocationExplain (params: Cluster_AllocationExplain.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_AllocationExplain.Response>): TransportRequestCallback;
 
-    deleteDecommissionAwareness (params?: Cluster_DeleteDecommissionAwareness.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_DeleteDecommissionAwareness.Response>>;
+    deleteDecommissionAwareness (params?: Cluster_DeleteDecommissionAwareness.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_DeleteDecommissionAwareness.Response>;
     deleteDecommissionAwareness (callback: callbackFn<Cluster_DeleteDecommissionAwareness.Response>): TransportRequestCallback;
     deleteDecommissionAwareness (params: Cluster_DeleteDecommissionAwareness.Request, callback: callbackFn<Cluster_DeleteDecommissionAwareness.Response>): TransportRequestCallback;
     deleteDecommissionAwareness (params: Cluster_DeleteDecommissionAwareness.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_DeleteDecommissionAwareness.Response>): TransportRequestCallback;
 
-    getDecommissionAwareness (params: Cluster_GetDecommissionAwareness.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_GetDecommissionAwareness.Response>>;
+    getDecommissionAwareness (params: Cluster_GetDecommissionAwareness.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_GetDecommissionAwareness.Response>;
     getDecommissionAwareness (params: Cluster_GetDecommissionAwareness.Request, callback: callbackFn<Cluster_GetDecommissionAwareness.Response>): TransportRequestCallback;
     getDecommissionAwareness (params: Cluster_GetDecommissionAwareness.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_GetDecommissionAwareness.Response>): TransportRequestCallback;
 
-    putDecommissionAwareness (params: Cluster_PutDecommissionAwareness.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_PutDecommissionAwareness.Response>>;
+    putDecommissionAwareness (params: Cluster_PutDecommissionAwareness.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_PutDecommissionAwareness.Response>;
     putDecommissionAwareness (params: Cluster_PutDecommissionAwareness.Request, callback: callbackFn<Cluster_PutDecommissionAwareness.Response>): TransportRequestCallback;
     putDecommissionAwareness (params: Cluster_PutDecommissionAwareness.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_PutDecommissionAwareness.Response>): TransportRequestCallback;
 
-    health (params?: Cluster_Health.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_Health.Response>>;
+    health (params?: Cluster_Health.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_Health.Response>;
     health (callback: callbackFn<Cluster_Health.Response>): TransportRequestCallback;
     health (params: Cluster_Health.Request, callback: callbackFn<Cluster_Health.Response>): TransportRequestCallback;
     health (params: Cluster_Health.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_Health.Response>): TransportRequestCallback;
 
-    pendingTasks (params?: Cluster_PendingTasks.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_PendingTasks.Response>>;
+    pendingTasks (params?: Cluster_PendingTasks.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_PendingTasks.Response>;
     pendingTasks (callback: callbackFn<Cluster_PendingTasks.Response>): TransportRequestCallback;
     pendingTasks (params: Cluster_PendingTasks.Request, callback: callbackFn<Cluster_PendingTasks.Response>): TransportRequestCallback;
     pendingTasks (params: Cluster_PendingTasks.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_PendingTasks.Response>): TransportRequestCallback;
 
-    reroute (params?: Cluster_Reroute.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_Reroute.Response>>;
+    reroute (params?: Cluster_Reroute.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_Reroute.Response>;
     reroute (callback: callbackFn<Cluster_Reroute.Response>): TransportRequestCallback;
     reroute (params: Cluster_Reroute.Request, callback: callbackFn<Cluster_Reroute.Response>): TransportRequestCallback;
     reroute (params: Cluster_Reroute.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_Reroute.Response>): TransportRequestCallback;
 
-    getWeightedRouting (params: Cluster_GetWeightedRouting.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_GetWeightedRouting.Response>>;
+    getWeightedRouting (params: Cluster_GetWeightedRouting.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_GetWeightedRouting.Response>;
     getWeightedRouting (params: Cluster_GetWeightedRouting.Request, callback: callbackFn<Cluster_GetWeightedRouting.Response>): TransportRequestCallback;
     getWeightedRouting (params: Cluster_GetWeightedRouting.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_GetWeightedRouting.Response>): TransportRequestCallback;
 
-    putWeightedRouting (params: Cluster_PutWeightedRouting.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_PutWeightedRouting.Response>>;
+    putWeightedRouting (params: Cluster_PutWeightedRouting.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_PutWeightedRouting.Response>;
     putWeightedRouting (params: Cluster_PutWeightedRouting.Request, callback: callbackFn<Cluster_PutWeightedRouting.Response>): TransportRequestCallback;
     putWeightedRouting (params: Cluster_PutWeightedRouting.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_PutWeightedRouting.Response>): TransportRequestCallback;
 
-    deleteWeightedRouting (params?: Cluster_DeleteWeightedRouting.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_DeleteWeightedRouting.Response>>;
+    deleteWeightedRouting (params?: Cluster_DeleteWeightedRouting.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_DeleteWeightedRouting.Response>;
     deleteWeightedRouting (callback: callbackFn<Cluster_DeleteWeightedRouting.Response>): TransportRequestCallback;
     deleteWeightedRouting (params: Cluster_DeleteWeightedRouting.Request, callback: callbackFn<Cluster_DeleteWeightedRouting.Response>): TransportRequestCallback;
     deleteWeightedRouting (params: Cluster_DeleteWeightedRouting.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_DeleteWeightedRouting.Response>): TransportRequestCallback;
 
-    getSettings (params?: Cluster_GetSettings.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_GetSettings.Response>>;
+    getSettings (params?: Cluster_GetSettings.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_GetSettings.Response>;
     getSettings (callback: callbackFn<Cluster_GetSettings.Response>): TransportRequestCallback;
     getSettings (params: Cluster_GetSettings.Request, callback: callbackFn<Cluster_GetSettings.Response>): TransportRequestCallback;
     getSettings (params: Cluster_GetSettings.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_GetSettings.Response>): TransportRequestCallback;
 
-    putSettings (params: Cluster_PutSettings.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_PutSettings.Response>>;
+    putSettings (params: Cluster_PutSettings.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_PutSettings.Response>;
     putSettings (params: Cluster_PutSettings.Request, callback: callbackFn<Cluster_PutSettings.Response>): TransportRequestCallback;
     putSettings (params: Cluster_PutSettings.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_PutSettings.Response>): TransportRequestCallback;
 
-    state (params?: Cluster_State.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_State.Response>>;
+    state (params?: Cluster_State.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_State.Response>;
     state (callback: callbackFn<Cluster_State.Response>): TransportRequestCallback;
     state (params: Cluster_State.Request, callback: callbackFn<Cluster_State.Response>): TransportRequestCallback;
     state (params: Cluster_State.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_State.Response>): TransportRequestCallback;
 
-    stats (params?: Cluster_Stats.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_Stats.Response>>;
+    stats (params?: Cluster_Stats.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_Stats.Response>;
     stats (callback: callbackFn<Cluster_Stats.Response>): TransportRequestCallback;
     stats (params: Cluster_Stats.Request, callback: callbackFn<Cluster_Stats.Response>): TransportRequestCallback;
     stats (params: Cluster_Stats.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_Stats.Response>): TransportRequestCallback;
 
-    deleteVotingConfigExclusions (params?: Cluster_DeleteVotingConfigExclusions.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_DeleteVotingConfigExclusions.Response>>;
+    deleteVotingConfigExclusions (params?: Cluster_DeleteVotingConfigExclusions.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_DeleteVotingConfigExclusions.Response>;
     deleteVotingConfigExclusions (callback: callbackFn<Cluster_DeleteVotingConfigExclusions.Response>): TransportRequestCallback;
     deleteVotingConfigExclusions (params: Cluster_DeleteVotingConfigExclusions.Request, callback: callbackFn<Cluster_DeleteVotingConfigExclusions.Response>): TransportRequestCallback;
     deleteVotingConfigExclusions (params: Cluster_DeleteVotingConfigExclusions.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_DeleteVotingConfigExclusions.Response>): TransportRequestCallback;
 
-    postVotingConfigExclusions (params?: Cluster_PostVotingConfigExclusions.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_PostVotingConfigExclusions.Response>>;
+    postVotingConfigExclusions (params?: Cluster_PostVotingConfigExclusions.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_PostVotingConfigExclusions.Response>;
     postVotingConfigExclusions (callback: callbackFn<Cluster_PostVotingConfigExclusions.Response>): TransportRequestCallback;
     postVotingConfigExclusions (params: Cluster_PostVotingConfigExclusions.Request, callback: callbackFn<Cluster_PostVotingConfigExclusions.Response>): TransportRequestCallback;
     postVotingConfigExclusions (params: Cluster_PostVotingConfigExclusions.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_PostVotingConfigExclusions.Response>): TransportRequestCallback;
 
-    getComponentTemplate (params?: Cluster_GetComponentTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_GetComponentTemplate.Response>>;
+    getComponentTemplate (params?: Cluster_GetComponentTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_GetComponentTemplate.Response>;
     getComponentTemplate (callback: callbackFn<Cluster_GetComponentTemplate.Response>): TransportRequestCallback;
     getComponentTemplate (params: Cluster_GetComponentTemplate.Request, callback: callbackFn<Cluster_GetComponentTemplate.Response>): TransportRequestCallback;
     getComponentTemplate (params: Cluster_GetComponentTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_GetComponentTemplate.Response>): TransportRequestCallback;
 
-    deleteComponentTemplate (params: Cluster_DeleteComponentTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_DeleteComponentTemplate.Response>>;
+    deleteComponentTemplate (params: Cluster_DeleteComponentTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_DeleteComponentTemplate.Response>;
     deleteComponentTemplate (params: Cluster_DeleteComponentTemplate.Request, callback: callbackFn<Cluster_DeleteComponentTemplate.Response>): TransportRequestCallback;
     deleteComponentTemplate (params: Cluster_DeleteComponentTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_DeleteComponentTemplate.Response>): TransportRequestCallback;
 
-    existsComponentTemplate (params: Cluster_ExistsComponentTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_ExistsComponentTemplate.Response>>;
+    existsComponentTemplate (params: Cluster_ExistsComponentTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_ExistsComponentTemplate.Response>;
     existsComponentTemplate (params: Cluster_ExistsComponentTemplate.Request, callback: callbackFn<Cluster_ExistsComponentTemplate.Response>): TransportRequestCallback;
     existsComponentTemplate (params: Cluster_ExistsComponentTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_ExistsComponentTemplate.Response>): TransportRequestCallback;
 
-    putComponentTemplate (params: Cluster_PutComponentTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_PutComponentTemplate.Response>>;
+    putComponentTemplate (params: Cluster_PutComponentTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_PutComponentTemplate.Response>;
     putComponentTemplate (params: Cluster_PutComponentTemplate.Request, callback: callbackFn<Cluster_PutComponentTemplate.Response>): TransportRequestCallback;
     putComponentTemplate (params: Cluster_PutComponentTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_PutComponentTemplate.Response>): TransportRequestCallback;
 
-    remoteInfo (params?: Cluster_RemoteInfo.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Cluster_RemoteInfo.Response>>;
+    remoteInfo (params?: Cluster_RemoteInfo.Request, options?: TransportRequestOptions): TransportRequestPromise<Cluster_RemoteInfo.Response>;
     remoteInfo (callback: callbackFn<Cluster_RemoteInfo.Response>): TransportRequestCallback;
     remoteInfo (params: Cluster_RemoteInfo.Request, callback: callbackFn<Cluster_RemoteInfo.Response>): TransportRequestCallback;
     remoteInfo (params: Cluster_RemoteInfo.Request, options: TransportRequestOptions, callback: callbackFn<Cluster_RemoteInfo.Response>): TransportRequestCallback;
@@ -571,256 +569,256 @@ declare class Client {
   };
 
   dangling_indices: {
-    listDanglingIndices (params?: DanglingIndices_ListDanglingIndices.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<DanglingIndices_ListDanglingIndices.Response>>;
+    listDanglingIndices (params?: DanglingIndices_ListDanglingIndices.Request, options?: TransportRequestOptions): TransportRequestPromise<DanglingIndices_ListDanglingIndices.Response>;
     listDanglingIndices (callback: callbackFn<DanglingIndices_ListDanglingIndices.Response>): TransportRequestCallback;
     listDanglingIndices (params: DanglingIndices_ListDanglingIndices.Request, callback: callbackFn<DanglingIndices_ListDanglingIndices.Response>): TransportRequestCallback;
     listDanglingIndices (params: DanglingIndices_ListDanglingIndices.Request, options: TransportRequestOptions, callback: callbackFn<DanglingIndices_ListDanglingIndices.Response>): TransportRequestCallback;
 
-    deleteDanglingIndex (params: DanglingIndices_DeleteDanglingIndex.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<DanglingIndices_DeleteDanglingIndex.Response>>;
+    deleteDanglingIndex (params: DanglingIndices_DeleteDanglingIndex.Request, options?: TransportRequestOptions): TransportRequestPromise<DanglingIndices_DeleteDanglingIndex.Response>;
     deleteDanglingIndex (params: DanglingIndices_DeleteDanglingIndex.Request, callback: callbackFn<DanglingIndices_DeleteDanglingIndex.Response>): TransportRequestCallback;
     deleteDanglingIndex (params: DanglingIndices_DeleteDanglingIndex.Request, options: TransportRequestOptions, callback: callbackFn<DanglingIndices_DeleteDanglingIndex.Response>): TransportRequestCallback;
 
-    importDanglingIndex (params: DanglingIndices_ImportDanglingIndex.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<DanglingIndices_ImportDanglingIndex.Response>>;
+    importDanglingIndex (params: DanglingIndices_ImportDanglingIndex.Request, options?: TransportRequestOptions): TransportRequestPromise<DanglingIndices_ImportDanglingIndex.Response>;
     importDanglingIndex (params: DanglingIndices_ImportDanglingIndex.Request, callback: callbackFn<DanglingIndices_ImportDanglingIndex.Response>): TransportRequestCallback;
     importDanglingIndex (params: DanglingIndices_ImportDanglingIndex.Request, options: TransportRequestOptions, callback: callbackFn<DanglingIndices_ImportDanglingIndex.Response>): TransportRequestCallback;
 
   };
 
   indices: {
-    getAlias (params?: Indices_GetAlias.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_GetAlias.Response>>;
+    getAlias (params?: Indices_GetAlias.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_GetAlias.Response>;
     getAlias (callback: callbackFn<Indices_GetAlias.Response>): TransportRequestCallback;
     getAlias (params: Indices_GetAlias.Request, callback: callbackFn<Indices_GetAlias.Response>): TransportRequestCallback;
     getAlias (params: Indices_GetAlias.Request, options: TransportRequestOptions, callback: callbackFn<Indices_GetAlias.Response>): TransportRequestCallback;
 
-    putAlias (params?: Indices_PutAlias.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_PutAlias.Response>>;
+    putAlias (params?: Indices_PutAlias.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_PutAlias.Response>;
     putAlias (callback: callbackFn<Indices_PutAlias.Response>): TransportRequestCallback;
     putAlias (params: Indices_PutAlias.Request, callback: callbackFn<Indices_PutAlias.Response>): TransportRequestCallback;
     putAlias (params: Indices_PutAlias.Request, options: TransportRequestOptions, callback: callbackFn<Indices_PutAlias.Response>): TransportRequestCallback;
 
-    existsAlias (params: Indices_ExistsAlias.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_ExistsAlias.Response>>;
+    existsAlias (params: Indices_ExistsAlias.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_ExistsAlias.Response>;
     existsAlias (params: Indices_ExistsAlias.Request, callback: callbackFn<Indices_ExistsAlias.Response>): TransportRequestCallback;
     existsAlias (params: Indices_ExistsAlias.Request, options: TransportRequestOptions, callback: callbackFn<Indices_ExistsAlias.Response>): TransportRequestCallback;
 
-    updateAliases (params: Indices_UpdateAliases.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_UpdateAliases.Response>>;
+    updateAliases (params: Indices_UpdateAliases.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_UpdateAliases.Response>;
     updateAliases (params: Indices_UpdateAliases.Request, callback: callbackFn<Indices_UpdateAliases.Response>): TransportRequestCallback;
     updateAliases (params: Indices_UpdateAliases.Request, options: TransportRequestOptions, callback: callbackFn<Indices_UpdateAliases.Response>): TransportRequestCallback;
 
-    analyze (params?: Indices_Analyze.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Analyze.Response>>;
+    analyze (params?: Indices_Analyze.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Analyze.Response>;
     analyze (callback: callbackFn<Indices_Analyze.Response>): TransportRequestCallback;
     analyze (params: Indices_Analyze.Request, callback: callbackFn<Indices_Analyze.Response>): TransportRequestCallback;
     analyze (params: Indices_Analyze.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Analyze.Response>): TransportRequestCallback;
 
-    clearCache (params?: Indices_ClearCache.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_ClearCache.Response>>;
+    clearCache (params?: Indices_ClearCache.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_ClearCache.Response>;
     clearCache (callback: callbackFn<Indices_ClearCache.Response>): TransportRequestCallback;
     clearCache (params: Indices_ClearCache.Request, callback: callbackFn<Indices_ClearCache.Response>): TransportRequestCallback;
     clearCache (params: Indices_ClearCache.Request, options: TransportRequestOptions, callback: callbackFn<Indices_ClearCache.Response>): TransportRequestCallback;
 
-    getDataStream (params?: Indices_GetDataStream.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_GetDataStream.Response>>;
+    getDataStream (params?: Indices_GetDataStream.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_GetDataStream.Response>;
     getDataStream (callback: callbackFn<Indices_GetDataStream.Response>): TransportRequestCallback;
     getDataStream (params: Indices_GetDataStream.Request, callback: callbackFn<Indices_GetDataStream.Response>): TransportRequestCallback;
     getDataStream (params: Indices_GetDataStream.Request, options: TransportRequestOptions, callback: callbackFn<Indices_GetDataStream.Response>): TransportRequestCallback;
 
-    dataStreamsStats (params?: Indices_DataStreamsStats.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_DataStreamsStats.Response>>;
+    dataStreamsStats (params?: Indices_DataStreamsStats.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_DataStreamsStats.Response>;
     dataStreamsStats (callback: callbackFn<Indices_DataStreamsStats.Response>): TransportRequestCallback;
     dataStreamsStats (params: Indices_DataStreamsStats.Request, callback: callbackFn<Indices_DataStreamsStats.Response>): TransportRequestCallback;
     dataStreamsStats (params: Indices_DataStreamsStats.Request, options: TransportRequestOptions, callback: callbackFn<Indices_DataStreamsStats.Response>): TransportRequestCallback;
 
-    deleteDataStream (params: Indices_DeleteDataStream.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_DeleteDataStream.Response>>;
+    deleteDataStream (params: Indices_DeleteDataStream.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_DeleteDataStream.Response>;
     deleteDataStream (params: Indices_DeleteDataStream.Request, callback: callbackFn<Indices_DeleteDataStream.Response>): TransportRequestCallback;
     deleteDataStream (params: Indices_DeleteDataStream.Request, options: TransportRequestOptions, callback: callbackFn<Indices_DeleteDataStream.Response>): TransportRequestCallback;
 
-    createDataStream (params: Indices_CreateDataStream.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_CreateDataStream.Response>>;
+    createDataStream (params: Indices_CreateDataStream.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_CreateDataStream.Response>;
     createDataStream (params: Indices_CreateDataStream.Request, callback: callbackFn<Indices_CreateDataStream.Response>): TransportRequestCallback;
     createDataStream (params: Indices_CreateDataStream.Request, options: TransportRequestOptions, callback: callbackFn<Indices_CreateDataStream.Response>): TransportRequestCallback;
 
-    flush (params?: Indices_Flush.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Flush.Response>>;
+    flush (params?: Indices_Flush.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Flush.Response>;
     flush (callback: callbackFn<Indices_Flush.Response>): TransportRequestCallback;
     flush (params: Indices_Flush.Request, callback: callbackFn<Indices_Flush.Response>): TransportRequestCallback;
     flush (params: Indices_Flush.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Flush.Response>): TransportRequestCallback;
 
-    forcemerge (params?: Indices_Forcemerge.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Forcemerge.Response>>;
+    forcemerge (params?: Indices_Forcemerge.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Forcemerge.Response>;
     forcemerge (callback: callbackFn<Indices_Forcemerge.Response>): TransportRequestCallback;
     forcemerge (params: Indices_Forcemerge.Request, callback: callbackFn<Indices_Forcemerge.Response>): TransportRequestCallback;
     forcemerge (params: Indices_Forcemerge.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Forcemerge.Response>): TransportRequestCallback;
 
-    getIndexTemplate (params?: Indices_GetIndexTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_GetIndexTemplate.Response>>;
+    getIndexTemplate (params?: Indices_GetIndexTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_GetIndexTemplate.Response>;
     getIndexTemplate (callback: callbackFn<Indices_GetIndexTemplate.Response>): TransportRequestCallback;
     getIndexTemplate (params: Indices_GetIndexTemplate.Request, callback: callbackFn<Indices_GetIndexTemplate.Response>): TransportRequestCallback;
     getIndexTemplate (params: Indices_GetIndexTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Indices_GetIndexTemplate.Response>): TransportRequestCallback;
 
-    simulateTemplate (params?: Indices_SimulateTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_SimulateTemplate.Response>>;
+    simulateTemplate (params?: Indices_SimulateTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_SimulateTemplate.Response>;
     simulateTemplate (callback: callbackFn<Indices_SimulateTemplate.Response>): TransportRequestCallback;
     simulateTemplate (params: Indices_SimulateTemplate.Request, callback: callbackFn<Indices_SimulateTemplate.Response>): TransportRequestCallback;
     simulateTemplate (params: Indices_SimulateTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Indices_SimulateTemplate.Response>): TransportRequestCallback;
 
-    simulateIndexTemplate (params: Indices_SimulateIndexTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_SimulateIndexTemplate.Response>>;
+    simulateIndexTemplate (params: Indices_SimulateIndexTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_SimulateIndexTemplate.Response>;
     simulateIndexTemplate (params: Indices_SimulateIndexTemplate.Request, callback: callbackFn<Indices_SimulateIndexTemplate.Response>): TransportRequestCallback;
     simulateIndexTemplate (params: Indices_SimulateIndexTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Indices_SimulateIndexTemplate.Response>): TransportRequestCallback;
 
-    deleteIndexTemplate (params: Indices_DeleteIndexTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_DeleteIndexTemplate.Response>>;
+    deleteIndexTemplate (params: Indices_DeleteIndexTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_DeleteIndexTemplate.Response>;
     deleteIndexTemplate (params: Indices_DeleteIndexTemplate.Request, callback: callbackFn<Indices_DeleteIndexTemplate.Response>): TransportRequestCallback;
     deleteIndexTemplate (params: Indices_DeleteIndexTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Indices_DeleteIndexTemplate.Response>): TransportRequestCallback;
 
-    existsIndexTemplate (params: Indices_ExistsIndexTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_ExistsIndexTemplate.Response>>;
+    existsIndexTemplate (params: Indices_ExistsIndexTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_ExistsIndexTemplate.Response>;
     existsIndexTemplate (params: Indices_ExistsIndexTemplate.Request, callback: callbackFn<Indices_ExistsIndexTemplate.Response>): TransportRequestCallback;
     existsIndexTemplate (params: Indices_ExistsIndexTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Indices_ExistsIndexTemplate.Response>): TransportRequestCallback;
 
-    putIndexTemplate (params: Indices_PutIndexTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_PutIndexTemplate.Response>>;
+    putIndexTemplate (params: Indices_PutIndexTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_PutIndexTemplate.Response>;
     putIndexTemplate (params: Indices_PutIndexTemplate.Request, callback: callbackFn<Indices_PutIndexTemplate.Response>): TransportRequestCallback;
     putIndexTemplate (params: Indices_PutIndexTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Indices_PutIndexTemplate.Response>): TransportRequestCallback;
 
-    getMapping (params?: Indices_GetMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_GetMapping.Response>>;
+    getMapping (params?: Indices_GetMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_GetMapping.Response>;
     getMapping (callback: callbackFn<Indices_GetMapping.Response>): TransportRequestCallback;
     getMapping (params: Indices_GetMapping.Request, callback: callbackFn<Indices_GetMapping.Response>): TransportRequestCallback;
     getMapping (params: Indices_GetMapping.Request, options: TransportRequestOptions, callback: callbackFn<Indices_GetMapping.Response>): TransportRequestCallback;
 
-    getFieldMapping (params: Indices_GetFieldMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_GetFieldMapping.Response>>;
+    getFieldMapping (params: Indices_GetFieldMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_GetFieldMapping.Response>;
     getFieldMapping (params: Indices_GetFieldMapping.Request, callback: callbackFn<Indices_GetFieldMapping.Response>): TransportRequestCallback;
     getFieldMapping (params: Indices_GetFieldMapping.Request, options: TransportRequestOptions, callback: callbackFn<Indices_GetFieldMapping.Response>): TransportRequestCallback;
 
-    recovery (params?: Indices_Recovery.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Recovery.Response>>;
+    recovery (params?: Indices_Recovery.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Recovery.Response>;
     recovery (callback: callbackFn<Indices_Recovery.Response>): TransportRequestCallback;
     recovery (params: Indices_Recovery.Request, callback: callbackFn<Indices_Recovery.Response>): TransportRequestCallback;
     recovery (params: Indices_Recovery.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Recovery.Response>): TransportRequestCallback;
 
-    refresh (params?: Indices_Refresh.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Refresh.Response>>;
+    refresh (params?: Indices_Refresh.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Refresh.Response>;
     refresh (callback: callbackFn<Indices_Refresh.Response>): TransportRequestCallback;
     refresh (params: Indices_Refresh.Request, callback: callbackFn<Indices_Refresh.Response>): TransportRequestCallback;
     refresh (params: Indices_Refresh.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Refresh.Response>): TransportRequestCallback;
 
-    resolveIndex (params: Indices_ResolveIndex.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_ResolveIndex.Response>>;
+    resolveIndex (params: Indices_ResolveIndex.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_ResolveIndex.Response>;
     resolveIndex (params: Indices_ResolveIndex.Request, callback: callbackFn<Indices_ResolveIndex.Response>): TransportRequestCallback;
     resolveIndex (params: Indices_ResolveIndex.Request, options: TransportRequestOptions, callback: callbackFn<Indices_ResolveIndex.Response>): TransportRequestCallback;
 
-    segments (params?: Indices_Segments.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Segments.Response>>;
+    segments (params?: Indices_Segments.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Segments.Response>;
     segments (callback: callbackFn<Indices_Segments.Response>): TransportRequestCallback;
     segments (params: Indices_Segments.Request, callback: callbackFn<Indices_Segments.Response>): TransportRequestCallback;
     segments (params: Indices_Segments.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Segments.Response>): TransportRequestCallback;
 
-    getSettings (params?: Indices_GetSettings.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_GetSettings.Response>>;
+    getSettings (params?: Indices_GetSettings.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_GetSettings.Response>;
     getSettings (callback: callbackFn<Indices_GetSettings.Response>): TransportRequestCallback;
     getSettings (params: Indices_GetSettings.Request, callback: callbackFn<Indices_GetSettings.Response>): TransportRequestCallback;
     getSettings (params: Indices_GetSettings.Request, options: TransportRequestOptions, callback: callbackFn<Indices_GetSettings.Response>): TransportRequestCallback;
 
-    putSettings (params: Indices_PutSettings.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_PutSettings.Response>>;
+    putSettings (params: Indices_PutSettings.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_PutSettings.Response>;
     putSettings (params: Indices_PutSettings.Request, callback: callbackFn<Indices_PutSettings.Response>): TransportRequestCallback;
     putSettings (params: Indices_PutSettings.Request, options: TransportRequestOptions, callback: callbackFn<Indices_PutSettings.Response>): TransportRequestCallback;
 
-    shardStores (params?: Indices_ShardStores.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_ShardStores.Response>>;
+    shardStores (params?: Indices_ShardStores.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_ShardStores.Response>;
     shardStores (callback: callbackFn<Indices_ShardStores.Response>): TransportRequestCallback;
     shardStores (params: Indices_ShardStores.Request, callback: callbackFn<Indices_ShardStores.Response>): TransportRequestCallback;
     shardStores (params: Indices_ShardStores.Request, options: TransportRequestOptions, callback: callbackFn<Indices_ShardStores.Response>): TransportRequestCallback;
 
-    stats (params?: Indices_Stats.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Stats.Response>>;
+    stats (params?: Indices_Stats.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Stats.Response>;
     stats (callback: callbackFn<Indices_Stats.Response>): TransportRequestCallback;
     stats (params: Indices_Stats.Request, callback: callbackFn<Indices_Stats.Response>): TransportRequestCallback;
     stats (params: Indices_Stats.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Stats.Response>): TransportRequestCallback;
 
-    getTemplate (params?: Indices_GetTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_GetTemplate.Response>>;
+    getTemplate (params?: Indices_GetTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_GetTemplate.Response>;
     getTemplate (callback: callbackFn<Indices_GetTemplate.Response>): TransportRequestCallback;
     getTemplate (params: Indices_GetTemplate.Request, callback: callbackFn<Indices_GetTemplate.Response>): TransportRequestCallback;
     getTemplate (params: Indices_GetTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Indices_GetTemplate.Response>): TransportRequestCallback;
 
-    deleteTemplate (params: Indices_DeleteTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_DeleteTemplate.Response>>;
+    deleteTemplate (params: Indices_DeleteTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_DeleteTemplate.Response>;
     deleteTemplate (params: Indices_DeleteTemplate.Request, callback: callbackFn<Indices_DeleteTemplate.Response>): TransportRequestCallback;
     deleteTemplate (params: Indices_DeleteTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Indices_DeleteTemplate.Response>): TransportRequestCallback;
 
-    existsTemplate (params: Indices_ExistsTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_ExistsTemplate.Response>>;
+    existsTemplate (params: Indices_ExistsTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_ExistsTemplate.Response>;
     existsTemplate (params: Indices_ExistsTemplate.Request, callback: callbackFn<Indices_ExistsTemplate.Response>): TransportRequestCallback;
     existsTemplate (params: Indices_ExistsTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Indices_ExistsTemplate.Response>): TransportRequestCallback;
 
-    putTemplate (params: Indices_PutTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_PutTemplate.Response>>;
+    putTemplate (params: Indices_PutTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_PutTemplate.Response>;
     putTemplate (params: Indices_PutTemplate.Request, callback: callbackFn<Indices_PutTemplate.Response>): TransportRequestCallback;
     putTemplate (params: Indices_PutTemplate.Request, options: TransportRequestOptions, callback: callbackFn<Indices_PutTemplate.Response>): TransportRequestCallback;
 
-    getUpgrade (params?: Indices_GetUpgrade.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_GetUpgrade.Response>>;
+    getUpgrade (params?: Indices_GetUpgrade.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_GetUpgrade.Response>;
     getUpgrade (callback: callbackFn<Indices_GetUpgrade.Response>): TransportRequestCallback;
     getUpgrade (params: Indices_GetUpgrade.Request, callback: callbackFn<Indices_GetUpgrade.Response>): TransportRequestCallback;
     getUpgrade (params: Indices_GetUpgrade.Request, options: TransportRequestOptions, callback: callbackFn<Indices_GetUpgrade.Response>): TransportRequestCallback;
 
-    upgrade (params?: Indices_Upgrade.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Upgrade.Response>>;
+    upgrade (params?: Indices_Upgrade.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Upgrade.Response>;
     upgrade (callback: callbackFn<Indices_Upgrade.Response>): TransportRequestCallback;
     upgrade (params: Indices_Upgrade.Request, callback: callbackFn<Indices_Upgrade.Response>): TransportRequestCallback;
     upgrade (params: Indices_Upgrade.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Upgrade.Response>): TransportRequestCallback;
 
-    validateQuery (params?: Indices_ValidateQuery.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_ValidateQuery.Response>>;
+    validateQuery (params?: Indices_ValidateQuery.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_ValidateQuery.Response>;
     validateQuery (callback: callbackFn<Indices_ValidateQuery.Response>): TransportRequestCallback;
     validateQuery (params: Indices_ValidateQuery.Request, callback: callbackFn<Indices_ValidateQuery.Response>): TransportRequestCallback;
     validateQuery (params: Indices_ValidateQuery.Request, options: TransportRequestOptions, callback: callbackFn<Indices_ValidateQuery.Response>): TransportRequestCallback;
 
-    rollover (params: Indices_Rollover.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Rollover.Response>>;
+    rollover (params: Indices_Rollover.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Rollover.Response>;
     rollover (params: Indices_Rollover.Request, callback: callbackFn<Indices_Rollover.Response>): TransportRequestCallback;
     rollover (params: Indices_Rollover.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Rollover.Response>): TransportRequestCallback;
 
-    delete (params: Indices_Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Delete.Response>>;
+    delete (params: Indices_Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Delete.Response>;
     delete (params: Indices_Delete.Request, callback: callbackFn<Indices_Delete.Response>): TransportRequestCallback;
     delete (params: Indices_Delete.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Delete.Response>): TransportRequestCallback;
 
-    get (params: Indices_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Get.Response>>;
+    get (params: Indices_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Get.Response>;
     get (params: Indices_Get.Request, callback: callbackFn<Indices_Get.Response>): TransportRequestCallback;
     get (params: Indices_Get.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Get.Response>): TransportRequestCallback;
 
-    exists (params: Indices_Exists.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Exists.Response>>;
+    exists (params: Indices_Exists.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Exists.Response>;
     exists (params: Indices_Exists.Request, callback: callbackFn<Indices_Exists.Response>): TransportRequestCallback;
     exists (params: Indices_Exists.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Exists.Response>): TransportRequestCallback;
 
-    create (params: Indices_Create.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Create.Response>>;
+    create (params: Indices_Create.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Create.Response>;
     create (params: Indices_Create.Request, callback: callbackFn<Indices_Create.Response>): TransportRequestCallback;
     create (params: Indices_Create.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Create.Response>): TransportRequestCallback;
 
-    deleteAlias (params: Indices_DeleteAlias.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_DeleteAlias.Response>>;
+    deleteAlias (params: Indices_DeleteAlias.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_DeleteAlias.Response>;
     deleteAlias (params: Indices_DeleteAlias.Request, callback: callbackFn<Indices_DeleteAlias.Response>): TransportRequestCallback;
     deleteAlias (params: Indices_DeleteAlias.Request, options: TransportRequestOptions, callback: callbackFn<Indices_DeleteAlias.Response>): TransportRequestCallback;
 
-    addBlock (params: Indices_AddBlock.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_AddBlock.Response>>;
+    addBlock (params: Indices_AddBlock.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_AddBlock.Response>;
     addBlock (params: Indices_AddBlock.Request, callback: callbackFn<Indices_AddBlock.Response>): TransportRequestCallback;
     addBlock (params: Indices_AddBlock.Request, options: TransportRequestOptions, callback: callbackFn<Indices_AddBlock.Response>): TransportRequestCallback;
 
-    clone (params: Indices_Clone.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Clone.Response>>;
+    clone (params: Indices_Clone.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Clone.Response>;
     clone (params: Indices_Clone.Request, callback: callbackFn<Indices_Clone.Response>): TransportRequestCallback;
     clone (params: Indices_Clone.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Clone.Response>): TransportRequestCallback;
 
-    close (params: Indices_Close.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Close.Response>>;
+    close (params: Indices_Close.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Close.Response>;
     close (params: Indices_Close.Request, callback: callbackFn<Indices_Close.Response>): TransportRequestCallback;
     close (params: Indices_Close.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Close.Response>): TransportRequestCallback;
 
-    putMapping (params: Indices_PutMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_PutMapping.Response>>;
+    putMapping (params: Indices_PutMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_PutMapping.Response>;
     putMapping (params: Indices_PutMapping.Request, callback: callbackFn<Indices_PutMapping.Response>): TransportRequestCallback;
     putMapping (params: Indices_PutMapping.Request, options: TransportRequestOptions, callback: callbackFn<Indices_PutMapping.Response>): TransportRequestCallback;
 
-    open (params: Indices_Open.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Open.Response>>;
+    open (params: Indices_Open.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Open.Response>;
     open (params: Indices_Open.Request, callback: callbackFn<Indices_Open.Response>): TransportRequestCallback;
     open (params: Indices_Open.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Open.Response>): TransportRequestCallback;
 
-    shrink (params: Indices_Shrink.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Shrink.Response>>;
+    shrink (params: Indices_Shrink.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Shrink.Response>;
     shrink (params: Indices_Shrink.Request, callback: callbackFn<Indices_Shrink.Response>): TransportRequestCallback;
     shrink (params: Indices_Shrink.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Shrink.Response>): TransportRequestCallback;
 
-    split (params: Indices_Split.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Indices_Split.Response>>;
+    split (params: Indices_Split.Request, options?: TransportRequestOptions): TransportRequestPromise<Indices_Split.Response>;
     split (params: Indices_Split.Request, callback: callbackFn<Indices_Split.Response>): TransportRequestCallback;
     split (params: Indices_Split.Request, options: TransportRequestOptions, callback: callbackFn<Indices_Split.Response>): TransportRequestCallback;
 
   };
 
   ingest: {
-    getPipeline (params?: Ingest_GetPipeline.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ingest_GetPipeline.Response>>;
+    getPipeline (params?: Ingest_GetPipeline.Request, options?: TransportRequestOptions): TransportRequestPromise<Ingest_GetPipeline.Response>;
     getPipeline (callback: callbackFn<Ingest_GetPipeline.Response>): TransportRequestCallback;
     getPipeline (params: Ingest_GetPipeline.Request, callback: callbackFn<Ingest_GetPipeline.Response>): TransportRequestCallback;
     getPipeline (params: Ingest_GetPipeline.Request, options: TransportRequestOptions, callback: callbackFn<Ingest_GetPipeline.Response>): TransportRequestCallback;
 
-    simulate (params: Ingest_Simulate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ingest_Simulate.Response>>;
+    simulate (params: Ingest_Simulate.Request, options?: TransportRequestOptions): TransportRequestPromise<Ingest_Simulate.Response>;
     simulate (params: Ingest_Simulate.Request, callback: callbackFn<Ingest_Simulate.Response>): TransportRequestCallback;
     simulate (params: Ingest_Simulate.Request, options: TransportRequestOptions, callback: callbackFn<Ingest_Simulate.Response>): TransportRequestCallback;
 
-    deletePipeline (params: Ingest_DeletePipeline.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ingest_DeletePipeline.Response>>;
+    deletePipeline (params: Ingest_DeletePipeline.Request, options?: TransportRequestOptions): TransportRequestPromise<Ingest_DeletePipeline.Response>;
     deletePipeline (params: Ingest_DeletePipeline.Request, callback: callbackFn<Ingest_DeletePipeline.Response>): TransportRequestCallback;
     deletePipeline (params: Ingest_DeletePipeline.Request, options: TransportRequestOptions, callback: callbackFn<Ingest_DeletePipeline.Response>): TransportRequestCallback;
 
-    putPipeline (params: Ingest_PutPipeline.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ingest_PutPipeline.Response>>;
+    putPipeline (params: Ingest_PutPipeline.Request, options?: TransportRequestOptions): TransportRequestPromise<Ingest_PutPipeline.Response>;
     putPipeline (params: Ingest_PutPipeline.Request, callback: callbackFn<Ingest_PutPipeline.Response>): TransportRequestCallback;
     putPipeline (params: Ingest_PutPipeline.Request, options: TransportRequestOptions, callback: callbackFn<Ingest_PutPipeline.Response>): TransportRequestCallback;
 
-    processorGrok (params?: Ingest_ProcessorGrok.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ingest_ProcessorGrok.Response>>;
+    processorGrok (params?: Ingest_ProcessorGrok.Request, options?: TransportRequestOptions): TransportRequestPromise<Ingest_ProcessorGrok.Response>;
     processorGrok (callback: callbackFn<Ingest_ProcessorGrok.Response>): TransportRequestCallback;
     processorGrok (params: Ingest_ProcessorGrok.Request, callback: callbackFn<Ingest_ProcessorGrok.Response>): TransportRequestCallback;
     processorGrok (params: Ingest_ProcessorGrok.Request, options: TransportRequestOptions, callback: callbackFn<Ingest_ProcessorGrok.Response>): TransportRequestCallback;
@@ -828,90 +826,90 @@ declare class Client {
   };
 
   knn: {
-    stats (params?: Knn_Stats.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Knn_Stats.Response>>;
+    stats (params?: Knn_Stats.Request, options?: TransportRequestOptions): TransportRequestPromise<Knn_Stats.Response>;
     stats (callback: callbackFn<Knn_Stats.Response>): TransportRequestCallback;
     stats (params: Knn_Stats.Request, callback: callbackFn<Knn_Stats.Response>): TransportRequestCallback;
     stats (params: Knn_Stats.Request, options: TransportRequestOptions, callback: callbackFn<Knn_Stats.Response>): TransportRequestCallback;
 
-    searchModels (params?: Knn_SearchModels.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Knn_SearchModels.Response>>;
+    searchModels (params?: Knn_SearchModels.Request, options?: TransportRequestOptions): TransportRequestPromise<Knn_SearchModels.Response>;
     searchModels (callback: callbackFn<Knn_SearchModels.Response>): TransportRequestCallback;
     searchModels (params: Knn_SearchModels.Request, callback: callbackFn<Knn_SearchModels.Response>): TransportRequestCallback;
     searchModels (params: Knn_SearchModels.Request, options: TransportRequestOptions, callback: callbackFn<Knn_SearchModels.Response>): TransportRequestCallback;
 
-    trainModel (params: Knn_TrainModel.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Knn_TrainModel.Response>>;
+    trainModel (params: Knn_TrainModel.Request, options?: TransportRequestOptions): TransportRequestPromise<Knn_TrainModel.Response>;
     trainModel (params: Knn_TrainModel.Request, callback: callbackFn<Knn_TrainModel.Response>): TransportRequestCallback;
     trainModel (params: Knn_TrainModel.Request, options: TransportRequestOptions, callback: callbackFn<Knn_TrainModel.Response>): TransportRequestCallback;
 
-    deleteModel (params: Knn_DeleteModel.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Knn_DeleteModel.Response>>;
+    deleteModel (params: Knn_DeleteModel.Request, options?: TransportRequestOptions): TransportRequestPromise<Knn_DeleteModel.Response>;
     deleteModel (params: Knn_DeleteModel.Request, callback: callbackFn<Knn_DeleteModel.Response>): TransportRequestCallback;
     deleteModel (params: Knn_DeleteModel.Request, options: TransportRequestOptions, callback: callbackFn<Knn_DeleteModel.Response>): TransportRequestCallback;
 
-    getModel (params: Knn_GetModel.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Knn_GetModel.Response>>;
+    getModel (params: Knn_GetModel.Request, options?: TransportRequestOptions): TransportRequestPromise<Knn_GetModel.Response>;
     getModel (params: Knn_GetModel.Request, callback: callbackFn<Knn_GetModel.Response>): TransportRequestCallback;
     getModel (params: Knn_GetModel.Request, options: TransportRequestOptions, callback: callbackFn<Knn_GetModel.Response>): TransportRequestCallback;
 
-    warmup (params: Knn_Warmup.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Knn_Warmup.Response>>;
+    warmup (params: Knn_Warmup.Request, options?: TransportRequestOptions): TransportRequestPromise<Knn_Warmup.Response>;
     warmup (params: Knn_Warmup.Request, callback: callbackFn<Knn_Warmup.Response>): TransportRequestCallback;
     warmup (params: Knn_Warmup.Request, options: TransportRequestOptions, callback: callbackFn<Knn_Warmup.Response>): TransportRequestCallback;
 
   };
 
   ml: {
-    registerModelGroup (params?: Ml_RegisterModelGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ml_RegisterModelGroup.Response>>;
+    registerModelGroup (params?: Ml_RegisterModelGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<Ml_RegisterModelGroup.Response>;
     registerModelGroup (callback: callbackFn<Ml_RegisterModelGroup.Response>): TransportRequestCallback;
     registerModelGroup (params: Ml_RegisterModelGroup.Request, callback: callbackFn<Ml_RegisterModelGroup.Response>): TransportRequestCallback;
     registerModelGroup (params: Ml_RegisterModelGroup.Request, options: TransportRequestOptions, callback: callbackFn<Ml_RegisterModelGroup.Response>): TransportRequestCallback;
 
-    deleteModelGroup (params: Ml_DeleteModelGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ml_DeleteModelGroup.Response>>;
+    deleteModelGroup (params: Ml_DeleteModelGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<Ml_DeleteModelGroup.Response>;
     deleteModelGroup (params: Ml_DeleteModelGroup.Request, callback: callbackFn<Ml_DeleteModelGroup.Response>): TransportRequestCallback;
     deleteModelGroup (params: Ml_DeleteModelGroup.Request, options: TransportRequestOptions, callback: callbackFn<Ml_DeleteModelGroup.Response>): TransportRequestCallback;
 
-    getModelGroup (params: Ml_GetModelGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ml_GetModelGroup.Response>>;
+    getModelGroup (params: Ml_GetModelGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<Ml_GetModelGroup.Response>;
     getModelGroup (params: Ml_GetModelGroup.Request, callback: callbackFn<Ml_GetModelGroup.Response>): TransportRequestCallback;
     getModelGroup (params: Ml_GetModelGroup.Request, options: TransportRequestOptions, callback: callbackFn<Ml_GetModelGroup.Response>): TransportRequestCallback;
 
-    registerModel (params?: Ml_RegisterModel.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ml_RegisterModel.Response>>;
+    registerModel (params?: Ml_RegisterModel.Request, options?: TransportRequestOptions): TransportRequestPromise<Ml_RegisterModel.Response>;
     registerModel (callback: callbackFn<Ml_RegisterModel.Response>): TransportRequestCallback;
     registerModel (params: Ml_RegisterModel.Request, callback: callbackFn<Ml_RegisterModel.Response>): TransportRequestCallback;
     registerModel (params: Ml_RegisterModel.Request, options: TransportRequestOptions, callback: callbackFn<Ml_RegisterModel.Response>): TransportRequestCallback;
 
-    searchModels (params?: Ml_SearchModels.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ml_SearchModels.Response>>;
+    searchModels (params?: Ml_SearchModels.Request, options?: TransportRequestOptions): TransportRequestPromise<Ml_SearchModels.Response>;
     searchModels (callback: callbackFn<Ml_SearchModels.Response>): TransportRequestCallback;
     searchModels (params: Ml_SearchModels.Request, callback: callbackFn<Ml_SearchModels.Response>): TransportRequestCallback;
     searchModels (params: Ml_SearchModels.Request, options: TransportRequestOptions, callback: callbackFn<Ml_SearchModels.Response>): TransportRequestCallback;
 
-    deleteModel (params: Ml_DeleteModel.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ml_DeleteModel.Response>>;
+    deleteModel (params: Ml_DeleteModel.Request, options?: TransportRequestOptions): TransportRequestPromise<Ml_DeleteModel.Response>;
     deleteModel (params: Ml_DeleteModel.Request, callback: callbackFn<Ml_DeleteModel.Response>): TransportRequestCallback;
     deleteModel (params: Ml_DeleteModel.Request, options: TransportRequestOptions, callback: callbackFn<Ml_DeleteModel.Response>): TransportRequestCallback;
 
-    getTask (params: Ml_GetTask.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ml_GetTask.Response>>;
+    getTask (params: Ml_GetTask.Request, options?: TransportRequestOptions): TransportRequestPromise<Ml_GetTask.Response>;
     getTask (params: Ml_GetTask.Request, callback: callbackFn<Ml_GetTask.Response>): TransportRequestCallback;
     getTask (params: Ml_GetTask.Request, options: TransportRequestOptions, callback: callbackFn<Ml_GetTask.Response>): TransportRequestCallback;
 
   };
 
   nodes: {
-    info (params?: Nodes_Info.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Nodes_Info.Response>>;
+    info (params?: Nodes_Info.Request, options?: TransportRequestOptions): TransportRequestPromise<Nodes_Info.Response>;
     info (callback: callbackFn<Nodes_Info.Response>): TransportRequestCallback;
     info (params: Nodes_Info.Request, callback: callbackFn<Nodes_Info.Response>): TransportRequestCallback;
     info (params: Nodes_Info.Request, options: TransportRequestOptions, callback: callbackFn<Nodes_Info.Response>): TransportRequestCallback;
 
-    hotThreads (params?: Nodes_HotThreads.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Nodes_HotThreads.Response>>;
+    hotThreads (params?: Nodes_HotThreads.Request, options?: TransportRequestOptions): TransportRequestPromise<Nodes_HotThreads.Response>;
     hotThreads (callback: callbackFn<Nodes_HotThreads.Response>): TransportRequestCallback;
     hotThreads (params: Nodes_HotThreads.Request, callback: callbackFn<Nodes_HotThreads.Response>): TransportRequestCallback;
     hotThreads (params: Nodes_HotThreads.Request, options: TransportRequestOptions, callback: callbackFn<Nodes_HotThreads.Response>): TransportRequestCallback;
 
-    reloadSecureSettings (params?: Nodes_ReloadSecureSettings.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Nodes_ReloadSecureSettings.Response>>;
+    reloadSecureSettings (params?: Nodes_ReloadSecureSettings.Request, options?: TransportRequestOptions): TransportRequestPromise<Nodes_ReloadSecureSettings.Response>;
     reloadSecureSettings (callback: callbackFn<Nodes_ReloadSecureSettings.Response>): TransportRequestCallback;
     reloadSecureSettings (params: Nodes_ReloadSecureSettings.Request, callback: callbackFn<Nodes_ReloadSecureSettings.Response>): TransportRequestCallback;
     reloadSecureSettings (params: Nodes_ReloadSecureSettings.Request, options: TransportRequestOptions, callback: callbackFn<Nodes_ReloadSecureSettings.Response>): TransportRequestCallback;
 
-    stats (params?: Nodes_Stats.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Nodes_Stats.Response>>;
+    stats (params?: Nodes_Stats.Request, options?: TransportRequestOptions): TransportRequestPromise<Nodes_Stats.Response>;
     stats (callback: callbackFn<Nodes_Stats.Response>): TransportRequestCallback;
     stats (params: Nodes_Stats.Request, callback: callbackFn<Nodes_Stats.Response>): TransportRequestCallback;
     stats (params: Nodes_Stats.Request, options: TransportRequestOptions, callback: callbackFn<Nodes_Stats.Response>): TransportRequestCallback;
 
-    usage (params?: Nodes_Usage.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Nodes_Usage.Response>>;
+    usage (params?: Nodes_Usage.Request, options?: TransportRequestOptions): TransportRequestPromise<Nodes_Usage.Response>;
     usage (callback: callbackFn<Nodes_Usage.Response>): TransportRequestCallback;
     usage (params: Nodes_Usage.Request, callback: callbackFn<Nodes_Usage.Response>): TransportRequestCallback;
     usage (params: Nodes_Usage.Request, options: TransportRequestOptions, callback: callbackFn<Nodes_Usage.Response>): TransportRequestCallback;
@@ -919,41 +917,41 @@ declare class Client {
   };
 
   notifications: {
-    listChannels (params?: Notifications_ListChannels.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Notifications_ListChannels.Response>>;
+    listChannels (params?: Notifications_ListChannels.Request, options?: TransportRequestOptions): TransportRequestPromise<Notifications_ListChannels.Response>;
     listChannels (callback: callbackFn<Notifications_ListChannels.Response>): TransportRequestCallback;
     listChannels (params: Notifications_ListChannels.Request, callback: callbackFn<Notifications_ListChannels.Response>): TransportRequestCallback;
     listChannels (params: Notifications_ListChannels.Request, options: TransportRequestOptions, callback: callbackFn<Notifications_ListChannels.Response>): TransportRequestCallback;
 
-    deleteConfigs (params: Notifications_DeleteConfigs.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Notifications_DeleteConfigs.Response>>;
+    deleteConfigs (params: Notifications_DeleteConfigs.Request, options?: TransportRequestOptions): TransportRequestPromise<Notifications_DeleteConfigs.Response>;
     deleteConfigs (params: Notifications_DeleteConfigs.Request, callback: callbackFn<Notifications_DeleteConfigs.Response>): TransportRequestCallback;
     deleteConfigs (params: Notifications_DeleteConfigs.Request, options: TransportRequestOptions, callback: callbackFn<Notifications_DeleteConfigs.Response>): TransportRequestCallback;
 
-    getConfigs (params?: Notifications_GetConfigs.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Notifications_GetConfigs.Response>>;
+    getConfigs (params?: Notifications_GetConfigs.Request, options?: TransportRequestOptions): TransportRequestPromise<Notifications_GetConfigs.Response>;
     getConfigs (callback: callbackFn<Notifications_GetConfigs.Response>): TransportRequestCallback;
     getConfigs (params: Notifications_GetConfigs.Request, callback: callbackFn<Notifications_GetConfigs.Response>): TransportRequestCallback;
     getConfigs (params: Notifications_GetConfigs.Request, options: TransportRequestOptions, callback: callbackFn<Notifications_GetConfigs.Response>): TransportRequestCallback;
 
-    createConfig (params: Notifications_CreateConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Notifications_CreateConfig.Response>>;
+    createConfig (params: Notifications_CreateConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<Notifications_CreateConfig.Response>;
     createConfig (params: Notifications_CreateConfig.Request, callback: callbackFn<Notifications_CreateConfig.Response>): TransportRequestCallback;
     createConfig (params: Notifications_CreateConfig.Request, options: TransportRequestOptions, callback: callbackFn<Notifications_CreateConfig.Response>): TransportRequestCallback;
 
-    deleteConfig (params: Notifications_DeleteConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Notifications_DeleteConfig.Response>>;
+    deleteConfig (params: Notifications_DeleteConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<Notifications_DeleteConfig.Response>;
     deleteConfig (params: Notifications_DeleteConfig.Request, callback: callbackFn<Notifications_DeleteConfig.Response>): TransportRequestCallback;
     deleteConfig (params: Notifications_DeleteConfig.Request, options: TransportRequestOptions, callback: callbackFn<Notifications_DeleteConfig.Response>): TransportRequestCallback;
 
-    getConfig (params: Notifications_GetConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Notifications_GetConfig.Response>>;
+    getConfig (params: Notifications_GetConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<Notifications_GetConfig.Response>;
     getConfig (params: Notifications_GetConfig.Request, callback: callbackFn<Notifications_GetConfig.Response>): TransportRequestCallback;
     getConfig (params: Notifications_GetConfig.Request, options: TransportRequestOptions, callback: callbackFn<Notifications_GetConfig.Response>): TransportRequestCallback;
 
-    updateConfig (params: Notifications_UpdateConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Notifications_UpdateConfig.Response>>;
+    updateConfig (params: Notifications_UpdateConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<Notifications_UpdateConfig.Response>;
     updateConfig (params: Notifications_UpdateConfig.Request, callback: callbackFn<Notifications_UpdateConfig.Response>): TransportRequestCallback;
     updateConfig (params: Notifications_UpdateConfig.Request, options: TransportRequestOptions, callback: callbackFn<Notifications_UpdateConfig.Response>): TransportRequestCallback;
 
-    sendTest (params: Notifications_SendTest.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Notifications_SendTest.Response>>;
+    sendTest (params: Notifications_SendTest.Request, options?: TransportRequestOptions): TransportRequestPromise<Notifications_SendTest.Response>;
     sendTest (params: Notifications_SendTest.Request, callback: callbackFn<Notifications_SendTest.Response>): TransportRequestCallback;
     sendTest (params: Notifications_SendTest.Request, options: TransportRequestOptions, callback: callbackFn<Notifications_SendTest.Response>): TransportRequestCallback;
 
-    listFeatures (params?: Notifications_ListFeatures.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Notifications_ListFeatures.Response>>;
+    listFeatures (params?: Notifications_ListFeatures.Request, options?: TransportRequestOptions): TransportRequestPromise<Notifications_ListFeatures.Response>;
     listFeatures (callback: callbackFn<Notifications_ListFeatures.Response>): TransportRequestCallback;
     listFeatures (params: Notifications_ListFeatures.Request, callback: callbackFn<Notifications_ListFeatures.Response>): TransportRequestCallback;
     listFeatures (params: Notifications_ListFeatures.Request, options: TransportRequestOptions, callback: callbackFn<Notifications_ListFeatures.Response>): TransportRequestCallback;
@@ -961,398 +959,398 @@ declare class Client {
   };
 
   ppl: {
-    query (params: Ppl_Query.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ppl_Query.Response>>;
+    query (params: Ppl_Query.Request, options?: TransportRequestOptions): TransportRequestPromise<Ppl_Query.Response>;
     query (params: Ppl_Query.Request, callback: callbackFn<Ppl_Query.Response>): TransportRequestCallback;
     query (params: Ppl_Query.Request, options: TransportRequestOptions, callback: callbackFn<Ppl_Query.Response>): TransportRequestCallback;
 
-    explain (params: Ppl_Explain.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ppl_Explain.Response>>;
+    explain (params: Ppl_Explain.Request, options?: TransportRequestOptions): TransportRequestPromise<Ppl_Explain.Response>;
     explain (params: Ppl_Explain.Request, callback: callbackFn<Ppl_Explain.Response>): TransportRequestCallback;
     explain (params: Ppl_Explain.Request, options: TransportRequestOptions, callback: callbackFn<Ppl_Explain.Response>): TransportRequestCallback;
 
-    getStats (params?: Ppl_GetStats.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ppl_GetStats.Response>>;
+    getStats (params?: Ppl_GetStats.Request, options?: TransportRequestOptions): TransportRequestPromise<Ppl_GetStats.Response>;
     getStats (callback: callbackFn<Ppl_GetStats.Response>): TransportRequestCallback;
     getStats (params: Ppl_GetStats.Request, callback: callbackFn<Ppl_GetStats.Response>): TransportRequestCallback;
     getStats (params: Ppl_GetStats.Request, options: TransportRequestOptions, callback: callbackFn<Ppl_GetStats.Response>): TransportRequestCallback;
 
-    postStats (params: Ppl_PostStats.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ppl_PostStats.Response>>;
+    postStats (params: Ppl_PostStats.Request, options?: TransportRequestOptions): TransportRequestPromise<Ppl_PostStats.Response>;
     postStats (params: Ppl_PostStats.Request, callback: callbackFn<Ppl_PostStats.Response>): TransportRequestCallback;
     postStats (params: Ppl_PostStats.Request, options: TransportRequestOptions, callback: callbackFn<Ppl_PostStats.Response>): TransportRequestCallback;
 
   };
 
   remote_store: {
-    restore (params: RemoteStore_Restore.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<RemoteStore_Restore.Response>>;
+    restore (params: RemoteStore_Restore.Request, options?: TransportRequestOptions): TransportRequestPromise<RemoteStore_Restore.Response>;
     restore (params: RemoteStore_Restore.Request, callback: callbackFn<RemoteStore_Restore.Response>): TransportRequestCallback;
     restore (params: RemoteStore_Restore.Request, options: TransportRequestOptions, callback: callbackFn<RemoteStore_Restore.Response>): TransportRequestCallback;
 
   };
 
   rollups: {
-    delete (params: Rollups_Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Rollups_Delete.Response>>;
+    delete (params: Rollups_Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<Rollups_Delete.Response>;
     delete (params: Rollups_Delete.Request, callback: callbackFn<Rollups_Delete.Response>): TransportRequestCallback;
     delete (params: Rollups_Delete.Request, options: TransportRequestOptions, callback: callbackFn<Rollups_Delete.Response>): TransportRequestCallback;
 
-    get (params: Rollups_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Rollups_Get.Response>>;
+    get (params: Rollups_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<Rollups_Get.Response>;
     get (params: Rollups_Get.Request, callback: callbackFn<Rollups_Get.Response>): TransportRequestCallback;
     get (params: Rollups_Get.Request, options: TransportRequestOptions, callback: callbackFn<Rollups_Get.Response>): TransportRequestCallback;
 
-    put (params: Rollups_Put.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Rollups_Put.Response>>;
+    put (params: Rollups_Put.Request, options?: TransportRequestOptions): TransportRequestPromise<Rollups_Put.Response>;
     put (params: Rollups_Put.Request, callback: callbackFn<Rollups_Put.Response>): TransportRequestCallback;
     put (params: Rollups_Put.Request, options: TransportRequestOptions, callback: callbackFn<Rollups_Put.Response>): TransportRequestCallback;
 
-    explain (params: Rollups_Explain.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Rollups_Explain.Response>>;
+    explain (params: Rollups_Explain.Request, options?: TransportRequestOptions): TransportRequestPromise<Rollups_Explain.Response>;
     explain (params: Rollups_Explain.Request, callback: callbackFn<Rollups_Explain.Response>): TransportRequestCallback;
     explain (params: Rollups_Explain.Request, options: TransportRequestOptions, callback: callbackFn<Rollups_Explain.Response>): TransportRequestCallback;
 
-    start (params: Rollups_Start.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Rollups_Start.Response>>;
+    start (params: Rollups_Start.Request, options?: TransportRequestOptions): TransportRequestPromise<Rollups_Start.Response>;
     start (params: Rollups_Start.Request, callback: callbackFn<Rollups_Start.Response>): TransportRequestCallback;
     start (params: Rollups_Start.Request, options: TransportRequestOptions, callback: callbackFn<Rollups_Start.Response>): TransportRequestCallback;
 
-    stop (params: Rollups_Stop.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Rollups_Stop.Response>>;
+    stop (params: Rollups_Stop.Request, options?: TransportRequestOptions): TransportRequestPromise<Rollups_Stop.Response>;
     stop (params: Rollups_Stop.Request, callback: callbackFn<Rollups_Stop.Response>): TransportRequestCallback;
     stop (params: Rollups_Stop.Request, options: TransportRequestOptions, callback: callbackFn<Rollups_Stop.Response>): TransportRequestCallback;
 
   };
 
   search_pipeline: {
-    get (params?: SearchPipeline_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<SearchPipeline_Get.Response>>;
+    get (params?: SearchPipeline_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<SearchPipeline_Get.Response>;
     get (callback: callbackFn<SearchPipeline_Get.Response>): TransportRequestCallback;
     get (params: SearchPipeline_Get.Request, callback: callbackFn<SearchPipeline_Get.Response>): TransportRequestCallback;
     get (params: SearchPipeline_Get.Request, options: TransportRequestOptions, callback: callbackFn<SearchPipeline_Get.Response>): TransportRequestCallback;
 
-    delete (params: SearchPipeline_Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<SearchPipeline_Delete.Response>>;
+    delete (params: SearchPipeline_Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<SearchPipeline_Delete.Response>;
     delete (params: SearchPipeline_Delete.Request, callback: callbackFn<SearchPipeline_Delete.Response>): TransportRequestCallback;
     delete (params: SearchPipeline_Delete.Request, options: TransportRequestOptions, callback: callbackFn<SearchPipeline_Delete.Response>): TransportRequestCallback;
 
-    put (params: SearchPipeline_Put.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<SearchPipeline_Put.Response>>;
+    put (params: SearchPipeline_Put.Request, options?: TransportRequestOptions): TransportRequestPromise<SearchPipeline_Put.Response>;
     put (params: SearchPipeline_Put.Request, callback: callbackFn<SearchPipeline_Put.Response>): TransportRequestCallback;
     put (params: SearchPipeline_Put.Request, options: TransportRequestOptions, callback: callbackFn<SearchPipeline_Put.Response>): TransportRequestCallback;
 
   };
 
   security: {
-    getSslinfo (params?: Security_GetSslinfo.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetSslinfo.Response>>;
+    getSslinfo (params?: Security_GetSslinfo.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetSslinfo.Response>;
     getSslinfo (callback: callbackFn<Security_GetSslinfo.Response>): TransportRequestCallback;
     getSslinfo (params: Security_GetSslinfo.Request, callback: callbackFn<Security_GetSslinfo.Response>): TransportRequestCallback;
     getSslinfo (params: Security_GetSslinfo.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetSslinfo.Response>): TransportRequestCallback;
 
-    configUpgradeCheck (params?: Security_ConfigUpgradeCheck.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_ConfigUpgradeCheck.Response>>;
+    configUpgradeCheck (params?: Security_ConfigUpgradeCheck.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_ConfigUpgradeCheck.Response>;
     configUpgradeCheck (callback: callbackFn<Security_ConfigUpgradeCheck.Response>): TransportRequestCallback;
     configUpgradeCheck (params: Security_ConfigUpgradeCheck.Request, callback: callbackFn<Security_ConfigUpgradeCheck.Response>): TransportRequestCallback;
     configUpgradeCheck (params: Security_ConfigUpgradeCheck.Request, options: TransportRequestOptions, callback: callbackFn<Security_ConfigUpgradeCheck.Response>): TransportRequestCallback;
 
-    configUpgradePerform (params?: Security_ConfigUpgradePerform.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_ConfigUpgradePerform.Response>>;
+    configUpgradePerform (params?: Security_ConfigUpgradePerform.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_ConfigUpgradePerform.Response>;
     configUpgradePerform (callback: callbackFn<Security_ConfigUpgradePerform.Response>): TransportRequestCallback;
     configUpgradePerform (params: Security_ConfigUpgradePerform.Request, callback: callbackFn<Security_ConfigUpgradePerform.Response>): TransportRequestCallback;
     configUpgradePerform (params: Security_ConfigUpgradePerform.Request, options: TransportRequestOptions, callback: callbackFn<Security_ConfigUpgradePerform.Response>): TransportRequestCallback;
 
-    getAccountDetails (params?: Security_GetAccountDetails.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetAccountDetails.Response>>;
+    getAccountDetails (params?: Security_GetAccountDetails.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetAccountDetails.Response>;
     getAccountDetails (callback: callbackFn<Security_GetAccountDetails.Response>): TransportRequestCallback;
     getAccountDetails (params: Security_GetAccountDetails.Request, callback: callbackFn<Security_GetAccountDetails.Response>): TransportRequestCallback;
     getAccountDetails (params: Security_GetAccountDetails.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetAccountDetails.Response>): TransportRequestCallback;
 
-    changePassword (params: Security_ChangePassword.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_ChangePassword.Response>>;
+    changePassword (params: Security_ChangePassword.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_ChangePassword.Response>;
     changePassword (params: Security_ChangePassword.Request, callback: callbackFn<Security_ChangePassword.Response>): TransportRequestCallback;
     changePassword (params: Security_ChangePassword.Request, options: TransportRequestOptions, callback: callbackFn<Security_ChangePassword.Response>): TransportRequestCallback;
 
-    getActionGroups (params?: Security_GetActionGroups.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetActionGroups.Response>>;
+    getActionGroups (params?: Security_GetActionGroups.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetActionGroups.Response>;
     getActionGroups (callback: callbackFn<Security_GetActionGroups.Response>): TransportRequestCallback;
     getActionGroups (params: Security_GetActionGroups.Request, callback: callbackFn<Security_GetActionGroups.Response>): TransportRequestCallback;
     getActionGroups (params: Security_GetActionGroups.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetActionGroups.Response>): TransportRequestCallback;
 
-    patchActionGroups (params: Security_PatchActionGroups.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchActionGroups.Response>>;
+    patchActionGroups (params: Security_PatchActionGroups.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchActionGroups.Response>;
     patchActionGroups (params: Security_PatchActionGroups.Request, callback: callbackFn<Security_PatchActionGroups.Response>): TransportRequestCallback;
     patchActionGroups (params: Security_PatchActionGroups.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchActionGroups.Response>): TransportRequestCallback;
 
-    deleteActionGroup (params: Security_DeleteActionGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_DeleteActionGroup.Response>>;
+    deleteActionGroup (params: Security_DeleteActionGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_DeleteActionGroup.Response>;
     deleteActionGroup (params: Security_DeleteActionGroup.Request, callback: callbackFn<Security_DeleteActionGroup.Response>): TransportRequestCallback;
     deleteActionGroup (params: Security_DeleteActionGroup.Request, options: TransportRequestOptions, callback: callbackFn<Security_DeleteActionGroup.Response>): TransportRequestCallback;
 
-    getActionGroup (params: Security_GetActionGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetActionGroup.Response>>;
+    getActionGroup (params: Security_GetActionGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetActionGroup.Response>;
     getActionGroup (params: Security_GetActionGroup.Request, callback: callbackFn<Security_GetActionGroup.Response>): TransportRequestCallback;
     getActionGroup (params: Security_GetActionGroup.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetActionGroup.Response>): TransportRequestCallback;
 
-    patchActionGroup (params: Security_PatchActionGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchActionGroup.Response>>;
+    patchActionGroup (params: Security_PatchActionGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchActionGroup.Response>;
     patchActionGroup (params: Security_PatchActionGroup.Request, callback: callbackFn<Security_PatchActionGroup.Response>): TransportRequestCallback;
     patchActionGroup (params: Security_PatchActionGroup.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchActionGroup.Response>): TransportRequestCallback;
 
-    createActionGroup (params: Security_CreateActionGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_CreateActionGroup.Response>>;
+    createActionGroup (params: Security_CreateActionGroup.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_CreateActionGroup.Response>;
     createActionGroup (params: Security_CreateActionGroup.Request, callback: callbackFn<Security_CreateActionGroup.Response>): TransportRequestCallback;
     createActionGroup (params: Security_CreateActionGroup.Request, options: TransportRequestOptions, callback: callbackFn<Security_CreateActionGroup.Response>): TransportRequestCallback;
 
-    getAllowlist (params?: Security_GetAllowlist.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetAllowlist.Response>>;
+    getAllowlist (params?: Security_GetAllowlist.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetAllowlist.Response>;
     getAllowlist (callback: callbackFn<Security_GetAllowlist.Response>): TransportRequestCallback;
     getAllowlist (params: Security_GetAllowlist.Request, callback: callbackFn<Security_GetAllowlist.Response>): TransportRequestCallback;
     getAllowlist (params: Security_GetAllowlist.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetAllowlist.Response>): TransportRequestCallback;
 
-    patchAllowlist (params: Security_PatchAllowlist.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchAllowlist.Response>>;
+    patchAllowlist (params: Security_PatchAllowlist.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchAllowlist.Response>;
     patchAllowlist (params: Security_PatchAllowlist.Request, callback: callbackFn<Security_PatchAllowlist.Response>): TransportRequestCallback;
     patchAllowlist (params: Security_PatchAllowlist.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchAllowlist.Response>): TransportRequestCallback;
 
-    createAllowlist (params: Security_CreateAllowlist.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_CreateAllowlist.Response>>;
+    createAllowlist (params: Security_CreateAllowlist.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_CreateAllowlist.Response>;
     createAllowlist (params: Security_CreateAllowlist.Request, callback: callbackFn<Security_CreateAllowlist.Response>): TransportRequestCallback;
     createAllowlist (params: Security_CreateAllowlist.Request, options: TransportRequestOptions, callback: callbackFn<Security_CreateAllowlist.Response>): TransportRequestCallback;
 
-    getAuditConfiguration (params?: Security_GetAuditConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetAuditConfiguration.Response>>;
+    getAuditConfiguration (params?: Security_GetAuditConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetAuditConfiguration.Response>;
     getAuditConfiguration (callback: callbackFn<Security_GetAuditConfiguration.Response>): TransportRequestCallback;
     getAuditConfiguration (params: Security_GetAuditConfiguration.Request, callback: callbackFn<Security_GetAuditConfiguration.Response>): TransportRequestCallback;
     getAuditConfiguration (params: Security_GetAuditConfiguration.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetAuditConfiguration.Response>): TransportRequestCallback;
 
-    patchAuditConfiguration (params: Security_PatchAuditConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchAuditConfiguration.Response>>;
+    patchAuditConfiguration (params: Security_PatchAuditConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchAuditConfiguration.Response>;
     patchAuditConfiguration (params: Security_PatchAuditConfiguration.Request, callback: callbackFn<Security_PatchAuditConfiguration.Response>): TransportRequestCallback;
     patchAuditConfiguration (params: Security_PatchAuditConfiguration.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchAuditConfiguration.Response>): TransportRequestCallback;
 
-    updateAuditConfiguration (params: Security_UpdateAuditConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_UpdateAuditConfiguration.Response>>;
+    updateAuditConfiguration (params: Security_UpdateAuditConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_UpdateAuditConfiguration.Response>;
     updateAuditConfiguration (params: Security_UpdateAuditConfiguration.Request, callback: callbackFn<Security_UpdateAuditConfiguration.Response>): TransportRequestCallback;
     updateAuditConfiguration (params: Security_UpdateAuditConfiguration.Request, options: TransportRequestOptions, callback: callbackFn<Security_UpdateAuditConfiguration.Response>): TransportRequestCallback;
 
-    authtoken (params?: Security_Authtoken.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_Authtoken.Response>>;
+    authtoken (params?: Security_Authtoken.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_Authtoken.Response>;
     authtoken (callback: callbackFn<Security_Authtoken.Response>): TransportRequestCallback;
     authtoken (params: Security_Authtoken.Request, callback: callbackFn<Security_Authtoken.Response>): TransportRequestCallback;
     authtoken (params: Security_Authtoken.Request, options: TransportRequestOptions, callback: callbackFn<Security_Authtoken.Response>): TransportRequestCallback;
 
-    flushCache (params?: Security_FlushCache.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_FlushCache.Response>>;
+    flushCache (params?: Security_FlushCache.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_FlushCache.Response>;
     flushCache (callback: callbackFn<Security_FlushCache.Response>): TransportRequestCallback;
     flushCache (params: Security_FlushCache.Request, callback: callbackFn<Security_FlushCache.Response>): TransportRequestCallback;
     flushCache (params: Security_FlushCache.Request, options: TransportRequestOptions, callback: callbackFn<Security_FlushCache.Response>): TransportRequestCallback;
 
-    generateOboToken (params: Security_GenerateOboToken.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GenerateOboToken.Response>>;
+    generateOboToken (params: Security_GenerateOboToken.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GenerateOboToken.Response>;
     generateOboToken (params: Security_GenerateOboToken.Request, callback: callbackFn<Security_GenerateOboToken.Response>): TransportRequestCallback;
     generateOboToken (params: Security_GenerateOboToken.Request, options: TransportRequestOptions, callback: callbackFn<Security_GenerateOboToken.Response>): TransportRequestCallback;
 
-    getUsers (params?: Security_GetUsers.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetUsers.Response>>;
+    getUsers (params?: Security_GetUsers.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetUsers.Response>;
     getUsers (callback: callbackFn<Security_GetUsers.Response>): TransportRequestCallback;
     getUsers (params: Security_GetUsers.Request, callback: callbackFn<Security_GetUsers.Response>): TransportRequestCallback;
     getUsers (params: Security_GetUsers.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetUsers.Response>): TransportRequestCallback;
 
-    patchUsers (params: Security_PatchUsers.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchUsers.Response>>;
+    patchUsers (params: Security_PatchUsers.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchUsers.Response>;
     patchUsers (params: Security_PatchUsers.Request, callback: callbackFn<Security_PatchUsers.Response>): TransportRequestCallback;
     patchUsers (params: Security_PatchUsers.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchUsers.Response>): TransportRequestCallback;
 
-    deleteUser (params: Security_DeleteUser.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_DeleteUser.Response>>;
+    deleteUser (params: Security_DeleteUser.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_DeleteUser.Response>;
     deleteUser (params: Security_DeleteUser.Request, callback: callbackFn<Security_DeleteUser.Response>): TransportRequestCallback;
     deleteUser (params: Security_DeleteUser.Request, options: TransportRequestOptions, callback: callbackFn<Security_DeleteUser.Response>): TransportRequestCallback;
 
-    getUser (params: Security_GetUser.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetUser.Response>>;
+    getUser (params: Security_GetUser.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetUser.Response>;
     getUser (params: Security_GetUser.Request, callback: callbackFn<Security_GetUser.Response>): TransportRequestCallback;
     getUser (params: Security_GetUser.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetUser.Response>): TransportRequestCallback;
 
-    patchUser (params: Security_PatchUser.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchUser.Response>>;
+    patchUser (params: Security_PatchUser.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchUser.Response>;
     patchUser (params: Security_PatchUser.Request, callback: callbackFn<Security_PatchUser.Response>): TransportRequestCallback;
     patchUser (params: Security_PatchUser.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchUser.Response>): TransportRequestCallback;
 
-    createUser (params: Security_CreateUser.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_CreateUser.Response>>;
+    createUser (params: Security_CreateUser.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_CreateUser.Response>;
     createUser (params: Security_CreateUser.Request, callback: callbackFn<Security_CreateUser.Response>): TransportRequestCallback;
     createUser (params: Security_CreateUser.Request, options: TransportRequestOptions, callback: callbackFn<Security_CreateUser.Response>): TransportRequestCallback;
 
-    generateUserToken (params: Security_GenerateUserToken.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GenerateUserToken.Response>>;
+    generateUserToken (params: Security_GenerateUserToken.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GenerateUserToken.Response>;
     generateUserToken (params: Security_GenerateUserToken.Request, callback: callbackFn<Security_GenerateUserToken.Response>): TransportRequestCallback;
     generateUserToken (params: Security_GenerateUserToken.Request, options: TransportRequestOptions, callback: callbackFn<Security_GenerateUserToken.Response>): TransportRequestCallback;
 
-    migrate (params?: Security_Migrate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_Migrate.Response>>;
+    migrate (params?: Security_Migrate.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_Migrate.Response>;
     migrate (callback: callbackFn<Security_Migrate.Response>): TransportRequestCallback;
     migrate (params: Security_Migrate.Request, callback: callbackFn<Security_Migrate.Response>): TransportRequestCallback;
     migrate (params: Security_Migrate.Request, options: TransportRequestOptions, callback: callbackFn<Security_Migrate.Response>): TransportRequestCallback;
 
-    getDistinguishedNames (params?: Security_GetDistinguishedNames.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetDistinguishedNames.Response>>;
+    getDistinguishedNames (params?: Security_GetDistinguishedNames.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetDistinguishedNames.Response>;
     getDistinguishedNames (callback: callbackFn<Security_GetDistinguishedNames.Response>): TransportRequestCallback;
     getDistinguishedNames (params: Security_GetDistinguishedNames.Request, callback: callbackFn<Security_GetDistinguishedNames.Response>): TransportRequestCallback;
     getDistinguishedNames (params: Security_GetDistinguishedNames.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetDistinguishedNames.Response>): TransportRequestCallback;
 
-    patchDistinguishedNames (params: Security_PatchDistinguishedNames.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchDistinguishedNames.Response>>;
+    patchDistinguishedNames (params: Security_PatchDistinguishedNames.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchDistinguishedNames.Response>;
     patchDistinguishedNames (params: Security_PatchDistinguishedNames.Request, callback: callbackFn<Security_PatchDistinguishedNames.Response>): TransportRequestCallback;
     patchDistinguishedNames (params: Security_PatchDistinguishedNames.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchDistinguishedNames.Response>): TransportRequestCallback;
 
-    deleteDistinguishedName (params: Security_DeleteDistinguishedName.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_DeleteDistinguishedName.Response>>;
+    deleteDistinguishedName (params: Security_DeleteDistinguishedName.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_DeleteDistinguishedName.Response>;
     deleteDistinguishedName (params: Security_DeleteDistinguishedName.Request, callback: callbackFn<Security_DeleteDistinguishedName.Response>): TransportRequestCallback;
     deleteDistinguishedName (params: Security_DeleteDistinguishedName.Request, options: TransportRequestOptions, callback: callbackFn<Security_DeleteDistinguishedName.Response>): TransportRequestCallback;
 
-    getDistinguishedName (params: Security_GetDistinguishedName.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetDistinguishedName.Response>>;
+    getDistinguishedName (params: Security_GetDistinguishedName.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetDistinguishedName.Response>;
     getDistinguishedName (params: Security_GetDistinguishedName.Request, callback: callbackFn<Security_GetDistinguishedName.Response>): TransportRequestCallback;
     getDistinguishedName (params: Security_GetDistinguishedName.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetDistinguishedName.Response>): TransportRequestCallback;
 
-    patchDistinguishedName (params: Security_PatchDistinguishedName.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchDistinguishedName.Response>>;
+    patchDistinguishedName (params: Security_PatchDistinguishedName.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchDistinguishedName.Response>;
     patchDistinguishedName (params: Security_PatchDistinguishedName.Request, callback: callbackFn<Security_PatchDistinguishedName.Response>): TransportRequestCallback;
     patchDistinguishedName (params: Security_PatchDistinguishedName.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchDistinguishedName.Response>): TransportRequestCallback;
 
-    updateDistinguishedName (params: Security_UpdateDistinguishedName.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_UpdateDistinguishedName.Response>>;
+    updateDistinguishedName (params: Security_UpdateDistinguishedName.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_UpdateDistinguishedName.Response>;
     updateDistinguishedName (params: Security_UpdateDistinguishedName.Request, callback: callbackFn<Security_UpdateDistinguishedName.Response>): TransportRequestCallback;
     updateDistinguishedName (params: Security_UpdateDistinguishedName.Request, options: TransportRequestOptions, callback: callbackFn<Security_UpdateDistinguishedName.Response>): TransportRequestCallback;
 
-    getPermissionsInfo (params?: Security_GetPermissionsInfo.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetPermissionsInfo.Response>>;
+    getPermissionsInfo (params?: Security_GetPermissionsInfo.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetPermissionsInfo.Response>;
     getPermissionsInfo (callback: callbackFn<Security_GetPermissionsInfo.Response>): TransportRequestCallback;
     getPermissionsInfo (params: Security_GetPermissionsInfo.Request, callback: callbackFn<Security_GetPermissionsInfo.Response>): TransportRequestCallback;
     getPermissionsInfo (params: Security_GetPermissionsInfo.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetPermissionsInfo.Response>): TransportRequestCallback;
 
-    getRoles (params?: Security_GetRoles.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetRoles.Response>>;
+    getRoles (params?: Security_GetRoles.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetRoles.Response>;
     getRoles (callback: callbackFn<Security_GetRoles.Response>): TransportRequestCallback;
     getRoles (params: Security_GetRoles.Request, callback: callbackFn<Security_GetRoles.Response>): TransportRequestCallback;
     getRoles (params: Security_GetRoles.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetRoles.Response>): TransportRequestCallback;
 
-    patchRoles (params: Security_PatchRoles.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchRoles.Response>>;
+    patchRoles (params: Security_PatchRoles.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchRoles.Response>;
     patchRoles (params: Security_PatchRoles.Request, callback: callbackFn<Security_PatchRoles.Response>): TransportRequestCallback;
     patchRoles (params: Security_PatchRoles.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchRoles.Response>): TransportRequestCallback;
 
-    deleteRole (params: Security_DeleteRole.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_DeleteRole.Response>>;
+    deleteRole (params: Security_DeleteRole.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_DeleteRole.Response>;
     deleteRole (params: Security_DeleteRole.Request, callback: callbackFn<Security_DeleteRole.Response>): TransportRequestCallback;
     deleteRole (params: Security_DeleteRole.Request, options: TransportRequestOptions, callback: callbackFn<Security_DeleteRole.Response>): TransportRequestCallback;
 
-    getRole (params: Security_GetRole.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetRole.Response>>;
+    getRole (params: Security_GetRole.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetRole.Response>;
     getRole (params: Security_GetRole.Request, callback: callbackFn<Security_GetRole.Response>): TransportRequestCallback;
     getRole (params: Security_GetRole.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetRole.Response>): TransportRequestCallback;
 
-    patchRole (params: Security_PatchRole.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchRole.Response>>;
+    patchRole (params: Security_PatchRole.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchRole.Response>;
     patchRole (params: Security_PatchRole.Request, callback: callbackFn<Security_PatchRole.Response>): TransportRequestCallback;
     patchRole (params: Security_PatchRole.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchRole.Response>): TransportRequestCallback;
 
-    createRole (params: Security_CreateRole.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_CreateRole.Response>>;
+    createRole (params: Security_CreateRole.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_CreateRole.Response>;
     createRole (params: Security_CreateRole.Request, callback: callbackFn<Security_CreateRole.Response>): TransportRequestCallback;
     createRole (params: Security_CreateRole.Request, options: TransportRequestOptions, callback: callbackFn<Security_CreateRole.Response>): TransportRequestCallback;
 
-    getRoleMappings (params?: Security_GetRoleMappings.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetRoleMappings.Response>>;
+    getRoleMappings (params?: Security_GetRoleMappings.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetRoleMappings.Response>;
     getRoleMappings (callback: callbackFn<Security_GetRoleMappings.Response>): TransportRequestCallback;
     getRoleMappings (params: Security_GetRoleMappings.Request, callback: callbackFn<Security_GetRoleMappings.Response>): TransportRequestCallback;
     getRoleMappings (params: Security_GetRoleMappings.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetRoleMappings.Response>): TransportRequestCallback;
 
-    patchRoleMappings (params: Security_PatchRoleMappings.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchRoleMappings.Response>>;
+    patchRoleMappings (params: Security_PatchRoleMappings.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchRoleMappings.Response>;
     patchRoleMappings (params: Security_PatchRoleMappings.Request, callback: callbackFn<Security_PatchRoleMappings.Response>): TransportRequestCallback;
     patchRoleMappings (params: Security_PatchRoleMappings.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchRoleMappings.Response>): TransportRequestCallback;
 
-    deleteRoleMapping (params: Security_DeleteRoleMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_DeleteRoleMapping.Response>>;
+    deleteRoleMapping (params: Security_DeleteRoleMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_DeleteRoleMapping.Response>;
     deleteRoleMapping (params: Security_DeleteRoleMapping.Request, callback: callbackFn<Security_DeleteRoleMapping.Response>): TransportRequestCallback;
     deleteRoleMapping (params: Security_DeleteRoleMapping.Request, options: TransportRequestOptions, callback: callbackFn<Security_DeleteRoleMapping.Response>): TransportRequestCallback;
 
-    getRoleMapping (params: Security_GetRoleMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetRoleMapping.Response>>;
+    getRoleMapping (params: Security_GetRoleMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetRoleMapping.Response>;
     getRoleMapping (params: Security_GetRoleMapping.Request, callback: callbackFn<Security_GetRoleMapping.Response>): TransportRequestCallback;
     getRoleMapping (params: Security_GetRoleMapping.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetRoleMapping.Response>): TransportRequestCallback;
 
-    patchRoleMapping (params: Security_PatchRoleMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchRoleMapping.Response>>;
+    patchRoleMapping (params: Security_PatchRoleMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchRoleMapping.Response>;
     patchRoleMapping (params: Security_PatchRoleMapping.Request, callback: callbackFn<Security_PatchRoleMapping.Response>): TransportRequestCallback;
     patchRoleMapping (params: Security_PatchRoleMapping.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchRoleMapping.Response>): TransportRequestCallback;
 
-    createRoleMapping (params: Security_CreateRoleMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_CreateRoleMapping.Response>>;
+    createRoleMapping (params: Security_CreateRoleMapping.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_CreateRoleMapping.Response>;
     createRoleMapping (params: Security_CreateRoleMapping.Request, callback: callbackFn<Security_CreateRoleMapping.Response>): TransportRequestCallback;
     createRoleMapping (params: Security_CreateRoleMapping.Request, options: TransportRequestOptions, callback: callbackFn<Security_CreateRoleMapping.Response>): TransportRequestCallback;
 
-    getConfiguration (params?: Security_GetConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetConfiguration.Response>>;
+    getConfiguration (params?: Security_GetConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetConfiguration.Response>;
     getConfiguration (callback: callbackFn<Security_GetConfiguration.Response>): TransportRequestCallback;
     getConfiguration (params: Security_GetConfiguration.Request, callback: callbackFn<Security_GetConfiguration.Response>): TransportRequestCallback;
     getConfiguration (params: Security_GetConfiguration.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetConfiguration.Response>): TransportRequestCallback;
 
-    patchConfiguration (params: Security_PatchConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchConfiguration.Response>>;
+    patchConfiguration (params: Security_PatchConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchConfiguration.Response>;
     patchConfiguration (params: Security_PatchConfiguration.Request, callback: callbackFn<Security_PatchConfiguration.Response>): TransportRequestCallback;
     patchConfiguration (params: Security_PatchConfiguration.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchConfiguration.Response>): TransportRequestCallback;
 
-    updateConfiguration (params: Security_UpdateConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_UpdateConfiguration.Response>>;
+    updateConfiguration (params: Security_UpdateConfiguration.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_UpdateConfiguration.Response>;
     updateConfiguration (params: Security_UpdateConfiguration.Request, callback: callbackFn<Security_UpdateConfiguration.Response>): TransportRequestCallback;
     updateConfiguration (params: Security_UpdateConfiguration.Request, options: TransportRequestOptions, callback: callbackFn<Security_UpdateConfiguration.Response>): TransportRequestCallback;
 
-    getCertificates (params?: Security_GetCertificates.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetCertificates.Response>>;
+    getCertificates (params?: Security_GetCertificates.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetCertificates.Response>;
     getCertificates (callback: callbackFn<Security_GetCertificates.Response>): TransportRequestCallback;
     getCertificates (params: Security_GetCertificates.Request, callback: callbackFn<Security_GetCertificates.Response>): TransportRequestCallback;
     getCertificates (params: Security_GetCertificates.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetCertificates.Response>): TransportRequestCallback;
 
-    reloadHttpCertificates (params?: Security_ReloadHttpCertificates.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_ReloadHttpCertificates.Response>>;
+    reloadHttpCertificates (params?: Security_ReloadHttpCertificates.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_ReloadHttpCertificates.Response>;
     reloadHttpCertificates (callback: callbackFn<Security_ReloadHttpCertificates.Response>): TransportRequestCallback;
     reloadHttpCertificates (params: Security_ReloadHttpCertificates.Request, callback: callbackFn<Security_ReloadHttpCertificates.Response>): TransportRequestCallback;
     reloadHttpCertificates (params: Security_ReloadHttpCertificates.Request, options: TransportRequestOptions, callback: callbackFn<Security_ReloadHttpCertificates.Response>): TransportRequestCallback;
 
-    reloadTransportCertificates (params?: Security_ReloadTransportCertificates.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_ReloadTransportCertificates.Response>>;
+    reloadTransportCertificates (params?: Security_ReloadTransportCertificates.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_ReloadTransportCertificates.Response>;
     reloadTransportCertificates (callback: callbackFn<Security_ReloadTransportCertificates.Response>): TransportRequestCallback;
     reloadTransportCertificates (params: Security_ReloadTransportCertificates.Request, callback: callbackFn<Security_ReloadTransportCertificates.Response>): TransportRequestCallback;
     reloadTransportCertificates (params: Security_ReloadTransportCertificates.Request, options: TransportRequestOptions, callback: callbackFn<Security_ReloadTransportCertificates.Response>): TransportRequestCallback;
 
-    getTenancyConfig (params?: Security_GetTenancyConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetTenancyConfig.Response>>;
+    getTenancyConfig (params?: Security_GetTenancyConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetTenancyConfig.Response>;
     getTenancyConfig (callback: callbackFn<Security_GetTenancyConfig.Response>): TransportRequestCallback;
     getTenancyConfig (params: Security_GetTenancyConfig.Request, callback: callbackFn<Security_GetTenancyConfig.Response>): TransportRequestCallback;
     getTenancyConfig (params: Security_GetTenancyConfig.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetTenancyConfig.Response>): TransportRequestCallback;
 
-    createUpdateTenancyConfig (params: Security_CreateUpdateTenancyConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_CreateUpdateTenancyConfig.Response>>;
+    createUpdateTenancyConfig (params: Security_CreateUpdateTenancyConfig.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_CreateUpdateTenancyConfig.Response>;
     createUpdateTenancyConfig (params: Security_CreateUpdateTenancyConfig.Request, callback: callbackFn<Security_CreateUpdateTenancyConfig.Response>): TransportRequestCallback;
     createUpdateTenancyConfig (params: Security_CreateUpdateTenancyConfig.Request, options: TransportRequestOptions, callback: callbackFn<Security_CreateUpdateTenancyConfig.Response>): TransportRequestCallback;
 
-    getTenants (params?: Security_GetTenants.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetTenants.Response>>;
+    getTenants (params?: Security_GetTenants.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetTenants.Response>;
     getTenants (callback: callbackFn<Security_GetTenants.Response>): TransportRequestCallback;
     getTenants (params: Security_GetTenants.Request, callback: callbackFn<Security_GetTenants.Response>): TransportRequestCallback;
     getTenants (params: Security_GetTenants.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetTenants.Response>): TransportRequestCallback;
 
-    patchTenants (params: Security_PatchTenants.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchTenants.Response>>;
+    patchTenants (params: Security_PatchTenants.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchTenants.Response>;
     patchTenants (params: Security_PatchTenants.Request, callback: callbackFn<Security_PatchTenants.Response>): TransportRequestCallback;
     patchTenants (params: Security_PatchTenants.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchTenants.Response>): TransportRequestCallback;
 
-    deleteTenant (params: Security_DeleteTenant.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_DeleteTenant.Response>>;
+    deleteTenant (params: Security_DeleteTenant.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_DeleteTenant.Response>;
     deleteTenant (params: Security_DeleteTenant.Request, callback: callbackFn<Security_DeleteTenant.Response>): TransportRequestCallback;
     deleteTenant (params: Security_DeleteTenant.Request, options: TransportRequestOptions, callback: callbackFn<Security_DeleteTenant.Response>): TransportRequestCallback;
 
-    getTenant (params: Security_GetTenant.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetTenant.Response>>;
+    getTenant (params: Security_GetTenant.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetTenant.Response>;
     getTenant (params: Security_GetTenant.Request, callback: callbackFn<Security_GetTenant.Response>): TransportRequestCallback;
     getTenant (params: Security_GetTenant.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetTenant.Response>): TransportRequestCallback;
 
-    patchTenant (params: Security_PatchTenant.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PatchTenant.Response>>;
+    patchTenant (params: Security_PatchTenant.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PatchTenant.Response>;
     patchTenant (params: Security_PatchTenant.Request, callback: callbackFn<Security_PatchTenant.Response>): TransportRequestCallback;
     patchTenant (params: Security_PatchTenant.Request, options: TransportRequestOptions, callback: callbackFn<Security_PatchTenant.Response>): TransportRequestCallback;
 
-    createTenant (params: Security_CreateTenant.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_CreateTenant.Response>>;
+    createTenant (params: Security_CreateTenant.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_CreateTenant.Response>;
     createTenant (params: Security_CreateTenant.Request, callback: callbackFn<Security_CreateTenant.Response>): TransportRequestCallback;
     createTenant (params: Security_CreateTenant.Request, options: TransportRequestOptions, callback: callbackFn<Security_CreateTenant.Response>): TransportRequestCallback;
 
-    getUsersLegacy (params?: Security_GetUsersLegacy.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetUsersLegacy.Response>>;
+    getUsersLegacy (params?: Security_GetUsersLegacy.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetUsersLegacy.Response>;
     getUsersLegacy (callback: callbackFn<Security_GetUsersLegacy.Response>): TransportRequestCallback;
     getUsersLegacy (params: Security_GetUsersLegacy.Request, callback: callbackFn<Security_GetUsersLegacy.Response>): TransportRequestCallback;
     getUsersLegacy (params: Security_GetUsersLegacy.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetUsersLegacy.Response>): TransportRequestCallback;
 
-    deleteUserLegacy (params: Security_DeleteUserLegacy.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_DeleteUserLegacy.Response>>;
+    deleteUserLegacy (params: Security_DeleteUserLegacy.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_DeleteUserLegacy.Response>;
     deleteUserLegacy (params: Security_DeleteUserLegacy.Request, callback: callbackFn<Security_DeleteUserLegacy.Response>): TransportRequestCallback;
     deleteUserLegacy (params: Security_DeleteUserLegacy.Request, options: TransportRequestOptions, callback: callbackFn<Security_DeleteUserLegacy.Response>): TransportRequestCallback;
 
-    getUserLegacy (params: Security_GetUserLegacy.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetUserLegacy.Response>>;
+    getUserLegacy (params: Security_GetUserLegacy.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetUserLegacy.Response>;
     getUserLegacy (params: Security_GetUserLegacy.Request, callback: callbackFn<Security_GetUserLegacy.Response>): TransportRequestCallback;
     getUserLegacy (params: Security_GetUserLegacy.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetUserLegacy.Response>): TransportRequestCallback;
 
-    createUserLegacy (params: Security_CreateUserLegacy.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_CreateUserLegacy.Response>>;
+    createUserLegacy (params: Security_CreateUserLegacy.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_CreateUserLegacy.Response>;
     createUserLegacy (params: Security_CreateUserLegacy.Request, callback: callbackFn<Security_CreateUserLegacy.Response>): TransportRequestCallback;
     createUserLegacy (params: Security_CreateUserLegacy.Request, options: TransportRequestOptions, callback: callbackFn<Security_CreateUserLegacy.Response>): TransportRequestCallback;
 
-    generateUserTokenLegacy (params: Security_GenerateUserTokenLegacy.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GenerateUserTokenLegacy.Response>>;
+    generateUserTokenLegacy (params: Security_GenerateUserTokenLegacy.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GenerateUserTokenLegacy.Response>;
     generateUserTokenLegacy (params: Security_GenerateUserTokenLegacy.Request, callback: callbackFn<Security_GenerateUserTokenLegacy.Response>): TransportRequestCallback;
     generateUserTokenLegacy (params: Security_GenerateUserTokenLegacy.Request, options: TransportRequestOptions, callback: callbackFn<Security_GenerateUserTokenLegacy.Response>): TransportRequestCallback;
 
-    validate (params?: Security_Validate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_Validate.Response>>;
+    validate (params?: Security_Validate.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_Validate.Response>;
     validate (callback: callbackFn<Security_Validate.Response>): TransportRequestCallback;
     validate (params: Security_Validate.Request, callback: callbackFn<Security_Validate.Response>): TransportRequestCallback;
     validate (params: Security_Validate.Request, options: TransportRequestOptions, callback: callbackFn<Security_Validate.Response>): TransportRequestCallback;
 
-    authinfo (params?: Security_Authinfo.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_Authinfo.Response>>;
+    authinfo (params?: Security_Authinfo.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_Authinfo.Response>;
     authinfo (callback: callbackFn<Security_Authinfo.Response>): TransportRequestCallback;
     authinfo (params: Security_Authinfo.Request, callback: callbackFn<Security_Authinfo.Response>): TransportRequestCallback;
     authinfo (params: Security_Authinfo.Request, options: TransportRequestOptions, callback: callbackFn<Security_Authinfo.Response>): TransportRequestCallback;
 
-    getDashboardsInfo (params?: Security_GetDashboardsInfo.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_GetDashboardsInfo.Response>>;
+    getDashboardsInfo (params?: Security_GetDashboardsInfo.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_GetDashboardsInfo.Response>;
     getDashboardsInfo (callback: callbackFn<Security_GetDashboardsInfo.Response>): TransportRequestCallback;
     getDashboardsInfo (params: Security_GetDashboardsInfo.Request, callback: callbackFn<Security_GetDashboardsInfo.Response>): TransportRequestCallback;
     getDashboardsInfo (params: Security_GetDashboardsInfo.Request, options: TransportRequestOptions, callback: callbackFn<Security_GetDashboardsInfo.Response>): TransportRequestCallback;
 
-    postDashboardsInfo (params?: Security_PostDashboardsInfo.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_PostDashboardsInfo.Response>>;
+    postDashboardsInfo (params?: Security_PostDashboardsInfo.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_PostDashboardsInfo.Response>;
     postDashboardsInfo (callback: callbackFn<Security_PostDashboardsInfo.Response>): TransportRequestCallback;
     postDashboardsInfo (params: Security_PostDashboardsInfo.Request, callback: callbackFn<Security_PostDashboardsInfo.Response>): TransportRequestCallback;
     postDashboardsInfo (params: Security_PostDashboardsInfo.Request, options: TransportRequestOptions, callback: callbackFn<Security_PostDashboardsInfo.Response>): TransportRequestCallback;
 
-    health (params?: Security_Health.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_Health.Response>>;
+    health (params?: Security_Health.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_Health.Response>;
     health (callback: callbackFn<Security_Health.Response>): TransportRequestCallback;
     health (params: Security_Health.Request, callback: callbackFn<Security_Health.Response>): TransportRequestCallback;
     health (params: Security_Health.Request, options: TransportRequestOptions, callback: callbackFn<Security_Health.Response>): TransportRequestCallback;
 
-    tenantInfo (params?: Security_TenantInfo.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_TenantInfo.Response>>;
+    tenantInfo (params?: Security_TenantInfo.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_TenantInfo.Response>;
     tenantInfo (callback: callbackFn<Security_TenantInfo.Response>): TransportRequestCallback;
     tenantInfo (params: Security_TenantInfo.Request, callback: callbackFn<Security_TenantInfo.Response>): TransportRequestCallback;
     tenantInfo (params: Security_TenantInfo.Request, options: TransportRequestOptions, callback: callbackFn<Security_TenantInfo.Response>): TransportRequestCallback;
 
-    whoAmI (params?: Security_WhoAmI.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_WhoAmI.Response>>;
+    whoAmI (params?: Security_WhoAmI.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_WhoAmI.Response>;
     whoAmI (callback: callbackFn<Security_WhoAmI.Response>): TransportRequestCallback;
     whoAmI (params: Security_WhoAmI.Request, callback: callbackFn<Security_WhoAmI.Response>): TransportRequestCallback;
     whoAmI (params: Security_WhoAmI.Request, options: TransportRequestOptions, callback: callbackFn<Security_WhoAmI.Response>): TransportRequestCallback;
 
-    whoAmIProtected (params?: Security_WhoAmIProtected.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Security_WhoAmIProtected.Response>>;
+    whoAmIProtected (params?: Security_WhoAmIProtected.Request, options?: TransportRequestOptions): TransportRequestPromise<Security_WhoAmIProtected.Response>;
     whoAmIProtected (callback: callbackFn<Security_WhoAmIProtected.Response>): TransportRequestCallback;
     whoAmIProtected (params: Security_WhoAmIProtected.Request, callback: callbackFn<Security_WhoAmIProtected.Response>): TransportRequestCallback;
     whoAmIProtected (params: Security_WhoAmIProtected.Request, options: TransportRequestOptions, callback: callbackFn<Security_WhoAmIProtected.Response>): TransportRequestCallback;
@@ -1360,131 +1358,131 @@ declare class Client {
   };
 
   snapshot: {
-    getRepository (params?: Snapshot_GetRepository.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_GetRepository.Response>>;
+    getRepository (params?: Snapshot_GetRepository.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_GetRepository.Response>;
     getRepository (callback: callbackFn<Snapshot_GetRepository.Response>): TransportRequestCallback;
     getRepository (params: Snapshot_GetRepository.Request, callback: callbackFn<Snapshot_GetRepository.Response>): TransportRequestCallback;
     getRepository (params: Snapshot_GetRepository.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_GetRepository.Response>): TransportRequestCallback;
 
-    status (params?: Snapshot_Status.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_Status.Response>>;
+    status (params?: Snapshot_Status.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_Status.Response>;
     status (callback: callbackFn<Snapshot_Status.Response>): TransportRequestCallback;
     status (params: Snapshot_Status.Request, callback: callbackFn<Snapshot_Status.Response>): TransportRequestCallback;
     status (params: Snapshot_Status.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_Status.Response>): TransportRequestCallback;
 
-    deleteRepository (params: Snapshot_DeleteRepository.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_DeleteRepository.Response>>;
+    deleteRepository (params: Snapshot_DeleteRepository.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_DeleteRepository.Response>;
     deleteRepository (params: Snapshot_DeleteRepository.Request, callback: callbackFn<Snapshot_DeleteRepository.Response>): TransportRequestCallback;
     deleteRepository (params: Snapshot_DeleteRepository.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_DeleteRepository.Response>): TransportRequestCallback;
 
-    createRepository (params: Snapshot_CreateRepository.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_CreateRepository.Response>>;
+    createRepository (params: Snapshot_CreateRepository.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_CreateRepository.Response>;
     createRepository (params: Snapshot_CreateRepository.Request, callback: callbackFn<Snapshot_CreateRepository.Response>): TransportRequestCallback;
     createRepository (params: Snapshot_CreateRepository.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_CreateRepository.Response>): TransportRequestCallback;
 
-    cleanupRepository (params: Snapshot_CleanupRepository.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_CleanupRepository.Response>>;
+    cleanupRepository (params: Snapshot_CleanupRepository.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_CleanupRepository.Response>;
     cleanupRepository (params: Snapshot_CleanupRepository.Request, callback: callbackFn<Snapshot_CleanupRepository.Response>): TransportRequestCallback;
     cleanupRepository (params: Snapshot_CleanupRepository.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_CleanupRepository.Response>): TransportRequestCallback;
 
-    verifyRepository (params: Snapshot_VerifyRepository.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_VerifyRepository.Response>>;
+    verifyRepository (params: Snapshot_VerifyRepository.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_VerifyRepository.Response>;
     verifyRepository (params: Snapshot_VerifyRepository.Request, callback: callbackFn<Snapshot_VerifyRepository.Response>): TransportRequestCallback;
     verifyRepository (params: Snapshot_VerifyRepository.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_VerifyRepository.Response>): TransportRequestCallback;
 
-    delete (params: Snapshot_Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_Delete.Response>>;
+    delete (params: Snapshot_Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_Delete.Response>;
     delete (params: Snapshot_Delete.Request, callback: callbackFn<Snapshot_Delete.Response>): TransportRequestCallback;
     delete (params: Snapshot_Delete.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_Delete.Response>): TransportRequestCallback;
 
-    get (params: Snapshot_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_Get.Response>>;
+    get (params: Snapshot_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_Get.Response>;
     get (params: Snapshot_Get.Request, callback: callbackFn<Snapshot_Get.Response>): TransportRequestCallback;
     get (params: Snapshot_Get.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_Get.Response>): TransportRequestCallback;
 
-    create (params: Snapshot_Create.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_Create.Response>>;
+    create (params: Snapshot_Create.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_Create.Response>;
     create (params: Snapshot_Create.Request, callback: callbackFn<Snapshot_Create.Response>): TransportRequestCallback;
     create (params: Snapshot_Create.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_Create.Response>): TransportRequestCallback;
 
-    clone (params: Snapshot_Clone.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_Clone.Response>>;
+    clone (params: Snapshot_Clone.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_Clone.Response>;
     clone (params: Snapshot_Clone.Request, callback: callbackFn<Snapshot_Clone.Response>): TransportRequestCallback;
     clone (params: Snapshot_Clone.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_Clone.Response>): TransportRequestCallback;
 
-    restore (params: Snapshot_Restore.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Snapshot_Restore.Response>>;
+    restore (params: Snapshot_Restore.Request, options?: TransportRequestOptions): TransportRequestPromise<Snapshot_Restore.Response>;
     restore (params: Snapshot_Restore.Request, callback: callbackFn<Snapshot_Restore.Response>): TransportRequestCallback;
     restore (params: Snapshot_Restore.Request, options: TransportRequestOptions, callback: callbackFn<Snapshot_Restore.Response>): TransportRequestCallback;
 
   };
 
   sql: {
-    settings (params: Sql_Settings.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Sql_Settings.Response>>;
+    settings (params: Sql_Settings.Request, options?: TransportRequestOptions): TransportRequestPromise<Sql_Settings.Response>;
     settings (params: Sql_Settings.Request, callback: callbackFn<Sql_Settings.Response>): TransportRequestCallback;
     settings (params: Sql_Settings.Request, options: TransportRequestOptions, callback: callbackFn<Sql_Settings.Response>): TransportRequestCallback;
 
-    query (params: Sql_Query.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Sql_Query.Response>>;
+    query (params: Sql_Query.Request, options?: TransportRequestOptions): TransportRequestPromise<Sql_Query.Response>;
     query (params: Sql_Query.Request, callback: callbackFn<Sql_Query.Response>): TransportRequestCallback;
     query (params: Sql_Query.Request, options: TransportRequestOptions, callback: callbackFn<Sql_Query.Response>): TransportRequestCallback;
 
-    explain (params: Sql_Explain.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Sql_Explain.Response>>;
+    explain (params: Sql_Explain.Request, options?: TransportRequestOptions): TransportRequestPromise<Sql_Explain.Response>;
     explain (params: Sql_Explain.Request, callback: callbackFn<Sql_Explain.Response>): TransportRequestCallback;
     explain (params: Sql_Explain.Request, options: TransportRequestOptions, callback: callbackFn<Sql_Explain.Response>): TransportRequestCallback;
 
-    close (params: Sql_Close.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Sql_Close.Response>>;
+    close (params: Sql_Close.Request, options?: TransportRequestOptions): TransportRequestPromise<Sql_Close.Response>;
     close (params: Sql_Close.Request, callback: callbackFn<Sql_Close.Response>): TransportRequestCallback;
     close (params: Sql_Close.Request, options: TransportRequestOptions, callback: callbackFn<Sql_Close.Response>): TransportRequestCallback;
 
-    getStats (params?: Sql_GetStats.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Sql_GetStats.Response>>;
+    getStats (params?: Sql_GetStats.Request, options?: TransportRequestOptions): TransportRequestPromise<Sql_GetStats.Response>;
     getStats (callback: callbackFn<Sql_GetStats.Response>): TransportRequestCallback;
     getStats (params: Sql_GetStats.Request, callback: callbackFn<Sql_GetStats.Response>): TransportRequestCallback;
     getStats (params: Sql_GetStats.Request, options: TransportRequestOptions, callback: callbackFn<Sql_GetStats.Response>): TransportRequestCallback;
 
-    postStats (params: Sql_PostStats.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Sql_PostStats.Response>>;
+    postStats (params: Sql_PostStats.Request, options?: TransportRequestOptions): TransportRequestPromise<Sql_PostStats.Response>;
     postStats (params: Sql_PostStats.Request, callback: callbackFn<Sql_PostStats.Response>): TransportRequestCallback;
     postStats (params: Sql_PostStats.Request, options: TransportRequestOptions, callback: callbackFn<Sql_PostStats.Response>): TransportRequestCallback;
 
   };
 
   tasks: {
-    list (params?: Tasks_List.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Tasks_List.Response>>;
+    list (params?: Tasks_List.Request, options?: TransportRequestOptions): TransportRequestPromise<Tasks_List.Response>;
     list (callback: callbackFn<Tasks_List.Response>): TransportRequestCallback;
     list (params: Tasks_List.Request, callback: callbackFn<Tasks_List.Response>): TransportRequestCallback;
     list (params: Tasks_List.Request, options: TransportRequestOptions, callback: callbackFn<Tasks_List.Response>): TransportRequestCallback;
 
-    cancel (params?: Tasks_Cancel.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Tasks_Cancel.Response>>;
+    cancel (params?: Tasks_Cancel.Request, options?: TransportRequestOptions): TransportRequestPromise<Tasks_Cancel.Response>;
     cancel (callback: callbackFn<Tasks_Cancel.Response>): TransportRequestCallback;
     cancel (params: Tasks_Cancel.Request, callback: callbackFn<Tasks_Cancel.Response>): TransportRequestCallback;
     cancel (params: Tasks_Cancel.Request, options: TransportRequestOptions, callback: callbackFn<Tasks_Cancel.Response>): TransportRequestCallback;
 
-    get (params: Tasks_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Tasks_Get.Response>>;
+    get (params: Tasks_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<Tasks_Get.Response>;
     get (params: Tasks_Get.Request, callback: callbackFn<Tasks_Get.Response>): TransportRequestCallback;
     get (params: Tasks_Get.Request, options: TransportRequestOptions, callback: callbackFn<Tasks_Get.Response>): TransportRequestCallback;
 
   };
 
   transforms: {
-    search (params?: Transforms_Search.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Transforms_Search.Response>>;
+    search (params?: Transforms_Search.Request, options?: TransportRequestOptions): TransportRequestPromise<Transforms_Search.Response>;
     search (callback: callbackFn<Transforms_Search.Response>): TransportRequestCallback;
     search (params: Transforms_Search.Request, callback: callbackFn<Transforms_Search.Response>): TransportRequestCallback;
     search (params: Transforms_Search.Request, options: TransportRequestOptions, callback: callbackFn<Transforms_Search.Response>): TransportRequestCallback;
 
-    preview (params?: Transforms_Preview.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Transforms_Preview.Response>>;
+    preview (params?: Transforms_Preview.Request, options?: TransportRequestOptions): TransportRequestPromise<Transforms_Preview.Response>;
     preview (callback: callbackFn<Transforms_Preview.Response>): TransportRequestCallback;
     preview (params: Transforms_Preview.Request, callback: callbackFn<Transforms_Preview.Response>): TransportRequestCallback;
     preview (params: Transforms_Preview.Request, options: TransportRequestOptions, callback: callbackFn<Transforms_Preview.Response>): TransportRequestCallback;
 
-    delete (params: Transforms_Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Transforms_Delete.Response>>;
+    delete (params: Transforms_Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<Transforms_Delete.Response>;
     delete (params: Transforms_Delete.Request, callback: callbackFn<Transforms_Delete.Response>): TransportRequestCallback;
     delete (params: Transforms_Delete.Request, options: TransportRequestOptions, callback: callbackFn<Transforms_Delete.Response>): TransportRequestCallback;
 
-    get (params: Transforms_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Transforms_Get.Response>>;
+    get (params: Transforms_Get.Request, options?: TransportRequestOptions): TransportRequestPromise<Transforms_Get.Response>;
     get (params: Transforms_Get.Request, callback: callbackFn<Transforms_Get.Response>): TransportRequestCallback;
     get (params: Transforms_Get.Request, options: TransportRequestOptions, callback: callbackFn<Transforms_Get.Response>): TransportRequestCallback;
 
-    put (params: Transforms_Put.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Transforms_Put.Response>>;
+    put (params: Transforms_Put.Request, options?: TransportRequestOptions): TransportRequestPromise<Transforms_Put.Response>;
     put (params: Transforms_Put.Request, callback: callbackFn<Transforms_Put.Response>): TransportRequestCallback;
     put (params: Transforms_Put.Request, options: TransportRequestOptions, callback: callbackFn<Transforms_Put.Response>): TransportRequestCallback;
 
-    explain (params: Transforms_Explain.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Transforms_Explain.Response>>;
+    explain (params: Transforms_Explain.Request, options?: TransportRequestOptions): TransportRequestPromise<Transforms_Explain.Response>;
     explain (params: Transforms_Explain.Request, callback: callbackFn<Transforms_Explain.Response>): TransportRequestCallback;
     explain (params: Transforms_Explain.Request, options: TransportRequestOptions, callback: callbackFn<Transforms_Explain.Response>): TransportRequestCallback;
 
-    start (params: Transforms_Start.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Transforms_Start.Response>>;
+    start (params: Transforms_Start.Request, options?: TransportRequestOptions): TransportRequestPromise<Transforms_Start.Response>;
     start (params: Transforms_Start.Request, callback: callbackFn<Transforms_Start.Response>): TransportRequestCallback;
     start (params: Transforms_Start.Request, options: TransportRequestOptions, callback: callbackFn<Transforms_Start.Response>): TransportRequestCallback;
 
-    stop (params: Transforms_Stop.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Transforms_Stop.Response>>;
+    stop (params: Transforms_Stop.Request, options?: TransportRequestOptions): TransportRequestPromise<Transforms_Stop.Response>;
     stop (params: Transforms_Stop.Request, callback: callbackFn<Transforms_Stop.Response>): TransportRequestCallback;
     stop (params: Transforms_Stop.Request, options: TransportRequestOptions, callback: callbackFn<Transforms_Stop.Response>): TransportRequestCallback;
 
@@ -1492,225 +1490,225 @@ declare class Client {
 
 
   http: {
-    connect (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<HttpResponse>>;
-    connect (params: HttpRequest, callback: callbackFn<HttpResponse>): TransportRequestCallback;
-    connect (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<HttpResponse>): TransportRequestCallback;
+    connect (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
+    connect (params: HttpRequest, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+    connect (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<ApiResponse>): TransportRequestCallback;
 
-    delete (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<HttpResponse>>;
-    delete (params: HttpRequest, callback: callbackFn<HttpResponse>): TransportRequestCallback;
-    delete (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<HttpResponse>): TransportRequestCallback;
+    delete (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
+    delete (params: HttpRequest, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+    delete (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<ApiResponse>): TransportRequestCallback;
 
-    get (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<HttpResponse>>;
-    get (params: HttpRequest, callback: callbackFn<HttpResponse>): TransportRequestCallback;
-    get (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<HttpResponse>): TransportRequestCallback;
+    get (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
+    get (params: HttpRequest, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+    get (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<ApiResponse>): TransportRequestCallback;
 
-    head (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<HttpResponse>>;
-    head (params: HttpRequest, callback: callbackFn<HttpResponse>): TransportRequestCallback;
-    head (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<HttpResponse>): TransportRequestCallback;
+    head (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
+    head (params: HttpRequest, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+    head (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<ApiResponse>): TransportRequestCallback;
 
-    options (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<HttpResponse>>;
-    options (params: HttpRequest, callback: callbackFn<HttpResponse>): TransportRequestCallback;
-    options (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<HttpResponse>): TransportRequestCallback;
+    options (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
+    options (params: HttpRequest, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+    options (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<ApiResponse>): TransportRequestCallback;
 
-    patch (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<HttpResponse>>;
-    patch (params: HttpRequest, callback: callbackFn<HttpResponse>): TransportRequestCallback;
-    patch (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<HttpResponse>): TransportRequestCallback;
+    patch (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
+    patch (params: HttpRequest, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+    patch (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<ApiResponse>): TransportRequestCallback;
 
-    post (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<HttpResponse>>;
-    post (params: HttpRequest, callback: callbackFn<HttpResponse>): TransportRequestCallback;
-    post (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<HttpResponse>): TransportRequestCallback;
+    post (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
+    post (params: HttpRequest, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+    post (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<ApiResponse>): TransportRequestCallback;
 
-    put (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<HttpResponse>>;
-    put (params: HttpRequest, callback: callbackFn<HttpResponse>): TransportRequestCallback;
-    put (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<HttpResponse>): TransportRequestCallback;
+    put (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
+    put (params: HttpRequest, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+    put (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<ApiResponse>): TransportRequestCallback;
 
-    trace (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<HttpResponse>>;
-    trace (params: HttpRequest, callback: callbackFn<HttpResponse>): TransportRequestCallback;
-    trace (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<HttpResponse>): TransportRequestCallback;
+    trace (params: HttpRequest, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse>;
+    trace (params: HttpRequest, callback: callbackFn<ApiResponse>): TransportRequestCallback;
+    trace (params: HttpRequest, options: TransportRequestOptions, callback: callbackFn<ApiResponse>): TransportRequestCallback;
 
   };
 
-  info (params?: Info.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Info.Response>>;
+  info (params?: Info.Request, options?: TransportRequestOptions): TransportRequestPromise<Info.Response>;
   info (callback: callbackFn<Info.Response>): TransportRequestCallback;
   info (params: Info.Request, callback: callbackFn<Info.Response>): TransportRequestCallback;
   info (params: Info.Request, options: TransportRequestOptions, callback: callbackFn<Info.Response>): TransportRequestCallback;
 
-  ping (params?: Ping.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Ping.Response>>;
+  ping (params?: Ping.Request, options?: TransportRequestOptions): TransportRequestPromise<Ping.Response>;
   ping (callback: callbackFn<Ping.Response>): TransportRequestCallback;
   ping (params: Ping.Request, callback: callbackFn<Ping.Response>): TransportRequestCallback;
   ping (params: Ping.Request, options: TransportRequestOptions, callback: callbackFn<Ping.Response>): TransportRequestCallback;
 
-  bulk (params: Bulk.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Bulk.Response>>;
+  bulk (params: Bulk.Request, options?: TransportRequestOptions): TransportRequestPromise<Bulk.Response>;
   bulk (params: Bulk.Request, callback: callbackFn<Bulk.Response>): TransportRequestCallback;
   bulk (params: Bulk.Request, options: TransportRequestOptions, callback: callbackFn<Bulk.Response>): TransportRequestCallback;
 
-  count (params?: Count.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Count.Response>>;
+  count (params?: Count.Request, options?: TransportRequestOptions): TransportRequestPromise<Count.Response>;
   count (callback: callbackFn<Count.Response>): TransportRequestCallback;
   count (params: Count.Request, callback: callbackFn<Count.Response>): TransportRequestCallback;
   count (params: Count.Request, options: TransportRequestOptions, callback: callbackFn<Count.Response>): TransportRequestCallback;
 
-  deleteByQueryRethrottle (params: DeleteByQueryRethrottle.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<DeleteByQueryRethrottle.Response>>;
+  deleteByQueryRethrottle (params: DeleteByQueryRethrottle.Request, options?: TransportRequestOptions): TransportRequestPromise<DeleteByQueryRethrottle.Response>;
   deleteByQueryRethrottle (params: DeleteByQueryRethrottle.Request, callback: callbackFn<DeleteByQueryRethrottle.Response>): TransportRequestCallback;
   deleteByQueryRethrottle (params: DeleteByQueryRethrottle.Request, options: TransportRequestOptions, callback: callbackFn<DeleteByQueryRethrottle.Response>): TransportRequestCallback;
 
-  fieldCaps (params?: FieldCaps.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<FieldCaps.Response>>;
+  fieldCaps (params?: FieldCaps.Request, options?: TransportRequestOptions): TransportRequestPromise<FieldCaps.Response>;
   fieldCaps (callback: callbackFn<FieldCaps.Response>): TransportRequestCallback;
   fieldCaps (params: FieldCaps.Request, callback: callbackFn<FieldCaps.Response>): TransportRequestCallback;
   fieldCaps (params: FieldCaps.Request, options: TransportRequestOptions, callback: callbackFn<FieldCaps.Response>): TransportRequestCallback;
 
-  mget (params: Mget.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Mget.Response>>;
+  mget (params: Mget.Request, options?: TransportRequestOptions): TransportRequestPromise<Mget.Response>;
   mget (params: Mget.Request, callback: callbackFn<Mget.Response>): TransportRequestCallback;
   mget (params: Mget.Request, options: TransportRequestOptions, callback: callbackFn<Mget.Response>): TransportRequestCallback;
 
-  msearch (params: Msearch.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Msearch.Response>>;
+  msearch (params: Msearch.Request, options?: TransportRequestOptions): TransportRequestPromise<Msearch.Response>;
   msearch (params: Msearch.Request, callback: callbackFn<Msearch.Response>): TransportRequestCallback;
   msearch (params: Msearch.Request, options: TransportRequestOptions, callback: callbackFn<Msearch.Response>): TransportRequestCallback;
 
-  msearchTemplate (params: MsearchTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<MsearchTemplate.Response>>;
+  msearchTemplate (params: MsearchTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<MsearchTemplate.Response>;
   msearchTemplate (params: MsearchTemplate.Request, callback: callbackFn<MsearchTemplate.Response>): TransportRequestCallback;
   msearchTemplate (params: MsearchTemplate.Request, options: TransportRequestOptions, callback: callbackFn<MsearchTemplate.Response>): TransportRequestCallback;
 
-  mtermvectors (params?: Mtermvectors.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Mtermvectors.Response>>;
+  mtermvectors (params?: Mtermvectors.Request, options?: TransportRequestOptions): TransportRequestPromise<Mtermvectors.Response>;
   mtermvectors (callback: callbackFn<Mtermvectors.Response>): TransportRequestCallback;
   mtermvectors (params: Mtermvectors.Request, callback: callbackFn<Mtermvectors.Response>): TransportRequestCallback;
   mtermvectors (params: Mtermvectors.Request, options: TransportRequestOptions, callback: callbackFn<Mtermvectors.Response>): TransportRequestCallback;
 
-  rankEval (params: RankEval.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<RankEval.Response>>;
+  rankEval (params: RankEval.Request, options?: TransportRequestOptions): TransportRequestPromise<RankEval.Response>;
   rankEval (params: RankEval.Request, callback: callbackFn<RankEval.Response>): TransportRequestCallback;
   rankEval (params: RankEval.Request, options: TransportRequestOptions, callback: callbackFn<RankEval.Response>): TransportRequestCallback;
 
-  reindex (params: Reindex.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Reindex.Response>>;
+  reindex (params: Reindex.Request, options?: TransportRequestOptions): TransportRequestPromise<Reindex.Response>;
   reindex (params: Reindex.Request, callback: callbackFn<Reindex.Response>): TransportRequestCallback;
   reindex (params: Reindex.Request, options: TransportRequestOptions, callback: callbackFn<Reindex.Response>): TransportRequestCallback;
 
-  reindexRethrottle (params: ReindexRethrottle.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<ReindexRethrottle.Response>>;
+  reindexRethrottle (params: ReindexRethrottle.Request, options?: TransportRequestOptions): TransportRequestPromise<ReindexRethrottle.Response>;
   reindexRethrottle (params: ReindexRethrottle.Request, callback: callbackFn<ReindexRethrottle.Response>): TransportRequestCallback;
   reindexRethrottle (params: ReindexRethrottle.Request, options: TransportRequestOptions, callback: callbackFn<ReindexRethrottle.Response>): TransportRequestCallback;
 
-  renderSearchTemplate (params?: RenderSearchTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<RenderSearchTemplate.Response>>;
+  renderSearchTemplate (params?: RenderSearchTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<RenderSearchTemplate.Response>;
   renderSearchTemplate (callback: callbackFn<RenderSearchTemplate.Response>): TransportRequestCallback;
   renderSearchTemplate (params: RenderSearchTemplate.Request, callback: callbackFn<RenderSearchTemplate.Response>): TransportRequestCallback;
   renderSearchTemplate (params: RenderSearchTemplate.Request, options: TransportRequestOptions, callback: callbackFn<RenderSearchTemplate.Response>): TransportRequestCallback;
 
-  getScriptContext (params?: GetScriptContext.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<GetScriptContext.Response>>;
+  getScriptContext (params?: GetScriptContext.Request, options?: TransportRequestOptions): TransportRequestPromise<GetScriptContext.Response>;
   getScriptContext (callback: callbackFn<GetScriptContext.Response>): TransportRequestCallback;
   getScriptContext (params: GetScriptContext.Request, callback: callbackFn<GetScriptContext.Response>): TransportRequestCallback;
   getScriptContext (params: GetScriptContext.Request, options: TransportRequestOptions, callback: callbackFn<GetScriptContext.Response>): TransportRequestCallback;
 
-  getScriptLanguages (params?: GetScriptLanguages.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<GetScriptLanguages.Response>>;
+  getScriptLanguages (params?: GetScriptLanguages.Request, options?: TransportRequestOptions): TransportRequestPromise<GetScriptLanguages.Response>;
   getScriptLanguages (callback: callbackFn<GetScriptLanguages.Response>): TransportRequestCallback;
   getScriptLanguages (params: GetScriptLanguages.Request, callback: callbackFn<GetScriptLanguages.Response>): TransportRequestCallback;
   getScriptLanguages (params: GetScriptLanguages.Request, options: TransportRequestOptions, callback: callbackFn<GetScriptLanguages.Response>): TransportRequestCallback;
 
-  deleteScript (params: DeleteScript.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<DeleteScript.Response>>;
+  deleteScript (params: DeleteScript.Request, options?: TransportRequestOptions): TransportRequestPromise<DeleteScript.Response>;
   deleteScript (params: DeleteScript.Request, callback: callbackFn<DeleteScript.Response>): TransportRequestCallback;
   deleteScript (params: DeleteScript.Request, options: TransportRequestOptions, callback: callbackFn<DeleteScript.Response>): TransportRequestCallback;
 
-  getScript (params: GetScript.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<GetScript.Response>>;
+  getScript (params: GetScript.Request, options?: TransportRequestOptions): TransportRequestPromise<GetScript.Response>;
   getScript (params: GetScript.Request, callback: callbackFn<GetScript.Response>): TransportRequestCallback;
   getScript (params: GetScript.Request, options: TransportRequestOptions, callback: callbackFn<GetScript.Response>): TransportRequestCallback;
 
-  putScript (params: PutScript.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<PutScript.Response>>;
+  putScript (params: PutScript.Request, options?: TransportRequestOptions): TransportRequestPromise<PutScript.Response>;
   putScript (params: PutScript.Request, callback: callbackFn<PutScript.Response>): TransportRequestCallback;
   putScript (params: PutScript.Request, options: TransportRequestOptions, callback: callbackFn<PutScript.Response>): TransportRequestCallback;
 
-  scriptsPainlessExecute (params?: ScriptsPainlessExecute.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<ScriptsPainlessExecute.Response>>;
+  scriptsPainlessExecute (params?: ScriptsPainlessExecute.Request, options?: TransportRequestOptions): TransportRequestPromise<ScriptsPainlessExecute.Response>;
   scriptsPainlessExecute (callback: callbackFn<ScriptsPainlessExecute.Response>): TransportRequestCallback;
   scriptsPainlessExecute (params: ScriptsPainlessExecute.Request, callback: callbackFn<ScriptsPainlessExecute.Response>): TransportRequestCallback;
   scriptsPainlessExecute (params: ScriptsPainlessExecute.Request, options: TransportRequestOptions, callback: callbackFn<ScriptsPainlessExecute.Response>): TransportRequestCallback;
 
-  search (params?: Search.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Search.Response>>;
+  search (params?: Search.Request, options?: TransportRequestOptions): TransportRequestPromise<Search.Response>;
   search (callback: callbackFn<Search.Response>): TransportRequestCallback;
   search (params: Search.Request, callback: callbackFn<Search.Response>): TransportRequestCallback;
   search (params: Search.Request, options: TransportRequestOptions, callback: callbackFn<Search.Response>): TransportRequestCallback;
 
-  searchShards (params?: SearchShards.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<SearchShards.Response>>;
+  searchShards (params?: SearchShards.Request, options?: TransportRequestOptions): TransportRequestPromise<SearchShards.Response>;
   searchShards (callback: callbackFn<SearchShards.Response>): TransportRequestCallback;
   searchShards (params: SearchShards.Request, callback: callbackFn<SearchShards.Response>): TransportRequestCallback;
   searchShards (params: SearchShards.Request, options: TransportRequestOptions, callback: callbackFn<SearchShards.Response>): TransportRequestCallback;
 
-  deletePit (params?: DeletePit.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<DeletePit.Response>>;
+  deletePit (params?: DeletePit.Request, options?: TransportRequestOptions): TransportRequestPromise<DeletePit.Response>;
   deletePit (callback: callbackFn<DeletePit.Response>): TransportRequestCallback;
   deletePit (params: DeletePit.Request, callback: callbackFn<DeletePit.Response>): TransportRequestCallback;
   deletePit (params: DeletePit.Request, options: TransportRequestOptions, callback: callbackFn<DeletePit.Response>): TransportRequestCallback;
 
-  deleteAllPits (params?: DeleteAllPits.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<DeleteAllPits.Response>>;
+  deleteAllPits (params?: DeleteAllPits.Request, options?: TransportRequestOptions): TransportRequestPromise<DeleteAllPits.Response>;
   deleteAllPits (callback: callbackFn<DeleteAllPits.Response>): TransportRequestCallback;
   deleteAllPits (params: DeleteAllPits.Request, callback: callbackFn<DeleteAllPits.Response>): TransportRequestCallback;
   deleteAllPits (params: DeleteAllPits.Request, options: TransportRequestOptions, callback: callbackFn<DeleteAllPits.Response>): TransportRequestCallback;
 
-  getAllPits (params?: GetAllPits.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<GetAllPits.Response>>;
+  getAllPits (params?: GetAllPits.Request, options?: TransportRequestOptions): TransportRequestPromise<GetAllPits.Response>;
   getAllPits (callback: callbackFn<GetAllPits.Response>): TransportRequestCallback;
   getAllPits (params: GetAllPits.Request, callback: callbackFn<GetAllPits.Response>): TransportRequestCallback;
   getAllPits (params: GetAllPits.Request, options: TransportRequestOptions, callback: callbackFn<GetAllPits.Response>): TransportRequestCallback;
 
-  clearScroll (params?: ClearScroll.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<ClearScroll.Response>>;
+  clearScroll (params?: ClearScroll.Request, options?: TransportRequestOptions): TransportRequestPromise<ClearScroll.Response>;
   clearScroll (callback: callbackFn<ClearScroll.Response>): TransportRequestCallback;
   clearScroll (params: ClearScroll.Request, callback: callbackFn<ClearScroll.Response>): TransportRequestCallback;
   clearScroll (params: ClearScroll.Request, options: TransportRequestOptions, callback: callbackFn<ClearScroll.Response>): TransportRequestCallback;
 
-  scroll (params?: Scroll.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Scroll.Response>>;
+  scroll (params?: Scroll.Request, options?: TransportRequestOptions): TransportRequestPromise<Scroll.Response>;
   scroll (callback: callbackFn<Scroll.Response>): TransportRequestCallback;
   scroll (params: Scroll.Request, callback: callbackFn<Scroll.Response>): TransportRequestCallback;
   scroll (params: Scroll.Request, options: TransportRequestOptions, callback: callbackFn<Scroll.Response>): TransportRequestCallback;
 
-  searchTemplate (params: SearchTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<SearchTemplate.Response>>;
+  searchTemplate (params: SearchTemplate.Request, options?: TransportRequestOptions): TransportRequestPromise<SearchTemplate.Response>;
   searchTemplate (params: SearchTemplate.Request, callback: callbackFn<SearchTemplate.Response>): TransportRequestCallback;
   searchTemplate (params: SearchTemplate.Request, options: TransportRequestOptions, callback: callbackFn<SearchTemplate.Response>): TransportRequestCallback;
 
-  updateByQueryRethrottle (params: UpdateByQueryRethrottle.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<UpdateByQueryRethrottle.Response>>;
+  updateByQueryRethrottle (params: UpdateByQueryRethrottle.Request, options?: TransportRequestOptions): TransportRequestPromise<UpdateByQueryRethrottle.Response>;
   updateByQueryRethrottle (params: UpdateByQueryRethrottle.Request, callback: callbackFn<UpdateByQueryRethrottle.Response>): TransportRequestCallback;
   updateByQueryRethrottle (params: UpdateByQueryRethrottle.Request, options: TransportRequestOptions, callback: callbackFn<UpdateByQueryRethrottle.Response>): TransportRequestCallback;
 
-  create (params: Create.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Create.Response>>;
+  create (params: Create.Request, options?: TransportRequestOptions): TransportRequestPromise<Create.Response>;
   create (params: Create.Request, callback: callbackFn<Create.Response>): TransportRequestCallback;
   create (params: Create.Request, options: TransportRequestOptions, callback: callbackFn<Create.Response>): TransportRequestCallback;
 
-  deleteByQuery (params: DeleteByQuery.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<DeleteByQuery.Response>>;
+  deleteByQuery (params: DeleteByQuery.Request, options?: TransportRequestOptions): TransportRequestPromise<DeleteByQuery.Response>;
   deleteByQuery (params: DeleteByQuery.Request, callback: callbackFn<DeleteByQuery.Response>): TransportRequestCallback;
   deleteByQuery (params: DeleteByQuery.Request, options: TransportRequestOptions, callback: callbackFn<DeleteByQuery.Response>): TransportRequestCallback;
 
-  index (params: Index.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Index.Response>>;
+  index (params: Index.Request, options?: TransportRequestOptions): TransportRequestPromise<Index.Response>;
   index (params: Index.Request, callback: callbackFn<Index.Response>): TransportRequestCallback;
   index (params: Index.Request, options: TransportRequestOptions, callback: callbackFn<Index.Response>): TransportRequestCallback;
 
-  delete (params: Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Delete.Response>>;
+  delete (params: Delete.Request, options?: TransportRequestOptions): TransportRequestPromise<Delete.Response>;
   delete (params: Delete.Request, callback: callbackFn<Delete.Response>): TransportRequestCallback;
   delete (params: Delete.Request, options: TransportRequestOptions, callback: callbackFn<Delete.Response>): TransportRequestCallback;
 
-  get (params: Get.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Get.Response>>;
+  get (params: Get.Request, options?: TransportRequestOptions): TransportRequestPromise<Get.Response>;
   get (params: Get.Request, callback: callbackFn<Get.Response>): TransportRequestCallback;
   get (params: Get.Request, options: TransportRequestOptions, callback: callbackFn<Get.Response>): TransportRequestCallback;
 
-  exists (params: Exists.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Exists.Response>>;
+  exists (params: Exists.Request, options?: TransportRequestOptions): TransportRequestPromise<Exists.Response>;
   exists (params: Exists.Request, callback: callbackFn<Exists.Response>): TransportRequestCallback;
   exists (params: Exists.Request, options: TransportRequestOptions, callback: callbackFn<Exists.Response>): TransportRequestCallback;
 
-  explain (params: Explain.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Explain.Response>>;
+  explain (params: Explain.Request, options?: TransportRequestOptions): TransportRequestPromise<Explain.Response>;
   explain (params: Explain.Request, callback: callbackFn<Explain.Response>): TransportRequestCallback;
   explain (params: Explain.Request, options: TransportRequestOptions, callback: callbackFn<Explain.Response>): TransportRequestCallback;
 
-  createPit (params: CreatePit.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<CreatePit.Response>>;
+  createPit (params: CreatePit.Request, options?: TransportRequestOptions): TransportRequestPromise<CreatePit.Response>;
   createPit (params: CreatePit.Request, callback: callbackFn<CreatePit.Response>): TransportRequestCallback;
   createPit (params: CreatePit.Request, options: TransportRequestOptions, callback: callbackFn<CreatePit.Response>): TransportRequestCallback;
 
-  getSource (params: GetSource.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<GetSource.Response>>;
+  getSource (params: GetSource.Request, options?: TransportRequestOptions): TransportRequestPromise<GetSource.Response>;
   getSource (params: GetSource.Request, callback: callbackFn<GetSource.Response>): TransportRequestCallback;
   getSource (params: GetSource.Request, options: TransportRequestOptions, callback: callbackFn<GetSource.Response>): TransportRequestCallback;
 
-  existsSource (params: ExistsSource.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<ExistsSource.Response>>;
+  existsSource (params: ExistsSource.Request, options?: TransportRequestOptions): TransportRequestPromise<ExistsSource.Response>;
   existsSource (params: ExistsSource.Request, callback: callbackFn<ExistsSource.Response>): TransportRequestCallback;
   existsSource (params: ExistsSource.Request, options: TransportRequestOptions, callback: callbackFn<ExistsSource.Response>): TransportRequestCallback;
 
-  termvectors (params: Termvectors.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Termvectors.Response>>;
+  termvectors (params: Termvectors.Request, options?: TransportRequestOptions): TransportRequestPromise<Termvectors.Response>;
   termvectors (params: Termvectors.Request, callback: callbackFn<Termvectors.Response>): TransportRequestCallback;
   termvectors (params: Termvectors.Request, options: TransportRequestOptions, callback: callbackFn<Termvectors.Response>): TransportRequestCallback;
 
-  updateByQuery (params: UpdateByQuery.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<UpdateByQuery.Response>>;
+  updateByQuery (params: UpdateByQuery.Request, options?: TransportRequestOptions): TransportRequestPromise<UpdateByQuery.Response>;
   updateByQuery (params: UpdateByQuery.Request, callback: callbackFn<UpdateByQuery.Response>): TransportRequestCallback;
   updateByQuery (params: UpdateByQuery.Request, options: TransportRequestOptions, callback: callbackFn<UpdateByQuery.Response>): TransportRequestCallback;
 
-  update (params: Update.Request, options?: TransportRequestOptions): TransportRequestPromise<ApiResponse<Update.Response>>;
+  update (params: Update.Request, options?: TransportRequestOptions): TransportRequestPromise<Update.Response>;
   update (params: Update.Request, callback: callbackFn<Update.Response>): TransportRequestCallback;
   update (params: Update.Request, options: TransportRequestOptions, callback: callbackFn<Update.Response>): TransportRequestCallback;
 

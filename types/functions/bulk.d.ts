@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Core_Search from '../components/_core.search'
 import * as Common from '../components/_common'
@@ -33,7 +34,7 @@ export interface Request extends Global.Params {
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export interface Response {
+export interface ResponseBody {
   errors: boolean;
   ingest_took?: number;
   items: Record<string, Core_Bulk.ResponseItem>[];
@@ -42,3 +43,6 @@ export interface Response {
 
 export type RequestBody = Core_Bulk.OperationContainer | Core_Bulk.UpdateAction | Record<string, any>[]
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Notifications_Common from '../components/notifications._common'
 
@@ -58,7 +59,7 @@ export interface Request extends Global.Params {
   'webhook.url.keyword'?: string;
 }
 
-export type Response = Notifications_Common.GetConfigsResponse
+export type ResponseBody = Notifications_Common.GetConfigsResponse
 
 export interface RequestBody {
   config_id_list?: string[];
@@ -68,3 +69,6 @@ export interface RequestBody {
   sort_order?: string;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

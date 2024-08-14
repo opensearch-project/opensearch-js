@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Sql_Common from '../components/sql._common'
 
@@ -22,5 +23,8 @@ export interface Request extends Global.Params {
   sanitize?: boolean;
 }
 
-export type Response = Sql_Common.QueryResponse
+export type ResponseBody = Sql_Common.QueryResponse
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

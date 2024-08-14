@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cluster_State from '../components/cluster.state'
@@ -31,5 +32,8 @@ export interface Request extends Global.Params {
   wait_for_timeout?: Common.Duration;
 }
 
-export type Response = Record<string, any>
+export type ResponseBody = Record<string, any>
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

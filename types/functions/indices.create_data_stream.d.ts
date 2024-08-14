@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 
@@ -21,7 +22,10 @@ export interface Request extends Global.Params {
   name: Common.DataStreamName;
 }
 
-export type Response = Common.AcknowledgedResponseBase
+export type ResponseBody = Common.AcknowledgedResponseBase
 
 export type RequestBody = Record<string, any>
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

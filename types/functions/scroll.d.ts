@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Core_Search from '../components/_core.search'
@@ -24,10 +25,13 @@ export interface Request extends Global.Params {
   scroll_id?: Common.ScrollId;
 }
 
-export type Response = Core_Search.ResponseBody
+export type ResponseBody = Core_Search.ResponseBody
 
 export interface RequestBody {
   scroll?: Common.Duration;
   scroll_id: Common.ScrollId;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

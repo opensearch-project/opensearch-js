@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cat_ThreadPool from '../components/cat.thread_pool'
@@ -30,5 +31,8 @@ export interface Request extends Global.Params {
   v?: boolean;
 }
 
-export type Response = Cat_ThreadPool.ThreadPoolRecord[]
+export type ResponseBody = Cat_ThreadPool.ThreadPoolRecord[]
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

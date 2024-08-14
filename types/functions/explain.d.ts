@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Core_Search from '../components/_core.search'
 import * as Common from '../components/_common'
@@ -37,7 +38,7 @@ export interface Request extends Global.Params {
   stored_fields?: Common.Fields;
 }
 
-export interface Response {
+export interface ResponseBody {
   _id: Common.Id;
   _index: Common.IndexName;
   explanation?: Core_Explain.ExplanationDetail;
@@ -49,3 +50,6 @@ export interface RequestBody {
   query?: Common_QueryDsl.QueryContainer;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

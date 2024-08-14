@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Notifications_Common from '../components/notifications._common'
 
@@ -21,5 +22,8 @@ export interface Request extends Global.Params {
   config_id_list?: string;
 }
 
-export type Response = Notifications_Common.DeleteConfigsResponse
+export type ResponseBody = Notifications_Common.DeleteConfigsResponse
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

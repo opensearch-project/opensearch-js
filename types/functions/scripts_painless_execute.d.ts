@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Core_ScriptsPainlessExecute from '../components/_core.scripts_painless_execute'
 import * as Common from '../components/_common'
@@ -21,7 +22,7 @@ export interface Request extends Global.Params {
   body?: RequestBody;
 }
 
-export interface Response {
+export interface ResponseBody {
   result: Record<string, any>;
 }
 
@@ -31,3 +32,6 @@ export interface RequestBody {
   script?: Common.InlineScript;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

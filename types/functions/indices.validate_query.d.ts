@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common_QueryDsl from '../components/_common.query_dsl'
 import * as Common from '../components/_common'
@@ -35,7 +36,7 @@ export interface Request extends Global.Params {
   rewrite?: boolean;
 }
 
-export interface Response {
+export interface ResponseBody {
   _shards?: Common.ShardStatistics;
   error?: string;
   explanations?: Indices_ValidateQuery.IndicesValidationExplanation[];
@@ -46,3 +47,6 @@ export interface RequestBody {
   query?: Common_QueryDsl.QueryContainer;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

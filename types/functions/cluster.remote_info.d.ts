@@ -13,10 +13,14 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Cluster_RemoteInfo from '../components/cluster.remote_info'
 
 export type Request = Global.Params & Record<string, any>
 
-export type Response = Record<string, Cluster_RemoteInfo.ClusterRemoteInfo>
+export type ResponseBody = Record<string, Cluster_RemoteInfo.ClusterRemoteInfo>
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cluster_Reroute from '../components/cluster.reroute'
@@ -28,7 +29,7 @@ export interface Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export interface Response {
+export interface ResponseBody {
   acknowledged: boolean;
   explanations?: Cluster_Reroute.RerouteExplanation[];
   state?: Record<string, any>;
@@ -38,3 +39,6 @@ export interface RequestBody {
   commands?: Cluster_Reroute.Command[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

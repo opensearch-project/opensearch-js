@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Snapshot_VerifyRepository from '../components/snapshot.verify_repository'
@@ -24,7 +25,10 @@ export interface Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export interface Response {
+export interface ResponseBody {
   nodes: Record<string, Snapshot_VerifyRepository.CompactNodeInfo>;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

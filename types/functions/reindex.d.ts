@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Core_Reindex from '../components/_core.reindex'
@@ -29,7 +30,7 @@ export interface Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface Response {
+export interface ResponseBody {
   batches?: number;
   created?: number;
   deleted?: number;
@@ -57,3 +58,6 @@ export interface RequestBody {
   source: Core_Reindex.Source;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Indices_Common from '../components/indices._common'
 import * as Common from '../components/_common'
@@ -27,8 +28,11 @@ export interface Request extends Global.Params {
   name?: Common.Name;
 }
 
-export interface Response {
+export interface ResponseBody {
   overlapping?: Indices_SimulateTemplate.Overlapping[];
   template: Indices_SimulateTemplate.Template;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

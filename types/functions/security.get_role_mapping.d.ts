@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Security_Common from '../components/security._common'
 
@@ -20,5 +21,8 @@ export interface Request extends Global.Params {
   role: string;
 }
 
-export type Response = Security_Common.RoleMappings
+export type ResponseBody = Security_Common.RoleMappings
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

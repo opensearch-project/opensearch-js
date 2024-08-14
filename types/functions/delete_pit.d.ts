@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Core_Common from '../components/_core._common'
 
@@ -20,7 +21,7 @@ export interface Request extends Global.Params {
   body?: RequestBody;
 }
 
-export interface Response {
+export interface ResponseBody {
   pits?: Core_Common.DeletedPit[];
 }
 
@@ -28,3 +29,6 @@ export interface RequestBody {
   pit_id: string[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

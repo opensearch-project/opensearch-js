@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cat_Allocation from '../components/cat.allocation'
@@ -30,5 +31,8 @@ export interface Request extends Global.Params {
   v?: boolean;
 }
 
-export type Response = Cat_Allocation.AllocationRecord[]
+export type ResponseBody = Cat_Allocation.AllocationRecord[]
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

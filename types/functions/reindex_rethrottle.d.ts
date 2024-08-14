@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Core_ReindexRethrottle from '../components/_core.reindex_rethrottle'
@@ -22,7 +23,10 @@ export interface Request extends Global.Params {
   task_id: Common.Id;
 }
 
-export interface Response {
+export interface ResponseBody {
   nodes: Record<string, Core_ReindexRethrottle.ReindexNode>;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

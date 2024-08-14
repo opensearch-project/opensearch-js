@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_Common from '../components/indices._common'
@@ -30,5 +31,8 @@ export interface Request extends Global.Params {
   name?: Common.Names;
 }
 
-export type Response = Record<string, Indices_Common.IndexState>
+export type ResponseBody = Record<string, Indices_Common.IndexState>
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

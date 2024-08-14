@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_GetFieldMapping from '../components/indices.get_field_mapping'
@@ -27,5 +28,8 @@ export interface Request extends Global.Params {
   local?: boolean;
 }
 
-export type Response = Record<string, Indices_GetFieldMapping.TypeFieldMappings>
+export type ResponseBody = Record<string, Indices_GetFieldMapping.TypeFieldMappings>
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

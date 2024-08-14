@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as RemoteStore_Common from '../components/remote_store._common'
@@ -23,7 +24,7 @@ export interface Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface Response {
+export interface ResponseBody {
   accepted?: boolean;
   remote_store?: RemoteStore_Common.RemoteStoreRestoreInfo;
 }
@@ -32,3 +33,6 @@ export interface RequestBody {
   indices: string[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

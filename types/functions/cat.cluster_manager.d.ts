@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cat_ClusterManager from '../components/cat.cluster_manager'
@@ -28,5 +29,8 @@ export interface Request extends Global.Params {
   v?: boolean;
 }
 
-export type Response = Cat_ClusterManager.ClusterManagerRecord[]
+export type ResponseBody = Cat_ClusterManager.ClusterManagerRecord[]
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

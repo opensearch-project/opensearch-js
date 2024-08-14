@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Common_Mapping from '../components/_common.mapping'
@@ -29,7 +30,7 @@ export interface Request extends Global.Params {
   write_index_only?: boolean;
 }
 
-export type Response = Common.IndicesResponseBase
+export type ResponseBody = Common.IndicesResponseBase
 
 export interface RequestBody {
   _field_names?: Common_Mapping.FieldNamesField;
@@ -45,3 +46,6 @@ export interface RequestBody {
   runtime?: Common_Mapping.RuntimeFields;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

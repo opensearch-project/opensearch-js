@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cat_Count from '../components/cat.count'
@@ -26,5 +27,8 @@ export interface Request extends Global.Params {
   v?: boolean;
 }
 
-export type Response = Cat_Count.CountRecord[]
+export type ResponseBody = Cat_Count.CountRecord[]
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

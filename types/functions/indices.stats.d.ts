@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_Stats from '../components/indices.stats'
@@ -31,9 +32,12 @@ export interface Request extends Global.Params {
   metric?: Common.Metrics;
 }
 
-export interface Response {
+export interface ResponseBody {
   _all: Indices_Stats.IndicesStats;
   _shards: Common.ShardStatistics;
   indices?: Record<string, Indices_Stats.IndicesStats>;
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

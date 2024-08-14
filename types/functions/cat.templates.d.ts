@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Cat_Templates from '../components/cat.templates'
@@ -29,5 +30,8 @@ export interface Request extends Global.Params {
   v?: boolean;
 }
 
-export type Response = Cat_Templates.TemplatesRecord[]
+export type ResponseBody = Cat_Templates.TemplatesRecord[]
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

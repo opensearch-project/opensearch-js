@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_UpdateAliases from '../components/indices.update_aliases'
@@ -24,9 +25,12 @@ export interface Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export type Response = Common.AcknowledgedResponseBase
+export type ResponseBody = Common.AcknowledgedResponseBase
 
 export interface RequestBody {
   actions?: Indices_UpdateAliases.Action[];
 }
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Snapshot_Common from '../components/snapshot._common'
@@ -24,5 +25,8 @@ export interface Request extends Global.Params {
   repository?: Common.Names;
 }
 
-export type Response = Record<string, Snapshot_Common.Repository>
+export type ResponseBody = Record<string, Snapshot_Common.Repository>
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

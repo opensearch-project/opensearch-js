@@ -13,6 +13,7 @@
  * the API generator.
  */
 
+import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../components/_global'
 import * as Common from '../components/_common'
 import * as Indices_Recovery from '../components/indices.recovery'
@@ -23,5 +24,8 @@ export interface Request extends Global.Params {
   index?: Common.Indices;
 }
 
-export type Response = Record<string, Indices_Recovery.RecoveryStatus>
+export type ResponseBody = Record<string, Indices_Recovery.RecoveryStatus>
 
+export interface Response extends ApiResponse {
+  body: ResponseBody
+}

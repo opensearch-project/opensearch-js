@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Fixed docker-compose command in Makefile ([#845](https://github.com/opensearch-project/opensearch-js/issues/845))
 ### Security
 
 ## [2.11.0]

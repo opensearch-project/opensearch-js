@@ -48,8 +48,8 @@ jobs:
         uses: actions/setup-java@v3
         if: steps.cache-restore.outputs.cache-hit != 'true'
         with:
-          distribution: 'corretto'
-          java-version: ${{ matrix.entry.jdk_version }}
+          distribution: 'temurin'
+          java-version: ${{ matrix.entry.jdk_version || '17' }}
 
       - name: Assemble OpenSearch
         if: steps.cache-restore.outputs.cache-hit != 'true'

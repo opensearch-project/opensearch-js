@@ -2,7 +2,7 @@ cluster.opensearch.build:
 	docker compose --project-directory .ci/opensearch build;
 
 cluster.opensearch.start:
-	docker compose --project-directory .ci/opensearch up -d ;
+	docker compose --project-directory .ci/opensearch up -d ; \
 	for attempt in {1..20}; do \
 		echo '=====> waiting...'; \
 		sleep 5; \

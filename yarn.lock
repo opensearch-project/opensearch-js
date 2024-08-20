@@ -811,9 +811,9 @@ auto-bind@4.0.0:
   integrity sha512-Hdw8qdNiqdJ8LqT0iK0sVzkFbzg6fhnQqqfWhBDxcHZvU75+B+ayzTy8x+k5Ix0Y92XOhOUlx74ps+bA6BeYMQ==
 
 aws4@^1.11.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.13.0.tgz#d9b802e9bb9c248d7be5f7f5ef178dc3684e9dcc"
-  integrity sha512-3AungXC4I8kKsS9PuS4JH2nc+0bVY/mjgrephHTIi8fpEeGsTHBUJeosp0Wc1myYMElmD0B3Oc4XL/HVJ4PV2g==
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.13.1.tgz#bb5f8b8a20739f6ae1caeaf7eea2c7913df8048e"
+  integrity sha512-u5w79Rd7SU4JaIlA/zFqG+gOiuq25q5VLyZ8E+ijJeILuTxVzZgp2CaGw/UTw6pXYN9XMO9yiqj/nEHmhTG5CA==
 
 balanced-match@^1.0.0:
   version "1.0.2"

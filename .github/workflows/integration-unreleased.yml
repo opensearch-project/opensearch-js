@@ -46,9 +46,7 @@ jobs:
       - name: Assemble OpenSearch
         if: steps.cache-restore.outputs.cache-hit != 'true'
         working-directory: opensearch
-        run: |
-          ./gradlew wrapper --gradle-version=8.9
-          ./gradlew :distribution:archives:linux-tar:assemble --gradle-version=8.9
+        run: ./gradlew :distribution:archives:linux-tar:assemble --gradle-version=8.9
 
       - name: Save cached build
         if: steps.cache-restore.outputs.cache-hit != 'true'

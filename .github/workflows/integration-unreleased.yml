@@ -19,9 +19,10 @@ jobs:
       fail-fast: false
       matrix:
         entry:
-          - { node_version: '16.x', opensearch_ref: '2.0' }
-          - { node_version: '16.x', opensearch_ref: '2.x' }
-          - { node_version: '16.x', opensearch_ref: 'main' }
+          - { node_version: '16.x', opensearch_ref: '1.x', jdk_version: '11' }
+          - { node_version: '16.x', opensearch_ref: '2.0', jdk_version: '17' }
+          - { node_version: '16.x', opensearch_ref: '2.x', jdk_version: '17' }
+          - { node_version: '16.x', opensearch_ref: 'main', jdk_version: '17' }
     steps:
       - name: Checkout OpenSearch
         uses: actions/checkout@v3
@@ -43,12 +44,12 @@ jobs:
           path: opensearch/distribution/archives/linux-tar/build/distributions
           key: ${{ steps.get-key.outputs.key }}
 
-      - name: Setup Java JDK 17
+      - name: Setup Java JDK
         uses: actions/setup-java@v3
         if: steps.cache-restore.outputs.cache-hit != 'true'
         with:
           distribution: 'corretto'
-          java-version: '17'
+          java-version: ${{ matrix.entry.jdk_version }}
 
       - name: Assemble OpenSearch
         if: steps.cache-restore.outputs.cache-hit != 'true'

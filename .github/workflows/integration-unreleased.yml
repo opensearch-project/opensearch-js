@@ -46,7 +46,9 @@ jobs:
       - name: Assemble OpenSearch
         if: steps.cache-restore.outputs.cache-hit != 'true'
         working-directory: opensearch
-        run: ./gradlew :distribution:archives:linux-tar:assemble
+        run: |
+          ./gradlew wrapper --gradle-version=8.9
+          ./gradlew :distribution:archives:linux-tar:assemble
 
       - name: Save cached build
         if: steps.cache-restore.outputs.cache-hit != 'true'
@@ -72,7 +74,7 @@ jobs:
             fi
             echo '=====> waiting...'
           done
-          exit 1 
+          exit 1
 
       - name: Checkout Javascript Client
         uses: actions/checkout@v3

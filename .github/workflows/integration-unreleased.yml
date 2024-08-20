@@ -19,7 +19,6 @@ jobs:
       fail-fast: false
       matrix:
         entry:
-          - { node_version: '16.x', opensearch_ref: '1.x' }
           - { node_version: '16.x', opensearch_ref: '2.0' }
           - { node_version: '16.x', opensearch_ref: '2.x' }
           - { node_version: '16.x', opensearch_ref: 'main' }

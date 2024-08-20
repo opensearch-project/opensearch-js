@@ -6,10 +6,12 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 - Bumps `@babel/eslint-parser` from 7.24.8 to 7.25.1
+- Bumps `@types/node` from 20.14.11 to 22.0.0
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
+- Fixed docker-compose command in Makefile ([#845](https://github.com/opensearch-project/opensearch-js/issues/845))
 ### Security
 
 ## [2.11.0]

@@ -3064,9 +3064,9 @@ simple-git@^3.15.0:
     debug "^4.3.5"
 
 simple-statistics@^7.7.0:
-  version "7.8.3"
-  resolved "https://registry.yarnpkg.com/simple-statistics/-/simple-statistics-7.8.3.tgz#62998dd7786ba14fa27b07f4f3cd498466f7961a"
-  integrity sha512-JFvMY00t6SBGtwMuJ+nqgsx9ylkMiJ5JlK9bkj8AdvniIe5615wWQYkKHXe84XtSuc40G/tlrPu0A5/NlJvv8A==
+  version "7.8.4"
+  resolved "https://registry.yarnpkg.com/simple-statistics/-/simple-statistics-7.8.4.tgz#68cde33d10fc021c19639c521a77204eedf098c6"
+  integrity sha512-KHC7X+4Dji2rFgnPU7FxPPp4GxPz9hvQCHx2x6JbjLYNKuSMHcoNZ54gF0xBBMOAvNtWmfCHcfC4MD2T89ffEA==
 
 slash@^3.0.0:
   version "3.0.0"

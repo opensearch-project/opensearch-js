@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `@babel/eslint-parser` from 7.24.8 to 7.25.1
 - Bumps `@types/node` from 20.14.11 to 22.5.0
 - Bumps `aws4` from 1.13.0 to 1.13.1
+- Bumps `ora` from 8.0.1 to 8.1.0
 ### Changed
 ### Deprecated
 ### Removed

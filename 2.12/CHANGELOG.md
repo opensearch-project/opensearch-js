@@ -5,6 +5,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+- Bumps `micromatch` from 4.0.7 to 4.0.8
 ### Changed
 ### Deprecated
 ### Removed

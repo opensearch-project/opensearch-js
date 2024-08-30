@@ -1,21 +1,25 @@
 # CHANGELOG
 
-Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.12.0]
 ### Dependencies
 - Bumps `@babel/eslint-parser` from 7.24.8 to 7.25.1
 - Bumps `@types/node` from 20.14.11 to 22.5.0
 - Bumps `aws4` from 1.13.0 to 1.13.1
 - Bumps `ora` from 8.0.1 to 8.1.0
 - Bumps `simple-statistics` from 7.8.3 to 7.8.4
-### Changed
-### Deprecated
-### Removed
 ### Fixed
 - Fixed docker-compose command in Makefile ([#845](https://github.com/opensearch-project/opensearch-js/issues/845))
-### Security
 
 ## [2.11.0]
 ### Changed

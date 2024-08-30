@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: api/api/dangling_indices.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: api/api/dangling_indices.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+ * Copyright OpenSearch Contributors
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ *
+ */
+
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+'use strict';
+
+/* eslint camelcase: 0 */
+/* eslint no-unused-vars: 0 */
+
+/** @namespace API-Dangling-Indices */
+
+const { handleError, snakeCaseKeys, normalizeArguments, kConfigurationError } = require('../utils');
+const acceptedQuerystring = [
+  'accept_data_loss',
+  'timeout',
+  'cluster_manager_timeout',
+  'master_timeout',
+  'pretty',
+  'human',
+  'error_trace',
+  'source',
+  'filter_path',
+];
+const snakeCase = {
+  acceptDataLoss: 'accept_data_loss',
+  clusterManagerTimeout: 'cluster_manager_timeout',
+  masterTimeout: 'master_timeout',
+  errorTrace: 'error_trace',
+  filterPath: 'filter_path',
+};
+
+function DanglingIndicesApi(transport, ConfigurationError) {
+  this.transport = transport;
+  this[kConfigurationError] = ConfigurationError;
+}
+
+/**
+ * Deletes the specified dangling index
+ * &lt;br/> See also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/dangling-index/ OpenSearch - Dangling Indexes}
+ * @memberOf API-Dangling-Indices
+ *
+ * @param {Object} params
+ * @param {string} params.index_uuid - The UUID of the dangling index
+ * @param {boolean} [params.accept_data_loss] - Must be set to true in order to delete the dangling index
+ * @param {string} [params.timeout=30s] - Explicit operation timeout
+ * @param {string} [params.cluster_manager_timeout] - Specify timeout for connection to cluster_manager
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+DanglingIndicesApi.prototype.deleteDanglingIndex = function danglingIndicesDeleteDanglingIndexApi(
+  params,
+  options,
+  callback
+) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
+
+  // check required parameters
+  if (params.index_uuid == null &amp;&amp; params.indexUuid == null) {
+    const err = new this[kConfigurationError](
+      'Missing required parameter: index_uuid or indexUuid'
+    );
+    return handleError(err, callback);
+  }
+
+  let { method, body, indexUuid, index_uuid, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
+
+  let path = '';
+  if (method == null) method = 'DELETE';
+  path = '/' + '_dangling' + '/' + encodeURIComponent(index_uuid || indexUuid);
+
+  // build request object
+  const request = {
+    method,
+    path,
+    body: body || '',
+    querystring,
+  };
+
+  return this.transport.request(request, options, callback);
+};
+
+/**
+ * Imports the specified dangling index
+ * &lt;br/> See also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/dangling-index/ OpenSearch - Dangling Indexes}
+ * @memberOf API-Dangling-Indices
+ *
+ * @param {Object} params
+ * @param {string} params.index_uuid - The UUID of the dangling index
+ * @param {boolean} [params.accept_data_loss] - Must be set to true in order to delete the dangling index
+ * @param {string} [params.timeout=30s] - Explicit operation timeout
+ * @param {string} [params.cluster_manager_timeout] - Specify timeout for connection to cluster_manager
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+DanglingIndicesApi.prototype.importDanglingIndex = function danglingIndicesImportDanglingIndexApi(
+  params,
+  options,
+  callback
+) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
+
+  // check required parameters
+  if (params.index_uuid == null &amp;&amp; params.indexUuid == null) {
+    const err = new this[kConfigurationError](
+      'Missing required parameter: index_uuid or indexUuid'
+    );
+    return handleError(err, callback);
+  }
+
+  let { method, body, indexUuid, index_uuid, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
+
+  let path = '';
+  if (method == null) method = 'POST';
+  path = '/' + '_dangling' + '/' + encodeURIComponent(index_uuid || indexUuid);
+
+  // build request object
+  const request = {
+    method,
+    path,
+    body: body || '',
+    querystring,
+  };
+
+  return this.transport.request(request, options, callback);
+};
+
+/**
+ * Retrieve all dangling indices.
+ * &lt;br/> See also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/dangling-index/ OpenSearch - Dangling Indexes}
+ * @memberOf API-Dangling-Indices
+ *
+ * @param {Object} params - (Unused)
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
+ */
+DanglingIndicesApi.prototype.listDanglingIndices = function danglingIndicesListDanglingIndicesApi(
+  params,
+  options,
+  callback
+) {
+  [params, options, callback] = normalizeArguments(params, options, callback);
+
+  let { method, body, ...querystring } = params;
+  querystring = snakeCaseKeys(acceptedQuerystring, snakeCase, querystring);
+
+  let path = '';
+  if (method == null) method = 'GET';
+  path = '/' + '_dangling';
+
+  // build request object
+  const request = {
+    method,
+    path,
+    body: null,
+    querystring,
+  };
+
+  return this.transport.request(request, options, callback);
+};
+
+Object.defineProperties(DanglingIndicesApi.prototype, {
+  delete_dangling_index: {
+    get() {
+      return this.deleteDanglingIndex;
+    },
+  },
+  import_dangling_index: {
+    get() {
+      return this.importDanglingIndex;
+    },
+  },
+  list_dangling_indices: {
+    get() {
+      return this.listDanglingIndices;
+    },
+  },
+});
+
+module.exports = DanglingIndicesApi;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="API-CAT.html">API-CAT</a></li><li><a href="API-Cluster.html">API-Cluster</a></li><li><a href="API-Count.html">API-Count</a></li><li><a href="API-Dangling-Indices.html">API-Dangling-Indices</a></li><li><a href="API-Document.html">API-Document</a></li><li><a href="API-Features.html">API-Features</a></li><li><a href="API-HTTP.html">API-HTTP</a></li><li><a href="API-Index.html">API-Index</a></li><li><a href="API-Ingest.html">API-Ingest</a></li><li><a href="API-Nodes.html">API-Nodes</a></li><li><a href="API-PIT.html">API-PIT</a></li><li><a href="API-Rollups.html">API-Rollups</a></li><li><a href="API-Script.html">API-Script</a></li><li><a href="API-Search.html">API-Search</a></li><li><a href="API-Security.html">API-Security</a></li><li><a href="API-Snapshot.html">API-Snapshot</a></li><li><a href="API-Tasks.html">API-Tasks</a></li><li><a href="API-Transforms.html">API-Transforms</a></li></ul><h3>Classes</h3><ul><li><a href="Transport.html">Transport</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Aug 30 2024 17:34:35 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

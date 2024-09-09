@@ -9,6 +9,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `simple-statistics` from 7.8.4 to 7.8.5
 - Bumps `simple-git` from 3.25.0 to 3.26.0
 - Bumps `@types/node` from 22.5.0 to 22.5.2
+- Bumps `debug` from 4.3.6 to 4.3.7
 ### Changed
 ### Deprecated
 ### Removed

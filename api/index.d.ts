@@ -181,6 +181,8 @@ import { Security_PatchAuditConfiguration_Request, Security_PatchAuditConfigurat
 import { Security_UpdateAuditConfiguration_Request, Security_UpdateAuditConfiguration_Response, Security_UpdateAuditConfiguration_ResponseBody } from './security/updateAuditConfiguration';
 import { Security_Authtoken_Request, Security_Authtoken_Response, Security_Authtoken_ResponseBody } from './security/authtoken';
 import { Security_FlushCache_Request, Security_FlushCache_Response, Security_FlushCache_ResponseBody } from './security/flushCache';
+import { Security_GetAllCertificates_Request, Security_GetAllCertificates_Response, Security_GetAllCertificates_ResponseBody } from './security/getAllCertificates';
+import { Security_GetNodeCertificates_Request, Security_GetNodeCertificates_Response, Security_GetNodeCertificates_ResponseBody } from './security/getNodeCertificates';
 import { Security_GenerateOboToken_Request, Security_GenerateOboToken_Response, Security_GenerateOboToken_ResponseBody } from './security/generateOboToken';
 import { Security_GetUsers_Request, Security_GetUsers_Response, Security_GetUsers_ResponseBody } from './security/getUsers';
 import { Security_PatchUsers_Request, Security_PatchUsers_RequestBody, Security_PatchUsers_Response, Security_PatchUsers_ResponseBody } from './security/patchUsers';
@@ -216,7 +218,7 @@ import { Security_GetCertificates_Request, Security_GetCertificates_Response, Se
 import { Security_ReloadHttpCertificates_Request, Security_ReloadHttpCertificates_Response, Security_ReloadHttpCertificates_ResponseBody } from './security/reloadHttpCertificates';
 import { Security_ReloadTransportCertificates_Request, Security_ReloadTransportCertificates_Response, Security_ReloadTransportCertificates_ResponseBody } from './security/reloadTransportCertificates';
 import { Security_GetTenancyConfig_Request, Security_GetTenancyConfig_Response, Security_GetTenancyConfig_ResponseBody } from './security/getTenancyConfig';
-import { Security_CreateUpdateTenancyConfig_Request, Security_CreateUpdateTenancyConfig_RequestBody, Security_CreateUpdateTenancyConfig_Response, Security_CreateUpdateTenancyConfig_ResponseBody } from './security/createUpdateTenancyConfig';
+import { Security_CreateUpdateTenancyConfig_Request, Security_CreateUpdateTenancyConfig_Response, Security_CreateUpdateTenancyConfig_ResponseBody } from './security/createUpdateTenancyConfig';
 import { Security_GetTenants_Request, Security_GetTenants_Response, Security_GetTenants_ResponseBody } from './security/getTenants';
 import { Security_PatchTenants_Request, Security_PatchTenants_RequestBody, Security_PatchTenants_Response, Security_PatchTenants_ResponseBody } from './security/patchTenants';
 import { Security_DeleteTenant_Request, Security_DeleteTenant_Response, Security_DeleteTenant_ResponseBody } from './security/deleteTenant';
@@ -227,7 +229,6 @@ import { Security_GetUsersLegacy_Request, Security_GetUsersLegacy_Response, Secu
 import { Security_DeleteUserLegacy_Request, Security_DeleteUserLegacy_Response, Security_DeleteUserLegacy_ResponseBody } from './security/deleteUserLegacy';
 import { Security_GetUserLegacy_Request, Security_GetUserLegacy_Response, Security_GetUserLegacy_ResponseBody } from './security/getUserLegacy';
 import { Security_CreateUserLegacy_Request, Security_CreateUserLegacy_Response, Security_CreateUserLegacy_ResponseBody } from './security/createUserLegacy';
-import { Security_GenerateUserTokenLegacy_Request, Security_GenerateUserTokenLegacy_Response, Security_GenerateUserTokenLegacy_ResponseBody } from './security/generateUserTokenLegacy';
 import { Security_Validate_Request, Security_Validate_Response, Security_Validate_ResponseBody } from './security/validate';
 import { Security_Authinfo_Request, Security_Authinfo_Response, Security_Authinfo_ResponseBody } from './security/authinfo';
 import { Security_GetDashboardsInfo_Request, Security_GetDashboardsInfo_Response, Security_GetDashboardsInfo_ResponseBody } from './security/getDashboardsInfo';
@@ -236,6 +237,14 @@ import { Security_Health_Request, Security_Health_Response, Security_Health_Resp
 import { Security_TenantInfo_Request, Security_TenantInfo_Response, Security_TenantInfo_ResponseBody } from './security/tenantInfo';
 import { Security_WhoAmI_Request, Security_WhoAmI_Response, Security_WhoAmI_ResponseBody } from './security/whoAmI';
 import { Security_WhoAmIProtected_Request, Security_WhoAmIProtected_Response, Security_WhoAmIProtected_ResponseBody } from './security/whoAmIProtected';
+import { AsynchronousSearch_Search_Request, AsynchronousSearch_Search_Response, AsynchronousSearch_Search_ResponseBody } from './asynchronousSearch/search';
+import { AsynchronousSearch_Delete_Request, AsynchronousSearch_Delete_Response, AsynchronousSearch_Delete_ResponseBody } from './asynchronousSearch/delete';
+import { AsynchronousSearch_Get_Request, AsynchronousSearch_Get_Response, AsynchronousSearch_Get_ResponseBody } from './asynchronousSearch/get';
+import { AsynchronousSearch_Stats_Request, AsynchronousSearch_Stats_Response, AsynchronousSearch_Stats_ResponseBody } from './asynchronousSearch/stats';
+import { FlowFramework_Create_Request, FlowFramework_Create_Response, FlowFramework_Create_ResponseBody } from './flowFramework/create';
+import { FlowFramework_Delete_Request, FlowFramework_Delete_Response, FlowFramework_Delete_ResponseBody } from './flowFramework/delete';
+import { FlowFramework_Get_Request, FlowFramework_Get_Response, FlowFramework_Get_ResponseBody } from './flowFramework/get';
+import { FlowFramework_Update_Request, FlowFramework_Update_Response, FlowFramework_Update_ResponseBody } from './flowFramework/update';
 import { Knn_Stats_Request, Knn_Stats_Response, Knn_Stats_ResponseBody } from './knn/stats';
 import { Knn_SearchModels_Request, Knn_SearchModels_RequestBody, Knn_SearchModels_Response, Knn_SearchModels_ResponseBody } from './knn/searchModels';
 import { Knn_TrainModel_Request, Knn_TrainModel_RequestBody, Knn_TrainModel_Response, Knn_TrainModel_ResponseBody } from './knn/trainModel';
@@ -248,6 +257,9 @@ import { Ml_GetModelGroup_Request, Ml_GetModelGroup_Response, Ml_GetModelGroup_R
 import { Ml_RegisterModel_Request, Ml_RegisterModel_RequestBody, Ml_RegisterModel_Response, Ml_RegisterModel_ResponseBody } from './ml/registerModel';
 import { Ml_SearchModels_Request, Ml_SearchModels_Response, Ml_SearchModels_ResponseBody } from './ml/searchModels';
 import { Ml_DeleteModel_Request, Ml_DeleteModel_Response, Ml_DeleteModel_ResponseBody } from './ml/deleteModel';
+import { Ml_DeployModel_Request, Ml_DeployModel_Response, Ml_DeployModel_ResponseBody } from './ml/deployModel';
+import { Ml_UndeployModel_Request, Ml_UndeployModel_Response, Ml_UndeployModel_ResponseBody } from './ml/undeployModel';
+import { Ml_DeleteTask_Request, Ml_DeleteTask_Response, Ml_DeleteTask_ResponseBody } from './ml/deleteTask';
 import { Ml_GetTask_Request, Ml_GetTask_Response, Ml_GetTask_ResponseBody } from './ml/getTask';
 import { Notifications_ListChannels_Request, Notifications_ListChannels_Response, Notifications_ListChannels_ResponseBody } from './notifications/listChannels';
 import { Notifications_DeleteConfigs_Request, Notifications_DeleteConfigs_Response, Notifications_DeleteConfigs_ResponseBody } from './notifications/deleteConfigs';
@@ -258,10 +270,22 @@ import { Notifications_GetConfig_Request, Notifications_GetConfig_Response, Noti
 import { Notifications_UpdateConfig_Request, Notifications_UpdateConfig_Response, Notifications_UpdateConfig_ResponseBody } from './notifications/updateConfig';
 import { Notifications_SendTest_Request, Notifications_SendTest_Response, Notifications_SendTest_ResponseBody } from './notifications/sendTest';
 import { Notifications_ListFeatures_Request, Notifications_ListFeatures_Response, Notifications_ListFeatures_ResponseBody } from './notifications/listFeatures';
+import { Observability_GetLocalstats_Request, Observability_GetLocalstats_Response, Observability_GetLocalstats_ResponseBody } from './observability/getLocalstats';
+import { Observability_DeleteObjects_Request, Observability_DeleteObjects_Response, Observability_DeleteObjects_ResponseBody } from './observability/deleteObjects';
+import { Observability_ListObjects_Request, Observability_ListObjects_Response, Observability_ListObjects_ResponseBody } from './observability/listObjects';
+import { Observability_CreateObject_Request, Observability_CreateObject_Response, Observability_CreateObject_ResponseBody } from './observability/createObject';
+import { Observability_DeleteObject_Request, Observability_DeleteObject_Response, Observability_DeleteObject_ResponseBody } from './observability/deleteObject';
+import { Observability_GetObject_Request, Observability_GetObject_Response, Observability_GetObject_ResponseBody } from './observability/getObject';
+import { Observability_UpdateObject_Request, Observability_UpdateObject_Response, Observability_UpdateObject_ResponseBody } from './observability/updateObject';
 import { Ppl_Query_Request, Ppl_Query_Response, Ppl_Query_ResponseBody } from './ppl/query';
 import { Ppl_Explain_Request, Ppl_Explain_Response, Ppl_Explain_ResponseBody } from './ppl/explain';
 import { Ppl_GetStats_Request, Ppl_GetStats_Response, Ppl_GetStats_ResponseBody } from './ppl/getStats';
 import { Ppl_PostStats_Request, Ppl_PostStats_Response, Ppl_PostStats_ResponseBody } from './ppl/postStats';
+import { Query_DatasourcesList_Request, Query_DatasourcesList_Response, Query_DatasourcesList_ResponseBody } from './query/datasourcesList';
+import { Query_DatasourcesCreate_Request, Query_DatasourcesCreate_Response, Query_DatasourcesCreate_ResponseBody } from './query/datasourcesCreate';
+import { Query_DatasourcesUpdate_Request, Query_DatasourcesUpdate_Response, Query_DatasourcesUpdate_ResponseBody } from './query/datasourcesUpdate';
+import { Query_DatasourceDelete_Request, Query_DatasourceDelete_Response, Query_DatasourceDelete_ResponseBody } from './query/datasourceDelete';
+import { Query_DatasourceRetrieve_Request, Query_DatasourceRetrieve_Response, Query_DatasourceRetrieve_ResponseBody } from './query/datasourceRetrieve';
 import { Sql_Settings_Request, Sql_Settings_RequestBody, Sql_Settings_Response, Sql_Settings_ResponseBody } from './sql/settings';
 import { Sql_Query_Request, Sql_Query_Response, Sql_Query_ResponseBody } from './sql/query';
 import { Sql_Explain_Request, Sql_Explain_Response, Sql_Explain_ResponseBody } from './sql/explain';
@@ -469,6 +493,8 @@ export {
   Security_UpdateAuditConfiguration_Request, Security_UpdateAuditConfiguration_Response, Security_UpdateAuditConfiguration_ResponseBody,
   Security_Authtoken_Request, Security_Authtoken_Response, Security_Authtoken_ResponseBody,
   Security_FlushCache_Request, Security_FlushCache_Response, Security_FlushCache_ResponseBody,
+  Security_GetAllCertificates_Request, Security_GetAllCertificates_Response, Security_GetAllCertificates_ResponseBody,
+  Security_GetNodeCertificates_Request, Security_GetNodeCertificates_Response, Security_GetNodeCertificates_ResponseBody,
   Security_GenerateOboToken_Request, Security_GenerateOboToken_Response, Security_GenerateOboToken_ResponseBody,
   Security_GetUsers_Request, Security_GetUsers_Response, Security_GetUsers_ResponseBody,
   Security_PatchUsers_Request, Security_PatchUsers_RequestBody, Security_PatchUsers_Response, Security_PatchUsers_ResponseBody,
@@ -504,7 +530,7 @@ export {
   Security_ReloadHttpCertificates_Request, Security_ReloadHttpCertificates_Response, Security_ReloadHttpCertificates_ResponseBody,
   Security_ReloadTransportCertificates_Request, Security_ReloadTransportCertificates_Response, Security_ReloadTransportCertificates_ResponseBody,
   Security_GetTenancyConfig_Request, Security_GetTenancyConfig_Response, Security_GetTenancyConfig_ResponseBody,
-  Security_CreateUpdateTenancyConfig_Request, Security_CreateUpdateTenancyConfig_RequestBody, Security_CreateUpdateTenancyConfig_Response, Security_CreateUpdateTenancyConfig_ResponseBody,
+  Security_CreateUpdateTenancyConfig_Request, Security_CreateUpdateTenancyConfig_Response, Security_CreateUpdateTenancyConfig_ResponseBody,
   Security_GetTenants_Request, Security_GetTenants_Response, Security_GetTenants_ResponseBody,
   Security_PatchTenants_Request, Security_PatchTenants_RequestBody, Security_PatchTenants_Response, Security_PatchTenants_ResponseBody,
   Security_DeleteTenant_Request, Security_DeleteTenant_Response, Security_DeleteTenant_ResponseBody,
@@ -515,7 +541,6 @@ export {
   Security_DeleteUserLegacy_Request, Security_DeleteUserLegacy_Response, Security_DeleteUserLegacy_ResponseBody,
   Security_GetUserLegacy_Request, Security_GetUserLegacy_Response, Security_GetUserLegacy_ResponseBody,
   Security_CreateUserLegacy_Request, Security_CreateUserLegacy_Response, Security_CreateUserLegacy_ResponseBody,
-  Security_GenerateUserTokenLegacy_Request, Security_GenerateUserTokenLegacy_Response, Security_GenerateUserTokenLegacy_ResponseBody,
   Security_Validate_Request, Security_Validate_Response, Security_Validate_ResponseBody,
   Security_Authinfo_Request, Security_Authinfo_Response, Security_Authinfo_ResponseBody,
   Security_GetDashboardsInfo_Request, Security_GetDashboardsInfo_Response, Security_GetDashboardsInfo_ResponseBody,
@@ -524,6 +549,14 @@ export {
   Security_TenantInfo_Request, Security_TenantInfo_Response, Security_TenantInfo_ResponseBody,
   Security_WhoAmI_Request, Security_WhoAmI_Response, Security_WhoAmI_ResponseBody,
   Security_WhoAmIProtected_Request, Security_WhoAmIProtected_Response, Security_WhoAmIProtected_ResponseBody,
+  AsynchronousSearch_Search_Request, AsynchronousSearch_Search_Response, AsynchronousSearch_Search_ResponseBody,
+  AsynchronousSearch_Delete_Request, AsynchronousSearch_Delete_Response, AsynchronousSearch_Delete_ResponseBody,
+  AsynchronousSearch_Get_Request, AsynchronousSearch_Get_Response, AsynchronousSearch_Get_ResponseBody,
+  AsynchronousSearch_Stats_Request, AsynchronousSearch_Stats_Response, AsynchronousSearch_Stats_ResponseBody,
+  FlowFramework_Create_Request, FlowFramework_Create_Response, FlowFramework_Create_ResponseBody,
+  FlowFramework_Delete_Request, FlowFramework_Delete_Response, FlowFramework_Delete_ResponseBody,
+  FlowFramework_Get_Request, FlowFramework_Get_Response, FlowFramework_Get_ResponseBody,
+  FlowFramework_Update_Request, FlowFramework_Update_Response, FlowFramework_Update_ResponseBody,
   Knn_Stats_Request, Knn_Stats_Response, Knn_Stats_ResponseBody,
   Knn_SearchModels_Request, Knn_SearchModels_RequestBody, Knn_SearchModels_Response, Knn_SearchModels_ResponseBody,
   Knn_TrainModel_Request, Knn_TrainModel_RequestBody, Knn_TrainModel_Response, Knn_TrainModel_ResponseBody,
@@ -536,6 +569,9 @@ export {
   Ml_RegisterModel_Request, Ml_RegisterModel_RequestBody, Ml_RegisterModel_Response, Ml_RegisterModel_ResponseBody,
   Ml_SearchModels_Request, Ml_SearchModels_Response, Ml_SearchModels_ResponseBody,
   Ml_DeleteModel_Request, Ml_DeleteModel_Response, Ml_DeleteModel_ResponseBody,
+  Ml_DeployModel_Request, Ml_DeployModel_Response, Ml_DeployModel_ResponseBody,
+  Ml_UndeployModel_Request, Ml_UndeployModel_Response, Ml_UndeployModel_ResponseBody,
+  Ml_DeleteTask_Request, Ml_DeleteTask_Response, Ml_DeleteTask_ResponseBody,
   Ml_GetTask_Request, Ml_GetTask_Response, Ml_GetTask_ResponseBody,
   Notifications_ListChannels_Request, Notifications_ListChannels_Response, Notifications_ListChannels_ResponseBody,
   Notifications_DeleteConfigs_Request, Notifications_DeleteConfigs_Response, Notifications_DeleteConfigs_ResponseBody,
@@ -546,10 +582,22 @@ export {
   Notifications_UpdateConfig_Request, Notifications_UpdateConfig_Response, Notifications_UpdateConfig_ResponseBody,
   Notifications_SendTest_Request, Notifications_SendTest_Response, Notifications_SendTest_ResponseBody,
   Notifications_ListFeatures_Request, Notifications_ListFeatures_Response, Notifications_ListFeatures_ResponseBody,
+  Observability_GetLocalstats_Request, Observability_GetLocalstats_Response, Observability_GetLocalstats_ResponseBody,
+  Observability_DeleteObjects_Request, Observability_DeleteObjects_Response, Observability_DeleteObjects_ResponseBody,
+  Observability_ListObjects_Request, Observability_ListObjects_Response, Observability_ListObjects_ResponseBody,
+  Observability_CreateObject_Request, Observability_CreateObject_Response, Observability_CreateObject_ResponseBody,
+  Observability_DeleteObject_Request, Observability_DeleteObject_Response, Observability_DeleteObject_ResponseBody,
+  Observability_GetObject_Request, Observability_GetObject_Response, Observability_GetObject_ResponseBody,
+  Observability_UpdateObject_Request, Observability_UpdateObject_Response, Observability_UpdateObject_ResponseBody,
   Ppl_Query_Request, Ppl_Query_Response, Ppl_Query_ResponseBody,
   Ppl_Explain_Request, Ppl_Explain_Response, Ppl_Explain_ResponseBody,
   Ppl_GetStats_Request, Ppl_GetStats_Response, Ppl_GetStats_ResponseBody,
   Ppl_PostStats_Request, Ppl_PostStats_Response, Ppl_PostStats_ResponseBody,
+  Query_DatasourcesList_Request, Query_DatasourcesList_Response, Query_DatasourcesList_ResponseBody,
+  Query_DatasourcesCreate_Request, Query_DatasourcesCreate_Response, Query_DatasourcesCreate_ResponseBody,
+  Query_DatasourcesUpdate_Request, Query_DatasourcesUpdate_Response, Query_DatasourcesUpdate_ResponseBody,
+  Query_DatasourceDelete_Request, Query_DatasourceDelete_Response, Query_DatasourceDelete_ResponseBody,
+  Query_DatasourceRetrieve_Request, Query_DatasourceRetrieve_Response, Query_DatasourceRetrieve_ResponseBody,
   Sql_Settings_Request, Sql_Settings_RequestBody, Sql_Settings_Response, Sql_Settings_ResponseBody,
   Sql_Query_Request, Sql_Query_Response, Sql_Query_ResponseBody,
   Sql_Explain_Request, Sql_Explain_Response, Sql_Explain_ResponseBody,

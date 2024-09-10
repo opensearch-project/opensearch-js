@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
 export interface Security_GetSslinfo_Request extends Global.Params {
-  show_dn?: string;
+  show_dn?: boolean | string;
 }
 
 export interface Security_GetSslinfo_Response extends ApiResponse {

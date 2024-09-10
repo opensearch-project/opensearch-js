@@ -24,9 +24,7 @@ const { normalizeArguments } = require('../utils');
  *
  * @memberOf API-Security
  *
- * @param {object} [params]
- * @param {object} [params.body] 
- *
+ * @param {object} [params] - (Unused)
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *

@@ -84,7 +84,7 @@ export interface Search_RequestBody {
   from?: number;
   highlight?: Core_Search.Highlight;
   indices_boost?: Record<string, number>[];
-  knn?: Common.KnnQuery | Common.KnnQuery[];
+  knn?: Common_QueryDsl.KnnQuery | Common_QueryDsl.KnnQuery[];
   min_score?: number;
   pit?: Core_Search.PointInTimeReference;
   post_filter?: Common_QueryDsl.QueryContainer;

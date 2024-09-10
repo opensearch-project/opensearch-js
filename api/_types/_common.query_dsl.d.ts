@@ -153,9 +153,10 @@ export interface FuzzyQuery extends QueryBase {
 }
 
 export interface GeoBoundingBoxQuery extends QueryBase {
-  ignore_unmapped?: boolean;
+  ignore_unmapped?: IgnoreUnmapped;
   type?: GeoExecution;
   validation_method?: GeoValidationMethod;
+  [key: string]: any | Common.GeoBounds;
 }
 
 export type GeoDecayFunction = DecayFunctionBase & Record<string, any>
@@ -165,26 +166,37 @@ export type GeoDistanceFeatureQuery = DistanceFeatureQueryBaseGeoLocationDistanc
 export interface GeoDistanceQuery extends QueryBase {
   distance: Common.Distance;
   distance_type?: Common.GeoDistanceType;
-  field: Record<string, any>;
-  ignore_unmapped?: boolean;
+  ignore_unmapped?: IgnoreUnmapped;
   validation_method?: GeoValidationMethod;
+  [key: string]: any | Common.GeoLocation;
 }
 
 export type GeoExecution = 'indexed' | 'memory'
 
 export interface GeoPolygonQuery extends QueryBase {
-  ignore_unmapped?: boolean;
+  ignore_unmapped?: IgnoreUnmapped;
   validation_method?: GeoValidationMethod;
 }
 
+export interface GeoShape {
+  coordinates?: any[];
+  type?: string;
+}
+
+export interface GeoShapeField {
+  relation?: Common.GeoShapeRelation;
+  shape: GeoShape;
+}
+
 export interface GeoShapeQuery extends QueryBase {
-  ignore_unmapped?: boolean;
+  ignore_unmapped?: IgnoreUnmapped;
+  [key: string]: any | GeoShapeField;
 }
 
 export type GeoValidationMethod = 'coerce' | 'ignore_malformed' | 'strict'
 
 export interface HasChildQuery extends QueryBase {
-  ignore_unmapped?: boolean;
+  ignore_unmapped?: IgnoreUnmapped;
   inner_hits?: Core_Search.InnerHits;
   max_children?: number;
   min_children?: number;
@@ -194,7 +206,7 @@ export interface HasChildQuery extends QueryBase {
 }
 
 export interface HasParentQuery extends QueryBase {
-  ignore_unmapped?: boolean;
+  ignore_unmapped?: IgnoreUnmapped;
   inner_hits?: Core_Search.InnerHits;
   parent_type: Common.RelationName;
   query: QueryContainer;
@@ -204,6 +216,8 @@ export interface HasParentQuery extends QueryBase {
 export interface IdsQuery extends QueryBase {
   values?: Common.Ids;
 }
+
+export type IgnoreUnmapped = boolean
 
 export interface IntervalsAllOf {
   filter?: IntervalsFilter;
@@ -276,6 +290,8 @@ export interface IntervalsWildcard {
   pattern: string;
   use_field?: Common.Field;
 }
+
+export type KnnQuery = Record<string, Common.KnnField>
 
 export type Like = string | LikeDocument
 
@@ -382,11 +398,23 @@ export interface MultiMatchQuery extends QueryBase {
 export type MultiValueMode = 'avg' | 'max' | 'min' | 'sum'
 
 export interface NestedQuery extends QueryBase {
-  ignore_unmapped?: boolean;
+  ignore_unmapped?: IgnoreUnmapped;
   inner_hits?: Core_Search.InnerHits;
   path: Common.Field;
   query: QueryContainer;
   score_mode?: ChildScoreMode;
+}
+
+export type NeuralQuery = QueryBase & Record<string, NeuralQueryVectorField>
+
+export interface NeuralQueryVectorField {
+  filter?: QueryContainer;
+  k?: number;
+  max_distance?: number;
+  min_score?: number;
+  model_id?: string;
+  query_image?: string;
+  query_text?: string;
 }
 
 export interface NumberRangeQuery extends RangeQueryBase {
@@ -404,7 +432,7 @@ export type Operator = 'and' | 'or'
 
 export interface ParentIdQuery extends QueryBase {
   id?: Common.Id;
-  ignore_unmapped?: boolean;
+  ignore_unmapped?: IgnoreUnmapped;
   type?: Common.RelationName;
 }
 
@@ -458,6 +486,7 @@ export interface QueryContainer {
   has_parent?: HasParentQuery;
   ids?: IdsQuery;
   intervals?: Record<string, IntervalsQuery>;
+  knn?: KnnQuery;
   match?: Record<string, MatchQuery | any>;
   match_all?: MatchAllQuery;
   match_bool_prefix?: Record<string, MatchBoolPrefixQuery>;
@@ -467,6 +496,7 @@ export interface QueryContainer {
   more_like_this?: MoreLikeThisQuery;
   multi_match?: MultiMatchQuery;
   nested?: NestedQuery;
+  neural?: NeuralQuery;
   parent_id?: ParentIdQuery;
   percolate?: PercolateQuery;
   pinned?: PinnedQuery;
@@ -478,7 +508,6 @@ export interface QueryContainer {
   rule_query?: RuleQuery;
   script?: ScriptQuery;
   script_score?: ScriptScoreQuery;
-  shape?: ShapeQuery;
   simple_query_string?: SimpleQueryStringQuery;
   span_containing?: SpanContainingQuery;
   span_first?: SpanFirstQuery;
@@ -489,13 +518,14 @@ export interface QueryContainer {
   span_term?: Record<string, SpanTermQuery>;
   span_within?: SpanWithinQuery;
   term?: Record<string, TermQuery | Common.FieldValue>;
-  terms?: TermsQuery;
+  terms?: Record<string, TermsQuery | string[]>;
   terms_set?: Record<string, TermsSetQuery>;
   text_expansion?: Record<string, TextExpansionQuery>;
   type?: TypeQuery;
   weighted_tokens?: Record<string, WeightedTokensQuery>;
   wildcard?: Record<string, WildcardQuery>;
   wrapper?: WrapperQuery;
+  xy_shape?: XyShapeQuery;
 }
 
 export interface QueryStringQuery extends QueryBase {
@@ -592,10 +622,6 @@ export interface ScriptScoreQuery extends QueryBase {
   script: Common.Script;
 }
 
-export interface ShapeQuery extends QueryBase {
-  ignore_unmapped?: boolean;
-}
-
 export type SimpleQueryStringFlag = 'ALL' | 'AND' | 'ESCAPE' | 'FUZZY' | 'NEAR' | 'NONE' | 'NOT' | 'OR' | 'PHRASE' | 'PRECEDENCE' | 'PREFIX' | 'SLOP' | 'WHITESPACE'
 
 export type SimpleQueryStringFlags = Common.PipeSeparatedFlagsSimpleQueryStringFlag & Record<string, any>
@@ -682,7 +708,12 @@ export interface TermQuery extends QueryBase {
   value: Common.FieldValue;
 }
 
-export type TermsQuery = QueryBase & Record<string, any>
+export type TermsQuery = QueryBase | {
+  id?: Common.Id;
+  index?: Common.IndexName;
+  path?: Common.Field;
+  routing?: Common.Routing;
+}
 
 export interface TermsSetQuery extends QueryBase {
   minimum_should_match_field?: Common.Field;
@@ -723,6 +754,18 @@ export interface WildcardQuery extends QueryBase {
 export interface WrapperQuery extends QueryBase {
   query: string;
 }
+
+export interface XyShape {
+  coordinates?: any[];
+  type?: string;
+}
+
+export interface XyShapeField {
+  relation?: Common.GeoShapeRelation;
+  shape: XyShape;
+}
+
+export type XyShapeQuery = QueryBase & Record<string, XyShapeField>
 
 export type ZeroTermsQuery = 'all' | 'none'
 

@@ -28,7 +28,7 @@ export interface AllocationStore {
   allocation_id: string;
   found: boolean;
   in_sync: boolean;
-  matching_size_in_bytes: number;
+  matching_size_in_bytes: Common.Bytes;
   matching_sync_id: boolean;
   store_exception: string;
 }
@@ -38,7 +38,7 @@ export interface ClusterInfo {
   reserved_sizes: ReservedSize[];
   shard_data_set_sizes?: Record<string, string>;
   shard_paths: Record<string, string>;
-  shard_sizes: Record<string, number>;
+  shard_sizes: Record<string, Common.Bytes | Common.StorageSize>;
 }
 
 export interface CurrentNode {
@@ -52,11 +52,14 @@ export interface CurrentNode {
 export type Decision = 'allocation_delayed' | 'awaiting_info' | 'no' | 'no_attempt' | 'no_valid_shard_copy' | 'throttled' | 'worse_balance' | 'yes'
 
 export interface DiskUsage {
-  free_bytes: number;
+  free?: Common.StorageSize;
+  free_bytes: Common.Bytes;
   free_disk_percent: number;
   path: string;
-  total_bytes: number;
-  used_bytes: number;
+  total?: Common.StorageSize;
+  total_bytes: Common.Bytes;
+  used?: Common.StorageSize;
+  used_bytes: Common.Bytes;
   used_disk_percent: number;
 }
 

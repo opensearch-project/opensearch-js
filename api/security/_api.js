@@ -42,10 +42,10 @@ function SecurityApi(bindObj) {
   this.flushCache = require('./flushCache').bind(bindObj);
   this.generateOboToken = require('./generateOboToken').bind(bindObj);
   this.generateUserToken = require('./generateUserToken').bind(bindObj);
-  this.generateUserTokenLegacy = require('./generateUserTokenLegacy').bind(bindObj);
   this.getAccountDetails = require('./getAccountDetails').bind(bindObj);
   this.getActionGroup = require('./getActionGroup').bind(bindObj);
   this.getActionGroups = require('./getActionGroups').bind(bindObj);
+  this.getAllCertificates = require('./getAllCertificates').bind(bindObj);
   this.getAllowlist = require('./getAllowlist').bind(bindObj);
   this.getAuditConfiguration = require('./getAuditConfiguration').bind(bindObj);
   this.getCertificates = require('./getCertificates').bind(bindObj);
@@ -53,6 +53,7 @@ function SecurityApi(bindObj) {
   this.getDashboardsInfo = require('./getDashboardsInfo').bind(bindObj);
   this.getDistinguishedName = require('./getDistinguishedName').bind(bindObj);
   this.getDistinguishedNames = require('./getDistinguishedNames').bind(bindObj);
+  this.getNodeCertificates = require('./getNodeCertificates').bind(bindObj);
   this.getPermissionsInfo = require('./getPermissionsInfo').bind(bindObj);
   this.getRole = require('./getRole').bind(bindObj);
   this.getRoleMapping = require('./getRoleMapping').bind(bindObj);
@@ -136,14 +137,14 @@ function SecurityApi(bindObj) {
   this.generate_obo_token = require('./generateOboToken').bind(bindObj);
   // Deprecated: Use generateUserToken instead.
   this.generate_user_token = require('./generateUserToken').bind(bindObj);
-  // Deprecated: Use generateUserTokenLegacy instead.
-  this.generate_user_token_legacy = require('./generateUserTokenLegacy').bind(bindObj);
   // Deprecated: Use getAccountDetails instead.
   this.get_account_details = require('./getAccountDetails').bind(bindObj);
   // Deprecated: Use getActionGroup instead.
   this.get_action_group = require('./getActionGroup').bind(bindObj);
   // Deprecated: Use getActionGroups instead.
   this.get_action_groups = require('./getActionGroups').bind(bindObj);
+  // Deprecated: Use getAllCertificates instead.
+  this.get_all_certificates = require('./getAllCertificates').bind(bindObj);
   // Deprecated: Use getAllowlist instead.
   this.get_allowlist = require('./getAllowlist').bind(bindObj);
   // Deprecated: Use getAuditConfiguration instead.
@@ -158,6 +159,8 @@ function SecurityApi(bindObj) {
   this.get_distinguished_name = require('./getDistinguishedName').bind(bindObj);
   // Deprecated: Use getDistinguishedNames instead.
   this.get_distinguished_names = require('./getDistinguishedNames').bind(bindObj);
+  // Deprecated: Use getNodeCertificates instead.
+  this.get_node_certificates = require('./getNodeCertificates').bind(bindObj);
   // Deprecated: Use getPermissionsInfo instead.
   this.get_permissions_info = require('./getPermissionsInfo').bind(bindObj);
   // Deprecated: Use getRole instead.

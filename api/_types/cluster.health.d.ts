@@ -16,12 +16,24 @@
 
 import * as Common from './_common'
 
+export interface AwarenessAttributeStats {
+  active_shards?: number;
+  data_nodes?: number;
+  initializing_shards?: number;
+  relocating_shards?: number;
+  unassigned_shards?: number;
+  weight?: number;
+}
+
 export interface HealthResponseBody {
   active_primary_shards: number;
   active_shards: number;
   active_shards_percent_as_number: Common.Percentage;
+  awareness_attributes?: Record<string, AwarenessAttributeStats>;
   cluster_name: Common.Name;
   delayed_unassigned_shards: number;
+  discovered_cluster_manager?: boolean;
+  discovered_master?: boolean;
   indices?: Record<string, IndexHealthStats>;
   initializing_shards: number;
   number_of_data_nodes: number;

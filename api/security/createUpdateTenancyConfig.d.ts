@@ -19,10 +19,8 @@ import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
 export interface Security_CreateUpdateTenancyConfig_Request extends Global.Params {
-  body: Security_CreateUpdateTenancyConfig_RequestBody;
+  body: Security_Common.MultiTenancyConfig;
 }
-
-export type Security_CreateUpdateTenancyConfig_RequestBody = Security_Common.MultiTenancyConfig[]
 
 export interface Security_CreateUpdateTenancyConfig_Response extends ApiResponse {
   body: Security_CreateUpdateTenancyConfig_ResponseBody;

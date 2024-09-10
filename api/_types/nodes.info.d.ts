@@ -26,14 +26,14 @@ export type Metric = '_all' | 'aggregations' | 'http' | 'indices' | 'ingest' | '
 
 export interface NodeInfo {
   aggregations?: Record<string, NodeInfoAggregation>;
-  attributes: Record<string, string>;
+  attributes?: Record<string, string>;
   build_flavor?: string;
   build_hash: string;
   build_type: string;
-  host: Common.Host;
+  host?: Common.Host;
   http?: NodeInfoHttp;
   ingest?: NodeInfoIngest;
-  ip: Common.Ip;
+  ip?: Common.Ip;
   jvm?: NodeJvmInfo;
   modules?: Common.PluginStats[];
   name: Common.Name;
@@ -46,9 +46,9 @@ export interface NodeInfo {
   settings?: NodeInfoSettings;
   thread_pool?: Record<string, NodeThreadPoolInfo>;
   total_indexing_buffer?: number;
-  total_indexing_buffer_in_bytes?: Common.ByteSize;
+  total_indexing_buffer_in_bytes?: Common.Bytes;
   transport?: NodeInfoTransport;
-  transport_address: Common.TransportAddress;
+  transport_address?: Common.TransportAddress;
   version: Common.VersionString;
 }
 
@@ -75,8 +75,8 @@ export interface NodeInfoDiscovery {
 
 export interface NodeInfoHttp {
   bound_address: string[];
-  max_content_length?: Common.ByteSize;
-  max_content_length_in_bytes: number;
+  max_content_length?: Common.StorageSize;
+  max_content_length_in_bytes: Common.Bytes;
   publish_address: string;
 }
 
@@ -97,21 +97,21 @@ export interface NodeInfoIngestProcessor {
 }
 
 export interface NodeInfoJvmMemory {
-  direct_max?: Common.ByteSize;
-  direct_max_in_bytes: number;
-  heap_init?: Common.ByteSize;
-  heap_init_in_bytes: number;
-  heap_max?: Common.ByteSize;
-  heap_max_in_bytes: number;
-  non_heap_init?: Common.ByteSize;
-  non_heap_init_in_bytes: number;
-  non_heap_max?: Common.ByteSize;
-  non_heap_max_in_bytes: number;
+  direct_max?: Common.StorageSize;
+  direct_max_in_bytes: Common.Bytes;
+  heap_init?: Common.StorageSize;
+  heap_init_in_bytes: Common.Bytes;
+  heap_max?: Common.StorageSize;
+  heap_max_in_bytes: Common.Bytes;
+  non_heap_init?: Common.StorageSize;
+  non_heap_init_in_bytes: Common.Bytes;
+  non_heap_max?: Common.StorageSize;
+  non_heap_max_in_bytes: Common.Bytes;
 }
 
 export interface NodeInfoMemory {
-  total: string;
-  total_in_bytes: number;
+  total: Common.StorageSize;
+  total_in_bytes: Common.Bytes;
 }
 
 export interface NodeInfoNetwork {
@@ -126,8 +126,8 @@ export interface NodeInfoNetworkInterface {
 }
 
 export interface NodeInfoOSCPU {
-  cache_size: string;
-  cache_size_in_bytes: number;
+  cache_size: Common.StorageSize;
+  cache_size_in_bytes: Common.Bytes;
   cores_per_socket: number;
   mhz: number;
   model: string;
@@ -290,31 +290,31 @@ export interface NodeInfoTransport {
 
 export interface NodeJvmInfo {
   bundled_jdk: boolean;
-  gc_collectors: string[];
-  input_arguments: string[];
+  gc_collectors?: string[];
+  input_arguments?: string[];
   mem: NodeInfoJvmMemory;
-  memory_pools: string[];
+  memory_pools?: string[];
   pid: number;
   start_time_in_millis: Common.EpochTimeUnitMillis;
-  using_bundled_jdk?: boolean;
+  using_bundled_jdk?: boolean | undefined;
   using_compressed_ordinary_object_pointers?: boolean | string;
-  version: Common.VersionString;
-  vm_name: Common.Name;
-  vm_vendor: string;
-  vm_version: Common.VersionString;
+  version?: Common.VersionString;
+  vm_name?: Common.Name;
+  vm_vendor?: string;
+  vm_version?: Common.VersionString;
 }
 
 export interface NodeOperatingSystemInfo {
   allocated_processors?: number;
-  arch: string;
+  arch?: string;
   available_processors: number;
   cpu?: NodeInfoOSCPU;
   mem?: NodeInfoMemory;
-  name: Common.Name;
-  pretty_name: Common.Name;
+  name?: Common.Name;
+  pretty_name?: Common.Name;
   refresh_interval_in_millis: Common.DurationValueUnitMillis;
   swap?: NodeInfoMemory;
-  version: Common.VersionString;
+  version?: Common.VersionString;
 }
 
 export interface NodeProcessInfo {

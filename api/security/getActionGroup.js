@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.action_group - Action group to retrieve.
+ * @param {string} params.action_group - The name of the action group to retrieve.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

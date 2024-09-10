@@ -17,8 +17,8 @@
 import * as Core_Search from './_core.search'
 import * as Common_Aggregations from './_common.aggregations'
 import * as Common_QueryDsl from './_common.query_dsl'
-import * as Common from './_common'
 import * as Common_Mapping from './_common.mapping'
+import * as Common from './_common'
 
 export interface MultisearchBody {
   _source?: Core_Search.SourceConfig;
@@ -31,7 +31,7 @@ export interface MultisearchBody {
   from?: number;
   highlight?: Core_Search.Highlight;
   indices_boost?: Record<string, number>[];
-  knn?: Common.KnnQuery | Common.KnnQuery[];
+  knn?: Common_QueryDsl.KnnQuery | Common_QueryDsl.KnnQuery[];
   min_score?: number;
   pit?: Core_Search.PointInTimeReference;
   post_filter?: Common_QueryDsl.QueryContainer;

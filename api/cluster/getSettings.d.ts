@@ -31,8 +31,8 @@ export interface Cluster_GetSettings_Response extends ApiResponse {
 }
 
 export interface Cluster_GetSettings_ResponseBody {
-  defaults?: Record<string, Record<string, any>>;
-  persistent: Record<string, Record<string, any>>;
-  transient: Record<string, Record<string, any>>;
+  defaults?: Record<string, any>;
+  persistent: Record<string, any>;
+  transient: Record<string, any>;
 }
 

@@ -28,7 +28,7 @@ const { normalizeArguments } = require('../utils');
  * @param {string} [params.chime.url] 
  * @param {string} [params.chime.url.keyword] 
  * @param {string} [params.config_type] - Type of notification configuration.
- * @param {integer} [params.created_time_ms] 
+ * @param {number} [params.created_time_ms] 
  * @param {string} [params.description] 
  * @param {string} [params.description.keyword] 
  * @param {string} [params.email.email_account_id] 
@@ -38,7 +38,7 @@ const { normalizeArguments } = require('../utils');
  * @param {string} [params.email_group.recipient_list.recipient] 
  * @param {string} [params.email_group.recipient_list.recipient.keyword] 
  * @param {boolean} [params.is_enabled] 
- * @param {integer} [params.last_updated_time_ms] 
+ * @param {number} [params.last_updated_time_ms] 
  * @param {string} [params.microsoft_teams.url] 
  * @param {string} [params.microsoft_teams.url.keyword] 
  * @param {string} [params.name] 

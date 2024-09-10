@@ -36,6 +36,7 @@ export interface ThreadPoolRecord {
   queue_size?: string;
   rejected?: string;
   size?: undefined | string;
+  total_wait_time?: string;
   type?: string;
 }
 

@@ -24,7 +24,7 @@ export interface AccountDetails {
   roles?: string[];
   tenants?: UserTenants;
   user_name?: string;
-  user_requested_tenant?: string;
+  user_requested_tenant?: undefined | string;
 }
 
 export interface ActionGroup {
@@ -38,13 +38,9 @@ export interface ActionGroup {
 
 export type ActionGroupsMap = Record<string, ActionGroup>
 
-export interface AllowConfig {
+export interface AllowListConfig {
   enabled?: boolean;
   requests?: Record<string, any>;
-}
-
-export interface AllowListConfig {
-  config?: AllowConfig;
 }
 
 export interface AuditConfig {
@@ -64,7 +60,9 @@ export interface AuditLogsConfig {
   enable_rest?: boolean;
   enable_transport?: boolean;
   exclude_sensitive_headers?: boolean;
+  ignore_headers?: string[];
   ignore_requests?: string[];
+  ignore_url_params?: string[];
   ignore_users?: string[];
   log_request_body?: boolean;
   resolve_bulk_requests?: boolean;
@@ -72,25 +70,26 @@ export interface AuditLogsConfig {
 }
 
 export interface AuthInfo {
-  backend_roles?: any[];
-  custom_attribute_names?: any[];
-  peer_certificates?: number;
-  principal?: string;
-  remote_address?: string;
-  roles?: any[];
+  backend_roles?: string[];
+  custom_attribute_names?: string[];
+  peer_certificates?: number | string;
+  principal?: undefined | string;
+  remote_address?: undefined | string;
+  roles?: string[];
   size_of_backendroles?: string;
   size_of_custom_attributes?: string;
   size_of_user?: string;
-  sso_logout_url?: string;
+  sso_logout_url?: undefined | string;
   tenants?: Record<string, any>;
   user?: string;
   user_name?: string;
-  user_requested_tenant?: string;
+  user_requested_tenant?: undefined | string;
 }
 
-export interface BadRequest {
-  message?: string;
-  status?: '400';
+export interface CertificateCountPerNode {
+  failed?: number;
+  successful?: number;
+  total?: number;
 }
 
 export interface CertificatesDetail {
@@ -99,6 +98,16 @@ export interface CertificatesDetail {
   not_before?: string;
   san?: string;
   subject_dn?: string;
+}
+
+export interface CertificatesPerNode {
+  certificates?: Record<string, CertificateTypes>;
+  name?: string;
+}
+
+export interface CertificateTypes {
+  http?: Record<string, CertificatesDetail>[];
+  transport?: Record<string, CertificatesDetail>[];
 }
 
 export interface ChangePasswordRequestContent {
@@ -120,7 +129,12 @@ export interface ComplianceConfig {
 }
 
 export interface ConfigUpgradePayload {
-  config?: any[];
+  config?: string[];
+}
+
+export interface Created {
+  message?: string;
+  status?: number | string;
 }
 
 export interface CreateTenantParams {
@@ -137,7 +151,7 @@ export interface DashboardsInfo {
   password_validation_error_message?: string;
   password_validation_regex?: string;
   private_tenant_enabled?: boolean;
-  sign_in_options?: any[];
+  sign_in_options?: string[];
   user_name?: string;
 }
 
@@ -152,19 +166,21 @@ export interface DynamicConfig {
 }
 
 export interface DynamicOptions {
-  authc?: any;
-  authFailureListeners?: any;
-  authz?: any;
-  disableIntertransportAuth?: boolean;
-  disableRestAuth?: boolean;
-  doNotFailOnForbidden?: boolean;
-  doNotFailOnForbiddenEmpty?: boolean;
-  filteredAliasMode?: string;
-  hostsResolverMode?: string;
-  http?: any;
-  kibana?: any;
-  multiRolespanEnabled?: boolean;
-  respectRequestIndicesOptions?: boolean;
+  auth_failure_listeners?: Record<string, any>;
+  authc?: Record<string, any>;
+  authz?: Record<string, any>;
+  disable_intertransport_auth?: boolean;
+  disable_rest_auth?: boolean;
+  do_not_fail_on_forbidden?: boolean;
+  do_not_fail_on_forbidden_empty?: boolean;
+  filtered_alias_mode?: string;
+  hosts_resolver_mode?: string;
+  http?: Record<string, any>;
+  kibana?: Record<string, any>;
+  multi_rolespan_enabled?: boolean;
+  on_behalf_of?: Record<string, any>;
+  'opensearch-dashboards'?: Record<string, any>;
+  respect_request_indices_options?: boolean;
 }
 
 export interface GenerateOBOToken {
@@ -178,8 +194,14 @@ export interface GetCertificates {
   transport_certificates_list?: CertificatesDetail[];
 }
 
+export interface GetCertificatesNew {
+  _nodes?: Record<string, CertificateCountPerNode>;
+  cluster_name?: string;
+  nodes?: Record<string, CertificatesPerNode>;
+}
+
 export interface HealthInfo {
-  message?: string;
+  message?: undefined | string;
   mode?: string;
   status?: string;
 }
@@ -194,11 +216,6 @@ export interface IndexPermission {
 
 export interface InternalServerError {
   error?: string;
-}
-
-export interface MethodNotImplemented {
-  message?: string;
-  status?: '501';
 }
 
 export interface MultiTenancyConfig {
@@ -216,7 +233,7 @@ export interface OBOToken {
 
 export interface Ok {
   message?: string;
-  status?: '200';
+  status?: number | string;
 }
 
 export interface PatchOperation {
@@ -256,22 +273,26 @@ export type RoleMappings = Record<string, RoleMapping>
 
 export type RolesMap = Record<string, Role>
 
+export interface SecurityConfig {
+  config?: DynamicConfig;
+}
+
 export interface SSLInfo {
-  local_certificates_list?: any[];
-  peer_certificates?: number;
-  peer_certificates_list?: any[];
-  principal?: string;
-  ssl_cipher?: string;
-  ssl_openssl_available?: boolean;
-  ssl_openssl_non_available_cause?: string;
-  ssl_openssl_supports_hostname_validation?: boolean;
-  ssl_openssl_supports_key_manager_factory?: boolean;
-  ssl_openssl_version?: string;
-  ssl_openssl_version_string?: string;
-  ssl_protocol?: string;
-  ssl_provider_http?: string;
-  ssl_provider_transport_client?: string;
-  ssl_provider_transport_server?: string;
+  local_certificates_list?: string[];
+  peer_certificates: number | string;
+  peer_certificates_list?: string[];
+  principal: undefined | string;
+  ssl_cipher: undefined | string;
+  ssl_openssl_available: boolean;
+  ssl_openssl_non_available_cause: undefined | string;
+  ssl_openssl_supports_hostname_validation: boolean;
+  ssl_openssl_supports_key_manager_factory: boolean;
+  ssl_openssl_version: number | string;
+  ssl_openssl_version_string: undefined | string;
+  ssl_protocol: undefined | string;
+  ssl_provider_http: undefined | string;
+  ssl_provider_transport_client: string;
+  ssl_provider_transport_server: string;
 }
 
 export interface Tenant {
@@ -289,11 +310,6 @@ export interface TenantPermission {
 }
 
 export type TenantsMap = Record<string, Tenant>
-
-export interface Unauthorized {
-  message?: string;
-  status?: '403';
-}
 
 export interface UpgradeCheck {
   status?: string;
@@ -313,6 +329,7 @@ export interface User {
   hash?: string;
   hidden?: boolean;
   opendistro_security_roles?: string[];
+  password?: string;
   reserved?: boolean;
   static?: boolean;
 }
@@ -328,8 +345,8 @@ export interface UserTenants {
 }
 
 export interface WhoAmI {
-  dn?: string;
-  is_admin?: string;
-  is_node_certificate_request?: string;
+  dn?: undefined | string;
+  is_admin?: boolean;
+  is_node_certificate_request?: boolean;
 }
 

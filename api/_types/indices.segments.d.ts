@@ -17,7 +17,7 @@
 import * as Common from './_common'
 
 export interface IndexSegment {
-  shards: Record<string, ShardsSegment | ShardsSegment[]>;
+  shards: Record<string, ShardsSegment[] | ShardsSegment>;
 }
 
 export interface Segment {
@@ -26,9 +26,12 @@ export interface Segment {
   compound: boolean;
   deleted_docs: number;
   generation: number;
+  memory?: Common.StorageSize;
+  memory_in_bytes?: Common.Bytes;
   num_docs: number;
   search: boolean;
-  size_in_bytes: number;
+  size?: Common.StorageSize;
+  size_in_bytes: Common.Bytes;
   version: Common.VersionString;
 }
 

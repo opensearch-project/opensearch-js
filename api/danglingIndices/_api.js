@@ -18,7 +18,7 @@
 
 /** @namespace API-Dangling-Indices */
 
-function DanglingindicesApi(bindObj) {
+function DanglingIndicesApi(bindObj) {
   this.deleteDanglingIndex = require('./deleteDanglingIndex').bind(bindObj);
   this.importDanglingIndex = require('./importDanglingIndex').bind(bindObj);
   this.listDanglingIndices = require('./listDanglingIndices').bind(bindObj);
@@ -31,4 +31,4 @@ function DanglingindicesApi(bindObj) {
   this.list_dangling_indices = require('./listDanglingIndices').bind(bindObj);
 }
 
-module.exports = DanglingindicesApi;
+module.exports = DanglingIndicesApi;

@@ -24,14 +24,14 @@ export interface FileDetails {
 
 export interface RecoveryBytes {
   percent: Common.Percentage;
-  recovered?: Common.ByteSize;
-  recovered_from_snapshot?: Common.ByteSize;
-  recovered_from_snapshot_in_bytes?: Common.ByteSize;
-  recovered_in_bytes: Common.ByteSize;
-  reused?: Common.ByteSize;
-  reused_in_bytes: Common.ByteSize;
-  total?: Common.ByteSize;
-  total_in_bytes: Common.ByteSize;
+  recovered?: Common.StorageSize;
+  recovered_from_snapshot?: Common.StorageSize;
+  recovered_from_snapshot_in_bytes?: Common.Bytes;
+  recovered_in_bytes: Common.Bytes;
+  reused?: Common.StorageSize;
+  reused_in_bytes: Common.Bytes;
+  total?: Common.StorageSize;
+  total_in_bytes: Common.Bytes;
 }
 
 export interface RecoveryFiles {

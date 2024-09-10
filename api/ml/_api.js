@@ -21,16 +21,23 @@
 function MlApi(bindObj) {
   this.deleteModel = require('./deleteModel').bind(bindObj);
   this.deleteModelGroup = require('./deleteModelGroup').bind(bindObj);
+  this.deleteTask = require('./deleteTask').bind(bindObj);
+  this.deployModel = require('./deployModel').bind(bindObj);
   this.getModelGroup = require('./getModelGroup').bind(bindObj);
   this.getTask = require('./getTask').bind(bindObj);
   this.registerModel = require('./registerModel').bind(bindObj);
   this.registerModelGroup = require('./registerModelGroup').bind(bindObj);
   this.searchModels = require('./searchModels').bind(bindObj);
+  this.undeployModel = require('./undeployModel').bind(bindObj);
 
   // Deprecated: Use deleteModel instead.
   this.delete_model = require('./deleteModel').bind(bindObj);
   // Deprecated: Use deleteModelGroup instead.
   this.delete_model_group = require('./deleteModelGroup').bind(bindObj);
+  // Deprecated: Use deleteTask instead.
+  this.delete_task = require('./deleteTask').bind(bindObj);
+  // Deprecated: Use deployModel instead.
+  this.deploy_model = require('./deployModel').bind(bindObj);
   // Deprecated: Use getModelGroup instead.
   this.get_model_group = require('./getModelGroup').bind(bindObj);
   // Deprecated: Use getTask instead.
@@ -41,6 +48,8 @@ function MlApi(bindObj) {
   this.register_model_group = require('./registerModelGroup').bind(bindObj);
   // Deprecated: Use searchModels instead.
   this.search_models = require('./searchModels').bind(bindObj);
+  // Deprecated: Use undeployModel instead.
+  this.undeploy_model = require('./undeployModel').bind(bindObj);
 }
 
 module.exports = MlApi;

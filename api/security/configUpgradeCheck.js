@@ -35,7 +35,7 @@ function configUpgradeCheckFunc(params, options, callback) {
 
   let { body, ...querystring } = params;
 
-  const path = '/_plugins/_security/_upgrade_check';
+  const path = '/_plugins/_security/api/_upgrade_check';
   const method = 'GET';
   body = body || '';
 

@@ -80,13 +80,13 @@ export interface DataStreamLifecycleRolloverConditions {
   max_age?: string;
   max_docs?: number;
   max_primary_shard_docs?: number;
-  max_primary_shard_size?: Common.ByteSize;
-  max_size?: Common.ByteSize;
+  max_primary_shard_size?: Common.StorageSize;
+  max_size?: Common.StorageSize;
   min_age?: Common.Duration;
   min_docs?: number;
   min_primary_shard_docs?: number;
-  min_primary_shard_size?: Common.ByteSize;
-  min_size?: Common.ByteSize;
+  min_primary_shard_size?: Common.StorageSize;
+  min_size?: Common.StorageSize;
 }
 
 export interface DataStreamLifecycleWithRollover {
@@ -486,7 +486,7 @@ export interface TemplateMapping {
 
 export interface Translog {
   durability?: TranslogDurability;
-  flush_threshold_size?: Common.ByteSize;
+  flush_threshold_size?: Common.StorageSize;
   retention?: TranslogRetention;
   sync_interval?: Common.Duration;
 }
@@ -495,6 +495,6 @@ export type TranslogDurability = 'async' | 'request'
 
 export interface TranslogRetention {
   age?: Common.Duration;
-  size?: Common.ByteSize;
+  size?: Common.StorageSize;
 }
 

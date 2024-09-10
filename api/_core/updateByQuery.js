@@ -51,7 +51,7 @@ for example to pick up a mapping change.
  * @param {number} [params.scroll_size=100] - Size of the scroll request that powers the operation.
  * @param {string} [params.search_timeout] - Explicit timeout for each search request.
  * @param {string} [params.search_type] - The type of the search operation. Available options: `query_then_fetch`, `dfs_query_then_fetch`.
- * @param {integer} [params.size] - Deprecated, please use `max_docs` instead.
+ * @param {number} [params.size] - Deprecated, please use `max_docs` instead.
  * @param {string} [params.slices] - The number of slices this task should be divided into.
  * @param {array} [params.sort] - A comma-separated list of <field>:<direction> pairs.
  * @param {array} [params.stats] - Specific `tag` of the request for logging and statistical purposes.

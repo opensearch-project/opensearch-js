@@ -218,6 +218,7 @@ export interface GeoPointProperty extends DocValuesPropertyBase {
 
 export interface GeoShapeProperty extends DocValuesPropertyBase {
   coerce?: boolean;
+  distance_error_pct?: number;
   ignore_malformed?: boolean;
   ignore_z_value?: boolean;
   orientation?: GeoOrientation;
@@ -286,6 +287,22 @@ export interface KeywordProperty extends DocValuesPropertyBase {
   type: 'keyword';
 }
 
+export interface KnnVectorMethod {
+  engine?: string;
+  name: string;
+  parameters?: Record<string, Record<string, any>>;
+  space_type?: string;
+}
+
+export interface KnnVectorProperty extends KnnVectorPropertyBase {
+  type: 'knn_vector';
+}
+
+export interface KnnVectorPropertyBase {
+  dimension: number;
+  method?: KnnVectorMethod;
+}
+
 export interface LongNumberProperty extends NumberPropertyBase {
   null_value?: number;
   type: 'long';
@@ -337,14 +354,7 @@ export interface PercolatorProperty extends PropertyBase {
   type: 'percolator';
 }
 
-export interface PointProperty extends DocValuesPropertyBase {
-  ignore_malformed?: boolean;
-  ignore_z_value?: boolean;
-  null_value?: string;
-  type: 'point';
-}
-
-export type Property = BinaryProperty | BooleanProperty | DynamicProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | DenseVectorProperty | SparseVectorProperty | FlattenedProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | PointProperty | ShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty
+export type Property = BinaryProperty | BooleanProperty | DynamicProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | DenseVectorProperty | SparseVectorProperty | FlattenedProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty
 
 export interface PropertyBase {
   dynamic?: DynamicMapping;
@@ -408,14 +418,6 @@ export interface SearchAsYouTypeProperty extends CorePropertyBase {
   search_quote_analyzer?: string;
   term_vector?: TermVectorOption;
   type: 'search_as_you_type';
-}
-
-export interface ShapeProperty extends DocValuesPropertyBase {
-  coerce?: boolean;
-  ignore_malformed?: boolean;
-  ignore_z_value?: boolean;
-  orientation?: GeoOrientation;
-  type: 'shape';
 }
 
 export interface ShortNumberProperty extends NumberPropertyBase {
@@ -516,5 +518,20 @@ export interface VersionProperty extends DocValuesPropertyBase {
 export interface WildcardProperty extends DocValuesPropertyBase {
   null_value?: string;
   type: 'wildcard';
+}
+
+export interface XyPointProperty extends DocValuesPropertyBase {
+  ignore_malformed?: boolean;
+  ignore_z_value?: boolean;
+  null_value?: Common.XyLocation;
+  type: 'xy_point';
+}
+
+export interface XyShapeProperty extends DocValuesPropertyBase {
+  coerce?: boolean;
+  ignore_malformed?: boolean;
+  ignore_z_value?: boolean;
+  orientation?: GeoOrientation;
+  type: 'xy_shape';
 }
 

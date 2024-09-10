@@ -38,7 +38,7 @@ export interface Indices_Stats_Response extends ApiResponse {
 }
 
 export interface Indices_Stats_ResponseBody {
-  _all: Indices_Stats.IndicesStats;
+  _all: Indices_Stats.AllIndicesStats;
   _shards: Common.ShardStatistics;
   indices?: Record<string, Indices_Stats.IndicesStats>;
 }

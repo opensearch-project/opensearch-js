@@ -6,6 +6,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+- Bumps `@babel/traverse` from 7.22.8 to 7.24.7
 ### Changed
 ### Deprecated
 ### Removed

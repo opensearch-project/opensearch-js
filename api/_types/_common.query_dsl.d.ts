@@ -708,7 +708,7 @@ export interface TermQuery extends QueryBase {
   value: Common.FieldValue;
 }
 
-export interface TermsQuery QueryBase | {
+export type TermsQuery = QueryBase | {
   id?: Common.Id;
   index?: Common.IndexName;
   path?: Common.Field;

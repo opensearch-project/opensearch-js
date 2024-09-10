@@ -86,6 +86,9 @@ const start = async () => {
     .then((result) => {
       console.log(result);
     });
+
+  await client.indices.delete({ index: movies });
+  await client.indices.delete({ index: books });
 };
 
 start().then(() => console.log('done'));

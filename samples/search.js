@@ -7,6 +7,7 @@
  * compatible open source license.
  *
  */
+
 const { Client } = require('@opensearch-project/opensearch');
 
 // Instantiate a client with basic auth as setup in the README.md file

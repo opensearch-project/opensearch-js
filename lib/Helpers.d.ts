@@ -28,25 +28,24 @@
  */
 
 import { Readable as ReadableStream } from 'stream';
-import { TransportRequestOptions, ApiError, ApiResponse, RequestBody, Context } from './Transport';
-import { Search, Msearch, Bulk } from '../api/requestParams';
+import { TransportRequestOptions, ApiError, ApiResponse, RequestBody } from './Transport';
+import { Search_Request } from '../api';
+import { Msearch_Request } from '../api';
+import { Bulk_Request } from '../api';
 
 export default class Helpers {
-  search<TDocument = unknown, TRequestBody extends RequestBody = Record<string, any>>(
-    params: Search<TRequestBody>,
+  search<TDocument = unknown>(
+    params: Search_Request,
     options?: TransportRequestOptions
   ): Promise<TDocument[]>;
   scrollSearch<
-    TDocument = unknown,
-    TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
+    TDocument = unknown
   >(
-    params: Search<TRequestBody>,
+    params: Search_Request,
     options?: TransportRequestOptions
-  ): AsyncIterable<ScrollSearchResponse<TDocument, TResponse, TContext>>;
-  scrollDocuments<TDocument = unknown, TRequestBody extends RequestBody = Record<string, any>>(
-    params: Search<TRequestBody>,
+  ): AsyncIterable<ScrollSearchResponse<TDocument>>;
+  scrollDocuments<TDocument = unknown>(
+    params: Search_Request,
     options?: TransportRequestOptions
   ): AsyncIterable<TDocument>;
   msearch(options?: MsearchHelperOptions, reqOptions?: TransportRequestOptions): MsearchHelper;
@@ -57,10 +56,8 @@ export default class Helpers {
 }
 
 export interface ScrollSearchResponse<
-  TDocument = unknown,
-  TResponse = Record<string, any>,
-  TContext = Context
-> extends ApiResponse<TResponse, TContext> {
+  TDocument = unknown
+> extends ApiResponse {
   clear: () => Promise<void>;
   documents: TDocument[];
 }
@@ -115,7 +112,7 @@ type UpdateAction = [UpdateActionOperation, Record<string, any>];
 type Action = IndexAction | CreateAction | UpdateAction | DeleteAction;
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
-export interface BulkHelperOptions<TDocument = unknown> extends Omit<Bulk, 'body'> {
+export interface BulkHelperOptions<TDocument = unknown> extends Omit<Bulk_Request, 'body'> {
   datasource: TDocument[] | Buffer | ReadableStream | AsyncIterator<TDocument>;
   onDocument: (doc: TDocument) => Action;
   flushBytes?: number;
@@ -142,7 +139,7 @@ export interface OnDropDocument<TDocument = unknown> {
   retried: boolean;
 }
 
-export interface MsearchHelperOptions extends Omit<Msearch, 'body'> {
+export interface MsearchHelperOptions extends Omit<Msearch_Request, 'body'> {
   operations?: number;
   flushInterval?: number;
   concurrency?: number;
@@ -150,27 +147,25 @@ export interface MsearchHelperOptions extends Omit<Msearch, 'body'> {
   wait?: number;
 }
 
-declare type callbackFn<Response, Context> = (
+declare type callbackFn = (
   err: ApiError,
-  result: ApiResponse<Response, Context>
+  result: ApiResponse
 ) => void;
 export interface MsearchHelper extends Promise<void> {
   stop(error?: Error): void;
   search<
     TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
+    TRequestBody extends RequestBody = Record<string, any>
   >(
-    header: Omit<Search, 'body'>,
+    header: Omit<Search_Request, 'body'>,
     body: TRequestBody
-  ): Promise<ApiResponse<TResponse, TContext>>;
+  ): Promise<ApiResponse>;
   search<
     TResponse = Record<string, any>,
-    TRequestBody extends RequestBody = Record<string, any>,
-    TContext = Context
+    TRequestBody extends RequestBody = Record<string, any>
   >(
-    header: Omit<Search, 'body'>,
+    header: Omit<Search_Request, 'body'>,
     body: TRequestBody,
-    callback: callbackFn<TResponse, TContext>
+    callback: callbackFn
   ): void;
 }

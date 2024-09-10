@@ -19,10 +19,10 @@ jobs:
       fail-fast: false
       matrix:
         entry:
-          - { node_version: '16.x', opensearch_ref: '1.x', jdk_version: '11' }
-          - { node_version: '16.x', opensearch_ref: '2.0', jdk_version: '17' }
-          - { node_version: '16.x', opensearch_ref: '2.x', jdk_version: '17' }
-          - { node_version: '16.x', opensearch_ref: 'main', jdk_version: '17' }
+          - { node_version: '18.x', opensearch_ref: '1.x', jdk_version: '11' }
+          - { node_version: '18.x', opensearch_ref: '2.0', jdk_version: '17' }
+          - { node_version: '18.x', opensearch_ref: '2.x', jdk_version: '17' }
+          - { node_version: '18.x', opensearch_ref: 'main', jdk_version: '17' }
     steps:
       - name: Checkout OpenSearch
         uses: actions/checkout@v3
@@ -35,7 +35,6 @@ jobs:
         id: get-key
         working-directory: opensearch
         run: echo key=`git log -1 --format='%H'` >> $GITHUB_OUTPUT
-
 
       - name: Restore cached build
         id: cache-restore

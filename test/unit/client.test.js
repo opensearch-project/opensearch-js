@@ -877,6 +877,7 @@ test('Disable keep alive agent', (t) => {
   buildServer(handler, ({ port }, server) => {
     const client = new Client({
       node: `http://localhost:${port}`,
+      headers: { connection: 'close' },
       agent: false,
     });
 

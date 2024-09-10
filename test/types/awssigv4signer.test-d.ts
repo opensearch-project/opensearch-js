@@ -7,6 +7,7 @@
  * compatible open source license.
  *
  */
+
 import { expectType } from 'tsd';
 const { v4: uuidv4 } = require('uuid');
 import { AwsSigv4SignerResponse, AwsSigv4Signer } from '../../lib/aws';

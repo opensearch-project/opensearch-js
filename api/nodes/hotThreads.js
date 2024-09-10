@@ -27,8 +27,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {object} [params]
  * @param {boolean} [params.ignore_idle_threads=true] - Don't show threads that are in known-idle places, such as waiting on a socket select or pulling from an empty task queue.
  * @param {string} [params.interval] - The interval for the second sampling of threads.
- * @param {integer} [params.snapshots=10] - Number of samples of thread stacktrace.
- * @param {integer} [params.threads=3] - Specify the number of threads to provide information for.
+ * @param {number} [params.snapshots=10] - Number of samples of thread stacktrace.
+ * @param {number} [params.threads=3] - Specify the number of threads to provide information for.
  * @param {string} [params.timeout] - Operation timeout.
  * @param {string} [params.type] - The type to sample.
  * @param {array} [params.node_id] - Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.

@@ -15,11 +15,23 @@
  */
 
 
+export interface CollapseResponseProcessor {
+  context_prefix?: string;
+  description?: string;
+  field: string;
+  ignore_failure?: boolean;
+  tag?: string;
+}
+
 export interface FilterQueryRequestProcessor {
   description?: string;
   ignore_failure?: boolean;
   query?: UserDefinedObjectStructure;
   tag?: string;
+}
+
+export interface MLOpenSearchReranker {
+  model_id: string;
 }
 
 export type NeuralFieldMap = Record<string, string>
@@ -47,8 +59,27 @@ export interface OversampleRequestProcessor {
   tag?: string;
 }
 
+export interface PersonalizeSearchRankingResponseProcessor {
+  campaign_arn: string;
+  description?: string;
+  iam_role_arn?: string;
+  ignore_failure?: boolean;
+  item_id_field?: string;
+  recipe: string;
+  tag?: string;
+  weight: number;
+}
+
 export interface PhaseResultsProcessor {
   'normalization-processor': NormalizationPhaseResultsProcessor;
+}
+
+export interface RenameFieldResponseProcessor {
+  description?: string;
+  field: string;
+  ignore_failure?: boolean;
+  tag?: string;
+  target_field: string;
 }
 
 export type RequestProcessor = {
@@ -59,6 +90,45 @@ export type RequestProcessor = {
   script: SearchScriptRequestProcessor;
 } | {
   oversample: OversampleRequestProcessor;
+}
+
+export interface RerankContext {
+  document_fields: string[];
+}
+
+export interface RerankResponseProcessor {
+  context?: RerankContext;
+  description?: string;
+  ignore_failure?: boolean;
+  ml_opensearch?: MLOpenSearchReranker;
+  tag?: string;
+}
+
+export type ResponseProcessor = {
+  personalize_search_ranking: PersonalizeSearchRankingResponseProcessor;
+} | {
+  retrieval_augmented_generation: RetrievalAugmentedGenerationResponseProcessor;
+} | {
+  rename_field: RenameFieldResponseProcessor;
+} | {
+  rerank: RerankResponseProcessor;
+} | {
+  collapse: CollapseResponseProcessor;
+} | {
+  truncate_hits: TruncateHitsResponseProcessor;
+} | {
+  sort: SortResponseProcessor;
+} | {
+  split: SplitResponseProcessor;
+}
+
+export interface RetrievalAugmentedGenerationResponseProcessor {
+  context_field_list: string[];
+  description?: string;
+  model_id: string;
+  system_prompt?: string;
+  tag?: string;
+  user_instructions?: string;
 }
 
 export interface ScoreCombination {
@@ -79,7 +149,7 @@ export type SearchPipelineMap = Record<string, SearchPipelineStructure>
 export interface SearchPipelineStructure {
   phase_results_processors?: PhaseResultsProcessor[];
   request_processors?: RequestProcessor[];
-  response_processors?: RequestProcessor[];
+  response_processors?: ResponseProcessor[];
   version?: number;
 }
 
@@ -89,6 +159,33 @@ export interface SearchScriptRequestProcessor {
   lang?: string;
   source: string;
   tag?: string;
+}
+
+export interface SortResponseProcessor {
+  description?: string;
+  field: string;
+  ignore_failure?: boolean;
+  order?: string;
+  tag?: string;
+  target_field?: string;
+}
+
+export interface SplitResponseProcessor {
+  description?: string;
+  field: string;
+  ignore_failure?: boolean;
+  preserve_trailing?: boolean;
+  separator: string;
+  tag?: string;
+  target_field?: string;
+}
+
+export interface TruncateHitsResponseProcessor {
+  context_prefix?: string;
+  description?: string;
+  ignore_failure?: boolean;
+  tag?: string;
+  target_size?: number;
 }
 
 export interface UserDefinedObjectStructure {

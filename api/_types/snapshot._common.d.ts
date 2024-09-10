@@ -18,14 +18,14 @@ import * as Common from './_common'
 
 export interface FileCountSnapshotStats {
   file_count: number;
-  size_in_bytes: number;
+  size_in_bytes: Common.Bytes;
 }
 
 export interface IndexDetails {
   max_segments_per_shard: number;
   shard_count: number;
-  size?: Common.ByteSize;
-  size_in_bytes: number;
+  size?: Common.StorageSize;
+  size_in_bytes: Common.Bytes;
 }
 
 export interface InfoFeatureState {
@@ -68,7 +68,7 @@ export interface ShardsStatsSummary {
 
 export interface ShardsStatsSummaryItem {
   file_count: number;
-  size_in_bytes: number;
+  size_in_bytes: Common.Bytes;
 }
 
 export interface SnapshotIndexStats {

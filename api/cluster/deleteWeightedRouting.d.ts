@@ -16,12 +16,16 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
+import * as Cluster_WeightedRouting from '../_types/cluster.weighted_routing'
+import * as Common from '../_types/_common'
 
-export type Cluster_DeleteWeightedRouting_Request = Global.Params & Record<string, any>
+export interface Cluster_DeleteWeightedRouting_Request extends Global.Params {
+  body?: Cluster_WeightedRouting.WeightsBase;
+}
 
 export interface Cluster_DeleteWeightedRouting_Response extends ApiResponse {
   body: Cluster_DeleteWeightedRouting_ResponseBody;
 }
 
-export type Cluster_DeleteWeightedRouting_ResponseBody = Record<string, any>
+export type Cluster_DeleteWeightedRouting_ResponseBody = Common.AcknowledgedResponseBase
 

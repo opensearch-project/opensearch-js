@@ -29,9 +29,14 @@ export interface CharFilterTypes {
 }
 
 export interface ClusterFileSystem {
-  available_in_bytes: number;
-  free_in_bytes: number;
-  total_in_bytes: number;
+  available?: Common.StorageSize;
+  available_in_bytes: Common.Bytes;
+  cache_reserved?: Common.StorageSize;
+  cache_reserved_in_bytes?: Common.Bytes;
+  free?: Common.StorageSize;
+  free_in_bytes: Common.Bytes;
+  total?: Common.StorageSize;
+  total_in_bytes: Common.Bytes;
 }
 
 export interface ClusterIndices {
@@ -67,6 +72,7 @@ export interface ClusterIngest {
 }
 
 export interface ClusterJvm {
+  max_uptime?: Common.Duration;
   max_uptime_in_millis: Common.DurationValueUnitMillis;
   mem: ClusterJvmMemory;
   threads: number;
@@ -74,8 +80,10 @@ export interface ClusterJvm {
 }
 
 export interface ClusterJvmMemory {
-  heap_max_in_bytes: number;
-  heap_used_in_bytes: number;
+  heap_max?: Common.StorageSize;
+  heap_max_in_bytes: Common.Bytes;
+  heap_used?: Common.StorageSize;
+  heap_used_in_bytes: Common.Bytes;
 }
 
 export interface ClusterJvmVersion {
@@ -94,27 +102,29 @@ export interface ClusterNetworkTypes {
 }
 
 export interface ClusterNodeCount {
+  cluster_manager?: number;
   coordinating_only: number;
   data: number;
-  data_cold: number;
-  data_content: number;
+  data_cold?: number;
+  data_content?: number;
   data_frozen?: number;
-  data_hot: number;
-  data_warm: number;
+  data_hot?: number;
+  data_warm?: number;
   ingest: number;
   master: number;
-  ml: number;
+  ml?: number;
   remote_cluster_client: number;
+  search?: number;
   total: number;
-  transform: number;
-  voting_only: number;
+  transform?: number;
+  voting_only?: number;
 }
 
 export interface ClusterNodes {
   count: ClusterNodeCount;
   discovery_types: Record<string, number>;
   fs: ClusterFileSystem;
-  indexing_pressure: IndexingPressure;
+  indexing_pressure?: IndexingPressure;
   ingest: ClusterIngest;
   jvm: ClusterJvm;
   network_types: ClusterNetworkTypes;
@@ -192,8 +202,8 @@ export interface FieldTypesMappings {
   field_types: FieldTypes[];
   runtime_field_types?: RuntimeFieldTypes[];
   total_deduplicated_field_count?: number;
-  total_deduplicated_mapping_size?: Common.ByteSize;
-  total_deduplicated_mapping_size_in_bytes?: number;
+  total_deduplicated_mapping_size?: Common.StorageSize;
+  total_deduplicated_mapping_size_in_bytes?: Common.Bytes;
   total_field_count?: number;
 }
 
@@ -203,40 +213,43 @@ export interface IndexingPressure {
 
 export interface IndexingPressureMemory {
   current: IndexingPressureMemorySummary;
-  limit_in_bytes: number;
+  limit_in_bytes: Common.Bytes;
   total: IndexingPressureMemorySummary;
 }
 
 export interface IndexingPressureMemorySummary {
-  all_in_bytes: number;
-  combined_coordinating_and_primary_in_bytes: number;
-  coordinating_in_bytes: number;
+  all_in_bytes: Common.Bytes;
+  combined_coordinating_and_primary_in_bytes: Common.Bytes;
+  coordinating_in_bytes: Common.Bytes;
   coordinating_rejections?: number;
-  primary_in_bytes: number;
+  primary_in_bytes: Common.Bytes;
   primary_rejections?: number;
-  replica_in_bytes: number;
+  replica_in_bytes: Common.Bytes;
   replica_rejections?: number;
 }
 
 export interface IndicesVersions {
   index_count: number;
   primary_shard_count: number;
-  total_primary_bytes: number;
+  total_primary_bytes: Common.Bytes;
   version: Common.VersionString;
 }
 
 export interface NodePackagingType {
   count: number;
-  flavor: string;
+  flavor?: string;
   type: string;
 }
 
 export interface OperatingSystemMemoryInfo {
-  adjusted_total_in_bytes?: number;
-  free_in_bytes: number;
+  adjusted_total_in_bytes?: Common.Bytes;
+  free?: Common.StorageSize;
+  free_in_bytes: Common.Bytes;
   free_percent: number;
-  total_in_bytes: number;
-  used_in_bytes: number;
+  total?: Common.StorageSize;
+  total_in_bytes: Common.Bytes;
+  used?: Common.StorageSize;
+  used_in_bytes: Common.Bytes;
   used_percent: number;
 }
 

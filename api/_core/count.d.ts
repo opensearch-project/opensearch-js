@@ -49,5 +49,6 @@ export interface Count_Response extends ApiResponse {
 export interface Count_ResponseBody {
   _shards: Common.ShardStatistics;
   count: number;
+  terminated_early?: boolean;
 }
 

@@ -18,9 +18,9 @@
 
 /** @namespace API-Remote-Store */
 
-function RemotestoreApi(bindObj) {
+function RemoteStoreApi(bindObj) {
   this.restore = require('./restore').bind(bindObj);
 
 }
 
-module.exports = RemotestoreApi;
+module.exports = RemoteStoreApi;

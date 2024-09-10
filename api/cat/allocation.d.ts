@@ -20,7 +20,7 @@ import * as Common from '../_types/_common'
 import * as Cat_Allocation from '../_types/cat.allocation'
 
 export interface Cat_Allocation_Request extends Global.Params {
-  bytes?: Common.Bytes;
+  bytes?: Common.StorageType;
   cluster_manager_timeout?: Common.Duration;
   format?: string;
   h?: string[];

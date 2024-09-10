@@ -28,10 +28,10 @@ export interface AdaptiveSelection {
 }
 
 export interface Breaker {
-  estimated_size?: string;
-  estimated_size_in_bytes?: number;
-  limit_size?: string;
-  limit_size_in_bytes?: number;
+  estimated_size?: Common.StorageSize;
+  estimated_size_in_bytes?: Common.Bytes;
+  limit_size?: Common.StorageSize;
+  limit_size_in_bytes?: Common.Bytes;
   overhead?: number;
   tripped?: number;
 }
@@ -71,7 +71,7 @@ export interface Client {
   opened_time_millis?: number;
   remote_address?: string;
   request_count?: number;
-  request_size_bytes?: number;
+  request_size_bytes?: Common.Bytes;
   x_opaque_id?: string;
 }
 
@@ -137,22 +137,23 @@ export interface CpuAcct {
 }
 
 export interface DataPathStats {
-  available?: string;
-  available_in_bytes?: number;
-  cache_reserved_in_bytes?: number;
+  available?: Common.StorageSize;
+  available_in_bytes?: Common.Bytes;
+  cache_reserved?: Common.StorageSize;
+  cache_reserved_in_bytes?: Common.Bytes;
   disk_queue?: string;
-  disk_read_size?: string;
-  disk_read_size_in_bytes?: number;
+  disk_read_size?: Common.StorageSize;
+  disk_read_size_in_bytes?: Common.Bytes;
   disk_reads?: number;
-  disk_write_size?: string;
-  disk_write_size_in_bytes?: number;
+  disk_write_size?: Common.StorageSize;
+  disk_write_size_in_bytes?: Common.Bytes;
   disk_writes?: number;
-  free?: string;
-  free_in_bytes?: number;
+  free?: Common.StorageSize;
+  free_in_bytes?: Common.Bytes;
   mount?: string;
   path?: string;
-  total?: string;
-  total_in_bytes?: number;
+  total?: Common.StorageSize;
+  total_in_bytes?: Common.Bytes;
   type?: string;
 }
 
@@ -178,13 +179,14 @@ export interface FileSystem {
 }
 
 export interface FileSystemTotal {
-  available?: string;
-  available_in_bytes?: number;
-  cache_reserved_in_bytes?: number;
-  free?: string;
-  free_in_bytes?: number;
-  total?: string;
-  total_in_bytes?: number;
+  available?: Common.StorageSize;
+  available_in_bytes?: Common.Bytes;
+  cache_reserved?: Common.StorageSize;
+  cache_reserved_in_bytes?: Common.Bytes;
+  free?: Common.StorageSize;
+  free_in_bytes?: Common.Bytes;
+  total?: Common.StorageSize;
+  total_in_bytes?: Common.Bytes;
 }
 
 export interface GarbageCollector {
@@ -209,8 +211,8 @@ export interface IndexingPressure {
 
 export interface IndexingPressureMemory {
   current?: PressureMemory;
-  limit?: Common.ByteSize;
-  limit_in_bytes?: number;
+  limit?: Common.StorageSize;
+  limit_in_bytes?: Common.Bytes;
   total?: PressureMemory;
 }
 
@@ -224,16 +226,21 @@ export interface IngestTotal {
   current?: number;
   failed?: number;
   processors?: Record<string, KeyedProcessor>[];
+  time?: Common.Duration;
   time_in_millis?: Common.DurationValueUnitMillis;
 }
 
 export interface IoStatDevice {
   device_name?: string;
+  io_time_in_millis?: Common.DurationValueUnitMillis;
   operations?: number;
+  queue_size?: number;
   read_kilobytes?: number;
   read_operations?: number;
+  read_time?: number;
   write_kilobytes?: number;
   write_operations?: number;
+  write_time?: number;
 }
 
 export interface IoStats {
@@ -259,12 +266,17 @@ export interface JvmClasses {
 }
 
 export interface JvmMemoryStats {
-  heap_committed_in_bytes?: number;
-  heap_max_in_bytes?: number;
-  heap_used_in_bytes?: number;
+  heap_committed?: Common.StorageSize;
+  heap_committed_in_bytes?: Common.Bytes;
+  heap_max?: Common.StorageSize;
+  heap_max_in_bytes?: Common.Bytes;
+  heap_used?: Common.StorageSize;
+  heap_used_in_bytes?: Common.Bytes;
   heap_used_percent?: number;
-  non_heap_committed_in_bytes?: number;
-  non_heap_used_in_bytes?: number;
+  non_heap_committed?: Common.StorageSize;
+  non_heap_committed_in_bytes?: Common.Bytes;
+  non_heap_used?: Common.StorageSize;
+  non_heap_used_in_bytes?: Common.Bytes;
   pools?: Record<string, Pool>;
 }
 
@@ -279,30 +291,35 @@ export interface KeyedProcessor {
 }
 
 export interface LastGcStats {
-  max_in_bytes?: number;
+  max?: Common.StorageSize;
+  max_in_bytes?: Common.Bytes;
   usage_percent?: number;
-  used_in_bytes?: number;
+  used?: Common.StorageSize;
+  used_in_bytes?: Common.Bytes;
 }
 
 export interface MemoryStats {
-  adjusted_total_in_bytes?: number;
-  free_in_bytes?: number;
-  resident?: string;
-  resident_in_bytes?: number;
-  share?: string;
-  share_in_bytes?: number;
-  total_in_bytes?: number;
-  total_virtual?: string;
-  total_virtual_in_bytes?: number;
-  used_in_bytes?: number;
+  adjusted_total_in_bytes?: Common.Bytes;
+  free?: Common.StorageSize;
+  free_in_bytes?: Common.Bytes;
+  resident?: Common.StorageSize;
+  resident_in_bytes?: Common.Bytes;
+  share?: Common.StorageSize;
+  share_in_bytes?: Common.Bytes;
+  total?: Common.StorageSize;
+  total_in_bytes?: Common.Bytes;
+  total_virtual?: Common.StorageSize;
+  total_virtual_in_bytes?: Common.Bytes;
+  used?: Common.StorageSize;
+  used_in_bytes?: Common.Bytes;
 }
 
 export interface NodeBufferPool {
   count?: number;
-  total_capacity?: string;
-  total_capacity_in_bytes?: number;
-  used?: string;
-  used_in_bytes?: number;
+  total_capacity?: Common.StorageSize;
+  total_capacity_in_bytes?: Common.Bytes;
+  used?: Common.StorageSize;
+  used_in_bytes?: Common.Bytes;
 }
 
 export interface NodeReloadError {
@@ -326,25 +343,29 @@ export interface OperatingSystem {
 
 export interface Pool {
   last_gc_stats?: LastGcStats;
-  max_in_bytes?: number;
-  peak_max_in_bytes?: number;
-  peak_used_in_bytes?: number;
-  used_in_bytes?: number;
+  max?: Common.StorageSize;
+  max_in_bytes?: Common.Bytes;
+  peak_max?: Common.StorageSize;
+  peak_max_in_bytes?: Common.Bytes;
+  peak_used?: Common.StorageSize;
+  peak_used_in_bytes?: Common.Bytes;
+  used?: Common.StorageSize;
+  used_in_bytes?: Common.Bytes;
 }
 
 export interface PressureMemory {
-  all?: Common.ByteSize;
-  all_in_bytes?: number;
-  combined_coordinating_and_primary?: Common.ByteSize;
-  combined_coordinating_and_primary_in_bytes?: number;
-  coordinating?: Common.ByteSize;
-  coordinating_in_bytes?: number;
+  all?: Common.StorageSize;
+  all_in_bytes?: Common.Bytes;
+  combined_coordinating_and_primary?: Common.StorageSize;
+  combined_coordinating_and_primary_in_bytes?: Common.Bytes;
+  coordinating?: Common.StorageSize;
+  coordinating_in_bytes?: Common.Bytes;
   coordinating_rejections?: number;
-  primary?: Common.ByteSize;
-  primary_in_bytes?: number;
+  primary?: Common.StorageSize;
+  primary_in_bytes?: Common.Bytes;
   primary_rejections?: number;
-  replica?: Common.ByteSize;
-  replica_in_bytes?: number;
+  replica?: Common.StorageSize;
+  replica_in_bytes?: Common.Bytes;
   replica_rejections?: number;
 }
 
@@ -399,11 +420,11 @@ export interface SerializedClusterState {
 }
 
 export interface SerializedClusterStateDetail {
-  compressed_size?: string;
-  compressed_size_in_bytes?: number;
+  compressed_size?: Common.StorageSize;
+  compressed_size_in_bytes?: Common.Bytes;
   count?: number;
-  uncompressed_size?: string;
-  uncompressed_size_in_bytes?: number;
+  uncompressed_size?: Common.StorageSize;
+  uncompressed_size_in_bytes?: Common.Bytes;
 }
 
 export interface ShardAdmissionControlStats {
@@ -418,7 +439,8 @@ export interface ShardCacheStats {
   hit_count?: number;
   item_count?: number;
   miss_count?: number;
-  size_in_bytes?: number;
+  size?: Common.StorageSize;
+  size_in_bytes?: Common.Bytes;
   store_name?: string;
 }
 
@@ -435,7 +457,8 @@ export interface ShardIndexingPressureStats {
   enabled?: boolean;
   enforced?: boolean;
   stats?: Record<string, any>;
-  total_rejections_breakup_shadow_mode?: TotalRejectionsBreakupShadowMode;
+  total_rejections_breakup?: TotalRejectionsBreakup;
+  total_rejections_breakup_shadow_mode?: TotalRejectionsBreakup;
 }
 
 export type ShardRepositoriesStats = any[]
@@ -464,25 +487,34 @@ export interface ShardSearchBackpressureStats {
 export interface ShardSearchBackpressureTaskCancellationStats {
   cancellation_count?: number;
   cancellation_limit_reached_count?: number;
+  cancelled_task_percentage?: number;
+  current_cancellation_eligible_tasks_count?: number;
 }
 
 export interface ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats {
   cancellation_count?: number;
+  current_avg?: Common.Duration;
   current_avg_millis?: Common.DurationValueUnitMillis;
+  current_max?: Common.Duration;
   current_max_millis?: Common.DurationValueUnitMillis;
 }
 
 export interface ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats {
   cancellation_count?: number;
+  current_avg?: Common.Duration;
   current_avg_millis?: Common.DurationValueUnitMillis;
+  current_max?: Common.Duration;
   current_max_millis?: Common.DurationValueUnitMillis;
 }
 
 export interface ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats {
   cancellation_count?: number;
-  current_avg_bytes?: number;
-  current_max_bytes?: number;
-  rolling_avg_bytes?: number;
+  current_avg?: Common.StorageSize;
+  current_avg_bytes?: Common.Bytes;
+  current_max?: Common.StorageSize;
+  current_max_bytes?: Common.Bytes;
+  rolling_avg?: Common.StorageSize;
+  rolling_avg_bytes?: Common.Bytes;
 }
 
 export interface ShardSearchBackpressureTaskResourceTrackerStats {
@@ -507,6 +539,7 @@ export interface ShardSearchPipelineTotalStats {
   count?: number;
   current?: number;
   failed?: number;
+  time?: Common.Duration;
   time_in_millis?: Common.DurationValueUnitMillis;
 }
 
@@ -543,7 +576,7 @@ export interface Stats {
   host?: Common.Host;
   http?: Http;
   indexing_pressure?: IndexingPressure;
-  indices?: Indices_Stats.ShardStats;
+  indices?: Indices_Stats.IndexShardStats;
   ingest?: Ingest;
   ip?: Common.Ip | Common.Ip[];
   jvm?: Jvm;
@@ -574,10 +607,11 @@ export interface ThreadCount {
   queue?: number;
   rejected?: number;
   threads?: number;
+  total_wait_time?: Common.Duration;
   total_wait_time_in_nanos?: number;
 }
 
-export interface TotalRejectionsBreakupShadowMode {
+export interface TotalRejectionsBreakup {
   no_successful_request_limits?: number;
   node_limits?: number;
   throughput_degradation_limits?: number;
@@ -587,13 +621,13 @@ export interface Transport {
   inbound_handling_time_histogram?: TransportHistogram[];
   outbound_handling_time_histogram?: TransportHistogram[];
   rx_count?: number;
-  rx_size?: string;
-  rx_size_in_bytes?: number;
+  rx_size?: Common.StorageSize;
+  rx_size_in_bytes?: Common.Bytes;
   server_open?: number;
   total_outbound_connections?: number;
   tx_count?: number;
-  tx_size?: string;
-  tx_size_in_bytes?: number;
+  tx_size?: Common.StorageSize;
+  tx_size_in_bytes?: Common.Bytes;
 }
 
 export interface TransportHistogram {

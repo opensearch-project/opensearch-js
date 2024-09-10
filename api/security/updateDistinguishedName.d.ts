@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
 export interface Security_UpdateDistinguishedName_Request extends Global.Params {
-  body?: Security_Common.PatchOperation;
+  body?: Security_Common.DistinguishedNames;
   cluster_name: string;
 }
 

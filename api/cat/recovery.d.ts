@@ -21,7 +21,7 @@ import * as Cat_Recovery from '../_types/cat.recovery'
 
 export interface Cat_Recovery_Request extends Global.Params {
   active_only?: boolean;
-  bytes?: Common.Bytes;
+  bytes?: Common.StorageType;
   detailed?: boolean;
   format?: string;
   h?: string[];

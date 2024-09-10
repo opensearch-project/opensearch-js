@@ -33,9 +33,9 @@ export interface RecoveryRecord {
   source_node?: string;
   stage?: string;
   start_time?: Common.DateTime;
-  start_time_millis?: Common.EpochTimeUnitMillis;
+  start_time_millis?: Common.StringifiedEpochTimeUnitMillis;
   stop_time?: Common.DateTime;
-  stop_time_millis?: Common.EpochTimeUnitMillis;
+  stop_time_millis?: Common.StringifiedEpochTimeUnitMillis;
   target_host?: string;
   target_node?: string;
   time?: Common.Duration;

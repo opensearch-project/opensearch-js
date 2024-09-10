@@ -27,7 +27,7 @@ documents from a remote cluster.
  * @memberOf API-Core
  *
  * @param {object} params
- * @param {integer} [params.max_docs] - Maximum number of documents to process. By default, all documents.
+ * @param {number} [params.max_docs] - Maximum number of documents to process. By default, all documents.
  * @param {boolean} [params.refresh] - If `true`, the request refreshes affected shards to make this operation visible to search.
  * @param {number} [params.requests_per_second=0] - The throttle for this request in sub-requests per second. Defaults to no throttle.
  * @param {string} [params.scroll] - Specifies how long a consistent view of the index should be maintained for scrolled search.

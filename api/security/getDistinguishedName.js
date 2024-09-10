@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {boolean} [params.show_all] 
- * @param {string} params.cluster_name 
+ * @param {boolean} [params.show_all] - A boolean flag to include/exclude static nodes DN from final result.
+ * @param {string} params.cluster_name - The cluster-name to retrieve nodes DN setting for.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.tenant 
+ * @param {string} params.tenant - The name of the tenant to update.
  * @param {array} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

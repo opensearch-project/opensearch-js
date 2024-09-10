@@ -20,7 +20,7 @@ export interface DataStreamsStatsItem {
   backing_indices: number;
   data_stream: Common.Name;
   maximum_timestamp: Common.EpochTimeUnitMillis;
-  store_size?: Common.ByteSize;
-  store_size_bytes: number;
+  store_size?: Common.StorageSize;
+  store_size_bytes: Common.Bytes;
 }
 

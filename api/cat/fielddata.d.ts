@@ -20,7 +20,7 @@ import * as Common from '../_types/_common'
 import * as Cat_Fielddata from '../_types/cat.fielddata'
 
 export interface Cat_Fielddata_Request extends Global.Params {
-  bytes?: Common.Bytes;
+  bytes?: Common.StorageType;
   fields?: Common.Fields;
   format?: string;
   h?: string[];

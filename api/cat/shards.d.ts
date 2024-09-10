@@ -20,7 +20,7 @@ import * as Common from '../_types/_common'
 import * as Cat_Shards from '../_types/cat.shards'
 
 export interface Cat_Shards_Request extends Global.Params {
-  bytes?: Common.Bytes;
+  bytes?: Common.StorageType;
   cluster_manager_timeout?: Common.Duration;
   format?: string;
   h?: string[];

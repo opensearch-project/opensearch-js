@@ -25,7 +25,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {array} params.body 
+ * @param {object} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

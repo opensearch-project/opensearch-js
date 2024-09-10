@@ -17,11 +17,11 @@
 import * as Common from './_common'
 
 export interface AllocationRecord {
-  'disk.avail'?: Common.ByteSize | undefined;
-  'disk.indices'?: Common.ByteSize | undefined;
+  'disk.avail'?: undefined | string;
+  'disk.indices'?: undefined | string;
   'disk.percent'?: Common.Percentage | undefined;
-  'disk.total'?: Common.ByteSize | undefined;
-  'disk.used'?: Common.ByteSize | undefined;
+  'disk.total'?: undefined | string;
+  'disk.used'?: undefined | string;
   host?: Common.Host | undefined;
   ip?: Common.Ip | undefined;
   node?: string;

@@ -33,7 +33,7 @@ By default the active, queue and rejected statistics are returned for all thread
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
  * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to master node.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
- * @param {integer} [params.size] - The multiplier in which to display values.
+ * @param {number} [params.size] - The multiplier in which to display values.
  * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
  * @param {string} [params.thread_pool_patterns] - A comma-separated list of thread pool names used to limit the request. Accepts wildcard expressions.
  *

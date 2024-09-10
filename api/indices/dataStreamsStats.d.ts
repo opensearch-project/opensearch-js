@@ -32,7 +32,7 @@ export interface Indices_DataStreamsStats_ResponseBody {
   backing_indices: number;
   data_stream_count: number;
   data_streams: Indices_DataStreamsStats.DataStreamsStatsItem[];
-  total_store_size_bytes: number;
-  total_store_sizes?: Common.ByteSize;
+  total_store_size_bytes: Common.Bytes;
+  total_store_sizes?: Common.StorageSize;
 }
 

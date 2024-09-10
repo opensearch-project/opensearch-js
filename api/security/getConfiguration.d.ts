@@ -24,5 +24,5 @@ export interface Security_GetConfiguration_Response extends ApiResponse {
   body: Security_GetConfiguration_ResponseBody;
 }
 
-export type Security_GetConfiguration_ResponseBody = Security_Common.DynamicConfig
+export type Security_GetConfiguration_ResponseBody = Security_Common.SecurityConfig
 

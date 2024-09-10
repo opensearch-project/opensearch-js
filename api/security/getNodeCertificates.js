@@ -19,31 +19,33 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Generates authorization token for the given user. Legacy API.
- * <br/> See Also: {@link undefined - security.generate_user_token_legacy}
+ * Retrieves the given node's security certificates.
+ * <br/> See Also: {@link undefined - security.get_node_certificates}
  *
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.username 
+ * @param {string} [params.cert_type] - The type of certificates (HTTP, TRANSPORT, ALL) to retrieve for a node.
+ * @param {string} [params.timeout] - The maximum duration, in seconds, to be spent to retrieve a node's certificates.
+ * @param {string} params.node_id - The full-id of the node to retrieve certificates.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function generateUserTokenLegacyFunc(params, options, callback) {
+function getNodeCertificatesFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.username == null) return handleMissingParam('username', this, callback);
+  if (params.node_id == null) return handleMissingParam('node_id', this, callback);
 
-  let { body, username, ...querystring } = params;
-  username = parsePathParam(username);
+  let { body, node_id, ...querystring } = params;
+  node_id = parsePathParam(node_id);
 
-  const path = '/_plugins/_security/api/user/' + username + '/authtoken';
-  const method = 'POST';
+  const path = '/_plugins/_security/api/certificates/' + node_id;
+  const method = 'GET';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = generateUserTokenLegacyFunc;
+module.exports = getNodeCertificatesFunc;

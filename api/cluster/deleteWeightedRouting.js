@@ -24,7 +24,9 @@ const { normalizeArguments } = require('../utils');
  *
  * @memberOf API-Cluster
  *
- * @param {object} [params] - (Unused)
+ * @param {object} [params]
+ * @param {object} [params.body] 
+ *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *

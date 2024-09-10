@@ -18,11 +18,11 @@
 
 /** @namespace API-Search-Pipeline */
 
-function SearchpipelineApi(bindObj) {
+function SearchPipelineApi(bindObj) {
   this.delete = require('./delete').bind(bindObj);
   this.get = require('./get').bind(bindObj);
   this.put = require('./put').bind(bindObj);
 
 }
 
-module.exports = SearchpipelineApi;
+module.exports = SearchPipelineApi;

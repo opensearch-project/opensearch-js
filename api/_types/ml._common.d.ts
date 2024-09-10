@@ -57,12 +57,22 @@ export interface SearchModelsResponse {
 
 export interface Task {
   create_time?: number;
+  error?: string;
   function_name?: string;
   is_async?: boolean;
   last_update_time?: number;
   model_id?: string;
   state: 'CANCELLED' | 'COMPLETED' | 'COMPLETED_WITH_ERROR' | 'CREATED' | 'FAILED' | 'RUNNING';
-  task_type?: 'DEPLOY_MODEL';
+  task_id?: string;
+  task_type?: 'DEPLOY_MODEL' | 'REGISTER_MODEL';
   worker_node?: Common.NodeIds[];
 }
+
+export interface UndeployModelNode {
+  stats?: UndeployModelNodeStats;
+}
+
+export type UndeployModelNodeStats = Record<string, any>
+
+export type UndeployModelResponse = Record<string, UndeployModelNode>
 

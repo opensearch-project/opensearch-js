@@ -41,23 +41,9 @@ export interface BulkIndexByScrollFailure {
   type: string;
 }
 
-export interface BulkStats {
-  avg_size?: ByteSize;
-  avg_size_in_bytes: number;
-  avg_time?: Duration;
-  avg_time_in_millis: DurationValueUnitMillis;
-  total_operations: number;
-  total_size?: ByteSize;
-  total_size_in_bytes: number;
-  total_time?: Duration;
-  total_time_in_millis: DurationValueUnitMillis;
-}
-
 export type byte = number
 
-export type Bytes = 'b' | 'g' | 'gb' | 'k' | 'kb' | 'm' | 'mb' | 'p' | 'pb' | 't' | 'tb'
-
-export type ByteSize = number | string
+export type Bytes = number
 
 export interface ClusterDetails {
   _shards?: ShardStatistics;
@@ -82,8 +68,8 @@ export interface ClusterStatistics {
 
 export interface CompletionStats {
   fields?: Record<string, FieldSizeUsage>;
-  size?: ByteSize;
-  size_in_bytes: number;
+  size?: StorageSize;
+  size_in_bytes: Bytes;
 }
 
 export type Conflicts = 'abort' | 'proceed'
@@ -166,23 +152,25 @@ export type Field = string
 export interface FielddataStats {
   evictions?: number;
   fields?: Record<string, FieldMemoryUsage>;
-  memory_size?: ByteSize;
-  memory_size_in_bytes: number;
+  memory_size?: StorageSize;
+  memory_size_in_bytes: Bytes;
 }
 
 export interface FieldMemoryUsage {
-  memory_size?: ByteSize;
-  memory_size_in_bytes: number;
+  memory_size?: StorageSize;
+  memory_size_in_bytes: Bytes;
 }
 
 export type Fields = Field | Field[]
 
 export interface FieldSizeUsage {
-  size?: ByteSize;
-  size_in_bytes: number;
+  size?: StorageSize;
+  size_in_bytes: Bytes;
 }
 
 export type FieldValue = boolean | undefined | number | Record<string, any> | string
+
+export type FieldWithOrder = Record<string, ScoreSort>
 
 export interface FlushStats {
   periodic: number;
@@ -233,10 +221,10 @@ export interface GetStats {
   exists_time?: Duration;
   exists_time_in_millis: DurationValueUnitMillis;
   exists_total: number;
+  getTime?: Duration;
   missing_time?: Duration;
   missing_time_in_millis: DurationValueUnitMillis;
   missing_total: number;
-  time?: Duration;
   time_in_millis: DurationValueUnitMillis;
   total: number;
 }
@@ -280,7 +268,6 @@ export interface IndexingStats {
   throttle_time?: Duration;
   throttle_time_in_millis: DurationValueUnitMillis;
   types?: Record<string, IndexingStats>;
-  write_load?: number;
 }
 
 export type IndexName = string
@@ -317,15 +304,13 @@ export interface InlineScript extends ScriptBase {
 
 export type Ip = string
 
-export interface KnnQuery {
+export interface KnnField {
   boost?: number;
-  field: Field;
   filter?: Common_QueryDsl.QueryContainer | Common_QueryDsl.QueryContainer[];
-  k: number;
-  num_candidates: number;
-  query_vector?: QueryVector;
-  query_vector_builder?: QueryVectorBuilder;
-  similarity?: number;
+  k?: number;
+  max_distance?: number;
+  min_score?: number;
+  vector: QueryVector;
 }
 
 export interface LatLonGeoLocation {
@@ -338,14 +323,14 @@ export type Level = 'cluster' | 'indices' | 'shards'
 export interface MergesStats {
   current: number;
   current_docs: number;
-  current_size?: string;
-  current_size_in_bytes: number;
+  current_size?: StorageSize;
+  current_size_in_bytes: Bytes;
   total: number;
-  total_auto_throttle?: string;
-  total_auto_throttle_in_bytes: number;
+  total_auto_throttle?: StorageSize;
+  total_auto_throttle_in_bytes: Bytes;
   total_docs: number;
-  total_size?: string;
-  total_size_in_bytes: number;
+  total_size?: StorageSize;
+  total_size_in_bytes: Bytes;
   total_stopped_time?: Duration;
   total_stopped_time_in_millis: DurationValueUnitMillis;
   total_throttled_time?: Duration;
@@ -361,7 +346,7 @@ export type Metrics = string | string[]
 
 export type MinimumShouldMatch = number | string
 
-export type MultiTermQueryRewrite = string
+export type MultiTermQueryRewrite = 'constant_score' | 'constant_score_boolean' | 'scoring_boolean' | 'top_terms_N' | 'top_terms_blended_freqs_N' | 'top_terms_boost_N'
 
 export type Name = string
 
@@ -466,17 +451,13 @@ export interface QueryCacheStats {
   cache_size: number;
   evictions: number;
   hit_count: number;
-  memory_size?: ByteSize;
-  memory_size_in_bytes: number;
+  memory_size?: StorageSize;
+  memory_size_in_bytes: Bytes;
   miss_count: number;
   total_count: number;
 }
 
 export type QueryVector = number[]
-
-export interface QueryVectorBuilder {
-  text_embedding?: TextEmbedding;
-}
 
 export type RankBase = Record<string, any>
 
@@ -495,6 +476,7 @@ export type Refresh = 'false' | 'true' | 'wait_for'
 
 export interface RefreshStats {
   external_total: number;
+  external_total_time?: Duration;
   external_total_time_in_millis: DurationValueUnitMillis;
   listeners: number;
   total: number;
@@ -510,6 +492,7 @@ export interface RelocationFailureInfo {
 
 export interface RemoteStoreDownloadStats {
   total_download_size: RemoteStoreUploadDownloadStats;
+  total_time_spent?: Duration;
   total_time_spent_in_millis: DurationValueUnitMillis;
 }
 
@@ -528,9 +511,12 @@ export interface RemoteStoreTranslogUploadStats {
 }
 
 export interface RemoteStoreTranslogUploadTotalUploadSizeStats {
-  failed_bytes: ByteSize;
-  started_bytes: ByteSize;
-  succeeded_bytes: ByteSize;
+  failed?: StorageSize;
+  failed_bytes: Bytes;
+  started?: StorageSize;
+  started_bytes: Bytes;
+  succeeded?: StorageSize;
+  succeeded_bytes: Bytes;
 }
 
 export interface RemoteStoreTranslogUploadTotalUploadsStats {
@@ -540,9 +526,12 @@ export interface RemoteStoreTranslogUploadTotalUploadsStats {
 }
 
 export interface RemoteStoreUploadDownloadStats {
-  failed_bytes: ByteSize;
-  started_bytes: ByteSize;
-  succeeded_bytes: ByteSize;
+  failed?: StorageSize;
+  failed_bytes: Bytes;
+  started?: StorageSize;
+  started_bytes: Bytes;
+  succeeded?: StorageSize;
+  succeeded_bytes: Bytes;
 }
 
 export interface RemoteStoreUploadPressureStats {
@@ -550,14 +539,18 @@ export interface RemoteStoreUploadPressureStats {
 }
 
 export interface RemoteStoreUploadRefreshSizeLagStats {
-  max_bytes: ByteSize;
-  total_bytes: ByteSize;
+  max?: StorageSize;
+  max_bytes: Bytes;
+  total?: StorageSize;
+  total_bytes: Bytes;
 }
 
 export interface RemoteStoreUploadStats {
+  max_refresh_time_lag?: Duration;
   max_refresh_time_lag_in_millis: DurationValueUnitMillis;
   pressure: RemoteStoreUploadPressureStats;
   refresh_size_lag: RemoteStoreUploadRefreshSizeLagStats;
+  total_time_spent?: Duration;
   total_time_spent_in_millis: DurationValueUnitMillis;
   total_upload_size: RemoteStoreUploadDownloadStats;
 }
@@ -565,13 +558,14 @@ export interface RemoteStoreUploadStats {
 export interface RequestCacheStats {
   evictions: number;
   hit_count: number;
-  memory_size?: string;
-  memory_size_in_bytes: number;
+  memory_size?: StorageSize;
+  memory_size_in_bytes: Bytes;
   miss_count: number;
 }
 
 export interface RequestStats {
   current?: number;
+  time?: Duration;
   time_in_millis?: DurationValueUnitMillis;
   total?: number;
 }
@@ -658,38 +652,38 @@ export interface SearchStats {
 export type SearchType = 'dfs_query_then_fetch' | 'query_then_fetch'
 
 export interface SegmentReplicationStats {
-  max_bytes_behind: ByteSize;
-  max_replication_lag: ByteSize;
-  total_bytes_behind: ByteSize;
+  max_bytes_behind: Bytes;
+  max_replication_lag: Bytes;
+  total_bytes_behind: Bytes;
 }
 
 export interface SegmentsStats {
   count: number;
-  doc_values_memory?: ByteSize;
-  doc_values_memory_in_bytes: number;
+  doc_values_memory?: StorageSize;
+  doc_values_memory_in_bytes: Bytes;
   file_sizes: Record<string, Indices_Stats.ShardFileSizeInfo>;
-  fixed_bit_set?: ByteSize;
-  fixed_bit_set_memory_in_bytes: number;
-  index_writer_max_memory_in_bytes?: number;
-  index_writer_memory?: ByteSize;
-  index_writer_memory_in_bytes: number;
+  fixed_bit_set?: StorageSize;
+  fixed_bit_set_memory_in_bytes: Bytes;
+  index_writer_max_memory_in_bytes?: Bytes;
+  index_writer_memory?: StorageSize;
+  index_writer_memory_in_bytes: Bytes;
   max_unsafe_auto_id_timestamp: number;
-  memory?: ByteSize;
-  memory_in_bytes: number;
-  norms_memory?: ByteSize;
-  norms_memory_in_bytes: number;
-  points_memory?: ByteSize;
-  points_memory_in_bytes: number;
+  memory?: StorageSize;
+  memory_in_bytes: Bytes;
+  norms_memory?: StorageSize;
+  norms_memory_in_bytes: Bytes;
+  points_memory?: StorageSize;
+  points_memory_in_bytes: Bytes;
   remote_store?: RemoteStoreStats;
   segment_replication?: SegmentReplicationStats;
-  stored_fields_memory_in_bytes: number;
-  stored_memory?: ByteSize;
-  term_vectors_memory_in_bytes: number;
-  term_vectory_memory?: ByteSize;
-  terms_memory?: ByteSize;
-  terms_memory_in_bytes: number;
-  version_map_memory?: ByteSize;
-  version_map_memory_in_bytes: number;
+  stored_fields_memory?: StorageSize;
+  stored_fields_memory_in_bytes: Bytes;
+  term_vectors_memory?: StorageSize;
+  term_vectors_memory_in_bytes: Bytes;
+  terms_memory?: StorageSize;
+  terms_memory_in_bytes: Bytes;
+  version_map_memory?: StorageSize;
+  version_map_memory_in_bytes: Bytes;
 }
 
 export type SequenceNumber = number
@@ -728,7 +722,7 @@ export type SlicesCalculation = 'auto'
 
 export type Sort = SortCombinations | SortCombinations[]
 
-export type SortCombinations = Field | SortOptions
+export type SortCombinations = Field | FieldWithOrder | SortOptions
 
 export type SortMode = 'avg' | 'max' | 'median' | 'min' | 'sum'
 
@@ -743,6 +737,10 @@ export type SortOrder = 'asc' | 'desc'
 
 export type SortResults = FieldValue[]
 
+export type StorageSize = string
+
+export type StorageType = 'b' | 'g' | 'gb' | 'k' | 'kb' | 'm' | 'mb' | 'p' | 'pb' | 't' | 'tb'
+
 export interface StoredScript {
   lang: ScriptLanguage;
   options?: Record<string, string>;
@@ -754,12 +752,10 @@ export interface StoredScriptId extends ScriptBase {
 }
 
 export interface StoreStats {
-  reserved?: ByteSize;
-  reserved_in_bytes: number;
-  size?: ByteSize;
-  size_in_bytes: number;
-  total_data_set_size?: ByteSize;
-  total_data_set_size_in_bytes?: number;
+  reserved?: StorageSize;
+  reserved_in_bytes: Bytes;
+  size?: StorageSize;
+  size_in_bytes: Bytes;
 }
 
 export type Stringifiedboolean = boolean | string
@@ -783,11 +779,6 @@ export interface TaskFailure {
 
 export type TaskId = string | number
 
-export interface TextEmbedding {
-  model_id: string;
-  model_text: string;
-}
-
 export type TimeOfDay = string
 
 export type TimeUnit = 'd' | 'h' | 'm' | 'micros' | 'ms' | 'nanos' | 's'
@@ -808,11 +799,11 @@ export interface TranslogStats {
   earliest_last_modified_age: number;
   operations: number;
   remote_store?: RemoteStoreTranslogStats;
-  size?: string;
-  size_in_bytes: number;
+  size?: StorageSize;
+  size_in_bytes: Bytes;
   uncommitted_operations: number;
-  uncommitted_size?: string;
-  uncommitted_size_in_bytes: number;
+  uncommitted_size?: StorageSize;
+  uncommitted_size_in_bytes: Bytes;
 }
 
 export type TransportAddress = string
@@ -869,4 +860,11 @@ export interface WriteResponseBase {
   forced_refresh?: boolean;
   result: Result;
 }
+
+export interface XyCartesianCoordinates {
+  x: number;
+  y: number;
+}
+
+export type XyLocation = XyCartesianCoordinates | number[] | string
 

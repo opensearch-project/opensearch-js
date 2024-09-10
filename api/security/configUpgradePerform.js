@@ -37,7 +37,7 @@ function configUpgradePerformFunc(params, options, callback) {
 
   let { body, ...querystring } = params;
 
-  const path = '/_plugins/_security/_upgrade_perform';
+  const path = '/_plugins/_security/api/_upgrade_perform';
   const method = 'POST';
   body = body || '';
 

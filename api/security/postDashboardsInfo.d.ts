@@ -18,9 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export interface Security_PostDashboardsInfo_Request extends Global.Params {
-  body?: Security_Common.DashboardsInfo;
-}
+export type Security_PostDashboardsInfo_Request = Global.Params & Record<string, any>
 
 export interface Security_PostDashboardsInfo_Response extends ApiResponse {
   body: Security_PostDashboardsInfo_ResponseBody;

@@ -16,15 +16,17 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Observability_Common from '../_types/observability._common'
 
-export interface Security_GenerateUserTokenLegacy_Request extends Global.Params {
-  username: string;
+export interface Observability_CreateObject_Request extends Global.Params {
+  body?: Observability_Common.ObservabilityObject;
 }
 
-export interface Security_GenerateUserTokenLegacy_Response extends ApiResponse {
-  body: Security_GenerateUserTokenLegacy_ResponseBody;
+export interface Observability_CreateObject_Response extends ApiResponse {
+  body: Observability_CreateObject_ResponseBody;
 }
 
-export type Security_GenerateUserTokenLegacy_ResponseBody = Security_Common.Ok
+export interface Observability_CreateObject_ResponseBody {
+  objectId?: string;
+}
 

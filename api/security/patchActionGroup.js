@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.action_group 
+ * @param {string} params.action_group - The name of the action group to update.
  * @param {array} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

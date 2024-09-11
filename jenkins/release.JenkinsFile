@@ -1,4 +1,4 @@
-lib = library(identifier: 'jenkins@1.1.1', retriever: modernSCM([
+lib = library(identifier: 'jenkins@6.9.0', retriever: modernSCM([
     $class: 'GitSCMSource',
     remote: 'https://github.com/opensearch-project/opensearch-build-libraries.git',
 ]))
@@ -7,5 +7,7 @@ standardReleasePipelineWithGenericTrigger(
     tokenIdCredential: 'jenkins-opensearch-js-generic-webhook-token',
     causeString: 'A tag was cut on opensearch-project/opensearch-js repository causing this workflow to run',
     publishRelease: true) {
-        publishToNpm(repository: 'https://github.com/opensearch-project/opensearch-js', tag: "$tag")
+        publishToNpm(
+            publicationType: 'github'
+            )
     }

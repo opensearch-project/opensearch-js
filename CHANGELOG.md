@@ -8,6 +8,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `@babel/traverse` from 7.22.8 to 7.24.7
 - Bumps `simple-git` from 3.24.0 to 3.26.0
+- Bumps `aws4` from 1.13.0 to 1.13.2
 ### Changed
 ### Deprecated
 ### Removed

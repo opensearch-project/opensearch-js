@@ -18,6 +18,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [3.0.0]
 ### Added
+- Added API Generator ([#789](https://github.com/opensearch-project/opensearch-js/issues/789))
 - Added missing API functions and modules.
 - Added missing request and response types.
 ### Dependencies

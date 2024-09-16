@@ -1,0 +1,19 @@
+{{{opensearch_license}}}
+{{{generated_code_warning}}}
+
+'use strict';
+
+/** @namespace {{doc_namespace}} */
+
+function {{{module_name}}}(bindObj) {
+  {{#functions}}
+  this.{{{prototype_name}}} = require('{{{path}}}').bind(bindObj);
+  {{/functions}}
+
+  {{#deprecated_functions}}
+  // Deprecated: Use {{{prototype_name}}} instead.
+  this.{{{snake_cased_name}}} = require('{{{path}}}').bind(bindObj);
+  {{/deprecated_functions}}
+}
+
+module.exports = {{{module_name}}};

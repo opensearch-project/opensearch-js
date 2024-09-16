@@ -7,6 +7,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 - Bumps `@babel/traverse` from 7.22.8 to 7.24.7
+- Bumps `eslint-plugin-prettier` from 5.1.3 to 5.2.1
 ### Changed
 ### Deprecated
 ### Removed

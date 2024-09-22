@@ -21,16 +21,16 @@ export interface RolloverConditions {
   max_age_millis?: Common.DurationValueUnitMillis;
   max_docs?: number;
   max_primary_shard_docs?: number;
-  max_primary_shard_size?: Common.StorageSize;
-  max_primary_shard_size_bytes?: Common.Bytes;
-  max_size?: Common.StorageSize;
-  max_size_bytes?: Common.Bytes;
+  max_primary_shard_size?: Common.HumanReadableByteCount;
+  max_primary_shard_size_bytes?: Common.ByteCount;
+  max_size?: Common.HumanReadableByteCount;
+  max_size_bytes?: Common.ByteCount;
   min_age?: Common.Duration;
   min_docs?: number;
   min_primary_shard_docs?: number;
-  min_primary_shard_size?: Common.StorageSize;
-  min_primary_shard_size_bytes?: Common.Bytes;
-  min_size?: Common.StorageSize;
-  min_size_bytes?: Common.Bytes;
+  min_primary_shard_size?: Common.HumanReadableByteCount;
+  min_primary_shard_size_bytes?: Common.ByteCount;
+  min_size?: Common.HumanReadableByteCount;
+  min_size_bytes?: Common.ByteCount;
 }
 

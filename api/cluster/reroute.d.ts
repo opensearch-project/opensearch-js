@@ -25,7 +25,7 @@ export interface Cluster_Reroute_Request extends Global.Params {
   dry_run?: boolean;
   explain?: boolean;
   master_timeout?: Common.Duration;
-  metric?: Common.Metrics;
+  metric?: Cluster_Reroute.Metric | Cluster_Reroute.Metric[];
   retry_failed?: boolean;
   timeout?: Common.Duration;
 }

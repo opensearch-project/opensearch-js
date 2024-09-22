@@ -24,7 +24,7 @@ export interface Indices_ShardStores_Request extends Global.Params {
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
   index?: Common.Indices;
-  status?: Indices_ShardStores.ShardStoreStatus | Indices_ShardStores.ShardStoreStatus[];
+  status?: Indices_ShardStores.Status | Indices_ShardStores.Status[];
 }
 
 export interface Indices_ShardStores_Response extends ApiResponse {

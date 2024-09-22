@@ -30,7 +30,7 @@ export interface Indices_Stats_Request extends Global.Params {
   include_unloaded_segments?: boolean;
   index?: Common.Indices;
   level?: Common.Level;
-  metric?: Common.Metrics;
+  metric?: Indices_Stats.Metric | Indices_Stats.Metric[];
 }
 
 export interface Indices_Stats_Response extends ApiResponse {

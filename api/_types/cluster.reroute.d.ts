@@ -51,6 +51,8 @@ export interface CommandMoveAction {
   to_node: string;
 }
 
+export type Metric = '_all' | 'blocks' | 'cluster_manager_node' | 'master_node' | 'metadata' | 'nodes' | 'routing_nodes' | 'routing_table' | 'version'
+
 export interface RerouteDecision {
   decider: string;
   decision: string;

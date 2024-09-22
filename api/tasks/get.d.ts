@@ -32,7 +32,7 @@ export interface Tasks_Get_Response extends ApiResponse {
 export interface Tasks_Get_ResponseBody {
   completed: boolean;
   error?: Common.ErrorCause;
-  response?: Record<string, any>;
+  response?: Tasks_Common.TaskResponse;
   task: Tasks_Common.TaskInfo;
 }
 

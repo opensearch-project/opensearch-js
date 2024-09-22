@@ -46,7 +46,7 @@ export interface NodeInfo {
   settings?: NodeInfoSettings;
   thread_pool?: Record<string, NodeThreadPoolInfo>;
   total_indexing_buffer?: number;
-  total_indexing_buffer_in_bytes?: Common.Bytes;
+  total_indexing_buffer_in_bytes?: Common.ByteCount;
   transport?: NodeInfoTransport;
   transport_address?: Common.TransportAddress;
   version: Common.VersionString;
@@ -75,8 +75,8 @@ export interface NodeInfoDiscovery {
 
 export interface NodeInfoHttp {
   bound_address: string[];
-  max_content_length?: Common.StorageSize;
-  max_content_length_in_bytes: Common.Bytes;
+  max_content_length?: Common.HumanReadableByteCount;
+  max_content_length_in_bytes: Common.ByteCount;
   publish_address: string;
 }
 
@@ -97,21 +97,21 @@ export interface NodeInfoIngestProcessor {
 }
 
 export interface NodeInfoJvmMemory {
-  direct_max?: Common.StorageSize;
-  direct_max_in_bytes: Common.Bytes;
-  heap_init?: Common.StorageSize;
-  heap_init_in_bytes: Common.Bytes;
-  heap_max?: Common.StorageSize;
-  heap_max_in_bytes: Common.Bytes;
-  non_heap_init?: Common.StorageSize;
-  non_heap_init_in_bytes: Common.Bytes;
-  non_heap_max?: Common.StorageSize;
-  non_heap_max_in_bytes: Common.Bytes;
+  direct_max?: Common.HumanReadableByteCount;
+  direct_max_in_bytes: Common.ByteCount;
+  heap_init?: Common.HumanReadableByteCount;
+  heap_init_in_bytes: Common.ByteCount;
+  heap_max?: Common.HumanReadableByteCount;
+  heap_max_in_bytes: Common.ByteCount;
+  non_heap_init?: Common.HumanReadableByteCount;
+  non_heap_init_in_bytes: Common.ByteCount;
+  non_heap_max?: Common.HumanReadableByteCount;
+  non_heap_max_in_bytes: Common.ByteCount;
 }
 
 export interface NodeInfoMemory {
-  total: Common.StorageSize;
-  total_in_bytes: Common.Bytes;
+  total: Common.HumanReadableByteCount;
+  total_in_bytes: Common.ByteCount;
 }
 
 export interface NodeInfoNetwork {
@@ -126,8 +126,8 @@ export interface NodeInfoNetworkInterface {
 }
 
 export interface NodeInfoOSCPU {
-  cache_size: Common.StorageSize;
-  cache_size_in_bytes: Common.Bytes;
+  cache_size: Common.HumanReadableByteCount;
+  cache_size_in_bytes: Common.ByteCount;
   cores_per_socket: number;
   mhz: number;
   model: string;

@@ -18,11 +18,11 @@ import * as Common from './_common'
 
 export interface RecoveryRecord {
   bytes?: string;
-  bytes_percent?: Common.Percentage;
+  bytes_percent?: Common.PercentageString;
   bytes_recovered?: string;
   bytes_total?: string;
   files?: string;
-  files_percent?: Common.Percentage;
+  files_percent?: Common.PercentageString;
   files_recovered?: string;
   files_total?: string;
   index?: Common.IndexName;
@@ -40,7 +40,7 @@ export interface RecoveryRecord {
   target_node?: string;
   time?: Common.Duration;
   translog_ops?: string;
-  translog_ops_percent?: Common.Percentage;
+  translog_ops_percent?: Common.PercentageString;
   translog_ops_recovered?: string;
   type?: string;
 }

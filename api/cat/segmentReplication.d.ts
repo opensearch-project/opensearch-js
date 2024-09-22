@@ -22,7 +22,7 @@ import * as Cat_Common from '../_types/cat._common'
 export interface Cat_SegmentReplication_Request extends Global.Params {
   active_only?: boolean;
   allow_no_indices?: boolean;
-  bytes?: Common.StorageType;
+  bytes?: Common.ByteUnit;
   completed_only?: boolean;
   detailed?: boolean;
   expand_wildcards?: Common.ExpandWildcards;

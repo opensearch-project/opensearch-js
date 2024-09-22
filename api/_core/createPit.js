@@ -29,7 +29,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indices that are open, closed or both.
  * @param {string} [params.keep_alive] - Specify the keep alive for point in time.
  * @param {string} [params.preference=random] - Specify the node or shard the operation should be performed on.
- * @param {array} [params.routing] - Comma-separated list of specific routing values.
+ * @param {string} [params.routing] - Comma-separated list of specific routing values.
  * @param {array} params.index - Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

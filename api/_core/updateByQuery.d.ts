@@ -70,22 +70,7 @@ export interface UpdateByQuery_Response extends ApiResponse {
   body: UpdateByQuery_ResponseBody;
 }
 
-export interface UpdateByQuery_ResponseBody {
-  batches?: number;
-  deleted?: number;
-  failures?: Common.BulkIndexByScrollFailure[];
-  noops?: number;
-  requests_per_second?: number;
-  retries?: Common.Retries;
+export type UpdateByQuery_ResponseBody = Common.BulkByScrollResponseBase | {
   task?: Common.TaskId;
-  throttled?: Common.Duration;
-  throttled_millis?: Common.DurationValueUnitMillis;
-  throttled_until?: Common.Duration;
-  throttled_until_millis?: Common.DurationValueUnitMillis;
-  timed_out?: boolean;
-  took?: Common.DurationValueUnitMillis;
-  total?: number;
-  updated?: number;
-  version_conflicts?: number;
 }
 

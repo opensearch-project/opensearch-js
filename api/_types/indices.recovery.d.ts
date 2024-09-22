@@ -23,20 +23,20 @@ export interface FileDetails {
 }
 
 export interface RecoveryBytes {
-  percent: Common.Percentage;
-  recovered?: Common.StorageSize;
-  recovered_from_snapshot?: Common.StorageSize;
-  recovered_from_snapshot_in_bytes?: Common.Bytes;
-  recovered_in_bytes: Common.Bytes;
-  reused?: Common.StorageSize;
-  reused_in_bytes: Common.Bytes;
-  total?: Common.StorageSize;
-  total_in_bytes: Common.Bytes;
+  percent: Common.PercentageString;
+  recovered?: Common.HumanReadableByteCount;
+  recovered_from_snapshot?: Common.HumanReadableByteCount;
+  recovered_from_snapshot_in_bytes?: Common.ByteCount;
+  recovered_in_bytes: Common.ByteCount;
+  reused?: Common.HumanReadableByteCount;
+  reused_in_bytes: Common.ByteCount;
+  total?: Common.HumanReadableByteCount;
+  total_in_bytes: Common.ByteCount;
 }
 
 export interface RecoveryFiles {
   details?: FileDetails[];
-  percent: Common.Percentage;
+  percent: Common.PercentageString;
   recovered: number;
   reused: number;
   total: number;
@@ -100,7 +100,7 @@ export interface ShardRecovery {
 }
 
 export interface TranslogStatus {
-  percent: Common.Percentage;
+  percent: Common.PercentageString;
   recovered: number;
   total: number;
   total_on_start: number;

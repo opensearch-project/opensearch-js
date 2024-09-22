@@ -45,7 +45,7 @@ export interface Knn_SearchModels_Request extends Global.Params {
   q?: string;
   request_cache?: boolean;
   rest_total_hits_as_int?: boolean;
-  routing?: string[];
+  routing?: Common.Routing;
   scroll?: Common.Duration;
   search_type?: Knn_Common.SearchType;
   seq_no_primary_term?: boolean;

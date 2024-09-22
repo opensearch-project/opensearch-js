@@ -42,6 +42,7 @@ function SecurityApi(bindObj) {
   this.flushCache = require('./flushCache').bind(bindObj);
   this.generateOboToken = require('./generateOboToken').bind(bindObj);
   this.generateUserToken = require('./generateUserToken').bind(bindObj);
+  this.generateUserTokenLegacy = require('./generateUserTokenLegacy').bind(bindObj);
   this.getAccountDetails = require('./getAccountDetails').bind(bindObj);
   this.getActionGroup = require('./getActionGroup').bind(bindObj);
   this.getActionGroups = require('./getActionGroups').bind(bindObj);
@@ -137,6 +138,8 @@ function SecurityApi(bindObj) {
   this.generate_obo_token = require('./generateOboToken').bind(bindObj);
   // Deprecated: Use generateUserToken instead.
   this.generate_user_token = require('./generateUserToken').bind(bindObj);
+  // Deprecated: Use generateUserTokenLegacy instead.
+  this.generate_user_token_legacy = require('./generateUserTokenLegacy').bind(bindObj);
   // Deprecated: Use getAccountDetails instead.
   this.get_account_details = require('./getAccountDetails').bind(bindObj);
   // Deprecated: Use getActionGroup instead.

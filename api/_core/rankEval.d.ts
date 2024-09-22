@@ -25,7 +25,7 @@ export interface RankEval_Request extends Global.Params {
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
   index?: Common.Indices;
-  search_type?: string;
+  search_type?: Common.SearchType;
 }
 
 export interface RankEval_RequestBody {

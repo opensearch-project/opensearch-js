@@ -20,7 +20,7 @@ import * as Common from '../_types/_common'
 import * as Cat_Common from '../_types/cat._common'
 
 export interface Cat_AllPitSegments_Request extends Global.Params {
-  bytes?: Common.StorageType;
+  bytes?: Common.ByteUnit;
   format?: string;
   h?: string[];
   help?: boolean;

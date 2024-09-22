@@ -29,14 +29,14 @@ export interface CharFilterTypes {
 }
 
 export interface ClusterFileSystem {
-  available?: Common.StorageSize;
-  available_in_bytes: Common.Bytes;
-  cache_reserved?: Common.StorageSize;
-  cache_reserved_in_bytes?: Common.Bytes;
-  free?: Common.StorageSize;
-  free_in_bytes: Common.Bytes;
-  total?: Common.StorageSize;
-  total_in_bytes: Common.Bytes;
+  available?: Common.HumanReadableByteCount;
+  available_in_bytes: Common.ByteCount;
+  cache_reserved?: Common.HumanReadableByteCount;
+  cache_reserved_in_bytes?: Common.ByteCount;
+  free?: Common.HumanReadableByteCount;
+  free_in_bytes: Common.ByteCount;
+  total?: Common.HumanReadableByteCount;
+  total_in_bytes: Common.ByteCount;
 }
 
 export interface ClusterIndices {
@@ -80,10 +80,10 @@ export interface ClusterJvm {
 }
 
 export interface ClusterJvmMemory {
-  heap_max?: Common.StorageSize;
-  heap_max_in_bytes: Common.Bytes;
-  heap_used?: Common.StorageSize;
-  heap_used_in_bytes: Common.Bytes;
+  heap_max?: Common.HumanReadableByteCount;
+  heap_max_in_bytes: Common.ByteCount;
+  heap_used?: Common.HumanReadableByteCount;
+  heap_used_in_bytes: Common.ByteCount;
 }
 
 export interface ClusterJvmVersion {
@@ -165,7 +165,7 @@ export interface ClusterProcess {
 }
 
 export interface ClusterProcessCpu {
-  percent: number;
+  percent: Common.PercentageNumber;
 }
 
 export interface ClusterProcessOpenFileDescriptors {
@@ -202,8 +202,8 @@ export interface FieldTypesMappings {
   field_types: FieldTypes[];
   runtime_field_types?: RuntimeFieldTypes[];
   total_deduplicated_field_count?: number;
-  total_deduplicated_mapping_size?: Common.StorageSize;
-  total_deduplicated_mapping_size_in_bytes?: Common.Bytes;
+  total_deduplicated_mapping_size?: Common.HumanReadableByteCount;
+  total_deduplicated_mapping_size_in_bytes?: Common.ByteCount;
   total_field_count?: number;
 }
 
@@ -213,25 +213,25 @@ export interface IndexingPressure {
 
 export interface IndexingPressureMemory {
   current: IndexingPressureMemorySummary;
-  limit_in_bytes: Common.Bytes;
+  limit_in_bytes: Common.ByteCount;
   total: IndexingPressureMemorySummary;
 }
 
 export interface IndexingPressureMemorySummary {
-  all_in_bytes: Common.Bytes;
-  combined_coordinating_and_primary_in_bytes: Common.Bytes;
-  coordinating_in_bytes: Common.Bytes;
+  all_in_bytes: Common.ByteCount;
+  combined_coordinating_and_primary_in_bytes: Common.ByteCount;
+  coordinating_in_bytes: Common.ByteCount;
   coordinating_rejections?: number;
-  primary_in_bytes: Common.Bytes;
+  primary_in_bytes: Common.ByteCount;
   primary_rejections?: number;
-  replica_in_bytes: Common.Bytes;
+  replica_in_bytes: Common.ByteCount;
   replica_rejections?: number;
 }
 
 export interface IndicesVersions {
   index_count: number;
   primary_shard_count: number;
-  total_primary_bytes: Common.Bytes;
+  total_primary_bytes: Common.ByteCount;
   version: Common.VersionString;
 }
 
@@ -242,15 +242,15 @@ export interface NodePackagingType {
 }
 
 export interface OperatingSystemMemoryInfo {
-  adjusted_total_in_bytes?: Common.Bytes;
-  free?: Common.StorageSize;
-  free_in_bytes: Common.Bytes;
-  free_percent: number;
-  total?: Common.StorageSize;
-  total_in_bytes: Common.Bytes;
-  used?: Common.StorageSize;
-  used_in_bytes: Common.Bytes;
-  used_percent: number;
+  adjusted_total_in_bytes?: Common.ByteCount;
+  free?: Common.HumanReadableByteCount;
+  free_in_bytes: Common.ByteCount;
+  free_percent: Common.PercentageNumber;
+  total?: Common.HumanReadableByteCount;
+  total_in_bytes: Common.ByteCount;
+  used?: Common.HumanReadableByteCount;
+  used_in_bytes: Common.ByteCount;
+  used_percent: Common.PercentageNumber;
 }
 
 export interface RuntimeFieldTypes {

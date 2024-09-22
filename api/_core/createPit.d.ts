@@ -25,7 +25,7 @@ export interface CreatePit_Request extends Global.Params {
   index: string[];
   keep_alive?: Common.Duration;
   preference?: string;
-  routing?: string[];
+  routing?: Common.Routing;
 }
 
 export interface CreatePit_Response extends ApiResponse {

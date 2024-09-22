@@ -26,12 +26,12 @@ export interface Segment {
   compound: boolean;
   deleted_docs: number;
   generation: number;
-  memory?: Common.StorageSize;
-  memory_in_bytes?: Common.Bytes;
+  memory?: Common.HumanReadableByteCount;
+  memory_in_bytes?: Common.ByteCount;
   num_docs: number;
   search: boolean;
-  size?: Common.StorageSize;
-  size_in_bytes: Common.Bytes;
+  size?: Common.HumanReadableByteCount;
+  size_in_bytes: Common.ByteCount;
   version: Common.VersionString;
 }
 

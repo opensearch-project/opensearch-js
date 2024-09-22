@@ -20,7 +20,7 @@ import * as Common from '../_types/_common'
 import * as Cat_Indices from '../_types/cat.indices'
 
 export interface Cat_Indices_Request extends Global.Params {
-  bytes?: Common.StorageType;
+  bytes?: Common.ByteUnit;
   cluster_manager_timeout?: Common.Duration;
   expand_wildcards?: Common.ExpandWildcards;
   format?: string;

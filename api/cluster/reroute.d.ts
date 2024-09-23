@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cluster_Reroute from '../_types/cluster.reroute'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cluster_Reroute_Request extends Global.Params {
   body?: Cluster_Reroute_RequestBody;
@@ -25,7 +25,7 @@ export interface Cluster_Reroute_Request extends Global.Params {
   dry_run?: boolean;
   explain?: boolean;
   master_timeout?: Common.Duration;
-  metric?: Common.Metrics;
+  metric?: Cluster_Reroute.Metric | Cluster_Reroute.Metric[];
   retry_failed?: boolean;
   timeout?: Common.Duration;
 }

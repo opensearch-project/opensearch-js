@@ -15,10 +15,10 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Core_Search from '../_types/_core.search'
 import * as Common from '../_types/_common'
 import * as Core_Mget from '../_types/_core.mget'
+import * as Core_Search from '../_types/_core.search'
+import * as Global from '../_types/_global'
 
 export interface Mget_Request extends Global.Params {
   _source?: Core_Search.SourceConfigParam;

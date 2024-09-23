@@ -15,10 +15,10 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
-import * as Ingest_Simulate from '../_types/ingest.simulate'
+import * as Global from '../_types/_global'
 import * as Ingest_Common from '../_types/ingest._common'
+import * as Ingest_Simulate from '../_types/ingest.simulate'
 
 export interface Ingest_Simulate_Request extends Global.Params {
   body: Ingest_Simulate_RequestBody;

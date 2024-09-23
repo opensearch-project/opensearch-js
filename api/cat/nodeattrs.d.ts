@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cat_Nodeattrs from '../_types/cat.nodeattrs'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cat_Nodeattrs_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;

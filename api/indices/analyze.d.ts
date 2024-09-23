@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Common_Analysis from '../_types/_common.analysis'
+import * as Global from '../_types/_global'
 import * as Indices_Analyze from '../_types/indices.analyze'
 
 export interface Indices_Analyze_Request extends Global.Params {

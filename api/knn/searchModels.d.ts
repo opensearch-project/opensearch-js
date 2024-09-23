@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Knn_Common from '../_types/knn._common'
-import * as Common from '../_types/_common'
 
 export interface Knn_SearchModels_Request extends Global.Params {
   _source?: string[];
@@ -45,7 +45,7 @@ export interface Knn_SearchModels_Request extends Global.Params {
   q?: string;
   request_cache?: boolean;
   rest_total_hits_as_int?: boolean;
-  routing?: string[];
+  routing?: Common.Routing;
   scroll?: Common.Duration;
   search_type?: Knn_Common.SearchType;
   seq_no_primary_term?: boolean;

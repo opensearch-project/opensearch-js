@@ -14,8 +14,8 @@
  * modify the API generator.
  */
 
-import * as Common_QueryDsl from './_common.query_dsl'
 import * as Common from './_common'
+import * as Common_QueryDsl from './_common.query_dsl'
 import * as Core_Search from './_core.search'
 
 export type AdjacencyMatrixAggregate = MultiBucketAggregateBaseAdjacencyMatrixBucket & Record<string, any>

@@ -29,7 +29,7 @@ export interface SegmentsRecord {
   searchable?: string;
   segment?: string;
   shard?: string;
-  size?: Common.StorageSize;
+  size?: Common.HumanReadableByteCount;
   'size.memory'?: string;
   version?: Common.VersionString;
 }

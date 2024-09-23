@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Core_Reindex from '../_types/_core.reindex'
+import * as Global from '../_types/_global'
 
 export interface Reindex_Request extends Global.Params {
   body: Reindex_RequestBody;
@@ -44,22 +44,7 @@ export interface Reindex_Response extends ApiResponse {
   body: Reindex_ResponseBody;
 }
 
-export interface Reindex_ResponseBody {
-  batches?: number;
-  created?: number;
-  deleted?: number;
-  failures?: Common.BulkIndexByScrollFailure[];
-  noops?: number;
-  requests_per_second?: number;
-  retries?: Common.Retries;
-  slice_id?: number;
+export type Reindex_ResponseBody = Common.BulkByScrollResponseBase | {
   task?: Common.TaskId;
-  throttled_millis?: Common.EpochTimeUnitMillis;
-  throttled_until_millis?: Common.EpochTimeUnitMillis;
-  timed_out?: boolean;
-  took?: Common.DurationValueUnitMillis;
-  total?: number;
-  updated?: number;
-  version_conflicts?: number;
 }
 

@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_AddBlock from '../_types/indices.add_block'
-import * as Common from '../_types/_common'
 
 export interface Indices_AddBlock_Request extends Global.Params {
   allow_no_indices?: boolean;

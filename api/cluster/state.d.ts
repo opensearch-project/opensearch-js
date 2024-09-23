@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cluster_State from '../_types/cluster.state'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cluster_State_Request extends Global.Params {
   allow_no_indices?: boolean;

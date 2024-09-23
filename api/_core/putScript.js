@@ -26,10 +26,10 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @param {object} params
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
+ * @param {string} [params.context] - Context in which the script or search template should run. To prevent errors, the API immediately compiles the script or template in this context.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} params.id - Identifier for the stored script or search template. Must be unique within the cluster.
- * @param {string} [params.context] - Context in which the script or search template should run. To prevent errors, the API immediately compiles the script or template in this context.
  * @param {object} params.body - The document
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

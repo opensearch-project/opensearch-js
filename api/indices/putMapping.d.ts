@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Common_Mapping from '../_types/_common.mapping'
+import * as Global from '../_types/_global'
 
 export interface Indices_PutMapping_Request extends Global.Params {
   allow_no_indices?: boolean;

@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cluster_Health from '../_types/cluster.health'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cluster_Health_Request extends Global.Params {
   awareness_attribute?: string;

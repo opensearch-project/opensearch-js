@@ -15,11 +15,11 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Common_Mapping from '../_types/_common.mapping'
+import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 import * as Indices_Rollover from '../_types/indices.rollover'
-import * as Common_Mapping from '../_types/_common.mapping'
 
 export interface Indices_Rollover_Request extends Global.Params {
   alias: Common.IndexAlias;

@@ -15,10 +15,10 @@
  */
 
 import * as Common from './_common'
-import * as Common_QueryDsl from './_common.query_dsl'
-import * as Common_Analysis from './_common.analysis'
-import * as Core_Explain from './_core.explain'
 import * as Common_Aggregations from './_common.aggregations'
+import * as Common_Analysis from './_common.analysis'
+import * as Common_QueryDsl from './_common.query_dsl'
+import * as Core_Explain from './_core.explain'
 
 export interface AggregationBreakdown {
   build_aggregation: number;

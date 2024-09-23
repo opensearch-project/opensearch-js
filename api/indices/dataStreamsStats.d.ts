@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Indices_DataStreamsStats from '../_types/indices.data_streams_stats'
 
 export interface Indices_DataStreamsStats_Request extends Global.Params {
@@ -32,7 +32,7 @@ export interface Indices_DataStreamsStats_ResponseBody {
   backing_indices: number;
   data_stream_count: number;
   data_streams: Indices_DataStreamsStats.DataStreamsStatsItem[];
-  total_store_size_bytes: Common.Bytes;
-  total_store_sizes?: Common.StorageSize;
+  total_store_size_bytes: Common.ByteCount;
+  total_store_sizes?: Common.HumanReadableByteCount;
 }
 

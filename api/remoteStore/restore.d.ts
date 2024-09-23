@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as RemoteStore_Common from '../_types/remote_store._common'
 
 export interface RemoteStore_Restore_Request extends Global.Params {

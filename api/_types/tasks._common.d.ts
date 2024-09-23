@@ -18,18 +18,24 @@ import * as Common from './_common'
 
 export type GroupBy = 'nodes' | 'none' | 'parents'
 
-export interface NodeTasks {
-  attributes?: Record<string, string>;
-  host?: Common.Host;
-  ip?: Common.Ip;
-  name?: Common.NodeId;
-  roles?: string[];
-  tasks: Record<string, TaskInfo>;
-  transport_address?: Common.TransportAddress;
+export interface PersistentTaskStatus {
+  state: string;
 }
 
-export interface ParentTaskInfo extends TaskInfo {
-  children?: TaskInfo[];
+export type RawTaskStatus = Record<string, Record<string, any>>
+
+export interface ReplicationTaskStatus {
+  phase: string;
+}
+
+export type Status = ReplicationTaskStatus | Common.BulkByScrollTaskStatus | PersistentTaskStatus | RawTaskStatus
+
+export interface TaskExecutingNode extends Common.BaseNode {
+  tasks: Record<string, TaskInfo>;
+}
+
+export interface TaskGroup extends TaskInfo {
+  children?: TaskGroup[];
 }
 
 export interface TaskInfo {
@@ -44,16 +50,18 @@ export interface TaskInfo {
   running_time?: Common.Duration;
   running_time_in_nanos: Common.DurationValueUnitNanos;
   start_time_in_millis: Common.EpochTimeUnitMillis;
-  status?: Record<string, any>;
+  status?: Status;
   type: string;
 }
 
-export type TaskInfos = TaskInfo[] | Record<string, ParentTaskInfo>
+export type TaskInfos = TaskInfo[] | Record<string, TaskGroup>
 
 export interface TaskListResponseBase {
   node_failures?: Common.ErrorCause[];
-  nodes?: Record<string, NodeTasks>;
+  nodes?: Record<string, TaskExecutingNode>;
   task_failures?: Common.TaskFailure[];
   tasks?: TaskInfos;
 }
+
+export type TaskResponse = Common.BulkByScrollResponseBase
 

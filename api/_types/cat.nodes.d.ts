@@ -29,12 +29,12 @@ export interface NodesRecord {
   'disk.avail'?: string;
   'disk.total'?: string;
   'disk.used'?: string;
-  'disk.used_percent'?: Common.Percentage;
+  'disk.used_percent'?: Common.PercentageString;
   'fielddata.evictions'?: string;
   'fielddata.memory_size'?: string;
   'file_desc.current'?: string;
   'file_desc.max'?: string;
-  'file_desc.percent'?: Common.Percentage;
+  'file_desc.percent'?: Common.PercentageString;
   flavor?: string;
   'flush.total'?: string;
   'flush.total_time'?: string;
@@ -47,7 +47,7 @@ export interface NodesRecord {
   'get.total'?: string;
   'heap.current'?: string;
   'heap.max'?: string;
-  'heap.percent'?: Common.Percentage;
+  'heap.percent'?: Common.PercentageString;
   http_address?: string;
   id?: Common.Id;
   'indexing.delete_current'?: string;
@@ -81,7 +81,7 @@ export interface NodesRecord {
   'query_cache.miss_count'?: string;
   'ram.current'?: string;
   'ram.max'?: string;
-  'ram.percent'?: Common.Percentage;
+  'ram.percent'?: Common.PercentageString;
   'refresh.external_time'?: string;
   'refresh.external_total'?: string;
   'refresh.listeners'?: string;

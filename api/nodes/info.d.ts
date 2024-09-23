@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Nodes_Info from '../_types/nodes.info'
-import * as Common from '../_types/_common'
 
 export interface Nodes_Info_Request extends Global.Params {
   flat_settings?: boolean;

@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Common from '../_types/_common'
+import * as Common_QueryDsl from '../_types/_common.query_dsl'
+import * as Global from '../_types/_global'
 import * as Indices_ValidateQuery from '../_types/indices.validate_query'
 
 export interface Indices_ValidateQuery_Request extends Global.Params {

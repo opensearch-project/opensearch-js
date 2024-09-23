@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Indices_UpdateAliases from '../_types/indices.update_aliases'
 
 export interface Indices_UpdateAliases_Request extends Global.Params {

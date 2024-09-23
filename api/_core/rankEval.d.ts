@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Core_RankEval from '../_types/_core.rank_eval'
+import * as Global from '../_types/_global'
 
 export interface RankEval_Request extends Global.Params {
   allow_no_indices?: boolean;
@@ -25,7 +25,7 @@ export interface RankEval_Request extends Global.Params {
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
   index?: Common.Indices;
-  search_type?: string;
+  search_type?: Common.SearchType;
 }
 
 export interface RankEval_RequestBody {

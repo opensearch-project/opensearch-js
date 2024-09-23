@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cluster_PendingTasks from '../_types/cluster.pending_tasks'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cluster_PendingTasks_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;

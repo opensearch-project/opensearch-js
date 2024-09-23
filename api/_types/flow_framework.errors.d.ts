@@ -15,11 +15,36 @@
  */
 
 
-export type BadRequestError = Record<string, any>
+export interface BadRequestError {
+  error?: string;
+  status?: number;
+}
 
 export type ConflictError = Record<string, any>
 
+export interface DeprovisioningError {
+  error: string;
+}
+
+export interface DeprovisioningForbiddenError {
+  error: string;
+}
+
+export interface DuplicateKeyError {
+  error?: string;
+  status?: number;
+}
+
 export type FlowFrameworkAPIDisabledError = Record<string, any>
+
+export type InvalidParameterError = Record<string, any>
+
+export interface InvalidRequestBodyFieldError {
+  error?: string;
+  status?: number;
+}
+
+export type InvalidTemplateVersionError = Record<string, any>
 
 export type MaxWorkflowsLimitError = Record<string, any>
 
@@ -27,9 +52,29 @@ export type MissingParameterError = Record<string, any>
 
 export type ParameterConflictError = Record<string, any>
 
+export interface RequestBodyParsingFailedError {
+  error?: string;
+  status?: number;
+}
+
+export interface RequestTimeoutError {
+  error?: string;
+  status?: number;
+}
+
+export interface TemplateNameRequiredError {
+  error?: string;
+}
+
 export type TemplateNotFoundError = Record<string, any>
+
+export type UnsupportedFieldUpdateError = Record<string, any>
 
 export type WorkFlowIdNullError = Record<string, any>
 
+export type WorkflowParsingError = Record<string, any>
+
 export type WorkflowSaveError = Record<string, any>
+
+export type WorkflowStepsRetrieveError = Record<string, any>
 

@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
+import * as Global from '../_types/_global'
 
 export interface Indices_PutAlias_Request extends Global.Params {
   body?: Indices_PutAlias_RequestBody;

@@ -14,10 +14,10 @@
  * modify the API generator.
  */
 
-import * as Common_QueryDsl from './_common.query_dsl'
 import * as Common from './_common'
 import * as Common_Analysis from './_common.analysis'
 import * as Common_Mapping from './_common.mapping'
+import * as Common_QueryDsl from './_common.query_dsl'
 
 export interface Alias {
   filter?: Common_QueryDsl.QueryContainer;
@@ -80,13 +80,13 @@ export interface DataStreamLifecycleRolloverConditions {
   max_age?: string;
   max_docs?: number;
   max_primary_shard_docs?: number;
-  max_primary_shard_size?: Common.StorageSize;
-  max_size?: Common.StorageSize;
+  max_primary_shard_size?: Common.HumanReadableByteCount;
+  max_size?: Common.HumanReadableByteCount;
   min_age?: Common.Duration;
   min_docs?: number;
   min_primary_shard_docs?: number;
-  min_primary_shard_size?: Common.StorageSize;
-  min_size?: Common.StorageSize;
+  min_primary_shard_size?: Common.HumanReadableByteCount;
+  min_size?: Common.HumanReadableByteCount;
 }
 
 export interface DataStreamLifecycleWithRollover {
@@ -486,7 +486,7 @@ export interface TemplateMapping {
 
 export interface Translog {
   durability?: TranslogDurability;
-  flush_threshold_size?: Common.StorageSize;
+  flush_threshold_size?: Common.HumanReadableByteCount;
   retention?: TranslogRetention;
   sync_interval?: Common.Duration;
 }
@@ -495,6 +495,6 @@ export type TranslogDurability = 'async' | 'request'
 
 export interface TranslogRetention {
   age?: Common.Duration;
-  size?: Common.StorageSize;
+  size?: Common.HumanReadableByteCount;
 }
 

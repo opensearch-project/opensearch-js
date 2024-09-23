@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Cluster_WeightedRouting from '../_types/cluster.weighted_routing'
+import * as Global from '../_types/_global'
 
 export interface Cluster_PutWeightedRouting_Request extends Global.Params {
   attribute: string;

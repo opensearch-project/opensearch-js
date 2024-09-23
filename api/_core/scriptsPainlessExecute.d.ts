@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Core_ScriptsPainlessExecute from '../_types/_core.scripts_painless_execute'
 import * as Common from '../_types/_common'
+import * as Core_ScriptsPainlessExecute from '../_types/_core.scripts_painless_execute'
+import * as Global from '../_types/_global'
 
 export interface ScriptsPainlessExecute_Request extends Global.Params {
   body?: ScriptsPainlessExecute_RequestBody;

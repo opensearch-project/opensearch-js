@@ -15,8 +15,8 @@
  */
 
 import * as Common from './_common'
-import * as Core_Search from './_core.search'
 import * as Core_Get from './_core.get'
+import * as Core_Search from './_core.search'
 
 export interface MultiGetError {
   _id: Common.Id;

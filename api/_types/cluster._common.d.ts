@@ -15,8 +15,8 @@
  */
 
 import * as Common from './_common'
-import * as Indices_Common from './indices._common'
 import * as Common_Mapping from './_common.mapping'
+import * as Indices_Common from './indices._common'
 
 export interface ComponentTemplate {
   component_template: ComponentTemplateNode;

@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Nodes_ReloadSecureSettings from '../_types/nodes.reload_secure_settings'
 
 export interface Nodes_ReloadSecureSettings_Request extends Global.Params {

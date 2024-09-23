@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Core_Termvectors from '../_types/_core.termvectors'
+import * as Global from '../_types/_global'
 
 export interface Termvectors_Request extends Global.Params {
   body?: Termvectors_RequestBody;

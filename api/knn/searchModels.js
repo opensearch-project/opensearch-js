@@ -49,7 +49,7 @@ const { normalizeArguments } = require('../utils');
  * @param {string} [params.q] - Query in the Lucene query string syntax.
  * @param {boolean} [params.request_cache] - Specify if request cache should be used for this request or not, defaults to index level setting.
  * @param {boolean} [params.rest_total_hits_as_int=false] - Indicates whether hits.total should be rendered as an integer or an object in the rest search response.
- * @param {array} [params.routing] - Comma-separated list of specific routing values.
+ * @param {string} [params.routing] - Comma-separated list of specific routing values.
  * @param {string} [params.scroll] - Specify how long a consistent view of the index should be maintained for scrolled search.
  * @param {string} [params.search_type] - Search operation type.
  * @param {boolean} [params.seq_no_primary_term] - Specify whether to return sequence number and primary term of the last modification of each hit.

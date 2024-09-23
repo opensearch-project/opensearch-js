@@ -24,7 +24,9 @@ const { normalizeArguments } = require('../utils');
  *
  * @memberOf API-Transforms
  *
- * @param {object} [params] - (Unused)
+ * @param {object} [params]
+ * @param {object} [params.body] 
+ *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
@@ -36,7 +38,7 @@ function previewFunc(params, options, callback) {
   let { body, ...querystring } = params;
 
   const path = '/_plugins/_transform/_preview';
-  const method = 'GET';
+  const method = 'POST';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);

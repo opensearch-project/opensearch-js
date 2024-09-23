@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
-import * as Common from '../_types/_common'
 import * as Indices_SimulateTemplate from '../_types/indices.simulate_template'
 
 export interface Indices_SimulateTemplate_Request extends Global.Params {

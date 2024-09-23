@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Snapshot_VerifyRepository from '../_types/snapshot.verify_repository'
 
 export interface Snapshot_VerifyRepository_Request extends Global.Params {

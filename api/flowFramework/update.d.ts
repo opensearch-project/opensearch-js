@@ -15,13 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as FlowFramework_Common from '../_types/flow_framework.common'
+import * as Global from '../_types/_global'
 
 export interface FlowFramework_Update_Request extends Global.Params {
   body?: FlowFramework_Common.FlowFrameworkUpdate;
-  update_fields?: boolean;
-  workflow_id: string;
+  provision?: FlowFramework_Common.Provision;
+  reprovision?: FlowFramework_Common.Reprovision;
+  update_fields?: FlowFramework_Common.UpdateFields;
+  use_case?: FlowFramework_Common.UseCase;
+  validation?: FlowFramework_Common.Validation;
+  workflow_id: FlowFramework_Common.WorkflowID;
 }
 
 export interface FlowFramework_Update_Response extends ApiResponse {

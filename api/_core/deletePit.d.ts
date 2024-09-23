@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Core_Common from '../_types/_core._common'
+import * as Global from '../_types/_global'
 
 export interface DeletePit_Request extends Global.Params {
   body?: DeletePit_RequestBody;

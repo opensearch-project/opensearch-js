@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Indices_GetIndexTemplate from '../_types/indices.get_index_template'
 
 export interface Indices_GetIndexTemplate_Request extends Global.Params {

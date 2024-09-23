@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
+import * as Global from '../_types/_global'
 
 export interface DeleteByQuery_Request extends Global.Params {
   _source?: string[];
@@ -67,22 +67,7 @@ export interface DeleteByQuery_Response extends ApiResponse {
   body: DeleteByQuery_ResponseBody;
 }
 
-export interface DeleteByQuery_ResponseBody {
-  batches?: number;
-  deleted?: number;
-  failures?: Common.BulkIndexByScrollFailure[];
-  noops?: number;
-  requests_per_second?: number;
-  retries?: Common.Retries;
-  slice_id?: number;
+export type DeleteByQuery_ResponseBody = Common.BulkByScrollResponseBase | {
   task?: Common.TaskId;
-  throttled?: Common.Duration;
-  throttled_millis?: Common.DurationValueUnitMillis;
-  throttled_until?: Common.Duration;
-  throttled_until_millis?: Common.DurationValueUnitMillis;
-  timed_out?: boolean;
-  took?: Common.DurationValueUnitMillis;
-  total?: number;
-  version_conflicts?: number;
 }
 

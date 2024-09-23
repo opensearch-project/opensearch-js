@@ -17,11 +17,11 @@
 import * as Common from './_common'
 import * as Core_Search from './_core.search'
 
-export type CreateOperation = WriteOperation & Record<string, any>
+export type CreateOperation = WriteOperation
 
-export type DeleteOperation = OperationBase & Record<string, any>
+export type DeleteOperation = OperationBase
 
-export type IndexOperation = WriteOperation & Record<string, any>
+export type IndexOperation = WriteOperation
 
 export interface OperationBase {
   _id?: Common.Id;

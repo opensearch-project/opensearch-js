@@ -14,8 +14,8 @@
  * modify the API generator.
  */
 
-import * as Indices_Common from './indices._common'
 import * as Common from './_common'
+import * as Indices_Common from './indices._common'
 
 export interface AggregateMetricDoubleProperty extends PropertyBase {
   default_metric: string;

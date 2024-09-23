@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Core_Msearch from '../_types/_core.msearch'
+import * as Global from '../_types/_global'
 
 export interface Msearch_Request extends Global.Params {
   body: Msearch_RequestBody;

@@ -300,6 +300,15 @@ export default class OpenSearchAPI {
     create (params: API.FlowFramework_Create_Request, callback: callbackFn<API.FlowFramework_Create_Response>): TransportRequestCallback;
     create (params: API.FlowFramework_Create_Request, options: TransportRequestOptions, callback: callbackFn<API.FlowFramework_Create_Response>): TransportRequestCallback;
 
+    search (params: API.FlowFramework_Search_Request, options?: TransportRequestOptions): TransportRequestPromise<API.FlowFramework_Search_Response>;
+    search (params: API.FlowFramework_Search_Request, callback: callbackFn<API.FlowFramework_Search_Response>): TransportRequestCallback;
+    search (params: API.FlowFramework_Search_Request, options: TransportRequestOptions, callback: callbackFn<API.FlowFramework_Search_Response>): TransportRequestCallback;
+
+    getSteps (params?: API.FlowFramework_GetSteps_Request, options?: TransportRequestOptions): TransportRequestPromise<API.FlowFramework_GetSteps_Response>;
+    getSteps (callback: callbackFn<API.FlowFramework_GetSteps_Response>): TransportRequestCallback;
+    getSteps (params: API.FlowFramework_GetSteps_Request, callback: callbackFn<API.FlowFramework_GetSteps_Response>): TransportRequestCallback;
+    getSteps (params: API.FlowFramework_GetSteps_Request, options: TransportRequestOptions, callback: callbackFn<API.FlowFramework_GetSteps_Response>): TransportRequestCallback;
+
     delete (params: API.FlowFramework_Delete_Request, options?: TransportRequestOptions): TransportRequestPromise<API.FlowFramework_Delete_Response>;
     delete (params: API.FlowFramework_Delete_Request, callback: callbackFn<API.FlowFramework_Delete_Response>): TransportRequestCallback;
     delete (params: API.FlowFramework_Delete_Request, options: TransportRequestOptions, callback: callbackFn<API.FlowFramework_Delete_Response>): TransportRequestCallback;
@@ -311,6 +320,22 @@ export default class OpenSearchAPI {
     update (params: API.FlowFramework_Update_Request, options?: TransportRequestOptions): TransportRequestPromise<API.FlowFramework_Update_Response>;
     update (params: API.FlowFramework_Update_Request, callback: callbackFn<API.FlowFramework_Update_Response>): TransportRequestCallback;
     update (params: API.FlowFramework_Update_Request, options: TransportRequestOptions, callback: callbackFn<API.FlowFramework_Update_Response>): TransportRequestCallback;
+
+    deprovision (params: API.FlowFramework_Deprovision_Request, options?: TransportRequestOptions): TransportRequestPromise<API.FlowFramework_Deprovision_Response>;
+    deprovision (params: API.FlowFramework_Deprovision_Request, callback: callbackFn<API.FlowFramework_Deprovision_Response>): TransportRequestCallback;
+    deprovision (params: API.FlowFramework_Deprovision_Request, options: TransportRequestOptions, callback: callbackFn<API.FlowFramework_Deprovision_Response>): TransportRequestCallback;
+
+    provision (params: API.FlowFramework_Provision_Request, options?: TransportRequestOptions): TransportRequestPromise<API.FlowFramework_Provision_Response>;
+    provision (params: API.FlowFramework_Provision_Request, callback: callbackFn<API.FlowFramework_Provision_Response>): TransportRequestCallback;
+    provision (params: API.FlowFramework_Provision_Request, options: TransportRequestOptions, callback: callbackFn<API.FlowFramework_Provision_Response>): TransportRequestCallback;
+
+    getStatus (params: API.FlowFramework_GetStatus_Request, options?: TransportRequestOptions): TransportRequestPromise<API.FlowFramework_GetStatus_Response>;
+    getStatus (params: API.FlowFramework_GetStatus_Request, callback: callbackFn<API.FlowFramework_GetStatus_Response>): TransportRequestCallback;
+    getStatus (params: API.FlowFramework_GetStatus_Request, options: TransportRequestOptions, callback: callbackFn<API.FlowFramework_GetStatus_Response>): TransportRequestCallback;
+
+    searchState (params: API.FlowFramework_SearchState_Request, options?: TransportRequestOptions): TransportRequestPromise<API.FlowFramework_SearchState_Response>;
+    searchState (params: API.FlowFramework_SearchState_Request, callback: callbackFn<API.FlowFramework_SearchState_Response>): TransportRequestCallback;
+    searchState (params: API.FlowFramework_SearchState_Request, options: TransportRequestOptions, callback: callbackFn<API.FlowFramework_SearchState_Response>): TransportRequestCallback;
 
   };
 
@@ -555,6 +580,63 @@ export default class OpenSearchAPI {
 
   };
 
+  ism: {
+    addPolicy (params?: API.Ism_AddPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_AddPolicy_Response>;
+    addPolicy (callback: callbackFn<API.Ism_AddPolicy_Response>): TransportRequestCallback;
+    addPolicy (params: API.Ism_AddPolicy_Request, callback: callbackFn<API.Ism_AddPolicy_Response>): TransportRequestCallback;
+    addPolicy (params: API.Ism_AddPolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_AddPolicy_Response>): TransportRequestCallback;
+
+    changePolicy (params?: API.Ism_ChangePolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_ChangePolicy_Response>;
+    changePolicy (callback: callbackFn<API.Ism_ChangePolicy_Response>): TransportRequestCallback;
+    changePolicy (params: API.Ism_ChangePolicy_Request, callback: callbackFn<API.Ism_ChangePolicy_Response>): TransportRequestCallback;
+    changePolicy (params: API.Ism_ChangePolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_ChangePolicy_Response>): TransportRequestCallback;
+
+    explainPolicy (params?: API.Ism_ExplainPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_ExplainPolicy_Response>;
+    explainPolicy (callback: callbackFn<API.Ism_ExplainPolicy_Response>): TransportRequestCallback;
+    explainPolicy (params: API.Ism_ExplainPolicy_Request, callback: callbackFn<API.Ism_ExplainPolicy_Response>): TransportRequestCallback;
+    explainPolicy (params: API.Ism_ExplainPolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_ExplainPolicy_Response>): TransportRequestCallback;
+
+    getPolicies (params?: API.Ism_GetPolicies_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_GetPolicies_Response>;
+    getPolicies (callback: callbackFn<API.Ism_GetPolicies_Response>): TransportRequestCallback;
+    getPolicies (params: API.Ism_GetPolicies_Request, callback: callbackFn<API.Ism_GetPolicies_Response>): TransportRequestCallback;
+    getPolicies (params: API.Ism_GetPolicies_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_GetPolicies_Response>): TransportRequestCallback;
+
+    putPolicies (params: API.Ism_PutPolicies_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_PutPolicies_Response>;
+    putPolicies (params: API.Ism_PutPolicies_Request, callback: callbackFn<API.Ism_PutPolicies_Response>): TransportRequestCallback;
+    putPolicies (params: API.Ism_PutPolicies_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_PutPolicies_Response>): TransportRequestCallback;
+
+    deletePolicy (params: API.Ism_DeletePolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_DeletePolicy_Response>;
+    deletePolicy (params: API.Ism_DeletePolicy_Request, callback: callbackFn<API.Ism_DeletePolicy_Response>): TransportRequestCallback;
+    deletePolicy (params: API.Ism_DeletePolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_DeletePolicy_Response>): TransportRequestCallback;
+
+    getPolicy (params: API.Ism_GetPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_GetPolicy_Response>;
+    getPolicy (params: API.Ism_GetPolicy_Request, callback: callbackFn<API.Ism_GetPolicy_Response>): TransportRequestCallback;
+    getPolicy (params: API.Ism_GetPolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_GetPolicy_Response>): TransportRequestCallback;
+
+    existsPolicy (params: API.Ism_ExistsPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_ExistsPolicy_Response>;
+    existsPolicy (params: API.Ism_ExistsPolicy_Request, callback: callbackFn<API.Ism_ExistsPolicy_Response>): TransportRequestCallback;
+    existsPolicy (params: API.Ism_ExistsPolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_ExistsPolicy_Response>): TransportRequestCallback;
+
+    putPolicy (params: API.Ism_PutPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_PutPolicy_Response>;
+    putPolicy (params: API.Ism_PutPolicy_Request, callback: callbackFn<API.Ism_PutPolicy_Response>): TransportRequestCallback;
+    putPolicy (params: API.Ism_PutPolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_PutPolicy_Response>): TransportRequestCallback;
+
+    removePolicy (params?: API.Ism_RemovePolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_RemovePolicy_Response>;
+    removePolicy (callback: callbackFn<API.Ism_RemovePolicy_Response>): TransportRequestCallback;
+    removePolicy (params: API.Ism_RemovePolicy_Request, callback: callbackFn<API.Ism_RemovePolicy_Response>): TransportRequestCallback;
+    removePolicy (params: API.Ism_RemovePolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_RemovePolicy_Response>): TransportRequestCallback;
+
+    retryIndex (params?: API.Ism_RetryIndex_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_RetryIndex_Response>;
+    retryIndex (callback: callbackFn<API.Ism_RetryIndex_Response>): TransportRequestCallback;
+    retryIndex (params: API.Ism_RetryIndex_Request, callback: callbackFn<API.Ism_RetryIndex_Response>): TransportRequestCallback;
+    retryIndex (params: API.Ism_RetryIndex_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_RetryIndex_Response>): TransportRequestCallback;
+
+    refreshSearchAnalyzers (params: API.Ism_RefreshSearchAnalyzers_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_RefreshSearchAnalyzers_Response>;
+    refreshSearchAnalyzers (params: API.Ism_RefreshSearchAnalyzers_Request, callback: callbackFn<API.Ism_RefreshSearchAnalyzers_Response>): TransportRequestCallback;
+    refreshSearchAnalyzers (params: API.Ism_RefreshSearchAnalyzers_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_RefreshSearchAnalyzers_Response>): TransportRequestCallback;
+
+  };
+
   knn: {
     stats (params?: API.Knn_Stats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Knn_Stats_Response>;
     stats (callback: callbackFn<API.Knn_Stats_Response>): TransportRequestCallback;
@@ -585,6 +667,24 @@ export default class OpenSearchAPI {
   };
 
   ml: {
+    registerAgents (params?: API.Ml_RegisterAgents_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_RegisterAgents_Response>;
+    registerAgents (callback: callbackFn<API.Ml_RegisterAgents_Response>): TransportRequestCallback;
+    registerAgents (params: API.Ml_RegisterAgents_Request, callback: callbackFn<API.Ml_RegisterAgents_Response>): TransportRequestCallback;
+    registerAgents (params: API.Ml_RegisterAgents_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_RegisterAgents_Response>): TransportRequestCallback;
+
+    deleteAgent (params: API.Ml_DeleteAgent_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteAgent_Response>;
+    deleteAgent (params: API.Ml_DeleteAgent_Request, callback: callbackFn<API.Ml_DeleteAgent_Response>): TransportRequestCallback;
+    deleteAgent (params: API.Ml_DeleteAgent_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteAgent_Response>): TransportRequestCallback;
+
+    createConnector (params?: API.Ml_CreateConnector_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_CreateConnector_Response>;
+    createConnector (callback: callbackFn<API.Ml_CreateConnector_Response>): TransportRequestCallback;
+    createConnector (params: API.Ml_CreateConnector_Request, callback: callbackFn<API.Ml_CreateConnector_Response>): TransportRequestCallback;
+    createConnector (params: API.Ml_CreateConnector_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_CreateConnector_Response>): TransportRequestCallback;
+
+    deleteConnector (params: API.Ml_DeleteConnector_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteConnector_Response>;
+    deleteConnector (params: API.Ml_DeleteConnector_Request, callback: callbackFn<API.Ml_DeleteConnector_Response>): TransportRequestCallback;
+    deleteConnector (params: API.Ml_DeleteConnector_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteConnector_Response>): TransportRequestCallback;
+
     registerModelGroup (params?: API.Ml_RegisterModelGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_RegisterModelGroup_Response>;
     registerModelGroup (callback: callbackFn<API.Ml_RegisterModelGroup_Response>): TransportRequestCallback;
     registerModelGroup (params: API.Ml_RegisterModelGroup_Request, callback: callbackFn<API.Ml_RegisterModelGroup_Response>): TransportRequestCallback;
@@ -1122,6 +1222,10 @@ export default class OpenSearchAPI {
     createUserLegacy (params: API.Security_CreateUserLegacy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_CreateUserLegacy_Response>;
     createUserLegacy (params: API.Security_CreateUserLegacy_Request, callback: callbackFn<API.Security_CreateUserLegacy_Response>): TransportRequestCallback;
     createUserLegacy (params: API.Security_CreateUserLegacy_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_CreateUserLegacy_Response>): TransportRequestCallback;
+
+    generateUserTokenLegacy (params: API.Security_GenerateUserTokenLegacy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_GenerateUserTokenLegacy_Response>;
+    generateUserTokenLegacy (params: API.Security_GenerateUserTokenLegacy_Request, callback: callbackFn<API.Security_GenerateUserTokenLegacy_Response>): TransportRequestCallback;
+    generateUserTokenLegacy (params: API.Security_GenerateUserTokenLegacy_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_GenerateUserTokenLegacy_Response>): TransportRequestCallback;
 
     validate (params?: API.Security_Validate_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_Validate_Response>;
     validate (callback: callbackFn<API.Security_Validate_Response>): TransportRequestCallback;

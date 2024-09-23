@@ -28,7 +28,8 @@ export interface AwarenessAttributeStats {
 export interface HealthResponseBody {
   active_primary_shards: number;
   active_shards: number;
-  active_shards_percent_as_number: Common.Percentage;
+  active_shards_percent?: Common.PercentageString;
+  active_shards_percent_as_number: Common.PercentageNumber;
   awareness_attributes?: Record<string, AwarenessAttributeStats>;
   cluster_name: Common.Name;
   delayed_unassigned_shards: number;

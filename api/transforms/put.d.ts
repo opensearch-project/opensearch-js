@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Transforms_Common from '../_types/transforms._common'
-import * as Common from '../_types/_common'
 
 export interface Transforms_Put_Request extends Global.Params {
   body?: Transforms_Common.Transform;

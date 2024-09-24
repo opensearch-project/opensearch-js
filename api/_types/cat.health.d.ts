@@ -17,7 +17,7 @@
 import * as Common from './_common'
 
 export interface HealthRecord {
-  active_shards_percent?: string;
+  active_shards_percent?: Common.PercentageString;
   cluster?: string;
   discovered_cluster_manager?: string;
   discovered_master?: string;

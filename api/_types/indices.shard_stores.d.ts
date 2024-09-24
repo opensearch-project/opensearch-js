@@ -33,9 +33,9 @@ export interface ShardStoreException {
   type: string;
 }
 
-export type ShardStoreStatus = 'all' | 'green' | 'red' | 'yellow'
-
 export interface ShardStoreWrapper {
   stores: ShardStore[];
 }
+
+export type Status = 'all' | 'green' | 'red' | 'yellow'
 

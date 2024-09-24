@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Tasks_Common from '../_types/tasks._common'
 
 export interface Tasks_Get_Request extends Global.Params {
@@ -32,7 +32,7 @@ export interface Tasks_Get_Response extends ApiResponse {
 export interface Tasks_Get_ResponseBody {
   completed: boolean;
   error?: Common.ErrorCause;
-  response?: Record<string, any>;
+  response?: Tasks_Common.TaskResponse;
   task: Tasks_Common.TaskInfo;
 }
 

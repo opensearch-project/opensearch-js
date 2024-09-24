@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as AsynchronousSearch_Common from '../_types/asynchronous_search._common'
+import * as Global from '../_types/_global'
 
 export type AsynchronousSearch_Stats_Request = Global.Params & Record<string, any>
 

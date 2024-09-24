@@ -15,12 +15,12 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cat_Allocation from '../_types/cat.allocation'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cat_Allocation_Request extends Global.Params {
-  bytes?: Common.StorageType;
+  bytes?: Common.ByteUnit;
   cluster_manager_timeout?: Common.Duration;
   format?: string;
   h?: string[];

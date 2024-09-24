@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as DanglingIndices_ListDanglingIndices from '../_types/dangling_indices.list_dangling_indices'
+import * as Global from '../_types/_global'
 
 export type DanglingIndices_ListDanglingIndices_Request = Global.Params & Record<string, any>
 

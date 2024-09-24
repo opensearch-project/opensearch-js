@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Knn_Stats_Request extends Global.Params {
   node_id?: string[];

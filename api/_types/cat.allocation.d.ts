@@ -19,7 +19,7 @@ import * as Common from './_common'
 export interface AllocationRecord {
   'disk.avail'?: undefined | string;
   'disk.indices'?: undefined | string;
-  'disk.percent'?: Common.Percentage | undefined;
+  'disk.percent'?: Common.PercentageString | undefined;
   'disk.total'?: undefined | string;
   'disk.used'?: undefined | string;
   host?: Common.Host | undefined;

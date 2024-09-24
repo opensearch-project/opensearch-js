@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Indices_Segments from '../_types/indices.segments'
 
 export interface Indices_Segments_Request extends Global.Params {

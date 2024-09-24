@@ -15,11 +15,12 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as FlowFramework_Common from '../_types/flow_framework.common'
 import * as Global from '../_types/_global'
 
 export interface FlowFramework_Delete_Request extends Global.Params {
   clear_status?: boolean;
-  workflow_id: string;
+  workflow_id: FlowFramework_Common.WorkflowID;
 }
 
 export interface FlowFramework_Delete_Response extends ApiResponse {

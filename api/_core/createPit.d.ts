@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Core_Common from '../_types/_core._common'
+import * as Global from '../_types/_global'
 
 export interface CreatePit_Request extends Global.Params {
   allow_partial_pit_creation?: boolean;
@@ -25,7 +25,7 @@ export interface CreatePit_Request extends Global.Params {
   index: string[];
   keep_alive?: Common.Duration;
   preference?: string;
-  routing?: string[];
+  routing?: Common.Routing;
 }
 
 export interface CreatePit_Response extends ApiResponse {

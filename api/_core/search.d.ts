@@ -15,12 +15,12 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Core_Search from '../_types/_core.search'
 import * as Common from '../_types/_common'
-import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Common_Aggregations from '../_types/_common.aggregations'
 import * as Common_Mapping from '../_types/_common.mapping'
+import * as Common_QueryDsl from '../_types/_common.query_dsl'
+import * as Core_Search from '../_types/_core.search'
+import * as Global from '../_types/_global'
 
 export interface Search_Request extends Global.Params {
   _source?: Core_Search.SourceConfigParam;
@@ -84,7 +84,6 @@ export interface Search_RequestBody {
   from?: number;
   highlight?: Core_Search.Highlight;
   indices_boost?: Record<string, number>[];
-  knn?: Common_QueryDsl.KnnQuery | Common_QueryDsl.KnnQuery[];
   min_score?: number;
   pit?: Core_Search.PointInTimeReference;
   post_filter?: Common_QueryDsl.QueryContainer;

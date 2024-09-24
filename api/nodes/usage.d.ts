@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Nodes_Usage from '../_types/nodes.usage'
-import * as Common from '../_types/_common'
 
 export interface Nodes_Usage_Request extends Global.Params {
   metric?: Nodes_Usage.Metric[];

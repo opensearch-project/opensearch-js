@@ -15,8 +15,8 @@
  */
 
 import * as Common from './_common'
-import * as Common_QueryDsl from './_common.query_dsl'
 import * as Common_Mapping from './_common.mapping'
+import * as Common_QueryDsl from './_common.query_dsl'
 
 export interface Destination {
   index: Common.IndexName;

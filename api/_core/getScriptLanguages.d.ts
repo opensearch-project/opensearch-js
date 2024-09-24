@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Core_GetScriptLanguages from '../_types/_core.get_script_languages'
+import * as Global from '../_types/_global'
 
 export type GetScriptLanguages_Request = Global.Params & Record<string, any>
 

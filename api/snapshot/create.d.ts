@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Snapshot_Common from '../_types/snapshot._common'
 
 export interface Snapshot_Create_Request extends Global.Params {

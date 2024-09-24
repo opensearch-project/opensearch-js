@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Indices_GetMapping from '../_types/indices.get_mapping'
 
 export interface Indices_GetMapping_Request extends Global.Params {

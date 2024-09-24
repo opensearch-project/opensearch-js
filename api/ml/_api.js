@@ -19,17 +19,27 @@
 /** @namespace API-Ml */
 
 function MlApi(bindObj) {
+  this.createConnector = require('./createConnector').bind(bindObj);
+  this.deleteAgent = require('./deleteAgent').bind(bindObj);
+  this.deleteConnector = require('./deleteConnector').bind(bindObj);
   this.deleteModel = require('./deleteModel').bind(bindObj);
   this.deleteModelGroup = require('./deleteModelGroup').bind(bindObj);
   this.deleteTask = require('./deleteTask').bind(bindObj);
   this.deployModel = require('./deployModel').bind(bindObj);
   this.getModelGroup = require('./getModelGroup').bind(bindObj);
   this.getTask = require('./getTask').bind(bindObj);
+  this.registerAgents = require('./registerAgents').bind(bindObj);
   this.registerModel = require('./registerModel').bind(bindObj);
   this.registerModelGroup = require('./registerModelGroup').bind(bindObj);
   this.searchModels = require('./searchModels').bind(bindObj);
   this.undeployModel = require('./undeployModel').bind(bindObj);
 
+  // Deprecated: Use createConnector instead.
+  this.create_connector = require('./createConnector').bind(bindObj);
+  // Deprecated: Use deleteAgent instead.
+  this.delete_agent = require('./deleteAgent').bind(bindObj);
+  // Deprecated: Use deleteConnector instead.
+  this.delete_connector = require('./deleteConnector').bind(bindObj);
   // Deprecated: Use deleteModel instead.
   this.delete_model = require('./deleteModel').bind(bindObj);
   // Deprecated: Use deleteModelGroup instead.
@@ -42,6 +52,8 @@ function MlApi(bindObj) {
   this.get_model_group = require('./getModelGroup').bind(bindObj);
   // Deprecated: Use getTask instead.
   this.get_task = require('./getTask').bind(bindObj);
+  // Deprecated: Use registerAgents instead.
+  this.register_agents = require('./registerAgents').bind(bindObj);
   // Deprecated: Use registerModel instead.
   this.register_model = require('./registerModel').bind(bindObj);
   // Deprecated: Use registerModelGroup instead.

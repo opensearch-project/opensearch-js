@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cat_Count from '../_types/cat.count'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cat_Count_Request extends Global.Params {
   format?: string;

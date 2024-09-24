@@ -57,6 +57,8 @@ export interface IndicesStats {
   uuid: Common.Uuid;
 }
 
+export type Metric = '_all' | 'completion' | 'docs' | 'fielddata' | 'flush' | 'get' | 'indexing' | 'merge' | 'query_cache' | 'recovery' | 'refresh' | 'request_cache' | 'search' | 'segments' | 'store' | 'suggest' | 'translog' | 'warmer'
+
 export interface ShardCommit {
   generation: number;
   id: Common.Id;
@@ -65,13 +67,13 @@ export interface ShardCommit {
 }
 
 export interface ShardFileSizeInfo {
-  average_size_in_bytes?: Common.Bytes;
+  average_size_in_bytes?: Common.ByteCount;
   count?: number;
   description: string;
-  max_size_in_bytes?: Common.Bytes;
-  min_size_in_bytes?: Common.Bytes;
-  size?: Common.StorageSize;
-  size_in_bytes: Common.Bytes;
+  max_size_in_bytes?: Common.ByteCount;
+  min_size_in_bytes?: Common.ByteCount;
+  size?: Common.HumanReadableByteCount;
+  size_in_bytes: Common.ByteCount;
 }
 
 export interface ShardLease {

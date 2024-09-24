@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cluster_AllocationExplain from '../_types/cluster.allocation_explain'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cluster_AllocationExplain_Request extends Global.Params {
   body?: Cluster_AllocationExplain_RequestBody;

@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
 export interface Indices_Clone_Request extends Global.Params {

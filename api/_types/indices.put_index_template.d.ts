@@ -14,8 +14,8 @@
  * modify the API generator.
  */
 
-import * as Indices_Common from './indices._common'
 import * as Common_Mapping from './_common.mapping'
+import * as Indices_Common from './indices._common'
 
 export interface IndexTemplateMapping {
   aliases?: Record<string, Indices_Common.Alias>;

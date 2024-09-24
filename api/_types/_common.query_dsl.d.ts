@@ -15,8 +15,8 @@
  */
 
 import * as Common from './_common'
-import * as Core_Search from './_core.search'
 import * as Common_Analysis from './_common.analysis'
+import * as Core_Search from './_core.search'
 
 export interface BoolQuery extends QueryBase {
   filter?: QueryContainer | QueryContainer[];
@@ -306,7 +306,7 @@ export interface LikeDocument {
   version_type?: Common.VersionType;
 }
 
-export type MatchAllQuery = QueryBase & Record<string, any>
+export type MatchAllQuery = QueryBase
 
 export interface MatchBoolPrefixQuery extends QueryBase {
   analyzer?: string;
@@ -518,7 +518,7 @@ export interface QueryContainer {
   span_term?: Record<string, SpanTermQuery>;
   span_within?: SpanWithinQuery;
   term?: Record<string, TermQuery | Common.FieldValue>;
-  terms?: Record<string, TermsQuery | string[]>;
+  terms?: TermsQueryField;
   terms_set?: Record<string, TermsSetQuery>;
   text_expansion?: Record<string, TextExpansionQuery>;
   type?: TypeQuery;
@@ -624,7 +624,7 @@ export interface ScriptScoreQuery extends QueryBase {
 
 export type SimpleQueryStringFlag = 'ALL' | 'AND' | 'ESCAPE' | 'FUZZY' | 'NEAR' | 'NONE' | 'NOT' | 'OR' | 'PHRASE' | 'PRECEDENCE' | 'PREFIX' | 'SLOP' | 'WHITESPACE'
 
-export type SimpleQueryStringFlags = Common.PipeSeparatedFlagsSimpleQueryStringFlag & Record<string, any>
+export type SimpleQueryStringFlags = Common.PipeSeparatedFlagsSimpleQueryStringFlag
 
 export interface SimpleQueryStringQuery extends QueryBase {
   analyze_wildcard?: boolean;
@@ -708,11 +708,16 @@ export interface TermQuery extends QueryBase {
   value: Common.FieldValue;
 }
 
-export type TermsQuery = QueryBase | {
+export interface TermsLookupField {
   id?: Common.Id;
   index?: Common.IndexName;
   path?: Common.Field;
   routing?: Common.Routing;
+}
+
+export interface TermsQueryField {
+  boost?: number;
+  [key: string]: any | TermsLookupField | string[];
 }
 
 export interface TermsSetQuery extends QueryBase {

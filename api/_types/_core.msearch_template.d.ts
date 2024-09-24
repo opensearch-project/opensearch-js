@@ -14,8 +14,8 @@
  * modify the API generator.
  */
 
-import * as Core_Msearch from './_core.msearch'
 import * as Common from './_common'
+import * as Core_Msearch from './_core.msearch'
 
 export type RequestItem = Core_Msearch.MultisearchHeader | TemplateConfig
 

@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cat_Aliases from '../_types/cat.aliases'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cat_Aliases_Request extends Global.Params {
   expand_wildcards?: Common.ExpandWildcards;

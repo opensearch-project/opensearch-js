@@ -21,9 +21,21 @@
 function FlowFrameworkApi(bindObj) {
   this.create = require('./create').bind(bindObj);
   this.delete = require('./delete').bind(bindObj);
+  this.deprovision = require('./deprovision').bind(bindObj);
   this.get = require('./get').bind(bindObj);
+  this.getStatus = require('./getStatus').bind(bindObj);
+  this.getSteps = require('./getSteps').bind(bindObj);
+  this.provision = require('./provision').bind(bindObj);
+  this.search = require('./search').bind(bindObj);
+  this.searchState = require('./searchState').bind(bindObj);
   this.update = require('./update').bind(bindObj);
 
+  // Deprecated: Use getStatus instead.
+  this.get_status = require('./getStatus').bind(bindObj);
+  // Deprecated: Use getSteps instead.
+  this.get_steps = require('./getSteps').bind(bindObj);
+  // Deprecated: Use searchState instead.
+  this.search_state = require('./searchState').bind(bindObj);
 }
 
 module.exports = FlowFrameworkApi;

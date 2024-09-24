@@ -15,11 +15,11 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
-import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Common_Mapping from '../_types/_common.mapping'
+import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Core_FieldCaps from '../_types/_core.field_caps'
+import * as Global from '../_types/_global'
 
 export interface FieldCaps_Request extends Global.Params {
   allow_no_indices?: boolean;

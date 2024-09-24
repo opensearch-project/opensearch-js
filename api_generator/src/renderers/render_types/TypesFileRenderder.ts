@@ -38,9 +38,11 @@ export default class TypesFileRenderder extends BaseRenderer {
         const declarative = this.#is_interface(definition) ? `interface ${name}` : `type ${name} =`
         return { declarative, definition }
       }),
-      imports: Array.from(con.referenced_containers).map(container => {
-        return { path: con.import_path(container), name: container.import_name }
-      })
+      imports: Array.from(con.referenced_containers)
+        .sort((a, b) => a.import_name.localeCompare(b.import_name))
+        .map(container => {
+          return { path: con.import_path(container), name: container.import_name }
+        })
     }
   }
 
@@ -66,34 +68,35 @@ export default class TypesFileRenderder extends BaseRenderer {
     if (schema.type === 'null') return 'undefined'
     if (Array.isArray(schema.type)) return schema.type.map(type => this.#render_schema({ type } satisfies Schema)).join(' | ')
     if (schema.type != null && schema.type !== 'object') throw new Error(`Unhandled schema type: ${(schema as any).type}`)
-    if (schema.oneOf != null || schema.anyOf != null) return this.#render_union_obj(schema)
-    if (schema.allOf != null) return this.render_compound_obj(schema.allOf as Schema[])
+    if (schema.oneOf != null || schema.anyOf != null) return this.#render_anyOf(schema)
+    if (schema.allOf != null) return this.#render_allOf(schema.allOf as Schema[])
     return this.#render_simple_obj(schema)
   }
 
-  #render_union_obj (schema: Schema): string {
+  #render_anyOf (schema: Schema): string {
     const schemas = schema.oneOf ?? schema.anyOf ?? []
     return schemas.map((sch) => this.#render_schema(sch as Schema)).join(' | ')
   }
 
-  render_compound_obj (schemas: Schema[]): string {
-    const extensions = schemas.filter(schema => {
-      return schema.$ref != null
-    }).map(schema => this.#render_schema(schema))
+  #render_allOf (schemas: Schema[]): string {
+    const named_schemas = schemas.filter(schema => schema.$ref != null)
+    const inline_schemas = schemas.filter(schema => schema.$ref == null)
 
-    const compound_schema: Schema = schemas.filter(schema => {
-      return schema.$ref == null
-    }).reduce<Schema>((acc, schema) => {
+    if (inline_schemas.length === 0) return named_schemas.map(schema => this.#render_schema(schema)).join(' & ')
+
+    const compound_inline = inline_schemas.reduce<Schema>((acc, schema) => {
       acc.properties = { ...acc.properties, ...(schema).properties }
       acc.additionalProperties = acc.additionalProperties ?? (schema).additionalProperties
       acc.required = [...(acc.required ?? []), ...(schema).required ?? []]
       return acc
     }, {})
-    const compound_render = this.#render_schema(compound_schema)
-    const extensions_render = extensions.join(', ')
-    if (extensions.length === 0) return compound_render
-    if (compound_render.includes('{')) return `extends ${extensions_render} ${compound_render}`
-    return `${extensions_render} & ${this.#render_simple_obj(compound_schema)}`
+
+    const inline_schemas_render = this.#render_schema(compound_inline)
+    const named_schemas_render = named_schemas.map(schema => this.#render_schema(schema)).join(', ')
+
+    if (named_schemas.length === 0) return inline_schemas_render
+    if (inline_schemas_render.includes('{')) return `extends ${named_schemas_render} ${inline_schemas_render}`
+    return `${named_schemas_render} & ${this.#render_simple_obj(compound_inline)}`
   }
 
   #render_simple_obj (schema: Schema): string {

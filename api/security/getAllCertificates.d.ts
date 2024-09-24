@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
 export interface Security_GetAllCertificates_Request extends Global.Params {

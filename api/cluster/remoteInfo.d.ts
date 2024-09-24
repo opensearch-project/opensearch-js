@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Cluster_RemoteInfo from '../_types/cluster.remote_info'
+import * as Global from '../_types/_global'
 
 export type Cluster_RemoteInfo_Request = Global.Params & Record<string, any>
 

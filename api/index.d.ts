@@ -229,6 +229,7 @@ import { Security_GetUsersLegacy_Request, Security_GetUsersLegacy_Response, Secu
 import { Security_DeleteUserLegacy_Request, Security_DeleteUserLegacy_Response, Security_DeleteUserLegacy_ResponseBody } from './security/deleteUserLegacy';
 import { Security_GetUserLegacy_Request, Security_GetUserLegacy_Response, Security_GetUserLegacy_ResponseBody } from './security/getUserLegacy';
 import { Security_CreateUserLegacy_Request, Security_CreateUserLegacy_Response, Security_CreateUserLegacy_ResponseBody } from './security/createUserLegacy';
+import { Security_GenerateUserTokenLegacy_Request, Security_GenerateUserTokenLegacy_Response, Security_GenerateUserTokenLegacy_ResponseBody } from './security/generateUserTokenLegacy';
 import { Security_Validate_Request, Security_Validate_Response, Security_Validate_ResponseBody } from './security/validate';
 import { Security_Authinfo_Request, Security_Authinfo_Response, Security_Authinfo_ResponseBody } from './security/authinfo';
 import { Security_GetDashboardsInfo_Request, Security_GetDashboardsInfo_Response, Security_GetDashboardsInfo_ResponseBody } from './security/getDashboardsInfo';
@@ -242,15 +243,37 @@ import { AsynchronousSearch_Delete_Request, AsynchronousSearch_Delete_Response, 
 import { AsynchronousSearch_Get_Request, AsynchronousSearch_Get_Response, AsynchronousSearch_Get_ResponseBody } from './asynchronousSearch/get';
 import { AsynchronousSearch_Stats_Request, AsynchronousSearch_Stats_Response, AsynchronousSearch_Stats_ResponseBody } from './asynchronousSearch/stats';
 import { FlowFramework_Create_Request, FlowFramework_Create_Response, FlowFramework_Create_ResponseBody } from './flowFramework/create';
+import { FlowFramework_Search_Request, FlowFramework_Search_Response, FlowFramework_Search_ResponseBody } from './flowFramework/search';
+import { FlowFramework_GetSteps_Request, FlowFramework_GetSteps_Response, FlowFramework_GetSteps_ResponseBody } from './flowFramework/getSteps';
 import { FlowFramework_Delete_Request, FlowFramework_Delete_Response, FlowFramework_Delete_ResponseBody } from './flowFramework/delete';
 import { FlowFramework_Get_Request, FlowFramework_Get_Response, FlowFramework_Get_ResponseBody } from './flowFramework/get';
 import { FlowFramework_Update_Request, FlowFramework_Update_Response, FlowFramework_Update_ResponseBody } from './flowFramework/update';
+import { FlowFramework_Deprovision_Request, FlowFramework_Deprovision_Response, FlowFramework_Deprovision_ResponseBody } from './flowFramework/deprovision';
+import { FlowFramework_Provision_Request, FlowFramework_Provision_Response, FlowFramework_Provision_ResponseBody } from './flowFramework/provision';
+import { FlowFramework_GetStatus_Request, FlowFramework_GetStatus_Response, FlowFramework_GetStatus_ResponseBody } from './flowFramework/getStatus';
+import { FlowFramework_SearchState_Request, FlowFramework_SearchState_Response, FlowFramework_SearchState_ResponseBody } from './flowFramework/searchState';
+import { Ism_AddPolicy_Request, Ism_AddPolicy_Response, Ism_AddPolicy_ResponseBody } from './ism/addPolicy';
+import { Ism_ChangePolicy_Request, Ism_ChangePolicy_Response, Ism_ChangePolicy_ResponseBody } from './ism/changePolicy';
+import { Ism_ExplainPolicy_Request, Ism_ExplainPolicy_RequestBody, Ism_ExplainPolicy_Response, Ism_ExplainPolicy_ResponseBody } from './ism/explainPolicy';
+import { Ism_GetPolicies_Request, Ism_GetPolicies_Response, Ism_GetPolicies_ResponseBody } from './ism/getPolicies';
+import { Ism_PutPolicies_Request, Ism_PutPolicies_Response, Ism_PutPolicies_ResponseBody } from './ism/putPolicies';
+import { Ism_DeletePolicy_Request, Ism_DeletePolicy_Response, Ism_DeletePolicy_ResponseBody } from './ism/deletePolicy';
+import { Ism_GetPolicy_Request, Ism_GetPolicy_Response, Ism_GetPolicy_ResponseBody } from './ism/getPolicy';
+import { Ism_ExistsPolicy_Request, Ism_ExistsPolicy_Response, Ism_ExistsPolicy_ResponseBody } from './ism/existsPolicy';
+import { Ism_PutPolicy_Request, Ism_PutPolicy_Response, Ism_PutPolicy_ResponseBody } from './ism/putPolicy';
+import { Ism_RemovePolicy_Request, Ism_RemovePolicy_Response, Ism_RemovePolicy_ResponseBody } from './ism/removePolicy';
+import { Ism_RetryIndex_Request, Ism_RetryIndex_Response, Ism_RetryIndex_ResponseBody } from './ism/retryIndex';
+import { Ism_RefreshSearchAnalyzers_Request, Ism_RefreshSearchAnalyzers_Response, Ism_RefreshSearchAnalyzers_ResponseBody } from './ism/refreshSearchAnalyzers';
 import { Knn_Stats_Request, Knn_Stats_Response, Knn_Stats_ResponseBody } from './knn/stats';
 import { Knn_SearchModels_Request, Knn_SearchModels_RequestBody, Knn_SearchModels_Response, Knn_SearchModels_ResponseBody } from './knn/searchModels';
 import { Knn_TrainModel_Request, Knn_TrainModel_RequestBody, Knn_TrainModel_Response, Knn_TrainModel_ResponseBody } from './knn/trainModel';
 import { Knn_DeleteModel_Request, Knn_DeleteModel_Response, Knn_DeleteModel_ResponseBody } from './knn/deleteModel';
 import { Knn_GetModel_Request, Knn_GetModel_Response, Knn_GetModel_ResponseBody } from './knn/getModel';
 import { Knn_Warmup_Request, Knn_Warmup_Response, Knn_Warmup_ResponseBody } from './knn/warmup';
+import { Ml_RegisterAgents_Request, Ml_RegisterAgents_Response, Ml_RegisterAgents_ResponseBody } from './ml/registerAgents';
+import { Ml_DeleteAgent_Request, Ml_DeleteAgent_Response, Ml_DeleteAgent_ResponseBody } from './ml/deleteAgent';
+import { Ml_CreateConnector_Request, Ml_CreateConnector_Response, Ml_CreateConnector_ResponseBody } from './ml/createConnector';
+import { Ml_DeleteConnector_Request, Ml_DeleteConnector_Response, Ml_DeleteConnector_ResponseBody } from './ml/deleteConnector';
 import { Ml_RegisterModelGroup_Request, Ml_RegisterModelGroup_RequestBody, Ml_RegisterModelGroup_Response, Ml_RegisterModelGroup_ResponseBody } from './ml/registerModelGroup';
 import { Ml_DeleteModelGroup_Request, Ml_DeleteModelGroup_Response, Ml_DeleteModelGroup_ResponseBody } from './ml/deleteModelGroup';
 import { Ml_GetModelGroup_Request, Ml_GetModelGroup_Response, Ml_GetModelGroup_ResponseBody } from './ml/getModelGroup';
@@ -299,7 +322,7 @@ import { Rollups_Explain_Request, Rollups_Explain_Response, Rollups_Explain_Resp
 import { Rollups_Start_Request, Rollups_Start_Response, Rollups_Start_ResponseBody } from './rollups/start';
 import { Rollups_Stop_Request, Rollups_Stop_Response, Rollups_Stop_ResponseBody } from './rollups/stop';
 import { Transforms_Search_Request, Transforms_Search_Response, Transforms_Search_ResponseBody } from './transforms/search';
-import { Transforms_Preview_Request, Transforms_Preview_Response, Transforms_Preview_ResponseBody } from './transforms/preview';
+import { Transforms_Preview_Request, Transforms_Preview_RequestBody, Transforms_Preview_Response, Transforms_Preview_ResponseBody } from './transforms/preview';
 import { Transforms_Delete_Request, Transforms_Delete_Response, Transforms_Delete_ResponseBody } from './transforms/delete';
 import { Transforms_Get_Request, Transforms_Get_Response, Transforms_Get_ResponseBody } from './transforms/get';
 import { Transforms_Put_Request, Transforms_Put_Response, Transforms_Put_ResponseBody } from './transforms/put';
@@ -541,6 +564,7 @@ export {
   Security_DeleteUserLegacy_Request, Security_DeleteUserLegacy_Response, Security_DeleteUserLegacy_ResponseBody,
   Security_GetUserLegacy_Request, Security_GetUserLegacy_Response, Security_GetUserLegacy_ResponseBody,
   Security_CreateUserLegacy_Request, Security_CreateUserLegacy_Response, Security_CreateUserLegacy_ResponseBody,
+  Security_GenerateUserTokenLegacy_Request, Security_GenerateUserTokenLegacy_Response, Security_GenerateUserTokenLegacy_ResponseBody,
   Security_Validate_Request, Security_Validate_Response, Security_Validate_ResponseBody,
   Security_Authinfo_Request, Security_Authinfo_Response, Security_Authinfo_ResponseBody,
   Security_GetDashboardsInfo_Request, Security_GetDashboardsInfo_Response, Security_GetDashboardsInfo_ResponseBody,
@@ -554,15 +578,37 @@ export {
   AsynchronousSearch_Get_Request, AsynchronousSearch_Get_Response, AsynchronousSearch_Get_ResponseBody,
   AsynchronousSearch_Stats_Request, AsynchronousSearch_Stats_Response, AsynchronousSearch_Stats_ResponseBody,
   FlowFramework_Create_Request, FlowFramework_Create_Response, FlowFramework_Create_ResponseBody,
+  FlowFramework_Search_Request, FlowFramework_Search_Response, FlowFramework_Search_ResponseBody,
+  FlowFramework_GetSteps_Request, FlowFramework_GetSteps_Response, FlowFramework_GetSteps_ResponseBody,
   FlowFramework_Delete_Request, FlowFramework_Delete_Response, FlowFramework_Delete_ResponseBody,
   FlowFramework_Get_Request, FlowFramework_Get_Response, FlowFramework_Get_ResponseBody,
   FlowFramework_Update_Request, FlowFramework_Update_Response, FlowFramework_Update_ResponseBody,
+  FlowFramework_Deprovision_Request, FlowFramework_Deprovision_Response, FlowFramework_Deprovision_ResponseBody,
+  FlowFramework_Provision_Request, FlowFramework_Provision_Response, FlowFramework_Provision_ResponseBody,
+  FlowFramework_GetStatus_Request, FlowFramework_GetStatus_Response, FlowFramework_GetStatus_ResponseBody,
+  FlowFramework_SearchState_Request, FlowFramework_SearchState_Response, FlowFramework_SearchState_ResponseBody,
+  Ism_AddPolicy_Request, Ism_AddPolicy_Response, Ism_AddPolicy_ResponseBody,
+  Ism_ChangePolicy_Request, Ism_ChangePolicy_Response, Ism_ChangePolicy_ResponseBody,
+  Ism_ExplainPolicy_Request, Ism_ExplainPolicy_RequestBody, Ism_ExplainPolicy_Response, Ism_ExplainPolicy_ResponseBody,
+  Ism_GetPolicies_Request, Ism_GetPolicies_Response, Ism_GetPolicies_ResponseBody,
+  Ism_PutPolicies_Request, Ism_PutPolicies_Response, Ism_PutPolicies_ResponseBody,
+  Ism_DeletePolicy_Request, Ism_DeletePolicy_Response, Ism_DeletePolicy_ResponseBody,
+  Ism_GetPolicy_Request, Ism_GetPolicy_Response, Ism_GetPolicy_ResponseBody,
+  Ism_ExistsPolicy_Request, Ism_ExistsPolicy_Response, Ism_ExistsPolicy_ResponseBody,
+  Ism_PutPolicy_Request, Ism_PutPolicy_Response, Ism_PutPolicy_ResponseBody,
+  Ism_RemovePolicy_Request, Ism_RemovePolicy_Response, Ism_RemovePolicy_ResponseBody,
+  Ism_RetryIndex_Request, Ism_RetryIndex_Response, Ism_RetryIndex_ResponseBody,
+  Ism_RefreshSearchAnalyzers_Request, Ism_RefreshSearchAnalyzers_Response, Ism_RefreshSearchAnalyzers_ResponseBody,
   Knn_Stats_Request, Knn_Stats_Response, Knn_Stats_ResponseBody,
   Knn_SearchModels_Request, Knn_SearchModels_RequestBody, Knn_SearchModels_Response, Knn_SearchModels_ResponseBody,
   Knn_TrainModel_Request, Knn_TrainModel_RequestBody, Knn_TrainModel_Response, Knn_TrainModel_ResponseBody,
   Knn_DeleteModel_Request, Knn_DeleteModel_Response, Knn_DeleteModel_ResponseBody,
   Knn_GetModel_Request, Knn_GetModel_Response, Knn_GetModel_ResponseBody,
   Knn_Warmup_Request, Knn_Warmup_Response, Knn_Warmup_ResponseBody,
+  Ml_RegisterAgents_Request, Ml_RegisterAgents_Response, Ml_RegisterAgents_ResponseBody,
+  Ml_DeleteAgent_Request, Ml_DeleteAgent_Response, Ml_DeleteAgent_ResponseBody,
+  Ml_CreateConnector_Request, Ml_CreateConnector_Response, Ml_CreateConnector_ResponseBody,
+  Ml_DeleteConnector_Request, Ml_DeleteConnector_Response, Ml_DeleteConnector_ResponseBody,
   Ml_RegisterModelGroup_Request, Ml_RegisterModelGroup_RequestBody, Ml_RegisterModelGroup_Response, Ml_RegisterModelGroup_ResponseBody,
   Ml_DeleteModelGroup_Request, Ml_DeleteModelGroup_Response, Ml_DeleteModelGroup_ResponseBody,
   Ml_GetModelGroup_Request, Ml_GetModelGroup_Response, Ml_GetModelGroup_ResponseBody,
@@ -611,7 +657,7 @@ export {
   Rollups_Start_Request, Rollups_Start_Response, Rollups_Start_ResponseBody,
   Rollups_Stop_Request, Rollups_Stop_Response, Rollups_Stop_ResponseBody,
   Transforms_Search_Request, Transforms_Search_Response, Transforms_Search_ResponseBody,
-  Transforms_Preview_Request, Transforms_Preview_Response, Transforms_Preview_ResponseBody,
+  Transforms_Preview_Request, Transforms_Preview_RequestBody, Transforms_Preview_Response, Transforms_Preview_ResponseBody,
   Transforms_Delete_Request, Transforms_Delete_Response, Transforms_Delete_ResponseBody,
   Transforms_Get_Request, Transforms_Get_Response, Transforms_Get_ResponseBody,
   Transforms_Put_Request, Transforms_Put_Response, Transforms_Put_ResponseBody,

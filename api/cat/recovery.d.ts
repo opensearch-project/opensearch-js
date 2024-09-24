@@ -15,13 +15,13 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cat_Recovery from '../_types/cat.recovery'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cat_Recovery_Request extends Global.Params {
   active_only?: boolean;
-  bytes?: Common.StorageType;
+  bytes?: Common.ByteUnit;
   detailed?: boolean;
   format?: string;
   h?: string[];

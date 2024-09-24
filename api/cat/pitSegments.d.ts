@@ -15,13 +15,13 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Common from '../_types/_common'
 import * as Cat_Common from '../_types/cat._common'
+import * as Common from '../_types/_common'
+import * as Global from '../_types/_global'
 
 export interface Cat_PitSegments_Request extends Global.Params {
   body?: Cat_PitSegments_RequestBody;
-  bytes?: Common.StorageType;
+  bytes?: Common.ByteUnit;
   format?: string;
   h?: string[];
   help?: boolean;

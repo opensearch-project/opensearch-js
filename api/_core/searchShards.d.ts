@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Core_SearchShards from '../_types/_core.search_shards'
+import * as Global from '../_types/_global'
 
 export interface SearchShards_Request extends Global.Params {
   allow_no_indices?: boolean;

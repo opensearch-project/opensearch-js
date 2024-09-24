@@ -15,11 +15,11 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Core_Search from '../_types/_core.search'
 import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Core_Explain from '../_types/_core.explain'
+import * as Core_Search from '../_types/_core.search'
+import * as Global from '../_types/_global'
 
 export interface Explain_Request extends Global.Params {
   _source?: Core_Search.SourceConfigParam;

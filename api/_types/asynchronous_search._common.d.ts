@@ -14,11 +14,11 @@
  * modify the API generator.
  */
 
-import * as Core_Search from './_core.search'
-import * as Common_Aggregations from './_common.aggregations'
-import * as Common_QueryDsl from './_common.query_dsl'
 import * as Common from './_common'
+import * as Common_Aggregations from './_common.aggregations'
 import * as Common_Mapping from './_common.mapping'
+import * as Common_QueryDsl from './_common.query_dsl'
+import * as Core_Search from './_core.search'
 
 export interface AsynchronousSearchStats {
   cancelled?: number;

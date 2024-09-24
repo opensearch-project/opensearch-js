@@ -15,9 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
 import * as Common from '../_types/_common'
 import * as Core_UpdateByQueryRethrottle from '../_types/_core.update_by_query_rethrottle'
+import * as Global from '../_types/_global'
 
 export interface UpdateByQueryRethrottle_Request extends Global.Params {
   requests_per_second?: number;

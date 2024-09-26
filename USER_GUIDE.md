@@ -75,6 +75,10 @@ const client = new Client({
           if (err) {
             reject(err);
           } else {
+            credentials.needsRefresh = () => { // Optionally, include the needsRefresh function for short lived credentials
+              // Refresh the credentials if they are within 5 minutes of expiration.
+              return credentials.expireTime - Date.now() < 300000;
+            };
             resolve(credentials);
           }
         });

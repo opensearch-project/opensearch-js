@@ -271,3 +271,10 @@ test('disable prototype poisoning protection only for constructor', (t) => {
     t.fail(err);
   }
 });
+
+test('Long numerals and ANSI escape sequences', (t) => {
+  t.plan(1);
+  const s = new Serializer({ enableLongNumeralSupport: true });
+  const obj = {message: "hello \u001b[38;7;2mworld\u001b[0m", value: BigInt(Number.MAX_SAFE_INTEGER) * 2n};
+  t.same(s.deserialize(s.serialize(obj)), obj);
+})

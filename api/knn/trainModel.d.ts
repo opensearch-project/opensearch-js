@@ -24,11 +24,14 @@ export interface Knn_TrainModel_Request extends Global.Params {
 }
 
 export interface Knn_TrainModel_RequestBody {
+  compression_level?: string;
   description?: string;
   dimension: number;
   max_training_vector_count?: number;
-  method: string;
+  method?: string;
+  mode?: string;
   search_size?: number;
+  spaceType?: string;
   training_field: string;
   training_index: string;
 }
@@ -37,5 +40,7 @@ export interface Knn_TrainModel_Response extends ApiResponse {
   body: Knn_TrainModel_ResponseBody;
 }
 
-export type Knn_TrainModel_ResponseBody = Record<string, any>
+export interface Knn_TrainModel_ResponseBody {
+  model_id: string;
+}
 

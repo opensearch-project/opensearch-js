@@ -341,7 +341,9 @@ export interface KnnField {
   filter?: Common_QueryDsl.QueryContainer | Common_QueryDsl.QueryContainer[];
   k?: number;
   max_distance?: number;
+  method_parameters?: Record<string, number>;
   min_score?: number;
+  rescore?: Record<string, number>;
   vector: QueryVector;
 }
 

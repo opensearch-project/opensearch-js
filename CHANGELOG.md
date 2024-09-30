@@ -14,6 +14,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Replace JSON11-produced hex escape codes with unicode escape codes ([#879](https://github.com/opensearch-project/opensearch-js/pull/879))
 ### Security
 
 ## [3.0.0]

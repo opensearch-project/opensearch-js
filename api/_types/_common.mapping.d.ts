@@ -299,8 +299,12 @@ export interface KnnVectorProperty extends KnnVectorPropertyBase {
 }
 
 export interface KnnVectorPropertyBase {
+  compression_level?: string;
+  data_type?: string;
   dimension: number;
   method?: KnnVectorMethod;
+  mode?: string;
+  space_type?: string;
 }
 
 export interface LongNumberProperty extends NumberPropertyBase {

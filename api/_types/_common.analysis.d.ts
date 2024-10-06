@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export type Analyzer = CustomAnalyzer | FingerprintAnalyzer | KeywordAnalyzer | LanguageAnalyzer | NoriAnalyzer | PatternAnalyzer | SimpleAnalyzer | StandardAnalyzer | StopAnalyzer | WhitespaceAnalyzer | IcuAnalyzer | KuromojiAnalyzer | SnowballAnalyzer | DutchAnalyzer
+export type Analyzer = CustomAnalyzer | FingerprintAnalyzer | KeywordAnalyzer | LanguageAnalyzer | NoriAnalyzer | PatternAnalyzer | SimpleAnalyzer | StandardAnalyzer | StopAnalyzer | WhitespaceAnalyzer | IcuAnalyzer | KuromojiAnalyzer | SnowballAnalyzer | DutchAnalyzer | SmartcnAnalyzer | CjkAnalyzer
 
 export interface AsciiFoldingTokenFilter extends TokenFilterBase {
   preserve_original?: Common.Stringifiedboolean;
@@ -35,6 +35,12 @@ export interface CharGroupTokenizer extends TokenizerBase {
   max_token_length?: number;
   tokenize_on_chars: string[];
   type: 'char_group';
+}
+
+export interface CjkAnalyzer {
+  stopwords?: StopWords;
+  stopwords_path?: string;
+  type?: 'cjk';
 }
 
 export interface CommonGramsTokenFilter extends TokenFilterBase {
@@ -160,7 +166,7 @@ export type IcuCollationAlternate = 'non-ignorable' | 'shifted'
 
 export type IcuCollationCaseFirst = 'lower' | 'upper'
 
-export type IcuCollationDecomposition = 'identical' | 'no'
+export type IcuCollationDecomposition = 'canonical' | 'no'
 
 export type IcuCollationStrength = 'identical' | 'primary' | 'quaternary' | 'secondary' | 'tertiary'
 
@@ -428,6 +434,10 @@ export interface PatternTokenizer extends TokenizerBase {
   type: 'pattern';
 }
 
+export interface PersianStemTokenFilter extends TokenFilterBase {
+  type: 'persian_stem';
+}
+
 export type PhoneticEncoder = 'beider_morse' | 'caverphone1' | 'caverphone2' | 'cologne' | 'daitch_mokotoff' | 'double_metaphone' | 'haasephonetik' | 'koelnerphonetik' | 'metaphone' | 'nysiis' | 'refined_soundex' | 'soundex'
 
 export type PhoneticLanguage = 'any' | 'common' | 'cyrillic' | 'english' | 'french' | 'german' | 'hebrew' | 'hungarian' | 'polish' | 'romanian' | 'russian' | 'spanish'
@@ -476,6 +486,18 @@ export interface ShingleTokenFilter extends TokenFilterBase {
 export interface SimpleAnalyzer {
   type: 'simple';
   version?: Common.VersionString;
+}
+
+export interface SmartcnAnalyzer {
+  type?: 'smartcn';
+}
+
+export interface SmartcnStopTokenFilter extends TokenFilterBase {
+  type: 'smartcn_stop';
+}
+
+export interface SmartcnTokenizer extends TokenizerBase {
+  type: 'smartcn_tokenizer';
 }
 
 export interface SnowballAnalyzer {
@@ -563,7 +585,7 @@ export interface TokenFilterBase {
   version?: Common.VersionString;
 }
 
-export type TokenFilterDefinition = AsciiFoldingTokenFilter | CommonGramsTokenFilter | ConditionTokenFilter | DelimitedPayloadTokenFilter | EdgeNGramTokenFilter | ElisionTokenFilter | FingerprintTokenFilter | HunspellTokenFilter | HyphenationDecompounderTokenFilter | KeepTypesTokenFilter | KeepWordsTokenFilter | KeywordMarkerTokenFilter | KStemTokenFilter | LengthTokenFilter | LimitTokenCountTokenFilter | LowercaseTokenFilter | MultiplexerTokenFilter | NGramTokenFilter | NoriPartOfSpeechTokenFilter | PatternCaptureTokenFilter | PatternReplaceTokenFilter | PorterStemTokenFilter | PredicateTokenFilter | RemoveDuplicatesTokenFilter | ReverseTokenFilter | ShingleTokenFilter | SnowballTokenFilter | StemmerOverrideTokenFilter | StemmerTokenFilter | StopTokenFilter | SynonymGraphTokenFilter | SynonymTokenFilter | TrimTokenFilter | TruncateTokenFilter | UniqueTokenFilter | UppercaseTokenFilter | WordDelimiterGraphTokenFilter | WordDelimiterTokenFilter | KuromojiStemmerTokenFilter | KuromojiReadingFormTokenFilter | KuromojiPartOfSpeechTokenFilter | IcuTokenizer | IcuCollationTokenFilter | IcuFoldingTokenFilter | IcuNormalizationTokenFilter | IcuTransformTokenFilter | PhoneticTokenFilter | DictionaryDecompounderTokenFilter
+export type TokenFilterDefinition = AsciiFoldingTokenFilter | CommonGramsTokenFilter | ConditionTokenFilter | DelimitedPayloadTokenFilter | EdgeNGramTokenFilter | ElisionTokenFilter | FingerprintTokenFilter | HunspellTokenFilter | HyphenationDecompounderTokenFilter | KeepTypesTokenFilter | KeepWordsTokenFilter | KeywordMarkerTokenFilter | KStemTokenFilter | LengthTokenFilter | LimitTokenCountTokenFilter | LowercaseTokenFilter | MultiplexerTokenFilter | NGramTokenFilter | NoriPartOfSpeechTokenFilter | PatternCaptureTokenFilter | PatternReplaceTokenFilter | PersianStemTokenFilter | PorterStemTokenFilter | PredicateTokenFilter | RemoveDuplicatesTokenFilter | ReverseTokenFilter | ShingleTokenFilter | SnowballTokenFilter | StemmerOverrideTokenFilter | StemmerTokenFilter | StopTokenFilter | SynonymGraphTokenFilter | SynonymTokenFilter | TrimTokenFilter | TruncateTokenFilter | UniqueTokenFilter | UppercaseTokenFilter | WordDelimiterGraphTokenFilter | WordDelimiterTokenFilter | KuromojiStemmerTokenFilter | KuromojiReadingFormTokenFilter | KuromojiPartOfSpeechTokenFilter | IcuTokenizer | IcuCollationTokenFilter | IcuFoldingTokenFilter | IcuNormalizationTokenFilter | IcuTransformTokenFilter | PhoneticTokenFilter | DictionaryDecompounderTokenFilter | SmartcnStopTokenFilter
 
 export type Tokenizer = string | TokenizerDefinition
 
@@ -571,7 +593,7 @@ export interface TokenizerBase {
   version?: Common.VersionString;
 }
 
-export type TokenizerDefinition = CharGroupTokenizer | EdgeNGramTokenizer | KeywordTokenizer | LetterTokenizer | LowercaseTokenizer | NGramTokenizer | NoriTokenizer | PathHierarchyTokenizer | StandardTokenizer | UaxEmailUrlTokenizer | WhitespaceTokenizer | KuromojiTokenizer | PatternTokenizer | IcuTokenizer
+export type TokenizerDefinition = CharGroupTokenizer | EdgeNGramTokenizer | KeywordTokenizer | LetterTokenizer | LowercaseTokenizer | NGramTokenizer | NoriTokenizer | PathHierarchyTokenizer | StandardTokenizer | UaxEmailUrlTokenizer | WhitespaceTokenizer | KuromojiTokenizer | PatternTokenizer | IcuTokenizer | SmartcnTokenizer
 
 export interface TrimTokenFilter extends TokenFilterBase {
   type: 'trim';

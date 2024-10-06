@@ -19,7 +19,6 @@ import * as Indices_Common from './indices._common'
 
 export interface IndexTemplateMapping {
   aliases?: Record<string, Indices_Common.Alias>;
-  lifecycle?: Indices_Common.DataStreamLifecycle;
   mappings?: Common_Mapping.TypeMapping;
   settings?: Indices_Common.IndexSettings;
 }

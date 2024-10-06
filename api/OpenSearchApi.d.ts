@@ -1454,6 +1454,10 @@ export default class OpenSearchAPI {
   bulk (params: API.Bulk_Request, callback: callbackFn<API.Bulk_Response>): TransportRequestCallback;
   bulk (params: API.Bulk_Request, options: TransportRequestOptions, callback: callbackFn<API.Bulk_Response>): TransportRequestCallback;
 
+  bulkStream (params: API.BulkStream_Request, options?: TransportRequestOptions): TransportRequestPromise<API.BulkStream_Response>;
+  bulkStream (params: API.BulkStream_Request, callback: callbackFn<API.BulkStream_Response>): TransportRequestCallback;
+  bulkStream (params: API.BulkStream_Request, options: TransportRequestOptions, callback: callbackFn<API.BulkStream_Response>): TransportRequestCallback;
+
   count (params?: API.Count_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Count_Response>;
   count (callback: callbackFn<API.Count_Response>): TransportRequestCallback;
   count (params: API.Count_Request, callback: callbackFn<API.Count_Response>): TransportRequestCallback;

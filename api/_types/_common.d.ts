@@ -33,6 +33,8 @@ export interface BaseNode {
   transport_address?: TransportAddress;
 }
 
+export type BatchSize = number
+
 export type BulkByScrollFailure = BulkItemResponseFailure | ScrollableHitSourceSearchFailure
 
 export interface BulkByScrollResponseBase extends BulkByScrollTaskStatus {
@@ -431,8 +433,6 @@ export interface NodeStatistics {
   total: number;
 }
 
-export type Normalization = 'h1' | 'h2' | 'h3' | 'no' | 'z'
-
 export interface OpenSearchVersionInfo {
   build_date: DateTime;
   build_flavor?: string;
@@ -603,6 +603,8 @@ export interface RequestStats {
   time_in_millis?: DurationValueUnitMillis;
   total?: number;
 }
+
+export type ResourceType = 'index_or_alias'
 
 export type Result = 'created' | 'deleted' | 'noop' | 'not_found' | 'updated'
 
@@ -816,6 +818,8 @@ export interface TaskFailure {
 }
 
 export type TaskId = string | number
+
+export type TermFrequencyNormalization = 'h1' | 'h2' | 'h3' | 'no' | 'z'
 
 export type TimeOfDay = string
 

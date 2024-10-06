@@ -994,7 +994,9 @@ export interface MutualInformationHeuristic {
   include_negatives?: boolean;
 }
 
-export type NestedAggregate = SingleBucketAggregateBase & Record<string, any>
+export interface NestedAggregate extends SingleBucketAggregateBase {
+  doc_count?: number;
+}
 
 export interface NestedAggregation extends BucketAggregationBase {
   path?: Common.Field;

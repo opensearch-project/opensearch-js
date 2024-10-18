@@ -17,6 +17,7 @@
 import { Info_Request, Info_Response, Info_ResponseBody } from './_core/info';
 import { Ping_Request, Ping_Response, Ping_ResponseBody } from './_core/ping';
 import { Bulk_Request, Bulk_RequestBody, Bulk_Response, Bulk_ResponseBody } from './_core/bulk';
+import { BulkStream_Request, BulkStream_RequestBody, BulkStream_Response, BulkStream_ResponseBody } from './_core/bulkStream';
 import { Count_Request, Count_RequestBody, Count_Response, Count_ResponseBody } from './_core/count';
 import { DeleteByQueryRethrottle_Request, DeleteByQueryRethrottle_Response, DeleteByQueryRethrottle_ResponseBody } from './_core/deleteByQueryRethrottle';
 import { FieldCaps_Request, FieldCaps_RequestBody, FieldCaps_Response, FieldCaps_ResponseBody } from './_core/fieldCaps';
@@ -352,6 +353,7 @@ export {
   Info_Request, Info_Response, Info_ResponseBody,
   Ping_Request, Ping_Response, Ping_ResponseBody,
   Bulk_Request, Bulk_RequestBody, Bulk_Response, Bulk_ResponseBody,
+  BulkStream_Request, BulkStream_RequestBody, BulkStream_Response, BulkStream_ResponseBody,
   Count_Request, Count_RequestBody, Count_Response, Count_ResponseBody,
   DeleteByQueryRethrottle_Request, DeleteByQueryRethrottle_Response, DeleteByQueryRethrottle_ResponseBody,
   FieldCaps_Request, FieldCaps_RequestBody, FieldCaps_Response, FieldCaps_ResponseBody,

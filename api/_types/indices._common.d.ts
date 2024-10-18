@@ -37,10 +37,6 @@ export interface AliasDefinition {
   search_routing?: string;
 }
 
-export interface CacheQueries {
-  enabled: boolean;
-}
-
 export interface DataStream {
   _meta?: Common.Metadata;
   allow_custom_routing?: boolean;
@@ -48,7 +44,6 @@ export interface DataStream {
   hidden?: boolean;
   ilm_policy?: Common.Name;
   indices: DataStreamIndex[];
-  lifecycle?: DataStreamLifecycleWithRollover;
   name: Common.DataStreamName;
   next_generation_managed_by?: ManagedBy;
   prefer_ilm?: boolean;
@@ -67,45 +62,8 @@ export interface DataStreamIndex {
   prefer_ilm?: boolean;
 }
 
-export interface DataStreamLifecycle {
-  data_retention?: Common.Duration;
-  downsampling?: DataStreamLifecycleDownsampling;
-}
-
-export interface DataStreamLifecycleDownsampling {
-  rounds: DownsamplingRound[];
-}
-
-export interface DataStreamLifecycleRolloverConditions {
-  max_age?: string;
-  max_docs?: number;
-  max_primary_shard_docs?: number;
-  max_primary_shard_size?: Common.HumanReadableByteCount;
-  max_size?: Common.HumanReadableByteCount;
-  min_age?: Common.Duration;
-  min_docs?: number;
-  min_primary_shard_docs?: number;
-  min_primary_shard_size?: Common.HumanReadableByteCount;
-  min_size?: Common.HumanReadableByteCount;
-}
-
-export interface DataStreamLifecycleWithRollover {
-  data_retention?: Common.Duration;
-  downsampling?: DataStreamLifecycleDownsampling;
-  rollover?: DataStreamLifecycleRolloverConditions;
-}
-
 export interface DataStreamTimestampField {
   name: Common.Field;
-}
-
-export interface DownsampleConfig {
-  fixed_interval: Common.DurationLarge;
-}
-
-export interface DownsamplingRound {
-  after: Common.Duration;
-  config: DownsampleConfig;
 }
 
 export interface FielddataFrequencyFilter {
@@ -116,15 +74,26 @@ export interface FielddataFrequencyFilter {
 
 export type IndexCheckOnStartup = 'checksum' | 'false' | 'true'
 
+export interface IndexErrorCause {
+  index?: Common.IndexName;
+  index_uuid?: Common.Uuid;
+  reason?: string;
+  'resource.id'?: Common.IndexName;
+  'resource.type'?: Common.ResourceType;
+  root_cause?: IndexErrorCause[];
+  type: string;
+  [key: string]: any | Record<string, any>;
+}
+
 export interface IndexingPressure {
   memory: IndexingPressureMemory;
 }
 
 export interface IndexingPressureMemory {
-  limit?: number;
+  limit?: string | number;
 }
 
-export interface IndexingSlowlogSettings {
+export interface IndexingSlowlog {
   level?: string;
   reformat?: boolean;
   source?: number;
@@ -148,7 +117,7 @@ export interface IndexRoutingAllocation {
 }
 
 export interface IndexRoutingAllocationDisk {
-  threshold_enabled?: boolean | string;
+  threshold_enabled?: Common.Stringifiedboolean;
 }
 
 export interface IndexRoutingAllocationInclude {
@@ -185,9 +154,15 @@ export interface IndexSettingBlocks {
 
 export interface IndexSettings {
   analysis?: IndexSettingsAnalysis;
-  analyze?: SettingsAnalyze;
+  analyze?: IndexSettingsAnalyze;
+  'analyze.max_token_count'?: Common.Stringifiedinteger;
   auto_expand_replicas?: string;
   blocks?: IndexSettingBlocks;
+  'blocks.metadata'?: Common.Stringifiedboolean;
+  'blocks.read'?: Common.Stringifiedboolean;
+  'blocks.read_only'?: Common.Stringifiedboolean;
+  'blocks.read_only_allow_delete'?: Common.Stringifiedboolean;
+  'blocks.write'?: Common.Stringifiedboolean;
   check_on_startup?: IndexCheckOnStartup;
   codec?: string;
   creation_date?: Common.StringifiedEpochTimeUnitMillis;
@@ -196,14 +171,18 @@ export interface IndexSettings {
   final_pipeline?: Common.PipelineName;
   format?: string | number;
   gc_deletes?: Common.Duration;
-  hidden?: boolean | string;
-  highlight?: SettingsHighlight;
+  hidden?: Common.Stringifiedboolean;
+  highlight?: IndexSettingsHighlight;
+  'highlight.max_analyzed_offset'?: number;
   index?: IndexSettings;
+  indexing?: IndexSettingsIndexing;
   indexing_pressure?: IndexingPressure;
-  'indexing.slowlog'?: IndexingSlowlogSettings;
+  knn?: boolean;
+  'knn.algo_param.ef_search'?: number;
   lifecycle?: IndexSettingsLifecycle;
+  'lifecycle.name'?: Common.Name;
   load_fixed_bitset_filters_eagerly?: boolean;
-  mapping?: MappingLimitSettings;
+  mapping?: IndexSettingsMapping;
   max_docvalue_fields_search?: number;
   max_inner_result_window?: number;
   max_ngram_diff?: number;
@@ -215,31 +194,38 @@ export interface IndexSettings {
   max_shingle_diff?: number;
   max_slices_per_scroll?: number;
   max_terms_count?: number;
-  merge?: Merge;
+  merge?: IndexSettingsMerge;
+  'merge.scheduler.max_thread_count'?: Common.Stringifiedinteger;
   mode?: string;
   number_of_replicas?: number | string;
   number_of_routing_shards?: number;
   number_of_shards?: number | string;
   priority?: number | string;
   provided_name?: Common.Name;
-  queries?: Queries;
-  query_string?: SettingsQueryString;
+  queries?: IndexSettingsQueries;
+  query_string?: IndexSettingsQueryString;
+  'query_string.lenient'?: Common.Stringifiedboolean;
   refresh_interval?: Common.Duration;
   routing?: IndexRouting;
   routing_partition_size?: Common.Stringifiedinteger;
   routing_path?: string | string[];
-  search?: SettingsSearch;
+  search?: IndexSettingsSearch;
+  'search.idle.after'?: Common.Duration;
   settings?: IndexSettings;
-  similarity?: SettingsSimilarity;
+  similarity?: IndexSettingsSimilarity;
   soft_deletes?: SoftDeletes;
+  'soft_deletes.retention_lease.period'?: Common.Duration;
   sort?: IndexSegmentSort;
-  store?: Storage;
+  store?: IndexSettingsStore;
   time_series?: IndexSettingsTimeSeries;
   top_metrics_max_size?: number;
   translog?: Translog;
+  'translog.durability'?: TranslogDurability;
+  'translog.flush_threshold_size'?: Common.HumanReadableByteCount;
   uuid?: Common.Uuid;
-  verified_before_close?: boolean | string;
+  verified_before_close?: Common.Stringifiedboolean;
   version?: IndexVersioning;
+  [key: string]: any | Record<string, any>;
 }
 
 export interface IndexSettingsAnalysis {
@@ -250,10 +236,22 @@ export interface IndexSettingsAnalysis {
   tokenizer?: Record<string, Common_Analysis.Tokenizer>;
 }
 
+export interface IndexSettingsAnalyze {
+  max_token_count?: Common.Stringifiedinteger;
+}
+
+export interface IndexSettingsHighlight {
+  max_analyzed_offset?: number;
+}
+
+export interface IndexSettingsIndexing {
+  slowlog?: IndexingSlowlog;
+}
+
 export interface IndexSettingsLifecycle {
   indexing_complete?: Common.Stringifiedboolean;
   name: Common.Name;
-  origination_date?: number;
+  origination_date?: Common.StringifiedEpochTimeUnitMillis;
   parse_origination_date?: boolean;
   rollover_alias?: string;
   step?: IndexSettingsLifecycleStep;
@@ -261,6 +259,123 @@ export interface IndexSettingsLifecycle {
 
 export interface IndexSettingsLifecycleStep {
   wait_time_threshold?: Common.Duration;
+}
+
+export interface IndexSettingsMapping {
+  coerce?: boolean;
+  depth?: IndexSettingsMappingLimitDepth;
+  dimension_fields?: IndexSettingsMappingLimitDimensionFields;
+  field_name_length?: IndexSettingsMappingLimitFieldNameLength;
+  ignore_malformed?: boolean;
+  nested_fields?: IndexSettingsMappingLimitNestedFields;
+  nested_objects?: IndexSettingsMappingLimitNestedObjects;
+  total_fields?: IndexSettingsMappingLimitTotalFields;
+}
+
+export interface IndexSettingsMappingLimitDepth {
+  limit?: number;
+}
+
+export interface IndexSettingsMappingLimitDimensionFields {
+  limit?: number;
+}
+
+export interface IndexSettingsMappingLimitFieldNameLength {
+  limit?: number;
+}
+
+export interface IndexSettingsMappingLimitNestedFields {
+  limit?: number;
+}
+
+export interface IndexSettingsMappingLimitNestedObjects {
+  limit?: number;
+}
+
+export interface IndexSettingsMappingLimitTotalFields {
+  limit?: number;
+}
+
+export interface IndexSettingsMerge {
+  scheduler?: IndexSettingsMergeScheduler;
+}
+
+export interface IndexSettingsMergeScheduler {
+  max_merge_count?: Common.Stringifiedinteger;
+  max_thread_count?: Common.Stringifiedinteger;
+}
+
+export interface IndexSettingsQueries {
+  cache?: IndexSettingsQueriesCache;
+}
+
+export interface IndexSettingsQueriesCache {
+  enabled: boolean;
+}
+
+export interface IndexSettingsQueryString {
+  lenient?: Common.Stringifiedboolean;
+}
+
+export interface IndexSettingsSearch {
+  idle?: SearchIdle;
+  slowlog?: SearchSlowlog;
+}
+
+export interface IndexSettingsSimilarity {
+  bm25?: IndexSettingsSimilarityBm25;
+  dfi?: IndexSettingsSimilarityDfi;
+  dfr?: IndexSettingsSimilarityDfr;
+  ib?: IndexSettingsSimilarityIb;
+  lmd?: IndexSettingsSimilarityLmd;
+  lmj?: IndexSettingsSimilarityLmj;
+  scripted_tfidf?: IndexSettingsSimilarityScriptedTfidf;
+}
+
+export interface IndexSettingsSimilarityBm25 {
+  b: number;
+  discount_overlaps: boolean;
+  k1: number;
+  type: 'BM25';
+}
+
+export interface IndexSettingsSimilarityDfi {
+  independence_measure: Common.DFIIndependenceMeasure;
+  type: 'DFI';
+}
+
+export interface IndexSettingsSimilarityDfr {
+  after_effect: Common.DFRAfterEffect;
+  basic_model: Common.DFRBasicModel;
+  normalization: Common.TermFrequencyNormalization;
+  type: 'DFR';
+}
+
+export interface IndexSettingsSimilarityIb {
+  distribution: Common.IBDistribution;
+  lambda: Common.IBLambda;
+  normalization: Common.TermFrequencyNormalization;
+  type: 'IB';
+}
+
+export interface IndexSettingsSimilarityLmd {
+  mu: number;
+  type: 'LMDirichlet';
+}
+
+export interface IndexSettingsSimilarityLmj {
+  lambda: number;
+  type: 'LMJelinekMercer';
+}
+
+export interface IndexSettingsSimilarityScriptedTfidf {
+  script: Common.Script;
+  type: 'scripted';
+}
+
+export interface IndexSettingsStore {
+  allow_mmap?: boolean;
+  type: StorageType;
 }
 
 export interface IndexSettingsTimeSeries {
@@ -272,7 +387,6 @@ export interface IndexState {
   aliases?: Record<string, Alias>;
   data_stream?: Common.DataStreamName;
   defaults?: IndexSettings;
-  lifecycle?: DataStreamLifecycle;
   mappings?: Common_Mapping.TypeMapping;
   settings?: IndexSettings;
 }
@@ -296,7 +410,6 @@ export interface IndexTemplateDataStreamConfiguration {
 
 export interface IndexTemplateSummary {
   aliases?: Record<string, Alias>;
-  lifecycle?: DataStreamLifecycleWithRollover;
   mappings?: Common_Mapping.TypeMapping;
   settings?: IndexSettings;
 }
@@ -308,59 +421,11 @@ export interface IndexVersioning {
 
 export type ManagedBy = 'Data stream lifecycle' | 'Index Lifecycle Management' | 'Unmanaged'
 
-export interface MappingLimitSettings {
-  coerce?: boolean;
-  depth?: MappingLimitSettingsDepth;
-  dimension_fields?: MappingLimitSettingsDimensionFields;
-  field_name_length?: MappingLimitSettingsFieldNameLength;
-  ignore_malformed?: boolean;
-  nested_fields?: MappingLimitSettingsNestedFields;
-  nested_objects?: MappingLimitSettingsNestedObjects;
-  total_fields?: MappingLimitSettingsTotalFields;
-}
-
-export interface MappingLimitSettingsDepth {
-  limit?: number;
-}
-
-export interface MappingLimitSettingsDimensionFields {
-  limit?: number;
-}
-
-export interface MappingLimitSettingsFieldNameLength {
-  limit?: number;
-}
-
-export interface MappingLimitSettingsNestedFields {
-  limit?: number;
-}
-
-export interface MappingLimitSettingsNestedObjects {
-  limit?: number;
-}
-
-export interface MappingLimitSettingsTotalFields {
-  limit?: number;
-}
-
-export interface Merge {
-  scheduler?: MergeScheduler;
-}
-
-export interface MergeScheduler {
-  max_merge_count?: Common.Stringifiedinteger;
-  max_thread_count?: Common.Stringifiedinteger;
-}
-
 export interface NumericFielddata {
   format: NumericFielddataFormat;
 }
 
 export type NumericFielddataFormat = 'array' | 'disabled'
-
-export interface Queries {
-  cache?: CacheQueries;
-}
 
 export interface RetentionLease {
   period: Common.Duration;
@@ -370,86 +435,22 @@ export interface SearchIdle {
   after?: Common.Duration;
 }
 
+export interface SearchSlowlog {
+  level?: string;
+  reformat?: boolean;
+  threshold?: SearchSlowlogThresholds;
+}
+
+export interface SearchSlowlogThresholds {
+  fetch?: SlowlogThresholdLevels;
+  query?: SlowlogThresholdLevels;
+}
+
 export type SegmentSortMissing = '_first' | '_last'
 
 export type SegmentSortMode = 'max' | 'min'
 
 export type SegmentSortOrder = 'asc' | 'desc'
-
-export interface SettingsAnalyze {
-  max_token_count?: Common.Stringifiedinteger;
-}
-
-export interface SettingsHighlight {
-  max_analyzed_offset?: number;
-}
-
-export interface SettingsQueryString {
-  lenient: Common.Stringifiedboolean;
-}
-
-export interface SettingsSearch {
-  idle?: SearchIdle;
-  slowlog?: SlowlogSettings;
-}
-
-export interface SettingsSimilarity {
-  bm25?: SettingsSimilarityBm25;
-  dfi?: SettingsSimilarityDfi;
-  dfr?: SettingsSimilarityDfr;
-  ib?: SettingsSimilarityIb;
-  lmd?: SettingsSimilarityLmd;
-  lmj?: SettingsSimilarityLmj;
-  scripted_tfidf?: SettingsSimilarityScriptedTfidf;
-}
-
-export interface SettingsSimilarityBm25 {
-  b: number;
-  discount_overlaps: boolean;
-  k1: number;
-  type: 'BM25';
-}
-
-export interface SettingsSimilarityDfi {
-  independence_measure: Common.DFIIndependenceMeasure;
-  type: 'DFI';
-}
-
-export interface SettingsSimilarityDfr {
-  after_effect: Common.DFRAfterEffect;
-  basic_model: Common.DFRBasicModel;
-  normalization: Common.Normalization;
-  type: 'DFR';
-}
-
-export interface SettingsSimilarityIb {
-  distribution: Common.IBDistribution;
-  lambda: Common.IBLambda;
-  normalization: Common.Normalization;
-  type: 'IB';
-}
-
-export interface SettingsSimilarityLmd {
-  mu: number;
-  type: 'LMDirichlet';
-}
-
-export interface SettingsSimilarityLmj {
-  lambda: number;
-  type: 'LMJelinekMercer';
-}
-
-export interface SettingsSimilarityScriptedTfidf {
-  script: Common.Script;
-  type: 'scripted';
-}
-
-export interface SlowlogSettings {
-  level?: string;
-  reformat?: boolean;
-  source?: number;
-  threshold?: SlowlogThresholds;
-}
 
 export interface SlowlogThresholdLevels {
   debug?: Common.Duration;
@@ -458,19 +459,9 @@ export interface SlowlogThresholdLevels {
   warn?: Common.Duration;
 }
 
-export interface SlowlogThresholds {
-  fetch?: SlowlogThresholdLevels;
-  query?: SlowlogThresholdLevels;
-}
-
 export interface SoftDeletes {
   enabled?: boolean;
   retention_lease?: RetentionLease;
-}
-
-export interface Storage {
-  allow_mmap?: boolean;
-  type: StorageType;
 }
 
 export type StorageType = 'fs' | 'hybridfs' | 'mmapfs' | 'niofs'
@@ -491,7 +482,7 @@ export interface Translog {
   sync_interval?: Common.Duration;
 }
 
-export type TranslogDurability = 'async' | 'request'
+export type TranslogDurability = 'ASYNC' | 'REQUEST' | 'async' | 'request'
 
 export interface TranslogRetention {
   age?: Common.Duration;

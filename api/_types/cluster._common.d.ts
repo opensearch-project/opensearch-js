@@ -32,7 +32,6 @@ export interface ComponentTemplateNode {
 export interface ComponentTemplateSummary {
   _meta?: Common.Metadata;
   aliases?: Record<string, Indices_Common.AliasDefinition>;
-  lifecycle?: Indices_Common.DataStreamLifecycleWithRollover;
   mappings?: Common_Mapping.TypeMapping;
   settings?: Record<string, Indices_Common.IndexSettings>;
   version?: Common.VersionNumber;

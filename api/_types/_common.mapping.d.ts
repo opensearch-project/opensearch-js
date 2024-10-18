@@ -66,7 +66,7 @@ export interface CompletionProperty extends DocValuesPropertyBase {
 
 export interface ConstantKeywordProperty extends PropertyBase {
   type: 'constant_keyword';
-  value?: Record<string, any>;
+  value?: any;
 }
 
 export interface CorePropertyBase extends PropertyBase {
@@ -135,32 +135,6 @@ export interface DoubleRangeProperty extends RangePropertyBase {
 
 export type DynamicMapping = 'false' | 'strict' | 'strict_allow_templates' | 'true'
 
-export interface DynamicProperty extends DocValuesPropertyBase {
-  analyzer?: string;
-  boost?: number;
-  coerce?: boolean;
-  eager_global_ordinals?: boolean;
-  enabled?: boolean;
-  format?: string;
-  ignore_malformed?: boolean;
-  index?: boolean;
-  index_options?: IndexOptions;
-  index_phrases?: boolean;
-  index_prefixes?: TextIndexPrefixes;
-  locale?: string;
-  norms?: boolean;
-  null_value?: Common.FieldValue;
-  on_script_error?: OnScriptError;
-  position_increment_gap?: number;
-  precision_step?: number;
-  script?: Common.Script;
-  search_analyzer?: string;
-  search_quote_analyzer?: string;
-  term_vector?: TermVectorOption;
-  time_series_metric?: TimeSeriesMetricType;
-  type: '{dynamic_property}';
-}
-
 export interface DynamicTemplate {
   mapping?: Property;
   match?: string;
@@ -207,7 +181,7 @@ export interface FloatRangeProperty extends RangePropertyBase {
   type: 'float_range';
 }
 
-export type GeoOrientation = 'left' | 'right'
+export type GeoOrientation = 'LEFT' | 'clockwise' | 'cw' | 'left' | 'RIGHT' | 'ccw' | 'counterclockwise' | 'right'
 
 export interface GeoPointProperty extends DocValuesPropertyBase {
   ignore_malformed?: boolean;
@@ -290,21 +264,20 @@ export interface KeywordProperty extends DocValuesPropertyBase {
 export interface KnnVectorMethod {
   engine?: string;
   name: string;
-  parameters?: Record<string, Record<string, any>>;
+  parameters?: {
+};
   space_type?: string;
 }
 
-export interface KnnVectorProperty extends KnnVectorPropertyBase {
-  type: 'knn_vector';
-}
-
-export interface KnnVectorPropertyBase {
+export interface KnnVectorProperty extends DocValuesPropertyBase {
   compression_level?: string;
   data_type?: string;
   dimension: number;
   method?: KnnVectorMethod;
   mode?: string;
+  model_id?: string;
   space_type?: string;
+  type: 'knn_vector';
 }
 
 export interface LongNumberProperty extends NumberPropertyBase {
@@ -358,7 +331,7 @@ export interface PercolatorProperty extends PropertyBase {
   type: 'percolator';
 }
 
-export type Property = BinaryProperty | BooleanProperty | DynamicProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | DenseVectorProperty | SparseVectorProperty | FlattenedProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty
+export type Property = BinaryProperty | BooleanProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | DenseVectorProperty | SparseVectorProperty | FlattenedProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty
 
 export interface PropertyBase {
   dynamic?: DynamicMapping;

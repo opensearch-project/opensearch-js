@@ -26,7 +26,7 @@ export interface SearchShards_Request extends Global.Params {
   index?: Common.Indices;
   local?: boolean;
   preference?: string;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
 }
 
 export interface SearchShards_Response extends ApiResponse {

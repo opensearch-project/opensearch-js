@@ -35,7 +35,7 @@ export interface Explain_Request extends Global.Params {
   lenient?: boolean;
   preference?: string;
   q?: string;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   stored_fields?: Common.Fields;
 }
 

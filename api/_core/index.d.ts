@@ -28,7 +28,7 @@ export interface Index_Request extends Global.Params {
   pipeline?: string;
   refresh?: Common.Refresh;
   require_alias?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   timeout?: Common.Duration;
   version?: Common.VersionNumber;
   version_type?: Common.VersionType;

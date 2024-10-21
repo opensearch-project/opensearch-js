@@ -42,7 +42,7 @@ export interface UpdateByQuery_Request extends Global.Params {
   refresh?: boolean;
   request_cache?: boolean;
   requests_per_second?: number;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   scroll?: Common.Duration;
   scroll_size?: number;
   search_timeout?: Common.Duration;

@@ -28,7 +28,7 @@ export interface ExistsSource_Request extends Global.Params {
   preference?: string;
   realtime?: boolean;
   refresh?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   version?: Common.VersionNumber;
   version_type?: Common.VersionType;
 }

@@ -24,7 +24,7 @@ export interface Delete_Request extends Global.Params {
   if_seq_no?: Common.SequenceNumber;
   index: Common.IndexName;
   refresh?: Common.Refresh;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   timeout?: Common.Duration;
   version?: Common.VersionNumber;
   version_type?: Common.VersionType;

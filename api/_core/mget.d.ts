@@ -29,7 +29,7 @@ export interface Mget_Request extends Global.Params {
   preference?: string;
   realtime?: boolean;
   refresh?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   stored_fields?: Common.Fields;
 }
 

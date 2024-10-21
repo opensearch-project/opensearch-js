@@ -33,7 +33,7 @@ export interface Update_Request extends Global.Params {
   refresh?: Common.Refresh;
   require_alias?: boolean;
   retry_on_conflict?: number;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   timeout?: Common.Duration;
   wait_for_active_shards?: Common.WaitForActiveShards;
 }

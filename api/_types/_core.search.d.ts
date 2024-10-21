@@ -84,6 +84,8 @@ export interface AggregationProfileDelegateDebugFilter {
 
 export type BoundaryScanner = 'chars' | 'sentence' | 'word'
 
+export type BuiltinHighlighterType = 'fvh' | 'plain' | 'unified'
+
 export interface Collector {
   children?: Collector[];
   name: string;
@@ -136,7 +138,6 @@ export interface FetchProfileDebug {
 }
 
 export interface FieldCollapse {
-  collapse?: FieldCollapse;
   field: Common.Field;
   inner_hits?: InnerHits | InnerHits[];
   max_concurrent_group_searches?: number;
@@ -179,7 +180,7 @@ export type HighlighterOrder = 'score'
 
 export type HighlighterTagsSchema = 'styled'
 
-export type HighlighterType = 'fvh' | 'plain' | 'unified'
+export type HighlighterType = BuiltinHighlighterType | string
 
 export interface HighlightField extends HighlightBase {
   analyzer?: Common_Analysis.Analyzer;

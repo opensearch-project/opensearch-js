@@ -121,7 +121,7 @@ export interface RecipientListItem {
   recipient?: string;
 }
 
-export type RestStatus = 'accepted' | 'continue' | 'created' | 'found' | 'moved_permanently' | 'multi_status' | 'multiple_choices' | 'no_content' | 'non_authoritative_information' | 'not_modified' | 'ok' | 'partial_content' | 'reset_content' | 'see_other' | 'switching_protocols' | 'temporary_redirect' | 'use_proxy'
+export type RestStatus = 'ACCEPTED' | 'CREATED' | 'MULTI_STATUS' | 'NON_AUTHORITATIVE_INFORMATION' | 'NO_CONTENT' | 'OK' | 'PARTIAL_CONTENT' | 'RESET_CONTENT'
 
 export interface SesAccount {
   from_address: string;

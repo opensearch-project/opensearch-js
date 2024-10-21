@@ -52,7 +52,7 @@ export interface Search_Request extends Global.Params {
   q?: string;
   request_cache?: boolean;
   rest_total_hits_as_int?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   scroll?: Common.Duration;
   search_pipeline?: string;
   search_type?: Common.SearchType;

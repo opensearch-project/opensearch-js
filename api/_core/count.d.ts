@@ -34,7 +34,7 @@ export interface Count_Request extends Global.Params {
   min_score?: number;
   preference?: string;
   q?: string;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   terminate_after?: number;
 }
 

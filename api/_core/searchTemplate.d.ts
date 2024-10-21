@@ -32,7 +32,7 @@ export interface SearchTemplate_Request extends Global.Params {
   preference?: string;
   profile?: boolean;
   rest_total_hits_as_int?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   scroll?: Common.Duration;
   search_type?: Common.SearchType;
   typed_keys?: boolean;

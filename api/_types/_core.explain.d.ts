@@ -18,12 +18,12 @@
 export interface Explanation {
   description: string;
   details: ExplanationDetail[];
-  value: number;
+  value: number | number | number | number;
 }
 
 export interface ExplanationDetail {
   description: string;
   details?: ExplanationDetail[];
-  value: number;
+  value: number | number | number | number;
 }
 

@@ -33,6 +33,10 @@ export interface BaseNode {
   transport_address?: TransportAddress;
 }
 
+export type BatchSize = number
+
+export type BuiltinScriptLanguage = 'expression' | 'java' | 'mustache' | 'painless'
+
 export type BulkByScrollFailure = BulkItemResponseFailure | ScrollableHitSourceSearchFailure
 
 export interface BulkByScrollResponseBase extends BulkByScrollTaskStatus {
@@ -173,7 +177,7 @@ export interface ErrorResponseBase {
   status: number;
 }
 
-export type ExpandWildcard = 'all' | 'closed' | 'hidden' | 'none' | 'open'
+export type ExpandWildcard = string | string | string | string | string
 
 export type ExpandWildcards = ExpandWildcard | ExpandWildcard[]
 
@@ -328,7 +332,7 @@ export interface InlineGetDictUserDefined {
   found: boolean;
 }
 
-export interface InlineScript extends ScriptBase {
+export interface InlineScript string | extends ScriptBase {
   lang?: ScriptLanguage;
   options?: Record<string, string>;
   source: string;
@@ -430,8 +434,6 @@ export interface NodeStatistics {
   successful: number;
   total: number;
 }
-
-export type Normalization = 'h1' | 'h2' | 'h3' | 'no' | 'z'
 
 export interface OpenSearchVersionInfo {
   build_date: DateTime;
@@ -604,6 +606,8 @@ export interface RequestStats {
   total?: number;
 }
 
+export type ResourceType = 'index_or_alias'
+
 export type Result = 'created' | 'deleted' | 'noop' | 'not_found' | 'updated'
 
 export interface Retries {
@@ -611,7 +615,9 @@ export interface Retries {
   search: number;
 }
 
-export type Routing = string | string[]
+export type Routing = string
+
+export type RoutingInQueryString = string | string[]
 
 export interface RrfRank extends RankBase {
   rank_constant?: number;
@@ -635,7 +641,7 @@ export interface ScriptField {
   script: Script;
 }
 
-export type ScriptLanguage = 'expression' | 'java' | 'mustache' | 'painless'
+export type ScriptLanguage = BuiltinScriptLanguage | string
 
 export interface ScriptSort {
   mode?: SortMode;
@@ -816,6 +822,8 @@ export interface TaskFailure {
 }
 
 export type TaskId = string | number
+
+export type TermFrequencyNormalization = 'h1' | 'h2' | 'h3' | 'no' | 'z'
 
 export type TimeOfDay = string
 

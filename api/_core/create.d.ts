@@ -24,7 +24,7 @@ export interface Create_Request extends Global.Params {
   index: Common.IndexName;
   pipeline?: string;
   refresh?: Common.Refresh;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   timeout?: Common.Duration;
   version?: Common.VersionNumber;
   version_type?: Common.VersionType;

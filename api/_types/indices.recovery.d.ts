@@ -61,10 +61,14 @@ export interface RecoveryOrigin {
   id?: Common.Id;
   index?: Common.IndexName;
   ip?: Common.Ip;
+  isSearchableSnapshot?: boolean;
   name?: Common.Name;
+  remoteStoreIndexShallowCopy?: boolean;
   repository?: Common.Name;
   restoreUUID?: Common.Uuid;
   snapshot?: Common.Name;
+  sourceRemoteStoreRepository?: undefined | string;
+  sourceRemoteTranslogRepository?: undefined | string;
   transport_address?: Common.TransportAddress;
   version?: Common.VersionString;
 }

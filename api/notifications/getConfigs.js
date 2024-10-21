@@ -27,6 +27,8 @@ const { normalizeArguments } = require('../utils');
  * @param {object} [params]
  * @param {string} [params.chime.url] 
  * @param {string} [params.chime.url.keyword] 
+ * @param {string} [params.config_id] - Notification configuration ID.
+ * @param {array} [params.config_id_list] - Notification configuration IDs.
  * @param {string} [params.config_type] - Type of notification configuration.
  * @param {number} [params.created_time_ms] 
  * @param {string} [params.description] 

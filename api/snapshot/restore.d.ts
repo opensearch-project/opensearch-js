@@ -47,6 +47,7 @@ export interface Snapshot_Restore_Response extends ApiResponse {
 }
 
 export interface Snapshot_Restore_ResponseBody {
-  snapshot: Snapshot_Restore.SnapshotRestore;
+  accepted?: boolean;
+  snapshot?: Snapshot_Restore.SnapshotRestore;
 }
 

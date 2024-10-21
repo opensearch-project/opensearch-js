@@ -21,18 +21,6 @@ export interface FileCountSnapshotStats {
   size_in_bytes: Common.ByteCount;
 }
 
-export interface IndexDetails {
-  max_segments_per_shard: number;
-  shard_count: number;
-  size?: Common.HumanReadableByteCount;
-  size_in_bytes: Common.ByteCount;
-}
-
-export interface InfoFeatureState {
-  feature_name: string;
-  indices: Common.Indices;
-}
-
 export interface Repository {
   settings: RepositorySettings;
   type: string;
@@ -84,13 +72,12 @@ export interface SnapshotInfo {
   end_time?: Common.DateTime;
   end_time_in_millis?: Common.EpochTimeUnitMillis;
   failures?: SnapshotShardFailure[];
-  feature_states?: InfoFeatureState[];
   include_global_state?: boolean;
-  index_details?: Record<string, IndexDetails>;
   indices?: Common.IndexName[];
   metadata?: Common.Metadata;
+  pinned_timestamp?: Common.EpochTimeUnitMillis;
   reason?: string;
-  repository?: Common.Name;
+  remote_store_index_shallow_copy?: boolean;
   shards?: Common.ShardStatistics;
   snapshot: Common.Name;
   start_time?: Common.DateTime;

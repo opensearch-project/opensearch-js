@@ -22,6 +22,8 @@ export interface Notifications_GetConfigs_Request extends Global.Params {
   body?: Notifications_GetConfigs_RequestBody;
   'chime.url'?: string;
   'chime.url.keyword'?: string;
+  config_id?: string;
+  config_id_list?: string[];
   config_type?: Notifications_Common.NotificationConfigType;
   created_time_ms?: number;
   description?: string;

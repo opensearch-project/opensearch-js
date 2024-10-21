@@ -18,7 +18,6 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Snapshot_Common from '../_types/snapshot._common'
-import * as Snapshot_Get from '../_types/snapshot.get'
 
 export interface Snapshot_Get_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;
@@ -34,9 +33,6 @@ export interface Snapshot_Get_Response extends ApiResponse {
 }
 
 export interface Snapshot_Get_ResponseBody {
-  remaining: number;
-  responses?: Snapshot_Get.SnapshotResponseItem[];
-  snapshots?: Snapshot_Common.SnapshotInfo[];
-  total: number;
+  snapshots: Snapshot_Common.SnapshotInfo[];
 }
 

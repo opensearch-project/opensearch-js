@@ -30,7 +30,7 @@ export interface Mtermvectors_Request extends Global.Params {
   positions?: boolean;
   preference?: string;
   realtime?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   term_statistics?: boolean;
   version?: Common.VersionNumber;
   version_type?: Common.VersionType;

@@ -33,25 +33,13 @@ export default class TypesFileRenderder extends BaseRenderer {
     const con = this._container
     return {
       is_function: con.is_function,
-      types: _.entries(con.schemas).map(([name, schema]) => {
-        const definition = this.#render_schema(schema)
-        const declarative = this.#is_interface(definition) ? `interface ${name}` : `type ${name} =`
-        return { declarative, definition }
-      }),
+      types: _.entries(con.schemas).map(([name, schema]) => ({ name, definition: this.#render_schema(schema) })),
       imports: Array.from(con.referenced_containers)
         .sort((a, b) => a.import_name.localeCompare(b.import_name))
         .map(container => {
           return { path: con.import_path(container), name: container.import_name }
         })
     }
-  }
-
-  #is_interface (definition: string): boolean {
-    if (definition.includes('} |')) return false
-    if (definition.includes('| {')) return false
-    if (definition.includes('} &')) return false
-    if (definition.includes('& {')) return false
-    return definition.includes('}')
   }
 
   #render_schema (schema: Schema): string {
@@ -61,6 +49,7 @@ export default class TypesFileRenderder extends BaseRenderer {
     if (schema.items != null) return `${this.#render_schema(schema.items as Schema)}[]`
     if (schema.type === 'array') return 'any[]'
     if (schema.enum != null) return schema.enum.map(str => `'${str as string}'`).join(' | ')
+    if (schema.type === 'string' && schema.const != null) return `'${schema.const as string}'`
     if (schema.type === 'string') return 'string'
     if (schema.type === 'number') return 'number'
     if (schema.type === 'integer') return 'number'
@@ -75,7 +64,10 @@ export default class TypesFileRenderder extends BaseRenderer {
 
   #render_anyOf (schema: Schema): string {
     const schemas = schema.oneOf ?? schema.anyOf ?? []
-    return schemas.map((sch) => this.#render_schema(sch as Schema)).join(' | ')
+    return schemas.map((sch) => {
+      const render = this.#render_schema(sch as Schema)
+      return render.includes(' & ') ? `(${render})` : render
+    }).join(' | ')
   }
 
   #render_allOf (schemas: Schema[]): string {
@@ -92,10 +84,10 @@ export default class TypesFileRenderder extends BaseRenderer {
     }, {})
 
     const inline_schemas_render = this.#render_schema(compound_inline)
-    const named_schemas_render = named_schemas.map(schema => this.#render_schema(schema)).join(', ')
+    const named_schemas_render = named_schemas.map(schema => this.#render_schema(schema)).join(' & ')
 
     if (named_schemas.length === 0) return inline_schemas_render
-    if (inline_schemas_render.includes('{')) return `extends ${named_schemas_render} ${inline_schemas_render}`
+    if (inline_schemas_render.includes('{')) return `${named_schemas_render} & ${inline_schemas_render}`
     return `${named_schemas_render} & ${this.#render_simple_obj(compound_inline)}`
   }
 

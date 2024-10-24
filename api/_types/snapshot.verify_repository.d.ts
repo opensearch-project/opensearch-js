@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface CompactNodeInfo {
+export type CompactNodeInfo = {
   name: Common.Name;
 }
 

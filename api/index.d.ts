@@ -17,6 +17,7 @@
 import { Info_Request, Info_Response, Info_ResponseBody } from './_core/info';
 import { Ping_Request, Ping_Response, Ping_ResponseBody } from './_core/ping';
 import { Bulk_Request, Bulk_RequestBody, Bulk_Response, Bulk_ResponseBody } from './_core/bulk';
+import { BulkStream_Request, BulkStream_RequestBody, BulkStream_Response, BulkStream_ResponseBody } from './_core/bulkStream';
 import { Count_Request, Count_RequestBody, Count_Response, Count_ResponseBody } from './_core/count';
 import { DeleteByQueryRethrottle_Request, DeleteByQueryRethrottle_Response, DeleteByQueryRethrottle_ResponseBody } from './_core/deleteByQueryRethrottle';
 import { FieldCaps_Request, FieldCaps_RequestBody, FieldCaps_Response, FieldCaps_ResponseBody } from './_core/fieldCaps';
@@ -157,6 +158,7 @@ import { Ingest_Simulate_Request, Ingest_Simulate_RequestBody, Ingest_Simulate_R
 import { Ingest_DeletePipeline_Request, Ingest_DeletePipeline_Response, Ingest_DeletePipeline_ResponseBody } from './ingest/deletePipeline';
 import { Ingest_PutPipeline_Request, Ingest_PutPipeline_RequestBody, Ingest_PutPipeline_Response, Ingest_PutPipeline_ResponseBody } from './ingest/putPipeline';
 import { Ingest_ProcessorGrok_Request, Ingest_ProcessorGrok_Response, Ingest_ProcessorGrok_ResponseBody } from './ingest/processorGrok';
+import { Insights_TopQueries_Request, Insights_TopQueries_Response, Insights_TopQueries_ResponseBody } from './insights/topQueries';
 import { Nodes_Info_Request, Nodes_Info_Response, Nodes_Info_ResponseBody } from './nodes/info';
 import { Nodes_HotThreads_Request, Nodes_HotThreads_Response, Nodes_HotThreads_ResponseBody } from './nodes/hotThreads';
 import { Nodes_ReloadSecureSettings_Request, Nodes_ReloadSecureSettings_RequestBody, Nodes_ReloadSecureSettings_Response, Nodes_ReloadSecureSettings_ResponseBody } from './nodes/reloadSecureSettings';
@@ -352,6 +354,7 @@ export {
   Info_Request, Info_Response, Info_ResponseBody,
   Ping_Request, Ping_Response, Ping_ResponseBody,
   Bulk_Request, Bulk_RequestBody, Bulk_Response, Bulk_ResponseBody,
+  BulkStream_Request, BulkStream_RequestBody, BulkStream_Response, BulkStream_ResponseBody,
   Count_Request, Count_RequestBody, Count_Response, Count_ResponseBody,
   DeleteByQueryRethrottle_Request, DeleteByQueryRethrottle_Response, DeleteByQueryRethrottle_ResponseBody,
   FieldCaps_Request, FieldCaps_RequestBody, FieldCaps_Response, FieldCaps_ResponseBody,
@@ -492,6 +495,7 @@ export {
   Ingest_DeletePipeline_Request, Ingest_DeletePipeline_Response, Ingest_DeletePipeline_ResponseBody,
   Ingest_PutPipeline_Request, Ingest_PutPipeline_RequestBody, Ingest_PutPipeline_Response, Ingest_PutPipeline_ResponseBody,
   Ingest_ProcessorGrok_Request, Ingest_ProcessorGrok_Response, Ingest_ProcessorGrok_ResponseBody,
+  Insights_TopQueries_Request, Insights_TopQueries_Response, Insights_TopQueries_ResponseBody,
   Nodes_Info_Request, Nodes_Info_Response, Nodes_Info_ResponseBody,
   Nodes_HotThreads_Request, Nodes_HotThreads_Response, Nodes_HotThreads_ResponseBody,
   Nodes_ReloadSecureSettings_Request, Nodes_ReloadSecureSettings_RequestBody, Nodes_ReloadSecureSettings_Response, Nodes_ReloadSecureSettings_ResponseBody,

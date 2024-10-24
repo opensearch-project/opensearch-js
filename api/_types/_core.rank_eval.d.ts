@@ -17,24 +17,24 @@
 import * as Common from './_common'
 import * as Common_QueryDsl from './_common.query_dsl'
 
-export interface DocumentRating {
+export type DocumentRating = {
   _id: Common.Id;
   _index: Common.IndexName;
   rating: number;
 }
 
-export interface RankEvalHit {
+export type RankEvalHit = {
   _id: Common.Id;
   _index: Common.IndexName;
   _score: number;
 }
 
-export interface RankEvalHitItem {
+export type RankEvalHitItem = {
   hit: RankEvalHit;
   rating?: undefined | number | string;
 }
 
-export interface RankEvalMetric {
+export type RankEvalMetric = {
   dcg?: RankEvalMetricDiscountedCumulativeGain;
   expected_reciprocal_rank?: RankEvalMetricExpectedReciprocalRank;
   mean_reciprocal_rank?: RankEvalMetricMeanReciprocalRank;
@@ -42,43 +42,43 @@ export interface RankEvalMetric {
   recall?: RankEvalMetricRecall;
 }
 
-export interface RankEvalMetricBase {
+export type RankEvalMetricBase = {
   k?: number;
 }
 
-export interface RankEvalMetricDetail {
+export type RankEvalMetricDetail = {
   hits: RankEvalHitItem[];
   metric_details: Record<string, Record<string, Record<string, any>>>;
   metric_score: number;
   unrated_docs: UnratedDocument[];
 }
 
-export interface RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
+export type RankEvalMetricDiscountedCumulativeGain = RankEvalMetricBase & {
   normalize?: boolean;
 }
 
-export interface RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
+export type RankEvalMetricExpectedReciprocalRank = RankEvalMetricBase & {
   maximum_relevance: number;
 }
 
 export type RankEvalMetricMeanReciprocalRank = RankEvalMetricRatingThreshold & Record<string, any>
 
-export interface RankEvalMetricPrecision extends RankEvalMetricRatingThreshold {
+export type RankEvalMetricPrecision = RankEvalMetricRatingThreshold & {
   ignore_unlabeled?: boolean;
 }
 
-export interface RankEvalMetricRatingThreshold extends RankEvalMetricBase {
+export type RankEvalMetricRatingThreshold = RankEvalMetricBase & {
   relevant_rating_threshold?: number;
 }
 
 export type RankEvalMetricRecall = RankEvalMetricRatingThreshold & Record<string, any>
 
-export interface RankEvalQuery {
+export type RankEvalQuery = {
   query: Common_QueryDsl.QueryContainer;
   size?: number;
 }
 
-export interface RankEvalRequestItem {
+export type RankEvalRequestItem = {
   id: Common.Id;
   params?: Record<string, Record<string, any>>;
   ratings: DocumentRating[];
@@ -86,7 +86,7 @@ export interface RankEvalRequestItem {
   template_id?: Common.Id;
 }
 
-export interface UnratedDocument {
+export type UnratedDocument = {
   _id: Common.Id;
   _index: Common.IndexName;
 }

@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Indices_ExistsIndexTemplate_Request extends Global.Params {
+export type Indices_ExistsIndexTemplate_Request = Global.Params & {
   cluster_manager_timeout?: Common.Duration;
   flat_settings?: boolean;
   local?: boolean;
@@ -26,7 +26,7 @@ export interface Indices_ExistsIndexTemplate_Request extends Global.Params {
   name: Common.Name;
 }
 
-export interface Indices_ExistsIndexTemplate_Response extends ApiResponse {
+export type Indices_ExistsIndexTemplate_Response = ApiResponse & {
   body: Indices_ExistsIndexTemplate_ResponseBody;
 }
 

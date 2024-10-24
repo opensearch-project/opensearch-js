@@ -18,20 +18,20 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface ClearScroll_Request extends Global.Params {
+export type ClearScroll_Request = Global.Params & {
   body?: ClearScroll_RequestBody;
   scroll_id?: Common.ScrollIds;
 }
 
-export interface ClearScroll_RequestBody {
+export type ClearScroll_RequestBody = {
   scroll_id?: Common.ScrollIds;
 }
 
-export interface ClearScroll_Response extends ApiResponse {
+export type ClearScroll_Response = ApiResponse & {
   body: ClearScroll_ResponseBody;
 }
 
-export interface ClearScroll_ResponseBody {
+export type ClearScroll_ResponseBody = {
   num_freed: number;
   succeeded: boolean;
 }

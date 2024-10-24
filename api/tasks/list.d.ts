@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Tasks_Common from '../_types/tasks._common'
 
-export interface Tasks_List_Request extends Global.Params {
+export type Tasks_List_Request = Global.Params & {
   actions?: string | string[];
   detailed?: boolean;
   group_by?: Tasks_Common.GroupBy;
@@ -29,7 +29,7 @@ export interface Tasks_List_Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface Tasks_List_Response extends ApiResponse {
+export type Tasks_List_Response = ApiResponse & {
   body: Tasks_List_ResponseBody;
 }
 

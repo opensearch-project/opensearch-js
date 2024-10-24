@@ -21,11 +21,11 @@ import * as Global from '../_types/_global'
 
 export type DanglingIndices_ListDanglingIndices_Request = Global.Params & Record<string, any>
 
-export interface DanglingIndices_ListDanglingIndices_Response extends ApiResponse {
+export type DanglingIndices_ListDanglingIndices_Response = ApiResponse & {
   body: DanglingIndices_ListDanglingIndices_ResponseBody;
 }
 
-export interface DanglingIndices_ListDanglingIndices_ResponseBody {
+export type DanglingIndices_ListDanglingIndices_ResponseBody = {
   _nodes?: Common.NodeStatistics;
   cluster_name?: Common.Name;
   dangling_indices: DanglingIndices_ListDanglingIndices.DanglingIndex[];

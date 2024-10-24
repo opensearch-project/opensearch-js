@@ -16,12 +16,12 @@
 
 import * as Common from './_common'
 
-export interface AllIndicesStats {
+export type AllIndicesStats = {
   primaries: IndexStats;
   total: IndexStats;
 }
 
-export interface IndexShardStats extends IndexStatsBase {
+export type IndexShardStats = IndexStatsBase & {
   commit?: ShardCommit;
   retention_leases?: ShardRetentionLeases;
   routing?: ShardRouting;
@@ -31,7 +31,7 @@ export interface IndexShardStats extends IndexStatsBase {
 
 export type IndexStats = IndexStatsBase & Record<string, any>
 
-export interface IndexStatsBase {
+export type IndexStatsBase = {
   completion?: Common.CompletionStats;
   docs?: Common.DocStats;
   fielddata?: Common.FielddataStats;
@@ -50,7 +50,7 @@ export interface IndexStatsBase {
   warmer?: Common.WarmerStats;
 }
 
-export interface IndicesStats {
+export type IndicesStats = {
   primaries: IndexStats;
   shards?: Record<string, IndexShardStats[]>;
   total: IndexStats;
@@ -59,14 +59,14 @@ export interface IndicesStats {
 
 export type Metric = '_all' | 'completion' | 'docs' | 'fielddata' | 'flush' | 'get' | 'indexing' | 'merge' | 'query_cache' | 'recovery' | 'refresh' | 'request_cache' | 'search' | 'segments' | 'store' | 'suggest' | 'translog' | 'warmer'
 
-export interface ShardCommit {
+export type ShardCommit = {
   generation: number;
   id: Common.Id;
   num_docs: number;
   user_data: Record<string, string>;
 }
 
-export interface ShardFileSizeInfo {
+export type ShardFileSizeInfo = {
   average_size_in_bytes?: Common.ByteCount;
   count?: number;
   description: string;
@@ -76,26 +76,26 @@ export interface ShardFileSizeInfo {
   size_in_bytes: Common.ByteCount;
 }
 
-export interface ShardLease {
+export type ShardLease = {
   id: Common.Id;
   retaining_seq_no: Common.SequenceNumber;
   source: string;
   timestamp: number;
 }
 
-export interface ShardPath {
+export type ShardPath = {
   data_path: string;
   is_custom_data_path: boolean;
   state_path: string;
 }
 
-export interface ShardRetentionLeases {
+export type ShardRetentionLeases = {
   leases: ShardLease[];
   primary_term: number;
   version: Common.VersionNumber;
 }
 
-export interface ShardRouting {
+export type ShardRouting = {
   node: string;
   primary: boolean;
   relocating_node?: undefined | string;
@@ -104,7 +104,7 @@ export interface ShardRouting {
 
 export type ShardRoutingState = 'INITIALIZING' | 'RELOCATING' | 'STARTED' | 'UNASSIGNED'
 
-export interface ShardSequenceNumber {
+export type ShardSequenceNumber = {
   global_checkpoint: number;
   local_checkpoint: number;
   max_seq_no: Common.SequenceNumber;

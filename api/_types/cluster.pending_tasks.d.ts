@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface PendingTask {
+export type PendingTask = {
   executing: boolean;
   insert_order: number;
   priority: string;

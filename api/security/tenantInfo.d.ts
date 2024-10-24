@@ -20,7 +20,7 @@ import * as Security_Common from '../_types/security._common'
 
 export type Security_TenantInfo_Request = Global.Params & Record<string, any>
 
-export interface Security_TenantInfo_Response extends ApiResponse {
+export type Security_TenantInfo_Response = ApiResponse & {
   body: Security_TenantInfo_ResponseBody;
 }
 

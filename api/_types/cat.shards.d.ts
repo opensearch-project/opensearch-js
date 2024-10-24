@@ -15,7 +15,7 @@
  */
 
 
-export interface ShardsRecord {
+export type ShardsRecord = {
   'bulk.avg_size_in_bytes'?: undefined | string;
   'bulk.avg_time'?: undefined | string;
   'bulk.total_operations'?: undefined | string;

@@ -20,28 +20,28 @@ import * as Core_Search from './_core.search'
 
 export type AdjacencyMatrixAggregate = MultiBucketAggregateBaseAdjacencyMatrixBucket & Record<string, any>
 
-export interface AdjacencyMatrixAggregation extends BucketAggregationBase {
+export type AdjacencyMatrixAggregation = BucketAggregationBase & {
   filters?: Record<string, Common_QueryDsl.QueryContainer>;
 }
 
-export interface AdjacencyMatrixBucket extends MultiBucketBase {
+export type AdjacencyMatrixBucket = MultiBucketBase & {
   key: string;
 }
 
 export type Aggregate = CardinalityAggregate | HdrPercentilesAggregate | HdrPercentileRanksAggregate | TDigestPercentilesAggregate | TDigestPercentileRanksAggregate | PercentilesBucketAggregate | MedianAbsoluteDeviationAggregate | MinAggregate | MaxAggregate | SumAggregate | AvgAggregate | WeightedAvgAggregate | ValueCountAggregate | SimpleValueAggregate | DerivativeAggregate | BucketMetricValueAggregate | StatsAggregate | StatsBucketAggregate | ExtendedStatsAggregate | ExtendedStatsBucketAggregate | GeoBoundsAggregate | GeoCentroidAggregate | HistogramAggregate | DateHistogramAggregate | AutoDateHistogramAggregate | VariableWidthHistogramAggregate | StringTermsAggregate | LongTermsAggregate | DoubleTermsAggregate | UnmappedTermsAggregate | LongRareTermsAggregate | StringRareTermsAggregate | UnmappedRareTermsAggregate | MultiTermsAggregate | MissingAggregate | NestedAggregate | ReverseNestedAggregate | GlobalAggregate | FilterAggregate | ChildrenAggregate | ParentAggregate | SamplerAggregate | UnmappedSamplerAggregate | GeoHashGridAggregate | GeoTileGridAggregate | GeoHexGridAggregate | RangeAggregate | DateRangeAggregate | GeoDistanceAggregate | IpRangeAggregate | IpPrefixAggregate | FiltersAggregate | AdjacencyMatrixAggregate | SignificantLongTermsAggregate | SignificantStringTermsAggregate | UnmappedSignificantTermsAggregate | CompositeAggregate | FrequentItemSetsAggregate | ScriptedMetricAggregate | TopHitsAggregate | InferenceAggregate | StringStatsAggregate | BoxPlotAggregate | TopMetricsAggregate | TTestAggregate | RateAggregate | CumulativeCardinalityAggregate | MatrixStatsAggregate | GeoLineAggregate
 
-export interface AggregateBase {
+export type AggregateBase = {
   meta?: Common.Metadata;
 }
 
 export type AggregateOrder = Record<string, Common.SortOrder> | Record<string, Common.SortOrder>[]
 
-export interface Aggregation {
+export type Aggregation = {
   meta?: Common.Metadata;
   name?: string;
 }
 
-export interface AggregationContainer {
+export type AggregationContainer = {
   adjacency_matrix?: AdjacencyMatrixAggregation;
   aggregations?: Record<string, AggregationContainer>;
   auto_date_histogram?: AutoDateHistogramAggregation;
@@ -122,23 +122,23 @@ export interface AggregationContainer {
   weighted_avg?: WeightedAverageAggregation;
 }
 
-export interface AggregationRange {
+export type AggregationRange = {
   from?: undefined | number | string;
   key?: string;
   to?: undefined | number | string;
 }
 
-export interface ArrayPercentilesItem {
+export type ArrayPercentilesItem = {
   key: string;
   value: undefined | number | string;
   value_as_string?: string;
 }
 
-export interface AutoDateHistogramAggregate extends MultiBucketAggregateBaseDateHistogramBucket {
+export type AutoDateHistogramAggregate = MultiBucketAggregateBaseDateHistogramBucket & {
   interval: Common.DurationLarge;
 }
 
-export interface AutoDateHistogramAggregation extends BucketAggregationBase {
+export type AutoDateHistogramAggregation = BucketAggregationBase & {
   buckets?: number;
   field?: Common.Field;
   format?: string;
@@ -156,7 +156,7 @@ export type AverageBucketAggregation = PipelineAggregationBase & Record<string, 
 
 export type AvgAggregate = SingleMetricAggregateBase & Record<string, any>
 
-export interface BoxPlotAggregate extends AggregateBase {
+export type BoxPlotAggregate = AggregateBase & {
   lower: number;
   lower_as_string?: string;
   max: number;
@@ -173,41 +173,41 @@ export interface BoxPlotAggregate extends AggregateBase {
   upper_as_string?: string;
 }
 
-export interface BoxplotAggregation extends MetricAggregationBase {
+export type BoxplotAggregation = MetricAggregationBase & {
   compression?: number;
 }
 
 export type BucketAggregationBase = Aggregation & Record<string, any>
 
-export interface BucketCorrelationAggregation extends BucketPathAggregation {
+export type BucketCorrelationAggregation = BucketPathAggregation & {
   function: BucketCorrelationFunction;
 }
 
-export interface BucketCorrelationFunction {
+export type BucketCorrelationFunction = {
   count_correlation: BucketCorrelationFunctionCountCorrelation;
 }
 
-export interface BucketCorrelationFunctionCountCorrelation {
+export type BucketCorrelationFunctionCountCorrelation = {
   indicator: BucketCorrelationFunctionCountCorrelationIndicator;
 }
 
-export interface BucketCorrelationFunctionCountCorrelationIndicator {
+export type BucketCorrelationFunctionCountCorrelationIndicator = {
   doc_count: number;
   expectations: number[];
   fractions?: number[];
 }
 
-export interface BucketKsAggregation extends BucketPathAggregation {
+export type BucketKsAggregation = BucketPathAggregation & {
   alternative?: string[];
   fractions?: number[];
   sampling_method?: string;
 }
 
-export interface BucketMetricValueAggregate extends SingleMetricAggregateBase {
+export type BucketMetricValueAggregate = SingleMetricAggregateBase & {
   keys: string[];
 }
 
-export interface BucketPathAggregation extends Aggregation {
+export type BucketPathAggregation = Aggregation & {
   buckets_path?: BucketsPath;
 }
 
@@ -215,7 +215,7 @@ export type BucketsAdjacencyMatrixBucket = Record<string, AdjacencyMatrixBucket>
 
 export type BucketsCompositeBucket = Record<string, CompositeBucket> | CompositeBucket[]
 
-export interface BucketScriptAggregation extends PipelineAggregationBase {
+export type BucketScriptAggregation = PipelineAggregationBase & {
   script?: Common.Script;
 }
 
@@ -223,7 +223,7 @@ export type BucketsDateHistogramBucket = Record<string, DateHistogramBucket> | D
 
 export type BucketsDoubleTermsBucket = Record<string, DoubleTermsBucket> | DoubleTermsBucket[]
 
-export interface BucketSelectorAggregation extends PipelineAggregationBase {
+export type BucketSelectorAggregation = PipelineAggregationBase & {
   script?: Common.Script;
 }
 
@@ -249,7 +249,7 @@ export type BucketsLongTermsBucket = Record<string, LongTermsBucket> | LongTerms
 
 export type BucketsMultiTermsBucket = Record<string, MultiTermsBucket> | MultiTermsBucket[]
 
-export interface BucketSortAggregation extends Aggregation {
+export type BucketSortAggregation = Aggregation & {
   from?: number;
   gap_policy?: GapPolicy;
   size?: number;
@@ -276,11 +276,11 @@ export type BucketsVoid = Record<string, Common.Void> | Common.Void[]
 
 export type CalendarInterval = 'day' | 'hour' | 'minute' | 'month' | 'quarter' | 'second' | 'week' | 'year'
 
-export interface CardinalityAggregate extends AggregateBase {
+export type CardinalityAggregate = AggregateBase & {
   value: number;
 }
 
-export interface CardinalityAggregation extends MetricAggregationBase {
+export type CardinalityAggregation = MetricAggregationBase & {
   execution_hint?: CardinalityExecutionMode;
   precision_threshold?: number;
   rehash?: boolean;
@@ -288,7 +288,7 @@ export interface CardinalityAggregation extends MetricAggregationBase {
 
 export type CardinalityExecutionMode = 'direct' | 'global_ordinals' | 'save_memory_heuristic' | 'save_time_heuristic' | 'segment_ordinals'
 
-export interface CategorizeTextAggregation extends Aggregation {
+export type CategorizeTextAggregation = Aggregation & {
   categorization_analyzer?: CategorizeTextAnalyzer;
   categorization_filters?: string[];
   field: Common.Field;
@@ -305,16 +305,16 @@ export type CategorizeTextAnalyzer = string | CustomCategorizeTextAnalyzer
 
 export type ChildrenAggregate = SingleBucketAggregateBase & Record<string, any>
 
-export interface ChildrenAggregation extends BucketAggregationBase {
+export type ChildrenAggregation = BucketAggregationBase & {
   type?: Common.RelationName;
 }
 
-export interface ChiSquareHeuristic {
+export type ChiSquareHeuristic = {
   background_is_superset: boolean;
   include_negatives: boolean;
 }
 
-export interface ClassificationInferenceOptions {
+export type ClassificationInferenceOptions = {
   num_top_classes?: number;
   num_top_feature_importance_values?: number;
   prediction_field_type?: string;
@@ -322,19 +322,19 @@ export interface ClassificationInferenceOptions {
   top_classes_results_field?: string;
 }
 
-export interface CompositeAggregate extends MultiBucketAggregateBaseCompositeBucket {
+export type CompositeAggregate = MultiBucketAggregateBaseCompositeBucket & {
   after_key?: CompositeAggregateKey;
 }
 
 export type CompositeAggregateKey = Record<string, Common.FieldValue>
 
-export interface CompositeAggregation extends BucketAggregationBase {
+export type CompositeAggregation = BucketAggregationBase & {
   after?: CompositeAggregateKey;
   size?: number;
   sources?: Record<string, CompositeAggregationSource>[];
 }
 
-export interface CompositeAggregationBase {
+export type CompositeAggregationBase = {
   field?: Common.Field;
   missing_bucket?: boolean;
   missing_order?: MissingOrder;
@@ -343,18 +343,18 @@ export interface CompositeAggregationBase {
   value_type?: ValueType;
 }
 
-export interface CompositeAggregationSource {
+export type CompositeAggregationSource = {
   date_histogram?: CompositeDateHistogramAggregation;
   geotile_grid?: CompositeGeoTileGridAggregation;
   histogram?: CompositeHistogramAggregation;
   terms?: CompositeTermsAggregation;
 }
 
-export interface CompositeBucket extends MultiBucketBase {
+export type CompositeBucket = MultiBucketBase & {
   key: CompositeAggregateKey;
 }
 
-export interface CompositeDateHistogramAggregation extends CompositeAggregationBase {
+export type CompositeDateHistogramAggregation = CompositeAggregationBase & {
   calendar_interval?: Common.DurationLarge;
   fixed_interval?: Common.DurationLarge;
   format?: string;
@@ -362,18 +362,18 @@ export interface CompositeDateHistogramAggregation extends CompositeAggregationB
   time_zone?: Common.TimeZone;
 }
 
-export interface CompositeGeoTileGridAggregation extends CompositeAggregationBase {
+export type CompositeGeoTileGridAggregation = CompositeAggregationBase & {
   bounds?: Common.GeoBounds;
   precision?: number;
 }
 
-export interface CompositeHistogramAggregation extends CompositeAggregationBase {
+export type CompositeHistogramAggregation = CompositeAggregationBase & {
   interval: number;
 }
 
 export type CompositeTermsAggregation = CompositeAggregationBase & Record<string, any>
 
-export interface CumulativeCardinalityAggregate extends AggregateBase {
+export type CumulativeCardinalityAggregate = AggregateBase & {
   value: number;
   value_as_string?: string;
 }
@@ -382,7 +382,7 @@ export type CumulativeCardinalityAggregation = PipelineAggregationBase & Record<
 
 export type CumulativeSumAggregation = PipelineAggregationBase & Record<string, any>
 
-export interface CustomCategorizeTextAnalyzer {
+export type CustomCategorizeTextAnalyzer = {
   char_filter?: string[];
   filter?: string[];
   tokenizer?: string;
@@ -390,7 +390,7 @@ export interface CustomCategorizeTextAnalyzer {
 
 export type DateHistogramAggregate = MultiBucketAggregateBaseDateHistogramBucket & Record<string, any>
 
-export interface DateHistogramAggregation extends BucketAggregationBase {
+export type DateHistogramAggregation = BucketAggregationBase & {
   calendar_interval?: CalendarInterval;
   extended_bounds?: ExtendedBoundsFieldDateMath;
   field?: Common.Field;
@@ -408,14 +408,14 @@ export interface DateHistogramAggregation extends BucketAggregationBase {
   time_zone?: Common.TimeZone;
 }
 
-export interface DateHistogramBucket extends MultiBucketBase {
+export type DateHistogramBucket = MultiBucketBase & {
   key: Common.EpochTimeUnitMillis;
   key_as_string?: string;
 }
 
 export type DateRangeAggregate = RangeAggregate & Record<string, any>
 
-export interface DateRangeAggregation extends BucketAggregationBase {
+export type DateRangeAggregation = BucketAggregationBase & {
   field?: Common.Field;
   format?: string;
   keyed?: boolean;
@@ -424,20 +424,20 @@ export interface DateRangeAggregation extends BucketAggregationBase {
   time_zone?: Common.TimeZone;
 }
 
-export interface DateRangeExpression {
+export type DateRangeExpression = {
   from?: FieldDateMath;
   key?: string;
   to?: FieldDateMath;
 }
 
-export interface DerivativeAggregate extends SingleMetricAggregateBase {
+export type DerivativeAggregate = SingleMetricAggregateBase & {
   normalized_value?: number;
   normalized_value_as_string?: string;
 }
 
 export type DerivativeAggregation = PipelineAggregationBase & Record<string, any>
 
-export interface DiversifiedSamplerAggregation extends BucketAggregationBase {
+export type DiversifiedSamplerAggregation = BucketAggregationBase & {
   execution_hint?: SamplerAggregationExecutionHint;
   field?: Common.Field;
   max_docs_per_value?: number;
@@ -447,31 +447,31 @@ export interface DiversifiedSamplerAggregation extends BucketAggregationBase {
 
 export type DoubleTermsAggregate = TermsAggregateBaseDoubleTermsBucket & Record<string, any>
 
-export interface DoubleTermsBucket extends TermsBucketBase {
+export type DoubleTermsBucket = TermsBucketBase & {
   key: number;
   key_as_string?: string;
 }
 
-export interface EwmaModelSettings {
+export type EwmaModelSettings = {
   alpha?: number;
 }
 
-export interface EwmaMovingAverageAggregation extends MovingAverageAggregationBase {
+export type EwmaMovingAverageAggregation = MovingAverageAggregationBase & {
   model: 'ewma';
   settings: EwmaModelSettings;
 }
 
-export interface ExtendedBoundsdouble {
+export type ExtendedBoundsdouble = {
   max: number;
   min: number;
 }
 
-export interface ExtendedBoundsFieldDateMath {
+export type ExtendedBoundsFieldDateMath = {
   max: FieldDateMath;
   min: FieldDateMath;
 }
 
-export interface ExtendedStatsAggregate extends StatsAggregate {
+export type ExtendedStatsAggregate = StatsAggregate & {
   std_deviation: undefined | number | string;
   std_deviation_as_string?: string;
   std_deviation_bounds?: StandardDeviationBounds;
@@ -488,13 +488,13 @@ export interface ExtendedStatsAggregate extends StatsAggregate {
   variance_sampling_as_string?: string;
 }
 
-export interface ExtendedStatsAggregation extends FormatMetricAggregationBase {
+export type ExtendedStatsAggregation = FormatMetricAggregationBase & {
   sigma?: number;
 }
 
 export type ExtendedStatsBucketAggregate = ExtendedStatsAggregate & Record<string, any>
 
-export interface ExtendedStatsBucketAggregation extends PipelineAggregationBase {
+export type ExtendedStatsBucketAggregation = PipelineAggregationBase & {
   sigma?: number;
 }
 
@@ -504,7 +504,7 @@ export type FilterAggregate = SingleBucketAggregateBase & Record<string, any>
 
 export type FiltersAggregate = MultiBucketAggregateBaseFiltersBucket & Record<string, any>
 
-export interface FiltersAggregation extends BucketAggregationBase {
+export type FiltersAggregation = BucketAggregationBase & {
   filters?: BucketsQueryContainer;
   keyed?: boolean;
   other_bucket?: boolean;
@@ -513,17 +513,17 @@ export interface FiltersAggregation extends BucketAggregationBase {
 
 export type FiltersBucket = MultiBucketBase & Record<string, any>
 
-export interface FormatMetricAggregationBase extends MetricAggregationBase {
+export type FormatMetricAggregationBase = MetricAggregationBase & {
   format?: string;
 }
 
-export interface FormattableMetricAggregation extends MetricAggregationBase {
+export type FormattableMetricAggregation = MetricAggregationBase & {
   format?: string;
 }
 
 export type FrequentItemSetsAggregate = MultiBucketAggregateBaseFrequentItemSetsBucket & Record<string, any>
 
-export interface FrequentItemSetsAggregation {
+export type FrequentItemSetsAggregation = {
   fields: FrequentItemSetsField[];
   filter?: Common_QueryDsl.QueryContainer;
   minimum_set_size?: number;
@@ -531,12 +531,12 @@ export interface FrequentItemSetsAggregation {
   size?: number;
 }
 
-export interface FrequentItemSetsBucket extends MultiBucketBase {
+export type FrequentItemSetsBucket = MultiBucketBase & {
   key: Record<string, string[]>;
   support: number;
 }
 
-export interface FrequentItemSetsField {
+export type FrequentItemSetsField = {
   exclude?: TermsExclude;
   field: Common.Field;
   include?: TermsInclude;
@@ -544,27 +544,27 @@ export interface FrequentItemSetsField {
 
 export type GapPolicy = 'insert_zeros' | 'keep_values' | 'skip'
 
-export interface GeoBoundsAggregate extends AggregateBase {
+export type GeoBoundsAggregate = AggregateBase & {
   bounds?: Common.GeoBounds;
 }
 
-export interface GeoBoundsAggregation extends MetricAggregationBase {
+export type GeoBoundsAggregation = MetricAggregationBase & {
   wrap_longitude?: boolean;
 }
 
-export interface GeoCentroidAggregate extends AggregateBase {
+export type GeoCentroidAggregate = AggregateBase & {
   count: number;
   location?: Common.GeoLocation;
 }
 
-export interface GeoCentroidAggregation extends MetricAggregationBase {
+export type GeoCentroidAggregation = MetricAggregationBase & {
   count?: number;
   location?: Common.GeoLocation;
 }
 
 export type GeoDistanceAggregate = RangeAggregate & Record<string, any>
 
-export interface GeoDistanceAggregation extends BucketAggregationBase {
+export type GeoDistanceAggregation = BucketAggregationBase & {
   distance_type?: Common.GeoDistanceType;
   field?: Common.Field;
   origin?: Common.GeoLocation;
@@ -574,7 +574,7 @@ export interface GeoDistanceAggregation extends BucketAggregationBase {
 
 export type GeoHashGridAggregate = MultiBucketAggregateBaseGeoHashGridBucket & Record<string, any>
 
-export interface GeoHashGridAggregation extends BucketAggregationBase {
+export type GeoHashGridAggregation = BucketAggregationBase & {
   bounds?: Common.GeoBounds;
   field?: Common.Field;
   precision?: Common.GeoHashPrecision;
@@ -582,13 +582,13 @@ export interface GeoHashGridAggregation extends BucketAggregationBase {
   size?: number;
 }
 
-export interface GeoHashGridBucket extends MultiBucketBase {
+export type GeoHashGridBucket = MultiBucketBase & {
   key: Common.GeoHash;
 }
 
 export type GeoHexGridAggregate = MultiBucketAggregateBaseGeoHexGridBucket & Record<string, any>
 
-export interface GeohexGridAggregation extends BucketAggregationBase {
+export type GeohexGridAggregation = BucketAggregationBase & {
   bounds?: Common.GeoBounds;
   field: Common.Field;
   precision?: number;
@@ -596,17 +596,17 @@ export interface GeohexGridAggregation extends BucketAggregationBase {
   size?: number;
 }
 
-export interface GeoHexGridBucket extends MultiBucketBase {
+export type GeoHexGridBucket = MultiBucketBase & {
   key: Common.GeoHexCell;
 }
 
-export interface GeoLineAggregate extends AggregateBase {
+export type GeoLineAggregate = AggregateBase & {
   geometry: Common.GeoLine;
   properties: Record<string, any>;
   type: string;
 }
 
-export interface GeoLineAggregation {
+export type GeoLineAggregation = {
   include_sort?: boolean;
   point: GeoLinePoint;
   size?: number;
@@ -614,17 +614,17 @@ export interface GeoLineAggregation {
   sort_order?: Common.SortOrder;
 }
 
-export interface GeoLinePoint {
+export type GeoLinePoint = {
   field: Common.Field;
 }
 
-export interface GeoLineSort {
+export type GeoLineSort = {
   field: Common.Field;
 }
 
 export type GeoTileGridAggregate = MultiBucketAggregateBaseGeoTileGridBucket & Record<string, any>
 
-export interface GeoTileGridAggregation extends BucketAggregationBase {
+export type GeoTileGridAggregation = BucketAggregationBase & {
   bounds?: Common.GeoBounds;
   field?: Common.Field;
   precision?: Common.GeoTilePrecision;
@@ -632,7 +632,7 @@ export interface GeoTileGridAggregation extends BucketAggregationBase {
   size?: number;
 }
 
-export interface GeoTileGridBucket extends MultiBucketBase {
+export type GeoTileGridBucket = MultiBucketBase & {
   key: Common.GeoTile;
 }
 
@@ -640,11 +640,11 @@ export type GlobalAggregate = SingleBucketAggregateBase & Record<string, any>
 
 export type GlobalAggregation = BucketAggregationBase & Record<string, any>
 
-export interface GoogleNormalizedDistanceHeuristic {
+export type GoogleNormalizedDistanceHeuristic = {
   background_is_superset?: boolean;
 }
 
-export interface HdrMethod {
+export type HdrMethod = {
   number_of_significant_value_digits?: number;
 }
 
@@ -654,7 +654,7 @@ export type HdrPercentilesAggregate = PercentilesAggregateBase & Record<string, 
 
 export type HistogramAggregate = MultiBucketAggregateBaseHistogramBucket & Record<string, any>
 
-export interface HistogramAggregation extends BucketAggregationBase {
+export type HistogramAggregation = BucketAggregationBase & {
   extended_bounds?: ExtendedBoundsdouble;
   field?: Common.Field;
   format?: string;
@@ -668,22 +668,22 @@ export interface HistogramAggregation extends BucketAggregationBase {
   script?: Common.Script;
 }
 
-export interface HistogramBucket extends MultiBucketBase {
+export type HistogramBucket = MultiBucketBase & {
   key: number;
   key_as_string?: string;
 }
 
-export interface HoltLinearModelSettings {
+export type HoltLinearModelSettings = {
   alpha?: number;
   beta?: number;
 }
 
-export interface HoltMovingAverageAggregation extends MovingAverageAggregationBase {
+export type HoltMovingAverageAggregation = MovingAverageAggregationBase & {
   model: 'holt';
   settings: HoltLinearModelSettings;
 }
 
-export interface HoltWintersModelSettings {
+export type HoltWintersModelSettings = {
   alpha?: number;
   beta?: number;
   gamma?: number;
@@ -692,42 +692,42 @@ export interface HoltWintersModelSettings {
   type?: HoltWintersType;
 }
 
-export interface HoltWintersMovingAverageAggregation extends MovingAverageAggregationBase {
+export type HoltWintersMovingAverageAggregation = MovingAverageAggregationBase & {
   model: 'holt_winters';
   settings: HoltWintersModelSettings;
 }
 
 export type HoltWintersType = 'add' | 'mult'
 
-export interface InferenceAggregate extends AggregateBase {
+export type InferenceAggregate = AggregateBase & {
   feature_importance?: InferenceFeatureImportance[];
   top_classes?: InferenceTopClassEntry[];
   value?: Common.FieldValue;
   warning?: string;
 }
 
-export interface InferenceAggregation extends PipelineAggregationBase {
+export type InferenceAggregation = PipelineAggregationBase & {
   inference_config?: InferenceConfigContainer;
   model_id: Common.Name;
 }
 
-export interface InferenceClassImportance {
+export type InferenceClassImportance = {
   class_name: string;
   importance: number;
 }
 
-export interface InferenceConfigContainer {
+export type InferenceConfigContainer = {
   classification?: ClassificationInferenceOptions;
   regression?: RegressionInferenceOptions;
 }
 
-export interface InferenceFeatureImportance {
+export type InferenceFeatureImportance = {
   classes?: InferenceClassImportance[];
   feature_name: string;
   importance?: number;
 }
 
-export interface InferenceTopClassEntry {
+export type InferenceTopClassEntry = {
   class_name: Common.FieldValue;
   class_probability: number;
   class_score: number;
@@ -735,7 +735,7 @@ export interface InferenceTopClassEntry {
 
 export type IpPrefixAggregate = MultiBucketAggregateBaseIpPrefixBucket & Record<string, any>
 
-export interface IpPrefixAggregation extends BucketAggregationBase {
+export type IpPrefixAggregation = BucketAggregationBase & {
   append_prefix_length?: boolean;
   field: Common.Field;
   is_ipv6?: boolean;
@@ -744,7 +744,7 @@ export interface IpPrefixAggregation extends BucketAggregationBase {
   prefix_length: number;
 }
 
-export interface IpPrefixBucket extends MultiBucketBase {
+export type IpPrefixBucket = MultiBucketBase & {
   is_ipv6: boolean;
   key: string;
   netmask?: string;
@@ -753,18 +753,18 @@ export interface IpPrefixBucket extends MultiBucketBase {
 
 export type IpRangeAggregate = MultiBucketAggregateBaseIpRangeBucket & Record<string, any>
 
-export interface IpRangeAggregation extends BucketAggregationBase {
+export type IpRangeAggregation = BucketAggregationBase & {
   field?: Common.Field;
   ranges?: IpRangeAggregationRange[];
 }
 
-export interface IpRangeAggregationRange {
+export type IpRangeAggregationRange = {
   from?: undefined | string;
   mask?: string;
   to?: undefined | string;
 }
 
-export interface IpRangeBucket extends MultiBucketBase {
+export type IpRangeBucket = MultiBucketBase & {
   from?: string;
   key?: string;
   to?: string;
@@ -772,40 +772,40 @@ export interface IpRangeBucket extends MultiBucketBase {
 
 export type KeyedPercentiles = Record<string, undefined | number | string>
 
-export interface LinearMovingAverageAggregation extends MovingAverageAggregationBase {
+export type LinearMovingAverageAggregation = MovingAverageAggregationBase & {
   model: 'linear';
   settings: Common.EmptyObject;
 }
 
 export type LongRareTermsAggregate = MultiBucketAggregateBaseLongRareTermsBucket & Record<string, any>
 
-export interface LongRareTermsBucket extends MultiBucketBase {
+export type LongRareTermsBucket = MultiBucketBase & {
   key: number;
   key_as_string?: string;
 }
 
 export type LongTermsAggregate = TermsAggregateBaseLongTermsBucket & Record<string, any>
 
-export interface LongTermsBucket extends TermsBucketBase {
+export type LongTermsBucket = TermsBucketBase & {
   key: number;
   key_as_string?: string;
 }
 
-export interface MatrixAggregation extends Aggregation {
+export type MatrixAggregation = Aggregation & {
   fields?: Common.Fields;
   missing?: Record<string, number>;
 }
 
-export interface MatrixStatsAggregate extends AggregateBase {
+export type MatrixStatsAggregate = AggregateBase & {
   doc_count: number;
   fields?: MatrixStatsFields[];
 }
 
-export interface MatrixStatsAggregation extends MatrixAggregation {
+export type MatrixStatsAggregation = MatrixAggregation & {
   mode?: Common.SortMode;
 }
 
-export interface MatrixStatsFields {
+export type MatrixStatsFields = {
   correlation: Record<string, number>;
   count: number;
   covariance: Record<string, number>;
@@ -824,11 +824,11 @@ export type MaxBucketAggregation = PipelineAggregationBase & Record<string, any>
 
 export type MedianAbsoluteDeviationAggregate = SingleMetricAggregateBase & Record<string, any>
 
-export interface MedianAbsoluteDeviationAggregation extends FormatMetricAggregationBase {
+export type MedianAbsoluteDeviationAggregation = FormatMetricAggregationBase & {
   compression?: number;
 }
 
-export interface MetricAggregationBase {
+export type MetricAggregationBase = {
   field?: Common.Field;
   missing?: Missing;
   script?: Common.Script;
@@ -846,7 +846,7 @@ export type Missing = string | number | number | boolean
 
 export type MissingAggregate = SingleBucketAggregateBase & Record<string, any>
 
-export interface MissingAggregation extends BucketAggregationBase {
+export type MissingAggregation = BucketAggregationBase & {
   field?: Common.Field;
   missing?: Missing;
 }
@@ -855,124 +855,124 @@ export type MissingOrder = 'default' | 'first' | 'last'
 
 export type MovingAverageAggregation = LinearMovingAverageAggregation | SimpleMovingAverageAggregation | EwmaMovingAverageAggregation | HoltMovingAverageAggregation | HoltWintersMovingAverageAggregation
 
-export interface MovingAverageAggregationBase extends PipelineAggregationBase {
+export type MovingAverageAggregationBase = PipelineAggregationBase & {
   minimize?: boolean;
   predict?: number;
   window?: number;
 }
 
-export interface MovingFunctionAggregation extends PipelineAggregationBase {
+export type MovingFunctionAggregation = PipelineAggregationBase & {
   script?: string;
   shift?: number;
   window?: number;
 }
 
-export interface MovingPercentilesAggregation extends PipelineAggregationBase {
+export type MovingPercentilesAggregation = PipelineAggregationBase & {
   keyed?: boolean;
   shift?: number;
   window?: number;
 }
 
-export interface MultiBucketAggregateBaseAdjacencyMatrixBucket extends AggregateBase {
+export type MultiBucketAggregateBaseAdjacencyMatrixBucket = AggregateBase & {
   buckets: BucketsAdjacencyMatrixBucket;
 }
 
-export interface MultiBucketAggregateBaseCompositeBucket extends AggregateBase {
+export type MultiBucketAggregateBaseCompositeBucket = AggregateBase & {
   buckets: BucketsCompositeBucket;
 }
 
-export interface MultiBucketAggregateBaseDateHistogramBucket extends AggregateBase {
+export type MultiBucketAggregateBaseDateHistogramBucket = AggregateBase & {
   buckets: BucketsDateHistogramBucket;
 }
 
-export interface MultiBucketAggregateBaseDoubleTermsBucket extends AggregateBase {
+export type MultiBucketAggregateBaseDoubleTermsBucket = AggregateBase & {
   buckets: BucketsDoubleTermsBucket;
 }
 
-export interface MultiBucketAggregateBaseFiltersBucket extends AggregateBase {
+export type MultiBucketAggregateBaseFiltersBucket = AggregateBase & {
   buckets: BucketsFiltersBucket;
 }
 
-export interface MultiBucketAggregateBaseFrequentItemSetsBucket extends AggregateBase {
+export type MultiBucketAggregateBaseFrequentItemSetsBucket = AggregateBase & {
   buckets: BucketsFrequentItemSetsBucket;
 }
 
-export interface MultiBucketAggregateBaseGeoHashGridBucket extends AggregateBase {
+export type MultiBucketAggregateBaseGeoHashGridBucket = AggregateBase & {
   buckets: BucketsGeoHashGridBucket;
 }
 
-export interface MultiBucketAggregateBaseGeoHexGridBucket extends AggregateBase {
+export type MultiBucketAggregateBaseGeoHexGridBucket = AggregateBase & {
   buckets: BucketsGeoHexGridBucket;
 }
 
-export interface MultiBucketAggregateBaseGeoTileGridBucket extends AggregateBase {
+export type MultiBucketAggregateBaseGeoTileGridBucket = AggregateBase & {
   buckets: BucketsGeoTileGridBucket;
 }
 
-export interface MultiBucketAggregateBaseHistogramBucket extends AggregateBase {
+export type MultiBucketAggregateBaseHistogramBucket = AggregateBase & {
   buckets: BucketsHistogramBucket;
 }
 
-export interface MultiBucketAggregateBaseIpPrefixBucket extends AggregateBase {
+export type MultiBucketAggregateBaseIpPrefixBucket = AggregateBase & {
   buckets: BucketsIpPrefixBucket;
 }
 
-export interface MultiBucketAggregateBaseIpRangeBucket extends AggregateBase {
+export type MultiBucketAggregateBaseIpRangeBucket = AggregateBase & {
   buckets: BucketsIpRangeBucket;
 }
 
-export interface MultiBucketAggregateBaseLongRareTermsBucket extends AggregateBase {
+export type MultiBucketAggregateBaseLongRareTermsBucket = AggregateBase & {
   buckets: BucketsLongRareTermsBucket;
 }
 
-export interface MultiBucketAggregateBaseLongTermsBucket extends AggregateBase {
+export type MultiBucketAggregateBaseLongTermsBucket = AggregateBase & {
   buckets: BucketsLongTermsBucket;
 }
 
-export interface MultiBucketAggregateBaseMultiTermsBucket extends AggregateBase {
+export type MultiBucketAggregateBaseMultiTermsBucket = AggregateBase & {
   buckets: BucketsMultiTermsBucket;
 }
 
-export interface MultiBucketAggregateBaseRangeBucket extends AggregateBase {
+export type MultiBucketAggregateBaseRangeBucket = AggregateBase & {
   buckets: BucketsRangeBucket;
 }
 
-export interface MultiBucketAggregateBaseSignificantLongTermsBucket extends AggregateBase {
+export type MultiBucketAggregateBaseSignificantLongTermsBucket = AggregateBase & {
   buckets: BucketsSignificantLongTermsBucket;
 }
 
-export interface MultiBucketAggregateBaseSignificantStringTermsBucket extends AggregateBase {
+export type MultiBucketAggregateBaseSignificantStringTermsBucket = AggregateBase & {
   buckets: BucketsSignificantStringTermsBucket;
 }
 
-export interface MultiBucketAggregateBaseStringRareTermsBucket extends AggregateBase {
+export type MultiBucketAggregateBaseStringRareTermsBucket = AggregateBase & {
   buckets: BucketsStringRareTermsBucket;
 }
 
-export interface MultiBucketAggregateBaseStringTermsBucket extends AggregateBase {
+export type MultiBucketAggregateBaseStringTermsBucket = AggregateBase & {
   buckets: BucketsStringTermsBucket;
 }
 
-export interface MultiBucketAggregateBaseVariableWidthHistogramBucket extends AggregateBase {
+export type MultiBucketAggregateBaseVariableWidthHistogramBucket = AggregateBase & {
   buckets: BucketsVariableWidthHistogramBucket;
 }
 
-export interface MultiBucketAggregateBaseVoid extends AggregateBase {
+export type MultiBucketAggregateBaseVoid = AggregateBase & {
   buckets: BucketsVoid;
 }
 
-export interface MultiBucketBase {
+export type MultiBucketBase = {
   doc_count: number;
 }
 
-export interface MultiTermLookup {
+export type MultiTermLookup = {
   field: Common.Field;
   missing?: Missing;
 }
 
 export type MultiTermsAggregate = TermsAggregateBaseMultiTermsBucket & Record<string, any>
 
-export interface MultiTermsAggregation extends BucketAggregationBase {
+export type MultiTermsAggregation = BucketAggregationBase & {
   collect_mode?: TermsAggregationCollectMode;
   min_doc_count?: number;
   order?: AggregateOrder;
@@ -983,24 +983,26 @@ export interface MultiTermsAggregation extends BucketAggregationBase {
   terms: MultiTermLookup[];
 }
 
-export interface MultiTermsBucket extends MultiBucketBase {
+export type MultiTermsBucket = MultiBucketBase & {
   doc_count_error_upper_bound?: number;
   key: Common.FieldValue[];
   key_as_string?: string;
 }
 
-export interface MutualInformationHeuristic {
+export type MutualInformationHeuristic = {
   background_is_superset?: boolean;
   include_negatives?: boolean;
 }
 
-export type NestedAggregate = SingleBucketAggregateBase & Record<string, any>
+export type NestedAggregate = AggregateBase & {
+  doc_count?: number;
+}
 
-export interface NestedAggregation extends BucketAggregationBase {
+export type NestedAggregation = BucketAggregationBase & {
   path?: Common.Field;
 }
 
-export interface NormalizeAggregation extends PipelineAggregationBase {
+export type NormalizeAggregation = PipelineAggregationBase & {
   method?: NormalizeMethod;
 }
 
@@ -1008,13 +1010,13 @@ export type NormalizeMethod = 'mean' | 'percent_of_sum' | 'rescale_0_1' | 'resca
 
 export type ParentAggregate = SingleBucketAggregateBase & Record<string, any>
 
-export interface ParentAggregation extends BucketAggregationBase {
+export type ParentAggregation = BucketAggregationBase & {
   type?: Common.RelationName;
 }
 
 export type PercentageScoreHeuristic = Record<string, any>
 
-export interface PercentileRanksAggregation extends FormatMetricAggregationBase {
+export type PercentileRanksAggregation = FormatMetricAggregationBase & {
   hdr?: HdrMethod;
   keyed?: boolean;
   tdigest?: TDigest;
@@ -1023,11 +1025,11 @@ export interface PercentileRanksAggregation extends FormatMetricAggregationBase 
 
 export type Percentiles = KeyedPercentiles | ArrayPercentilesItem[]
 
-export interface PercentilesAggregateBase extends AggregateBase {
+export type PercentilesAggregateBase = AggregateBase & {
   values: Percentiles;
 }
 
-export interface PercentilesAggregation extends FormatMetricAggregationBase {
+export type PercentilesAggregation = FormatMetricAggregationBase & {
   hdr?: HdrMethod;
   keyed?: boolean;
   percents?: number[];
@@ -1036,18 +1038,18 @@ export interface PercentilesAggregation extends FormatMetricAggregationBase {
 
 export type PercentilesBucketAggregate = PercentilesAggregateBase & Record<string, any>
 
-export interface PercentilesBucketAggregation extends PipelineAggregationBase {
+export type PercentilesBucketAggregation = PipelineAggregationBase & {
   percents?: number[];
 }
 
-export interface PipelineAggregationBase extends BucketPathAggregation {
+export type PipelineAggregationBase = BucketPathAggregation & {
   format?: string;
   gap_policy?: GapPolicy;
 }
 
 export type RangeAggregate = MultiBucketAggregateBaseRangeBucket & Record<string, any>
 
-export interface RangeAggregation extends BucketAggregationBase {
+export type RangeAggregation = BucketAggregationBase & {
   field?: Common.Field;
   format?: string;
   keyed?: boolean;
@@ -1056,7 +1058,7 @@ export interface RangeAggregation extends BucketAggregationBase {
   script?: Common.Script;
 }
 
-export interface RangeBucket extends MultiBucketBase {
+export type RangeBucket = MultiBucketBase & {
   from?: number;
   from_as_string?: string;
   key?: string;
@@ -1064,7 +1066,7 @@ export interface RangeBucket extends MultiBucketBase {
   to_as_string?: string;
 }
 
-export interface RareTermsAggregation extends BucketAggregationBase {
+export type RareTermsAggregation = BucketAggregationBase & {
   exclude?: TermsExclude;
   field?: Common.Field;
   include?: TermsInclude;
@@ -1074,46 +1076,46 @@ export interface RareTermsAggregation extends BucketAggregationBase {
   value_type?: string;
 }
 
-export interface RateAggregate extends AggregateBase {
+export type RateAggregate = AggregateBase & {
   value: number;
   value_as_string?: string;
 }
 
-export interface RateAggregation extends FormatMetricAggregationBase {
+export type RateAggregation = FormatMetricAggregationBase & {
   mode?: RateMode;
   unit?: CalendarInterval;
 }
 
 export type RateMode = 'sum' | 'value_count'
 
-export interface RegressionInferenceOptions {
+export type RegressionInferenceOptions = {
   num_top_feature_importance_values?: number;
   results_field?: Common.Field;
 }
 
 export type ReverseNestedAggregate = SingleBucketAggregateBase & Record<string, any>
 
-export interface ReverseNestedAggregation extends BucketAggregationBase {
+export type ReverseNestedAggregation = BucketAggregationBase & {
   path?: Common.Field;
 }
 
 export type SamplerAggregate = SingleBucketAggregateBase & Record<string, any>
 
-export interface SamplerAggregation extends BucketAggregationBase {
+export type SamplerAggregation = BucketAggregationBase & {
   shard_size?: number;
 }
 
 export type SamplerAggregationExecutionHint = 'bytes_hash' | 'global_ordinals' | 'map'
 
-export interface ScriptedHeuristic {
+export type ScriptedHeuristic = {
   script: Common.Script;
 }
 
-export interface ScriptedMetricAggregate extends AggregateBase {
+export type ScriptedMetricAggregate = AggregateBase & {
   value: Record<string, any>;
 }
 
-export interface ScriptedMetricAggregation extends MetricAggregationBase {
+export type ScriptedMetricAggregation = MetricAggregationBase & {
   combine_script?: Common.Script;
   init_script?: Common.Script;
   map_script?: Common.Script;
@@ -1121,39 +1123,39 @@ export interface ScriptedMetricAggregation extends MetricAggregationBase {
   reduce_script?: Common.Script;
 }
 
-export interface SerialDifferencingAggregation extends PipelineAggregationBase {
+export type SerialDifferencingAggregation = PipelineAggregationBase & {
   lag?: number;
 }
 
 export type SignificantLongTermsAggregate = SignificantTermsAggregateBaseSignificantLongTermsBucket & Record<string, any>
 
-export interface SignificantLongTermsBucket extends SignificantTermsBucketBase {
+export type SignificantLongTermsBucket = SignificantTermsBucketBase & {
   key: number;
   key_as_string?: string;
 }
 
 export type SignificantStringTermsAggregate = SignificantTermsAggregateBaseSignificantStringTermsBucket & Record<string, any>
 
-export interface SignificantStringTermsBucket extends SignificantTermsBucketBase {
+export type SignificantStringTermsBucket = SignificantTermsBucketBase & {
   key: string;
 }
 
-export interface SignificantTermsAggregateBaseSignificantLongTermsBucket extends MultiBucketAggregateBaseSignificantLongTermsBucket {
+export type SignificantTermsAggregateBaseSignificantLongTermsBucket = MultiBucketAggregateBaseSignificantLongTermsBucket & {
   bg_count?: number;
   doc_count?: number;
 }
 
-export interface SignificantTermsAggregateBaseSignificantStringTermsBucket extends MultiBucketAggregateBaseSignificantStringTermsBucket {
+export type SignificantTermsAggregateBaseSignificantStringTermsBucket = MultiBucketAggregateBaseSignificantStringTermsBucket & {
   bg_count?: number;
   doc_count?: number;
 }
 
-export interface SignificantTermsAggregateBaseVoid extends MultiBucketAggregateBaseVoid {
+export type SignificantTermsAggregateBaseVoid = MultiBucketAggregateBaseVoid & {
   bg_count?: number;
   doc_count?: number;
 }
 
-export interface SignificantTermsAggregation extends BucketAggregationBase {
+export type SignificantTermsAggregation = BucketAggregationBase & {
   background_filter?: Common_QueryDsl.QueryContainer;
   chi_square?: ChiSquareHeuristic;
   exclude?: TermsExclude;
@@ -1171,12 +1173,12 @@ export interface SignificantTermsAggregation extends BucketAggregationBase {
   size?: number;
 }
 
-export interface SignificantTermsBucketBase extends MultiBucketBase {
+export type SignificantTermsBucketBase = MultiBucketBase & {
   bg_count: number;
   score: number;
 }
 
-export interface SignificantTextAggregation extends BucketAggregationBase {
+export type SignificantTextAggregation = BucketAggregationBase & {
   background_filter?: Common_QueryDsl.QueryContainer;
   chi_square?: ChiSquareHeuristic;
   exclude?: TermsExclude;
@@ -1196,23 +1198,23 @@ export interface SignificantTextAggregation extends BucketAggregationBase {
   source_fields?: Common.Fields;
 }
 
-export interface SimpleMovingAverageAggregation extends MovingAverageAggregationBase {
+export type SimpleMovingAverageAggregation = MovingAverageAggregationBase & {
   model: 'simple';
   settings: Common.EmptyObject;
 }
 
 export type SimpleValueAggregate = SingleMetricAggregateBase & Record<string, any>
 
-export interface SingleBucketAggregateBase extends AggregateBase {
+export type SingleBucketAggregateBase = AggregateBase & {
   doc_count: number;
 }
 
-export interface SingleMetricAggregateBase extends AggregateBase {
+export type SingleMetricAggregateBase = AggregateBase & {
   value: undefined | number | string;
   value_as_string?: string;
 }
 
-export interface StandardDeviationBounds {
+export type StandardDeviationBounds = {
   lower: undefined | number | string;
   lower_population: undefined | number | string;
   lower_sampling: undefined | number | string;
@@ -1221,7 +1223,7 @@ export interface StandardDeviationBounds {
   upper_sampling: undefined | number | string;
 }
 
-export interface StandardDeviationBoundsAsString {
+export type StandardDeviationBoundsAsString = {
   lower: string;
   lower_population: string;
   lower_sampling: string;
@@ -1230,7 +1232,7 @@ export interface StandardDeviationBoundsAsString {
   upper_sampling: string;
 }
 
-export interface StatsAggregate extends AggregateBase {
+export type StatsAggregate = AggregateBase & {
   avg: undefined | number | string;
   avg_as_string?: string;
   count: number;
@@ -1250,11 +1252,11 @@ export type StatsBucketAggregation = PipelineAggregationBase & Record<string, an
 
 export type StringRareTermsAggregate = MultiBucketAggregateBaseStringRareTermsBucket & Record<string, any>
 
-export interface StringRareTermsBucket extends MultiBucketBase {
+export type StringRareTermsBucket = MultiBucketBase & {
   key: string;
 }
 
-export interface StringStatsAggregate extends AggregateBase {
+export type StringStatsAggregate = AggregateBase & {
   avg_length: undefined | number | string;
   avg_length_as_string?: string;
   count: number;
@@ -1266,13 +1268,13 @@ export interface StringStatsAggregate extends AggregateBase {
   min_length_as_string?: string;
 }
 
-export interface StringStatsAggregation extends MetricAggregationBase {
+export type StringStatsAggregation = MetricAggregationBase & {
   show_distribution?: boolean;
 }
 
 export type StringTermsAggregate = TermsAggregateBaseStringTermsBucket & Record<string, any>
 
-export interface StringTermsBucket extends TermsBucketBase {
+export type StringTermsBucket = TermsBucketBase & {
   key: Common.FieldValue;
 }
 
@@ -1282,7 +1284,7 @@ export type SumAggregation = FormatMetricAggregationBase & Record<string, any>
 
 export type SumBucketAggregation = PipelineAggregationBase & Record<string, any>
 
-export interface TDigest {
+export type TDigest = {
   compression?: number;
 }
 
@@ -1290,32 +1292,32 @@ export type TDigestPercentileRanksAggregate = PercentilesAggregateBase & Record<
 
 export type TDigestPercentilesAggregate = PercentilesAggregateBase & Record<string, any>
 
-export interface TermsAggregateBaseDoubleTermsBucket extends MultiBucketAggregateBaseDoubleTermsBucket {
+export type TermsAggregateBaseDoubleTermsBucket = MultiBucketAggregateBaseDoubleTermsBucket & {
   doc_count_error_upper_bound?: number;
   sum_other_doc_count?: number;
 }
 
-export interface TermsAggregateBaseLongTermsBucket extends MultiBucketAggregateBaseLongTermsBucket {
+export type TermsAggregateBaseLongTermsBucket = MultiBucketAggregateBaseLongTermsBucket & {
   doc_count_error_upper_bound?: number;
   sum_other_doc_count?: number;
 }
 
-export interface TermsAggregateBaseMultiTermsBucket extends MultiBucketAggregateBaseMultiTermsBucket {
+export type TermsAggregateBaseMultiTermsBucket = MultiBucketAggregateBaseMultiTermsBucket & {
   doc_count_error_upper_bound?: number;
   sum_other_doc_count?: number;
 }
 
-export interface TermsAggregateBaseStringTermsBucket extends MultiBucketAggregateBaseStringTermsBucket {
+export type TermsAggregateBaseStringTermsBucket = MultiBucketAggregateBaseStringTermsBucket & {
   doc_count_error_upper_bound?: number;
   sum_other_doc_count?: number;
 }
 
-export interface TermsAggregateBaseVoid extends MultiBucketAggregateBaseVoid {
+export type TermsAggregateBaseVoid = MultiBucketAggregateBaseVoid & {
   doc_count_error_upper_bound?: number;
   sum_other_doc_count?: number;
 }
 
-export interface TermsAggregation extends BucketAggregationBase {
+export type TermsAggregation = BucketAggregationBase & {
   collect_mode?: TermsAggregationCollectMode;
   exclude?: TermsExclude;
   execution_hint?: TermsAggregationExecutionHint;
@@ -1338,7 +1340,7 @@ export type TermsAggregationCollectMode = 'breadth_first' | 'depth_first'
 
 export type TermsAggregationExecutionHint = 'global_ordinals' | 'global_ordinals_hash' | 'global_ordinals_low_cardinality' | 'map'
 
-export interface TermsBucketBase extends MultiBucketBase {
+export type TermsBucketBase = MultiBucketBase & {
   doc_count_error?: number;
 }
 
@@ -1346,22 +1348,22 @@ export type TermsExclude = string | string[]
 
 export type TermsInclude = string | string[] | TermsPartition
 
-export interface TermsPartition {
+export type TermsPartition = {
   num_partitions: number;
   partition: number;
 }
 
-export interface TestPopulation {
+export type TestPopulation = {
   field: Common.Field;
   filter?: Common_QueryDsl.QueryContainer;
   script?: Common.Script;
 }
 
-export interface TopHitsAggregate extends AggregateBase {
+export type TopHitsAggregate = AggregateBase & {
   hits: Core_Search.HitsMetadata;
 }
 
-export interface TopHitsAggregation extends MetricAggregationBase {
+export type TopHitsAggregation = MetricAggregationBase & {
   _source?: Core_Search.SourceConfig;
   docvalue_fields?: Common.Fields;
   explain?: boolean;
@@ -1376,31 +1378,31 @@ export interface TopHitsAggregation extends MetricAggregationBase {
   version?: boolean;
 }
 
-export interface TopMetrics {
+export type TopMetrics = {
   metrics: Record<string, Common.FieldValue>;
   sort: Common.FieldValue[];
 }
 
-export interface TopMetricsAggregate extends AggregateBase {
+export type TopMetricsAggregate = AggregateBase & {
   top: TopMetrics[];
 }
 
-export interface TopMetricsAggregation extends MetricAggregationBase {
+export type TopMetricsAggregation = MetricAggregationBase & {
   metrics?: TopMetricsValue | TopMetricsValue[];
   size?: number;
   sort?: Common.Sort;
 }
 
-export interface TopMetricsValue {
+export type TopMetricsValue = {
   field: Common.Field;
 }
 
-export interface TTestAggregate extends AggregateBase {
+export type TTestAggregate = AggregateBase & {
   value: undefined | number | string;
   value_as_string?: string;
 }
 
-export interface TTestAggregation extends Aggregation {
+export type TTestAggregation = Aggregation & {
   a?: TestPopulation;
   b?: TestPopulation;
   type?: TTestType;
@@ -1424,14 +1426,14 @@ export type ValueType = 'boolean' | 'date' | 'date_nanos' | 'double' | 'geo_poin
 
 export type VariableWidthHistogramAggregate = MultiBucketAggregateBaseVariableWidthHistogramBucket & Record<string, any>
 
-export interface VariableWidthHistogramAggregation {
+export type VariableWidthHistogramAggregation = {
   buckets?: number;
   field?: Common.Field;
   initial_buffer?: number;
   shard_size?: number;
 }
 
-export interface VariableWidthHistogramBucket extends MultiBucketBase {
+export type VariableWidthHistogramBucket = MultiBucketBase & {
   key: number;
   key_as_string?: string;
   max: number;
@@ -1440,14 +1442,14 @@ export interface VariableWidthHistogramBucket extends MultiBucketBase {
   min_as_string?: string;
 }
 
-export interface WeightedAverageAggregation extends Aggregation {
+export type WeightedAverageAggregation = Aggregation & {
   format?: string;
   value?: WeightedAverageValue;
   value_type?: ValueType;
   weight?: WeightedAverageValue;
 }
 
-export interface WeightedAverageValue {
+export type WeightedAverageValue = {
   field?: Common.Field;
   missing?: number;
   script?: Common.Script;

@@ -18,12 +18,12 @@ import * as Common from './_common'
 import * as Common_Mapping from './_common.mapping'
 import * as Indices_Common from './indices._common'
 
-export interface Overlapping {
+export type Overlapping = {
   index_patterns: string[];
   name: Common.Name;
 }
 
-export interface Template {
+export type Template = {
   aliases: Record<string, Indices_Common.Alias>;
   mappings: Common_Mapping.TypeMapping;
   settings: Indices_Common.IndexSettings;

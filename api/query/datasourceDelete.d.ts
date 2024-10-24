@@ -17,11 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export interface Query_DatasourceDelete_Request extends Global.Params {
+export type Query_DatasourceDelete_Request = Global.Params & {
   datasource_name: string;
 }
 
-export interface Query_DatasourceDelete_Response extends ApiResponse {
+export type Query_DatasourceDelete_Response = ApiResponse & {
   body: Query_DatasourceDelete_ResponseBody;
 }
 

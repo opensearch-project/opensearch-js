@@ -20,7 +20,7 @@ import * as Common_Analysis from './_common.analysis'
 import * as Common_QueryDsl from './_common.query_dsl'
 import * as Core_Explain from './_core.explain'
 
-export interface AggregationBreakdown {
+export type AggregationBreakdown = {
   build_aggregation: number;
   build_aggregation_count: number;
   build_leaf_collector: number;
@@ -35,7 +35,7 @@ export interface AggregationBreakdown {
   reduce_count: number;
 }
 
-export interface AggregationProfile {
+export type AggregationProfile = {
   breakdown: AggregationBreakdown;
   children?: AggregationProfile[];
   debug?: AggregationProfileDebug;
@@ -44,7 +44,7 @@ export interface AggregationProfile {
   type: string;
 }
 
-export interface AggregationProfileDebug {
+export type AggregationProfileDebug = {
   built_buckets?: number;
   chars_fetched?: number;
   collect_analyzed_count?: number;
@@ -75,7 +75,7 @@ export interface AggregationProfileDebug {
   values_fetched?: number;
 }
 
-export interface AggregationProfileDelegateDebugFilter {
+export type AggregationProfileDelegateDebugFilter = {
   query?: string;
   results_from_metadata?: number;
   segments_counted_in_constant_time?: number;
@@ -84,18 +84,20 @@ export interface AggregationProfileDelegateDebugFilter {
 
 export type BoundaryScanner = 'chars' | 'sentence' | 'word'
 
-export interface Collector {
+export type BuiltinHighlighterType = 'fvh' | 'plain' | 'unified'
+
+export type Collector = {
   children?: Collector[];
   name: string;
   reason: string;
   time_in_nanos: Common.DurationValueUnitNanos;
 }
 
-export interface CompletionSuggest extends SuggestBase {
+export type CompletionSuggest = SuggestBase & {
   options: CompletionSuggestOption | CompletionSuggestOption[];
 }
 
-export interface CompletionSuggestOption {
+export type CompletionSuggestOption = {
   _id?: string;
   _index?: Common.IndexName;
   _routing?: Common.Routing;
@@ -110,7 +112,7 @@ export interface CompletionSuggestOption {
 
 export type Context = string | Common.GeoLocation
 
-export interface FetchProfile {
+export type FetchProfile = {
   breakdown: FetchProfileBreakdown;
   children?: FetchProfile[];
   debug?: FetchProfileDebug;
@@ -119,7 +121,7 @@ export interface FetchProfile {
   type: string;
 }
 
-export interface FetchProfileBreakdown {
+export type FetchProfileBreakdown = {
   load_source?: number;
   load_source_count?: number;
   load_stored_fields?: number;
@@ -130,24 +132,23 @@ export interface FetchProfileBreakdown {
   process_count?: number;
 }
 
-export interface FetchProfileDebug {
+export type FetchProfileDebug = {
   fast_path?: number;
   stored_fields?: string[];
 }
 
-export interface FieldCollapse {
-  collapse?: FieldCollapse;
+export type FieldCollapse = {
   field: Common.Field;
   inner_hits?: InnerHits | InnerHits[];
   max_concurrent_group_searches?: number;
 }
 
-export interface Highlight extends HighlightBase {
+export type Highlight = HighlightBase & {
   encoder?: HighlighterEncoder;
   fields: Record<string, HighlightField>;
 }
 
-export interface HighlightBase {
+export type HighlightBase = {
   boundary_chars?: string;
   boundary_max_scan?: number;
   boundary_scanner?: BoundaryScanner;
@@ -179,15 +180,15 @@ export type HighlighterOrder = 'score'
 
 export type HighlighterTagsSchema = 'styled'
 
-export type HighlighterType = 'fvh' | 'plain' | 'unified'
+export type HighlighterType = BuiltinHighlighterType | string
 
-export interface HighlightField extends HighlightBase {
+export type HighlightField = HighlightBase & {
   analyzer?: Common_Analysis.Analyzer;
   fragment_offset?: number;
   matched_fields?: Common.Fields;
 }
 
-export interface Hit {
+export type Hit = {
   _explanation?: Core_Explain.Explanation;
   _id: Common.Id;
   _ignored?: string[];
@@ -210,13 +211,13 @@ export interface Hit {
   sort?: Common.SortResults;
 }
 
-export interface HitsMetadata {
+export type HitsMetadata = {
   hits: Hit[];
   max_score?: undefined | number | string;
   total?: TotalHits | number;
 }
 
-export interface InnerHits {
+export type InnerHits = {
   _source?: SourceConfig;
   collapse?: FieldCollapse;
   docvalue_fields?: Common_QueryDsl.FieldAndFormat[];
@@ -235,37 +236,37 @@ export interface InnerHits {
   version?: boolean;
 }
 
-export interface InnerHitsResult {
+export type InnerHitsResult = {
   hits: HitsMetadata;
 }
 
-export interface NestedIdentity {
+export type NestedIdentity = {
   _nested?: NestedIdentity;
   field: Common.Field;
   offset: number;
 }
 
-export interface PhraseSuggest extends SuggestBase {
+export type PhraseSuggest = SuggestBase & {
   options: PhraseSuggestOption | PhraseSuggestOption[];
 }
 
-export interface PhraseSuggestOption {
+export type PhraseSuggestOption = {
   collate_match?: boolean;
   highlighted?: string;
   score: number;
   text: string;
 }
 
-export interface PointInTimeReference {
+export type PointInTimeReference = {
   id: Common.Id;
   keep_alive?: Common.Duration;
 }
 
-export interface Profile {
+export type Profile = {
   shards: ShardProfile[];
 }
 
-export interface QueryBreakdown {
+export type QueryBreakdown = {
   advance: number;
   advance_count: number;
   build_scorer: number;
@@ -286,7 +287,7 @@ export interface QueryBreakdown {
   shallow_advance_count: number;
 }
 
-export interface QueryProfile {
+export type QueryProfile = {
   breakdown: QueryBreakdown;
   children?: QueryProfile[];
   description: string;
@@ -294,19 +295,19 @@ export interface QueryProfile {
   type: string;
 }
 
-export interface Rescore {
+export type Rescore = {
   query: RescoreQuery;
   window_size?: number;
 }
 
-export interface RescoreQuery {
+export type RescoreQuery = {
   query_weight?: number;
   rescore_query: Common_QueryDsl.QueryContainer;
   rescore_query_weight?: number;
   score_mode?: ScoreMode;
 }
 
-export interface ResponseBody {
+export type ResponseBody = {
   _clusters?: Common.ClusterStatistics;
   _scroll_id?: Common.ScrollId;
   _shards: Common.ShardStatistics;
@@ -326,13 +327,13 @@ export interface ResponseBody {
 
 export type ScoreMode = 'avg' | 'max' | 'min' | 'multiply' | 'total'
 
-export interface SearchProfile {
+export type SearchProfile = {
   collector: Collector[];
   query: QueryProfile[];
   rewrite_time: number;
 }
 
-export interface ShardProfile {
+export type ShardProfile = {
   aggregations: AggregationProfile[];
   fetch?: FetchProfile;
   id: string;
@@ -343,28 +344,28 @@ export type SourceConfig = boolean | Common.Field[] | SourceFilter
 
 export type SourceConfigParam = boolean | Common.Fields
 
-export interface SourceFilter {
+export type SourceFilter = {
   excludes?: Common.Fields;
   includes?: Common.Fields;
 }
 
 export type Suggest = CompletionSuggest | PhraseSuggest | TermSuggest
 
-export interface SuggestBase {
+export type SuggestBase = {
   length: number;
   offset: number;
   text: string;
 }
 
-export interface Suggester {
+export type Suggester = {
   text?: string;
 }
 
-export interface TermSuggest extends SuggestBase {
+export type TermSuggest = SuggestBase & {
   options: TermSuggestOption | TermSuggestOption[];
 }
 
-export interface TermSuggestOption {
+export type TermSuggestOption = {
   collate_match?: boolean;
   freq: number;
   highlighted?: string;
@@ -372,7 +373,7 @@ export interface TermSuggestOption {
   text: string;
 }
 
-export interface TotalHits {
+export type TotalHits = {
   relation: TotalHitsRelation;
   value: number;
 }

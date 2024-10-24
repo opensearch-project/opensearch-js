@@ -16,12 +16,11 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
-import * as Common_Mapping from '../_types/_common.mapping'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Core_FieldCaps from '../_types/_core.field_caps'
 import * as Global from '../_types/_global'
 
-export interface FieldCaps_Request extends Global.Params {
+export type FieldCaps_Request = Global.Params & {
   allow_no_indices?: boolean;
   body?: FieldCaps_RequestBody;
   expand_wildcards?: Common.ExpandWildcards;
@@ -31,17 +30,16 @@ export interface FieldCaps_Request extends Global.Params {
   index?: Common.Indices;
 }
 
-export interface FieldCaps_RequestBody {
+export type FieldCaps_RequestBody = {
   fields?: Common.Fields;
   index_filter?: Common_QueryDsl.QueryContainer;
-  runtime_mappings?: Common_Mapping.RuntimeFields;
 }
 
-export interface FieldCaps_Response extends ApiResponse {
+export type FieldCaps_Response = ApiResponse & {
   body: FieldCaps_ResponseBody;
 }
 
-export interface FieldCaps_ResponseBody {
+export type FieldCaps_ResponseBody = {
   fields: Record<string, Record<string, Core_FieldCaps.FieldCapability>>;
   indices: Common.Indices;
 }

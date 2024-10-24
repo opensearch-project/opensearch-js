@@ -15,10 +15,9 @@
  */
 
 import * as Common from './_common'
-import * as Common_Mapping from './_common.mapping'
 import * as Common_QueryDsl from './_common.query_dsl'
 
-export interface Destination {
+export type Destination = {
   index: Common.IndexName;
   op_type?: Common.OpType;
   pipeline?: string;
@@ -26,7 +25,7 @@ export interface Destination {
   version_type?: Common.VersionType;
 }
 
-export interface RemoteSource {
+export type RemoteSource = {
   connect_timeout?: Common.Duration;
   headers?: Record<string, string>;
   host: Common.Host;
@@ -35,12 +34,11 @@ export interface RemoteSource {
   username?: Common.Username;
 }
 
-export interface Source {
+export type Source = {
   _source?: Common.Fields;
   index: Common.Indices;
   query?: Common_QueryDsl.QueryContainer;
   remote?: RemoteSource;
-  runtime_mappings?: Common_Mapping.RuntimeFields;
   size?: number;
   slice?: Common.SlicedScroll;
   sort?: Common.Sort;

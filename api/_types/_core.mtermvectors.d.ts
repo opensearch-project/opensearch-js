@@ -17,7 +17,7 @@
 import * as Common from './_common'
 import * as Core_Termvectors from './_core.termvectors'
 
-export interface Operation {
+export type Operation = {
   _id: Common.Id;
   _index?: Common.IndexName;
   doc?: Record<string, any>;
@@ -33,7 +33,7 @@ export interface Operation {
   version_type?: Common.VersionType;
 }
 
-export interface TermVectorsResult {
+export type TermVectorsResult = {
   _id: Common.Id;
   _index: Common.IndexName;
   _version?: Common.VersionNumber;

@@ -20,7 +20,7 @@ import * as Security_Common from '../_types/security._common'
 
 export type Security_PostDashboardsInfo_Request = Global.Params & Record<string, any>
 
-export interface Security_PostDashboardsInfo_Response extends ApiResponse {
+export type Security_PostDashboardsInfo_Response = ApiResponse & {
   body: Security_PostDashboardsInfo_ResponseBody;
 }
 

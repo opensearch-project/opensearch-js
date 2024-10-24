@@ -17,7 +17,7 @@
 import * as Common from './_common'
 import * as Tasks_Common from './tasks._common'
 
-export interface UpdateByQueryRethrottleNode extends Common.BaseNode {
+export type UpdateByQueryRethrottleNode = Common.BaseNode & {
   tasks: Record<string, Tasks_Common.TaskInfo>;
 }
 

@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Snapshot_Common from '../_types/snapshot._common'
 
-export interface Snapshot_Status_Request extends Global.Params {
+export type Snapshot_Status_Request = Global.Params & {
   cluster_manager_timeout?: Common.Duration;
   ignore_unavailable?: boolean;
   master_timeout?: Common.Duration;
@@ -27,11 +27,11 @@ export interface Snapshot_Status_Request extends Global.Params {
   snapshot?: Common.Names;
 }
 
-export interface Snapshot_Status_Response extends ApiResponse {
+export type Snapshot_Status_Response = ApiResponse & {
   body: Snapshot_Status_ResponseBody;
 }
 
-export interface Snapshot_Status_ResponseBody {
+export type Snapshot_Status_ResponseBody = {
   snapshots: Snapshot_Common.Status[];
 }
 

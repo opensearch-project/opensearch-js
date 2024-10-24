@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export interface Exists_Request extends Global.Params {
+export type Exists_Request = Global.Params & {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -28,13 +28,13 @@ export interface Exists_Request extends Global.Params {
   preference?: string;
   realtime?: boolean;
   refresh?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   stored_fields?: Common.Fields;
   version?: Common.VersionNumber;
   version_type?: Common.VersionType;
 }
 
-export interface Exists_Response extends ApiResponse {
+export type Exists_Response = ApiResponse & {
   body: Exists_ResponseBody;
 }
 

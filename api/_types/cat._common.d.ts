@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface CatPitSegmentsRecord {
+export type CatPitSegmentsRecord = {
   committed?: string;
   compound?: string;
   'docs.count'?: string;
@@ -33,7 +33,7 @@ export interface CatPitSegmentsRecord {
   version?: string;
 }
 
-export interface CatSegmentReplicationRecord {
+export type CatSegmentReplicationRecord = {
   bytes?: string;
   bytes_behind?: string;
   bytes_fetched?: string;

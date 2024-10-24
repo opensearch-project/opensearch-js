@@ -17,7 +17,7 @@
 import * as Common from './_common'
 import * as Nodes_Common from './nodes._common'
 
-export interface ResponseBase extends Nodes_Common.NodesResponseBase {
+export type ResponseBase = Nodes_Common.NodesResponseBase & {
   cluster_name: Common.Name;
   nodes: Record<string, Nodes_Common.NodeReloadResult>;
 }

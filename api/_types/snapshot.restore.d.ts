@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface SnapshotRestore {
+export type SnapshotRestore = {
   indices: Common.IndexName[];
   shards: Common.ShardStatistics;
   snapshot: string;

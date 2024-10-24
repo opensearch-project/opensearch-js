@@ -15,18 +15,18 @@
  */
 
 
-export interface ErrorResponse {
+export type ErrorResponse = {
   reason: string;
   root_cause: RootCause[];
   type: string;
 }
 
-export interface NotFoundResponse {
+export type NotFoundResponse = {
   error: ErrorResponse;
   status: number;
 }
 
-export interface ObservabilityObject {
+export type ObservabilityObject = {
   createdTimeMs?: number;
   lastUpdatedTimeMs?: number;
   objectId: string;
@@ -36,14 +36,14 @@ export interface ObservabilityObject {
   tenant: string;
 }
 
-export interface ObservabilityObjectList {
+export type ObservabilityObjectList = {
   observabilityObjectList: ObservabilityObject[];
   startIndex: number;
   totalHitRelation: string;
   totalHits: number;
 }
 
-export interface OperationalPanel {
+export type OperationalPanel = {
   applicationId: string;
   name: string;
   queryFilter: QueryFilter;
@@ -51,17 +51,17 @@ export interface OperationalPanel {
   visualizations: Visualization[];
 }
 
-export interface QueryFilter {
+export type QueryFilter = {
   language: string;
   query: string;
 }
 
-export interface RootCause {
+export type RootCause = {
   reason: string;
   type: string;
 }
 
-export interface SavedQuery {
+export type SavedQuery = {
   description: string;
   name: string;
   query: string;
@@ -70,7 +70,7 @@ export interface SavedQuery {
   selected_timestamp: SelectedTimestamp;
 }
 
-export interface SavedVisualization {
+export type SavedVisualization = {
   description: string;
   name: string;
   query: string;
@@ -80,33 +80,33 @@ export interface SavedVisualization {
   type: string;
 }
 
-export interface SelectedDateRange {
+export type SelectedDateRange = {
   end: string;
   start: string;
   text: string;
 }
 
-export interface SelectedFields {
+export type SelectedFields = {
   text: string;
   tokens: Token[];
 }
 
-export interface SelectedTimestamp {
+export type SelectedTimestamp = {
   name: string;
   type: string;
 }
 
-export interface TimeRange {
+export type TimeRange = {
   from: string;
   to: string;
 }
 
-export interface Token {
+export type Token = {
   name: string;
   type: string;
 }
 
-export interface Visualization {
+export type Visualization = {
   h: number;
   id: string;
   savedVisualizationId: string;

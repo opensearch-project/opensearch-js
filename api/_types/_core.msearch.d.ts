@@ -16,11 +16,10 @@
 
 import * as Common from './_common'
 import * as Common_Aggregations from './_common.aggregations'
-import * as Common_Mapping from './_common.mapping'
 import * as Common_QueryDsl from './_common.query_dsl'
 import * as Core_Search from './_core.search'
 
-export interface MultisearchBody {
+export type MultisearchBody = {
   _source?: Core_Search.SourceConfig;
   aggregations?: Record<string, Common_Aggregations.AggregationContainer>;
   collapse?: Core_Search.FieldCollapse;
@@ -38,7 +37,6 @@ export interface MultisearchBody {
   profile?: boolean;
   query?: Common_QueryDsl.QueryContainer;
   rescore?: Core_Search.Rescore | Core_Search.Rescore[];
-  runtime_mappings?: Common_Mapping.RuntimeFields;
   script_fields?: Record<string, Common.ScriptField>;
   search_after?: Common.SortResults;
   seq_no_primary_term?: boolean;
@@ -54,7 +52,7 @@ export interface MultisearchBody {
   version?: boolean;
 }
 
-export interface MultisearchHeader {
+export type MultisearchHeader = {
   allow_no_indices?: boolean;
   allow_partial_search_results?: boolean;
   ccs_minimize_roundtrips?: boolean;
@@ -68,11 +66,11 @@ export interface MultisearchHeader {
   search_type?: Common.SearchType;
 }
 
-export interface MultiSearchItem extends Core_Search.ResponseBody {
+export type MultiSearchItem = Core_Search.ResponseBody & {
   status?: number;
 }
 
-export interface MultiSearchResult {
+export type MultiSearchResult = {
   responses: ResponseItem[];
   took: number;
 }

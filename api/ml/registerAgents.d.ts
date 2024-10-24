@@ -18,15 +18,15 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_RegisterAgents_Request extends Global.Params {
+export type Ml_RegisterAgents_Request = Global.Params & {
   body?: Ml_Common.RegisterAgentsRequest;
 }
 
-export interface Ml_RegisterAgents_Response extends ApiResponse {
+export type Ml_RegisterAgents_Response = ApiResponse & {
   body: Ml_RegisterAgents_ResponseBody;
 }
 
-export interface Ml_RegisterAgents_ResponseBody {
+export type Ml_RegisterAgents_ResponseBody = {
   agent_id?: string;
 }
 

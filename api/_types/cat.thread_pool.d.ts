@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface ThreadPoolRecord {
+export type ThreadPoolRecord = {
   active?: string;
   completed?: string;
   core?: undefined | string;

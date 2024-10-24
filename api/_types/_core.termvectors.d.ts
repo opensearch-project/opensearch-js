@@ -15,13 +15,13 @@
  */
 
 
-export interface FieldStatistics {
+export type FieldStatistics = {
   doc_count: number;
   sum_doc_freq: number;
   sum_ttf: number;
 }
 
-export interface Filter {
+export type Filter = {
   max_doc_freq?: number;
   max_num_terms?: number;
   max_term_freq?: number;
@@ -31,7 +31,7 @@ export interface Filter {
   min_word_length?: number;
 }
 
-export interface Term {
+export type Term = {
   doc_freq?: number;
   score?: number;
   term_freq: number;
@@ -39,12 +39,12 @@ export interface Term {
   ttf?: number;
 }
 
-export interface TermVector {
+export type TermVector = {
   field_statistics: FieldStatistics;
   terms: Record<string, Term>;
 }
 
-export interface Token {
+export type Token = {
   end_offset?: number;
   payload?: string;
   position: number;

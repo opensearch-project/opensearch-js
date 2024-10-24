@@ -19,21 +19,21 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as RemoteStore_Common from '../_types/remote_store._common'
 
-export interface RemoteStore_Restore_Request extends Global.Params {
+export type RemoteStore_Restore_Request = Global.Params & {
   body: RemoteStore_Restore_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   wait_for_completion?: boolean;
 }
 
-export interface RemoteStore_Restore_RequestBody {
+export type RemoteStore_Restore_RequestBody = {
   indices: string[];
 }
 
-export interface RemoteStore_Restore_Response extends ApiResponse {
+export type RemoteStore_Restore_Response = ApiResponse & {
   body: RemoteStore_Restore_ResponseBody;
 }
 
-export interface RemoteStore_Restore_ResponseBody {
+export type RemoteStore_Restore_ResponseBody = {
   accepted?: boolean;
   remote_store?: RemoteStore_Common.RemoteStoreRestoreInfo;
 }

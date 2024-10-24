@@ -19,16 +19,16 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_ResolveIndex from '../_types/indices.resolve_index'
 
-export interface Indices_ResolveIndex_Request extends Global.Params {
+export type Indices_ResolveIndex_Request = Global.Params & {
   expand_wildcards?: Common.ExpandWildcards;
   name: Common.Names;
 }
 
-export interface Indices_ResolveIndex_Response extends ApiResponse {
+export type Indices_ResolveIndex_Response = ApiResponse & {
   body: Indices_ResolveIndex_ResponseBody;
 }
 
-export interface Indices_ResolveIndex_ResponseBody {
+export type Indices_ResolveIndex_ResponseBody = {
   aliases: Indices_ResolveIndex.ResolveIndexAliasItem[];
   data_streams: Indices_ResolveIndex.ResolveIndexDataStreamsItem[];
   indices: Indices_ResolveIndex.ResolveIndexItem[];

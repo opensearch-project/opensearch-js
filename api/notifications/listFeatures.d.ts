@@ -20,11 +20,11 @@ import * as Notifications_Common from '../_types/notifications._common'
 
 export type Notifications_ListFeatures_Request = Global.Params & Record<string, any>
 
-export interface Notifications_ListFeatures_Response extends ApiResponse {
+export type Notifications_ListFeatures_Response = ApiResponse & {
   body: Notifications_ListFeatures_ResponseBody;
 }
 
-export interface Notifications_ListFeatures_ResponseBody {
+export type Notifications_ListFeatures_ResponseBody = {
   allowed_config_type_list?: Notifications_Common.NotificationConfigType[];
   plugin_features?: Notifications_Common.NotificationsPluginFeaturesMap;
 }

@@ -19,16 +19,16 @@ import * as Common from '../_types/_common'
 import * as Core_UpdateByQueryRethrottle from '../_types/_core.update_by_query_rethrottle'
 import * as Global from '../_types/_global'
 
-export interface UpdateByQueryRethrottle_Request extends Global.Params {
+export type UpdateByQueryRethrottle_Request = Global.Params & {
   requests_per_second?: number;
   task_id: Common.Id;
 }
 
-export interface UpdateByQueryRethrottle_Response extends ApiResponse {
+export type UpdateByQueryRethrottle_Response = ApiResponse & {
   body: UpdateByQueryRethrottle_ResponseBody;
 }
 
-export interface UpdateByQueryRethrottle_ResponseBody {
+export type UpdateByQueryRethrottle_ResponseBody = {
   nodes: Record<string, Core_UpdateByQueryRethrottle.UpdateByQueryRethrottleNode>;
 }
 

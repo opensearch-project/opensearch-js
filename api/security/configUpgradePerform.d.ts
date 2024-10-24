@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export interface Security_ConfigUpgradePerform_Request extends Global.Params {
+export type Security_ConfigUpgradePerform_Request = Global.Params & {
   body?: Security_Common.ConfigUpgradePayload;
 }
 
-export interface Security_ConfigUpgradePerform_Response extends ApiResponse {
+export type Security_ConfigUpgradePerform_Response = ApiResponse & {
   body: Security_ConfigUpgradePerform_ResponseBody;
 }
 

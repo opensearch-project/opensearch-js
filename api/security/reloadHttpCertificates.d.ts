@@ -20,7 +20,7 @@ import * as Security_Common from '../_types/security._common'
 
 export type Security_ReloadHttpCertificates_Request = Global.Params & Record<string, any>
 
-export interface Security_ReloadHttpCertificates_Response extends ApiResponse {
+export type Security_ReloadHttpCertificates_Response = ApiResponse & {
   body: Security_ReloadHttpCertificates_ResponseBody;
 }
 

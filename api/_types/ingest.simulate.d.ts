@@ -16,13 +16,13 @@
 
 import * as Common from './_common'
 
-export interface Document {
+export type Document = {
   _id?: Common.Id;
   _index?: Common.IndexName;
   _source: Record<string, any>;
 }
 
-export interface DocumentSimulation {
+export type DocumentSimulation = {
   _id: Common.Id;
   _index: Common.IndexName;
   _ingest: Ingest;
@@ -32,12 +32,12 @@ export interface DocumentSimulation {
   _version_type?: Common.VersionType;
 }
 
-export interface Ingest {
+export type Ingest = {
   pipeline?: Common.Name;
   timestamp: Common.DateTime;
 }
 
-export interface PipelineSimulation {
+export type PipelineSimulation = {
   doc?: DocumentSimulation;
   processor_results?: PipelineSimulation[];
   processor_type?: string;

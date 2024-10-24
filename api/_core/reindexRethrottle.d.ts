@@ -19,16 +19,16 @@ import * as Common from '../_types/_common'
 import * as Core_ReindexRethrottle from '../_types/_core.reindex_rethrottle'
 import * as Global from '../_types/_global'
 
-export interface ReindexRethrottle_Request extends Global.Params {
+export type ReindexRethrottle_Request = Global.Params & {
   requests_per_second?: number;
   task_id: Common.Id;
 }
 
-export interface ReindexRethrottle_Response extends ApiResponse {
+export type ReindexRethrottle_Response = ApiResponse & {
   body: ReindexRethrottle_ResponseBody;
 }
 
-export interface ReindexRethrottle_ResponseBody {
+export type ReindexRethrottle_ResponseBody = {
   nodes: Record<string, Core_ReindexRethrottle.ReindexNode>;
 }
 

@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface AllocationRecord {
+export type AllocationRecord = {
   'disk.avail'?: undefined | string;
   'disk.indices'?: undefined | string;
   'disk.percent'?: Common.PercentageString | undefined;

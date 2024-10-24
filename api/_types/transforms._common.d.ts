@@ -16,12 +16,12 @@
 
 import * as Common_QueryDsl from './_common.query_dsl'
 
-export interface ContinuousStats {
+export type ContinuousStats = {
   documents_behind?: Record<string, number>;
   last_timestamp?: number;
 }
 
-export interface DateHistogramGroup {
+export type DateHistogramGroup = {
   calendar_interval?: string;
   fixed_interval?: string;
   source_field?: string;
@@ -29,14 +29,14 @@ export interface DateHistogramGroup {
   timezone?: string;
 }
 
-export interface Explain {
+export type Explain = {
   metadata_id?: string;
   transform_metadata?: TransformMetadata;
 }
 
 export type ExplainResponse = Record<string, Explain>
 
-export interface ExplainStats {
+export type ExplainStats = {
   documents_indexed?: number;
   documents_processed?: number;
   index_time_in_millis?: number;
@@ -44,25 +44,25 @@ export interface ExplainStats {
   search_time_in_millis?: number;
 }
 
-export interface GroupsConfigItem {
+export type GroupsConfigItem = {
   date_histogram?: DateHistogramGroup;
   histogram?: HistogramGroup;
   terms?: TermsGroup;
 }
 
-export interface HistogramGroup {
+export type HistogramGroup = {
   interval?: string;
   source_field?: string;
   target_field?: string;
 }
 
-export interface MetricsConfigItem {
+export type MetricsConfigItem = {
   metrics?: MetricsConfigMetrics[];
   source_field?: string;
   target_field?: string;
 }
 
-export interface MetricsConfigMetrics {
+export type MetricsConfigMetrics = {
   avg?: Record<string, any>;
   max?: Record<string, any>;
   min?: Record<string, any>;
@@ -70,26 +70,26 @@ export interface MetricsConfigMetrics {
   value_count?: Record<string, any>;
 }
 
-export interface Preview {
+export type Preview = {
   documents?: Record<string, any>[];
 }
 
-export interface Schedule {
+export type Schedule = {
   interval: ScheduleInterval;
 }
 
-export interface ScheduleInterval {
+export type ScheduleInterval = {
   period?: number;
   start_time?: number;
   unit?: string;
 }
 
-export interface TermsGroup {
+export type TermsGroup = {
   source_field?: string;
   target_field?: string;
 }
 
-export interface Transform {
+export type Transform = {
   aggregations?: MetricsConfigItem[];
   continuous?: boolean;
   data_selection_query?: Common_QueryDsl.QueryContainer;
@@ -108,14 +108,14 @@ export interface Transform {
   updated_at?: string;
 }
 
-export interface TransformEntity {
+export type TransformEntity = {
   _id?: string;
   _primaryTerm?: number;
   _seqNo?: number;
   transform?: Transform;
 }
 
-export interface TransformMetadata {
+export type TransformMetadata = {
   continuous_stats?: ContinuousStats;
   failure_reason?: string;
   last_updated_at?: number;
@@ -124,7 +124,7 @@ export interface TransformMetadata {
   transform_id?: string;
 }
 
-export interface TransformsResponse {
+export type TransformsResponse = {
   total_transforms?: number;
   transforms?: TransformEntity[];
 }

@@ -18,13 +18,13 @@ import * as Common from './_common'
 import * as Indices_Common from './indices._common'
 import * as Nodes_Common from './nodes._common'
 
-export interface DeprecationIndexing {
+export type DeprecationIndexing = {
   enabled: boolean | string;
 }
 
 export type Metric = '_all' | 'aggregations' | 'http' | 'indices' | 'ingest' | 'jvm' | 'os' | 'plugins' | 'process' | 'search_pipelines' | 'settings' | 'thread_pool' | 'transport'
 
-export interface NodeInfo {
+export type NodeInfo = {
   aggregations?: Record<string, NodeInfoAggregation>;
   attributes?: Record<string, string>;
   build_flavor?: string;
@@ -52,51 +52,51 @@ export interface NodeInfo {
   version: Common.VersionString;
 }
 
-export interface NodeInfoAction {
+export type NodeInfoAction = {
   destructive_requires_name: string;
 }
 
-export interface NodeInfoAggregation {
+export type NodeInfoAggregation = {
   types: string[];
 }
 
-export interface NodeInfoBootstrap {
+export type NodeInfoBootstrap = {
   memory_lock: string;
 }
 
-export interface NodeInfoClient {
+export type NodeInfoClient = {
   type: string;
 }
 
-export interface NodeInfoDiscovery {
+export type NodeInfoDiscovery = {
   seed_hosts?: string;
   type?: string;
 }
 
-export interface NodeInfoHttp {
+export type NodeInfoHttp = {
   bound_address: string[];
   max_content_length?: Common.HumanReadableByteCount;
   max_content_length_in_bytes: Common.ByteCount;
   publish_address: string;
 }
 
-export interface NodeInfoIngest {
+export type NodeInfoIngest = {
   processors: NodeInfoIngestProcessor[];
 }
 
-export interface NodeInfoIngestDownloader {
+export type NodeInfoIngestDownloader = {
   enabled: string;
 }
 
-export interface NodeInfoIngestInfo {
+export type NodeInfoIngestInfo = {
   downloader: NodeInfoIngestDownloader;
 }
 
-export interface NodeInfoIngestProcessor {
+export type NodeInfoIngestProcessor = {
   type: string;
 }
 
-export interface NodeInfoJvmMemory {
+export type NodeInfoJvmMemory = {
   direct_max?: Common.HumanReadableByteCount;
   direct_max_in_bytes: Common.ByteCount;
   heap_init?: Common.HumanReadableByteCount;
@@ -109,23 +109,23 @@ export interface NodeInfoJvmMemory {
   non_heap_max_in_bytes: Common.ByteCount;
 }
 
-export interface NodeInfoMemory {
+export type NodeInfoMemory = {
   total: Common.HumanReadableByteCount;
   total_in_bytes: Common.ByteCount;
 }
 
-export interface NodeInfoNetwork {
+export type NodeInfoNetwork = {
   primary_interface: NodeInfoNetworkInterface;
   refresh_interval: number;
 }
 
-export interface NodeInfoNetworkInterface {
+export type NodeInfoNetworkInterface = {
   address: string;
   mac_address: string;
   name: Common.Name;
 }
 
-export interface NodeInfoOSCPU {
+export type NodeInfoOSCPU = {
   cache_size: Common.HumanReadableByteCount;
   cache_size_in_bytes: Common.ByteCount;
   cores_per_socket: number;
@@ -136,40 +136,40 @@ export interface NodeInfoOSCPU {
   vendor: string;
 }
 
-export interface NodeInfoPath {
+export type NodeInfoPath = {
   data?: string[];
   home: string;
   logs: string;
   repo?: string[];
 }
 
-export interface NodeInfoRepositories {
+export type NodeInfoRepositories = {
   url: NodeInfoRepositoriesUrl;
 }
 
-export interface NodeInfoRepositoriesUrl {
+export type NodeInfoRepositoriesUrl = {
   allowed_urls: string;
 }
 
-export interface NodeInfoScript {
+export type NodeInfoScript = {
   allowed_types: string;
   disable_max_compilations_rate: string;
 }
 
-export interface NodeInfoSearch {
+export type NodeInfoSearch = {
   remote: NodeInfoSearchRemote;
 }
 
-export interface NodeInfoSearchPipelines {
+export type NodeInfoSearchPipelines = {
   request_processors: NodeInfoIngestProcessor[];
   response_processors: NodeInfoIngestProcessor[];
 }
 
-export interface NodeInfoSearchRemote {
+export type NodeInfoSearchRemote = {
   connect: string;
 }
 
-export interface NodeInfoSettings {
+export type NodeInfoSettings = {
   action?: NodeInfoAction;
   bootstrap?: NodeInfoBootstrap;
   client: NodeInfoClient;
@@ -188,7 +188,7 @@ export interface NodeInfoSettings {
   transport: NodeInfoSettingsTransport;
 }
 
-export interface NodeInfoSettingsCluster {
+export type NodeInfoSettingsCluster = {
   deprecation_indexing?: DeprecationIndexing;
   election?: NodeInfoSettingsClusterElection;
   initial_cluster_manager_nodes?: string;
@@ -197,34 +197,34 @@ export interface NodeInfoSettingsCluster {
   routing?: Indices_Common.IndexRouting;
 }
 
-export interface NodeInfoSettingsClusterElection {
+export type NodeInfoSettingsClusterElection = {
   strategy: Common.Name;
 }
 
-export interface NodeInfoSettingsHttp {
+export type NodeInfoSettingsHttp = {
   compression?: boolean | string;
   port?: number | string;
   type: string;
   'type.default'?: string;
 }
 
-export interface NodeInfoSettingsIndex {
+export type NodeInfoSettingsIndex = {
   store?: NodeInfoSettingsIndexStore;
 }
 
-export interface NodeInfoSettingsIndexHybrid {
+export type NodeInfoSettingsIndexHybrid = {
   mmap?: NodeInfoSettingsIndexStoreMmap;
 }
 
-export interface NodeInfoSettingsIndexStore {
+export type NodeInfoSettingsIndexStore = {
   hybrid?: NodeInfoSettingsIndexHybrid;
 }
 
-export interface NodeInfoSettingsIndexStoreMmap {
+export type NodeInfoSettingsIndexStoreMmap = {
   extensions?: string[];
 }
 
-export interface NodeInfoSettingsIngest {
+export type NodeInfoSettingsIngest = {
   append?: NodeInfoIngestInfo;
   attachment?: NodeInfoIngestInfo;
   bytes?: NodeInfoIngestInfo;
@@ -261,11 +261,11 @@ export interface NodeInfoSettingsIngest {
   user_agent?: NodeInfoIngestInfo;
 }
 
-export interface NodeInfoSettingsNetwork {
+export type NodeInfoSettingsNetwork = {
   host: Common.Host;
 }
 
-export interface NodeInfoSettingsNode {
+export type NodeInfoSettingsNode = {
   attr: NodeInfoShardIndexingPressureEnabled;
   max_local_storage_nodes?: string;
   name: Common.Name;
@@ -273,22 +273,22 @@ export interface NodeInfoSettingsNode {
 
 export type NodeInfoSettingsPlugins = Record<string, Common.FieldValue>
 
-export interface NodeInfoSettingsTransport {
+export type NodeInfoSettingsTransport = {
   type: string;
   'type.default'?: string;
 }
 
-export interface NodeInfoShardIndexingPressureEnabled {
+export type NodeInfoShardIndexingPressureEnabled = {
   shard_indexing_pressure_enabled: string;
 }
 
-export interface NodeInfoTransport {
+export type NodeInfoTransport = {
   bound_address: string[];
   profiles: Record<string, string>;
   publish_address: string;
 }
 
-export interface NodeJvmInfo {
+export type NodeJvmInfo = {
   bundled_jdk: boolean;
   gc_collectors?: string[];
   input_arguments?: string[];
@@ -304,7 +304,7 @@ export interface NodeJvmInfo {
   vm_version?: Common.VersionString;
 }
 
-export interface NodeOperatingSystemInfo {
+export type NodeOperatingSystemInfo = {
   allocated_processors?: number;
   arch?: string;
   available_processors: number;
@@ -317,13 +317,13 @@ export interface NodeOperatingSystemInfo {
   version?: Common.VersionString;
 }
 
-export interface NodeProcessInfo {
+export type NodeProcessInfo = {
   id: number;
   mlockall: boolean;
   refresh_interval_in_millis: Common.DurationValueUnitMillis;
 }
 
-export interface NodeThreadPoolInfo {
+export type NodeThreadPoolInfo = {
   core?: number;
   keep_alive?: Common.Duration;
   max?: number;
@@ -332,7 +332,7 @@ export interface NodeThreadPoolInfo {
   type: string;
 }
 
-export interface ResponseBase extends Nodes_Common.NodesResponseBase {
+export type ResponseBase = Nodes_Common.NodesResponseBase & {
   cluster_name: Common.Name;
   nodes: Record<string, NodeInfo>;
 }

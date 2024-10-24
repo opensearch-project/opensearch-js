@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface RecoveryRecord {
+export type RecoveryRecord = {
   bytes?: string;
   bytes_percent?: Common.PercentageString;
   bytes_recovered?: string;

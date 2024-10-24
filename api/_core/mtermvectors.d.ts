@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Core_Mtermvectors from '../_types/_core.mtermvectors'
 import * as Global from '../_types/_global'
 
-export interface Mtermvectors_Request extends Global.Params {
+export type Mtermvectors_Request = Global.Params & {
   body?: Mtermvectors_RequestBody;
   field_statistics?: boolean;
   fields?: Common.Fields;
@@ -30,22 +30,22 @@ export interface Mtermvectors_Request extends Global.Params {
   positions?: boolean;
   preference?: string;
   realtime?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   term_statistics?: boolean;
   version?: Common.VersionNumber;
   version_type?: Common.VersionType;
 }
 
-export interface Mtermvectors_RequestBody {
+export type Mtermvectors_RequestBody = {
   docs?: Core_Mtermvectors.Operation[];
   ids?: Common.Id[];
 }
 
-export interface Mtermvectors_Response extends ApiResponse {
+export type Mtermvectors_Response = ApiResponse & {
   body: Mtermvectors_ResponseBody;
 }
 
-export interface Mtermvectors_ResponseBody {
+export type Mtermvectors_ResponseBody = {
   docs: Core_Mtermvectors.TermVectorsResult[];
 }
 

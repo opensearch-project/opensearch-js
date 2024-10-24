@@ -20,7 +20,7 @@ import * as Common_Aggregations from '../_types/_common.aggregations'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export interface SearchTemplate_Request extends Global.Params {
+export type SearchTemplate_Request = Global.Params & {
   allow_no_indices?: boolean;
   body: SearchTemplate_RequestBody;
   ccs_minimize_roundtrips?: boolean;
@@ -32,13 +32,13 @@ export interface SearchTemplate_Request extends Global.Params {
   preference?: string;
   profile?: boolean;
   rest_total_hits_as_int?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   scroll?: Common.Duration;
   search_type?: Common.SearchType;
   typed_keys?: boolean;
 }
 
-export interface SearchTemplate_RequestBody {
+export type SearchTemplate_RequestBody = {
   explain?: boolean;
   id?: Common.Id;
   params?: Record<string, Record<string, any>>;
@@ -46,11 +46,11 @@ export interface SearchTemplate_RequestBody {
   source?: string;
 }
 
-export interface SearchTemplate_Response extends ApiResponse {
+export type SearchTemplate_Response = ApiResponse & {
   body: SearchTemplate_ResponseBody;
 }
 
-export interface SearchTemplate_ResponseBody {
+export type SearchTemplate_ResponseBody = {
   _clusters?: Common.ClusterStatistics;
   _scroll_id?: Common.ScrollId;
   _shards: Common.ShardStatistics;

@@ -16,30 +16,18 @@
 
 import * as Common from './_common'
 
-export interface FileCountSnapshotStats {
+export type FileCountSnapshotStats = {
   file_count: number;
   size_in_bytes: Common.ByteCount;
 }
 
-export interface IndexDetails {
-  max_segments_per_shard: number;
-  shard_count: number;
-  size?: Common.HumanReadableByteCount;
-  size_in_bytes: Common.ByteCount;
-}
-
-export interface InfoFeatureState {
-  feature_name: string;
-  indices: Common.Indices;
-}
-
-export interface Repository {
+export type Repository = {
   settings: RepositorySettings;
   type: string;
   uuid?: Common.Uuid;
 }
 
-export interface RepositorySettings {
+export type RepositorySettings = {
   chunk_size?: string;
   compress?: string | boolean;
   concurrent_streams?: string | number;
@@ -47,7 +35,7 @@ export interface RepositorySettings {
   read_only?: string | boolean;
 }
 
-export interface ShardsStats {
+export type ShardsStats = {
   done: number;
   failed: number;
   finalizing: number;
@@ -58,7 +46,7 @@ export interface ShardsStats {
 
 export type ShardsStatsStage = 'DONE' | 'FAILURE' | 'FINALIZE' | 'INIT' | 'STARTED'
 
-export interface ShardsStatsSummary {
+export type ShardsStatsSummary = {
   incremental: ShardsStatsSummaryItem;
   start_time_in_millis: Common.EpochTimeUnitMillis;
   time?: Common.Duration;
@@ -66,31 +54,30 @@ export interface ShardsStatsSummary {
   total: ShardsStatsSummaryItem;
 }
 
-export interface ShardsStatsSummaryItem {
+export type ShardsStatsSummaryItem = {
   file_count: number;
   size_in_bytes: Common.ByteCount;
 }
 
-export interface SnapshotIndexStats {
+export type SnapshotIndexStats = {
   shards: Record<string, SnapshotShardsStatus>;
   shards_stats: ShardsStats;
   stats: SnapshotStats;
 }
 
-export interface SnapshotInfo {
+export type SnapshotInfo = {
   data_streams: string[];
   duration?: Common.Duration;
   duration_in_millis?: Common.DurationValueUnitMillis;
   end_time?: Common.DateTime;
   end_time_in_millis?: Common.EpochTimeUnitMillis;
   failures?: SnapshotShardFailure[];
-  feature_states?: InfoFeatureState[];
   include_global_state?: boolean;
-  index_details?: Record<string, IndexDetails>;
   indices?: Common.IndexName[];
   metadata?: Common.Metadata;
+  pinned_timestamp?: Common.EpochTimeUnitMillis;
   reason?: string;
-  repository?: Common.Name;
+  remote_store_index_shallow_copy?: boolean;
   shards?: Common.ShardStatistics;
   snapshot: Common.Name;
   start_time?: Common.DateTime;
@@ -101,7 +88,7 @@ export interface SnapshotInfo {
   version_id?: Common.VersionNumber;
 }
 
-export interface SnapshotShardFailure {
+export type SnapshotShardFailure = {
   index: Common.IndexName;
   node_id?: Common.Id;
   reason: string;
@@ -109,12 +96,12 @@ export interface SnapshotShardFailure {
   status: string;
 }
 
-export interface SnapshotShardsStatus {
+export type SnapshotShardsStatus = {
   stage: ShardsStatsStage;
   stats: ShardsStatsSummary;
 }
 
-export interface SnapshotStats {
+export type SnapshotStats = {
   incremental: FileCountSnapshotStats;
   start_time_in_millis: Common.EpochTimeUnitMillis;
   time?: Common.Duration;
@@ -122,7 +109,7 @@ export interface SnapshotStats {
   total: FileCountSnapshotStats;
 }
 
-export interface Status {
+export type Status = {
   include_global_state: boolean;
   indices: Record<string, SnapshotIndexStats>;
   repository: string;

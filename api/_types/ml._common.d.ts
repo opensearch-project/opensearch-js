@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface Action {
+export type Action = {
   action_type?: string;
   headers?: Headers;
   method?: string;
@@ -26,7 +26,7 @@ export interface Action {
   url?: string;
 }
 
-export interface ClientConfig {
+export type ClientConfig = {
   connection_timeout?: number;
   max_connection?: number;
   max_retry_times?: number;
@@ -36,7 +36,7 @@ export interface ClientConfig {
   retry_timeout_seconds?: number;
 }
 
-export interface CreateConnectorRequest {
+export type CreateConnectorRequest = {
   actions: Action[];
   client_config?: ClientConfig;
   credential: Credential;
@@ -47,33 +47,33 @@ export interface CreateConnectorRequest {
   version: number;
 }
 
-export interface Credential {
+export type Credential = {
   access_key?: string;
   secret_key?: string;
   session_token?: string;
   [key: string]: any;
 }
 
-export interface Headers {
+export type Headers = {
   content_type?: string;
   [key: string]: any;
 }
 
-export interface HitsTotal {
+export type HitsTotal = {
   relation: string;
   value: number;
 }
 
-export interface LLM {
+export type LLM = {
   model_id?: string;
   parameters?: Parameters;
 }
 
-export interface Memory {
+export type Memory = {
   type?: string;
 }
 
-export interface ModelGroup {
+export type ModelGroup = {
   access: string;
   created_time?: number;
   description: string;
@@ -82,14 +82,14 @@ export interface ModelGroup {
   name: string;
 }
 
-export interface ModelGroupRegistration {
+export type ModelGroupRegistration = {
   model_group_id: string;
   status: string;
 }
 
 export type Parameters = Record<string, any>
 
-export interface RegisterAgentsRequest {
+export type RegisterAgentsRequest = {
   app_type?: string;
   description?: string;
   llm?: LLM;
@@ -100,27 +100,27 @@ export interface RegisterAgentsRequest {
   type: string;
 }
 
-export interface SearchModelsHits {
+export type SearchModelsHits = {
   hits: SearchModelsHitsHit[];
   total: HitsTotal;
 }
 
-export interface SearchModelsHitsHit {
+export type SearchModelsHitsHit = {
   _id: string;
   _index?: string;
   model_id: string;
 }
 
-export interface SearchModelsQuery {
+export type SearchModelsQuery = {
   query: Record<string, any>;
   size: number;
 }
 
-export interface SearchModelsResponse {
+export type SearchModelsResponse = {
   hits: SearchModelsHits;
 }
 
-export interface Task {
+export type Task = {
   create_time?: number;
   error?: string;
   function_name?: string;
@@ -133,14 +133,14 @@ export interface Task {
   worker_node?: Common.NodeIds[];
 }
 
-export interface ToolItems {
+export type ToolItems = {
   name?: string;
   parameters?: Parameters;
   type?: string;
   [key: string]: any;
 }
 
-export interface UndeployModelNode {
+export type UndeployModelNode = {
   stats?: UndeployModelNodeStats;
 }
 

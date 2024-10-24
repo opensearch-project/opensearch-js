@@ -17,7 +17,7 @@
 import * as Common from './_common'
 import * as Nodes_Common from './nodes._common'
 
-export interface CharFilterTypes {
+export type CharFilterTypes = {
   analyzer_types: FieldTypes[];
   built_in_analyzers: FieldTypes[];
   built_in_char_filters: FieldTypes[];
@@ -28,7 +28,7 @@ export interface CharFilterTypes {
   tokenizer_types: FieldTypes[];
 }
 
-export interface ClusterFileSystem {
+export type ClusterFileSystem = {
   available?: Common.HumanReadableByteCount;
   available_in_bytes: Common.ByteCount;
   cache_reserved?: Common.HumanReadableByteCount;
@@ -39,7 +39,7 @@ export interface ClusterFileSystem {
   total_in_bytes: Common.ByteCount;
 }
 
-export interface ClusterIndices {
+export type ClusterIndices = {
   analysis: CharFilterTypes;
   completion: Common.CompletionStats;
   count: number;
@@ -53,25 +53,25 @@ export interface ClusterIndices {
   versions?: IndicesVersions[];
 }
 
-export interface ClusterIndicesShards {
+export type ClusterIndicesShards = {
   index?: ClusterIndicesShardsIndex;
   primaries?: number;
   replication?: number;
   total?: number;
 }
 
-export interface ClusterIndicesShardsIndex {
+export type ClusterIndicesShardsIndex = {
   primaries: ClusterShardMetrics;
   replication: ClusterShardMetrics;
   shards: ClusterShardMetrics;
 }
 
-export interface ClusterIngest {
+export type ClusterIngest = {
   number_of_pipelines: number;
   processor_stats: Record<string, ClusterProcessor>;
 }
 
-export interface ClusterJvm {
+export type ClusterJvm = {
   max_uptime?: Common.Duration;
   max_uptime_in_millis: Common.DurationValueUnitMillis;
   mem: ClusterJvmMemory;
@@ -79,14 +79,14 @@ export interface ClusterJvm {
   versions: ClusterJvmVersion[];
 }
 
-export interface ClusterJvmMemory {
+export type ClusterJvmMemory = {
   heap_max?: Common.HumanReadableByteCount;
   heap_max_in_bytes: Common.ByteCount;
   heap_used?: Common.HumanReadableByteCount;
   heap_used_in_bytes: Common.ByteCount;
 }
 
-export interface ClusterJvmVersion {
+export type ClusterJvmVersion = {
   bundled_jdk: boolean;
   count: number;
   using_bundled_jdk: boolean;
@@ -96,12 +96,12 @@ export interface ClusterJvmVersion {
   vm_version: Common.VersionString;
 }
 
-export interface ClusterNetworkTypes {
+export type ClusterNetworkTypes = {
   http_types: Record<string, number>;
   transport_types: Record<string, number>;
 }
 
-export interface ClusterNodeCount {
+export type ClusterNodeCount = {
   cluster_manager?: number;
   coordinating_only: number;
   data: number;
@@ -120,7 +120,7 @@ export interface ClusterNodeCount {
   voting_only?: number;
 }
 
-export interface ClusterNodes {
+export type ClusterNodes = {
   count: ClusterNodeCount;
   discovery_types: Record<string, number>;
   fs: ClusterFileSystem;
@@ -135,7 +135,7 @@ export interface ClusterNodes {
   versions: Common.VersionString[];
 }
 
-export interface ClusterOperatingSystem {
+export type ClusterOperatingSystem = {
   allocated_processors: number;
   architectures?: ClusterOperatingSystemArchitecture[];
   available_processors: number;
@@ -144,37 +144,37 @@ export interface ClusterOperatingSystem {
   pretty_names: ClusterOperatingSystemPrettyName[];
 }
 
-export interface ClusterOperatingSystemArchitecture {
+export type ClusterOperatingSystemArchitecture = {
   arch: string;
   count: number;
 }
 
-export interface ClusterOperatingSystemName {
+export type ClusterOperatingSystemName = {
   count: number;
   name: Common.Name;
 }
 
-export interface ClusterOperatingSystemPrettyName {
+export type ClusterOperatingSystemPrettyName = {
   count: number;
   pretty_name: Common.Name;
 }
 
-export interface ClusterProcess {
+export type ClusterProcess = {
   cpu: ClusterProcessCpu;
   open_file_descriptors: ClusterProcessOpenFileDescriptors;
 }
 
-export interface ClusterProcessCpu {
+export type ClusterProcessCpu = {
   percent: Common.PercentageNumber;
 }
 
-export interface ClusterProcessOpenFileDescriptors {
+export type ClusterProcessOpenFileDescriptors = {
   avg: number;
   max: number;
   min: number;
 }
 
-export interface ClusterProcessor {
+export type ClusterProcessor = {
   count: number;
   current: number;
   failed: number;
@@ -182,13 +182,13 @@ export interface ClusterProcessor {
   time_in_millis: Common.DurationValueUnitMillis;
 }
 
-export interface ClusterShardMetrics {
+export type ClusterShardMetrics = {
   avg: number;
   max: number;
   min: number;
 }
 
-export interface FieldTypes {
+export type FieldTypes = {
   count: number;
   index_count: number;
   indexed_vector_count?: number;
@@ -198,26 +198,25 @@ export interface FieldTypes {
   script_count?: number;
 }
 
-export interface FieldTypesMappings {
+export type FieldTypesMappings = {
   field_types: FieldTypes[];
-  runtime_field_types?: RuntimeFieldTypes[];
   total_deduplicated_field_count?: number;
   total_deduplicated_mapping_size?: Common.HumanReadableByteCount;
   total_deduplicated_mapping_size_in_bytes?: Common.ByteCount;
   total_field_count?: number;
 }
 
-export interface IndexingPressure {
+export type IndexingPressure = {
   memory: IndexingPressureMemory;
 }
 
-export interface IndexingPressureMemory {
+export type IndexingPressureMemory = {
   current: IndexingPressureMemorySummary;
   limit_in_bytes: Common.ByteCount;
   total: IndexingPressureMemorySummary;
 }
 
-export interface IndexingPressureMemorySummary {
+export type IndexingPressureMemorySummary = {
   all_in_bytes: Common.ByteCount;
   combined_coordinating_and_primary_in_bytes: Common.ByteCount;
   coordinating_in_bytes: Common.ByteCount;
@@ -228,20 +227,20 @@ export interface IndexingPressureMemorySummary {
   replica_rejections?: number;
 }
 
-export interface IndicesVersions {
+export type IndicesVersions = {
   index_count: number;
   primary_shard_count: number;
   total_primary_bytes: Common.ByteCount;
   version: Common.VersionString;
 }
 
-export interface NodePackagingType {
+export type NodePackagingType = {
   count: number;
   flavor?: string;
   type: string;
 }
 
-export interface OperatingSystemMemoryInfo {
+export type OperatingSystemMemoryInfo = {
   adjusted_total_in_bytes?: Common.ByteCount;
   free?: Common.HumanReadableByteCount;
   free_in_bytes: Common.ByteCount;
@@ -253,24 +252,7 @@ export interface OperatingSystemMemoryInfo {
   used_percent: Common.PercentageNumber;
 }
 
-export interface RuntimeFieldTypes {
-  chars_max: number;
-  chars_total: number;
-  count: number;
-  doc_max: number;
-  doc_total: number;
-  index_count: number;
-  lang: string[];
-  lines_max: number;
-  lines_total: number;
-  name: Common.Name;
-  scriptless_count: number;
-  shadowed_count: number;
-  source_max: number;
-  source_total: number;
-}
-
-export interface StatsResponseBase extends Nodes_Common.NodesResponseBase {
+export type StatsResponseBase = Nodes_Common.NodesResponseBase & {
   cluster_name: Common.Name;
   cluster_uuid: Common.Uuid;
   indices: ClusterIndices;

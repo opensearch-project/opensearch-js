@@ -21,7 +21,7 @@ import * as Core_Explain from '../_types/_core.explain'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export interface Explain_Request extends Global.Params {
+export type Explain_Request = Global.Params & {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -35,19 +35,19 @@ export interface Explain_Request extends Global.Params {
   lenient?: boolean;
   preference?: string;
   q?: string;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   stored_fields?: Common.Fields;
 }
 
-export interface Explain_RequestBody {
+export type Explain_RequestBody = {
   query?: Common_QueryDsl.QueryContainer;
 }
 
-export interface Explain_Response extends ApiResponse {
+export type Explain_Response = ApiResponse & {
   body: Explain_ResponseBody;
 }
 
-export interface Explain_ResponseBody {
+export type Explain_ResponseBody = {
   _id: Common.Id;
   _index: Common.IndexName;
   explanation?: Core_Explain.ExplanationDetail;

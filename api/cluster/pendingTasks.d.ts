@@ -19,17 +19,17 @@ import * as Cluster_PendingTasks from '../_types/cluster.pending_tasks'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cluster_PendingTasks_Request extends Global.Params {
+export type Cluster_PendingTasks_Request = Global.Params & {
   cluster_manager_timeout?: Common.Duration;
   local?: boolean;
   master_timeout?: Common.Duration;
 }
 
-export interface Cluster_PendingTasks_Response extends ApiResponse {
+export type Cluster_PendingTasks_Response = ApiResponse & {
   body: Cluster_PendingTasks_ResponseBody;
 }
 
-export interface Cluster_PendingTasks_ResponseBody {
+export type Cluster_PendingTasks_ResponseBody = {
   tasks: Cluster_PendingTasks.PendingTask[];
 }
 

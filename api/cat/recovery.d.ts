@@ -19,7 +19,7 @@ import * as Cat_Recovery from '../_types/cat.recovery'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cat_Recovery_Request extends Global.Params {
+export type Cat_Recovery_Request = Global.Params & {
   active_only?: boolean;
   bytes?: Common.ByteUnit;
   detailed?: boolean;
@@ -32,7 +32,7 @@ export interface Cat_Recovery_Request extends Global.Params {
   v?: boolean;
 }
 
-export interface Cat_Recovery_Response extends ApiResponse {
+export type Cat_Recovery_Response = ApiResponse & {
   body: Cat_Recovery_ResponseBody;
 }
 

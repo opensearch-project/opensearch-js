@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface AwarenessAttributeStats {
+export type AwarenessAttributeStats = {
   active_shards?: number;
   data_nodes?: number;
   initializing_shards?: number;
@@ -25,7 +25,7 @@ export interface AwarenessAttributeStats {
   weight?: number;
 }
 
-export interface HealthResponseBody {
+export type HealthResponseBody = {
   active_primary_shards: number;
   active_shards: number;
   active_shards_percent?: Common.PercentageString;
@@ -49,7 +49,7 @@ export interface HealthResponseBody {
   unassigned_shards: number;
 }
 
-export interface IndexHealthStats {
+export type IndexHealthStats = {
   active_primary_shards: number;
   active_shards: number;
   initializing_shards: number;
@@ -63,7 +63,7 @@ export interface IndexHealthStats {
 
 export type Level = 'awareness_attributes' | 'cluster' | 'indices' | 'shards'
 
-export interface ShardHealthStats {
+export type ShardHealthStats = {
   active_shards: number;
   initializing_shards: number;
   primary_active: boolean;

@@ -19,19 +19,19 @@ import * as Common from '../_types/_common'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export interface Scroll_Request extends Global.Params {
+export type Scroll_Request = Global.Params & {
   body?: Scroll_RequestBody;
   rest_total_hits_as_int?: boolean;
   scroll?: Common.Duration;
   scroll_id?: Common.ScrollId;
 }
 
-export interface Scroll_RequestBody {
+export type Scroll_RequestBody = {
   scroll?: Common.Duration;
   scroll_id: Common.ScrollId;
 }
 
-export interface Scroll_Response extends ApiResponse {
+export type Scroll_Response = ApiResponse & {
   body: Scroll_ResponseBody;
 }
 

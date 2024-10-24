@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_GetTask_Request extends Global.Params {
+export type Ml_GetTask_Request = Global.Params & {
   task_id: string;
 }
 
-export interface Ml_GetTask_Response extends ApiResponse {
+export type Ml_GetTask_Response = ApiResponse & {
   body: Ml_GetTask_ResponseBody;
 }
 

@@ -15,48 +15,48 @@
  */
 
 
-export interface Cursor {
+export type Cursor = {
   keep_alive?: string;
 }
 
-export interface Explain {
+export type Explain = {
   fetch_size?: number;
   filter?: Record<string, any>;
   query?: string;
 }
 
-export interface ExplainBody {
+export type ExplainBody = {
   children?: ExplainBody[];
   description?: Record<string, any>;
   name?: string;
 }
 
-export interface ExplainResponse {
+export type ExplainResponse = {
   root?: ExplainBody;
 }
 
-export interface Plugins {
+export type Plugins = {
   ppl?: Ppl;
   query?: PluginsQuery;
   sql?: Sql;
 }
 
-export interface PluginsQuery {
+export type PluginsQuery = {
   memory_limit?: string;
   size_limit?: string | number;
 }
 
-export interface Ppl {
+export type Ppl = {
   enabled?: boolean | string;
 }
 
-export interface Query {
+export type Query = {
   fetch_size?: number;
   filter?: Record<string, any>;
   query?: string;
 }
 
-export interface QueryResponse {
+export type QueryResponse = {
   cursor?: string;
   datarows?: any[][];
   schema?: Record<string, any>[];
@@ -65,35 +65,35 @@ export interface QueryResponse {
   total?: number;
 }
 
-export interface Sql {
+export type Sql = {
   cursor?: Cursor;
   enabled?: boolean | string;
   slowlog?: number | string;
 }
 
-export interface SqlClose {
+export type SqlClose = {
   cursor?: string;
 }
 
-export interface SqlCloseResponse {
+export type SqlCloseResponse = {
   succeeded?: boolean;
 }
 
-export interface SqlSettings {
+export type SqlSettings = {
   transient?: Transient;
 }
 
-export interface SqlSettingsPlain {
+export type SqlSettingsPlain = {
   transient?: TransientPlain;
 }
 
-export interface SqlSettingsResponse {
+export type SqlSettingsResponse = {
   acknowledged?: boolean;
   persistent?: Record<string, any>;
   transient?: Transient;
 }
 
-export interface Stats {
+export type Stats = {
   cluster_name?: Record<string, any>;
   end_time?: Record<string, any>;
   execution_time?: Record<string, any>;
@@ -103,11 +103,11 @@ export interface Stats {
   user?: Record<string, any>;
 }
 
-export interface Transient {
+export type Transient = {
   plugins?: Plugins;
 }
 
-export interface TransientPlain {
+export type TransientPlain = {
   'plugins.ppl.enabled'?: boolean;
   'plugins.query.memory_limit'?: string;
   'plugins.query.size_limit'?: number;

@@ -19,7 +19,7 @@ import * as Cat_Count from '../_types/cat.count'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cat_Count_Request extends Global.Params {
+export type Cat_Count_Request = Global.Params & {
   format?: string;
   h?: string[];
   help?: boolean;
@@ -28,7 +28,7 @@ export interface Cat_Count_Request extends Global.Params {
   v?: boolean;
 }
 
-export interface Cat_Count_Response extends ApiResponse {
+export type Cat_Count_Response = ApiResponse & {
   body: Cat_Count_ResponseBody;
 }
 

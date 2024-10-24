@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface TemplatesRecord {
+export type TemplatesRecord = {
   composed_of?: string;
   index_patterns?: string;
   name?: Common.Name;

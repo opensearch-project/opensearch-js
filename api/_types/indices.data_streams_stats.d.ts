@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface DataStreamsStatsItem {
+export type DataStreamsStatsItem = {
   backing_indices: number;
   data_stream: Common.Name;
   maximum_timestamp: Common.EpochTimeUnitMillis;

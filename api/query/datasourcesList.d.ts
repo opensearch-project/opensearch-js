@@ -20,7 +20,7 @@ import * as Query_Common from '../_types/query._common'
 
 export type Query_DatasourcesList_Request = Global.Params & Record<string, any>
 
-export interface Query_DatasourcesList_Response extends ApiResponse {
+export type Query_DatasourcesList_Response = ApiResponse & {
   body: Query_DatasourcesList_ResponseBody;
 }
 

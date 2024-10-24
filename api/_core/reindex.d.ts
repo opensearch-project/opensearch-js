@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Core_Reindex from '../_types/_core.reindex'
 import * as Global from '../_types/_global'
 
-export interface Reindex_Request extends Global.Params {
+export type Reindex_Request = Global.Params & {
   body: Reindex_RequestBody;
   max_docs?: number;
   refresh?: boolean;
@@ -31,7 +31,7 @@ export interface Reindex_Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface Reindex_RequestBody {
+export type Reindex_RequestBody = {
   conflicts?: Common.Conflicts;
   dest: Core_Reindex.Destination;
   max_docs?: number;
@@ -40,7 +40,7 @@ export interface Reindex_RequestBody {
   source: Core_Reindex.Source;
 }
 
-export interface Reindex_Response extends ApiResponse {
+export type Reindex_Response = ApiResponse & {
   body: Reindex_ResponseBody;
 }
 

@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface GetResult {
+export type GetResult = {
   _id: Common.Id;
   _index: Common.IndexName;
   _primary_term?: number;

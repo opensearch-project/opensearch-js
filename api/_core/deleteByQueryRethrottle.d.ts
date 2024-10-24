@@ -19,12 +19,12 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Tasks_Common from '../_types/tasks._common'
 
-export interface DeleteByQueryRethrottle_Request extends Global.Params {
+export type DeleteByQueryRethrottle_Request = Global.Params & {
   requests_per_second?: number;
   task_id: Common.TaskId;
 }
 
-export interface DeleteByQueryRethrottle_Response extends ApiResponse {
+export type DeleteByQueryRethrottle_Response = ApiResponse & {
   body: DeleteByQueryRethrottle_ResponseBody;
 }
 

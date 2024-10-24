@@ -15,7 +15,7 @@
  */
 
 
-export interface CleanupRepositoryResults {
+export type CleanupRepositoryResults = {
   deleted_blobs: number;
   deleted_bytes: number;
 }

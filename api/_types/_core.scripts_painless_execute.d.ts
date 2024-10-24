@@ -17,7 +17,7 @@
 import * as Common from './_common'
 import * as Common_QueryDsl from './_common.query_dsl'
 
-export interface PainlessContextSetup {
+export type PainlessContextSetup = {
   document: Record<string, any>;
   index: Common.IndexName;
   query: Common_QueryDsl.QueryContainer;

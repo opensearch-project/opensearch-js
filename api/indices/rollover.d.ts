@@ -21,7 +21,7 @@ import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 import * as Indices_Rollover from '../_types/indices.rollover'
 
-export interface Indices_Rollover_Request extends Global.Params {
+export type Indices_Rollover_Request = Global.Params & {
   alias: Common.IndexAlias;
   body?: Indices_Rollover_RequestBody;
   cluster_manager_timeout?: Common.Duration;
@@ -32,18 +32,18 @@ export interface Indices_Rollover_Request extends Global.Params {
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export interface Indices_Rollover_RequestBody {
+export type Indices_Rollover_RequestBody = {
   aliases?: Record<string, Indices_Common.Alias>;
   conditions?: Indices_Rollover.RolloverConditions;
   mappings?: Common_Mapping.TypeMapping;
   settings?: Record<string, Record<string, any>>;
 }
 
-export interface Indices_Rollover_Response extends ApiResponse {
+export type Indices_Rollover_Response = ApiResponse & {
   body: Indices_Rollover_ResponseBody;
 }
 
-export interface Indices_Rollover_ResponseBody {
+export type Indices_Rollover_ResponseBody = {
   acknowledged: boolean;
   conditions: Record<string, boolean>;
   dry_run: boolean;

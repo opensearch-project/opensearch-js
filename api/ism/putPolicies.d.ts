@@ -19,14 +19,14 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Ism_Common from '../_types/ism._common'
 
-export interface Ism_PutPolicies_Request extends Global.Params {
+export type Ism_PutPolicies_Request = Global.Params & {
   body?: Ism_Common.PutPolicyRequest;
   if_primary_term?: number;
   if_seq_no?: Common.SequenceNumber;
   policyID: string;
 }
 
-export interface Ism_PutPolicies_Response extends ApiResponse {
+export type Ism_PutPolicies_Response = ApiResponse & {
   body: Ism_PutPolicies_ResponseBody;
 }
 

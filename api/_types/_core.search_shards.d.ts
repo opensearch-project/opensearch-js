@@ -17,7 +17,7 @@
 import * as Common from './_common'
 import * as Common_QueryDsl from './_common.query_dsl'
 
-export interface ShardStoreIndex {
+export type ShardStoreIndex = {
   aliases?: Common.Name[];
   filter?: Common_QueryDsl.QueryContainer;
 }

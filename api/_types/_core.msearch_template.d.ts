@@ -19,7 +19,7 @@ import * as Core_Msearch from './_core.msearch'
 
 export type RequestItem = Core_Msearch.MultisearchHeader | TemplateConfig
 
-export interface TemplateConfig {
+export type TemplateConfig = {
   explain?: boolean;
   id?: Common.Id;
   params?: Record<string, Record<string, any>>;

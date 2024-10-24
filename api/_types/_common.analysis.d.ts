@@ -16,28 +16,34 @@
 
 import * as Common from './_common'
 
-export type Analyzer = CustomAnalyzer | FingerprintAnalyzer | KeywordAnalyzer | LanguageAnalyzer | NoriAnalyzer | PatternAnalyzer | SimpleAnalyzer | StandardAnalyzer | StopAnalyzer | WhitespaceAnalyzer | IcuAnalyzer | KuromojiAnalyzer | SnowballAnalyzer | DutchAnalyzer
+export type Analyzer = CustomAnalyzer | FingerprintAnalyzer | KeywordAnalyzer | LanguageAnalyzer | NoriAnalyzer | PatternAnalyzer | SimpleAnalyzer | StandardAnalyzer | StopAnalyzer | WhitespaceAnalyzer | IcuAnalyzer | KuromojiAnalyzer | SnowballAnalyzer | DutchAnalyzer | SmartcnAnalyzer | CjkAnalyzer
 
-export interface AsciiFoldingTokenFilter extends TokenFilterBase {
+export type AsciiFoldingTokenFilter = TokenFilterBase & {
   preserve_original?: Common.Stringifiedboolean;
   type: 'asciifolding';
 }
 
 export type CharFilter = string | CharFilterDefinition
 
-export interface CharFilterBase {
+export type CharFilterBase = {
   version?: Common.VersionString;
 }
 
 export type CharFilterDefinition = HtmlStripCharFilter | MappingCharFilter | PatternReplaceCharFilter | IcuNormalizationCharFilter | KuromojiIterationMarkCharFilter
 
-export interface CharGroupTokenizer extends TokenizerBase {
+export type CharGroupTokenizer = TokenizerBase & {
   max_token_length?: number;
   tokenize_on_chars: string[];
   type: 'char_group';
 }
 
-export interface CommonGramsTokenFilter extends TokenFilterBase {
+export type CjkAnalyzer = {
+  stopwords?: StopWords;
+  stopwords_path?: string;
+  type?: 'cjk';
+}
+
+export type CommonGramsTokenFilter = TokenFilterBase & {
   common_words?: string[];
   common_words_path?: string;
   ignore_case?: boolean;
@@ -45,7 +51,7 @@ export interface CommonGramsTokenFilter extends TokenFilterBase {
   type: 'common_grams';
 }
 
-export interface CompoundWordTokenFilterBase extends TokenFilterBase {
+export type CompoundWordTokenFilterBase = TokenFilterBase & {
   hyphenation_patterns_path?: string;
   max_subword_size?: number;
   min_subword_size?: number;
@@ -55,13 +61,13 @@ export interface CompoundWordTokenFilterBase extends TokenFilterBase {
   word_list_path?: string;
 }
 
-export interface ConditionTokenFilter extends TokenFilterBase {
+export type ConditionTokenFilter = TokenFilterBase & {
   filter: string[];
   script: Common.Script;
   type: 'condition';
 }
 
-export interface CustomAnalyzer {
+export type CustomAnalyzer = {
   char_filter?: string[];
   filter?: string[];
   position_increment_gap?: number;
@@ -70,7 +76,7 @@ export interface CustomAnalyzer {
   type: 'custom';
 }
 
-export interface CustomNormalizer {
+export type CustomNormalizer = {
   char_filter?: string[];
   filter?: string[];
   type: 'custom';
@@ -78,24 +84,24 @@ export interface CustomNormalizer {
 
 export type DelimitedPayloadEncoding = 'float' | 'identity' | 'int'
 
-export interface DelimitedPayloadTokenFilter extends TokenFilterBase {
+export type DelimitedPayloadTokenFilter = TokenFilterBase & {
   delimiter?: string;
   encoding?: DelimitedPayloadEncoding;
   type: 'delimited_payload';
 }
 
-export interface DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBase {
+export type DictionaryDecompounderTokenFilter = CompoundWordTokenFilterBase & {
   type: 'dictionary_decompounder';
 }
 
-export interface DutchAnalyzer {
+export type DutchAnalyzer = {
   stopwords?: StopWords;
   type: 'dutch';
 }
 
 export type EdgeNGramSide = 'back' | 'front'
 
-export interface EdgeNGramTokenFilter extends TokenFilterBase {
+export type EdgeNGramTokenFilter = TokenFilterBase & {
   max_gram?: number;
   min_gram?: number;
   preserve_original?: Common.Stringifiedboolean;
@@ -103,7 +109,7 @@ export interface EdgeNGramTokenFilter extends TokenFilterBase {
   type: 'edge_ngram';
 }
 
-export interface EdgeNGramTokenizer extends TokenizerBase {
+export type EdgeNGramTokenizer = TokenizerBase & {
   custom_token_chars?: string;
   max_gram: number;
   min_gram: number;
@@ -111,14 +117,14 @@ export interface EdgeNGramTokenizer extends TokenizerBase {
   type: 'edge_ngram';
 }
 
-export interface ElisionTokenFilter extends TokenFilterBase {
+export type ElisionTokenFilter = TokenFilterBase & {
   articles?: string[];
   articles_case?: Common.Stringifiedboolean;
   articles_path?: string;
   type: 'elision';
 }
 
-export interface FingerprintAnalyzer {
+export type FingerprintAnalyzer = {
   max_output_size: number;
   preserve_original: boolean;
   separator: string;
@@ -128,17 +134,17 @@ export interface FingerprintAnalyzer {
   version?: Common.VersionString;
 }
 
-export interface FingerprintTokenFilter extends TokenFilterBase {
+export type FingerprintTokenFilter = TokenFilterBase & {
   max_output_size?: number;
   separator?: string;
   type: 'fingerprint';
 }
 
-export interface HtmlStripCharFilter extends CharFilterBase {
+export type HtmlStripCharFilter = CharFilterBase & {
   type: 'html_strip';
 }
 
-export interface HunspellTokenFilter extends TokenFilterBase {
+export type HunspellTokenFilter = TokenFilterBase & {
   dedup?: boolean;
   dictionary?: string;
   locale: string;
@@ -146,11 +152,11 @@ export interface HunspellTokenFilter extends TokenFilterBase {
   type: 'hunspell';
 }
 
-export interface HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase {
+export type HyphenationDecompounderTokenFilter = CompoundWordTokenFilterBase & {
   type: 'hyphenation_decompounder';
 }
 
-export interface IcuAnalyzer {
+export type IcuAnalyzer = {
   method: IcuNormalizationType;
   mode: IcuNormalizationMode;
   type: 'icu_analyzer';
@@ -160,11 +166,11 @@ export type IcuCollationAlternate = 'non-ignorable' | 'shifted'
 
 export type IcuCollationCaseFirst = 'lower' | 'upper'
 
-export type IcuCollationDecomposition = 'identical' | 'no'
+export type IcuCollationDecomposition = 'canonical' | 'no'
 
 export type IcuCollationStrength = 'identical' | 'primary' | 'quaternary' | 'secondary' | 'tertiary'
 
-export interface IcuCollationTokenFilter extends TokenFilterBase {
+export type IcuCollationTokenFilter = TokenFilterBase & {
   alternate?: IcuCollationAlternate;
   caseFirst?: IcuCollationCaseFirst;
   caseLevel?: boolean;
@@ -180,12 +186,12 @@ export interface IcuCollationTokenFilter extends TokenFilterBase {
   variant?: string;
 }
 
-export interface IcuFoldingTokenFilter extends TokenFilterBase {
+export type IcuFoldingTokenFilter = TokenFilterBase & {
   type: 'icu_folding';
   unicode_set_filter: string;
 }
 
-export interface IcuNormalizationCharFilter extends CharFilterBase {
+export type IcuNormalizationCharFilter = CharFilterBase & {
   mode?: IcuNormalizationMode;
   name?: IcuNormalizationType;
   type: 'icu_normalizer';
@@ -193,21 +199,21 @@ export interface IcuNormalizationCharFilter extends CharFilterBase {
 
 export type IcuNormalizationMode = 'compose' | 'decompose'
 
-export interface IcuNormalizationTokenFilter extends TokenFilterBase {
+export type IcuNormalizationTokenFilter = TokenFilterBase & {
   name: IcuNormalizationType;
   type: 'icu_normalizer';
 }
 
 export type IcuNormalizationType = 'nfc' | 'nfkc' | 'nfkc_cf'
 
-export interface IcuTokenizer extends TokenizerBase {
+export type IcuTokenizer = TokenizerBase & {
   rule_files: string;
   type: 'icu_tokenizer';
 }
 
 export type IcuTransformDirection = 'forward' | 'reverse'
 
-export interface IcuTransformTokenFilter extends TokenFilterBase {
+export type IcuTransformTokenFilter = TokenFilterBase & {
   dir?: IcuTransformDirection;
   id: string;
   type: 'icu_transform';
@@ -215,25 +221,25 @@ export interface IcuTransformTokenFilter extends TokenFilterBase {
 
 export type KeepTypesMode = 'exclude' | 'include'
 
-export interface KeepTypesTokenFilter extends TokenFilterBase {
+export type KeepTypesTokenFilter = TokenFilterBase & {
   mode?: KeepTypesMode;
   type: 'keep_types';
   types?: string[];
 }
 
-export interface KeepWordsTokenFilter extends TokenFilterBase {
+export type KeepWordsTokenFilter = TokenFilterBase & {
   keep_words?: string[];
   keep_words_case?: boolean;
   keep_words_path?: string;
   type: 'keep';
 }
 
-export interface KeywordAnalyzer {
+export type KeywordAnalyzer = {
   type: 'keyword';
   version?: Common.VersionString;
 }
 
-export interface KeywordMarkerTokenFilter extends TokenFilterBase {
+export type KeywordMarkerTokenFilter = TokenFilterBase & {
   ignore_case?: boolean;
   keywords?: string[];
   keywords_path?: string;
@@ -241,45 +247,45 @@ export interface KeywordMarkerTokenFilter extends TokenFilterBase {
   type: 'keyword_marker';
 }
 
-export interface KeywordTokenizer extends TokenizerBase {
+export type KeywordTokenizer = TokenizerBase & {
   buffer_size: number;
   type: 'keyword';
 }
 
-export interface KStemTokenFilter extends TokenFilterBase {
+export type KStemTokenFilter = TokenFilterBase & {
   type: 'kstem';
 }
 
-export interface KuromojiAnalyzer {
+export type KuromojiAnalyzer = {
   mode: KuromojiTokenizationMode;
   type: 'kuromoji';
   user_dictionary?: string;
 }
 
-export interface KuromojiIterationMarkCharFilter extends CharFilterBase {
+export type KuromojiIterationMarkCharFilter = CharFilterBase & {
   normalize_kana: boolean;
   normalize_kanji: boolean;
   type: 'kuromoji_iteration_mark';
 }
 
-export interface KuromojiPartOfSpeechTokenFilter extends TokenFilterBase {
+export type KuromojiPartOfSpeechTokenFilter = TokenFilterBase & {
   stoptags: string[];
   type: 'kuromoji_part_of_speech';
 }
 
-export interface KuromojiReadingFormTokenFilter extends TokenFilterBase {
+export type KuromojiReadingFormTokenFilter = TokenFilterBase & {
   type: 'kuromoji_readingform';
   use_romaji: boolean;
 }
 
-export interface KuromojiStemmerTokenFilter extends TokenFilterBase {
+export type KuromojiStemmerTokenFilter = TokenFilterBase & {
   minimum_length: number;
   type: 'kuromoji_stemmer';
 }
 
 export type KuromojiTokenizationMode = 'extended' | 'normal' | 'search'
 
-export interface KuromojiTokenizer extends TokenizerBase {
+export type KuromojiTokenizer = TokenizerBase & {
   discard_compound_token?: boolean;
   discard_punctuation?: boolean;
   mode: KuromojiTokenizationMode;
@@ -292,7 +298,7 @@ export interface KuromojiTokenizer extends TokenizerBase {
 
 export type Language = 'Arabic' | 'Armenian' | 'Basque' | 'Brazilian' | 'Bulgarian' | 'Catalan' | 'Chinese' | 'Cjk' | 'Czech' | 'Danish' | 'Dutch' | 'English' | 'Estonian' | 'Finnish' | 'French' | 'Galician' | 'German' | 'Greek' | 'Hindi' | 'Hungarian' | 'Indonesian' | 'Irish' | 'Italian' | 'Latvian' | 'Norwegian' | 'Persian' | 'Portuguese' | 'Romanian' | 'Russian' | 'Sorani' | 'Spanish' | 'Swedish' | 'Thai' | 'Turkish'
 
-export interface LanguageAnalyzer {
+export type LanguageAnalyzer = {
   language: Language;
   stem_exclusion: string[];
   stopwords?: StopWords;
@@ -301,55 +307,55 @@ export interface LanguageAnalyzer {
   version?: Common.VersionString;
 }
 
-export interface LengthTokenFilter extends TokenFilterBase {
+export type LengthTokenFilter = TokenFilterBase & {
   max?: number;
   min?: number;
   type: 'length';
 }
 
-export interface LetterTokenizer extends TokenizerBase {
+export type LetterTokenizer = TokenizerBase & {
   type: 'letter';
 }
 
-export interface LimitTokenCountTokenFilter extends TokenFilterBase {
+export type LimitTokenCountTokenFilter = TokenFilterBase & {
   consume_all_tokens?: boolean;
   max_token_count?: Common.Stringifiedinteger;
   type: 'limit';
 }
 
-export interface LowercaseNormalizer {
+export type LowercaseNormalizer = {
   type: 'lowercase';
 }
 
-export interface LowercaseTokenFilter extends TokenFilterBase {
+export type LowercaseTokenFilter = TokenFilterBase & {
   language?: string;
   type: 'lowercase';
 }
 
-export interface LowercaseTokenizer extends TokenizerBase {
+export type LowercaseTokenizer = TokenizerBase & {
   type: 'lowercase';
 }
 
-export interface MappingCharFilter extends CharFilterBase {
+export type MappingCharFilter = CharFilterBase & {
   mappings?: string[];
   mappings_path?: string;
   type: 'mapping';
 }
 
-export interface MultiplexerTokenFilter extends TokenFilterBase {
+export type MultiplexerTokenFilter = TokenFilterBase & {
   filters: string[];
   preserve_original?: Common.Stringifiedboolean;
   type: 'multiplexer';
 }
 
-export interface NGramTokenFilter extends TokenFilterBase {
+export type NGramTokenFilter = TokenFilterBase & {
   max_gram?: number;
   min_gram?: number;
   preserve_original?: Common.Stringifiedboolean;
   type: 'ngram';
 }
 
-export interface NGramTokenizer extends TokenizerBase {
+export type NGramTokenizer = TokenizerBase & {
   custom_token_chars?: string;
   max_gram: number;
   min_gram: number;
@@ -357,7 +363,7 @@ export interface NGramTokenizer extends TokenizerBase {
   type: 'ngram';
 }
 
-export interface NoriAnalyzer {
+export type NoriAnalyzer = {
   decompound_mode?: NoriDecompoundMode;
   stoptags?: string[];
   type: 'nori';
@@ -367,12 +373,12 @@ export interface NoriAnalyzer {
 
 export type NoriDecompoundMode = 'discard' | 'mixed' | 'none'
 
-export interface NoriPartOfSpeechTokenFilter extends TokenFilterBase {
+export type NoriPartOfSpeechTokenFilter = TokenFilterBase & {
   stoptags?: string[];
   type: 'nori_part_of_speech';
 }
 
-export interface NoriTokenizer extends TokenizerBase {
+export type NoriTokenizer = TokenizerBase & {
   decompound_mode?: NoriDecompoundMode;
   discard_punctuation?: boolean;
   type: 'nori_tokenizer';
@@ -382,7 +388,7 @@ export interface NoriTokenizer extends TokenizerBase {
 
 export type Normalizer = LowercaseNormalizer | CustomNormalizer
 
-export interface PathHierarchyTokenizer extends TokenizerBase {
+export type PathHierarchyTokenizer = TokenizerBase & {
   buffer_size: Common.Stringifiedinteger;
   delimiter: string;
   replacement?: string;
@@ -391,7 +397,7 @@ export interface PathHierarchyTokenizer extends TokenizerBase {
   type: 'path_hierarchy';
 }
 
-export interface PatternAnalyzer {
+export type PatternAnalyzer = {
   flags?: string;
   lowercase?: boolean;
   pattern: string;
@@ -400,20 +406,20 @@ export interface PatternAnalyzer {
   version?: Common.VersionString;
 }
 
-export interface PatternCaptureTokenFilter extends TokenFilterBase {
+export type PatternCaptureTokenFilter = TokenFilterBase & {
   patterns: string[];
   preserve_original?: Common.Stringifiedboolean;
   type: 'pattern_capture';
 }
 
-export interface PatternReplaceCharFilter extends CharFilterBase {
+export type PatternReplaceCharFilter = CharFilterBase & {
   flags?: string;
   pattern: string;
   replacement?: string;
   type: 'pattern_replace';
 }
 
-export interface PatternReplaceTokenFilter extends TokenFilterBase {
+export type PatternReplaceTokenFilter = TokenFilterBase & {
   all?: boolean;
   flags?: string;
   pattern: string;
@@ -421,11 +427,15 @@ export interface PatternReplaceTokenFilter extends TokenFilterBase {
   type: 'pattern_replace';
 }
 
-export interface PatternTokenizer extends TokenizerBase {
+export type PatternTokenizer = TokenizerBase & {
   flags?: string;
   group?: number;
   pattern?: string;
   type: 'pattern';
+}
+
+export type PersianStemTokenFilter = TokenFilterBase & {
+  type: 'persian_stem';
 }
 
 export type PhoneticEncoder = 'beider_morse' | 'caverphone1' | 'caverphone2' | 'cologne' | 'daitch_mokotoff' | 'double_metaphone' | 'haasephonetik' | 'koelnerphonetik' | 'metaphone' | 'nysiis' | 'refined_soundex' | 'soundex'
@@ -436,7 +446,7 @@ export type PhoneticNameType = 'ashkenazi' | 'generic' | 'sephardic'
 
 export type PhoneticRuleType = 'approx' | 'exact'
 
-export interface PhoneticTokenFilter extends TokenFilterBase {
+export type PhoneticTokenFilter = TokenFilterBase & {
   encoder: PhoneticEncoder;
   languageset: PhoneticLanguage[];
   max_code_len?: number;
@@ -446,24 +456,24 @@ export interface PhoneticTokenFilter extends TokenFilterBase {
   type: 'phonetic';
 }
 
-export interface PorterStemTokenFilter extends TokenFilterBase {
+export type PorterStemTokenFilter = TokenFilterBase & {
   type: 'porter_stem';
 }
 
-export interface PredicateTokenFilter extends TokenFilterBase {
+export type PredicateTokenFilter = TokenFilterBase & {
   script: Common.Script;
   type: 'predicate_token_filter';
 }
 
-export interface RemoveDuplicatesTokenFilter extends TokenFilterBase {
+export type RemoveDuplicatesTokenFilter = TokenFilterBase & {
   type: 'remove_duplicates';
 }
 
-export interface ReverseTokenFilter extends TokenFilterBase {
+export type ReverseTokenFilter = TokenFilterBase & {
   type: 'reverse';
 }
 
-export interface ShingleTokenFilter extends TokenFilterBase {
+export type ShingleTokenFilter = TokenFilterBase & {
   filler_token?: string;
   max_shingle_size?: number | string;
   min_shingle_size?: number | string;
@@ -473,12 +483,24 @@ export interface ShingleTokenFilter extends TokenFilterBase {
   type: 'shingle';
 }
 
-export interface SimpleAnalyzer {
+export type SimpleAnalyzer = {
   type: 'simple';
   version?: Common.VersionString;
 }
 
-export interface SnowballAnalyzer {
+export type SmartcnAnalyzer = {
+  type?: 'smartcn';
+}
+
+export type SmartcnStopTokenFilter = TokenFilterBase & {
+  type: 'smartcn_stop';
+}
+
+export type SmartcnTokenizer = TokenizerBase & {
+  type: 'smartcn_tokenizer';
+}
+
+export type SnowballAnalyzer = {
   language: SnowballLanguage;
   stopwords?: StopWords;
   type: 'snowball';
@@ -487,41 +509,41 @@ export interface SnowballAnalyzer {
 
 export type SnowballLanguage = 'Armenian' | 'Basque' | 'Catalan' | 'Danish' | 'Dutch' | 'English' | 'Finnish' | 'French' | 'German' | 'German2' | 'Hungarian' | 'Italian' | 'Kp' | 'Lovins' | 'Norwegian' | 'Porter' | 'Portuguese' | 'Romanian' | 'Russian' | 'Spanish' | 'Swedish' | 'Turkish'
 
-export interface SnowballTokenFilter extends TokenFilterBase {
+export type SnowballTokenFilter = TokenFilterBase & {
   language: SnowballLanguage;
   type: 'snowball';
 }
 
-export interface StandardAnalyzer {
+export type StandardAnalyzer = {
   max_token_length?: number;
   stopwords?: StopWords;
   type: 'standard';
 }
 
-export interface StandardTokenizer extends TokenizerBase {
+export type StandardTokenizer = TokenizerBase & {
   max_token_length?: number;
   type: 'standard';
 }
 
-export interface StemmerOverrideTokenFilter extends TokenFilterBase {
+export type StemmerOverrideTokenFilter = TokenFilterBase & {
   rules?: string[];
   rules_path?: string;
   type: 'stemmer_override';
 }
 
-export interface StemmerTokenFilter extends TokenFilterBase {
+export type StemmerTokenFilter = TokenFilterBase & {
   language?: string;
   type: 'stemmer';
 }
 
-export interface StopAnalyzer {
+export type StopAnalyzer = {
   stopwords?: StopWords;
   stopwords_path?: string;
   type: 'stop';
   version?: Common.VersionString;
 }
 
-export interface StopTokenFilter extends TokenFilterBase {
+export type StopTokenFilter = TokenFilterBase & {
   ignore_case?: boolean;
   remove_trailing?: boolean;
   stopwords?: StopWords;
@@ -533,7 +555,7 @@ export type StopWords = string | string[]
 
 export type SynonymFormat = 'solr' | 'wordnet'
 
-export interface SynonymGraphTokenFilter extends TokenFilterBase {
+export type SynonymGraphTokenFilter = TokenFilterBase & {
   expand?: boolean;
   format?: SynonymFormat;
   lenient?: boolean;
@@ -544,7 +566,7 @@ export interface SynonymGraphTokenFilter extends TokenFilterBase {
   updateable?: boolean;
 }
 
-export interface SynonymTokenFilter extends TokenFilterBase {
+export type SynonymTokenFilter = TokenFilterBase & {
   expand?: boolean;
   format?: SynonymFormat;
   lenient?: boolean;
@@ -559,54 +581,54 @@ export type TokenChar = 'custom' | 'digit' | 'letter' | 'punctuation' | 'symbol'
 
 export type TokenFilter = string | TokenFilterDefinition
 
-export interface TokenFilterBase {
+export type TokenFilterBase = {
   version?: Common.VersionString;
 }
 
-export type TokenFilterDefinition = AsciiFoldingTokenFilter | CommonGramsTokenFilter | ConditionTokenFilter | DelimitedPayloadTokenFilter | EdgeNGramTokenFilter | ElisionTokenFilter | FingerprintTokenFilter | HunspellTokenFilter | HyphenationDecompounderTokenFilter | KeepTypesTokenFilter | KeepWordsTokenFilter | KeywordMarkerTokenFilter | KStemTokenFilter | LengthTokenFilter | LimitTokenCountTokenFilter | LowercaseTokenFilter | MultiplexerTokenFilter | NGramTokenFilter | NoriPartOfSpeechTokenFilter | PatternCaptureTokenFilter | PatternReplaceTokenFilter | PorterStemTokenFilter | PredicateTokenFilter | RemoveDuplicatesTokenFilter | ReverseTokenFilter | ShingleTokenFilter | SnowballTokenFilter | StemmerOverrideTokenFilter | StemmerTokenFilter | StopTokenFilter | SynonymGraphTokenFilter | SynonymTokenFilter | TrimTokenFilter | TruncateTokenFilter | UniqueTokenFilter | UppercaseTokenFilter | WordDelimiterGraphTokenFilter | WordDelimiterTokenFilter | KuromojiStemmerTokenFilter | KuromojiReadingFormTokenFilter | KuromojiPartOfSpeechTokenFilter | IcuTokenizer | IcuCollationTokenFilter | IcuFoldingTokenFilter | IcuNormalizationTokenFilter | IcuTransformTokenFilter | PhoneticTokenFilter | DictionaryDecompounderTokenFilter
+export type TokenFilterDefinition = AsciiFoldingTokenFilter | CommonGramsTokenFilter | ConditionTokenFilter | DelimitedPayloadTokenFilter | EdgeNGramTokenFilter | ElisionTokenFilter | FingerprintTokenFilter | HunspellTokenFilter | HyphenationDecompounderTokenFilter | KeepTypesTokenFilter | KeepWordsTokenFilter | KeywordMarkerTokenFilter | KStemTokenFilter | LengthTokenFilter | LimitTokenCountTokenFilter | LowercaseTokenFilter | MultiplexerTokenFilter | NGramTokenFilter | NoriPartOfSpeechTokenFilter | PatternCaptureTokenFilter | PatternReplaceTokenFilter | PersianStemTokenFilter | PorterStemTokenFilter | PredicateTokenFilter | RemoveDuplicatesTokenFilter | ReverseTokenFilter | ShingleTokenFilter | SnowballTokenFilter | StemmerOverrideTokenFilter | StemmerTokenFilter | StopTokenFilter | SynonymGraphTokenFilter | SynonymTokenFilter | TrimTokenFilter | TruncateTokenFilter | UniqueTokenFilter | UppercaseTokenFilter | WordDelimiterGraphTokenFilter | WordDelimiterTokenFilter | KuromojiStemmerTokenFilter | KuromojiReadingFormTokenFilter | KuromojiPartOfSpeechTokenFilter | IcuTokenizer | IcuCollationTokenFilter | IcuFoldingTokenFilter | IcuNormalizationTokenFilter | IcuTransformTokenFilter | PhoneticTokenFilter | DictionaryDecompounderTokenFilter | SmartcnStopTokenFilter
 
 export type Tokenizer = string | TokenizerDefinition
 
-export interface TokenizerBase {
+export type TokenizerBase = {
   version?: Common.VersionString;
 }
 
-export type TokenizerDefinition = CharGroupTokenizer | EdgeNGramTokenizer | KeywordTokenizer | LetterTokenizer | LowercaseTokenizer | NGramTokenizer | NoriTokenizer | PathHierarchyTokenizer | StandardTokenizer | UaxEmailUrlTokenizer | WhitespaceTokenizer | KuromojiTokenizer | PatternTokenizer | IcuTokenizer
+export type TokenizerDefinition = CharGroupTokenizer | EdgeNGramTokenizer | KeywordTokenizer | LetterTokenizer | LowercaseTokenizer | NGramTokenizer | NoriTokenizer | PathHierarchyTokenizer | StandardTokenizer | UaxEmailUrlTokenizer | WhitespaceTokenizer | KuromojiTokenizer | PatternTokenizer | IcuTokenizer | SmartcnTokenizer
 
-export interface TrimTokenFilter extends TokenFilterBase {
+export type TrimTokenFilter = TokenFilterBase & {
   type: 'trim';
 }
 
-export interface TruncateTokenFilter extends TokenFilterBase {
+export type TruncateTokenFilter = TokenFilterBase & {
   length?: number;
   type: 'truncate';
 }
 
-export interface UaxEmailUrlTokenizer extends TokenizerBase {
+export type UaxEmailUrlTokenizer = TokenizerBase & {
   max_token_length?: number;
   type: 'uax_url_email';
 }
 
-export interface UniqueTokenFilter extends TokenFilterBase {
+export type UniqueTokenFilter = TokenFilterBase & {
   only_on_same_position?: boolean;
   type: 'unique';
 }
 
-export interface UppercaseTokenFilter extends TokenFilterBase {
+export type UppercaseTokenFilter = TokenFilterBase & {
   type: 'uppercase';
 }
 
-export interface WhitespaceAnalyzer {
+export type WhitespaceAnalyzer = {
   type: 'whitespace';
   version?: Common.VersionString;
 }
 
-export interface WhitespaceTokenizer extends TokenizerBase {
+export type WhitespaceTokenizer = TokenizerBase & {
   max_token_length?: number;
   type: 'whitespace';
 }
 
-export interface WordDelimiterGraphTokenFilter extends TokenFilterBase {
+export type WordDelimiterGraphTokenFilter = TokenFilterBase & {
   adjust_offsets?: boolean;
   catenate_all?: boolean;
   catenate_numbers?: boolean;
@@ -625,7 +647,7 @@ export interface WordDelimiterGraphTokenFilter extends TokenFilterBase {
   type_table_path?: string;
 }
 
-export interface WordDelimiterTokenFilter extends TokenFilterBase {
+export type WordDelimiterTokenFilter = TokenFilterBase & {
   catenate_all?: boolean;
   catenate_numbers?: boolean;
   catenate_words?: boolean;

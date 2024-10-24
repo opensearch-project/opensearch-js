@@ -19,7 +19,7 @@ export type All = boolean
 
 export type AllowDelete = string
 
-export interface FlowFrameworkCreate {
+export type FlowFrameworkCreate = {
   description?: string;
   name: string;
   use_case?: string;
@@ -27,7 +27,7 @@ export interface FlowFrameworkCreate {
   workflows?: Record<string, any>;
 }
 
-export interface FlowFrameworkDeleteResponse {
+export type FlowFrameworkDeleteResponse = {
   _id?: string;
   _index?: string;
   _primary_term?: number;
@@ -37,7 +37,7 @@ export interface FlowFrameworkDeleteResponse {
   result?: 'deleted' | 'not_found';
 }
 
-export interface FlowFrameworkGetResponse {
+export type FlowFrameworkGetResponse = {
   created_time?: number;
   description?: string;
   last_updated_time?: number;
@@ -47,7 +47,7 @@ export interface FlowFrameworkGetResponse {
   workflows?: Record<string, any>;
 }
 
-export interface FlowFrameworkUpdate {
+export type FlowFrameworkUpdate = {
   description?: string;
   name?: string;
   use_case?: string;
@@ -55,13 +55,13 @@ export interface FlowFrameworkUpdate {
   workflows?: Record<string, any>;
 }
 
-export interface hits {
+export type hits = {
   hits?: itemsObject[];
   max_score?: number;
   total?: total;
 }
 
-export interface itemsObject {
+export type itemsObject = {
   _id?: string;
   _index?: string;
   _primary_term?: number;
@@ -73,37 +73,37 @@ export interface itemsObject {
 
 export type Provision = boolean
 
-export interface query {
+export type query = {
   match?: Record<string, any>;
   match_all?: Record<string, any>;
 }
 
 export type Reprovision = boolean
 
-export interface SearchStateResponse {
+export type SearchStateResponse = {
   provisioning_progress?: string;
   state?: string;
   user?: user;
   workflow_id?: string;
 }
 
-export interface SearchWorkflowRequest {
+export type SearchWorkflowRequest = {
   query?: query;
 }
 
-export interface shards {
+export type shards = {
   failed?: number;
   successful?: number;
   total?: number;
 }
 
-export interface StateHits {
+export type StateHits = {
   hits?: StateItems[];
   max_score?: number;
   total?: total;
 }
 
-export interface StateItems {
+export type StateItems = {
   _id?: string;
   _index?: string;
   _primary_term?: number;
@@ -113,7 +113,7 @@ export interface StateItems {
   _version?: number;
 }
 
-export interface total {
+export type total = {
   relation?: string;
   value?: number;
 }
@@ -122,7 +122,7 @@ export type UpdateFields = boolean
 
 export type UseCase = string
 
-export interface user {
+export type user = {
   backend_roles?: string[];
   custom_attribute_names?: string[];
   name?: string;
@@ -134,35 +134,35 @@ export type UserProvidedSubstitutionExpressions = Record<string, string>
 
 export type Validation = string
 
-export interface version {
+export type version = {
   compatibility?: string[];
   template?: string;
 }
 
 export type WorkflowID = string
 
-export interface WorkflowSearchResponse {
+export type WorkflowSearchResponse = {
   _shards?: shards;
   hits?: hits;
   timed_out?: boolean;
   took?: number;
 }
 
-export interface WorkflowSearchStateResponse {
+export type WorkflowSearchStateResponse = {
   _shards?: shards;
   hits?: StateHits;
   timed_out?: boolean;
   took?: number;
 }
 
-export interface WorkFlowStatusDefaultResponse {
+export type WorkFlowStatusDefaultResponse = {
   error?: string;
   resources_created?: string[];
   state?: string;
   workflow_id?: string;
 }
 
-export interface WorkFlowStatusFullResponse {
+export type WorkFlowStatusFullResponse = {
   error?: string;
   provision_end_time?: string;
   provision_start_time?: string;
@@ -174,7 +174,7 @@ export interface WorkFlowStatusFullResponse {
   workflow_id?: string;
 }
 
-export interface WorkflowStep {
+export type WorkflowStep = {
   inputs?: string[];
   outputs?: string[];
   required_plugins?: string[];

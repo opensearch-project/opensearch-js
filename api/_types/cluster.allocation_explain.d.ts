@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface AllocationDecision {
+export type AllocationDecision = {
   decider: string;
   decision: AllocationExplainDecision;
   explanation: string;
@@ -24,7 +24,7 @@ export interface AllocationDecision {
 
 export type AllocationExplainDecision = 'ALWAYS' | 'NO' | 'THROTTLE' | 'YES'
 
-export interface AllocationStore {
+export type AllocationStore = {
   allocation_id: string;
   found: boolean;
   in_sync: boolean;
@@ -33,7 +33,7 @@ export interface AllocationStore {
   store_exception: string;
 }
 
-export interface ClusterInfo {
+export type ClusterInfo = {
   nodes: Record<string, NodeDiskUsage>;
   reserved_sizes: ReservedSize[];
   shard_data_set_sizes?: Record<string, string>;
@@ -41,7 +41,7 @@ export interface ClusterInfo {
   shard_sizes: Record<string, Common.ByteCount | Common.HumanReadableByteCount>;
 }
 
-export interface CurrentNode {
+export type CurrentNode = {
   attributes: Record<string, string>;
   id: Common.Id;
   name: Common.Name;
@@ -51,7 +51,7 @@ export interface CurrentNode {
 
 export type Decision = 'allocation_delayed' | 'awaiting_info' | 'no' | 'no_attempt' | 'no_valid_shard_copy' | 'throttled' | 'worse_balance' | 'yes'
 
-export interface DiskUsage {
+export type DiskUsage = {
   free?: Common.HumanReadableByteCount;
   free_bytes: Common.ByteCount;
   free_disk_percent: Common.PercentageNumber;
@@ -63,7 +63,7 @@ export interface DiskUsage {
   used_disk_percent: Common.PercentageNumber;
 }
 
-export interface NodeAllocationExplanation {
+export type NodeAllocationExplanation = {
   deciders: AllocationDecision[];
   node_attributes: Record<string, string>;
   node_decision: Decision;
@@ -74,20 +74,20 @@ export interface NodeAllocationExplanation {
   weight_ranking: number;
 }
 
-export interface NodeDiskUsage {
+export type NodeDiskUsage = {
   least_available: DiskUsage;
   most_available: DiskUsage;
   node_name: Common.Name;
 }
 
-export interface ReservedSize {
+export type ReservedSize = {
   node_id: Common.Id;
   path: string;
   shards: string[];
   total: number;
 }
 
-export interface UnassignedInformation {
+export type UnassignedInformation = {
   allocation_status?: string;
   at: Common.DateTime;
   delayed?: boolean;

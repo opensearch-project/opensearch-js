@@ -15,22 +15,22 @@
  */
 
 
-export interface BadRequestError {
+export type BadRequestError = {
   error?: string;
   status?: number;
 }
 
 export type ConflictError = Record<string, any>
 
-export interface DeprovisioningError {
+export type DeprovisioningError = {
   error: string;
 }
 
-export interface DeprovisioningForbiddenError {
+export type DeprovisioningForbiddenError = {
   error: string;
 }
 
-export interface DuplicateKeyError {
+export type DuplicateKeyError = {
   error?: string;
   status?: number;
 }
@@ -39,7 +39,7 @@ export type FlowFrameworkAPIDisabledError = Record<string, any>
 
 export type InvalidParameterError = Record<string, any>
 
-export interface InvalidRequestBodyFieldError {
+export type InvalidRequestBodyFieldError = {
   error?: string;
   status?: number;
 }
@@ -52,17 +52,17 @@ export type MissingParameterError = Record<string, any>
 
 export type ParameterConflictError = Record<string, any>
 
-export interface RequestBodyParsingFailedError {
+export type RequestBodyParsingFailedError = {
   error?: string;
   status?: number;
 }
 
-export interface RequestTimeoutError {
+export type RequestTimeoutError = {
   error?: string;
   status?: number;
 }
 
-export interface TemplateNameRequiredError {
+export type TemplateNameRequiredError = {
   error?: string;
 }
 

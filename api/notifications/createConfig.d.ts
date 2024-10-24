@@ -18,15 +18,15 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Notifications_Common from '../_types/notifications._common'
 
-export interface Notifications_CreateConfig_Request extends Global.Params {
+export type Notifications_CreateConfig_Request = Global.Params & {
   body: Notifications_Common.NotificationsConfig;
 }
 
-export interface Notifications_CreateConfig_Response extends ApiResponse {
+export type Notifications_CreateConfig_Response = ApiResponse & {
   body: Notifications_CreateConfig_ResponseBody;
 }
 
-export interface Notifications_CreateConfig_ResponseBody {
+export type Notifications_CreateConfig_ResponseBody = {
   config_id?: string;
 }
 

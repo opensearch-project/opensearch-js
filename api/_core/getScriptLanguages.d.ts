@@ -20,11 +20,11 @@ import * as Global from '../_types/_global'
 
 export type GetScriptLanguages_Request = Global.Params & Record<string, any>
 
-export interface GetScriptLanguages_Response extends ApiResponse {
+export type GetScriptLanguages_Response = ApiResponse & {
   body: GetScriptLanguages_ResponseBody;
 }
 
-export interface GetScriptLanguages_ResponseBody {
+export type GetScriptLanguages_ResponseBody = {
   language_contexts: Core_GetScriptLanguages.LanguageContext[];
   types_allowed: string[];
 }

@@ -15,7 +15,7 @@
  */
 
 
-export interface AnalyzeDetail {
+export type AnalyzeDetail = {
   analyzer?: AnalyzerDetail;
   charfilters?: CharFilterDetail[];
   custom_analyzer: boolean;
@@ -23,12 +23,12 @@ export interface AnalyzeDetail {
   tokenizer?: TokenDetail;
 }
 
-export interface AnalyzerDetail {
+export type AnalyzerDetail = {
   name: string;
   tokens: ExplainAnalyzeToken[];
 }
 
-export interface AnalyzeToken {
+export type AnalyzeToken = {
   end_offset: number;
   position: number;
   positionLength?: number;
@@ -37,12 +37,12 @@ export interface AnalyzeToken {
   type: string;
 }
 
-export interface CharFilterDetail {
+export type CharFilterDetail = {
   filtered_text: string[];
   name: string;
 }
 
-export interface ExplainAnalyzeToken {
+export type ExplainAnalyzeToken = {
   bytes: string;
   end_offset: number;
   keyword?: boolean;
@@ -56,7 +56,7 @@ export interface ExplainAnalyzeToken {
 
 export type TextToAnalyze = string | string[]
 
-export interface TokenDetail {
+export type TokenDetail = {
   name: string;
   tokens: ExplainAnalyzeToken[];
 }

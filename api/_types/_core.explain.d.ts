@@ -15,15 +15,15 @@
  */
 
 
-export interface Explanation {
+export type Explanation = {
   description: string;
   details: ExplanationDetail[];
-  value: number;
+  value: number | number | number | number;
 }
 
-export interface ExplanationDetail {
+export type ExplanationDetail = {
   description: string;
   details?: ExplanationDetail[];
-  value: number;
+  value: number | number | number | number;
 }
 

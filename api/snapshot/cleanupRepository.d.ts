@@ -19,18 +19,18 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Snapshot_CleanupRepository from '../_types/snapshot.cleanup_repository'
 
-export interface Snapshot_CleanupRepository_Request extends Global.Params {
+export type Snapshot_CleanupRepository_Request = Global.Params & {
   cluster_manager_timeout?: Common.Duration;
   master_timeout?: Common.Duration;
   repository: Common.Name;
   timeout?: Common.Duration;
 }
 
-export interface Snapshot_CleanupRepository_Response extends ApiResponse {
+export type Snapshot_CleanupRepository_Response = ApiResponse & {
   body: Snapshot_CleanupRepository_ResponseBody;
 }
 
-export interface Snapshot_CleanupRepository_ResponseBody {
+export type Snapshot_CleanupRepository_ResponseBody = {
   results: Snapshot_CleanupRepository.CleanupRepositoryResults;
 }
 

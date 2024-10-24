@@ -19,7 +19,7 @@ import * as Cluster_State from '../_types/cluster.state'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cluster_State_Request extends Global.Params {
+export type Cluster_State_Request = Global.Params & {
   allow_no_indices?: boolean;
   cluster_manager_timeout?: Common.Duration;
   expand_wildcards?: Common.ExpandWildcards;
@@ -33,7 +33,7 @@ export interface Cluster_State_Request extends Global.Params {
   wait_for_timeout?: Common.Duration;
 }
 
-export interface Cluster_State_Response extends ApiResponse {
+export type Cluster_State_Response = ApiResponse & {
   body: Cluster_State_ResponseBody;
 }
 

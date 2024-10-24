@@ -20,7 +20,7 @@ import * as Security_Common from '../_types/security._common'
 
 export type Security_GetPermissionsInfo_Request = Global.Params & Record<string, any>
 
-export interface Security_GetPermissionsInfo_Response extends ApiResponse {
+export type Security_GetPermissionsInfo_Response = ApiResponse & {
   body: Security_GetPermissionsInfo_ResponseBody;
 }
 

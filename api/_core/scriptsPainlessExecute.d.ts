@@ -19,21 +19,21 @@ import * as Common from '../_types/_common'
 import * as Core_ScriptsPainlessExecute from '../_types/_core.scripts_painless_execute'
 import * as Global from '../_types/_global'
 
-export interface ScriptsPainlessExecute_Request extends Global.Params {
+export type ScriptsPainlessExecute_Request = Global.Params & {
   body?: ScriptsPainlessExecute_RequestBody;
 }
 
-export interface ScriptsPainlessExecute_RequestBody {
+export type ScriptsPainlessExecute_RequestBody = {
   context?: string;
   context_setup?: Core_ScriptsPainlessExecute.PainlessContextSetup;
   script?: Common.InlineScript;
 }
 
-export interface ScriptsPainlessExecute_Response extends ApiResponse {
+export type ScriptsPainlessExecute_Response = ApiResponse & {
   body: ScriptsPainlessExecute_ResponseBody;
 }
 
-export interface ScriptsPainlessExecute_ResponseBody {
+export type ScriptsPainlessExecute_ResponseBody = {
   result: Record<string, any>;
 }
 

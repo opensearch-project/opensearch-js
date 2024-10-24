@@ -20,7 +20,7 @@ import * as Common_Mapping from '../_types/_common.mapping'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export interface Indices_PutTemplate_Request extends Global.Params {
+export type Indices_PutTemplate_Request = Global.Params & {
   body: Indices_PutTemplate_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   create?: boolean;
@@ -29,7 +29,7 @@ export interface Indices_PutTemplate_Request extends Global.Params {
   order?: number;
 }
 
-export interface Indices_PutTemplate_RequestBody {
+export type Indices_PutTemplate_RequestBody = {
   aliases?: Record<string, Indices_Common.Alias>;
   index_patterns?: string | string[];
   mappings?: Common_Mapping.TypeMapping;
@@ -38,7 +38,7 @@ export interface Indices_PutTemplate_RequestBody {
   version?: Common.VersionNumber;
 }
 
-export interface Indices_PutTemplate_Response extends ApiResponse {
+export type Indices_PutTemplate_Response = ApiResponse & {
   body: Indices_PutTemplate_ResponseBody;
 }
 

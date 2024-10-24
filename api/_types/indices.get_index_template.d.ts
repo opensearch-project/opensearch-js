@@ -17,7 +17,7 @@
 import * as Common from './_common'
 import * as Indices_Common from './indices._common'
 
-export interface IndexTemplateItem {
+export type IndexTemplateItem = {
   index_template: Indices_Common.IndexTemplate;
   name: Common.Name;
 }

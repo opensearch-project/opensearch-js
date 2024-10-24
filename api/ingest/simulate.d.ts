@@ -20,22 +20,22 @@ import * as Global from '../_types/_global'
 import * as Ingest_Common from '../_types/ingest._common'
 import * as Ingest_Simulate from '../_types/ingest.simulate'
 
-export interface Ingest_Simulate_Request extends Global.Params {
+export type Ingest_Simulate_Request = Global.Params & {
   body: Ingest_Simulate_RequestBody;
   id?: Common.Id;
   verbose?: boolean;
 }
 
-export interface Ingest_Simulate_RequestBody {
+export type Ingest_Simulate_RequestBody = {
   docs?: Ingest_Simulate.Document[];
   pipeline?: Ingest_Common.Pipeline;
 }
 
-export interface Ingest_Simulate_Response extends ApiResponse {
+export type Ingest_Simulate_Response = ApiResponse & {
   body: Ingest_Simulate_ResponseBody;
 }
 
-export interface Ingest_Simulate_ResponseBody {
+export type Ingest_Simulate_ResponseBody = {
   docs: Ingest_Simulate.PipelineSimulation[];
 }
 

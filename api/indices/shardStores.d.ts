@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_ShardStores from '../_types/indices.shard_stores'
 
-export interface Indices_ShardStores_Request extends Global.Params {
+export type Indices_ShardStores_Request = Global.Params & {
   allow_no_indices?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
@@ -27,11 +27,11 @@ export interface Indices_ShardStores_Request extends Global.Params {
   status?: Indices_ShardStores.Status | Indices_ShardStores.Status[];
 }
 
-export interface Indices_ShardStores_Response extends ApiResponse {
+export type Indices_ShardStores_Response = ApiResponse & {
   body: Indices_ShardStores_ResponseBody;
 }
 
-export interface Indices_ShardStores_ResponseBody {
+export type Indices_ShardStores_ResponseBody = {
   indices: Record<string, Indices_ShardStores.IndicesShardStores>;
 }
 

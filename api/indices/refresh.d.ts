@@ -18,14 +18,14 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Indices_Refresh_Request extends Global.Params {
+export type Indices_Refresh_Request = Global.Params & {
   allow_no_indices?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
   index?: Common.Indices;
 }
 
-export interface Indices_Refresh_Response extends ApiResponse {
+export type Indices_Refresh_Response = ApiResponse & {
   body: Indices_Refresh_ResponseBody;
 }
 

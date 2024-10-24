@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface Command {
+export type Command = {
   allocate_empty_primary?: CommandAllocatePrimaryAction;
   allocate_replica?: CommandAllocateReplicaAction;
   allocate_stale_primary?: CommandAllocatePrimaryAction;
@@ -24,27 +24,27 @@ export interface Command {
   move?: CommandMoveAction;
 }
 
-export interface CommandAllocatePrimaryAction {
+export type CommandAllocatePrimaryAction = {
   accept_data_loss: boolean;
   index: Common.IndexName;
   node: string;
   shard: number;
 }
 
-export interface CommandAllocateReplicaAction {
+export type CommandAllocateReplicaAction = {
   index: Common.IndexName;
   node: string;
   shard: number;
 }
 
-export interface CommandCancelAction {
+export type CommandCancelAction = {
   allow_primary?: boolean;
   index: Common.IndexName;
   node: string;
   shard: number;
 }
 
-export interface CommandMoveAction {
+export type CommandMoveAction = {
   from_node: string;
   index: Common.IndexName;
   shard: number;
@@ -53,19 +53,19 @@ export interface CommandMoveAction {
 
 export type Metric = '_all' | 'blocks' | 'cluster_manager_node' | 'master_node' | 'metadata' | 'nodes' | 'routing_nodes' | 'routing_table' | 'version'
 
-export interface RerouteDecision {
+export type RerouteDecision = {
   decider: string;
   decision: string;
   explanation: string;
 }
 
-export interface RerouteExplanation {
+export type RerouteExplanation = {
   command: string;
   decisions: RerouteDecision[];
   parameters: RerouteParameters;
 }
 
-export interface RerouteParameters {
+export type RerouteParameters = {
   allow_primary: boolean;
   from_node?: Common.NodeName;
   index: Common.IndexName;

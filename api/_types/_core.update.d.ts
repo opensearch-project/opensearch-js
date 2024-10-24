@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface UpdateWriteResponseBase extends Common.WriteResponseBase {
+export type UpdateWriteResponseBase = Common.WriteResponseBase & {
   get?: Common.InlineGet;
 }
 

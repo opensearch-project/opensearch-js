@@ -16,11 +16,11 @@
 
 import * as Common from './_common'
 
-export interface IndexSegment {
+export type IndexSegment = {
   shards: Record<string, ShardsSegment[] | ShardsSegment>;
 }
 
-export interface Segment {
+export type Segment = {
   attributes: Record<string, string>;
   committed: boolean;
   compound: boolean;
@@ -35,13 +35,13 @@ export interface Segment {
   version: Common.VersionString;
 }
 
-export interface ShardSegmentRouting {
+export type ShardSegmentRouting = {
   node: string;
   primary: boolean;
   state: string;
 }
 
-export interface ShardsSegment {
+export type ShardsSegment = {
   num_committed_segments: number;
   num_search_segments: number;
   routing: ShardSegmentRouting;

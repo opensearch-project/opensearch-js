@@ -17,7 +17,7 @@
 import * as Common from './_common'
 import * as Indices_Stats from './indices.stats'
 
-export interface AdaptiveSelection {
+export type AdaptiveSelection = {
   avg_queue_size?: number;
   avg_response_time?: Common.Duration;
   avg_response_time_ns?: number;
@@ -27,7 +27,7 @@ export interface AdaptiveSelection {
   rank?: string;
 }
 
-export interface Breaker {
+export type Breaker = {
   estimated_size?: Common.HumanReadableByteCount;
   estimated_size_in_bytes?: Common.ByteCount;
   limit_size?: Common.HumanReadableByteCount;
@@ -36,32 +36,32 @@ export interface Breaker {
   tripped?: number;
 }
 
-export interface Cgroup {
+export type Cgroup = {
   cpu?: CgroupCpu;
   cpuacct?: CpuAcct;
   memory?: CgroupMemory;
 }
 
-export interface CgroupCpu {
+export type CgroupCpu = {
   cfs_period_micros?: number;
   cfs_quota_micros?: number;
   control_group?: string;
   stat?: CgroupCpuStat;
 }
 
-export interface CgroupCpuStat {
+export type CgroupCpuStat = {
   number_of_elapsed_periods?: number;
   number_of_times_throttled?: number;
   time_throttled_nanos?: Common.DurationValueUnitNanos;
 }
 
-export interface CgroupMemory {
+export type CgroupMemory = {
   control_group?: string;
   limit_in_bytes?: string;
   usage_in_bytes?: string;
 }
 
-export interface Client {
+export type Client = {
   agent?: string;
   closed_time_millis?: number;
   id?: number;
@@ -75,27 +75,27 @@ export interface Client {
   x_opaque_id?: string;
 }
 
-export interface ClusterAppliedStats {
+export type ClusterAppliedStats = {
   recordings?: Recording[];
 }
 
-export interface ClusterStateOverallStats {
+export type ClusterStateOverallStats = {
   failed_count?: number;
   total_time_in_millis?: Common.DurationValueUnitMillis;
   update_count?: number;
 }
 
-export interface ClusterStateQueue {
+export type ClusterStateQueue = {
   committed?: number;
   pending?: number;
   total?: number;
 }
 
-export interface ClusterStateStats {
+export type ClusterStateStats = {
   overall?: ClusterStateOverallStats;
 }
 
-export interface ClusterStateUpdate {
+export type ClusterStateUpdate = {
   commit_time?: Common.Duration;
   commit_time_millis?: Common.DurationValueUnitMillis;
   completion_time?: Common.Duration;
@@ -113,14 +113,14 @@ export interface ClusterStateUpdate {
   publication_time_millis?: Common.DurationValueUnitMillis;
 }
 
-export interface Context {
+export type Context = {
   cache_evictions?: number;
   compilation_limit_triggered?: number;
   compilations?: number;
   context?: string;
 }
 
-export interface Cpu {
+export type Cpu = {
   load_average?: Record<string, number>;
   percent?: Common.PercentageNumber;
   sys?: Common.Duration;
@@ -131,12 +131,12 @@ export interface Cpu {
   user_in_millis?: Common.DurationValueUnitMillis;
 }
 
-export interface CpuAcct {
+export type CpuAcct = {
   control_group?: string;
   usage_nanos?: Common.DurationValueUnitNanos;
 }
 
-export interface DataPathStats {
+export type DataPathStats = {
   available?: Common.HumanReadableByteCount;
   available_in_bytes?: Common.ByteCount;
   cache_reserved?: Common.HumanReadableByteCount;
@@ -157,7 +157,7 @@ export interface DataPathStats {
   type?: string;
 }
 
-export interface Discovery {
+export type Discovery = {
   cluster_applier_stats?: ClusterAppliedStats;
   cluster_state_queue?: ClusterStateQueue;
   cluster_state_stats?: ClusterStateStats;
@@ -166,19 +166,19 @@ export interface Discovery {
   serialized_cluster_states?: SerializedClusterState;
 }
 
-export interface ExtendedMemoryStats extends MemoryStats {
+export type ExtendedMemoryStats = MemoryStats & {
   free_percent?: Common.PercentageNumber;
   used_percent?: Common.PercentageNumber;
 }
 
-export interface FileSystem {
+export type FileSystem = {
   data?: DataPathStats[];
   io_stats?: IoStats;
   timestamp?: number;
   total?: FileSystemTotal;
 }
 
-export interface FileSystemTotal {
+export type FileSystemTotal = {
   available?: Common.HumanReadableByteCount;
   available_in_bytes?: Common.ByteCount;
   cache_reserved?: Common.HumanReadableByteCount;
@@ -189,39 +189,39 @@ export interface FileSystemTotal {
   total_in_bytes?: Common.ByteCount;
 }
 
-export interface GarbageCollector {
+export type GarbageCollector = {
   collectors?: Record<string, GarbageCollectorTotal>;
 }
 
-export interface GarbageCollectorTotal {
+export type GarbageCollectorTotal = {
   collection_count?: number;
   collection_time?: string;
   collection_time_in_millis?: number;
 }
 
-export interface Http {
+export type Http = {
   clients?: Client[];
   current_open?: number;
   total_opened?: number;
 }
 
-export interface IndexingPressure {
+export type IndexingPressure = {
   memory?: IndexingPressureMemory;
 }
 
-export interface IndexingPressureMemory {
+export type IndexingPressureMemory = {
   current?: PressureMemory;
   limit?: Common.HumanReadableByteCount;
   limit_in_bytes?: Common.ByteCount;
   total?: PressureMemory;
 }
 
-export interface Ingest {
+export type Ingest = {
   pipelines?: Record<string, IngestTotal>;
   total?: IngestTotal;
 }
 
-export interface IngestTotal {
+export type IngestTotal = {
   count?: number;
   current?: number;
   failed?: number;
@@ -230,7 +230,7 @@ export interface IngestTotal {
   time_in_millis?: Common.DurationValueUnitMillis;
 }
 
-export interface IoStatDevice {
+export type IoStatDevice = {
   device_name?: string;
   io_time_in_millis?: Common.DurationValueUnitMillis;
   operations?: number;
@@ -243,12 +243,12 @@ export interface IoStatDevice {
   write_time?: number;
 }
 
-export interface IoStats {
+export type IoStats = {
   devices?: IoStatDevice[];
   total?: IoStatDevice;
 }
 
-export interface Jvm {
+export type Jvm = {
   buffer_pools?: Record<string, NodeBufferPool>;
   classes?: JvmClasses;
   gc?: GarbageCollector;
@@ -259,13 +259,13 @@ export interface Jvm {
   uptime_in_millis?: number;
 }
 
-export interface JvmClasses {
+export type JvmClasses = {
   current_loaded_count?: number;
   total_loaded_count?: number;
   total_unloaded_count?: number;
 }
 
-export interface JvmMemoryStats {
+export type JvmMemoryStats = {
   heap_committed?: Common.HumanReadableByteCount;
   heap_committed_in_bytes?: Common.ByteCount;
   heap_max?: Common.HumanReadableByteCount;
@@ -280,17 +280,17 @@ export interface JvmMemoryStats {
   pools?: Record<string, Pool>;
 }
 
-export interface JvmThreads {
+export type JvmThreads = {
   count?: number;
   peak_count?: number;
 }
 
-export interface KeyedProcessor {
+export type KeyedProcessor = {
   stats?: Processor;
   type?: string;
 }
 
-export interface LastGcStats {
+export type LastGcStats = {
   max?: Common.HumanReadableByteCount;
   max_in_bytes?: Common.ByteCount;
   usage_percent?: Common.PercentageNumber;
@@ -298,7 +298,7 @@ export interface LastGcStats {
   used_in_bytes?: Common.ByteCount;
 }
 
-export interface MemoryStats {
+export type MemoryStats = {
   adjusted_total_in_bytes?: Common.ByteCount;
   free?: Common.HumanReadableByteCount;
   free_in_bytes?: Common.ByteCount;
@@ -314,7 +314,7 @@ export interface MemoryStats {
   used_in_bytes?: Common.ByteCount;
 }
 
-export interface NodeBufferPool {
+export type NodeBufferPool = {
   count?: number;
   total_capacity?: Common.HumanReadableByteCount;
   total_capacity_in_bytes?: Common.ByteCount;
@@ -322,18 +322,18 @@ export interface NodeBufferPool {
   used_in_bytes?: Common.ByteCount;
 }
 
-export interface NodeReloadError {
+export type NodeReloadError = {
   name: Common.Name;
   reload_exception?: Common.ErrorCause;
 }
 
 export type NodeReloadResult = Stats | NodeReloadError
 
-export interface NodesResponseBase {
+export type NodesResponseBase = {
   _nodes?: Common.NodeStatistics;
 }
 
-export interface OperatingSystem {
+export type OperatingSystem = {
   cgroup?: Cgroup;
   cpu?: Cpu;
   mem?: ExtendedMemoryStats;
@@ -341,7 +341,7 @@ export interface OperatingSystem {
   timestamp?: number;
 }
 
-export interface Pool {
+export type Pool = {
   last_gc_stats?: LastGcStats;
   max?: Common.HumanReadableByteCount;
   max_in_bytes?: Common.ByteCount;
@@ -353,7 +353,7 @@ export interface Pool {
   used_in_bytes?: Common.ByteCount;
 }
 
-export interface PressureMemory {
+export type PressureMemory = {
   all?: Common.HumanReadableByteCount;
   all_in_bytes?: Common.ByteCount;
   combined_coordinating_and_primary?: Common.HumanReadableByteCount;
@@ -369,7 +369,7 @@ export interface PressureMemory {
   replica_rejections?: number;
 }
 
-export interface Process {
+export type Process = {
   cpu?: Cpu;
   max_file_descriptors?: number;
   mem?: MemoryStats;
@@ -377,7 +377,7 @@ export interface Process {
   timestamp?: number;
 }
 
-export interface Processor {
+export type Processor = {
   count?: number;
   current?: number;
   failed?: number;
@@ -385,13 +385,13 @@ export interface Processor {
   time_in_millis?: Common.DurationValueUnitMillis;
 }
 
-export interface PublishedClusterStates {
+export type PublishedClusterStates = {
   compatible_diffs?: number;
   full_states?: number;
   incompatible_diffs?: number;
 }
 
-export interface Recording {
+export type Recording = {
   cumulative_execution_count?: number;
   cumulative_execution_time?: Common.Duration;
   cumulative_execution_time_millis?: Common.DurationValueUnitMillis;
@@ -400,14 +400,14 @@ export interface Recording {
 
 export type SampleType = 'block' | 'cpu' | 'wait'
 
-export interface ScriptCache {
+export type ScriptCache = {
   cache_evictions?: number;
   compilation_limit_triggered?: number;
   compilations?: number;
   context?: string;
 }
 
-export interface Scripting {
+export type Scripting = {
   cache_evictions?: number;
   compilation_limit_triggered?: number;
   compilations?: number;
@@ -415,12 +415,12 @@ export interface Scripting {
   contexts?: Context[];
 }
 
-export interface SerializedClusterState {
+export type SerializedClusterState = {
   diffs?: SerializedClusterStateDetail;
   full_states?: SerializedClusterStateDetail;
 }
 
-export interface SerializedClusterStateDetail {
+export type SerializedClusterStateDetail = {
   compressed_size?: Common.HumanReadableByteCount;
   compressed_size_in_bytes?: Common.ByteCount;
   count?: number;
@@ -428,14 +428,14 @@ export interface SerializedClusterStateDetail {
   uncompressed_size_in_bytes?: Common.ByteCount;
 }
 
-export interface ShardAdmissionControlStats {
+export type ShardAdmissionControlStats = {
   global_cpu_usage?: UsageStats;
   global_io_usage?: UsageStats;
 }
 
 export type ShardCachesStats = Record<string, ShardCacheStats>
 
-export interface ShardCacheStats {
+export type ShardCacheStats = {
   evictions?: number;
   hit_count?: number;
   item_count?: number;
@@ -445,16 +445,16 @@ export interface ShardCacheStats {
   store_name?: string;
 }
 
-export interface ShardClusterManagerThrottlingStats {
+export type ShardClusterManagerThrottlingStats = {
   stats?: ShardClusterManagerThrottlingStatsDetail;
 }
 
-export interface ShardClusterManagerThrottlingStatsDetail {
+export type ShardClusterManagerThrottlingStatsDetail = {
   throttled_tasks_per_task_type?: Record<string, any>;
   total_throttled_tasks?: number;
 }
 
-export interface ShardIndexingPressureStats {
+export type ShardIndexingPressureStats = {
   enabled?: boolean;
   enforced?: boolean;
   stats?: Record<string, any>;
@@ -466,33 +466,33 @@ export type ShardRepositoriesStats = any[]
 
 export type ShardResourceUsageStats = Record<string, ShardResourceUsageStatsDetail>
 
-export interface ShardResourceUsageStatsDetail {
+export type ShardResourceUsageStatsDetail = {
   cpu_utilization_percent?: Common.PercentageString;
   io_usage_stats?: ShardResourceUsageStatsIoUsageStats;
   memory_utilization_percent?: Common.PercentageString;
   timestamp?: number;
 }
 
-export interface ShardResourceUsageStatsIoUsageStats {
+export type ShardResourceUsageStatsIoUsageStats = {
   max_io_utilization_percent?: Common.PercentageString;
 }
 
 export type ShardSearchBackpressureMode = 'disabled' | 'enforced' | 'monitor_only'
 
-export interface ShardSearchBackpressureStats {
+export type ShardSearchBackpressureStats = {
   mode?: ShardSearchBackpressureMode;
   search_shard_task?: ShardSearchBackpressureTaskStats;
   search_task?: ShardSearchBackpressureTaskStats;
 }
 
-export interface ShardSearchBackpressureTaskCancellationStats {
+export type ShardSearchBackpressureTaskCancellationStats = {
   cancellation_count?: number;
   cancellation_limit_reached_count?: number;
   cancelled_task_percentage?: Common.PercentageNumber;
   current_cancellation_eligible_tasks_count?: number;
 }
 
-export interface ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats {
+export type ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats = {
   cancellation_count?: number;
   current_avg?: Common.Duration;
   current_avg_millis?: Common.DurationValueUnitMillis;
@@ -500,7 +500,7 @@ export interface ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats 
   current_max_millis?: Common.DurationValueUnitMillis;
 }
 
-export interface ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats {
+export type ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats = {
   cancellation_count?: number;
   current_avg?: Common.Duration;
   current_avg_millis?: Common.DurationValueUnitMillis;
@@ -508,7 +508,7 @@ export interface ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerSta
   current_max_millis?: Common.DurationValueUnitMillis;
 }
 
-export interface ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats {
+export type ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats = {
   cancellation_count?: number;
   current_avg?: Common.HumanReadableByteCount;
   current_avg_bytes?: Common.ByteCount;
@@ -518,25 +518,25 @@ export interface ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats
   rolling_avg_bytes?: Common.ByteCount;
 }
 
-export interface ShardSearchBackpressureTaskResourceTrackerStats {
+export type ShardSearchBackpressureTaskResourceTrackerStats = {
   cpu_usage_tracker?: ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats;
   elapsed_time_tracker?: ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats;
   heap_usage_tracker?: ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats;
 }
 
-export interface ShardSearchBackpressureTaskStats {
+export type ShardSearchBackpressureTaskStats = {
   cancellation_stats?: ShardSearchBackpressureTaskCancellationStats;
   completion_count?: number;
   resource_tracker_stats?: ShardSearchBackpressureTaskResourceTrackerStats;
 }
 
-export interface ShardSearchPipelineStats {
+export type ShardSearchPipelineStats = {
   pipelines?: Record<string, any>;
   total_request?: ShardSearchPipelineTotalStats;
   total_response?: ShardSearchPipelineTotalStats;
 }
 
-export interface ShardSearchPipelineTotalStats {
+export type ShardSearchPipelineTotalStats = {
   count?: number;
   current?: number;
   failed?: number;
@@ -544,28 +544,28 @@ export interface ShardSearchPipelineTotalStats {
   time_in_millis?: Common.DurationValueUnitMillis;
 }
 
-export interface ShardSegmentReplicationBackpressureStats {
+export type ShardSegmentReplicationBackpressureStats = {
   total_rejected_requests?: number;
 }
 
-export interface ShardTaskCancellationStats {
+export type ShardTaskCancellationStats = {
   search_shard_task?: ShardTaskCancellationStatsDetail;
 }
 
-export interface ShardTaskCancellationStatsDetail {
+export type ShardTaskCancellationStatsDetail = {
   current_count_post_cancel?: number;
   total_count_post_cancel?: number;
 }
 
-export interface ShardWeightedRoutingStats {
+export type ShardWeightedRoutingStats = {
   stats?: ShardWeightedRoutingStatsDetail;
 }
 
-export interface ShardWeightedRoutingStatsDetail {
+export type ShardWeightedRoutingStatsDetail = {
   fail_open_count?: number;
 }
 
-export interface Stats {
+export type Stats = {
   adaptive_selection?: Record<string, AdaptiveSelection>;
   admission_control?: ShardAdmissionControlStats;
   attributes?: Record<string, string>;
@@ -601,7 +601,7 @@ export interface Stats {
   weighted_routing?: ShardWeightedRoutingStats;
 }
 
-export interface ThreadCount {
+export type ThreadCount = {
   active?: number;
   completed?: number;
   largest?: number;
@@ -612,13 +612,13 @@ export interface ThreadCount {
   total_wait_time_in_nanos?: number;
 }
 
-export interface TotalRejectionsBreakup {
+export type TotalRejectionsBreakup = {
   no_successful_request_limits?: number;
   node_limits?: number;
   throughput_degradation_limits?: number;
 }
 
-export interface Transport {
+export type Transport = {
   inbound_handling_time_histogram?: TransportHistogram[];
   outbound_handling_time_histogram?: TransportHistogram[];
   rx_count?: number;
@@ -631,17 +631,17 @@ export interface Transport {
   tx_size_in_bytes?: Common.ByteCount;
 }
 
-export interface TransportHistogram {
+export type TransportHistogram = {
   count?: number;
   ge_millis?: number;
   lt_millis?: number;
 }
 
-export interface TransportUsageStats {
+export type TransportUsageStats = {
   rejection_count?: Record<string, any>;
 }
 
-export interface UsageStats {
+export type UsageStats = {
   transport?: TransportUsageStats;
 }
 

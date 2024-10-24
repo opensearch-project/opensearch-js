@@ -16,18 +16,18 @@
 
 import * as Common from './_common'
 
-export interface ResolveIndexAliasItem {
+export type ResolveIndexAliasItem = {
   indices: Common.Indices;
   name: Common.Name;
 }
 
-export interface ResolveIndexDataStreamsItem {
+export type ResolveIndexDataStreamsItem = {
   backing_indices: Common.Indices;
   name: Common.DataStreamName;
   timestamp_field: Common.Field;
 }
 
-export interface ResolveIndexItem {
+export type ResolveIndexItem = {
   aliases?: string[];
   attributes: string[];
   data_stream?: Common.DataStreamName;

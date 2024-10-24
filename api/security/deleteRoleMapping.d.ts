@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export interface Security_DeleteRoleMapping_Request extends Global.Params {
+export type Security_DeleteRoleMapping_Request = Global.Params & {
   role: string;
 }
 
-export interface Security_DeleteRoleMapping_Response extends ApiResponse {
+export type Security_DeleteRoleMapping_Response = ApiResponse & {
   body: Security_DeleteRoleMapping_ResponseBody;
 }
 

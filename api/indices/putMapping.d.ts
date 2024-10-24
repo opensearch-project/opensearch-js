@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Common_Mapping from '../_types/_common.mapping'
 import * as Global from '../_types/_global'
 
-export interface Indices_PutMapping_Request extends Global.Params {
+export type Indices_PutMapping_Request = Global.Params & {
   allow_no_indices?: boolean;
   body: Indices_PutMapping_RequestBody;
   cluster_manager_timeout?: Common.Duration;
@@ -31,7 +31,7 @@ export interface Indices_PutMapping_Request extends Global.Params {
   write_index_only?: boolean;
 }
 
-export interface Indices_PutMapping_RequestBody {
+export type Indices_PutMapping_RequestBody = {
   _field_names?: Common_Mapping.FieldNamesField;
   _meta?: Common.Metadata;
   _routing?: Common_Mapping.RoutingField;
@@ -42,10 +42,9 @@ export interface Indices_PutMapping_RequestBody {
   dynamic_templates?: Record<string, Common_Mapping.DynamicTemplate> | Record<string, Common_Mapping.DynamicTemplate>[];
   numeric_detection?: boolean;
   properties?: Record<string, Common_Mapping.Property>;
-  runtime?: Common_Mapping.RuntimeFields;
 }
 
-export interface Indices_PutMapping_Response extends ApiResponse {
+export type Indices_PutMapping_Response = ApiResponse & {
   body: Indices_PutMapping_ResponseBody;
 }
 

@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface PluginsRecord {
+export type PluginsRecord = {
   component?: string;
   description?: string;
   id?: Common.NodeId;

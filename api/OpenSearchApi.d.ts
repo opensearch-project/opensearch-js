@@ -580,6 +580,13 @@ export default class OpenSearchAPI {
 
   };
 
+  insights: {
+    topQueries (params: API.Insights_TopQueries_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Insights_TopQueries_Response>;
+    topQueries (params: API.Insights_TopQueries_Request, callback: callbackFn<API.Insights_TopQueries_Response>): TransportRequestCallback;
+    topQueries (params: API.Insights_TopQueries_Request, options: TransportRequestOptions, callback: callbackFn<API.Insights_TopQueries_Response>): TransportRequestCallback;
+
+  };
+
   ism: {
     addPolicy (params?: API.Ism_AddPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_AddPolicy_Response>;
     addPolicy (callback: callbackFn<API.Ism_AddPolicy_Response>): TransportRequestCallback;
@@ -1453,6 +1460,10 @@ export default class OpenSearchAPI {
   bulk (params: API.Bulk_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Bulk_Response>;
   bulk (params: API.Bulk_Request, callback: callbackFn<API.Bulk_Response>): TransportRequestCallback;
   bulk (params: API.Bulk_Request, options: TransportRequestOptions, callback: callbackFn<API.Bulk_Response>): TransportRequestCallback;
+
+  bulkStream (params: API.BulkStream_Request, options?: TransportRequestOptions): TransportRequestPromise<API.BulkStream_Response>;
+  bulkStream (params: API.BulkStream_Request, callback: callbackFn<API.BulkStream_Response>): TransportRequestCallback;
+  bulkStream (params: API.BulkStream_Request, options: TransportRequestOptions, callback: callbackFn<API.BulkStream_Response>): TransportRequestCallback;
 
   count (params?: API.Count_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Count_Response>;
   count (callback: callbackFn<API.Count_Response>): TransportRequestCallback;

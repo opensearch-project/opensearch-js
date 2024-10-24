@@ -19,11 +19,11 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Transforms_Common from '../_types/transforms._common'
 
-export interface Transforms_Explain_Request extends Global.Params {
+export type Transforms_Explain_Request = Global.Params & {
   id: Common.Id;
 }
 
-export interface Transforms_Explain_Response extends ApiResponse {
+export type Transforms_Explain_Response = ApiResponse & {
   body: Transforms_Explain_ResponseBody;
 }
 

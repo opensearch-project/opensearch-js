@@ -18,7 +18,7 @@ import * as Common from './_common'
 
 export type IndicesBlockOptions = 'metadata' | 'read' | 'read_only' | 'write'
 
-export interface IndicesBlockStatus {
+export type IndicesBlockStatus = {
   blocked: boolean;
   name: Common.IndexName;
 }

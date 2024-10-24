@@ -17,14 +17,14 @@
 import * as Common from './_common'
 import * as Indices_Common from './indices._common'
 
-export interface AggregateMetricDoubleProperty extends PropertyBase {
+export type AggregateMetricDoubleProperty = PropertyBase & {
   default_metric: string;
   metrics: string[];
   time_series_metric?: TimeSeriesMetricType;
   type: 'aggregate_metric_double';
 }
 
-export interface AllField {
+export type AllField = {
   analyzer: string;
   enabled: boolean;
   omit_norms: boolean;
@@ -37,11 +37,11 @@ export interface AllField {
   store_term_vectors: boolean;
 }
 
-export interface BinaryProperty extends DocValuesPropertyBase {
+export type BinaryProperty = DocValuesPropertyBase & {
   type: 'binary';
 }
 
-export interface BooleanProperty extends DocValuesPropertyBase {
+export type BooleanProperty = DocValuesPropertyBase & {
   boost?: number;
   fielddata?: Indices_Common.NumericFielddata;
   index?: boolean;
@@ -49,12 +49,12 @@ export interface BooleanProperty extends DocValuesPropertyBase {
   type: 'boolean';
 }
 
-export interface ByteNumberProperty extends NumberPropertyBase {
+export type ByteNumberProperty = NumberPropertyBase & {
   null_value?: Common.byte;
   type: 'byte';
 }
 
-export interface CompletionProperty extends DocValuesPropertyBase {
+export type CompletionProperty = DocValuesPropertyBase & {
   analyzer?: string;
   contexts?: SuggestContext[];
   max_input_length?: number;
@@ -64,22 +64,22 @@ export interface CompletionProperty extends DocValuesPropertyBase {
   type: 'completion';
 }
 
-export interface ConstantKeywordProperty extends PropertyBase {
+export type ConstantKeywordProperty = PropertyBase & {
   type: 'constant_keyword';
-  value?: Record<string, any>;
+  value?: any;
 }
 
-export interface CorePropertyBase extends PropertyBase {
+export type CorePropertyBase = PropertyBase & {
   copy_to?: Common.Fields;
   similarity?: string;
   store?: boolean;
 }
 
-export interface DataStreamTimestamp {
+export type DataStreamTimestamp = {
   enabled: boolean;
 }
 
-export interface DateNanosProperty extends DocValuesPropertyBase {
+export type DateNanosProperty = DocValuesPropertyBase & {
   boost?: number;
   format?: string;
   ignore_malformed?: boolean;
@@ -89,7 +89,7 @@ export interface DateNanosProperty extends DocValuesPropertyBase {
   type: 'date_nanos';
 }
 
-export interface DateProperty extends DocValuesPropertyBase {
+export type DateProperty = DocValuesPropertyBase & {
   boost?: number;
   fielddata?: Indices_Common.NumericFielddata;
   format?: string;
@@ -101,18 +101,18 @@ export interface DateProperty extends DocValuesPropertyBase {
   type: 'date';
 }
 
-export interface DateRangeProperty extends RangePropertyBase {
+export type DateRangeProperty = RangePropertyBase & {
   format?: string;
   type: 'date_range';
 }
 
-export interface DenseVectorIndexOptions {
+export type DenseVectorIndexOptions = {
   ef_construction: number;
   m: number;
   type: string;
 }
 
-export interface DenseVectorProperty extends PropertyBase {
+export type DenseVectorProperty = PropertyBase & {
   dims: number;
   index?: boolean;
   index_options?: DenseVectorIndexOptions;
@@ -120,48 +120,22 @@ export interface DenseVectorProperty extends PropertyBase {
   type: 'dense_vector';
 }
 
-export interface DocValuesPropertyBase extends CorePropertyBase {
+export type DocValuesPropertyBase = CorePropertyBase & {
   doc_values?: boolean;
 }
 
-export interface DoubleNumberProperty extends NumberPropertyBase {
+export type DoubleNumberProperty = NumberPropertyBase & {
   null_value?: number;
   type: 'double';
 }
 
-export interface DoubleRangeProperty extends RangePropertyBase {
+export type DoubleRangeProperty = RangePropertyBase & {
   type: 'double_range';
 }
 
 export type DynamicMapping = 'false' | 'strict' | 'strict_allow_templates' | 'true'
 
-export interface DynamicProperty extends DocValuesPropertyBase {
-  analyzer?: string;
-  boost?: number;
-  coerce?: boolean;
-  eager_global_ordinals?: boolean;
-  enabled?: boolean;
-  format?: string;
-  ignore_malformed?: boolean;
-  index?: boolean;
-  index_options?: IndexOptions;
-  index_phrases?: boolean;
-  index_prefixes?: TextIndexPrefixes;
-  locale?: string;
-  norms?: boolean;
-  null_value?: Common.FieldValue;
-  on_script_error?: OnScriptError;
-  position_increment_gap?: number;
-  precision_step?: number;
-  script?: Common.Script;
-  search_analyzer?: string;
-  search_quote_analyzer?: string;
-  term_vector?: TermVectorOption;
-  time_series_metric?: TimeSeriesMetricType;
-  type: '{dynamic_property}';
-}
-
-export interface DynamicTemplate {
+export type DynamicTemplate = {
   mapping?: Property;
   match?: string;
   match_mapping_type?: string;
@@ -171,21 +145,21 @@ export interface DynamicTemplate {
   unmatch?: string;
 }
 
-export interface FieldAliasProperty extends PropertyBase {
+export type FieldAliasProperty = PropertyBase & {
   path?: Common.Field;
   type: 'alias';
 }
 
-export interface FieldMapping {
+export type FieldMapping = {
   full_name: string;
   mapping: Record<string, Property>;
 }
 
-export interface FieldNamesField {
+export type FieldNamesField = {
   enabled: boolean;
 }
 
-export interface FlattenedProperty extends PropertyBase {
+export type FlattenedProperty = PropertyBase & {
   boost?: number;
   depth_limit?: number;
   doc_values?: boolean;
@@ -198,25 +172,25 @@ export interface FlattenedProperty extends PropertyBase {
   type: 'flattened';
 }
 
-export interface FloatNumberProperty extends NumberPropertyBase {
+export type FloatNumberProperty = NumberPropertyBase & {
   null_value?: number;
   type: 'float';
 }
 
-export interface FloatRangeProperty extends RangePropertyBase {
+export type FloatRangeProperty = RangePropertyBase & {
   type: 'float_range';
 }
 
-export type GeoOrientation = 'left' | 'right'
+export type GeoOrientation = 'LEFT' | 'clockwise' | 'cw' | 'left' | 'RIGHT' | 'ccw' | 'counterclockwise' | 'right'
 
-export interface GeoPointProperty extends DocValuesPropertyBase {
+export type GeoPointProperty = DocValuesPropertyBase & {
   ignore_malformed?: boolean;
   ignore_z_value?: boolean;
   null_value?: Common.GeoLocation;
   type: 'geo_point';
 }
 
-export interface GeoShapeProperty extends DocValuesPropertyBase {
+export type GeoShapeProperty = DocValuesPropertyBase & {
   coerce?: boolean;
   distance_error_pct?: number;
   ignore_malformed?: boolean;
@@ -228,32 +202,32 @@ export interface GeoShapeProperty extends DocValuesPropertyBase {
 
 export type GeoStrategy = 'recursive' | 'term'
 
-export interface HalfFloatNumberProperty extends NumberPropertyBase {
+export type HalfFloatNumberProperty = NumberPropertyBase & {
   null_value?: number;
   type: 'half_float';
 }
 
-export interface HistogramProperty extends PropertyBase {
+export type HistogramProperty = PropertyBase & {
   ignore_malformed?: boolean;
   type: 'histogram';
 }
 
-export interface IndexField {
+export type IndexField = {
   enabled: boolean;
 }
 
 export type IndexOptions = 'docs' | 'freqs' | 'offsets' | 'positions'
 
-export interface IntegerNumberProperty extends NumberPropertyBase {
+export type IntegerNumberProperty = NumberPropertyBase & {
   null_value?: number;
   type: 'integer';
 }
 
-export interface IntegerRangeProperty extends RangePropertyBase {
+export type IntegerRangeProperty = RangePropertyBase & {
   type: 'integer_range';
 }
 
-export interface IpProperty extends DocValuesPropertyBase {
+export type IpProperty = DocValuesPropertyBase & {
   boost?: number;
   ignore_malformed?: boolean;
   index?: boolean;
@@ -264,17 +238,17 @@ export interface IpProperty extends DocValuesPropertyBase {
   type: 'ip';
 }
 
-export interface IpRangeProperty extends RangePropertyBase {
+export type IpRangeProperty = RangePropertyBase & {
   type: 'ip_range';
 }
 
-export interface JoinProperty extends PropertyBase {
+export type JoinProperty = PropertyBase & {
   eager_global_ordinals?: boolean;
   relations?: Record<string, Common.RelationName | Common.RelationName[]>;
   type: 'join';
 }
 
-export interface KeywordProperty extends DocValuesPropertyBase {
+export type KeywordProperty = DocValuesPropertyBase & {
   boost?: number;
   eager_global_ordinals?: boolean;
   index?: boolean;
@@ -287,36 +261,35 @@ export interface KeywordProperty extends DocValuesPropertyBase {
   type: 'keyword';
 }
 
-export interface KnnVectorMethod {
+export type KnnVectorMethod = {
   engine?: string;
   name: string;
-  parameters?: Record<string, Record<string, any>>;
+  parameters?: {
+};
   space_type?: string;
 }
 
-export interface KnnVectorProperty extends KnnVectorPropertyBase {
-  type: 'knn_vector';
-}
-
-export interface KnnVectorPropertyBase {
+export type KnnVectorProperty = DocValuesPropertyBase & {
   compression_level?: string;
   data_type?: string;
   dimension: number;
   method?: KnnVectorMethod;
   mode?: string;
+  model_id?: string;
   space_type?: string;
+  type: 'knn_vector';
 }
 
-export interface LongNumberProperty extends NumberPropertyBase {
+export type LongNumberProperty = NumberPropertyBase & {
   null_value?: number;
   type: 'long';
 }
 
-export interface LongRangeProperty extends RangePropertyBase {
+export type LongRangeProperty = RangePropertyBase & {
   type: 'long_range';
 }
 
-export interface MatchOnlyTextProperty {
+export type MatchOnlyTextProperty = {
   copy_to?: Common.Fields;
   fields?: Record<string, Property>;
   meta?: Record<string, string>;
@@ -325,18 +298,18 @@ export interface MatchOnlyTextProperty {
 
 export type MatchType = 'regex' | 'simple'
 
-export interface Murmur3HashProperty extends DocValuesPropertyBase {
+export type Murmur3HashProperty = DocValuesPropertyBase & {
   type: 'murmur3';
 }
 
-export interface NestedProperty extends CorePropertyBase {
+export type NestedProperty = CorePropertyBase & {
   enabled?: boolean;
   include_in_parent?: boolean;
   include_in_root?: boolean;
   type: 'nested';
 }
 
-export interface NumberPropertyBase extends DocValuesPropertyBase {
+export type NumberPropertyBase = DocValuesPropertyBase & {
   boost?: number;
   coerce?: boolean;
   ignore_malformed?: boolean;
@@ -347,20 +320,20 @@ export interface NumberPropertyBase extends DocValuesPropertyBase {
   time_series_metric?: TimeSeriesMetricType;
 }
 
-export interface ObjectProperty extends CorePropertyBase {
+export type ObjectProperty = CorePropertyBase & {
   enabled?: boolean;
   type?: 'object';
 }
 
 export type OnScriptError = 'continue' | 'fail'
 
-export interface PercolatorProperty extends PropertyBase {
+export type PercolatorProperty = PropertyBase & {
   type: 'percolator';
 }
 
-export type Property = BinaryProperty | BooleanProperty | DynamicProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | DenseVectorProperty | SparseVectorProperty | FlattenedProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty
+export type Property = BinaryProperty | BooleanProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | DenseVectorProperty | SparseVectorProperty | FlattenedProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty
 
-export interface PropertyBase {
+export type PropertyBase = {
   dynamic?: DynamicMapping;
   fields?: Record<string, Property>;
   ignore_above?: number;
@@ -368,51 +341,32 @@ export interface PropertyBase {
   properties?: Record<string, Property>;
 }
 
-export interface RangePropertyBase extends DocValuesPropertyBase {
+export type RangePropertyBase = DocValuesPropertyBase & {
   boost?: number;
   coerce?: boolean;
   index?: boolean;
 }
 
-export interface RankFeatureProperty extends PropertyBase {
+export type RankFeatureProperty = PropertyBase & {
   positive_score_impact?: boolean;
   type: 'rank_feature';
 }
 
-export interface RankFeaturesProperty extends PropertyBase {
+export type RankFeaturesProperty = PropertyBase & {
   type: 'rank_features';
 }
 
-export interface RoutingField {
+export type RoutingField = {
   required: boolean;
 }
 
-export interface RuntimeField {
-  fetch_fields?: RuntimeFieldFetchFields[];
-  format?: string;
-  input_field?: Common.Field;
-  script?: Common.Script;
-  target_field?: Common.Field;
-  target_index?: Common.IndexName;
-  type: RuntimeFieldType;
-}
-
-export interface RuntimeFieldFetchFields {
-  field: Common.Field;
-  format?: string;
-}
-
-export type RuntimeFields = Record<string, RuntimeField>
-
-export type RuntimeFieldType = 'boolean' | 'date' | 'double' | 'geo_point' | 'ip' | 'keyword' | 'long' | 'lookup'
-
-export interface ScaledFloatNumberProperty extends NumberPropertyBase {
+export type ScaledFloatNumberProperty = NumberPropertyBase & {
   null_value?: number;
   scaling_factor?: number;
   type: 'scaled_float';
 }
 
-export interface SearchAsYouTypeProperty extends CorePropertyBase {
+export type SearchAsYouTypeProperty = CorePropertyBase & {
   analyzer?: string;
   index?: boolean;
   index_options?: IndexOptions;
@@ -424,16 +378,16 @@ export interface SearchAsYouTypeProperty extends CorePropertyBase {
   type: 'search_as_you_type';
 }
 
-export interface ShortNumberProperty extends NumberPropertyBase {
+export type ShortNumberProperty = NumberPropertyBase & {
   null_value?: Common.short;
   type: 'short';
 }
 
-export interface SizeField {
+export type SizeField = {
   enabled: boolean;
 }
 
-export interface SourceField {
+export type SourceField = {
   compress?: boolean;
   compress_threshold?: string;
   enabled?: boolean;
@@ -444,11 +398,11 @@ export interface SourceField {
 
 export type SourceFieldMode = 'disabled' | 'stored' | 'synthetic'
 
-export interface SparseVectorProperty extends PropertyBase {
+export type SparseVectorProperty = PropertyBase & {
   type: 'sparse_vector';
 }
 
-export interface SuggestContext {
+export type SuggestContext = {
   name: Common.Name;
   path?: Common.Field;
   precision?: number | string;
@@ -457,12 +411,12 @@ export interface SuggestContext {
 
 export type TermVectorOption = 'no' | 'with_offsets' | 'with_positions' | 'with_positions_offsets' | 'with_positions_offsets_payloads' | 'with_positions_payloads' | 'yes'
 
-export interface TextIndexPrefixes {
+export type TextIndexPrefixes = {
   max_chars: number;
   min_chars: number;
 }
 
-export interface TextProperty extends CorePropertyBase {
+export type TextProperty = CorePropertyBase & {
   analyzer?: string;
   boost?: number;
   eager_global_ordinals?: boolean;
@@ -482,7 +436,7 @@ export interface TextProperty extends CorePropertyBase {
 
 export type TimeSeriesMetricType = 'counter' | 'gauge' | 'histogram' | 'position' | 'summary'
 
-export interface TokenCountProperty extends DocValuesPropertyBase {
+export type TokenCountProperty = DocValuesPropertyBase & {
   analyzer?: string;
   boost?: number;
   enable_position_increments?: boolean;
@@ -491,7 +445,7 @@ export interface TokenCountProperty extends DocValuesPropertyBase {
   type: 'token_count';
 }
 
-export interface TypeMapping {
+export type TypeMapping = {
   _data_stream_timestamp?: DataStreamTimestamp;
   _field_names?: FieldNamesField;
   _meta?: Common.Metadata;
@@ -507,31 +461,30 @@ export interface TypeMapping {
   index_field?: IndexField;
   numeric_detection?: boolean;
   properties?: Record<string, Property>;
-  runtime?: Record<string, RuntimeField>;
 }
 
-export interface UnsignedLongNumberProperty extends NumberPropertyBase {
+export type UnsignedLongNumberProperty = NumberPropertyBase & {
   null_value?: Common.ulong;
   type: 'unsigned_long';
 }
 
-export interface VersionProperty extends DocValuesPropertyBase {
+export type VersionProperty = DocValuesPropertyBase & {
   type: 'version';
 }
 
-export interface WildcardProperty extends DocValuesPropertyBase {
+export type WildcardProperty = DocValuesPropertyBase & {
   null_value?: string;
   type: 'wildcard';
 }
 
-export interface XyPointProperty extends DocValuesPropertyBase {
+export type XyPointProperty = DocValuesPropertyBase & {
   ignore_malformed?: boolean;
   ignore_z_value?: boolean;
   null_value?: Common.XyLocation;
   type: 'xy_point';
 }
 
-export interface XyShapeProperty extends DocValuesPropertyBase {
+export type XyShapeProperty = DocValuesPropertyBase & {
   coerce?: boolean;
   ignore_malformed?: boolean;
   ignore_z_value?: boolean;

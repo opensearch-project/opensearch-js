@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface PutScript_Request extends Global.Params {
+export type PutScript_Request = Global.Params & {
   body: PutScript_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   context?: Common.Name;
@@ -27,11 +27,11 @@ export interface PutScript_Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export interface PutScript_RequestBody {
+export type PutScript_RequestBody = {
   script: Common.StoredScript;
 }
 
-export interface PutScript_Response extends ApiResponse {
+export type PutScript_Response = ApiResponse & {
   body: PutScript_ResponseBody;
 }
 

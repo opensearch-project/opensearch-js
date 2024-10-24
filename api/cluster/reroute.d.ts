@@ -19,7 +19,7 @@ import * as Cluster_Reroute from '../_types/cluster.reroute'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cluster_Reroute_Request extends Global.Params {
+export type Cluster_Reroute_Request = Global.Params & {
   body?: Cluster_Reroute_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   dry_run?: boolean;
@@ -30,15 +30,15 @@ export interface Cluster_Reroute_Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export interface Cluster_Reroute_RequestBody {
+export type Cluster_Reroute_RequestBody = {
   commands?: Cluster_Reroute.Command[];
 }
 
-export interface Cluster_Reroute_Response extends ApiResponse {
+export type Cluster_Reroute_Response = ApiResponse & {
   body: Cluster_Reroute_ResponseBody;
 }
 
-export interface Cluster_Reroute_ResponseBody {
+export type Cluster_Reroute_ResponseBody = {
   acknowledged: boolean;
   explanations?: Cluster_Reroute.RerouteExplanation[];
   state?: Record<string, any>;

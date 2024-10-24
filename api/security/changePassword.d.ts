@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export interface Security_ChangePassword_Request extends Global.Params {
+export type Security_ChangePassword_Request = Global.Params & {
   body: Security_Common.ChangePasswordRequestContent;
 }
 
-export interface Security_ChangePassword_Response extends ApiResponse {
+export type Security_ChangePassword_Response = ApiResponse & {
   body: Security_ChangePassword_ResponseBody;
 }
 

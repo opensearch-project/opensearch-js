@@ -18,7 +18,7 @@ import * as Common from './_common'
 
 export type ClusterRemoteInfo = ClusterRemoteSniffInfo | ClusterRemoteProxyInfo
 
-export interface ClusterRemoteProxyInfo {
+export type ClusterRemoteProxyInfo = {
   connected: boolean;
   initial_connect_timeout: Common.Duration;
   max_proxy_socket_connections: number;
@@ -29,7 +29,7 @@ export interface ClusterRemoteProxyInfo {
   skip_unavailable: boolean;
 }
 
-export interface ClusterRemoteSniffInfo {
+export type ClusterRemoteSniffInfo = {
   connected: boolean;
   initial_connect_timeout: Common.Duration;
   max_connections_per_cluster: number;

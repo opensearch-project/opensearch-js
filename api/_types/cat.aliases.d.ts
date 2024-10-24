@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface AliasesRecord {
+export type AliasesRecord = {
   alias?: string;
   filter?: string;
   index?: Common.IndexName;

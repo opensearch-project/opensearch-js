@@ -19,7 +19,7 @@ import * as Cat_Plugins from '../_types/cat.plugins'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cat_Plugins_Request extends Global.Params {
+export type Cat_Plugins_Request = Global.Params & {
   cluster_manager_timeout?: Common.Duration;
   format?: string;
   h?: string[];
@@ -30,7 +30,7 @@ export interface Cat_Plugins_Request extends Global.Params {
   v?: boolean;
 }
 
-export interface Cat_Plugins_Response extends ApiResponse {
+export type Cat_Plugins_Response = ApiResponse & {
   body: Cat_Plugins_ResponseBody;
 }
 

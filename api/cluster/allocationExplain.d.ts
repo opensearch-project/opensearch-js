@@ -19,24 +19,24 @@ import * as Cluster_AllocationExplain from '../_types/cluster.allocation_explain
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cluster_AllocationExplain_Request extends Global.Params {
+export type Cluster_AllocationExplain_Request = Global.Params & {
   body?: Cluster_AllocationExplain_RequestBody;
   include_disk_info?: boolean;
   include_yes_decisions?: boolean;
 }
 
-export interface Cluster_AllocationExplain_RequestBody {
+export type Cluster_AllocationExplain_RequestBody = {
   current_node?: string;
   index?: Common.IndexName;
   primary?: boolean;
   shard?: number;
 }
 
-export interface Cluster_AllocationExplain_Response extends ApiResponse {
+export type Cluster_AllocationExplain_Response = ApiResponse & {
   body: Cluster_AllocationExplain_ResponseBody;
 }
 
-export interface Cluster_AllocationExplain_ResponseBody {
+export type Cluster_AllocationExplain_ResponseBody = {
   allocate_explanation?: string;
   allocation_delay?: Common.Duration;
   allocation_delay_in_millis?: Common.DurationValueUnitMillis;

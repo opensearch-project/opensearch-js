@@ -16,18 +16,18 @@
 
 import * as Common from './_common'
 
-export interface Context {
+export type Context = {
   methods: ContextMethod[];
   name: Common.Name;
 }
 
-export interface ContextMethod {
+export type ContextMethod = {
   name: Common.Name;
   params: ContextMethodParam[];
   return_type: string;
 }
 
-export interface ContextMethodParam {
+export type ContextMethodParam = {
   name: Common.Name;
   type: string;
 }

@@ -15,7 +15,7 @@
  */
 
 
-export interface IndicesRecord {
+export type IndicesRecord = {
   'completion.size'?: undefined | string;
   'creation.date'?: string;
   'creation.date.string'?: string;

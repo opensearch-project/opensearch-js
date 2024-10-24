@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface SegmentsRecord {
+export type SegmentsRecord = {
   committed?: string;
   compound?: string;
   'docs.count'?: string;

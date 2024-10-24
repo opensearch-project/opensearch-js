@@ -15,23 +15,23 @@
  */
 
 
-export interface DeletedPit {
+export type DeletedPit = {
   pit_id?: string;
   successful?: boolean;
 }
 
-export interface PitDetail {
+export type PitDetail = {
   creation_time?: number;
   keep_alive?: number;
   pit_id?: string;
 }
 
-export interface PitsDetailsDeleteAll {
+export type PitsDetailsDeleteAll = {
   pit_id?: string;
   successful?: boolean;
 }
 
-export interface ShardStatistics {
+export type ShardStatistics = {
   failed?: number;
   skipped?: number;
   successful?: number;

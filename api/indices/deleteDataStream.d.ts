@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Indices_DeleteDataStream_Request extends Global.Params {
+export type Indices_DeleteDataStream_Request = Global.Params & {
   name: Common.DataStreamNames;
 }
 
-export interface Indices_DeleteDataStream_Response extends ApiResponse {
+export type Indices_DeleteDataStream_Response = ApiResponse & {
   body: Indices_DeleteDataStream_ResponseBody;
 }
 

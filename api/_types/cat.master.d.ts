@@ -15,7 +15,7 @@
  */
 
 
-export interface MasterRecord {
+export type MasterRecord = {
   host?: string;
   id?: string;
   ip?: string;

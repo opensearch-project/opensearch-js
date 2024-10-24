@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 
 export type Ping_Request = Global.Params & Record<string, any>
 
-export interface Ping_Response extends ApiResponse {
+export type Ping_Response = ApiResponse & {
   body: Ping_ResponseBody;
 }
 

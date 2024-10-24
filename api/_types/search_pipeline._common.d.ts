@@ -15,7 +15,7 @@
  */
 
 
-export interface CollapseResponseProcessor {
+export type CollapseResponseProcessor = {
   context_prefix?: string;
   description?: string;
   field: string;
@@ -23,27 +23,27 @@ export interface CollapseResponseProcessor {
   tag?: string;
 }
 
-export interface FilterQueryRequestProcessor {
+export type FilterQueryRequestProcessor = {
   description?: string;
   ignore_failure?: boolean;
   query?: UserDefinedObjectStructure;
   tag?: string;
 }
 
-export interface MLOpenSearchReranker {
+export type MLOpenSearchReranker = {
   model_id: string;
 }
 
 export type NeuralFieldMap = Record<string, string>
 
-export interface NeuralQueryEnricherRequestProcessor {
+export type NeuralQueryEnricherRequestProcessor = {
   default_model_id?: string;
   description?: string;
   neural_field_default_id?: NeuralFieldMap;
   tag?: string;
 }
 
-export interface NormalizationPhaseResultsProcessor {
+export type NormalizationPhaseResultsProcessor = {
   combination?: ScoreCombination;
   description?: string;
   ignore_failure?: boolean;
@@ -51,7 +51,7 @@ export interface NormalizationPhaseResultsProcessor {
   tag?: string;
 }
 
-export interface OversampleRequestProcessor {
+export type OversampleRequestProcessor = {
   content_prefix?: string;
   description?: string;
   ignore_failure?: boolean;
@@ -59,7 +59,7 @@ export interface OversampleRequestProcessor {
   tag?: string;
 }
 
-export interface PersonalizeSearchRankingResponseProcessor {
+export type PersonalizeSearchRankingResponseProcessor = {
   campaign_arn: string;
   description?: string;
   iam_role_arn?: string;
@@ -70,11 +70,11 @@ export interface PersonalizeSearchRankingResponseProcessor {
   weight: number;
 }
 
-export interface PhaseResultsProcessor {
+export type PhaseResultsProcessor = {
   'normalization-processor': NormalizationPhaseResultsProcessor;
 }
 
-export interface RenameFieldResponseProcessor {
+export type RenameFieldResponseProcessor = {
   description?: string;
   field: string;
   ignore_failure?: boolean;
@@ -92,11 +92,11 @@ export type RequestProcessor = {
   oversample: OversampleRequestProcessor;
 }
 
-export interface RerankContext {
+export type RerankContext = {
   document_fields: string[];
 }
 
-export interface RerankResponseProcessor {
+export type RerankResponseProcessor = {
   context?: RerankContext;
   description?: string;
   ignore_failure?: boolean;
@@ -122,7 +122,7 @@ export type ResponseProcessor = {
   split: SplitResponseProcessor;
 }
 
-export interface RetrievalAugmentedGenerationResponseProcessor {
+export type RetrievalAugmentedGenerationResponseProcessor = {
   context_field_list: string[];
   description?: string;
   model_id: string;
@@ -131,14 +131,14 @@ export interface RetrievalAugmentedGenerationResponseProcessor {
   user_instructions?: string;
 }
 
-export interface ScoreCombination {
+export type ScoreCombination = {
   parameters?: number[];
   technique?: ScoreCombinationTechnique;
 }
 
 export type ScoreCombinationTechnique = 'arithmetic_mean' | 'geometric_mean' | 'harmonic_mean'
 
-export interface ScoreNormalization {
+export type ScoreNormalization = {
   technique?: ScoreNormalizationTechnique;
 }
 
@@ -146,14 +146,14 @@ export type ScoreNormalizationTechnique = 'l2' | 'min_max'
 
 export type SearchPipelineMap = Record<string, SearchPipelineStructure>
 
-export interface SearchPipelineStructure {
+export type SearchPipelineStructure = {
   phase_results_processors?: PhaseResultsProcessor[];
   request_processors?: RequestProcessor[];
   response_processors?: ResponseProcessor[];
   version?: number;
 }
 
-export interface SearchScriptRequestProcessor {
+export type SearchScriptRequestProcessor = {
   description?: string;
   ignore_failure?: boolean;
   lang?: string;
@@ -161,7 +161,7 @@ export interface SearchScriptRequestProcessor {
   tag?: string;
 }
 
-export interface SortResponseProcessor {
+export type SortResponseProcessor = {
   description?: string;
   field: string;
   ignore_failure?: boolean;
@@ -170,7 +170,7 @@ export interface SortResponseProcessor {
   target_field?: string;
 }
 
-export interface SplitResponseProcessor {
+export type SplitResponseProcessor = {
   description?: string;
   field: string;
   ignore_failure?: boolean;
@@ -180,7 +180,7 @@ export interface SplitResponseProcessor {
   target_field?: string;
 }
 
-export interface TruncateHitsResponseProcessor {
+export type TruncateHitsResponseProcessor = {
   context_prefix?: string;
   description?: string;
   ignore_failure?: boolean;
@@ -188,7 +188,7 @@ export interface TruncateHitsResponseProcessor {
   target_size?: number;
 }
 
-export interface UserDefinedObjectStructure {
+export type UserDefinedObjectStructure = {
   bool?: any;
   boosting?: any;
   combined_fields?: any;
@@ -244,6 +244,6 @@ export interface UserDefinedObjectStructure {
   wrapper?: any;
 }
 
-export interface UserDefinedValueMap {
+export type UserDefinedValueMap = {
 }
 

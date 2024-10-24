@@ -15,7 +15,7 @@
  */
 
 
-export interface Continuous {
+export type Continuous = {
   failure_reason?: string;
   next_window_end_time?: number;
   next_window_start_time?: number;
@@ -23,12 +23,12 @@ export interface Continuous {
   status?: string;
 }
 
-export interface Cron {
+export type Cron = {
   expression?: string;
   timezone?: string;
 }
 
-export interface DateHistogramDimension {
+export type DateHistogramDimension = {
   calendar_interval?: string;
   fixed_interval?: string;
   source_field?: string;
@@ -36,29 +36,29 @@ export interface DateHistogramDimension {
   timezone?: string;
 }
 
-export interface DimensionsConfigItem {
+export type DimensionsConfigItem = {
   date_histogram?: DateHistogramDimension;
   histogram?: HistogramDimension;
   terms?: TermsDimension;
 }
 
-export interface Explain {
+export type Explain = {
   continuous?: Continuous;
   last_updated_time?: number;
   rollup_id?: string;
 }
 
-export interface ExplainEntities {
+export type ExplainEntities = {
   item?: Explain;
 }
 
-export interface HistogramDimension {
+export type HistogramDimension = {
   interval?: string;
   source_field?: string;
   target_field?: string;
 }
 
-export interface Interval {
+export type Interval = {
   cron?: Cron[] | Cron;
   period?: number;
   schedule_delay?: number;
@@ -66,13 +66,13 @@ export interface Interval {
   unit?: string;
 }
 
-export interface MetricsConfigItem {
+export type MetricsConfigItem = {
   metrics?: MetricsConfigMetrics[];
   source_field?: string;
   target_field?: string;
 }
 
-export interface MetricsConfigMetrics {
+export type MetricsConfigMetrics = {
   avg?: Record<string, any>;
   max?: Record<string, any>;
   min?: Record<string, any>;
@@ -80,7 +80,7 @@ export interface MetricsConfigMetrics {
   value_count?: Record<string, any>;
 }
 
-export interface Rollup {
+export type Rollup = {
   continuous?: boolean;
   delay?: number;
   description?: string;
@@ -99,18 +99,18 @@ export interface Rollup {
   target_index?: string;
 }
 
-export interface RollupEntity {
+export type RollupEntity = {
   _id?: string;
   _primaryTerm?: number;
   _seqNo?: number;
   rollup?: Rollup;
 }
 
-export interface Schedule {
+export type Schedule = {
   interval?: Interval;
 }
 
-export interface Stats {
+export type Stats = {
   documents_processed?: number;
   index_time_in_ms?: number;
   pages_processed?: number;
@@ -118,7 +118,7 @@ export interface Stats {
   search_time_in_ms?: number;
 }
 
-export interface TermsDimension {
+export type TermsDimension = {
   source_field?: string;
   target_field?: string;
 }

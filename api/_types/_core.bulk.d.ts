@@ -23,7 +23,7 @@ export type DeleteOperation = OperationBase
 
 export type IndexOperation = WriteOperation
 
-export interface OperationBase {
+export type OperationBase = {
   _id?: Common.Id;
   _index?: Common.IndexName;
   if_primary_term?: number;
@@ -33,14 +33,14 @@ export interface OperationBase {
   version_type?: Common.VersionType;
 }
 
-export interface OperationContainer {
+export type OperationContainer = {
   create?: CreateOperation;
   delete?: DeleteOperation;
   index?: IndexOperation;
   update?: UpdateOperation;
 }
 
-export interface ResponseItem {
+export type ResponseItem = {
   _id?: undefined | string;
   _index: string;
   _primary_term?: number;
@@ -55,7 +55,7 @@ export interface ResponseItem {
   status: number;
 }
 
-export interface UpdateAction {
+export type UpdateAction = {
   _source?: Core_Search.SourceConfig;
   detect_noop?: boolean;
   doc?: Record<string, any>;
@@ -65,12 +65,12 @@ export interface UpdateAction {
   upsert?: Record<string, any>;
 }
 
-export interface UpdateOperation extends OperationBase {
+export type UpdateOperation = OperationBase & {
   require_alias?: boolean;
   retry_on_conflict?: number;
 }
 
-export interface WriteOperation extends OperationBase {
+export type WriteOperation = OperationBase & {
   dynamic_templates?: Record<string, string>;
   pipeline?: string;
   require_alias?: boolean;

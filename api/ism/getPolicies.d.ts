@@ -20,7 +20,7 @@ import * as Ism_Common from '../_types/ism._common'
 
 export type Ism_GetPolicies_Request = Global.Params & Record<string, any>
 
-export interface Ism_GetPolicies_Response extends ApiResponse {
+export type Ism_GetPolicies_Response = ApiResponse & {
   body: Ism_GetPolicies_ResponseBody;
 }
 

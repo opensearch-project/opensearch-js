@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Indices_Delete_Request extends Global.Params {
+export type Indices_Delete_Request = Global.Params & {
   allow_no_indices?: boolean;
   cluster_manager_timeout?: Common.Duration;
   expand_wildcards?: Common.ExpandWildcards;
@@ -28,7 +28,7 @@ export interface Indices_Delete_Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export interface Indices_Delete_Response extends ApiResponse {
+export type Indices_Delete_Response = ApiResponse & {
   body: Indices_Delete_ResponseBody;
 }
 

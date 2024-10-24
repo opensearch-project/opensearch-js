@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_RegisterModelGroup_Request extends Global.Params {
+export type Ml_RegisterModelGroup_Request = Global.Params & {
   body?: Ml_RegisterModelGroup_RequestBody;
 }
 
-export interface Ml_RegisterModelGroup_RequestBody {
+export type Ml_RegisterModelGroup_RequestBody = {
   access_mode?: 'private' | 'public' | 'restricted';
   add_all_backend_roles?: boolean;
   backend_roles?: string[];
@@ -30,7 +30,7 @@ export interface Ml_RegisterModelGroup_RequestBody {
   name: string;
 }
 
-export interface Ml_RegisterModelGroup_Response extends ApiResponse {
+export type Ml_RegisterModelGroup_Response = ApiResponse & {
   body: Ml_RegisterModelGroup_ResponseBody;
 }
 

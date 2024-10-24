@@ -16,7 +16,7 @@
 
 import * as Common_Mapping from './_common.mapping'
 
-export interface IndexMappingRecord {
+export type IndexMappingRecord = {
   item?: Common_Mapping.TypeMapping;
   mappings: Common_Mapping.TypeMapping;
 }

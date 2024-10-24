@@ -18,27 +18,27 @@ import * as Common from './_common'
 
 export type GroupBy = 'nodes' | 'none' | 'parents'
 
-export interface PersistentTaskStatus {
+export type PersistentTaskStatus = {
   state: string;
 }
 
 export type RawTaskStatus = Record<string, Record<string, any>>
 
-export interface ReplicationTaskStatus {
+export type ReplicationTaskStatus = {
   phase: string;
 }
 
 export type Status = ReplicationTaskStatus | Common.BulkByScrollTaskStatus | PersistentTaskStatus | RawTaskStatus
 
-export interface TaskExecutingNode extends Common.BaseNode {
+export type TaskExecutingNode = Common.BaseNode & {
   tasks: Record<string, TaskInfo>;
 }
 
-export interface TaskGroup extends TaskInfo {
+export type TaskGroup = TaskInfo & {
   children?: TaskGroup[];
 }
 
-export interface TaskInfo {
+export type TaskInfo = {
   action: string;
   cancellable: boolean;
   cancelled?: boolean;
@@ -56,7 +56,7 @@ export interface TaskInfo {
 
 export type TaskInfos = TaskInfo[] | Record<string, TaskGroup>
 
-export interface TaskListResponseBase {
+export type TaskListResponseBase = {
   node_failures?: Common.ErrorCause[];
   nodes?: Record<string, TaskExecutingNode>;
   task_failures?: Common.TaskFailure[];

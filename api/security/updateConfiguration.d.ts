@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export interface Security_UpdateConfiguration_Request extends Global.Params {
+export type Security_UpdateConfiguration_Request = Global.Params & {
   body: Security_Common.DynamicConfig;
 }
 
-export interface Security_UpdateConfiguration_Response extends ApiResponse {
+export type Security_UpdateConfiguration_Response = ApiResponse & {
   body: Security_UpdateConfiguration_ResponseBody;
 }
 

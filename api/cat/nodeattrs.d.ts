@@ -19,7 +19,7 @@ import * as Cat_Nodeattrs from '../_types/cat.nodeattrs'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cat_Nodeattrs_Request extends Global.Params {
+export type Cat_Nodeattrs_Request = Global.Params & {
   cluster_manager_timeout?: Common.Duration;
   format?: string;
   h?: string[];
@@ -30,7 +30,7 @@ export interface Cat_Nodeattrs_Request extends Global.Params {
   v?: boolean;
 }
 
-export interface Cat_Nodeattrs_Response extends ApiResponse {
+export type Cat_Nodeattrs_Response = ApiResponse & {
   body: Cat_Nodeattrs_ResponseBody;
 }
 

@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface Action {
+export type Action = {
   alias?: ActionAlias;
   allocation?: ActionAllocation;
   close?: ActionClose;
@@ -38,11 +38,11 @@ export interface Action {
   transform?: ActionTransform;
 }
 
-export interface ActionAlias {
+export type ActionAlias = {
   actions?: Record<string, any>;
 }
 
-export interface ActionAllocation {
+export type ActionAllocation = {
   exclude?: Record<string, any>;
   include?: Record<string, any>;
   require?: Record<string, any>;
@@ -55,11 +55,11 @@ export type ActionCustom = Record<string, any>
 
 export type ActionDelete = Record<string, any>
 
-export interface ActionForceMerge {
+export type ActionForceMerge = {
   max_num_segments?: number;
 }
 
-export interface ActionIndexPriority {
+export type ActionIndexPriority = {
   priority?: number;
 }
 
@@ -71,17 +71,17 @@ export type ActionReadOnly = Record<string, any>
 
 export type ActionReadWrite = Record<string, any>
 
-export interface ActionReplicaCount {
+export type ActionReplicaCount = {
   number_of_replicas?: number;
 }
 
-export interface ActionRetry {
+export type ActionRetry = {
   backoff?: string;
   count?: number;
   delay?: string;
 }
 
-export interface ActionRollover {
+export type ActionRollover = {
   copy_alias?: boolean;
   min_doc_count?: number;
   min_index_age?: number;
@@ -93,25 +93,25 @@ export type ActionRollup = Record<string, any>
 
 export type ActionShrink = Record<string, any>
 
-export interface ActionSnapshot {
+export type ActionSnapshot = {
   include_global_state?: boolean;
   repository?: string;
   snapshot?: string;
 }
 
-export interface ActionTimeout {
+export type ActionTimeout = {
   timeout?: Record<string, any>;
 }
 
 export type ActionTransform = Record<string, any>
 
-export interface AddPolicyRequest {
+export type AddPolicyRequest = {
   policy_id: string;
 }
 
 export type AddPolicyResponse = ChangePolicyResponse
 
-export interface ChangePolicyRequest {
+export type ChangePolicyRequest = {
   include?: IncludeState[];
   policy_id: string;
   state?: string;
@@ -119,81 +119,81 @@ export interface ChangePolicyRequest {
 
 export type ChangePolicyResponse = ChangeResponse
 
-export interface ChangeResponse {
+export type ChangeResponse = {
   failed_indices?: FailedIndex[];
   failures?: boolean;
   updated_indices?: number;
 }
 
-export interface Channel {
+export type Channel = {
   id?: string;
 }
 
 export type DeletePolicyResponse = Common.WriteResponseBase
 
-export interface ErrorNotification {
+export type ErrorNotification = {
   channel?: Channel;
   destination?: ErrorNotificationDestination;
   message_template?: Record<string, any>;
 }
 
-export interface ErrorNotificationChime {
+export type ErrorNotificationChime = {
   url?: string;
 }
 
-export interface ErrorNotificationDestination {
+export type ErrorNotificationDestination = {
   last_update_time?: number;
   name?: string;
   [key: string]: any | ErrorNotificationChime | ErrorNotificationSlack;
 }
 
-export interface ErrorNotificationSlack {
+export type ErrorNotificationSlack = {
   custom_webhook?: SlackCustomWebhook;
   url?: string;
 }
 
-export interface ExplainIndexResponse {
+export type ExplainIndexResponse = {
   total_managed_indices?: number;
   [key: string]: any | ExplainPolicy;
 }
 
-export interface ExplainPolicy {
+export type ExplainPolicy = {
   enabled?: boolean | undefined;
   'index.opendistro.index_state_management.policy_id'?: undefined | string;
   'index.plugins.index_state_management.policy_id'?: undefined | string;
 }
 
-export interface FailedIndex {
+export type FailedIndex = {
   index_name?: string;
   index_uuid?: string;
   reason?: string;
 }
 
-export interface GetPoliciesResponse {
+export type GetPoliciesResponse = {
   policies?: PolicyWithMetadata[];
   total_policies?: number;
 }
 
 export type GetPolicyResponse = PolicyWithMetadata
 
-export interface IncludeState {
+export type IncludeState = {
   state?: string;
 }
 
-export interface IsmTemplate {
+export type IsmTemplate = {
   index_patterns?: string[];
   last_updated_time?: number;
   priority?: number;
 }
 
-export interface Metadata {
+export type Metadata = {
   _id?: Common.Id;
   _primary_term?: number;
   _seq_no?: Common.SequenceNumber;
   _version?: Common.VersionNumber;
 }
 
-export interface Policy {
+export type Policy = {
   default_state?: string;
   description?: string;
   error_notification?: ErrorNotification | undefined;
@@ -204,7 +204,7 @@ export interface Policy {
   states?: States[];
 }
 
-export interface PolicyEnvelope {
+export type PolicyEnvelope = {
   policy?: Policy;
 }
 
@@ -212,29 +212,29 @@ export type PolicyWithMetadata = Metadata & PolicyEnvelope
 
 export type PutPolicyRequest = PolicyEnvelope
 
-export interface PutPolicyResponse extends Metadata {
+export type PutPolicyResponse = Metadata & {
   policy?: PolicyEnvelope;
 }
 
-export interface RefreshSearchAnalyzersResponse {
+export type RefreshSearchAnalyzersResponse = {
   _shards?: Common.ShardStatistics;
   successful_refresh_details?: RefreshSearchAnalyzersResponseDetails[];
 }
 
-export interface RefreshSearchAnalyzersResponseDetails {
+export type RefreshSearchAnalyzersResponseDetails = {
   index?: string;
   refreshed_analyzers?: string[];
 }
 
 export type RemovePolicyResponse = ChangePolicyResponse
 
-export interface RetryIndexRequest {
+export type RetryIndexRequest = {
   state: string;
 }
 
 export type RetryIndexResponse = ChangeResponse
 
-export interface SlackCustomWebhook {
+export type SlackCustomWebhook = {
   header_params?: Record<string, any>;
   host?: string;
   password?: string;
@@ -246,13 +246,13 @@ export interface SlackCustomWebhook {
   username?: string;
 }
 
-export interface States {
+export type States = {
   actions?: Action[];
   name?: string;
   transitions?: Transition[];
 }
 
-export interface Transition {
+export type Transition = {
   conditions?: Record<string, any>;
   state_name?: string;
 }

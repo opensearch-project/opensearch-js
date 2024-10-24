@@ -20,11 +20,11 @@ import * as Notifications_Common from '../_types/notifications._common'
 
 export type Notifications_ListChannels_Request = Global.Params & Record<string, any>
 
-export interface Notifications_ListChannels_Response extends ApiResponse {
+export type Notifications_ListChannels_Response = ApiResponse & {
   body: Notifications_ListChannels_ResponseBody;
 }
 
-export interface Notifications_ListChannels_ResponseBody {
+export type Notifications_ListChannels_ResponseBody = {
   channel_list?: Notifications_Common.NotificationChannel[];
   start_index?: number;
   total_hit_relation?: Notifications_Common.TotalHitRelation;

@@ -16,15 +16,15 @@
 
 import * as Common from './_common'
 
-export interface Weights extends WeightsBase {
+export type Weights = WeightsBase & {
   weights?: Record<string, any>;
 }
 
-export interface WeightsBase {
+export type WeightsBase = {
   _version?: Common.VersionNumber;
 }
 
-export interface WeightsResponse extends Weights {
+export type WeightsResponse = Weights & {
   discovered_cluster_manager?: boolean;
 }
 

@@ -14,12 +14,15 @@
  * modify the API generator.
  */
 
-import * as Common from './_common'
-import * as Snapshot_Common from './snapshot._common'
+'use strict';
 
-export interface SnapshotResponseItem {
-  error?: Common.ErrorCause;
-  repository: Common.Name;
-  snapshots?: Snapshot_Common.SnapshotInfo[];
+/** @namespace API-Insights */
+
+function InsightsApi(bindObj) {
+  this.topQueries = require('./topQueries').bind(bindObj);
+
+  // Deprecated: Use topQueries instead.
+  this.top_queries = require('./topQueries').bind(bindObj);
 }
 
+module.exports = InsightsApi;

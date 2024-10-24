@@ -15,7 +15,7 @@
  */
 
 
-export interface AccountDetails {
+export type AccountDetails = {
   backend_roles?: string[];
   custom_attribute_names?: string[];
   is_hidden?: boolean;
@@ -27,7 +27,7 @@ export interface AccountDetails {
   user_requested_tenant?: undefined | string;
 }
 
-export interface ActionGroup {
+export type ActionGroup = {
   allowed_actions?: string[];
   description?: string;
   hidden?: boolean;
@@ -38,23 +38,23 @@ export interface ActionGroup {
 
 export type ActionGroupsMap = Record<string, ActionGroup>
 
-export interface AllowListConfig {
+export type AllowListConfig = {
   enabled?: boolean;
   requests?: Record<string, any>;
 }
 
-export interface AuditConfig {
+export type AuditConfig = {
   audit?: AuditLogsConfig;
   compliance?: ComplianceConfig;
   enabled?: boolean;
 }
 
-export interface AuditConfigWithReadOnly {
+export type AuditConfigWithReadOnly = {
   _readonly?: string[];
   config?: AuditConfig;
 }
 
-export interface AuditLogsConfig {
+export type AuditLogsConfig = {
   disabled_rest_categories?: string[];
   disabled_transport_categories?: string[];
   enable_rest?: boolean;
@@ -69,7 +69,7 @@ export interface AuditLogsConfig {
   resolve_indices?: boolean;
 }
 
-export interface AuthInfo {
+export type AuthInfo = {
   backend_roles?: string[];
   custom_attribute_names?: string[];
   peer_certificates?: number | string;
@@ -86,13 +86,13 @@ export interface AuthInfo {
   user_requested_tenant?: undefined | string;
 }
 
-export interface CertificateCountPerNode {
+export type CertificateCountPerNode = {
   failed?: number;
   successful?: number;
   total?: number;
 }
 
-export interface CertificatesDetail {
+export type CertificatesDetail = {
   issuer_dn?: string;
   not_after?: string;
   not_before?: string;
@@ -100,22 +100,22 @@ export interface CertificatesDetail {
   subject_dn?: string;
 }
 
-export interface CertificatesPerNode {
+export type CertificatesPerNode = {
   certificates?: Record<string, CertificateTypes>;
   name?: string;
 }
 
-export interface CertificateTypes {
+export type CertificateTypes = {
   http?: Record<string, CertificatesDetail>[];
   transport?: Record<string, CertificatesDetail>[];
 }
 
-export interface ChangePasswordRequestContent {
+export type ChangePasswordRequestContent = {
   current_password: string;
   password: string;
 }
 
-export interface ComplianceConfig {
+export type ComplianceConfig = {
   enabled?: boolean;
   external_config?: boolean;
   internal_config?: boolean;
@@ -128,20 +128,20 @@ export interface ComplianceConfig {
   write_watched_indices?: string[];
 }
 
-export interface ConfigUpgradePayload {
+export type ConfigUpgradePayload = {
   config?: string[];
 }
 
-export interface Created {
+export type Created = {
   message?: string;
   status?: number | string;
 }
 
-export interface CreateTenantParams {
+export type CreateTenantParams = {
   description?: string;
 }
 
-export interface DashboardsInfo {
+export type DashboardsInfo = {
   default_tenant?: string;
   multitenancy_enabled?: boolean;
   not_fail_on_forbidden_enabled?: boolean;
@@ -155,17 +155,17 @@ export interface DashboardsInfo {
   user_name?: string;
 }
 
-export interface DistinguishedNames {
+export type DistinguishedNames = {
   nodes_dn?: string[];
 }
 
 export type DistinguishedNamesMap = Record<string, DistinguishedNames>
 
-export interface DynamicConfig {
+export type DynamicConfig = {
   dynamic?: DynamicOptions;
 }
 
-export interface DynamicOptions {
+export type DynamicOptions = {
   auth_failure_listeners?: Record<string, any>;
   authc?: Record<string, any>;
   authz?: Record<string, any>;
@@ -183,30 +183,30 @@ export interface DynamicOptions {
   respect_request_indices_options?: boolean;
 }
 
-export interface GenerateOBOToken {
+export type GenerateOBOToken = {
   authenticationToken?: string;
   durationSeconds?: string;
   user?: string;
 }
 
-export interface GetCertificates {
+export type GetCertificates = {
   http_certificates_list?: CertificatesDetail[];
   transport_certificates_list?: CertificatesDetail[];
 }
 
-export interface GetCertificatesNew {
+export type GetCertificatesNew = {
   _nodes?: Record<string, CertificateCountPerNode>;
   cluster_name?: string;
   nodes?: Record<string, CertificatesPerNode>;
 }
 
-export interface HealthInfo {
+export type HealthInfo = {
   message?: undefined | string;
   mode?: string;
   status?: string;
 }
 
-export interface IndexPermission {
+export type IndexPermission = {
   allowed_actions?: string[];
   dls?: string;
   fls?: string[];
@@ -214,42 +214,42 @@ export interface IndexPermission {
   masked_fields?: string[];
 }
 
-export interface InternalServerError {
+export type InternalServerError = {
   error?: string;
 }
 
-export interface MultiTenancyConfig {
+export type MultiTenancyConfig = {
   default_tenant?: string;
   multitenancy_enabled?: boolean;
   private_tenant_enabled?: boolean;
   sign_in_options?: string[];
 }
 
-export interface OBOToken {
+export type OBOToken = {
   description: string;
   duration?: string;
   service?: string;
 }
 
-export interface Ok {
+export type Ok = {
   message?: string;
   status?: number | string;
 }
 
-export interface PatchOperation {
+export type PatchOperation = {
   op: string;
   path: string;
   value?: Record<string, any>;
 }
 
-export interface PermissionsInfo {
+export type PermissionsInfo = {
   disabled_endpoints?: Record<string, any>;
   has_api_access?: boolean;
   user?: string;
   user_name?: string;
 }
 
-export interface Role {
+export type Role = {
   cluster_permissions?: string[];
   description?: string;
   hidden?: boolean;
@@ -259,7 +259,7 @@ export interface Role {
   tenant_permissions?: TenantPermission[];
 }
 
-export interface RoleMapping {
+export type RoleMapping = {
   and_backend_roles?: string[];
   backend_roles?: string[];
   description?: string;
@@ -273,11 +273,11 @@ export type RoleMappings = Record<string, RoleMapping>
 
 export type RolesMap = Record<string, Role>
 
-export interface SecurityConfig {
+export type SecurityConfig = {
   config?: DynamicConfig;
 }
 
-export interface SSLInfo {
+export type SSLInfo = {
   local_certificates_list?: string[];
   peer_certificates: number | string;
   peer_certificates_list?: string[];
@@ -295,7 +295,7 @@ export interface SSLInfo {
   ssl_provider_transport_server: string;
 }
 
-export interface Tenant {
+export type Tenant = {
   description?: string;
   hidden?: boolean;
   reserved?: boolean;
@@ -304,25 +304,25 @@ export interface Tenant {
 
 export type TenantInfo = Record<string, string>
 
-export interface TenantPermission {
+export type TenantPermission = {
   allowed_actions?: string[];
   tenant_patterns?: string[];
 }
 
 export type TenantsMap = Record<string, Tenant>
 
-export interface UpgradeCheck {
+export type UpgradeCheck = {
   status?: string;
   upgradeActions?: Record<string, any>;
   upgradeAvailable?: boolean;
 }
 
-export interface UpgradePerform {
+export type UpgradePerform = {
   status?: string;
   upgrades?: Record<string, any>;
 }
 
-export interface User {
+export type User = {
   attributes?: UserAttributes;
   backend_roles?: string[];
   description?: string;
@@ -338,13 +338,13 @@ export type UserAttributes = Record<string, string>
 
 export type UsersMap = Record<string, User>
 
-export interface UserTenants {
+export type UserTenants = {
   admin?: boolean;
   admin_tenant?: boolean;
   global_tenant?: boolean;
 }
 
-export interface WhoAmI {
+export type WhoAmI = {
   dn?: undefined | string;
   is_admin?: boolean;
   is_node_certificate_request?: boolean;

@@ -20,7 +20,7 @@ import * as Core_Msearch from '../_types/_core.msearch'
 import * as Core_MsearchTemplate from '../_types/_core.msearch_template'
 import * as Global from '../_types/_global'
 
-export interface MsearchTemplate_Request extends Global.Params {
+export type MsearchTemplate_Request = Global.Params & {
   body: MsearchTemplate_RequestBody;
   ccs_minimize_roundtrips?: boolean;
   index?: Common.Indices;
@@ -32,7 +32,7 @@ export interface MsearchTemplate_Request extends Global.Params {
 
 export type MsearchTemplate_RequestBody = Core_MsearchTemplate.RequestItem[]
 
-export interface MsearchTemplate_Response extends ApiResponse {
+export type MsearchTemplate_Response = ApiResponse & {
   body: MsearchTemplate_ResponseBody;
 }
 

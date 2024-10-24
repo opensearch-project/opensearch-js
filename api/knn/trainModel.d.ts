@@ -17,13 +17,13 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export interface Knn_TrainModel_Request extends Global.Params {
+export type Knn_TrainModel_Request = Global.Params & {
   body: Knn_TrainModel_RequestBody;
   model_id?: string;
   preference?: string;
 }
 
-export interface Knn_TrainModel_RequestBody {
+export type Knn_TrainModel_RequestBody = {
   compression_level?: string;
   description?: string;
   dimension: number;
@@ -36,11 +36,11 @@ export interface Knn_TrainModel_RequestBody {
   training_index: string;
 }
 
-export interface Knn_TrainModel_Response extends ApiResponse {
+export type Knn_TrainModel_Response = ApiResponse & {
   body: Knn_TrainModel_ResponseBody;
 }
 
-export interface Knn_TrainModel_ResponseBody {
+export type Knn_TrainModel_ResponseBody = {
   model_id: string;
 }
 

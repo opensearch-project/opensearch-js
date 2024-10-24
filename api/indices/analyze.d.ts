@@ -20,12 +20,12 @@ import * as Common_Analysis from '../_types/_common.analysis'
 import * as Global from '../_types/_global'
 import * as Indices_Analyze from '../_types/indices.analyze'
 
-export interface Indices_Analyze_Request extends Global.Params {
+export type Indices_Analyze_Request = Global.Params & {
   body?: Indices_Analyze_RequestBody;
   index?: Common.IndexName;
 }
 
-export interface Indices_Analyze_RequestBody {
+export type Indices_Analyze_RequestBody = {
   analyzer?: string;
   attributes?: string[];
   char_filter?: Common_Analysis.CharFilter[];
@@ -37,11 +37,11 @@ export interface Indices_Analyze_RequestBody {
   tokenizer?: Common_Analysis.Tokenizer;
 }
 
-export interface Indices_Analyze_Response extends ApiResponse {
+export type Indices_Analyze_Response = ApiResponse & {
   body: Indices_Analyze_ResponseBody;
 }
 
-export interface Indices_Analyze_ResponseBody {
+export type Indices_Analyze_ResponseBody = {
   detail?: Indices_Analyze.AnalyzeDetail;
   tokens?: Indices_Analyze.AnalyzeToken[];
 }

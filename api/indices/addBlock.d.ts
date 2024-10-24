@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_AddBlock from '../_types/indices.add_block'
 
-export interface Indices_AddBlock_Request extends Global.Params {
+export type Indices_AddBlock_Request = Global.Params & {
   allow_no_indices?: boolean;
   block: Indices_AddBlock.IndicesBlockOptions;
   cluster_manager_timeout?: Common.Duration;
@@ -30,11 +30,11 @@ export interface Indices_AddBlock_Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export interface Indices_AddBlock_Response extends ApiResponse {
+export type Indices_AddBlock_Response = ApiResponse & {
   body: Indices_AddBlock_ResponseBody;
 }
 
-export interface Indices_AddBlock_ResponseBody {
+export type Indices_AddBlock_ResponseBody = {
   acknowledged: boolean;
   indices: Indices_AddBlock.IndicesBlockStatus[];
   shards_acknowledged: boolean;

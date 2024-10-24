@@ -20,7 +20,7 @@ import * as Common_Mapping from '../_types/_common.mapping'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export interface Indices_Create_Request extends Global.Params {
+export type Indices_Create_Request = Global.Params & {
   body?: Indices_Create_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   index: Common.IndexName;
@@ -29,17 +29,17 @@ export interface Indices_Create_Request extends Global.Params {
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export interface Indices_Create_RequestBody {
+export type Indices_Create_RequestBody = {
   aliases?: Record<string, Indices_Common.Alias>;
   mappings?: Common_Mapping.TypeMapping;
   settings?: Indices_Common.IndexSettings;
 }
 
-export interface Indices_Create_Response extends ApiResponse {
+export type Indices_Create_Response = ApiResponse & {
   body: Indices_Create_ResponseBody;
 }
 
-export interface Indices_Create_ResponseBody {
+export type Indices_Create_ResponseBody = {
   acknowledged: boolean;
   index: Common.IndexName;
   shards_acknowledged: boolean;

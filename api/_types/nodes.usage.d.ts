@@ -19,14 +19,14 @@ import * as Nodes_Common from './nodes._common'
 
 export type Metric = '_all' | 'rest_actions'
 
-export interface NodeUsage {
+export type NodeUsage = {
   aggregations: Record<string, Record<string, any>>;
   rest_actions: Record<string, number>;
   since: Common.EpochTimeUnitMillis;
   timestamp: Common.EpochTimeUnitMillis;
 }
 
-export interface ResponseBase extends Nodes_Common.NodesResponseBase {
+export type ResponseBase = Nodes_Common.NodesResponseBase & {
   cluster_name: Common.Name;
   nodes: Record<string, NodeUsage>;
 }

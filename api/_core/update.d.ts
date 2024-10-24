@@ -20,7 +20,7 @@ import * as Core_Search from '../_types/_core.search'
 import * as Core_Update from '../_types/_core.update'
 import * as Global from '../_types/_global'
 
-export interface Update_Request extends Global.Params {
+export type Update_Request = Global.Params & {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -33,12 +33,12 @@ export interface Update_Request extends Global.Params {
   refresh?: Common.Refresh;
   require_alias?: boolean;
   retry_on_conflict?: number;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   timeout?: Common.Duration;
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export interface Update_RequestBody {
+export type Update_RequestBody = {
   _source?: Core_Search.SourceConfig;
   detect_noop?: boolean;
   doc?: Record<string, any>;
@@ -48,7 +48,7 @@ export interface Update_RequestBody {
   upsert?: Record<string, any>;
 }
 
-export interface Update_Response extends ApiResponse {
+export type Update_Response = ApiResponse & {
   body: Update_ResponseBody;
 }
 

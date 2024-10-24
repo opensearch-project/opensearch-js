@@ -17,13 +17,13 @@
 import * as Common from './_common'
 import * as Common_QueryDsl from './_common.query_dsl'
 
-export interface Action {
+export type Action = {
   add?: AddAction;
   remove?: RemoveAction;
   remove_index?: RemoveIndexAction;
 }
 
-export interface AddAction {
+export type AddAction = {
   alias?: Common.IndexAlias;
   aliases?: Common.IndexAlias | Common.IndexAlias[];
   filter?: Common_QueryDsl.QueryContainer;
@@ -37,7 +37,7 @@ export interface AddAction {
   search_routing?: Common.Routing;
 }
 
-export interface RemoveAction {
+export type RemoveAction = {
   alias?: Common.IndexAlias;
   aliases?: Common.IndexAlias | Common.IndexAlias[];
   index?: Common.IndexName;
@@ -45,7 +45,7 @@ export interface RemoveAction {
   must_exist?: boolean;
 }
 
-export interface RemoveIndexAction {
+export type RemoveIndexAction = {
   index?: Common.IndexName;
   indices?: Common.Indices;
   must_exist?: boolean;

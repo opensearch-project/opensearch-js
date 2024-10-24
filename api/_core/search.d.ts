@@ -17,12 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Common_Aggregations from '../_types/_common.aggregations'
-import * as Common_Mapping from '../_types/_common.mapping'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export interface Search_Request extends Global.Params {
+export type Search_Request = Global.Params & {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -52,7 +51,7 @@ export interface Search_Request extends Global.Params {
   q?: string;
   request_cache?: boolean;
   rest_total_hits_as_int?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   scroll?: Common.Duration;
   search_pipeline?: string;
   search_type?: Common.SearchType;
@@ -73,7 +72,7 @@ export interface Search_Request extends Global.Params {
   version?: boolean;
 }
 
-export interface Search_RequestBody {
+export type Search_RequestBody = {
   _source?: Core_Search.SourceConfig;
   aggregations?: Record<string, Common_Aggregations.AggregationContainer>;
   collapse?: Core_Search.FieldCollapse;
@@ -91,7 +90,6 @@ export interface Search_RequestBody {
   query?: Common_QueryDsl.QueryContainer;
   rank?: Common.RankContainer;
   rescore?: Core_Search.Rescore | Core_Search.Rescore[];
-  runtime_mappings?: Common_Mapping.RuntimeFields;
   script_fields?: Record<string, Common.ScriptField>;
   search_after?: Common.SortResults;
   seq_no_primary_term?: boolean;
@@ -108,7 +106,7 @@ export interface Search_RequestBody {
   version?: boolean;
 }
 
-export interface Search_Response extends ApiResponse {
+export type Search_Response = ApiResponse & {
   body: Search_ResponseBody;
 }
 

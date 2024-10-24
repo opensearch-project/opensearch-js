@@ -20,11 +20,11 @@ import * as Global from '../_types/_global'
 
 export type Info_Request = Global.Params & Record<string, any>
 
-export interface Info_Response extends ApiResponse {
+export type Info_Response = ApiResponse & {
   body: Info_ResponseBody;
 }
 
-export interface Info_ResponseBody {
+export type Info_ResponseBody = {
   cluster_name: Common.Name;
   cluster_uuid: Common.Uuid;
   name: Common.Name;

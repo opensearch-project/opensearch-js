@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as FlowFramework_Common from '../_types/flow_framework.common'
 import * as Global from '../_types/_global'
 
-export interface FlowFramework_Search_Request extends Global.Params {
+export type FlowFramework_Search_Request = Global.Params & {
   body: FlowFramework_Common.SearchWorkflowRequest;
 }
 
-export interface FlowFramework_Search_Response extends ApiResponse {
+export type FlowFramework_Search_Response = ApiResponse & {
   body: FlowFramework_Search_ResponseBody;
 }
 

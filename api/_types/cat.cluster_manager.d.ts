@@ -15,7 +15,7 @@
  */
 
 
-export interface ClusterManagerRecord {
+export type ClusterManagerRecord = {
   host?: string;
   id?: string;
   ip?: string;

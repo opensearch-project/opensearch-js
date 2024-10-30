@@ -20,7 +20,7 @@ import * as Core_Mget from '../_types/_core.mget'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export interface Mget_Request extends Global.Params {
+export type Mget_Request = Global.Params & {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -29,20 +29,20 @@ export interface Mget_Request extends Global.Params {
   preference?: string;
   realtime?: boolean;
   refresh?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   stored_fields?: Common.Fields;
 }
 
-export interface Mget_RequestBody {
+export type Mget_RequestBody = {
   docs?: Core_Mget.Operation[];
   ids?: Common.Ids;
 }
 
-export interface Mget_Response extends ApiResponse {
+export type Mget_Response = ApiResponse & {
   body: Mget_ResponseBody;
 }
 
-export interface Mget_ResponseBody {
+export type Mget_ResponseBody = {
   docs: Core_Mget.ResponseItem[];
 }
 

@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 
 export type Cluster_DeleteDecommissionAwareness_Request = Global.Params & Record<string, any>
 
-export interface Cluster_DeleteDecommissionAwareness_Response extends ApiResponse {
+export type Cluster_DeleteDecommissionAwareness_Response = ApiResponse & {
   body: Cluster_DeleteDecommissionAwareness_ResponseBody;
 }
 

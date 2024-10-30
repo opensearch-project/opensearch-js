@@ -19,7 +19,7 @@ import * as Cat_Nodes from '../_types/cat.nodes'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cat_Nodes_Request extends Global.Params {
+export type Cat_Nodes_Request = Global.Params & {
   bytes?: Common.ByteUnit;
   cluster_manager_timeout?: Common.Duration;
   format?: string;
@@ -33,7 +33,7 @@ export interface Cat_Nodes_Request extends Global.Params {
   v?: boolean;
 }
 
-export interface Cat_Nodes_Response extends ApiResponse {
+export type Cat_Nodes_Response = ApiResponse & {
   body: Cat_Nodes_ResponseBody;
 }
 

@@ -19,11 +19,11 @@ import * as Global from '../_types/_global'
 
 export type Ingest_ProcessorGrok_Request = Global.Params & Record<string, any>
 
-export interface Ingest_ProcessorGrok_Response extends ApiResponse {
+export type Ingest_ProcessorGrok_Response = ApiResponse & {
   body: Ingest_ProcessorGrok_ResponseBody;
 }
 
-export interface Ingest_ProcessorGrok_ResponseBody {
+export type Ingest_ProcessorGrok_ResponseBody = {
   patterns: Record<string, string>;
 }
 

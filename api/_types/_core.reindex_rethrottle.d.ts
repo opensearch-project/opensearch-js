@@ -16,11 +16,11 @@
 
 import * as Common from './_common'
 
-export interface ReindexNode extends Common.BaseNode {
+export type ReindexNode = Common.BaseNode & {
   tasks: Record<string, ReindexTask>;
 }
 
-export interface ReindexStatus {
+export type ReindexStatus = {
   batches: number;
   created: number;
   deleted: number;
@@ -36,7 +36,7 @@ export interface ReindexStatus {
   version_conflicts: number;
 }
 
-export interface ReindexTask {
+export type ReindexTask = {
   action: string;
   cancellable: boolean;
   description: string;

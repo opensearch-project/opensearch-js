@@ -17,11 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export interface Ml_RegisterModel_Request extends Global.Params {
+export type Ml_RegisterModel_Request = Global.Params & {
   body?: Ml_RegisterModel_RequestBody;
 }
 
-export interface Ml_RegisterModel_RequestBody {
+export type Ml_RegisterModel_RequestBody = {
   description?: string;
   model_format: 'ONNX' | 'TORCH_SCRIPT';
   model_group_id?: string;
@@ -29,11 +29,11 @@ export interface Ml_RegisterModel_RequestBody {
   version: string;
 }
 
-export interface Ml_RegisterModel_Response extends ApiResponse {
+export type Ml_RegisterModel_Response = ApiResponse & {
   body: Ml_RegisterModel_ResponseBody;
 }
 
-export interface Ml_RegisterModel_ResponseBody {
+export type Ml_RegisterModel_ResponseBody = {
   status: string;
   task_id: string;
 }

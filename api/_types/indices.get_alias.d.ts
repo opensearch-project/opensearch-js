@@ -16,7 +16,7 @@
 
 import * as Indices_Common from './indices._common'
 
-export interface IndexAliases {
+export type IndexAliases = {
   aliases: Record<string, Indices_Common.AliasDefinition>;
 }
 

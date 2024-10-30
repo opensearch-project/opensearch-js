@@ -19,14 +19,14 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Transforms_Common from '../_types/transforms._common'
 
-export interface Transforms_Put_Request extends Global.Params {
+export type Transforms_Put_Request = Global.Params & {
   body?: Transforms_Common.Transform;
   id: Common.Id;
   if_primary_term?: number;
   if_seq_no?: Common.SequenceNumber;
 }
 
-export interface Transforms_Put_Response extends ApiResponse {
+export type Transforms_Put_Response = ApiResponse & {
   body: Transforms_Put_ResponseBody;
 }
 

@@ -20,7 +20,7 @@ import * as Security_Common from '../_types/security._common'
 
 export type Security_WhoAmIProtected_Request = Global.Params & Record<string, any>
 
-export interface Security_WhoAmIProtected_Response extends ApiResponse {
+export type Security_WhoAmIProtected_Response = ApiResponse & {
   body: Security_WhoAmIProtected_ResponseBody;
 }
 

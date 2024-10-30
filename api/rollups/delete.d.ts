@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Rollups_Delete_Request extends Global.Params {
+export type Rollups_Delete_Request = Global.Params & {
   id: Common.Id;
 }
 
-export interface Rollups_Delete_Response extends ApiResponse {
+export type Rollups_Delete_Response = ApiResponse & {
   body: Rollups_Delete_ResponseBody;
 }
 

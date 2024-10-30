@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Global from '../_types/_global'
 
-export interface Count_Request extends Global.Params {
+export type Count_Request = Global.Params & {
   allow_no_indices?: boolean;
   analyze_wildcard?: boolean;
   analyzer?: string;
@@ -34,19 +34,19 @@ export interface Count_Request extends Global.Params {
   min_score?: number;
   preference?: string;
   q?: string;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   terminate_after?: number;
 }
 
-export interface Count_RequestBody {
+export type Count_RequestBody = {
   query?: Common_QueryDsl.QueryContainer;
 }
 
-export interface Count_Response extends ApiResponse {
+export type Count_Response = ApiResponse & {
   body: Count_ResponseBody;
 }
 
-export interface Count_ResponseBody {
+export type Count_ResponseBody = {
   _shards: Common.ShardStatistics;
   count: number;
   terminated_early?: boolean;

@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export interface Indices_Shrink_Request extends Global.Params {
+export type Indices_Shrink_Request = Global.Params & {
   body?: Indices_Shrink_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   copy_settings?: boolean;
@@ -32,16 +32,16 @@ export interface Indices_Shrink_Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface Indices_Shrink_RequestBody {
+export type Indices_Shrink_RequestBody = {
   aliases?: Record<string, Indices_Common.Alias>;
   settings?: Record<string, Record<string, any>>;
 }
 
-export interface Indices_Shrink_Response extends ApiResponse {
+export type Indices_Shrink_Response = ApiResponse & {
   body: Indices_Shrink_ResponseBody;
 }
 
-export interface Indices_Shrink_ResponseBody {
+export type Indices_Shrink_ResponseBody = {
   acknowledged: boolean;
   index: Common.IndexName;
   shards_acknowledged: boolean;

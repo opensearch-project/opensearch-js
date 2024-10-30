@@ -19,18 +19,18 @@ import * as Cluster_Common from '../_types/cluster._common'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cluster_GetComponentTemplate_Request extends Global.Params {
+export type Cluster_GetComponentTemplate_Request = Global.Params & {
   cluster_manager_timeout?: Common.Duration;
   local?: boolean;
   master_timeout?: Common.Duration;
   name?: Common.Name;
 }
 
-export interface Cluster_GetComponentTemplate_Response extends ApiResponse {
+export type Cluster_GetComponentTemplate_Response = ApiResponse & {
   body: Cluster_GetComponentTemplate_ResponseBody;
 }
 
-export interface Cluster_GetComponentTemplate_ResponseBody {
+export type Cluster_GetComponentTemplate_ResponseBody = {
   component_templates: Cluster_Common.ComponentTemplate[];
 }
 

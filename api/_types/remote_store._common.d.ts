@@ -15,13 +15,13 @@
  */
 
 
-export interface RemoteStoreRestoreInfo {
+export type RemoteStoreRestoreInfo = {
   indices?: string[];
   shards?: RemoteStoreRestoreShardsInfo;
   snapshot?: string;
 }
 
-export interface RemoteStoreRestoreShardsInfo {
+export type RemoteStoreRestoreShardsInfo = {
   failed?: number;
   successful?: number;
   total?: number;

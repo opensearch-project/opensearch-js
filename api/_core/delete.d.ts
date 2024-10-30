@@ -18,20 +18,20 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Delete_Request extends Global.Params {
+export type Delete_Request = Global.Params & {
   id: Common.Id;
   if_primary_term?: number;
   if_seq_no?: Common.SequenceNumber;
   index: Common.IndexName;
   refresh?: Common.Refresh;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   timeout?: Common.Duration;
   version?: Common.VersionNumber;
   version_type?: Common.VersionType;
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export interface Delete_Response extends ApiResponse {
+export type Delete_Response = ApiResponse & {
   body: Delete_ResponseBody;
 }
 

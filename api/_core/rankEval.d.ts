@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Core_RankEval from '../_types/_core.rank_eval'
 import * as Global from '../_types/_global'
 
-export interface RankEval_Request extends Global.Params {
+export type RankEval_Request = Global.Params & {
   allow_no_indices?: boolean;
   body: RankEval_RequestBody;
   expand_wildcards?: Common.ExpandWildcards;
@@ -28,16 +28,16 @@ export interface RankEval_Request extends Global.Params {
   search_type?: Common.SearchType;
 }
 
-export interface RankEval_RequestBody {
+export type RankEval_RequestBody = {
   metric?: Core_RankEval.RankEvalMetric;
   requests: Core_RankEval.RankEvalRequestItem[];
 }
 
-export interface RankEval_Response extends ApiResponse {
+export type RankEval_Response = ApiResponse & {
   body: RankEval_ResponseBody;
 }
 
-export interface RankEval_ResponseBody {
+export type RankEval_ResponseBody = {
   details: Record<string, Core_RankEval.RankEvalMetricDetail>;
   failures: Record<string, Record<string, any>>;
   metric_score: number;

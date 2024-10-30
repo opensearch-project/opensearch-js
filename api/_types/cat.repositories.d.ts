@@ -15,7 +15,7 @@
  */
 
 
-export interface RepositoriesRecord {
+export type RepositoriesRecord = {
   id?: string;
   type?: string;
 }

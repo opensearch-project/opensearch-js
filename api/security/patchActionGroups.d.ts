@@ -18,13 +18,13 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export interface Security_PatchActionGroups_Request extends Global.Params {
+export type Security_PatchActionGroups_Request = Global.Params & {
   body: Security_PatchActionGroups_RequestBody;
 }
 
 export type Security_PatchActionGroups_RequestBody = Security_Common.PatchOperation[]
 
-export interface Security_PatchActionGroups_Response extends ApiResponse {
+export type Security_PatchActionGroups_Response = ApiResponse & {
   body: Security_PatchActionGroups_ResponseBody;
 }
 

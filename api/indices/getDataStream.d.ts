@@ -19,15 +19,15 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export interface Indices_GetDataStream_Request extends Global.Params {
+export type Indices_GetDataStream_Request = Global.Params & {
   name?: Common.DataStreamNames;
 }
 
-export interface Indices_GetDataStream_Response extends ApiResponse {
+export type Indices_GetDataStream_Response = ApiResponse & {
   body: Indices_GetDataStream_ResponseBody;
 }
 
-export interface Indices_GetDataStream_ResponseBody {
+export type Indices_GetDataStream_ResponseBody = {
   data_streams: Indices_Common.DataStream[];
 }
 

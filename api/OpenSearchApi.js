@@ -31,6 +31,7 @@ class OpenSearchAPI {
       http: new(require('./http/_api'))(this),
       indices: new(require('./indices/_api'))(this),
       ingest: new(require('./ingest/_api'))(this),
+      insights: new(require('./insights/_api'))(this),
       ism: new(require('./ism/_api'))(this),
       knn: new(require('./knn/_api'))(this),
       ml: new(require('./ml/_api'))(this),
@@ -52,6 +53,7 @@ class OpenSearchAPI {
     // Setup Root API Functions
     /** @namespace API-Core */
     this.bulk = require('./_core/bulk').bind(this)
+    this.bulkStream = require('./_core/bulkStream').bind(this)
     this.clearScroll = require('./_core/clearScroll').bind(this)
     this.count = require('./_core/count').bind(this)
     this.create = require('./_core/create').bind(this)
@@ -94,6 +96,8 @@ class OpenSearchAPI {
     this.updateByQuery = require('./_core/updateByQuery').bind(this)
     this.updateByQueryRethrottle = require('./_core/updateByQueryRethrottle').bind(this)
 
+    // Deprecated: Use bulkStream instead.
+    this.bulk_stream = require('./_core/bulkStream').bind(this)
     // Deprecated: Use clearScroll instead.
     this.clear_scroll = require('./_core/clearScroll').bind(this)
     // Deprecated: Use createPit instead.
@@ -153,6 +157,7 @@ class OpenSearchAPI {
       http: { get() { return this[kApiModules].http } },
       indices: { get() { return this[kApiModules].indices } },
       ingest: { get() { return this[kApiModules].ingest } },
+      insights: { get() { return this[kApiModules].insights } },
       ism: { get() { return this[kApiModules].ism } },
       knn: { get() { return this[kApiModules].knn } },
       ml: { get() { return this[kApiModules].ml } },

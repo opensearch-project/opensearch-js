@@ -18,19 +18,19 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Core_Common from '../_types/_core._common'
 import * as Global from '../_types/_global'
 
-export interface DeletePit_Request extends Global.Params {
+export type DeletePit_Request = Global.Params & {
   body?: DeletePit_RequestBody;
 }
 
-export interface DeletePit_RequestBody {
+export type DeletePit_RequestBody = {
   pit_id: string[];
 }
 
-export interface DeletePit_Response extends ApiResponse {
+export type DeletePit_Response = ApiResponse & {
   body: DeletePit_ResponseBody;
 }
 
-export interface DeletePit_ResponseBody {
+export type DeletePit_ResponseBody = {
   pits?: Core_Common.DeletedPit[];
 }
 

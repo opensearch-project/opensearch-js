@@ -18,13 +18,13 @@ import * as Cluster_AllocationExplain from './cluster.allocation_explain'
 import * as Common_QueryDsl from './_common.query_dsl'
 import * as Indices_Stats from './indices.stats'
 
-export interface AcknowledgedResponseBase {
+export type AcknowledgedResponseBase = {
   acknowledged: boolean;
 }
 
 export type ActionStatusOptions = 'failure' | 'simulated' | 'success' | 'throttled'
 
-export interface BaseNode {
+export type BaseNode = {
   attributes?: Record<string, string>;
   host?: Host;
   ip?: Ip;
@@ -33,15 +33,19 @@ export interface BaseNode {
   transport_address?: TransportAddress;
 }
 
+export type BatchSize = number
+
+export type BuiltinScriptLanguage = 'expression' | 'java' | 'mustache' | 'painless'
+
 export type BulkByScrollFailure = BulkItemResponseFailure | ScrollableHitSourceSearchFailure
 
-export interface BulkByScrollResponseBase extends BulkByScrollTaskStatus {
+export type BulkByScrollResponseBase = BulkByScrollTaskStatus & {
   failures: BulkByScrollFailure[];
   timed_out: boolean;
   took: number;
 }
 
-export interface BulkByScrollTaskStatus {
+export type BulkByScrollTaskStatus = {
   batches: number;
   canceled?: string;
   created?: number;
@@ -62,7 +66,7 @@ export interface BulkByScrollTaskStatus {
 
 export type BulkByScrollTaskStatusOrException = BulkByScrollTaskStatus | ErrorCause
 
-export interface BulkItemResponseFailure {
+export type BulkItemResponseFailure = {
   cause: ErrorCause;
   id?: Id;
   index: IndexName;
@@ -75,7 +79,7 @@ export type ByteCount = number
 
 export type ByteUnit = 'b' | 'g' | 'gb' | 'k' | 'kb' | 'm' | 'mb' | 'p' | 'pb' | 't' | 'tb'
 
-export interface ClusterDetails {
+export type ClusterDetails = {
   _shards?: ShardStatistics;
   failures?: ShardFailure[];
   indices: string;
@@ -86,7 +90,7 @@ export interface ClusterDetails {
 
 export type ClusterSearchStatus = 'failed' | 'partial' | 'running' | 'skipped' | 'successful'
 
-export interface ClusterStatistics {
+export type ClusterStatistics = {
   details?: Record<string, ClusterDetails>;
   failed: number;
   partial: number;
@@ -96,7 +100,7 @@ export interface ClusterStatistics {
   total: number;
 }
 
-export interface CompletionStats {
+export type CompletionStats = {
   fields?: Record<string, FieldSizeUsage>;
   size?: HumanReadableByteCount;
   size_in_bytes: ByteCount;
@@ -104,7 +108,7 @@ export interface CompletionStats {
 
 export type Conflicts = 'abort' | 'proceed'
 
-export interface CoordsGeoBounds {
+export type CoordsGeoBounds = {
   bottom: number;
   left: number;
   right: number;
@@ -131,12 +135,12 @@ export type Distance = string
 
 export type DistanceUnit = 'cm' | 'ft' | 'in' | 'km' | 'm' | 'mi' | 'mm' | 'nmi' | 'yd'
 
-export interface DocStats {
+export type DocStats = {
   count: number;
   deleted?: number;
 }
 
-export interface DocStatus {
+export type DocStatus = {
   '1xx'?: number;
   '2xx'?: number;
   '3xx'?: number;
@@ -158,7 +162,7 @@ export type EpochTimeUnitMillis = UnitMillis
 
 export type EpochTimeUnitSeconds = UnitSeconds
 
-export interface ErrorCause {
+export type ErrorCause = {
   caused_by?: ErrorCause;
   reason?: string;
   root_cause?: ErrorCause[];
@@ -168,7 +172,7 @@ export interface ErrorCause {
   [key: string]: any | Record<string, any>;
 }
 
-export interface ErrorResponseBase {
+export type ErrorResponseBase = {
   error: ErrorCause;
   status: number;
 }
@@ -179,21 +183,21 @@ export type ExpandWildcards = ExpandWildcard | ExpandWildcard[]
 
 export type Field = string
 
-export interface FielddataStats {
+export type FielddataStats = {
   evictions?: number;
   fields?: Record<string, FieldMemoryUsage>;
   memory_size?: HumanReadableByteCount;
   memory_size_in_bytes: ByteCount;
 }
 
-export interface FieldMemoryUsage {
+export type FieldMemoryUsage = {
   memory_size?: HumanReadableByteCount;
   memory_size_in_bytes: ByteCount;
 }
 
 export type Fields = Field | Field[]
 
-export interface FieldSizeUsage {
+export type FieldSizeUsage = {
   size?: HumanReadableByteCount;
   size_in_bytes: ByteCount;
 }
@@ -202,7 +206,7 @@ export type FieldValue = boolean | undefined | number | Record<string, any> | st
 
 export type FieldWithOrder = Record<string, ScoreSort>
 
-export interface FlushStats {
+export type FlushStats = {
   periodic: number;
   total: number;
   total_time?: Duration;
@@ -213,7 +217,7 @@ export type Fuzziness = string | number
 
 export type GeoBounds = CoordsGeoBounds | TopLeftBottomRightGeoBounds | TopRightBottomLeftGeoBounds | WktGeoBounds
 
-export interface GeoDistanceSort {
+export type GeoDistanceSort = {
   distance_type?: GeoDistanceType;
   ignore_unmapped?: boolean;
   mode?: SortMode;
@@ -225,7 +229,7 @@ export type GeoDistanceType = 'arc' | 'plane'
 
 export type GeoHash = string
 
-export interface GeoHashLocation {
+export type GeoHashLocation = {
   geohash: GeoHash;
 }
 
@@ -233,7 +237,7 @@ export type GeoHashPrecision = number | string
 
 export type GeoHexCell = string
 
-export interface GeoLine {
+export type GeoLine = {
   coordinates: number[][];
   type: string;
 }
@@ -246,7 +250,7 @@ export type GeoTile = string
 
 export type GeoTilePrecision = number
 
-export interface GetStats {
+export type GetStats = {
   current: number;
   exists_time?: Duration;
   exists_time_in_millis: DurationValueUnitMillis;
@@ -265,7 +269,7 @@ export type HealthStatusCapitalized = 'GREEN' | 'RED' | 'YELLOW'
 
 export type Host = string
 
-export interface HourAndMinute {
+export type HourAndMinute = {
   hour: number[];
   minute: number[];
 }
@@ -284,7 +288,7 @@ export type Ids = Id | Id[]
 
 export type IndexAlias = string
 
-export interface IndexingStats {
+export type IndexingStats = {
   delete_current: number;
   delete_time?: Duration;
   delete_time_in_millis: DurationValueUnitMillis;
@@ -306,11 +310,11 @@ export type IndexName = string
 
 export type Indices = IndexName | IndexName[]
 
-export interface IndicesResponseBase extends AcknowledgedResponseBase {
+export type IndicesResponseBase = AcknowledgedResponseBase & {
   _shards?: ShardStatistics;
 }
 
-export interface InlineGet {
+export type InlineGet = {
   _primary_term?: number;
   _routing?: Routing;
   _seq_no?: SequenceNumber;
@@ -319,7 +323,7 @@ export interface InlineGet {
   found: boolean;
 }
 
-export interface InlineGetDictUserDefined {
+export type InlineGetDictUserDefined = {
   _primary_term?: number;
   _routing?: Routing;
   _seq_no?: SequenceNumber;
@@ -328,15 +332,15 @@ export interface InlineGetDictUserDefined {
   found: boolean;
 }
 
-export interface InlineScript extends ScriptBase {
+export type InlineScript = string | (ScriptBase & {
   lang?: ScriptLanguage;
   options?: Record<string, string>;
   source: string;
-}
+})
 
 export type Ip = string
 
-export interface KnnField {
+export type KnnField = {
   boost?: number;
   filter?: Common_QueryDsl.QueryContainer | Common_QueryDsl.QueryContainer[];
   k?: number;
@@ -347,14 +351,14 @@ export interface KnnField {
   vector: QueryVector;
 }
 
-export interface LatLonGeoLocation {
+export type LatLonGeoLocation = {
   lat: number;
   lon: number;
 }
 
 export type Level = 'cluster' | 'indices' | 'shards'
 
-export interface MergesStats {
+export type MergesStats = {
   current: number;
   current_docs: number;
   current_size?: HumanReadableByteCount;
@@ -384,14 +388,14 @@ export type Name = string
 
 export type Names = Name | Name[]
 
-export interface NestedSortValue {
+export type NestedSortValue = {
   filter?: Common_QueryDsl.QueryContainer;
   max_children?: number;
   nested?: NestedSortValue;
   path: Field;
 }
 
-export interface NodeAttributes {
+export type NodeAttributes = {
   attributes: Record<string, string>;
   ephemeral_id: Id;
   external_id?: string;
@@ -411,7 +415,7 @@ export type NodeRole = 'client' | 'coordinating_only' | 'data' | 'data_cold' | '
 
 export type NodeRoles = NodeRole[]
 
-export interface NodeShard {
+export type NodeShard = {
   allocation_id?: Record<string, Id>;
   index: IndexName;
   node?: NodeName;
@@ -424,16 +428,14 @@ export interface NodeShard {
   unassigned_info?: Cluster_AllocationExplain.UnassignedInformation;
 }
 
-export interface NodeStatistics {
+export type NodeStatistics = {
   failed: number;
   failures?: ErrorCause[];
   successful: number;
   total: number;
 }
 
-export type Normalization = 'h1' | 'h2' | 'h3' | 'no' | 'z'
-
-export interface OpenSearchVersionInfo {
+export type OpenSearchVersionInfo = {
   build_date: DateTime;
   build_flavor?: string;
   build_hash: string;
@@ -454,7 +456,7 @@ export type PercentageNumber = number
 
 export type PercentageString = string
 
-export interface PhaseTook {
+export type PhaseTook = {
   can_match: uint;
   dfs_pre_query: uint;
   dfs_query: uint;
@@ -467,7 +469,7 @@ export type PipelineName = string
 
 export type PipeSeparatedFlagsSimpleQueryStringFlag = Common_QueryDsl.SimpleQueryStringFlag | string
 
-export interface PluginStats {
+export type PluginStats = {
   classname: string;
   custom_foldername?: undefined | string;
   description: string;
@@ -480,7 +482,7 @@ export interface PluginStats {
   version: VersionString;
 }
 
-export interface QueryCacheStats {
+export type QueryCacheStats = {
   cache_count: number;
   cache_size: number;
   evictions: number;
@@ -495,11 +497,11 @@ export type QueryVector = number[]
 
 export type RankBase = Record<string, any>
 
-export interface RankContainer {
+export type RankContainer = {
   rrf?: RrfRank;
 }
 
-export interface RecoveryStats {
+export type RecoveryStats = {
   current_as_source: number;
   current_as_target: number;
   throttle_time?: Duration;
@@ -508,7 +510,7 @@ export interface RecoveryStats {
 
 export type Refresh = 'false' | 'true' | 'wait_for'
 
-export interface RefreshStats {
+export type RefreshStats = {
   external_total: number;
   external_total_time?: Duration;
   external_total_time_in_millis: DurationValueUnitMillis;
@@ -520,31 +522,31 @@ export interface RefreshStats {
 
 export type RelationName = string
 
-export interface RelocationFailureInfo {
+export type RelocationFailureInfo = {
   failed_attempts: number;
 }
 
-export interface RemoteStoreDownloadStats {
+export type RemoteStoreDownloadStats = {
   total_download_size: RemoteStoreUploadDownloadStats;
   total_time_spent?: Duration;
   total_time_spent_in_millis: DurationValueUnitMillis;
 }
 
-export interface RemoteStoreStats {
+export type RemoteStoreStats = {
   download: RemoteStoreDownloadStats;
   upload: RemoteStoreUploadStats;
 }
 
-export interface RemoteStoreTranslogStats {
+export type RemoteStoreTranslogStats = {
   upload: RemoteStoreTranslogUploadStats;
 }
 
-export interface RemoteStoreTranslogUploadStats {
+export type RemoteStoreTranslogUploadStats = {
   total_upload_size: RemoteStoreTranslogUploadTotalUploadSizeStats;
   total_uploads: RemoteStoreTranslogUploadTotalUploadsStats;
 }
 
-export interface RemoteStoreTranslogUploadTotalUploadSizeStats {
+export type RemoteStoreTranslogUploadTotalUploadSizeStats = {
   failed?: HumanReadableByteCount;
   failed_bytes: ByteCount;
   started?: HumanReadableByteCount;
@@ -553,13 +555,13 @@ export interface RemoteStoreTranslogUploadTotalUploadSizeStats {
   succeeded_bytes: ByteCount;
 }
 
-export interface RemoteStoreTranslogUploadTotalUploadsStats {
+export type RemoteStoreTranslogUploadTotalUploadsStats = {
   failed: number;
   started: number;
   succeeded: number;
 }
 
-export interface RemoteStoreUploadDownloadStats {
+export type RemoteStoreUploadDownloadStats = {
   failed?: HumanReadableByteCount;
   failed_bytes: ByteCount;
   started?: HumanReadableByteCount;
@@ -568,18 +570,18 @@ export interface RemoteStoreUploadDownloadStats {
   succeeded_bytes: ByteCount;
 }
 
-export interface RemoteStoreUploadPressureStats {
+export type RemoteStoreUploadPressureStats = {
   total_rejections: number;
 }
 
-export interface RemoteStoreUploadRefreshSizeLagStats {
+export type RemoteStoreUploadRefreshSizeLagStats = {
   max?: HumanReadableByteCount;
   max_bytes: ByteCount;
   total?: HumanReadableByteCount;
   total_bytes: ByteCount;
 }
 
-export interface RemoteStoreUploadStats {
+export type RemoteStoreUploadStats = {
   max_refresh_time_lag?: Duration;
   max_refresh_time_lag_in_millis: DurationValueUnitMillis;
   pressure: RemoteStoreUploadPressureStats;
@@ -589,7 +591,7 @@ export interface RemoteStoreUploadStats {
   total_upload_size: RemoteStoreUploadDownloadStats;
 }
 
-export interface RequestCacheStats {
+export type RequestCacheStats = {
   evictions: number;
   hit_count: number;
   memory_size?: HumanReadableByteCount;
@@ -597,47 +599,51 @@ export interface RequestCacheStats {
   miss_count: number;
 }
 
-export interface RequestStats {
+export type RequestStats = {
   current?: number;
   time?: Duration;
   time_in_millis?: DurationValueUnitMillis;
   total?: number;
 }
 
+export type ResourceType = 'index_or_alias'
+
 export type Result = 'created' | 'deleted' | 'noop' | 'not_found' | 'updated'
 
-export interface Retries {
+export type Retries = {
   bulk: number;
   search: number;
 }
 
-export type Routing = string | string[]
+export type Routing = string
 
-export interface RrfRank extends RankBase {
+export type RoutingInQueryString = string | string[]
+
+export type RrfRank = RankBase & {
   rank_constant?: number;
   window_size?: number;
 }
 
 export type ScheduleTimeOfDay = string | HourAndMinute
 
-export interface ScoreSort {
+export type ScoreSort = {
   order?: SortOrder;
 }
 
 export type Script = InlineScript | StoredScriptId
 
-export interface ScriptBase {
+export type ScriptBase = {
   params?: Record<string, any>;
 }
 
-export interface ScriptField {
+export type ScriptField = {
   ignore_failure?: boolean;
   script: Script;
 }
 
-export type ScriptLanguage = 'expression' | 'java' | 'mustache' | 'painless'
+export type ScriptLanguage = BuiltinScriptLanguage | string
 
-export interface ScriptSort {
+export type ScriptSort = {
   mode?: SortMode;
   nested?: NestedSortValue;
   order?: SortOrder;
@@ -647,7 +653,7 @@ export interface ScriptSort {
 
 export type ScriptSortType = 'number' | 'string' | 'version'
 
-export interface ScrollableHitSourceSearchFailure {
+export type ScrollableHitSourceSearchFailure = {
   index?: IndexName;
   node?: string;
   reason: ErrorCause;
@@ -659,7 +665,7 @@ export type ScrollId = string
 
 export type ScrollIds = ScrollId | ScrollId[]
 
-export interface SearchStats {
+export type SearchStats = {
   concurrent_avg_slice_count?: number;
   concurrent_query_current?: number;
   concurrent_query_time?: Duration;
@@ -693,13 +699,13 @@ export interface SearchStats {
 
 export type SearchType = 'dfs_query_then_fetch' | 'query_then_fetch'
 
-export interface SegmentReplicationStats {
+export type SegmentReplicationStats = {
   max_bytes_behind: ByteCount;
   max_replication_lag: ByteCount;
   total_bytes_behind: ByteCount;
 }
 
-export interface SegmentsStats {
+export type SegmentsStats = {
   count: number;
   doc_values_memory?: HumanReadableByteCount;
   doc_values_memory_in_bytes: ByteCount;
@@ -730,7 +736,7 @@ export interface SegmentsStats {
 
 export type SequenceNumber = number
 
-export interface ShardFailure {
+export type ShardFailure = {
   index?: IndexName;
   node?: string;
   reason: ErrorCause;
@@ -738,11 +744,11 @@ export interface ShardFailure {
   status?: string;
 }
 
-export interface ShardsOperationResponseBase {
+export type ShardsOperationResponseBase = {
   _shards: ShardStatistics;
 }
 
-export interface ShardStatistics {
+export type ShardStatistics = {
   failed: uint;
   failures?: ShardFailure[];
   skipped?: uint;
@@ -752,7 +758,7 @@ export interface ShardStatistics {
 
 export type short = number
 
-export interface SlicedScroll {
+export type SlicedScroll = {
   field?: Field;
   id: Id;
   max: number;
@@ -768,7 +774,7 @@ export type SortCombinations = Field | FieldWithOrder | SortOptions
 
 export type SortMode = 'avg' | 'max' | 'median' | 'min' | 'sum'
 
-export interface SortOptions {
+export type SortOptions = {
   _doc?: ScoreSort;
   _geo_distance?: GeoDistanceSort;
   _score?: ScoreSort;
@@ -779,17 +785,17 @@ export type SortOrder = 'asc' | 'desc'
 
 export type SortResults = FieldValue[]
 
-export interface StoredScript {
+export type StoredScript = {
   lang: ScriptLanguage;
   options?: Record<string, string>;
   source: string;
 }
 
-export interface StoredScriptId extends ScriptBase {
+export type StoredScriptId = ScriptBase & {
   id: Id;
 }
 
-export interface StoreStats {
+export type StoreStats = {
   reserved?: HumanReadableByteCount;
   reserved_in_bytes: ByteCount;
   size?: HumanReadableByteCount;
@@ -808,7 +814,7 @@ export type StringifiedVersionNumber = VersionNumber | string
 
 export type SuggestMode = 'always' | 'missing' | 'popular'
 
-export interface TaskFailure {
+export type TaskFailure = {
   node_id: NodeId;
   reason: ErrorCause;
   status: string;
@@ -817,23 +823,25 @@ export interface TaskFailure {
 
 export type TaskId = string | number
 
+export type TermFrequencyNormalization = 'h1' | 'h2' | 'h3' | 'no' | 'z'
+
 export type TimeOfDay = string
 
 export type TimeUnit = 'd' | 'h' | 'm' | 'micros' | 'ms' | 'nanos' | 's'
 
 export type TimeZone = string
 
-export interface TopLeftBottomRightGeoBounds {
+export type TopLeftBottomRightGeoBounds = {
   bottom_right: GeoLocation;
   top_left: GeoLocation;
 }
 
-export interface TopRightBottomLeftGeoBounds {
+export type TopRightBottomLeftGeoBounds = {
   bottom_left: GeoLocation;
   top_right: GeoLocation;
 }
 
-export interface TranslogStats {
+export type TranslogStats = {
   earliest_last_modified_age: number;
   operations: number;
   remote_store?: RemoteStoreTranslogStats;
@@ -876,18 +884,18 @@ export type WaitForActiveShards = number | WaitForActiveShardOptions
 
 export type WaitForEvents = 'high' | 'immediate' | 'languid' | 'low' | 'normal' | 'urgent'
 
-export interface WarmerStats {
+export type WarmerStats = {
   current: number;
   total: number;
   total_time?: Duration;
   total_time_in_millis: DurationValueUnitMillis;
 }
 
-export interface WktGeoBounds {
+export type WktGeoBounds = {
   wkt: string;
 }
 
-export interface WriteResponseBase {
+export type WriteResponseBase = {
   _id: Id;
   _index: IndexName;
   _primary_term: number;
@@ -899,7 +907,7 @@ export interface WriteResponseBase {
   result: Result;
 }
 
-export interface XyCartesianCoordinates {
+export type XyCartesianCoordinates = {
   x: number;
   y: number;
 }

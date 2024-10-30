@@ -18,13 +18,13 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Sql_Common from '../_types/sql._common'
 
-export interface Sql_Close_Request extends Global.Params {
+export type Sql_Close_Request = Global.Params & {
   body: Sql_Common.SqlClose;
   format?: string;
   sanitize?: boolean;
 }
 
-export interface Sql_Close_Response extends ApiResponse {
+export type Sql_Close_Response = ApiResponse & {
   body: Sql_Close_ResponseBody;
 }
 

@@ -20,11 +20,11 @@ import * as Global from '../_types/_global'
 
 export type DeleteAllPits_Request = Global.Params & Record<string, any>
 
-export interface DeleteAllPits_Response extends ApiResponse {
+export type DeleteAllPits_Response = ApiResponse & {
   body: DeleteAllPits_ResponseBody;
 }
 
-export interface DeleteAllPits_ResponseBody {
+export type DeleteAllPits_ResponseBody = {
   pits?: Core_Common.PitsDetailsDeleteAll[];
 }
 

@@ -16,12 +16,12 @@
 
 import * as Common from './_common'
 
-export interface CloseIndexResult {
+export type CloseIndexResult = {
   closed: boolean;
   shards?: Record<string, CloseShardResult>;
 }
 
-export interface CloseShardResult {
+export type CloseShardResult = {
   failures: Common.ShardFailure[];
 }
 

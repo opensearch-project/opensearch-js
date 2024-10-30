@@ -15,46 +15,46 @@
  */
 
 
-export interface Chime {
+export type Chime = {
   url: string;
 }
 
-export interface DeleteConfigsResponse {
+export type DeleteConfigsResponse = {
   delete_response_list?: DeleteResponseList;
 }
 
 export type DeleteResponseList = Record<string, RestStatus>
 
-export interface DeliveryStatus {
+export type DeliveryStatus = {
   status_code?: string;
   status_text?: string;
 }
 
-export interface Email {
+export type Email = {
   email_account_id: string;
   recipient_list?: RecipientListItem[];
 }
 
 export type EmailEncryptionMethod = 'none' | 'ssl' | 'start_tls'
 
-export interface EmailGroup {
+export type EmailGroup = {
   email_group_id_list?: string[];
   recipient_list: RecipientListItem[];
 }
 
-export interface EmailRecipientStatus {
+export type EmailRecipientStatus = {
   delivery_status?: DeliveryStatus;
   recipient?: string;
 }
 
-export interface EventSource {
+export type EventSource = {
   reference_id?: string;
   severity?: SeverityType;
   tags?: string[];
   title?: string;
 }
 
-export interface EventStatus {
+export type EventStatus = {
   config_id?: string;
   config_name?: string;
   config_type?: NotificationConfigType;
@@ -62,7 +62,7 @@ export interface EventStatus {
   email_recipient_status?: EmailRecipientStatus[];
 }
 
-export interface GetConfigsResponse {
+export type GetConfigsResponse = {
   config_list?: NotificationsConfigsOutputItem[];
   start_index?: number;
   total_hit_relation?: TotalHitRelation;
@@ -73,11 +73,11 @@ export type HeaderParamsMap = Record<string, number>
 
 export type HttpMethodType = 'PATCH' | 'POST' | 'PUT'
 
-export interface MicrosoftTeamsItem {
+export type MicrosoftTeamsItem = {
   url: string;
 }
 
-export interface NotificationChannel {
+export type NotificationChannel = {
   config_id?: string;
   config_type?: NotificationConfigType;
   description?: string;
@@ -87,12 +87,12 @@ export interface NotificationChannel {
 
 export type NotificationConfigType = 'chime' | 'email' | 'email_group' | 'microsoft_teams' | 'ses_account' | 'slack' | 'smtp_account' | 'sns' | 'webhook'
 
-export interface NotificationsConfig {
+export type NotificationsConfig = {
   config: NotificationsConfigItem;
   config_id?: string;
 }
 
-export interface NotificationsConfigItem {
+export type NotificationsConfigItem = {
   chime?: Chime;
   config_type: NotificationConfigType;
   description?: string;
@@ -108,7 +108,7 @@ export interface NotificationsConfigItem {
   webhook?: Webhook;
 }
 
-export interface NotificationsConfigsOutputItem {
+export type NotificationsConfigsOutputItem = {
   config?: NotificationsConfigItem;
   config_id?: string;
   created_time_ms?: number;
@@ -117,13 +117,13 @@ export interface NotificationsConfigsOutputItem {
 
 export type NotificationsPluginFeaturesMap = Record<string, string>
 
-export interface RecipientListItem {
+export type RecipientListItem = {
   recipient?: string;
 }
 
-export type RestStatus = 'accepted' | 'continue' | 'created' | 'found' | 'moved_permanently' | 'multi_status' | 'multiple_choices' | 'no_content' | 'non_authoritative_information' | 'not_modified' | 'ok' | 'partial_content' | 'reset_content' | 'see_other' | 'switching_protocols' | 'temporary_redirect' | 'use_proxy'
+export type RestStatus = 'ACCEPTED' | 'CREATED' | 'MULTI_STATUS' | 'NON_AUTHORITATIVE_INFORMATION' | 'NO_CONTENT' | 'OK' | 'PARTIAL_CONTENT' | 'RESET_CONTENT'
 
-export interface SesAccount {
+export type SesAccount = {
   from_address: string;
   region: string;
   role_arn?: string;
@@ -131,25 +131,25 @@ export interface SesAccount {
 
 export type SeverityType = 'critical' | 'high' | 'info'
 
-export interface SlackItem {
+export type SlackItem = {
   url: string;
 }
 
-export interface SmtpAccount {
+export type SmtpAccount = {
   from_address: string;
   host: string;
   method: EmailEncryptionMethod;
   port: number;
 }
 
-export interface SnsItem {
+export type SnsItem = {
   role_arn?: string;
   topic_arn: string;
 }
 
 export type TotalHitRelation = 'eq' | 'gte'
 
-export interface Webhook {
+export type Webhook = {
   header_params?: HeaderParamsMap;
   method?: HttpMethodType;
   url: string;

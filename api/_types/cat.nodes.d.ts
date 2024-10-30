@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface NodesRecord {
+export type NodesRecord = {
   build?: string;
   'bulk.avg_size_in_bytes'?: string;
   'bulk.avg_time'?: string;

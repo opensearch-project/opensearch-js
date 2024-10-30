@@ -15,7 +15,7 @@
  */
 
 
-export interface Params {
+export type Params = {
   error_trace?: boolean;
   filter_path?: string | string[];
   human?: boolean;

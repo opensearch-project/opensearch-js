@@ -37,7 +37,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 - Removed support for API param aliases. That is, the API functions now only accept params with the exact names specified in the OpenSearch API specification.
 - Removed support for overriding HTTP methods in API functions.
-- Removed support for Node.js 10 through 14. The minimum supported Node.js version is now 16.
+- Removed support for Node.js 10 and 12. The minimum supported Node.js version is now 14.
 ### Fixed
 - Upgrade JSON11 from 1.1.2 to 2.0.0 to ensure UTF-8 safety when stringifying JSON data
 - Fixed typo cause JSON11 parse will always be executed when json string has number inside

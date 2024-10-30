@@ -1037,7 +1037,7 @@ test('Content length too big (string)', (t) => {
 
 test('Content length exceeds max heap limit', (t) => {
   t.plan(4);
-  const percentage = 0.8;
+  const percentage = 0.01;
   const HEAP_SIZE_LIMIT = require('v8').getHeapStatistics().heap_size_limit;
   const contentLength = Math.round(HEAP_SIZE_LIMIT * percentage + 1);
   const memoryCircuitBreaker = {

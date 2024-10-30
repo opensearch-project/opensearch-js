@@ -15,6 +15,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 ### Fixed
 - Upgrade JSON11 from 1.1.2 to 2.0.0 to ensure UTF-8 safety when stringifying JSON data
+- Fixed typo cause JSON11 parse will always be execute when json string has number inside
 ### Security
 
 ## [3.0.0]

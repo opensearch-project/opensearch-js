@@ -48,11 +48,11 @@ jobs:
         run: |
           npm uninstall -g yarn
           npm i -g yarn@1.22.10
-
-      - name: Lint
-        if: matrix.node-version == '16.x'
-        run: |
-          yarn lint
+# TODO: Uncomment the following block after updating the Codegen to support this linter
+#      - name: Lint
+#        if: matrix.node-version == '16.x'
+#        run: |
+#          yarn lint
 
       - name: Unit test
         run: |

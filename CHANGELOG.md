@@ -6,16 +6,10 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
-- Bumps `@babel/traverse` from 7.22.8 to 7.24.7
-- Bumps `eslint-plugin-prettier` from 5.1.3 to 5.2.1
-- Bumps `simple-git` from 3.24.0 to 3.26.0
-- Bumps `aws4` from 1.13.0 to 1.13.2
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
-- Upgrade JSON11 from 1.1.2 to 2.0.0 to ensure UTF-8 safety when stringifying JSON data
-- Fixed typo cause JSON11 parse will always be execute when json string has number inside
 ### Security
 
 ## [3.0.0]
@@ -24,12 +18,16 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added missing API functions and modules.
 - Added missing request and response types.
 ### Dependencies
-- Bumps `micromatch` from 4.0.7 to 4.0.8
-- Bumps `debug` from 4.3.6 to 4.3.7
-- Bumps `simple-statistics` from 7.8.4 to 7.8.5
-- Bumps `simple-git` from 3.25.0 to 3.26.0
+- Bumps `@babel/traverse` from 7.22.8 to 7.24.7
 - Bumps `@types/node` from 22.5.0 to 22.5.4
+- Bumps `aws4` from 1.13.0 to 1.13.2
 - Bumps `aws4` from 1.13.1 to 1.13.2
+- Bumps `debug` from 4.3.6 to 4.3.7
+- Bumps `eslint-plugin-prettier` from 5.1.3 to 5.2.1
+- Bumps `micromatch` from 4.0.7 to 4.0.8
+- Bumps `simple-git` from 3.24.0 to 3.26.0
+- Bumps `simple-git` from 3.25.0 to 3.26.0
+- Bumps `simple-statistics` from 7.8.4 to 7.8.5
 ### Changed
 - All API functions are now generated from the OpenSearch API specification.
 - API request and response types are now generated from the OpenSearch API specification.
@@ -39,8 +37,10 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 - Removed support for API param aliases. That is, the API functions now only accept params with the exact names specified in the OpenSearch API specification.
 - Removed support for overriding HTTP methods in API functions.
-- Removed support for Node.js 10 through 16. The minimum supported Node.js version is now 18.
+- Removed support for Node.js 10 and 12. The minimum supported Node.js version is now 14.
 ### Fixed
+- Upgrade JSON11 from 1.1.2 to 2.0.0 to ensure UTF-8 safety when stringifying JSON data
+- Fixed typo cause JSON11 parse will always be executed when json string has number inside
 ### Security
 
 ## [2.12.0]

@@ -5,16 +5,20 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
-- Bumps `micromatch` from 4.0.7 to 4.0.8
-- Bumps `simple-statistics` from 7.8.4 to 7.8.5
-- Bumps `simple-git` from 3.25.0 to 3.26.0
-- Bumps `@types/node` from 22.5.0 to 22.5.2
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
-- Upgrade `JSON11` from 1.1.2 to 2.0.0 to ensure UTF-8 safety when stringifying JSON data
 ### Security
+
+## [2.13.0]
+### Dependencies
+- Bumps `micromatch` from 4.0.7 to 4.0.8
+- Bumps `simple-statistics` from 7.8.4 to 7.8.5
+- Bumps `simple-git` from 3.25.0 to 3.26.0
+- Bumps `@types/node` from 22.5.0 to 22.5.2
+### Fixed
+- Upgrade `JSON11` from 1.1.2 to 2.0.0 to ensure UTF-8 safety when stringifying JSON data
 
 ## [2.12.0]
 ### Dependencies

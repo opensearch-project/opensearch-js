@@ -79,6 +79,37 @@ test('Long numerals enabled', (t) => {
   t.match(res, `"[ ${longNegative.toString()}, ${longPositive.toString()} ]"`);
 });
 
+test('Long numerals enabled and json not includes large numbers', (t) => {
+  t.plan(2);
+  const s = new Serializer({ enableLongNumeralSupport: true });
+  const longPositive = BigInt(Number.MAX_SAFE_INTEGER) * 2n; // eslint-disable-line no-undef
+  const longNegative = BigInt(Number.MIN_SAFE_INTEGER) * 2n; // eslint-disable-line no-undef
+  const json =
+    `{` +
+    // The space before and after the values, and the lack of spaces before comma are intentional
+    `"false-positive-1": "෴${longNegative.toString()}", ` +
+    `"false-positive-2": "[ ߷${longPositive.toString()} ]", ` +
+    `"false-positive-3": "\\": ֍${longPositive.toString()}\\"", ` +
+    `"false-positive-4": "෴߷֍${longPositive.toString()}", ` +
+    `"normal-number": 2024,` +
+    `"max-safe-integer": ${Number.MAX_SAFE_INTEGER},` +
+    `"min-safe-integer": ${Number.MIN_SAFE_INTEGER}` +
+    `}`;
+  const obj = s.deserialize(json);
+  const res = s.serialize(obj);
+  t.same(obj, {
+    'normal-number': 2024,
+    'max-safe-integer': `${Number.MAX_SAFE_INTEGER}`,
+    'min-safe-integer': `${Number.MIN_SAFE_INTEGER}`,
+    'false-positive-4': `෴߷֍${longPositive.toString()}`,
+    'false-positive-3': `": ֍${longPositive.toString()}"`,
+    'false-positive-2': `[ ߷${longPositive.toString()} ]`,
+    'false-positive-1': `෴${longNegative.toString()}`,
+  });
+  // The space before and after the values, and the lack of spaces before comma are intentional
+  t.equal(res.replace(/\s+/g, ''), json.replace(/\s+/g, ''));
+});
+
 test('long numerals not enabled', (t) => {
   t.plan(5);
   const s = new Serializer({ enableLongNumeralSupport: false });

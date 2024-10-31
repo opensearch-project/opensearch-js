@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface LanguageContext {
+export type LanguageContext = {
   contexts: string[];
   language: Common.ScriptLanguage;
 }

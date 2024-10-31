@@ -18,7 +18,8 @@ import * as Common from './_common'
 import * as Common_Analysis from './_common.analysis'
 import * as Core_Search from './_core.search'
 
-export interface BoolQuery extends QueryBase {
+export type BoolQuery = QueryBase & {
+  adjust_pure_negative?: boolean;
   filter?: QueryContainer | QueryContainer[];
   minimum_should_match?: Common.MinimumShouldMatch;
   must?: QueryContainer | QueryContainer[];
@@ -26,7 +27,7 @@ export interface BoolQuery extends QueryBase {
   should?: QueryContainer | QueryContainer[];
 }
 
-export interface BoostingQuery extends QueryBase {
+export type BoostingQuery = QueryBase & {
   negative: QueryContainer;
   negative_boost: number;
   positive: QueryContainer;
@@ -36,7 +37,7 @@ export type ChildScoreMode = 'avg' | 'max' | 'min' | 'none' | 'sum'
 
 export type CombinedFieldsOperator = 'and' | 'or'
 
-export interface CombinedFieldsQuery extends QueryBase {
+export type CombinedFieldsQuery = QueryBase & {
   auto_generate_synonyms_phrase_query?: boolean;
   fields: Common.Field[];
   minimum_should_match?: Common.MinimumShouldMatch;
@@ -47,7 +48,7 @@ export interface CombinedFieldsQuery extends QueryBase {
 
 export type CombinedFieldsZeroTerms = 'all' | 'none'
 
-export interface CommonTermsQuery extends QueryBase {
+export type CommonTermsQuery = QueryBase & {
   analyzer?: string;
   cutoff_frequency?: number;
   high_freq_operator?: Operator;
@@ -56,7 +57,7 @@ export interface CommonTermsQuery extends QueryBase {
   query: string;
 }
 
-export interface ConstantScoreQuery extends QueryBase {
+export type ConstantScoreQuery = QueryBase & {
   filter: QueryContainer;
 }
 
@@ -64,7 +65,7 @@ export type DateDecayFunction = DecayFunctionBase & Record<string, any>
 
 export type DateDistanceFeatureQuery = DistanceFeatureQueryBaseDateMathDuration & Record<string, any>
 
-export interface DateRangeQuery extends RangeQueryBase {
+export type DateRangeQuery = RangeQueryBase & {
   format?: Common.DateFormat;
   from?: Common.DateMath | undefined;
   gt?: Common.DateMath;
@@ -77,34 +78,34 @@ export interface DateRangeQuery extends RangeQueryBase {
 
 export type DecayFunction = DateDecayFunction | NumericDecayFunction | GeoDecayFunction
 
-export interface DecayFunctionBase {
+export type DecayFunctionBase = {
   multi_value_mode?: MultiValueMode;
 }
 
-export interface DisMaxQuery extends QueryBase {
+export type DisMaxQuery = QueryBase & {
   queries: QueryContainer[];
   tie_breaker?: number;
 }
 
 export type DistanceFeatureQuery = GeoDistanceFeatureQuery | DateDistanceFeatureQuery
 
-export interface DistanceFeatureQueryBaseDateMathDuration extends QueryBase {
+export type DistanceFeatureQueryBaseDateMathDuration = QueryBase & {
   field: Common.Field;
   origin: Common.DateMath;
   pivot: Common.Duration;
 }
 
-export interface DistanceFeatureQueryBaseGeoLocationDistance extends QueryBase {
+export type DistanceFeatureQueryBaseGeoLocationDistance = QueryBase & {
   field: Common.Field;
   origin: Common.GeoLocation;
   pivot: Common.Distance;
 }
 
-export interface ExistsQuery extends QueryBase {
+export type ExistsQuery = QueryBase & {
   field: Common.Field;
 }
 
-export interface FieldAndFormat {
+export type FieldAndFormat = {
   field: Common.Field;
   format?: string;
   include_unmapped?: boolean;
@@ -112,7 +113,7 @@ export interface FieldAndFormat {
 
 export type FieldValueFactorModifier = 'ln' | 'ln1p' | 'ln2p' | 'log' | 'log1p' | 'log2p' | 'none' | 'reciprocal' | 'sqrt' | 'square'
 
-export interface FieldValueFactorScoreFunction {
+export type FieldValueFactorScoreFunction = {
   factor?: number;
   field: Common.Field;
   missing?: number;
@@ -121,7 +122,7 @@ export interface FieldValueFactorScoreFunction {
 
 export type FunctionBoostMode = 'avg' | 'max' | 'min' | 'multiply' | 'replace' | 'sum'
 
-export interface FunctionScoreContainer {
+export type FunctionScoreContainer = {
   exp?: DecayFunction;
   field_value_factor?: FieldValueFactorScoreFunction;
   filter?: QueryContainer;
@@ -134,7 +135,7 @@ export interface FunctionScoreContainer {
 
 export type FunctionScoreMode = 'avg' | 'first' | 'max' | 'min' | 'multiply' | 'sum'
 
-export interface FunctionScoreQuery extends QueryBase {
+export type FunctionScoreQuery = QueryBase & {
   boost_mode?: FunctionBoostMode;
   functions?: FunctionScoreContainer[];
   max_boost?: number;
@@ -143,7 +144,7 @@ export interface FunctionScoreQuery extends QueryBase {
   score_mode?: FunctionScoreMode;
 }
 
-export interface FuzzyQuery extends QueryBase {
+export type FuzzyQuery = QueryBase & {
   fuzziness?: Common.Fuzziness;
   max_expansions?: number;
   prefix_length?: number;
@@ -152,7 +153,7 @@ export interface FuzzyQuery extends QueryBase {
   value: string | number | boolean;
 }
 
-export interface GeoBoundingBoxQuery extends QueryBase {
+export type GeoBoundingBoxQuery = QueryBase & {
   ignore_unmapped?: IgnoreUnmapped;
   type?: GeoExecution;
   validation_method?: GeoValidationMethod;
@@ -163,7 +164,7 @@ export type GeoDecayFunction = DecayFunctionBase & Record<string, any>
 
 export type GeoDistanceFeatureQuery = DistanceFeatureQueryBaseGeoLocationDistance & Record<string, any>
 
-export interface GeoDistanceQuery extends QueryBase {
+export type GeoDistanceQuery = QueryBase & {
   distance: Common.Distance;
   distance_type?: Common.GeoDistanceType;
   ignore_unmapped?: IgnoreUnmapped;
@@ -173,29 +174,29 @@ export interface GeoDistanceQuery extends QueryBase {
 
 export type GeoExecution = 'indexed' | 'memory'
 
-export interface GeoPolygonQuery extends QueryBase {
+export type GeoPolygonQuery = QueryBase & {
   ignore_unmapped?: IgnoreUnmapped;
   validation_method?: GeoValidationMethod;
 }
 
-export interface GeoShape {
+export type GeoShape = {
   coordinates?: any[];
   type?: string;
 }
 
-export interface GeoShapeField {
+export type GeoShapeField = {
   relation?: Common.GeoShapeRelation;
   shape: GeoShape;
 }
 
-export interface GeoShapeQuery extends QueryBase {
+export type GeoShapeQuery = QueryBase & {
   ignore_unmapped?: IgnoreUnmapped;
   [key: string]: any | GeoShapeField;
 }
 
 export type GeoValidationMethod = 'coerce' | 'ignore_malformed' | 'strict'
 
-export interface HasChildQuery extends QueryBase {
+export type HasChildQuery = QueryBase & {
   ignore_unmapped?: IgnoreUnmapped;
   inner_hits?: Core_Search.InnerHits;
   max_children?: number;
@@ -205,7 +206,7 @@ export interface HasChildQuery extends QueryBase {
   type: Common.RelationName;
 }
 
-export interface HasParentQuery extends QueryBase {
+export type HasParentQuery = QueryBase & {
   ignore_unmapped?: IgnoreUnmapped;
   inner_hits?: Core_Search.InnerHits;
   parent_type: Common.RelationName;
@@ -213,25 +214,25 @@ export interface HasParentQuery extends QueryBase {
   score?: boolean;
 }
 
-export interface IdsQuery extends QueryBase {
+export type IdsQuery = QueryBase & {
   values?: Common.Ids;
 }
 
 export type IgnoreUnmapped = boolean
 
-export interface IntervalsAllOf {
+export type IntervalsAllOf = {
   filter?: IntervalsFilter;
   intervals: IntervalsContainer[];
   max_gaps?: number;
   ordered?: boolean;
 }
 
-export interface IntervalsAnyOf {
+export type IntervalsAnyOf = {
   filter?: IntervalsFilter;
   intervals: IntervalsContainer[];
 }
 
-export interface IntervalsContainer {
+export type IntervalsContainer = {
   all_of?: IntervalsAllOf;
   any_of?: IntervalsAnyOf;
   fuzzy?: IntervalsFuzzy;
@@ -240,7 +241,7 @@ export interface IntervalsContainer {
   wildcard?: IntervalsWildcard;
 }
 
-export interface IntervalsFilter {
+export type IntervalsFilter = {
   after?: IntervalsContainer;
   before?: IntervalsContainer;
   contained_by?: IntervalsContainer;
@@ -252,7 +253,7 @@ export interface IntervalsFilter {
   script?: Common.Script;
 }
 
-export interface IntervalsFuzzy {
+export type IntervalsFuzzy = {
   analyzer?: string;
   fuzziness?: Common.Fuzziness;
   prefix_length?: number;
@@ -261,7 +262,7 @@ export interface IntervalsFuzzy {
   use_field?: Common.Field;
 }
 
-export interface IntervalsMatch {
+export type IntervalsMatch = {
   analyzer?: string;
   filter?: IntervalsFilter;
   max_gaps?: number;
@@ -270,13 +271,13 @@ export interface IntervalsMatch {
   use_field?: Common.Field;
 }
 
-export interface IntervalsPrefix {
+export type IntervalsPrefix = {
   analyzer?: string;
   prefix: string;
   use_field?: Common.Field;
 }
 
-export interface IntervalsQuery extends QueryBase {
+export type IntervalsQuery = QueryBase & {
   all_of?: IntervalsAllOf;
   any_of?: IntervalsAnyOf;
   fuzzy?: IntervalsFuzzy;
@@ -285,7 +286,7 @@ export interface IntervalsQuery extends QueryBase {
   wildcard?: IntervalsWildcard;
 }
 
-export interface IntervalsWildcard {
+export type IntervalsWildcard = {
   analyzer?: string;
   pattern: string;
   use_field?: Common.Field;
@@ -295,7 +296,7 @@ export type KnnQuery = Record<string, Common.KnnField>
 
 export type Like = string | LikeDocument
 
-export interface LikeDocument {
+export type LikeDocument = {
   _id?: Common.Id;
   _index?: Common.IndexName;
   doc?: Record<string, any>;
@@ -308,7 +309,7 @@ export interface LikeDocument {
 
 export type MatchAllQuery = QueryBase
 
-export interface MatchBoolPrefixQuery extends QueryBase {
+export type MatchBoolPrefixQuery = QueryBase & {
   analyzer?: string;
   fuzziness?: Common.Fuzziness;
   fuzzy_rewrite?: Common.MultiTermQueryRewrite;
@@ -322,7 +323,7 @@ export interface MatchBoolPrefixQuery extends QueryBase {
 
 export type MatchNoneQuery = QueryBase & Record<string, any>
 
-export interface MatchPhrasePrefixQuery extends QueryBase {
+export type MatchPhrasePrefixQuery = QueryBase & {
   analyzer?: string;
   max_expansions?: number;
   query: string;
@@ -330,14 +331,14 @@ export interface MatchPhrasePrefixQuery extends QueryBase {
   zero_terms_query?: ZeroTermsQuery;
 }
 
-export interface MatchPhraseQuery extends QueryBase {
+export type MatchPhraseQuery = QueryBase & {
   analyzer?: string;
   query: string;
   slop?: number;
   zero_terms_query?: ZeroTermsQuery;
 }
 
-export interface MatchQuery extends QueryBase {
+export type MatchQuery = QueryBase & {
   analyzer?: string;
   auto_generate_synonyms_phrase_query?: boolean;
   cutoff_frequency?: number;
@@ -353,7 +354,7 @@ export interface MatchQuery extends QueryBase {
   zero_terms_query?: ZeroTermsQuery;
 }
 
-export interface MoreLikeThisQuery extends QueryBase {
+export type MoreLikeThisQuery = QueryBase & {
   analyzer?: string;
   boost_terms?: number;
   fail_on_unsupported_field?: boolean;
@@ -375,7 +376,7 @@ export interface MoreLikeThisQuery extends QueryBase {
   version_type?: Common.VersionType;
 }
 
-export interface MultiMatchQuery extends QueryBase {
+export type MultiMatchQuery = QueryBase & {
   analyzer?: string;
   auto_generate_synonyms_phrase_query?: boolean;
   cutoff_frequency?: number;
@@ -397,7 +398,7 @@ export interface MultiMatchQuery extends QueryBase {
 
 export type MultiValueMode = 'avg' | 'max' | 'min' | 'sum'
 
-export interface NestedQuery extends QueryBase {
+export type NestedQuery = QueryBase & {
   ignore_unmapped?: IgnoreUnmapped;
   inner_hits?: Core_Search.InnerHits;
   path: Common.Field;
@@ -407,7 +408,7 @@ export interface NestedQuery extends QueryBase {
 
 export type NeuralQuery = QueryBase & Record<string, NeuralQueryVectorField>
 
-export interface NeuralQueryVectorField {
+export type NeuralQueryVectorField = {
   filter?: QueryContainer;
   k?: number;
   max_distance?: number;
@@ -417,7 +418,7 @@ export interface NeuralQueryVectorField {
   query_text?: string;
 }
 
-export interface NumberRangeQuery extends RangeQueryBase {
+export type NumberRangeQuery = RangeQueryBase & {
   from?: undefined | number | string;
   gt?: number;
   gte?: number;
@@ -430,13 +431,13 @@ export type NumericDecayFunction = DecayFunctionBase & Record<string, any>
 
 export type Operator = 'and' | 'or'
 
-export interface ParentIdQuery extends QueryBase {
+export type ParentIdQuery = QueryBase & {
   id?: Common.Id;
   ignore_unmapped?: IgnoreUnmapped;
   type?: Common.RelationName;
 }
 
-export interface PercolateQuery extends QueryBase {
+export type PercolateQuery = QueryBase & {
   document?: Record<string, any>;
   documents?: Record<string, any>[];
   field: Common.Field;
@@ -448,25 +449,25 @@ export interface PercolateQuery extends QueryBase {
   version?: Common.VersionNumber;
 }
 
-export interface PinnedDoc {
+export type PinnedDoc = {
   _id: Common.Id;
   _index: Common.IndexName;
 }
 
 export type PinnedQuery = QueryBase & Record<string, any>
 
-export interface PrefixQuery extends QueryBase {
+export type PrefixQuery = QueryBase & {
   case_insensitive?: boolean;
   rewrite?: Common.MultiTermQueryRewrite;
   value: string;
 }
 
-export interface QueryBase {
+export type QueryBase = {
   _name?: string;
   boost?: number;
 }
 
-export interface QueryContainer {
+export type QueryContainer = {
   bool?: BoolQuery;
   boosting?: BoostingQuery;
   combined_fields?: CombinedFieldsQuery;
@@ -528,7 +529,7 @@ export interface QueryContainer {
   xy_shape?: XyShapeQuery;
 }
 
-export interface QueryStringQuery extends QueryBase {
+export type QueryStringQuery = QueryBase & {
   allow_leading_wildcard?: boolean;
   analyze_wildcard?: boolean;
   analyzer?: string;
@@ -556,14 +557,14 @@ export interface QueryStringQuery extends QueryBase {
   type?: TextQueryType;
 }
 
-export interface RandomScoreFunction {
+export type RandomScoreFunction = {
   field?: Common.Field;
   seed?: number | string;
 }
 
 export type RangeQuery = DateRangeQuery | NumberRangeQuery
 
-export interface RangeQueryBase extends QueryBase {
+export type RangeQueryBase = QueryBase & {
   relation?: RangeRelation;
 }
 
@@ -573,20 +574,20 @@ export type RankFeatureFunction = Record<string, any>
 
 export type RankFeatureFunctionLinear = RankFeatureFunction & Record<string, any>
 
-export interface RankFeatureFunctionLogarithm extends RankFeatureFunction {
+export type RankFeatureFunctionLogarithm = RankFeatureFunction & {
   scaling_factor: number;
 }
 
-export interface RankFeatureFunctionSaturation extends RankFeatureFunction {
+export type RankFeatureFunctionSaturation = RankFeatureFunction & {
   pivot?: number;
 }
 
-export interface RankFeatureFunctionSigmoid extends RankFeatureFunction {
+export type RankFeatureFunctionSigmoid = RankFeatureFunction & {
   exponent: number;
   pivot: number;
 }
 
-export interface RankFeatureQuery extends QueryBase {
+export type RankFeatureQuery = QueryBase & {
   field: Common.Field;
   linear?: RankFeatureFunctionLinear;
   log?: RankFeatureFunctionLogarithm;
@@ -594,7 +595,7 @@ export interface RankFeatureQuery extends QueryBase {
   sigmoid?: RankFeatureFunctionSigmoid;
 }
 
-export interface RegexpQuery extends QueryBase {
+export type RegexpQuery = QueryBase & {
   case_insensitive?: boolean;
   flags?: string;
   max_determinized_states?: number;
@@ -602,21 +603,21 @@ export interface RegexpQuery extends QueryBase {
   value: string;
 }
 
-export interface RuleQuery extends QueryBase {
+export type RuleQuery = QueryBase & {
   match_criteria: Record<string, any>;
   organic: QueryContainer;
   ruleset_id: Common.Id;
 }
 
-export interface ScriptQuery extends QueryBase {
+export type ScriptQuery = QueryBase & {
   script: Common.Script;
 }
 
-export interface ScriptScoreFunction {
+export type ScriptScoreFunction = {
   script: Common.Script;
 }
 
-export interface ScriptScoreQuery extends QueryBase {
+export type ScriptScoreQuery = QueryBase & {
   min_score?: number;
   query: QueryContainer;
   script: Common.Script;
@@ -626,7 +627,7 @@ export type SimpleQueryStringFlag = 'ALL' | 'AND' | 'ESCAPE' | 'FUZZY' | 'NEAR' 
 
 export type SimpleQueryStringFlags = Common.PipeSeparatedFlagsSimpleQueryStringFlag
 
-export interface SimpleQueryStringQuery extends QueryBase {
+export type SimpleQueryStringQuery = QueryBase & {
   analyze_wildcard?: boolean;
   analyzer?: string;
   auto_generate_synonyms_phrase_query?: boolean;
@@ -642,34 +643,34 @@ export interface SimpleQueryStringQuery extends QueryBase {
   quote_field_suffix?: string;
 }
 
-export interface SpanContainingQuery extends QueryBase {
+export type SpanContainingQuery = QueryBase & {
   big: SpanQuery;
   little: SpanQuery;
 }
 
-export interface SpanFieldMaskingQuery extends QueryBase {
+export type SpanFieldMaskingQuery = QueryBase & {
   field: Common.Field;
   query: SpanQuery;
 }
 
-export interface SpanFirstQuery extends QueryBase {
+export type SpanFirstQuery = QueryBase & {
   end: number;
   match: SpanQuery;
 }
 
 export type SpanGapQuery = Record<string, number>
 
-export interface SpanMultiTermQuery extends QueryBase {
+export type SpanMultiTermQuery = QueryBase & {
   match: QueryContainer;
 }
 
-export interface SpanNearQuery extends QueryBase {
+export type SpanNearQuery = QueryBase & {
   clauses: SpanQuery[];
   in_order?: boolean;
   slop?: number;
 }
 
-export interface SpanNotQuery extends QueryBase {
+export type SpanNotQuery = QueryBase & {
   dist?: number;
   exclude: SpanQuery;
   include: SpanQuery;
@@ -677,11 +678,11 @@ export interface SpanNotQuery extends QueryBase {
   pre?: number;
 }
 
-export interface SpanOrQuery extends QueryBase {
+export type SpanOrQuery = QueryBase & {
   clauses: SpanQuery[];
 }
 
-export interface SpanQuery {
+export type SpanQuery = {
   field_masking_span?: SpanFieldMaskingQuery;
   span_containing?: SpanContainingQuery;
   span_first?: SpanFirstQuery;
@@ -694,39 +695,39 @@ export interface SpanQuery {
   span_within?: SpanWithinQuery;
 }
 
-export interface SpanTermQuery extends QueryBase {
+export type SpanTermQuery = QueryBase & {
   value: string;
 }
 
-export interface SpanWithinQuery extends QueryBase {
+export type SpanWithinQuery = QueryBase & {
   big: SpanQuery;
   little: SpanQuery;
 }
 
-export interface TermQuery extends QueryBase {
+export type TermQuery = QueryBase & {
   case_insensitive?: boolean;
   value: Common.FieldValue;
 }
 
-export interface TermsLookupField {
+export type TermsLookupField = {
   id?: Common.Id;
   index?: Common.IndexName;
   path?: Common.Field;
   routing?: Common.Routing;
 }
 
-export interface TermsQueryField {
+export type TermsQueryField = {
   boost?: number;
   [key: string]: any | TermsLookupField | string[];
 }
 
-export interface TermsSetQuery extends QueryBase {
+export type TermsSetQuery = QueryBase & {
   minimum_should_match_field?: Common.Field;
   minimum_should_match_script?: Common.Script;
   terms: string[];
 }
 
-export interface TextExpansionQuery extends QueryBase {
+export type TextExpansionQuery = QueryBase & {
   model_id: string;
   model_text: string;
   pruning_config?: TokenPruningConfig;
@@ -734,38 +735,38 @@ export interface TextExpansionQuery extends QueryBase {
 
 export type TextQueryType = 'best_fields' | 'bool_prefix' | 'cross_fields' | 'most_fields' | 'phrase' | 'phrase_prefix'
 
-export interface TokenPruningConfig {
+export type TokenPruningConfig = {
   only_score_pruned_tokens?: boolean;
   tokens_freq_ratio_threshold?: number;
   tokens_weight_threshold?: number;
 }
 
-export interface TypeQuery extends QueryBase {
+export type TypeQuery = QueryBase & {
   value: string;
 }
 
-export interface WeightedTokensQuery extends QueryBase {
+export type WeightedTokensQuery = QueryBase & {
   pruning_config?: TokenPruningConfig;
   tokens: Record<string, number>;
 }
 
-export interface WildcardQuery extends QueryBase {
+export type WildcardQuery = QueryBase & {
   case_insensitive?: boolean;
   rewrite?: Common.MultiTermQueryRewrite;
   value?: string;
   wildcard?: string;
 }
 
-export interface WrapperQuery extends QueryBase {
+export type WrapperQuery = QueryBase & {
   query: string;
 }
 
-export interface XyShape {
+export type XyShape = {
   coordinates?: any[];
   type?: string;
 }
 
-export interface XyShapeField {
+export type XyShapeField = {
   relation?: Common.GeoShapeRelation;
   shape: XyShape;
 }

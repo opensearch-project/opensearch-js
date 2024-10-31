@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 import * as Indices_SimulateTemplate from '../_types/indices.simulate_template'
 
-export interface Indices_SimulateTemplate_Request extends Global.Params {
+export type Indices_SimulateTemplate_Request = Global.Params & {
   body?: Indices_Common.IndexTemplate;
   cause?: string;
   cluster_manager_timeout?: Common.Duration;
@@ -29,11 +29,11 @@ export interface Indices_SimulateTemplate_Request extends Global.Params {
   name?: Common.Name;
 }
 
-export interface Indices_SimulateTemplate_Response extends ApiResponse {
+export type Indices_SimulateTemplate_Response = ApiResponse & {
   body: Indices_SimulateTemplate_ResponseBody;
 }
 
-export interface Indices_SimulateTemplate_ResponseBody {
+export type Indices_SimulateTemplate_ResponseBody = {
   overlapping?: Indices_SimulateTemplate.Overlapping[];
   template: Indices_SimulateTemplate.Template;
 }

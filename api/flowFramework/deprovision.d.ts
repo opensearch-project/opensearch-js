@@ -18,12 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as FlowFramework_Common from '../_types/flow_framework.common'
 import * as Global from '../_types/_global'
 
-export interface FlowFramework_Deprovision_Request extends Global.Params {
+export type FlowFramework_Deprovision_Request = Global.Params & {
   allow_delete?: FlowFramework_Common.AllowDelete;
   workflow_id: FlowFramework_Common.WorkflowID;
 }
 
-export interface FlowFramework_Deprovision_Response extends ApiResponse {
+export type FlowFramework_Deprovision_Response = ApiResponse & {
   body: FlowFramework_Deprovision_ResponseBody;
 }
 

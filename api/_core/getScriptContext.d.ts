@@ -20,11 +20,11 @@ import * as Global from '../_types/_global'
 
 export type GetScriptContext_Request = Global.Params & Record<string, any>
 
-export interface GetScriptContext_Response extends ApiResponse {
+export type GetScriptContext_Response = ApiResponse & {
   body: GetScriptContext_ResponseBody;
 }
 
-export interface GetScriptContext_ResponseBody {
+export type GetScriptContext_ResponseBody = {
   contexts: Core_GetScriptContext.Context[];
 }
 

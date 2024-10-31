@@ -15,7 +15,7 @@
  */
 
 
-export interface NodeAttributesRecord {
+export type NodeAttributesRecord = {
   attr?: string;
   host?: string;
   id?: string;

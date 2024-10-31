@@ -15,7 +15,7 @@
  */
 
 
-export interface PendingTasksRecord {
+export type PendingTasksRecord = {
   insertOrder?: string;
   priority?: string;
   source?: string;

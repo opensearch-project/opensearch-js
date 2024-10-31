@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Snapshot_Clone_Request extends Global.Params {
+export type Snapshot_Clone_Request = Global.Params & {
   body: Snapshot_Clone_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   master_timeout?: Common.Duration;
@@ -27,11 +27,11 @@ export interface Snapshot_Clone_Request extends Global.Params {
   target_snapshot: Common.Name;
 }
 
-export interface Snapshot_Clone_RequestBody {
+export type Snapshot_Clone_RequestBody = {
   indices: string;
 }
 
-export interface Snapshot_Clone_Response extends ApiResponse {
+export type Snapshot_Clone_Response = ApiResponse & {
   body: Snapshot_Clone_ResponseBody;
 }
 

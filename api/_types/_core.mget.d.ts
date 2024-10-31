@@ -18,13 +18,13 @@ import * as Common from './_common'
 import * as Core_Get from './_core.get'
 import * as Core_Search from './_core.search'
 
-export interface MultiGetError {
+export type MultiGetError = {
   _id: Common.Id;
   _index: Common.IndexName;
   error: Common.ErrorCause;
 }
 
-export interface Operation {
+export type Operation = {
   _id: Common.Id;
   _index?: Common.IndexName;
   _source?: Core_Search.SourceConfig;

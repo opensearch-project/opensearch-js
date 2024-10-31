@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface IndicesValidationExplanation {
+export type IndicesValidationExplanation = {
   error?: string;
   explanation?: string;
   index: Common.IndexName;

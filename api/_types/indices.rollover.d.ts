@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface RolloverConditions {
+export type RolloverConditions = {
   max_age?: Common.Duration;
   max_age_millis?: Common.DurationValueUnitMillis;
   max_docs?: number;

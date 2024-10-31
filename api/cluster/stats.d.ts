@@ -19,13 +19,13 @@ import * as Cluster_Stats from '../_types/cluster.stats'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cluster_Stats_Request extends Global.Params {
+export type Cluster_Stats_Request = Global.Params & {
   flat_settings?: boolean;
   node_id?: Common.NodeIds;
   timeout?: Common.Duration;
 }
 
-export interface Cluster_Stats_Response extends ApiResponse {
+export type Cluster_Stats_Response = ApiResponse & {
   body: Cluster_Stats_ResponseBody;
 }
 

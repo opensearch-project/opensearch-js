@@ -18,10 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Notifications_Common from '../_types/notifications._common'
 
-export interface Notifications_GetConfigs_Request extends Global.Params {
+export type Notifications_GetConfigs_Request = Global.Params & {
   body?: Notifications_GetConfigs_RequestBody;
   'chime.url'?: string;
   'chime.url.keyword'?: string;
+  config_id?: string;
+  config_id_list?: string[];
   config_type?: Notifications_Common.NotificationConfigType;
   created_time_ms?: number;
   description?: string;
@@ -60,7 +62,7 @@ export interface Notifications_GetConfigs_Request extends Global.Params {
   'webhook.url.keyword'?: string;
 }
 
-export interface Notifications_GetConfigs_RequestBody {
+export type Notifications_GetConfigs_RequestBody = {
   config_id_list?: string[];
   from_index?: number;
   max_items?: number;
@@ -68,7 +70,7 @@ export interface Notifications_GetConfigs_RequestBody {
   sort_order?: string;
 }
 
-export interface Notifications_GetConfigs_Response extends ApiResponse {
+export type Notifications_GetConfigs_Response = ApiResponse & {
   body: Notifications_GetConfigs_ResponseBody;
 }
 

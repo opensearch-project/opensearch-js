@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Ml_DeleteAgent_Request extends Global.Params {
+export type Ml_DeleteAgent_Request = Global.Params & {
   agent_id: string;
 }
 
-export interface Ml_DeleteAgent_Response extends ApiResponse {
+export type Ml_DeleteAgent_Response = ApiResponse & {
   body: Ml_DeleteAgent_ResponseBody;
 }
 

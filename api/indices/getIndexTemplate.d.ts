@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_GetIndexTemplate from '../_types/indices.get_index_template'
 
-export interface Indices_GetIndexTemplate_Request extends Global.Params {
+export type Indices_GetIndexTemplate_Request = Global.Params & {
   cluster_manager_timeout?: Common.Duration;
   flat_settings?: boolean;
   local?: boolean;
@@ -27,11 +27,11 @@ export interface Indices_GetIndexTemplate_Request extends Global.Params {
   name?: Common.Name;
 }
 
-export interface Indices_GetIndexTemplate_Response extends ApiResponse {
+export type Indices_GetIndexTemplate_Response = ApiResponse & {
   body: Indices_GetIndexTemplate_ResponseBody;
 }
 
-export interface Indices_GetIndexTemplate_ResponseBody {
+export type Indices_GetIndexTemplate_ResponseBody = {
   index_templates: Indices_GetIndexTemplate.IndexTemplateItem[];
 }
 

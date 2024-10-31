@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Global from '../_types/_global'
 
-export interface UpdateByQuery_Request extends Global.Params {
+export type UpdateByQuery_Request = Global.Params & {
   _source?: string[];
   _source_excludes?: string[];
   _source_includes?: string[];
@@ -42,7 +42,7 @@ export interface UpdateByQuery_Request extends Global.Params {
   refresh?: boolean;
   request_cache?: boolean;
   requests_per_second?: number;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   scroll?: Common.Duration;
   scroll_size?: number;
   search_timeout?: Common.Duration;
@@ -58,7 +58,7 @@ export interface UpdateByQuery_Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface UpdateByQuery_RequestBody {
+export type UpdateByQuery_RequestBody = {
   conflicts?: Common.Conflicts;
   max_docs?: number;
   query?: Common_QueryDsl.QueryContainer;
@@ -66,7 +66,7 @@ export interface UpdateByQuery_RequestBody {
   slice?: Common.SlicedScroll;
 }
 
-export interface UpdateByQuery_Response extends ApiResponse {
+export type UpdateByQuery_Response = ApiResponse & {
   body: UpdateByQuery_ResponseBody;
 }
 

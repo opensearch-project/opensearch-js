@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface DanglingIndex {
+export type DanglingIndex = {
   creation_date?: Common.DateTime;
   creation_date_millis: Common.EpochTimeUnitMillis;
   index_name: string;

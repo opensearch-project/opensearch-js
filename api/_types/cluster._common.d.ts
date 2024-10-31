@@ -18,21 +18,20 @@ import * as Common from './_common'
 import * as Common_Mapping from './_common.mapping'
 import * as Indices_Common from './indices._common'
 
-export interface ComponentTemplate {
+export type ComponentTemplate = {
   component_template: ComponentTemplateNode;
   name: Common.Name;
 }
 
-export interface ComponentTemplateNode {
+export type ComponentTemplateNode = {
   _meta?: Common.Metadata;
   template: ComponentTemplateSummary;
   version?: Common.VersionNumber;
 }
 
-export interface ComponentTemplateSummary {
+export type ComponentTemplateSummary = {
   _meta?: Common.Metadata;
   aliases?: Record<string, Indices_Common.AliasDefinition>;
-  lifecycle?: Indices_Common.DataStreamLifecycleWithRollover;
   mappings?: Common_Mapping.TypeMapping;
   settings?: Record<string, Indices_Common.IndexSettings>;
   version?: Common.VersionNumber;

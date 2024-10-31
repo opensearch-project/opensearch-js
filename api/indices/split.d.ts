@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export interface Indices_Split_Request extends Global.Params {
+export type Indices_Split_Request = Global.Params & {
   body?: Indices_Split_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   copy_settings?: boolean;
@@ -32,17 +32,17 @@ export interface Indices_Split_Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface Indices_Split_RequestBody {
+export type Indices_Split_RequestBody = {
   aliases?: Record<string, Indices_Common.Alias>;
   settings?: {
 };
 }
 
-export interface Indices_Split_Response extends ApiResponse {
+export type Indices_Split_Response = ApiResponse & {
   body: Indices_Split_ResponseBody;
 }
 
-export interface Indices_Split_ResponseBody {
+export type Indices_Split_ResponseBody = {
   acknowledged: boolean;
   index: Common.IndexName;
   shards_acknowledged: boolean;

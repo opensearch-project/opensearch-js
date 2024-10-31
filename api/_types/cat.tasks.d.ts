@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface TasksRecord {
+export type TasksRecord = {
   action?: string;
   description?: string;
   id?: Common.Id;

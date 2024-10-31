@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Core_Termvectors from '../_types/_core.termvectors'
 import * as Global from '../_types/_global'
 
-export interface Termvectors_Request extends Global.Params {
+export type Termvectors_Request = Global.Params & {
   body?: Termvectors_RequestBody;
   field_statistics?: boolean;
   fields?: Common.Fields;
@@ -30,23 +30,23 @@ export interface Termvectors_Request extends Global.Params {
   positions?: boolean;
   preference?: string;
   realtime?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   term_statistics?: boolean;
   version?: Common.VersionNumber;
   version_type?: Common.VersionType;
 }
 
-export interface Termvectors_RequestBody {
+export type Termvectors_RequestBody = {
   doc?: Record<string, any>;
   filter?: Core_Termvectors.Filter;
   per_field_analyzer?: Record<string, string>;
 }
 
-export interface Termvectors_Response extends ApiResponse {
+export type Termvectors_Response = ApiResponse & {
   body: Termvectors_ResponseBody;
 }
 
-export interface Termvectors_ResponseBody {
+export type Termvectors_ResponseBody = {
   _id: Common.Id;
   _index: Common.IndexName;
   _version: Common.VersionNumber;

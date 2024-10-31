@@ -16,11 +16,11 @@
 
 import * as Common from './_common'
 
-export interface IndicesShardStores {
+export type IndicesShardStores = {
   shards: Record<string, ShardStoreWrapper>;
 }
 
-export interface ShardStore {
+export type ShardStore = {
   allocation: ShardStoreAllocation;
   allocation_id?: Common.Id;
   store_exception?: ShardStoreException;
@@ -28,12 +28,12 @@ export interface ShardStore {
 
 export type ShardStoreAllocation = 'primary' | 'replica' | 'unused'
 
-export interface ShardStoreException {
+export type ShardStoreException = {
   reason: string;
   type: string;
 }
 
-export interface ShardStoreWrapper {
+export type ShardStoreWrapper = {
   stores: ShardStore[];
 }
 

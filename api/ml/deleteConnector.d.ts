@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Ml_DeleteConnector_Request extends Global.Params {
+export type Ml_DeleteConnector_Request = Global.Params & {
   connector_id: string;
 }
 
-export interface Ml_DeleteConnector_Response extends ApiResponse {
+export type Ml_DeleteConnector_Response = ApiResponse & {
   body: Ml_DeleteConnector_ResponseBody;
 }
 

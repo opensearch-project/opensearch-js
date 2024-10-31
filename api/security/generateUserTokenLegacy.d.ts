@@ -17,11 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export interface Security_GenerateUserTokenLegacy_Request extends Global.Params {
+export type Security_GenerateUserTokenLegacy_Request = Global.Params & {
   username: string;
 }
 
-export interface Security_GenerateUserTokenLegacy_Response extends ApiResponse {
+export type Security_GenerateUserTokenLegacy_Response = ApiResponse & {
   body: Security_GenerateUserTokenLegacy_ResponseBody;
 }
 

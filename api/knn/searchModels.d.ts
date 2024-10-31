@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Knn_Common from '../_types/knn._common'
 
-export interface Knn_SearchModels_Request extends Global.Params {
+export type Knn_SearchModels_Request = Global.Params & {
   _source?: string[];
   _source_excludes?: string[];
   _source_includes?: string[];
@@ -45,7 +45,7 @@ export interface Knn_SearchModels_Request extends Global.Params {
   q?: string;
   request_cache?: boolean;
   rest_total_hits_as_int?: boolean;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   scroll?: Common.Duration;
   search_type?: Knn_Common.SearchType;
   seq_no_primary_term?: boolean;
@@ -67,7 +67,7 @@ export interface Knn_SearchModels_Request extends Global.Params {
 
 export type Knn_SearchModels_RequestBody = Record<string, any>
 
-export interface Knn_SearchModels_Response extends ApiResponse {
+export type Knn_SearchModels_Response = ApiResponse & {
   body: Knn_SearchModels_ResponseBody;
 }
 

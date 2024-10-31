@@ -15,7 +15,7 @@
  */
 
 
-export interface FielddataRecord {
+export type FielddataRecord = {
   field?: string;
   host?: string;
   id?: string;

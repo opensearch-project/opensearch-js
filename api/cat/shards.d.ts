@@ -19,7 +19,7 @@ import * as Cat_Shards from '../_types/cat.shards'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cat_Shards_Request extends Global.Params {
+export type Cat_Shards_Request = Global.Params & {
   bytes?: Common.ByteUnit;
   cluster_manager_timeout?: Common.Duration;
   format?: string;
@@ -33,7 +33,7 @@ export interface Cat_Shards_Request extends Global.Params {
   v?: boolean;
 }
 
-export interface Cat_Shards_Response extends ApiResponse {
+export type Cat_Shards_Response = ApiResponse & {
   body: Cat_Shards_ResponseBody;
 }
 

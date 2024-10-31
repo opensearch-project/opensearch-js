@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export interface Security_GenerateOboToken_Request extends Global.Params {
+export type Security_GenerateOboToken_Request = Global.Params & {
   body: Security_Common.OBOToken;
 }
 
-export interface Security_GenerateOboToken_Response extends ApiResponse {
+export type Security_GenerateOboToken_Response = ApiResponse & {
   body: Security_GenerateOboToken_ResponseBody;
 }
 

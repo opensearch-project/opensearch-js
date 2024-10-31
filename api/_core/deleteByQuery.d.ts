@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Global from '../_types/_global'
 
-export interface DeleteByQuery_Request extends Global.Params {
+export type DeleteByQuery_Request = Global.Params & {
   _source?: string[];
   _source_excludes?: string[];
   _source_includes?: string[];
@@ -41,7 +41,7 @@ export interface DeleteByQuery_Request extends Global.Params {
   refresh?: boolean;
   request_cache?: boolean;
   requests_per_second?: number;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
   scroll?: Common.Duration;
   scroll_size?: number;
   search_timeout?: Common.Duration;
@@ -57,13 +57,13 @@ export interface DeleteByQuery_Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface DeleteByQuery_RequestBody {
+export type DeleteByQuery_RequestBody = {
   max_docs?: number;
   query?: Common_QueryDsl.QueryContainer;
   slice?: Common.SlicedScroll;
 }
 
-export interface DeleteByQuery_Response extends ApiResponse {
+export type DeleteByQuery_Response = ApiResponse & {
   body: DeleteByQuery_ResponseBody;
 }
 

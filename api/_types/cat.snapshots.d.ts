@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface SnapshotsRecord {
+export type SnapshotsRecord = {
   duration?: Common.Duration;
   end_epoch?: Common.StringifiedEpochTimeUnitSeconds;
   end_time?: Common.TimeOfDay;

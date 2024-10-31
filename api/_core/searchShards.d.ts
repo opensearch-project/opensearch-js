@@ -19,21 +19,21 @@ import * as Common from '../_types/_common'
 import * as Core_SearchShards from '../_types/_core.search_shards'
 import * as Global from '../_types/_global'
 
-export interface SearchShards_Request extends Global.Params {
+export type SearchShards_Request = Global.Params & {
   allow_no_indices?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
   index?: Common.Indices;
   local?: boolean;
   preference?: string;
-  routing?: Common.Routing;
+  routing?: Common.RoutingInQueryString;
 }
 
-export interface SearchShards_Response extends ApiResponse {
+export type SearchShards_Response = ApiResponse & {
   body: SearchShards_ResponseBody;
 }
 
-export interface SearchShards_ResponseBody {
+export type SearchShards_ResponseBody = {
   indices: Record<string, Core_SearchShards.ShardStoreIndex>;
   nodes: Record<string, Common.NodeAttributes>;
   shards: Common.NodeShard[][];

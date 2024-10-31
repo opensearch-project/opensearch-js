@@ -18,14 +18,14 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Indices_CreateDataStream_Request extends Global.Params {
+export type Indices_CreateDataStream_Request = Global.Params & {
   body?: Indices_CreateDataStream_RequestBody;
   name: Common.DataStreamName;
 }
 
 export type Indices_CreateDataStream_RequestBody = Record<string, any>
 
-export interface Indices_CreateDataStream_Response extends ApiResponse {
+export type Indices_CreateDataStream_Response = ApiResponse & {
   body: Indices_CreateDataStream_ResponseBody;
 }
 

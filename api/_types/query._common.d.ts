@@ -15,12 +15,12 @@
  */
 
 
-export interface Credentials {
+export type Credentials = {
   password: string;
   username: string;
 }
 
-export interface DataSource {
+export type DataSource = {
   allowedRoles?: string[];
   configuration?: DataSourceConfiguration;
   connector: string;
@@ -31,18 +31,18 @@ export interface DataSource {
   status: string;
 }
 
-export interface DataSourceConfiguration {
+export type DataSourceConfiguration = {
   credentials: Credentials;
   endpoint: string;
 }
 
 export type DataSourceList = DataSource[]
 
-export interface DataSourceNotFound {
+export type DataSourceNotFound = {
   error: ErrorResponse;
 }
 
-export interface DataSourceRetrieve {
+export type DataSourceRetrieve = {
   allowedRoles?: string[];
   configuration?: DataSourceConfiguration;
   connector: string;
@@ -53,13 +53,13 @@ export interface DataSourceRetrieve {
   status: string;
 }
 
-export interface ErrorResponse {
+export type ErrorResponse = {
   reason: string;
   root_cause: RootCause[];
   type: string;
 }
 
-export interface RootCause {
+export type RootCause = {
   reason: string;
   type: string;
 }

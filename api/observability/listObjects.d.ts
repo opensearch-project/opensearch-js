@@ -20,7 +20,7 @@ import * as Observability_Common from '../_types/observability._common'
 
 export type Observability_ListObjects_Request = Global.Params & Record<string, any>
 
-export interface Observability_ListObjects_Response extends ApiResponse {
+export type Observability_ListObjects_Response = ApiResponse & {
   body: Observability_ListObjects_ResponseBody;
 }
 

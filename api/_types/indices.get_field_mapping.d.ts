@@ -16,7 +16,7 @@
 
 import * as Common_Mapping from './_common.mapping'
 
-export interface TypeFieldMappings {
+export type TypeFieldMappings = {
   mappings: Record<string, Common_Mapping.FieldMapping>;
 }
 

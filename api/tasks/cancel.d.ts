@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Tasks_Common from '../_types/tasks._common'
 
-export interface Tasks_Cancel_Request extends Global.Params {
+export type Tasks_Cancel_Request = Global.Params & {
   actions?: string | string[];
   nodes?: string[];
   parent_task_id?: string;
@@ -27,7 +27,7 @@ export interface Tasks_Cancel_Request extends Global.Params {
   wait_for_completion?: boolean;
 }
 
-export interface Tasks_Cancel_Response extends ApiResponse {
+export type Tasks_Cancel_Response = ApiResponse & {
   body: Tasks_Cancel_ResponseBody;
 }
 

@@ -17,7 +17,7 @@
 import * as Common from './_common'
 import * as Common_Mapping from './_common.mapping'
 
-export interface FieldCapability {
+export type FieldCapability = {
   aggregatable: boolean;
   indices?: Common.Indices;
   meta?: Common.Metadata;

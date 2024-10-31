@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface DanglingIndices_DeleteDanglingIndex_Request extends Global.Params {
+export type DanglingIndices_DeleteDanglingIndex_Request = Global.Params & {
   accept_data_loss: boolean;
   cluster_manager_timeout?: Common.Duration;
   index_uuid: Common.Uuid;
@@ -26,7 +26,7 @@ export interface DanglingIndices_DeleteDanglingIndex_Request extends Global.Para
   timeout?: Common.Duration;
 }
 
-export interface DanglingIndices_DeleteDanglingIndex_Response extends ApiResponse {
+export type DanglingIndices_DeleteDanglingIndex_Response = ApiResponse & {
   body: DanglingIndices_DeleteDanglingIndex_ResponseBody;
 }
 

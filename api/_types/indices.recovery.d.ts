@@ -16,13 +16,13 @@
 
 import * as Common from './_common'
 
-export interface FileDetails {
+export type FileDetails = {
   length: number;
   name: string;
   recovered: number;
 }
 
-export interface RecoveryBytes {
+export type RecoveryBytes = {
   percent: Common.PercentageString;
   recovered?: Common.HumanReadableByteCount;
   recovered_from_snapshot?: Common.HumanReadableByteCount;
@@ -34,7 +34,7 @@ export interface RecoveryBytes {
   total_in_bytes: Common.ByteCount;
 }
 
-export interface RecoveryFiles {
+export type RecoveryFiles = {
   details?: FileDetails[];
   percent: Common.PercentageString;
   recovered: number;
@@ -42,7 +42,7 @@ export interface RecoveryFiles {
   total: number;
 }
 
-export interface RecoveryIndexStatus {
+export type RecoveryIndexStatus = {
   bytes?: RecoveryBytes;
   files: RecoveryFiles;
   size: RecoveryBytes;
@@ -54,33 +54,37 @@ export interface RecoveryIndexStatus {
   total_time_in_millis: Common.DurationValueUnitMillis;
 }
 
-export interface RecoveryOrigin {
+export type RecoveryOrigin = {
   bootstrap_new_history_uuid?: boolean;
   host?: Common.Host;
   hostname?: string;
   id?: Common.Id;
   index?: Common.IndexName;
   ip?: Common.Ip;
+  isSearchableSnapshot?: boolean;
   name?: Common.Name;
+  remoteStoreIndexShallowCopy?: boolean;
   repository?: Common.Name;
   restoreUUID?: Common.Uuid;
   snapshot?: Common.Name;
+  sourceRemoteStoreRepository?: undefined | string;
+  sourceRemoteTranslogRepository?: undefined | string;
   transport_address?: Common.TransportAddress;
   version?: Common.VersionString;
 }
 
-export interface RecoveryStartStatus {
+export type RecoveryStartStatus = {
   check_index_time?: Common.Duration;
   check_index_time_in_millis: Common.DurationValueUnitMillis;
   total_time?: Common.Duration;
   total_time_in_millis: Common.DurationValueUnitMillis;
 }
 
-export interface RecoveryStatus {
+export type RecoveryStatus = {
   shards: ShardRecovery[];
 }
 
-export interface ShardRecovery {
+export type ShardRecovery = {
   id: number;
   index: RecoveryIndexStatus;
   primary: boolean;
@@ -99,7 +103,7 @@ export interface ShardRecovery {
   verify_index: VerifyIndex;
 }
 
-export interface TranslogStatus {
+export type TranslogStatus = {
   percent: Common.PercentageString;
   recovered: number;
   total: number;
@@ -108,7 +112,7 @@ export interface TranslogStatus {
   total_time_in_millis: Common.DurationValueUnitMillis;
 }
 
-export interface VerifyIndex {
+export type VerifyIndex = {
   check_index_time?: Common.Duration;
   check_index_time_in_millis: Common.DurationValueUnitMillis;
   total_time?: Common.Duration;

@@ -19,7 +19,7 @@ import * as Cat_ThreadPool from '../_types/cat.thread_pool'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface Cat_ThreadPool_Request extends Global.Params {
+export type Cat_ThreadPool_Request = Global.Params & {
   cluster_manager_timeout?: Common.Duration;
   format?: string;
   h?: string[];
@@ -32,7 +32,7 @@ export interface Cat_ThreadPool_Request extends Global.Params {
   v?: boolean;
 }
 
-export interface Cat_ThreadPool_Response extends ApiResponse {
+export type Cat_ThreadPool_Response = ApiResponse & {
   body: Cat_ThreadPool_ResponseBody;
 }
 

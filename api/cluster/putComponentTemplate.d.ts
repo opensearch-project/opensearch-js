@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export interface Cluster_PutComponentTemplate_Request extends Global.Params {
+export type Cluster_PutComponentTemplate_Request = Global.Params & {
   body: Cluster_PutComponentTemplate_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   create?: boolean;
@@ -28,14 +28,14 @@ export interface Cluster_PutComponentTemplate_Request extends Global.Params {
   timeout?: Common.Duration;
 }
 
-export interface Cluster_PutComponentTemplate_RequestBody {
+export type Cluster_PutComponentTemplate_RequestBody = {
   _meta?: Common.Metadata;
   allow_auto_create?: boolean;
   template: Indices_Common.IndexState;
   version?: Common.VersionNumber;
 }
 
-export interface Cluster_PutComponentTemplate_Response extends ApiResponse {
+export type Cluster_PutComponentTemplate_Response = ApiResponse & {
   body: Cluster_PutComponentTemplate_ResponseBody;
 }
 

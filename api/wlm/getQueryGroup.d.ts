@@ -14,12 +14,19 @@
  * modify the API generator.
  */
 
-import * as Common from './_common'
-import * as Snapshot_Common from './snapshot._common'
+import { ApiResponse } from '../../lib/Transport'
+import * as Global from '../_types/_global'
+import * as Wlm_Common from '../_types/wlm._common'
 
-export interface SnapshotResponseItem {
-  error?: Common.ErrorCause;
-  repository: Common.Name;
-  snapshots?: Snapshot_Common.SnapshotInfo[];
+export type Wlm_GetQueryGroup_Request = Global.Params & {
+  name?: string;
+}
+
+export type Wlm_GetQueryGroup_Response = ApiResponse & {
+  body: Wlm_GetQueryGroup_ResponseBody;
+}
+
+export type Wlm_GetQueryGroup_ResponseBody = {
+  query_groups?: Wlm_Common.QueryGroupResponse[];
 }
 

@@ -21,7 +21,7 @@ export type IndexMetric = '_all' | 'completion' | 'docs' | 'fielddata' | 'flush'
 
 export type Metric = '_all' | 'adaptive_selection' | 'admission_control' | 'breaker' | 'caches' | 'cluster_manager_throttling' | 'discovery' | 'file_cache' | 'fs' | 'http' | 'indexing_pressure' | 'indices' | 'ingest' | 'jvm' | 'os' | 'process' | 'repositories' | 'resource_usage_stats' | 'script' | 'script_cache' | 'search_backpressure' | 'search_pipeline' | 'segment_replication_backpressure' | 'shard_indexing_pressure' | 'task_cancellation' | 'thread_pool' | 'transport' | 'weighted_routing'
 
-export interface ResponseBase extends Nodes_Common.NodesResponseBase {
+export type ResponseBase = Nodes_Common.NodesResponseBase & {
   cluster_name?: Common.Name;
   nodes: Record<string, Nodes_Common.Stats>;
 }

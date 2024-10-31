@@ -19,14 +19,14 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Rollups_Common from '../_types/rollups._common'
 
-export interface Rollups_Put_Request extends Global.Params {
+export type Rollups_Put_Request = Global.Params & {
   body?: Rollups_Common.RollupEntity;
   id: Common.Id;
   if_primary_term?: number;
   if_seq_no?: Common.SequenceNumber;
 }
 
-export interface Rollups_Put_Response extends ApiResponse {
+export type Rollups_Put_Response = ApiResponse & {
   body: Rollups_Put_ResponseBody;
 }
 

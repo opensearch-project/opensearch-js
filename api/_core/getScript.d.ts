@@ -18,17 +18,17 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export interface GetScript_Request extends Global.Params {
+export type GetScript_Request = Global.Params & {
   cluster_manager_timeout?: Common.Duration;
   id: Common.Id;
   master_timeout?: Common.Duration;
 }
 
-export interface GetScript_Response extends ApiResponse {
+export type GetScript_Response = ApiResponse & {
   body: GetScript_ResponseBody;
 }
 
-export interface GetScript_ResponseBody {
+export type GetScript_ResponseBody = {
   _id: Common.Id;
   found: boolean;
   script?: Common.StoredScript;

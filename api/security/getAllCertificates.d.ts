@@ -19,12 +19,12 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export interface Security_GetAllCertificates_Request extends Global.Params {
+export type Security_GetAllCertificates_Request = Global.Params & {
   cert_type?: string;
   timeout?: Common.Duration;
 }
 
-export interface Security_GetAllCertificates_Response extends ApiResponse {
+export type Security_GetAllCertificates_Response = ApiResponse & {
   body: Security_GetAllCertificates_ResponseBody;
 }
 

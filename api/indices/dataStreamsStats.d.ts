@@ -19,15 +19,15 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_DataStreamsStats from '../_types/indices.data_streams_stats'
 
-export interface Indices_DataStreamsStats_Request extends Global.Params {
+export type Indices_DataStreamsStats_Request = Global.Params & {
   name?: Common.Indices;
 }
 
-export interface Indices_DataStreamsStats_Response extends ApiResponse {
+export type Indices_DataStreamsStats_Response = ApiResponse & {
   body: Indices_DataStreamsStats_ResponseBody;
 }
 
-export interface Indices_DataStreamsStats_ResponseBody {
+export type Indices_DataStreamsStats_ResponseBody = {
   _shards: Common.ShardStatistics;
   backing_indices: number;
   data_stream_count: number;

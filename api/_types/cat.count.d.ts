@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export interface CountRecord {
+export type CountRecord = {
   count?: string;
   epoch?: Common.StringifiedEpochTimeUnitSeconds;
   timestamp?: Common.TimeOfDay;

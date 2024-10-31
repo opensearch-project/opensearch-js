@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_GetMapping from '../_types/indices.get_mapping'
 
-export interface Indices_GetMapping_Request extends Global.Params {
+export type Indices_GetMapping_Request = Global.Params & {
   allow_no_indices?: boolean;
   cluster_manager_timeout?: Common.Duration;
   expand_wildcards?: Common.ExpandWildcards;
@@ -29,7 +29,7 @@ export interface Indices_GetMapping_Request extends Global.Params {
   master_timeout?: Common.Duration;
 }
 
-export interface Indices_GetMapping_Response extends ApiResponse {
+export type Indices_GetMapping_Response = ApiResponse & {
   body: Indices_GetMapping_ResponseBody;
 }
 

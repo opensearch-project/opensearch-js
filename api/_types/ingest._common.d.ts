@@ -16,13 +16,13 @@
 
 import * as Common from './_common'
 
-export interface AppendProcessor extends ProcessorBase {
+export type AppendProcessor = ProcessorBase & {
   allow_duplicates?: boolean;
   field: Common.Field;
   value: Record<string, any>[];
 }
 
-export interface AttachmentProcessor extends ProcessorBase {
+export type AttachmentProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   indexed_chars?: number;
@@ -32,13 +32,13 @@ export interface AttachmentProcessor extends ProcessorBase {
   target_field?: Common.Field;
 }
 
-export interface BytesProcessor extends ProcessorBase {
+export type BytesProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   target_field?: Common.Field;
 }
 
-export interface CircleProcessor extends ProcessorBase {
+export type CircleProcessor = ProcessorBase & {
   error_distance: number;
   field: Common.Field;
   ignore_missing?: boolean;
@@ -46,7 +46,7 @@ export interface CircleProcessor extends ProcessorBase {
   target_field?: Common.Field;
 }
 
-export interface ConvertProcessor extends ProcessorBase {
+export type ConvertProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   target_field?: Common.Field;
@@ -55,7 +55,7 @@ export interface ConvertProcessor extends ProcessorBase {
 
 export type ConvertType = 'auto' | 'boolean' | 'double' | 'float' | 'integer' | 'long' | 'string'
 
-export interface CsvProcessor extends ProcessorBase {
+export type CsvProcessor = ProcessorBase & {
   empty_value?: Record<string, any>;
   field: Common.Field;
   ignore_missing?: boolean;
@@ -65,7 +65,7 @@ export interface CsvProcessor extends ProcessorBase {
   trim?: boolean;
 }
 
-export interface DateIndexNameProcessor extends ProcessorBase {
+export type DateIndexNameProcessor = ProcessorBase & {
   date_formats: string[];
   date_rounding: string;
   field: Common.Field;
@@ -75,7 +75,7 @@ export interface DateIndexNameProcessor extends ProcessorBase {
   timezone?: string;
 }
 
-export interface DateProcessor extends ProcessorBase {
+export type DateProcessor = ProcessorBase & {
   field: Common.Field;
   formats: string[];
   locale?: string;
@@ -83,21 +83,21 @@ export interface DateProcessor extends ProcessorBase {
   timezone?: string;
 }
 
-export interface DissectProcessor extends ProcessorBase {
+export type DissectProcessor = ProcessorBase & {
   append_separator?: string;
   field: Common.Field;
   ignore_missing?: boolean;
   pattern: string;
 }
 
-export interface DotExpanderProcessor extends ProcessorBase {
+export type DotExpanderProcessor = ProcessorBase & {
   field: Common.Field;
   path?: string;
 }
 
 export type DropProcessor = ProcessorBase & Record<string, any>
 
-export interface EnrichProcessor extends ProcessorBase {
+export type EnrichProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   max_matches?: number;
@@ -107,17 +107,17 @@ export interface EnrichProcessor extends ProcessorBase {
   target_field: Common.Field;
 }
 
-export interface FailProcessor extends ProcessorBase {
+export type FailProcessor = ProcessorBase & {
   message: string;
 }
 
-export interface ForeachProcessor extends ProcessorBase {
+export type ForeachProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   processor: ProcessorContainer;
 }
 
-export interface GeoIpProcessor extends ProcessorBase {
+export type GeoIpProcessor = ProcessorBase & {
   database_file?: string;
   field: Common.Field;
   first_only?: boolean;
@@ -126,7 +126,7 @@ export interface GeoIpProcessor extends ProcessorBase {
   target_field?: Common.Field;
 }
 
-export interface GrokProcessor extends ProcessorBase {
+export type GrokProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   pattern_definitions?: Record<string, string>;
@@ -134,7 +134,7 @@ export interface GrokProcessor extends ProcessorBase {
   trace_match?: boolean;
 }
 
-export interface GsubProcessor extends ProcessorBase {
+export type GsubProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   pattern: string;
@@ -142,12 +142,12 @@ export interface GsubProcessor extends ProcessorBase {
   target_field?: Common.Field;
 }
 
-export interface InferenceConfig {
+export type InferenceConfig = {
   classification?: InferenceConfigClassification;
   regression?: InferenceConfigRegression;
 }
 
-export interface InferenceConfigClassification {
+export type InferenceConfigClassification = {
   num_top_classes?: number;
   num_top_feature_importance_values?: number;
   prediction_field_type?: string;
@@ -155,25 +155,25 @@ export interface InferenceConfigClassification {
   top_classes_results_field?: Common.Field;
 }
 
-export interface InferenceConfigRegression {
+export type InferenceConfigRegression = {
   num_top_feature_importance_values?: number;
   results_field?: Common.Field;
 }
 
-export interface InferenceProcessor extends ProcessorBase {
+export type InferenceProcessor = ProcessorBase & {
   field_map?: Record<string, Record<string, any>>;
   inference_config?: InferenceConfig;
   model_id: Common.Id;
   target_field?: Common.Field;
 }
 
-export interface JoinProcessor extends ProcessorBase {
+export type JoinProcessor = ProcessorBase & {
   field: Common.Field;
   separator: string;
   target_field?: Common.Field;
 }
 
-export interface JsonProcessor extends ProcessorBase {
+export type JsonProcessor = ProcessorBase & {
   add_to_root?: boolean;
   add_to_root_conflict_strategy?: JsonProcessorConflictStrategy;
   allow_duplicate_keys?: boolean;
@@ -183,7 +183,7 @@ export interface JsonProcessor extends ProcessorBase {
 
 export type JsonProcessorConflictStrategy = 'merge' | 'replace'
 
-export interface KeyValueProcessor extends ProcessorBase {
+export type KeyValueProcessor = ProcessorBase & {
   exclude_keys?: string[];
   field: Common.Field;
   field_split: string;
@@ -197,13 +197,13 @@ export interface KeyValueProcessor extends ProcessorBase {
   value_split: string;
 }
 
-export interface LowercaseProcessor extends ProcessorBase {
+export type LowercaseProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   target_field?: Common.Field;
 }
 
-export interface Pipeline {
+export type Pipeline = {
   _meta?: Common.Metadata;
   description?: string;
   on_failure?: ProcessorContainer[];
@@ -211,12 +211,12 @@ export interface Pipeline {
   version?: Common.VersionNumber;
 }
 
-export interface PipelineProcessor extends ProcessorBase {
+export type PipelineProcessor = ProcessorBase & {
   ignore_missing_pipeline?: boolean;
   name: Common.Name;
 }
 
-export interface ProcessorBase {
+export type ProcessorBase = {
   description?: string;
   if?: string;
   ignore_failure?: boolean;
@@ -224,7 +224,7 @@ export interface ProcessorBase {
   tag?: string;
 }
 
-export interface ProcessorContainer {
+export type ProcessorContainer = {
   append?: AppendProcessor;
   attachment?: AttachmentProcessor;
   bytes?: BytesProcessor;
@@ -262,18 +262,18 @@ export interface ProcessorContainer {
   user_agent?: UserAgentProcessor;
 }
 
-export interface RemoveProcessor extends ProcessorBase {
+export type RemoveProcessor = ProcessorBase & {
   field: Common.Fields;
   ignore_missing?: boolean;
 }
 
-export interface RenameProcessor extends ProcessorBase {
+export type RenameProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   target_field: Common.Field;
 }
 
-export interface SetProcessor extends ProcessorBase {
+export type SetProcessor = ProcessorBase & {
   copy_from?: Common.Field;
   field: Common.Field;
   ignore_empty_value?: boolean;
@@ -282,20 +282,20 @@ export interface SetProcessor extends ProcessorBase {
   value?: Record<string, any>;
 }
 
-export interface SetSecurityUserProcessor extends ProcessorBase {
+export type SetSecurityUserProcessor = ProcessorBase & {
   field: Common.Field;
   properties?: string[];
 }
 
 export type ShapeType = 'geo_shape' | 'shape'
 
-export interface SortProcessor extends ProcessorBase {
+export type SortProcessor = ProcessorBase & {
   field: Common.Field;
   order?: Common.SortOrder;
   target_field?: Common.Field;
 }
 
-export interface SplitProcessor extends ProcessorBase {
+export type SplitProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   preserve_trailing?: boolean;
@@ -303,31 +303,31 @@ export interface SplitProcessor extends ProcessorBase {
   target_field?: Common.Field;
 }
 
-export interface TextEmbeddingProcessor extends ProcessorBase {
+export type TextEmbeddingProcessor = ProcessorBase & {
   description?: string;
   field_map: Record<string, string>;
   model_id: Common.Id;
 }
 
-export interface TrimProcessor extends ProcessorBase {
+export type TrimProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   target_field?: Common.Field;
 }
 
-export interface UppercaseProcessor extends ProcessorBase {
+export type UppercaseProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   target_field?: Common.Field;
 }
 
-export interface UrlDecodeProcessor extends ProcessorBase {
+export type UrlDecodeProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   target_field?: Common.Field;
 }
 
-export interface UserAgentProcessor extends ProcessorBase {
+export type UserAgentProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
   options?: UserAgentProperty[];

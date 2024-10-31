@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 
 export type Observability_GetLocalstats_Request = Global.Params & Record<string, any>
 
-export interface Observability_GetLocalstats_Response extends ApiResponse {
+export type Observability_GetLocalstats_Response = ApiResponse & {
   body: Observability_GetLocalstats_ResponseBody;
 }
 

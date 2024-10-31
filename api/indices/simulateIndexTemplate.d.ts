@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 import * as Indices_PutIndexTemplate from '../_types/indices.put_index_template'
 
-export interface Indices_SimulateIndexTemplate_Request extends Global.Params {
+export type Indices_SimulateIndexTemplate_Request = Global.Params & {
   body?: Indices_SimulateIndexTemplate_RequestBody;
   cause?: string;
   cluster_manager_timeout?: Common.Duration;
@@ -29,7 +29,7 @@ export interface Indices_SimulateIndexTemplate_Request extends Global.Params {
   name: Common.Name;
 }
 
-export interface Indices_SimulateIndexTemplate_RequestBody {
+export type Indices_SimulateIndexTemplate_RequestBody = {
   _meta?: Common.Metadata;
   allow_auto_create?: boolean;
   composed_of?: Common.Name[];
@@ -40,7 +40,7 @@ export interface Indices_SimulateIndexTemplate_RequestBody {
   version?: Common.VersionNumber;
 }
 
-export interface Indices_SimulateIndexTemplate_Response extends ApiResponse {
+export type Indices_SimulateIndexTemplate_Response = ApiResponse & {
   body: Indices_SimulateIndexTemplate_ResponseBody;
 }
 

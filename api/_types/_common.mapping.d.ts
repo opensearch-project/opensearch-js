@@ -393,10 +393,7 @@ export type SourceField = {
   enabled?: boolean;
   excludes?: string[];
   includes?: string[];
-  mode?: SourceFieldMode;
 }
-
-export type SourceFieldMode = 'disabled' | 'stored' | 'synthetic'
 
 export type SparseVectorProperty = PropertyBase & {
   type: 'sparse_vector';

@@ -15,13 +15,13 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_UpdateByQueryRethrottle from '../_types/_core.update_by_query_rethrottle'
+import * as CommonId from '../_types/_common___Id'
+import * as Core_UpdateByQueryRethrottleUpdateByQueryRethrottleNode from '../_types/_core.update_by_query_rethrottle___UpdateByQueryRethrottleNode'
 import * as Global from '../_types/_global'
 
 export type UpdateByQueryRethrottle_Request = Global.Params & {
   requests_per_second?: number;
-  task_id: Common.Id;
+  task_id: CommonId.undefined;
 }
 
 export type UpdateByQueryRethrottle_Response = ApiResponse & {
@@ -29,6 +29,6 @@ export type UpdateByQueryRethrottle_Response = ApiResponse & {
 }
 
 export type UpdateByQueryRethrottle_ResponseBody = {
-  nodes: Record<string, Core_UpdateByQueryRethrottle.UpdateByQueryRethrottleNode>;
+  nodes: Record<string, Core_UpdateByQueryRethrottleUpdateByQueryRethrottleNode.undefined>;
 }
 

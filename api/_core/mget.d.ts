@@ -15,27 +15,31 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_Mget from '../_types/_core.mget'
-import * as Core_Search from '../_types/_core.search'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonIds from '../_types/_common___Ids'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as Core_MgetOperation from '../_types/_core.mget___Operation'
+import * as Core_MgetResponseItem from '../_types/_core.mget___ResponseItem'
+import * as Core_SearchSourceConfigParam from '../_types/_core.search___SourceConfigParam'
 import * as Global from '../_types/_global'
 
 export type Mget_Request = Global.Params & {
-  _source?: Core_Search.SourceConfigParam;
-  _source_excludes?: Common.Fields;
-  _source_includes?: Common.Fields;
+  _source?: Core_SearchSourceConfigParam.undefined;
+  _source_excludes?: CommonFields.undefined;
+  _source_includes?: CommonFields.undefined;
   body: Mget_RequestBody;
-  index?: Common.IndexName;
+  index?: CommonIndexName.undefined;
   preference?: string;
   realtime?: boolean;
   refresh?: boolean;
-  routing?: Common.RoutingInQueryString;
-  stored_fields?: Common.Fields;
+  routing?: CommonRoutingInQueryString.undefined;
+  stored_fields?: CommonFields.undefined;
 }
 
 export type Mget_RequestBody = {
-  docs?: Core_Mget.Operation[];
-  ids?: Common.Ids;
+  docs?: Core_MgetOperation.undefined[];
+  ids?: CommonIds.undefined;
 }
 
 export type Mget_Response = ApiResponse & {
@@ -43,6 +47,6 @@ export type Mget_Response = ApiResponse & {
 }
 
 export type Mget_ResponseBody = {
-  docs: Core_Mget.ResponseItem[];
+  docs: Core_MgetResponseItem.undefined[];
 }
 

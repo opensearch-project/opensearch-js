@@ -15,8 +15,12 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Common_QueryDsl from '../_types/_common.query_dsl'
+import * as Common_QueryDslOperator from '../_types/_common.query_dsl___Operator'
+import * as Common_QueryDslQueryContainer from '../_types/_common.query_dsl___QueryContainer'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as CommonShardStatistics from '../_types/_common___ShardStatistics'
 import * as Global from '../_types/_global'
 
 export type Count_Request = Global.Params & {
@@ -24,22 +28,22 @@ export type Count_Request = Global.Params & {
   analyze_wildcard?: boolean;
   analyzer?: string;
   body?: Count_RequestBody;
-  default_operator?: Common_QueryDsl.Operator;
+  default_operator?: Common_QueryDslOperator.undefined;
   df?: string;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_throttled?: boolean;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   lenient?: boolean;
   min_score?: number;
   preference?: string;
   q?: string;
-  routing?: Common.RoutingInQueryString;
+  routing?: CommonRoutingInQueryString.undefined;
   terminate_after?: number;
 }
 
 export type Count_RequestBody = {
-  query?: Common_QueryDsl.QueryContainer;
+  query?: Common_QueryDslQueryContainer.undefined;
 }
 
 export type Count_Response = ApiResponse & {
@@ -47,7 +51,7 @@ export type Count_Response = ApiResponse & {
 }
 
 export type Count_ResponseBody = {
-  _shards: Common.ShardStatistics;
+  _shards: CommonShardStatistics.undefined;
   count: number;
   terminated_early?: boolean;
 }

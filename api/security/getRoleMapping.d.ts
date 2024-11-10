@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonRoleMappings from '../_types/security._common___RoleMappings'
 
 export type Security_GetRoleMapping_Request = Global.Params & {
   role: string;
@@ -26,5 +26,5 @@ export type Security_GetRoleMapping_Response = ApiResponse & {
   body: Security_GetRoleMapping_ResponseBody;
 }
 
-export type Security_GetRoleMapping_ResponseBody = Security_Common.RoleMappings
+export type Security_GetRoleMapping_ResponseBody = Security_CommonRoleMappings.undefined
 

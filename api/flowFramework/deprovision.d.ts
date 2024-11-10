@@ -15,17 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as FlowFramework_Common from '../_types/flow_framework.common'
+import * as FlowFramework_CommonAllowDelete from '../_types/flow_framework.common___AllowDelete'
+import * as FlowFramework_CommonWorkflowId from '../_types/flow_framework.common___WorkflowID'
+import * as FlowFramework_CommonWorkflowIdResponse from '../_types/flow_framework.common___WorkflowIDResponse'
 import * as Global from '../_types/_global'
 
 export type FlowFramework_Deprovision_Request = Global.Params & {
-  allow_delete?: FlowFramework_Common.AllowDelete;
-  workflow_id: FlowFramework_Common.WorkflowID;
+  allow_delete?: FlowFramework_CommonAllowDelete.undefined;
+  workflow_id: FlowFramework_CommonWorkflowId.undefined;
 }
 
 export type FlowFramework_Deprovision_Response = ApiResponse & {
   body: FlowFramework_Deprovision_ResponseBody;
 }
 
-export type FlowFramework_Deprovision_ResponseBody = Record<string, any>
+export type FlowFramework_Deprovision_ResponseBody = FlowFramework_CommonWorkflowIdResponse.undefined
 

@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Tasks from '../_types/cat.tasks'
-import * as Common from '../_types/_common'
+import * as Cat_TasksTasksRecord from '../_types/cat.tasks___TasksRecord'
+import * as CommonTimeUnit from '../_types/_common___TimeUnit'
 import * as Global from '../_types/_global'
 
 export type Cat_Tasks_Request = Global.Params & {
@@ -28,7 +28,7 @@ export type Cat_Tasks_Request = Global.Params & {
   nodes?: string[];
   parent_task_id?: string;
   s?: string[];
-  time?: Common.TimeUnit;
+  time?: CommonTimeUnit.undefined;
   v?: boolean;
 }
 
@@ -36,5 +36,5 @@ export type Cat_Tasks_Response = ApiResponse & {
   body: Cat_Tasks_ResponseBody;
 }
 
-export type Cat_Tasks_ResponseBody = Cat_Tasks.TasksRecord[]
+export type Cat_Tasks_ResponseBody = Cat_TasksTasksRecord.undefined[]
 

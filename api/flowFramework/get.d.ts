@@ -15,16 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as FlowFramework_Common from '../_types/flow_framework.common'
+import * as FlowFramework_CommonFlowFrameworkGetResponse from '../_types/flow_framework.common___FlowFrameworkGetResponse'
+import * as FlowFramework_CommonWorkflowId from '../_types/flow_framework.common___WorkflowID'
 import * as Global from '../_types/_global'
 
 export type FlowFramework_Get_Request = Global.Params & {
-  workflow_id: FlowFramework_Common.WorkflowID;
+  workflow_id: FlowFramework_CommonWorkflowId.undefined;
 }
 
 export type FlowFramework_Get_Response = ApiResponse & {
   body: FlowFramework_Get_ResponseBody;
 }
 
-export type FlowFramework_Get_ResponseBody = Record<string, any>
+export type FlowFramework_Get_ResponseBody = FlowFramework_CommonFlowFrameworkGetResponse.undefined
 

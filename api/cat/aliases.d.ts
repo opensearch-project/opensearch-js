@@ -15,17 +15,18 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Aliases from '../_types/cat.aliases'
-import * as Common from '../_types/_common'
+import * as Cat_AliasesAliasesRecord from '../_types/cat.aliases___AliasesRecord'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonNames from '../_types/_common___Names'
 import * as Global from '../_types/_global'
 
 export type Cat_Aliases_Request = Global.Params & {
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
   local?: boolean;
-  name?: Common.Names;
+  name?: CommonNames.undefined;
   s?: string[];
   v?: boolean;
 }
@@ -34,5 +35,5 @@ export type Cat_Aliases_Response = ApiResponse & {
   body: Cat_Aliases_ResponseBody;
 }
 
-export type Cat_Aliases_ResponseBody = Cat_Aliases.AliasesRecord[]
+export type Cat_Aliases_ResponseBody = Cat_AliasesAliasesRecord.undefined[]
 

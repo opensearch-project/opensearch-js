@@ -15,23 +15,25 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
 import * as Global from '../_types/_global'
-import * as Indices_GetMapping from '../_types/indices.get_mapping'
+import * as Indices_GetMappingIndexMappingRecord from '../_types/indices.get_mapping___IndexMappingRecord'
 
 export type Indices_GetMapping_Request = Global.Params & {
   allow_no_indices?: boolean;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   local?: boolean;
-  master_timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
 }
 
 export type Indices_GetMapping_Response = ApiResponse & {
   body: Indices_GetMapping_ResponseBody;
 }
 
-export type Indices_GetMapping_ResponseBody = Record<string, Indices_GetMapping.IndexMappingRecord>
+export type Indices_GetMapping_ResponseBody = Record<string, Indices_GetMappingIndexMappingRecord.undefined>
 

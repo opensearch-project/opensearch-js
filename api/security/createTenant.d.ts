@@ -16,10 +16,11 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonCreateTenantParams from '../_types/security._common___CreateTenantParams'
+import * as Security_CommonOk from '../_types/security._common___Ok'
 
 export type Security_CreateTenant_Request = Global.Params & {
-  body: Security_Common.CreateTenantParams;
+  body: Security_CommonCreateTenantParams.undefined;
   tenant: string;
 }
 
@@ -27,5 +28,5 @@ export type Security_CreateTenant_Response = ApiResponse & {
   body: Security_CreateTenant_ResponseBody;
 }
 
-export type Security_CreateTenant_ResponseBody = Security_Common.Ok
+export type Security_CreateTenant_ResponseBody = Security_CommonOk.undefined
 

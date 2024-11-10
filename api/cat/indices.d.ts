@@ -15,25 +15,30 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Indices from '../_types/cat.indices'
-import * as Common from '../_types/_common'
+import * as Cat_IndicesIndicesRecord from '../_types/cat.indices___IndicesRecord'
+import * as CommonByteUnit from '../_types/_common___ByteUnit'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonHealthStatus from '../_types/_common___HealthStatus'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonTimeUnit from '../_types/_common___TimeUnit'
 import * as Global from '../_types/_global'
 
 export type Cat_Indices_Request = Global.Params & {
-  bytes?: Common.ByteUnit;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
+  bytes?: CommonByteUnit.undefined;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   format?: string;
   h?: string[];
-  health?: Common.HealthStatus;
+  health?: CommonHealthStatus.undefined;
   help?: boolean;
   include_unloaded_segments?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   local?: boolean;
-  master_timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
   pri?: boolean;
   s?: string[];
-  time?: Common.TimeUnit;
+  time?: CommonTimeUnit.undefined;
   v?: boolean;
 }
 
@@ -41,5 +46,5 @@ export type Cat_Indices_Response = ApiResponse & {
   body: Cat_Indices_ResponseBody;
 }
 
-export type Cat_Indices_ResponseBody = Cat_Indices.IndicesRecord[]
+export type Cat_Indices_ResponseBody = Cat_IndicesIndicesRecord.undefined[]
 

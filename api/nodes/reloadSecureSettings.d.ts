@@ -15,23 +15,25 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonNodeIds from '../_types/_common___NodeIds'
+import * as CommonPassword from '../_types/_common___Password'
 import * as Global from '../_types/_global'
-import * as Nodes_ReloadSecureSettings from '../_types/nodes.reload_secure_settings'
+import * as Nodes_ReloadSecureSettingsResponseBase from '../_types/nodes.reload_secure_settings___ResponseBase'
 
 export type Nodes_ReloadSecureSettings_Request = Global.Params & {
   body?: Nodes_ReloadSecureSettings_RequestBody;
-  node_id?: Common.NodeIds;
-  timeout?: Common.Duration;
+  node_id?: CommonNodeIds.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Nodes_ReloadSecureSettings_RequestBody = {
-  secure_settings_password?: Common.Password;
+  secure_settings_password?: CommonPassword.undefined;
 }
 
 export type Nodes_ReloadSecureSettings_Response = ApiResponse & {
   body: Nodes_ReloadSecureSettings_ResponseBody;
 }
 
-export type Nodes_ReloadSecureSettings_ResponseBody = Nodes_ReloadSecureSettings.ResponseBase
+export type Nodes_ReloadSecureSettings_ResponseBody = Nodes_ReloadSecureSettingsResponseBase.undefined
 

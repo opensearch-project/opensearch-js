@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Ml_Common from '../_types/ml._common'
+import * as Ml_CommonModelGroupRegistration from '../_types/ml._common___ModelGroupRegistration'
 
 export type Ml_RegisterModelGroup_Request = Global.Params & {
   body?: Ml_RegisterModelGroup_RequestBody;
@@ -34,5 +34,5 @@ export type Ml_RegisterModelGroup_Response = ApiResponse & {
   body: Ml_RegisterModelGroup_ResponseBody;
 }
 
-export type Ml_RegisterModelGroup_ResponseBody = Ml_Common.ModelGroupRegistration
+export type Ml_RegisterModelGroup_ResponseBody = Ml_CommonModelGroupRegistration.undefined
 

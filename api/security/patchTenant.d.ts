@@ -16,18 +16,19 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonOk from '../_types/security._common___Ok'
+import * as Security_CommonPatchOperation from '../_types/security._common___PatchOperation'
 
 export type Security_PatchTenant_Request = Global.Params & {
   body: Security_PatchTenant_RequestBody;
   tenant: string;
 }
 
-export type Security_PatchTenant_RequestBody = Security_Common.PatchOperation[]
+export type Security_PatchTenant_RequestBody = Security_CommonPatchOperation.undefined[]
 
 export type Security_PatchTenant_Response = ApiResponse & {
   body: Security_PatchTenant_ResponseBody;
 }
 
-export type Security_PatchTenant_ResponseBody = Security_Common.Ok
+export type Security_PatchTenant_ResponseBody = Security_CommonOk.undefined
 

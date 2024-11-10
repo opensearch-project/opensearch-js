@@ -15,7 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as AsynchronousSearch_Common from '../_types/asynchronous_search._common'
+import * as AsynchronousSearch_CommonResponseBody from '../_types/asynchronous_search._common___ResponseBody'
 import * as Global from '../_types/_global'
 
 export type AsynchronousSearch_Get_Request = Global.Params & {
@@ -26,5 +26,5 @@ export type AsynchronousSearch_Get_Response = ApiResponse & {
   body: AsynchronousSearch_Get_ResponseBody;
 }
 
-export type AsynchronousSearch_Get_ResponseBody = AsynchronousSearch_Common.ResponseBody
+export type AsynchronousSearch_Get_ResponseBody = AsynchronousSearch_CommonResponseBody.undefined
 

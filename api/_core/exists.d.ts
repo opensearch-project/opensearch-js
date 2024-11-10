@@ -15,23 +15,28 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_Search from '../_types/_core.search'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as CommonVersionNumber from '../_types/_common___VersionNumber'
+import * as CommonVersionType from '../_types/_common___VersionType'
+import * as Core_SearchSourceConfigParam from '../_types/_core.search___SourceConfigParam'
 import * as Global from '../_types/_global'
 
 export type Exists_Request = Global.Params & {
-  _source?: Core_Search.SourceConfigParam;
-  _source_excludes?: Common.Fields;
-  _source_includes?: Common.Fields;
-  id: Common.Id;
-  index: Common.IndexName;
+  _source?: Core_SearchSourceConfigParam.undefined;
+  _source_excludes?: CommonFields.undefined;
+  _source_includes?: CommonFields.undefined;
+  id: CommonId.undefined;
+  index: CommonIndexName.undefined;
   preference?: string;
   realtime?: boolean;
   refresh?: boolean;
-  routing?: Common.RoutingInQueryString;
-  stored_fields?: Common.Fields;
-  version?: Common.VersionNumber;
-  version_type?: Common.VersionType;
+  routing?: CommonRoutingInQueryString.undefined;
+  stored_fields?: CommonFields.undefined;
+  version?: CommonVersionNumber.undefined;
+  version_type?: CommonVersionType.undefined;
 }
 
 export type Exists_Response = ApiResponse & {

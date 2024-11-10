@@ -16,10 +16,11 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Sql_Common from '../_types/sql._common'
+import * as Sql_CommonSqlClose from '../_types/sql._common___SqlClose'
+import * as Sql_CommonSqlCloseResponse from '../_types/sql._common___SqlCloseResponse'
 
 export type Sql_Close_Request = Global.Params & {
-  body: Sql_Common.SqlClose;
+  body?: Sql_CommonSqlClose.undefined;
   format?: string;
   sanitize?: boolean;
 }
@@ -28,5 +29,5 @@ export type Sql_Close_Response = ApiResponse & {
   body: Sql_Close_ResponseBody;
 }
 
-export type Sql_Close_ResponseBody = Sql_Common.SqlCloseResponse
+export type Sql_Close_ResponseBody = Sql_CommonSqlCloseResponse.undefined
 

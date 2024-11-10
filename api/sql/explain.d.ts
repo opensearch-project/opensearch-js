@@ -16,10 +16,11 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Sql_Common from '../_types/sql._common'
+import * as Sql_CommonExplain from '../_types/sql._common___Explain'
+import * as Sql_CommonExplainResponse from '../_types/sql._common___ExplainResponse'
 
 export type Sql_Explain_Request = Global.Params & {
-  body: Sql_Common.Explain;
+  body?: Sql_CommonExplain.undefined;
   format?: string;
   sanitize?: boolean;
 }
@@ -28,5 +29,5 @@ export type Sql_Explain_Response = ApiResponse & {
   body: Sql_Explain_ResponseBody;
 }
 
-export type Sql_Explain_ResponseBody = Sql_Common.ExplainResponse
+export type Sql_Explain_ResponseBody = Sql_CommonExplainResponse.undefined
 

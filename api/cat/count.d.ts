@@ -15,15 +15,15 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Count from '../_types/cat.count'
-import * as Common from '../_types/_common'
+import * as Cat_CountCountRecord from '../_types/cat.count___CountRecord'
+import * as CommonIndices from '../_types/_common___Indices'
 import * as Global from '../_types/_global'
 
 export type Cat_Count_Request = Global.Params & {
   format?: string;
   h?: string[];
   help?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   s?: string[];
   v?: boolean;
 }
@@ -32,5 +32,5 @@ export type Cat_Count_Response = ApiResponse & {
   body: Cat_Count_ResponseBody;
 }
 
-export type Cat_Count_ResponseBody = Cat_Count.CountRecord[]
+export type Cat_Count_ResponseBody = Cat_CountCountRecord.undefined[]
 

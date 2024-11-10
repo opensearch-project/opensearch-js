@@ -15,24 +15,25 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
-import * as Indices_UpdateAliases from '../_types/indices.update_aliases'
+import * as Indices_UpdateAliasesAction from '../_types/indices.update_aliases___Action'
 
 export type Indices_UpdateAliases_Request = Global.Params & {
   body: Indices_UpdateAliases_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Indices_UpdateAliases_RequestBody = {
-  actions?: Indices_UpdateAliases.Action[];
+  actions?: Indices_UpdateAliasesAction.undefined[];
 }
 
 export type Indices_UpdateAliases_Response = ApiResponse & {
   body: Indices_UpdateAliases_ResponseBody;
 }
 
-export type Indices_UpdateAliases_ResponseBody = Common.AcknowledgedResponseBase
+export type Indices_UpdateAliases_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

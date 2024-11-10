@@ -15,27 +15,29 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_Msearch from '../_types/_core.msearch'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonSearchType from '../_types/_common___SearchType'
+import * as Core_MsearchMultiSearchResult from '../_types/_core.msearch___MultiSearchResult'
+import * as Core_MsearchRequestItem from '../_types/_core.msearch___RequestItem'
 import * as Global from '../_types/_global'
 
 export type Msearch_Request = Global.Params & {
   body: Msearch_RequestBody;
   ccs_minimize_roundtrips?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   max_concurrent_searches?: number;
   max_concurrent_shard_requests?: number;
   pre_filter_shard_size?: number;
   rest_total_hits_as_int?: boolean;
-  search_type?: Common.SearchType;
+  search_type?: CommonSearchType.undefined;
   typed_keys?: boolean;
 }
 
-export type Msearch_RequestBody = Core_Msearch.RequestItem[]
+export type Msearch_RequestBody = Core_MsearchRequestItem.undefined[]
 
 export type Msearch_Response = ApiResponse & {
   body: Msearch_ResponseBody;
 }
 
-export type Msearch_ResponseBody = Core_Msearch.MultiSearchResult
+export type Msearch_ResponseBody = Core_MsearchMultiSearchResult.undefined
 

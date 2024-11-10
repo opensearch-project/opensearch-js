@@ -1,0 +1,27 @@
+/*
+ * Copyright OpenSearch Contributors
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ *
+ */
+
+/*
+ * This file was generated from the OpenSearch API Spec. Do NOT edit it
+ * manually. If you want to make changes, either update the spec or
+ * modify the API generator.
+ */
+
+import * as Nodes_CommonDataPathStats from './nodes._common___DataPathStats'
+import * as Nodes_CommonFileSystemTotal from './nodes._common___FileSystemTotal'
+import * as Nodes_CommonIoStats from './nodes._common___IoStats'
+
+export type undefined = {
+  data?: Nodes_CommonDataPathStats.undefined[];
+  io_stats?: Nodes_CommonIoStats.undefined;
+  timestamp?: number;
+  total?: Nodes_CommonFileSystemTotal.undefined;
+}
+

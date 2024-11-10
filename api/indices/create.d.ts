@@ -15,24 +15,27 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Common_Mapping from '../_types/_common.mapping'
+import * as Common_MappingTypeMapping from '../_types/_common.mapping___TypeMapping'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonWaitForActiveShards from '../_types/_common___WaitForActiveShards'
 import * as Global from '../_types/_global'
-import * as Indices_Common from '../_types/indices._common'
+import * as Indices_CommonAlias from '../_types/indices._common___Alias'
+import * as Indices_CommonIndexSettings from '../_types/indices._common___IndexSettings'
 
 export type Indices_Create_Request = Global.Params & {
   body?: Indices_Create_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
-  index: Common.IndexName;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
-  wait_for_active_shards?: Common.WaitForActiveShards;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  index: CommonIndexName.undefined;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
+  wait_for_active_shards?: CommonWaitForActiveShards.undefined;
 }
 
 export type Indices_Create_RequestBody = {
-  aliases?: Record<string, Indices_Common.Alias>;
-  mappings?: Common_Mapping.TypeMapping;
-  settings?: Indices_Common.IndexSettings;
+  aliases?: Record<string, Indices_CommonAlias.undefined>;
+  mappings?: Common_MappingTypeMapping.undefined;
+  settings?: Indices_CommonIndexSettings.undefined;
 }
 
 export type Indices_Create_Response = ApiResponse & {
@@ -41,7 +44,7 @@ export type Indices_Create_Response = ApiResponse & {
 
 export type Indices_Create_ResponseBody = {
   acknowledged: boolean;
-  index: Common.IndexName;
+  index: CommonIndexName.undefined;
   shards_acknowledged: boolean;
 }
 

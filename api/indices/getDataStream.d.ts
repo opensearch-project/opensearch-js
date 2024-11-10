@@ -15,12 +15,12 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDataStreamNames from '../_types/_common___DataStreamNames'
 import * as Global from '../_types/_global'
-import * as Indices_Common from '../_types/indices._common'
+import * as Indices_CommonDataStream from '../_types/indices._common___DataStream'
 
 export type Indices_GetDataStream_Request = Global.Params & {
-  name?: Common.DataStreamNames;
+  name?: CommonDataStreamNames.undefined;
 }
 
 export type Indices_GetDataStream_Response = ApiResponse & {
@@ -28,6 +28,6 @@ export type Indices_GetDataStream_Response = ApiResponse & {
 }
 
 export type Indices_GetDataStream_ResponseBody = {
-  data_streams: Indices_Common.DataStream[];
+  data_streams: Indices_CommonDataStream.undefined[];
 }
 

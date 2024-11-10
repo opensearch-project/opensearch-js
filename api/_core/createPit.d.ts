@@ -15,17 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_Common from '../_types/_core._common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as Core_CommonShardStatistics from '../_types/_core._common___ShardStatistics'
 import * as Global from '../_types/_global'
 
 export type CreatePit_Request = Global.Params & {
   allow_partial_pit_creation?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   index: string[];
-  keep_alive?: Common.Duration;
+  keep_alive?: CommonDuration.undefined;
   preference?: string;
-  routing?: Common.RoutingInQueryString;
+  routing?: CommonRoutingInQueryString.undefined;
 }
 
 export type CreatePit_Response = ApiResponse & {
@@ -33,7 +35,7 @@ export type CreatePit_Response = ApiResponse & {
 }
 
 export type CreatePit_ResponseBody = {
-  _shards?: Core_Common.ShardStatistics;
+  _shards?: Core_CommonShardStatistics.undefined;
   creation_time?: number;
   pit_id?: string;
 }

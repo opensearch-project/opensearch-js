@@ -15,12 +15,15 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonByteCount from '../_types/_common___ByteCount'
+import * as CommonHumanReadableByteCount from '../_types/_common___HumanReadableByteCount'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonShardStatistics from '../_types/_common___ShardStatistics'
 import * as Global from '../_types/_global'
-import * as Indices_DataStreamsStats from '../_types/indices.data_streams_stats'
+import * as Indices_DataStreamsStatsDataStreamsStatsItem from '../_types/indices.data_streams_stats___DataStreamsStatsItem'
 
 export type Indices_DataStreamsStats_Request = Global.Params & {
-  name?: Common.Indices;
+  name?: CommonIndices.undefined;
 }
 
 export type Indices_DataStreamsStats_Response = ApiResponse & {
@@ -28,11 +31,11 @@ export type Indices_DataStreamsStats_Response = ApiResponse & {
 }
 
 export type Indices_DataStreamsStats_ResponseBody = {
-  _shards: Common.ShardStatistics;
+  _shards: CommonShardStatistics.undefined;
   backing_indices: number;
   data_stream_count: number;
-  data_streams: Indices_DataStreamsStats.DataStreamsStatsItem[];
-  total_store_size_bytes: Common.ByteCount;
-  total_store_sizes?: Common.HumanReadableByteCount;
+  data_streams: Indices_DataStreamsStatsDataStreamsStatsItem.undefined[];
+  total_store_size_bytes: CommonByteCount.undefined;
+  total_store_sizes?: CommonHumanReadableByteCount.undefined;
 }
 

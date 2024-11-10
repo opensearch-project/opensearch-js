@@ -15,13 +15,13 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Common from '../_types/cat._common'
-import * as Common from '../_types/_common'
+import * as Cat_CommonCatPitSegmentsRecord from '../_types/cat._common___CatPitSegmentsRecord'
+import * as CommonByteUnit from '../_types/_common___ByteUnit'
 import * as Global from '../_types/_global'
 
 export type Cat_PitSegments_Request = Global.Params & {
   body?: Cat_PitSegments_RequestBody;
-  bytes?: Common.ByteUnit;
+  bytes?: CommonByteUnit.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
@@ -37,5 +37,5 @@ export type Cat_PitSegments_Response = ApiResponse & {
   body: Cat_PitSegments_ResponseBody;
 }
 
-export type Cat_PitSegments_ResponseBody = Cat_Common.CatPitSegmentsRecord[]
+export type Cat_PitSegments_ResponseBody = Cat_CommonCatPitSegmentsRecord.undefined[]
 

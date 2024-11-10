@@ -15,33 +15,37 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Common_QueryDsl from '../_types/_common.query_dsl'
+import * as Common_QueryDslQueryContainer from '../_types/_common.query_dsl___QueryContainer'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonName from '../_types/_common___Name'
+import * as CommonRouting from '../_types/_common___Routing'
 import * as Global from '../_types/_global'
 
 export type Indices_PutAlias_Request = Global.Params & {
   body?: Indices_PutAlias_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
-  index?: Common.Indices;
-  master_timeout?: Common.Duration;
-  name?: Common.Name;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  index?: CommonIndices.undefined;
+  master_timeout?: CommonDuration.undefined;
+  name?: CommonName.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Indices_PutAlias_RequestBody = {
   alias?: string;
-  filter?: Common_QueryDsl.QueryContainer;
+  filter?: Common_QueryDslQueryContainer.undefined;
   index?: string;
-  index_routing?: Common.Routing;
+  index_routing?: CommonRouting.undefined;
   is_hidden?: boolean;
   is_write_index?: boolean;
-  routing?: Common.Routing;
-  search_routing?: Common.Routing;
+  routing?: CommonRouting.undefined;
+  search_routing?: CommonRouting.undefined;
 }
 
 export type Indices_PutAlias_Response = ApiResponse & {
   body: Indices_PutAlias_ResponseBody;
 }
 
-export type Indices_PutAlias_ResponseBody = Common.AcknowledgedResponseBase
+export type Indices_PutAlias_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

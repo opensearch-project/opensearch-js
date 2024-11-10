@@ -15,10 +15,13 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Common_QueryDsl from '../_types/_common.query_dsl'
+import * as Common_QueryDslOperator from '../_types/_common.query_dsl___Operator'
+import * as Common_QueryDslQueryContainer from '../_types/_common.query_dsl___QueryContainer'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonShardStatistics from '../_types/_common___ShardStatistics'
 import * as Global from '../_types/_global'
-import * as Indices_ValidateQuery from '../_types/indices.validate_query'
+import * as Indices_ValidateQueryIndicesValidationExplanation from '../_types/indices.validate_query___IndicesValidationExplanation'
 
 export type Indices_ValidateQuery_Request = Global.Params & {
   all_shards?: boolean;
@@ -26,19 +29,19 @@ export type Indices_ValidateQuery_Request = Global.Params & {
   analyze_wildcard?: boolean;
   analyzer?: string;
   body?: Indices_ValidateQuery_RequestBody;
-  default_operator?: Common_QueryDsl.Operator;
+  default_operator?: Common_QueryDslOperator.undefined;
   df?: string;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   explain?: boolean;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   lenient?: boolean;
   q?: string;
   rewrite?: boolean;
 }
 
 export type Indices_ValidateQuery_RequestBody = {
-  query?: Common_QueryDsl.QueryContainer;
+  query?: Common_QueryDslQueryContainer.undefined;
 }
 
 export type Indices_ValidateQuery_Response = ApiResponse & {
@@ -46,9 +49,9 @@ export type Indices_ValidateQuery_Response = ApiResponse & {
 }
 
 export type Indices_ValidateQuery_ResponseBody = {
-  _shards?: Common.ShardStatistics;
+  _shards?: CommonShardStatistics.undefined;
   error?: string;
-  explanations?: Indices_ValidateQuery.IndicesValidationExplanation[];
+  explanations?: Indices_ValidateQueryIndicesValidationExplanation.undefined[];
   valid: boolean;
 }
 

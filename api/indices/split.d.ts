@@ -15,25 +15,27 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonWaitForActiveShards from '../_types/_common___WaitForActiveShards'
 import * as Global from '../_types/_global'
-import * as Indices_Common from '../_types/indices._common'
+import * as Indices_CommonAlias from '../_types/indices._common___Alias'
 
 export type Indices_Split_Request = Global.Params & {
   body?: Indices_Split_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   copy_settings?: boolean;
-  index: Common.IndexName;
-  master_timeout?: Common.Duration;
-  target: Common.IndexName;
-  task_execution_timeout?: Common.Duration;
-  timeout?: Common.Duration;
-  wait_for_active_shards?: Common.WaitForActiveShards;
+  index: CommonIndexName.undefined;
+  master_timeout?: CommonDuration.undefined;
+  target: CommonIndexName.undefined;
+  task_execution_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
+  wait_for_active_shards?: CommonWaitForActiveShards.undefined;
   wait_for_completion?: boolean;
 }
 
 export type Indices_Split_RequestBody = {
-  aliases?: Record<string, Indices_Common.Alias>;
+  aliases?: Record<string, Indices_CommonAlias.undefined>;
   settings?: {
 };
 }
@@ -44,7 +46,7 @@ export type Indices_Split_Response = ApiResponse & {
 
 export type Indices_Split_ResponseBody = {
   acknowledged: boolean;
-  index: Common.IndexName;
+  index: CommonIndexName.undefined;
   shards_acknowledged: boolean;
 }
 

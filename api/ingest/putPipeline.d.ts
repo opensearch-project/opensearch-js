@@ -15,29 +15,33 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonMetadata from '../_types/_common___Metadata'
+import * as CommonVersionNumber from '../_types/_common___VersionNumber'
 import * as Global from '../_types/_global'
-import * as Ingest_Common from '../_types/ingest._common'
+import * as Ingest_CommonProcessorContainer from '../_types/ingest._common___ProcessorContainer'
 
 export type Ingest_PutPipeline_Request = Global.Params & {
   body: Ingest_PutPipeline_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
-  id: Common.Id;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  id: CommonId.undefined;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Ingest_PutPipeline_RequestBody = {
-  _meta?: Common.Metadata;
+  _meta?: CommonMetadata.undefined;
   description?: string;
-  on_failure?: Ingest_Common.ProcessorContainer[];
-  processors?: Ingest_Common.ProcessorContainer[];
-  version?: Common.VersionNumber;
+  on_failure?: Ingest_CommonProcessorContainer.undefined[];
+  processors?: Ingest_CommonProcessorContainer.undefined[];
+  version?: CommonVersionNumber.undefined;
 }
 
 export type Ingest_PutPipeline_Response = ApiResponse & {
   body: Ingest_PutPipeline_ResponseBody;
 }
 
-export type Ingest_PutPipeline_ResponseBody = Common.AcknowledgedResponseBase
+export type Ingest_PutPipeline_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

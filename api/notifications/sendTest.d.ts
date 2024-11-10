@@ -16,7 +16,8 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Notifications_Common from '../_types/notifications._common'
+import * as Notifications_CommonEventSource from '../_types/notifications._common___EventSource'
+import * as Notifications_CommonEventStatus from '../_types/notifications._common___EventStatus'
 
 export type Notifications_SendTest_Request = Global.Params & {
   config_id: string;
@@ -27,7 +28,7 @@ export type Notifications_SendTest_Response = ApiResponse & {
 }
 
 export type Notifications_SendTest_ResponseBody = {
-  event_source?: Notifications_Common.EventSource;
-  status_list?: Notifications_Common.EventStatus[];
+  event_source?: Notifications_CommonEventSource.undefined;
+  status_list?: Notifications_CommonEventStatus.undefined[];
 }
 

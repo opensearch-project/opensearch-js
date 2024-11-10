@@ -16,7 +16,8 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Notifications_Common from '../_types/notifications._common'
+import * as Notifications_CommonNotificationConfigType from '../_types/notifications._common___NotificationConfigType'
+import * as Notifications_CommonNotificationsPluginFeaturesMap from '../_types/notifications._common___NotificationsPluginFeaturesMap'
 
 export type Notifications_ListFeatures_Request = Global.Params & Record<string, any>
 
@@ -25,7 +26,7 @@ export type Notifications_ListFeatures_Response = ApiResponse & {
 }
 
 export type Notifications_ListFeatures_ResponseBody = {
-  allowed_config_type_list?: Notifications_Common.NotificationConfigType[];
-  plugin_features?: Notifications_Common.NotificationsPluginFeaturesMap;
+  allowed_config_type_list?: Notifications_CommonNotificationConfigType.undefined[];
+  plugin_features?: Notifications_CommonNotificationsPluginFeaturesMap.undefined;
 }
 

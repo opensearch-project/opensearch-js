@@ -15,17 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as FlowFramework_Common from '../_types/flow_framework.common'
+import * as FlowFramework_CommonUserProvidedSubstitutionExpressions from '../_types/flow_framework.common___UserProvidedSubstitutionExpressions'
+import * as FlowFramework_CommonWorkflowId from '../_types/flow_framework.common___WorkflowID'
+import * as FlowFramework_CommonWorkflowIdResponse from '../_types/flow_framework.common___WorkflowIDResponse'
 import * as Global from '../_types/_global'
 
 export type FlowFramework_Provision_Request = Global.Params & {
-  body?: FlowFramework_Common.UserProvidedSubstitutionExpressions;
-  workflow_id: FlowFramework_Common.WorkflowID;
+  body?: FlowFramework_CommonUserProvidedSubstitutionExpressions.undefined;
+  workflow_id: FlowFramework_CommonWorkflowId.undefined;
 }
 
 export type FlowFramework_Provision_Response = ApiResponse & {
   body: FlowFramework_Provision_ResponseBody;
 }
 
-export type FlowFramework_Provision_ResponseBody = Record<string, any>
+export type FlowFramework_Provision_ResponseBody = FlowFramework_CommonWorkflowIdResponse.undefined
 

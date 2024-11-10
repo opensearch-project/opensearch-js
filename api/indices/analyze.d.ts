@@ -15,26 +15,31 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Common_Analysis from '../_types/_common.analysis'
+import * as Common_AnalysisCharFilter from '../_types/_common.analysis___CharFilter'
+import * as Common_AnalysisTokenFilter from '../_types/_common.analysis___TokenFilter'
+import * as Common_AnalysisTokenizer from '../_types/_common.analysis___Tokenizer'
+import * as CommonField from '../_types/_common___Field'
+import * as CommonIndexName from '../_types/_common___IndexName'
 import * as Global from '../_types/_global'
-import * as Indices_Analyze from '../_types/indices.analyze'
+import * as Indices_AnalyzeAnalyzeDetail from '../_types/indices.analyze___AnalyzeDetail'
+import * as Indices_AnalyzeAnalyzeToken from '../_types/indices.analyze___AnalyzeToken'
+import * as Indices_AnalyzeTextToAnalyze from '../_types/indices.analyze___TextToAnalyze'
 
 export type Indices_Analyze_Request = Global.Params & {
   body?: Indices_Analyze_RequestBody;
-  index?: Common.IndexName;
+  index?: CommonIndexName.undefined;
 }
 
 export type Indices_Analyze_RequestBody = {
   analyzer?: string;
   attributes?: string[];
-  char_filter?: Common_Analysis.CharFilter[];
+  char_filter?: Common_AnalysisCharFilter.undefined[];
   explain?: boolean;
-  field?: Common.Field;
-  filter?: Common_Analysis.TokenFilter[];
+  field?: CommonField.undefined;
+  filter?: Common_AnalysisTokenFilter.undefined[];
   normalizer?: string;
-  text?: Indices_Analyze.TextToAnalyze;
-  tokenizer?: Common_Analysis.Tokenizer;
+  text?: Indices_AnalyzeTextToAnalyze.undefined;
+  tokenizer?: Common_AnalysisTokenizer.undefined;
 }
 
 export type Indices_Analyze_Response = ApiResponse & {
@@ -42,7 +47,7 @@ export type Indices_Analyze_Response = ApiResponse & {
 }
 
 export type Indices_Analyze_ResponseBody = {
-  detail?: Indices_Analyze.AnalyzeDetail;
-  tokens?: Indices_Analyze.AnalyzeToken[];
+  detail?: Indices_AnalyzeAnalyzeDetail.undefined;
+  tokens?: Indices_AnalyzeAnalyzeToken.undefined[];
 }
 

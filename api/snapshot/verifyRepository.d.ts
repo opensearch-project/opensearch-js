@@ -15,15 +15,16 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
-import * as Snapshot_VerifyRepository from '../_types/snapshot.verify_repository'
+import * as Snapshot_VerifyRepositoryCompactNodeInfo from '../_types/snapshot.verify_repository___CompactNodeInfo'
 
 export type Snapshot_VerifyRepository_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
-  master_timeout?: Common.Duration;
-  repository: Common.Name;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  master_timeout?: CommonDuration.undefined;
+  repository: CommonName.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Snapshot_VerifyRepository_Response = ApiResponse & {
@@ -31,6 +32,6 @@ export type Snapshot_VerifyRepository_Response = ApiResponse & {
 }
 
 export type Snapshot_VerifyRepository_ResponseBody = {
-  nodes: Record<string, Snapshot_VerifyRepository.CompactNodeInfo>;
+  nodes: Record<string, Snapshot_VerifyRepositoryCompactNodeInfo.undefined>;
 }
 

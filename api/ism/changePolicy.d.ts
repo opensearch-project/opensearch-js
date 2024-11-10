@@ -15,18 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonIndexName from '../_types/_common___IndexName'
 import * as Global from '../_types/_global'
-import * as Ism_Common from '../_types/ism._common'
+import * as Ism_CommonChangePolicyRequest from '../_types/ism._common___ChangePolicyRequest'
+import * as Ism_CommonChangePolicyResponse from '../_types/ism._common___ChangePolicyResponse'
 
 export type Ism_ChangePolicy_Request = Global.Params & {
-  body?: Ism_Common.ChangePolicyRequest;
-  index?: Common.IndexName;
+  body?: Ism_CommonChangePolicyRequest.undefined;
+  index?: CommonIndexName.undefined;
 }
 
 export type Ism_ChangePolicy_Response = ApiResponse & {
   body: Ism_ChangePolicy_ResponseBody;
 }
 
-export type Ism_ChangePolicy_ResponseBody = Ism_Common.ChangePolicyResponse
+export type Ism_ChangePolicy_ResponseBody = Ism_CommonChangePolicyResponse.undefined
 

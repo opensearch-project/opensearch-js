@@ -15,20 +15,23 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonNames from '../_types/_common___Names'
 import * as Global from '../_types/_global'
 
 export type Indices_DeleteAlias_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
-  index: Common.Indices;
-  master_timeout?: Common.Duration;
-  name: Common.Names;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  index: CommonIndices.undefined;
+  master_timeout?: CommonDuration.undefined;
+  name: CommonNames.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Indices_DeleteAlias_Response = ApiResponse & {
   body: Indices_DeleteAlias_ResponseBody;
 }
 
-export type Indices_DeleteAlias_ResponseBody = Common.AcknowledgedResponseBase
+export type Indices_DeleteAlias_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

@@ -15,17 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Nodeattrs from '../_types/cat.nodeattrs'
-import * as Common from '../_types/_common'
+import * as Cat_NodeattrsNodeAttributesRecord from '../_types/cat.nodeattrs___NodeAttributesRecord'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
 
 export type Cat_Nodeattrs_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
   local?: boolean;
-  master_timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
   s?: string[];
   v?: boolean;
 }
@@ -34,5 +34,5 @@ export type Cat_Nodeattrs_Response = ApiResponse & {
   body: Cat_Nodeattrs_ResponseBody;
 }
 
-export type Cat_Nodeattrs_ResponseBody = Cat_Nodeattrs.NodeAttributesRecord[]
+export type Cat_Nodeattrs_ResponseBody = Cat_NodeattrsNodeAttributesRecord.undefined[]
 

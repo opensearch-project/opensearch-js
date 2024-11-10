@@ -15,17 +15,20 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Common from '../_types/cat._common'
-import * as Common from '../_types/_common'
+import * as Cat_CommonCatSegmentReplicationRecord from '../_types/cat._common___CatSegmentReplicationRecord'
+import * as CommonByteUnit from '../_types/_common___ByteUnit'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonTimeUnit from '../_types/_common___TimeUnit'
 import * as Global from '../_types/_global'
 
 export type Cat_SegmentReplication_Request = Global.Params & {
   active_only?: boolean;
   allow_no_indices?: boolean;
-  bytes?: Common.ByteUnit;
+  bytes?: CommonByteUnit.undefined;
   completed_only?: boolean;
   detailed?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
@@ -34,8 +37,8 @@ export type Cat_SegmentReplication_Request = Global.Params & {
   index?: string[];
   s?: string[];
   shards?: string[];
-  time?: Common.TimeUnit;
-  timeout?: Common.Duration;
+  time?: CommonTimeUnit.undefined;
+  timeout?: CommonDuration.undefined;
   v?: boolean;
 }
 
@@ -43,5 +46,5 @@ export type Cat_SegmentReplication_Response = ApiResponse & {
   body: Cat_SegmentReplication_ResponseBody;
 }
 
-export type Cat_SegmentReplication_ResponseBody = Cat_Common.CatSegmentReplicationRecord[]
+export type Cat_SegmentReplication_ResponseBody = Cat_CommonCatSegmentReplicationRecord.undefined[]
 

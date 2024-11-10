@@ -16,10 +16,10 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Query_Common from '../_types/query._common'
+import * as Query_CommonDataSource from '../_types/query._common___DataSource'
 
 export type Query_DatasourcesUpdate_Request = Global.Params & {
-  body?: Query_Common.DataSource;
+  body?: Query_CommonDataSource.undefined;
 }
 
 export type Query_DatasourcesUpdate_Response = ApiResponse & {

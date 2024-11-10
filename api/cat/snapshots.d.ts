@@ -15,20 +15,22 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Snapshots from '../_types/cat.snapshots'
-import * as Common from '../_types/_common'
+import * as Cat_SnapshotsSnapshotsRecord from '../_types/cat.snapshots___SnapshotsRecord'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonNames from '../_types/_common___Names'
+import * as CommonTimeUnit from '../_types/_common___TimeUnit'
 import * as Global from '../_types/_global'
 
 export type Cat_Snapshots_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
   ignore_unavailable?: boolean;
-  master_timeout?: Common.Duration;
-  repository?: Common.Names;
+  master_timeout?: CommonDuration.undefined;
+  repository?: CommonNames.undefined;
   s?: string[];
-  time?: Common.TimeUnit;
+  time?: CommonTimeUnit.undefined;
   v?: boolean;
 }
 
@@ -36,5 +38,5 @@ export type Cat_Snapshots_Response = ApiResponse & {
   body: Cat_Snapshots_ResponseBody;
 }
 
-export type Cat_Snapshots_ResponseBody = Cat_Snapshots.SnapshotsRecord[]
+export type Cat_Snapshots_ResponseBody = Cat_SnapshotsSnapshotsRecord.undefined[]
 

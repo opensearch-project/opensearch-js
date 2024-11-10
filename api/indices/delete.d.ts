@@ -15,22 +15,25 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonIndicesResponseBase from '../_types/_common___IndicesResponseBase'
 import * as Global from '../_types/_global'
 
 export type Indices_Delete_Request = Global.Params & {
   allow_no_indices?: boolean;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
-  index: Common.Indices;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
+  index: CommonIndices.undefined;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Indices_Delete_Response = ApiResponse & {
   body: Indices_Delete_ResponseBody;
 }
 
-export type Indices_Delete_ResponseBody = Common.IndicesResponseBase
+export type Indices_Delete_ResponseBody = CommonIndicesResponseBase.undefined
 

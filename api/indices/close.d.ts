@@ -15,19 +15,22 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonWaitForActiveShards from '../_types/_common___WaitForActiveShards'
 import * as Global from '../_types/_global'
-import * as Indices_Close from '../_types/indices.close'
+import * as Indices_CloseCloseIndexResult from '../_types/indices.close___CloseIndexResult'
 
 export type Indices_Close_Request = Global.Params & {
   allow_no_indices?: boolean;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
-  index: Common.Indices;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
-  wait_for_active_shards?: Common.WaitForActiveShards;
+  index: CommonIndices.undefined;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
+  wait_for_active_shards?: CommonWaitForActiveShards.undefined;
 }
 
 export type Indices_Close_Response = ApiResponse & {
@@ -36,7 +39,7 @@ export type Indices_Close_Response = ApiResponse & {
 
 export type Indices_Close_ResponseBody = {
   acknowledged: boolean;
-  indices: Record<string, Indices_Close.CloseIndexResult>;
+  indices: Record<string, Indices_CloseCloseIndexResult.undefined>;
   shards_acknowledged: boolean;
 }
 

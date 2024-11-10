@@ -15,20 +15,21 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonId from '../_types/_common___Id'
 import * as Global from '../_types/_global'
-import * as Ingest_Common from '../_types/ingest._common'
-import * as Ingest_Simulate from '../_types/ingest.simulate'
+import * as Ingest_CommonPipeline from '../_types/ingest._common___Pipeline'
+import * as Ingest_SimulateDocument from '../_types/ingest.simulate___Document'
+import * as Ingest_SimulatePipelineSimulation from '../_types/ingest.simulate___PipelineSimulation'
 
 export type Ingest_Simulate_Request = Global.Params & {
   body: Ingest_Simulate_RequestBody;
-  id?: Common.Id;
+  id?: CommonId.undefined;
   verbose?: boolean;
 }
 
 export type Ingest_Simulate_RequestBody = {
-  docs?: Ingest_Simulate.Document[];
-  pipeline?: Ingest_Common.Pipeline;
+  docs?: Ingest_SimulateDocument.undefined[];
+  pipeline?: Ingest_CommonPipeline.undefined;
 }
 
 export type Ingest_Simulate_Response = ApiResponse & {
@@ -36,6 +37,6 @@ export type Ingest_Simulate_Response = ApiResponse & {
 }
 
 export type Ingest_Simulate_ResponseBody = {
-  docs: Ingest_Simulate.PipelineSimulation[];
+  docs: Ingest_SimulatePipelineSimulation.undefined[];
 }
 

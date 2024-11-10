@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Wlm_Common from '../_types/wlm._common'
+import * as Wlm_CommonQueryGroupResponse from '../_types/wlm._common___QueryGroupResponse'
 
 export type Wlm_GetQueryGroup_Request = Global.Params & {
   name?: string;
@@ -27,6 +27,6 @@ export type Wlm_GetQueryGroup_Response = ApiResponse & {
 }
 
 export type Wlm_GetQueryGroup_ResponseBody = {
-  query_groups?: Wlm_Common.QueryGroupResponse[];
+  query_groups?: Wlm_CommonQueryGroupResponse.undefined[];
 }
 

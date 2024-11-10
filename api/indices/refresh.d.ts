@@ -15,19 +15,21 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonShardsOperationResponseBase from '../_types/_common___ShardsOperationResponseBase'
 import * as Global from '../_types/_global'
 
 export type Indices_Refresh_Request = Global.Params & {
   allow_no_indices?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
 }
 
 export type Indices_Refresh_Response = ApiResponse & {
   body: Indices_Refresh_ResponseBody;
 }
 
-export type Indices_Refresh_ResponseBody = Common.ShardsOperationResponseBase
+export type Indices_Refresh_ResponseBody = CommonShardsOperationResponseBase.undefined
 

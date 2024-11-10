@@ -15,26 +15,29 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonNames from '../_types/_common___Names'
 import * as Global from '../_types/_global'
-import * as Indices_Common from '../_types/indices._common'
+import * as Indices_CommonIndexState from '../_types/indices._common___IndexState'
 
 export type Indices_GetSettings_Request = Global.Params & {
   allow_no_indices?: boolean;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   flat_settings?: boolean;
   ignore_unavailable?: boolean;
   include_defaults?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   local?: boolean;
-  master_timeout?: Common.Duration;
-  name?: Common.Names;
+  master_timeout?: CommonDuration.undefined;
+  name?: CommonNames.undefined;
 }
 
 export type Indices_GetSettings_Response = ApiResponse & {
   body: Indices_GetSettings_ResponseBody;
 }
 
-export type Indices_GetSettings_ResponseBody = Record<string, Indices_Common.IndexState>
+export type Indices_GetSettings_ResponseBody = Record<string, Indices_CommonIndexState.undefined>
 

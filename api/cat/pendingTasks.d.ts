@@ -15,19 +15,20 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_PendingTasks from '../_types/cat.pending_tasks'
-import * as Common from '../_types/_common'
+import * as Cat_PendingTasksPendingTasksRecord from '../_types/cat.pending_tasks___PendingTasksRecord'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonTimeUnit from '../_types/_common___TimeUnit'
 import * as Global from '../_types/_global'
 
 export type Cat_PendingTasks_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
   local?: boolean;
-  master_timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
   s?: string[];
-  time?: Common.TimeUnit;
+  time?: CommonTimeUnit.undefined;
   v?: boolean;
 }
 
@@ -35,5 +36,5 @@ export type Cat_PendingTasks_Response = ApiResponse & {
   body: Cat_PendingTasks_ResponseBody;
 }
 
-export type Cat_PendingTasks_ResponseBody = Cat_PendingTasks.PendingTasksRecord[]
+export type Cat_PendingTasks_ResponseBody = Cat_PendingTasksPendingTasksRecord.undefined[]
 

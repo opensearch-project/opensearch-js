@@ -15,19 +15,21 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Allocation from '../_types/cat.allocation'
-import * as Common from '../_types/_common'
+import * as Cat_AllocationAllocationRecord from '../_types/cat.allocation___AllocationRecord'
+import * as CommonByteUnit from '../_types/_common___ByteUnit'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonNodeIds from '../_types/_common___NodeIds'
 import * as Global from '../_types/_global'
 
 export type Cat_Allocation_Request = Global.Params & {
-  bytes?: Common.ByteUnit;
-  cluster_manager_timeout?: Common.Duration;
+  bytes?: CommonByteUnit.undefined;
+  cluster_manager_timeout?: CommonDuration.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
   local?: boolean;
-  master_timeout?: Common.Duration;
-  node_id?: Common.NodeIds;
+  master_timeout?: CommonDuration.undefined;
+  node_id?: CommonNodeIds.undefined;
   s?: string[];
   v?: boolean;
 }
@@ -36,5 +38,5 @@ export type Cat_Allocation_Response = ApiResponse & {
   body: Cat_Allocation_ResponseBody;
 }
 
-export type Cat_Allocation_ResponseBody = Cat_Allocation.AllocationRecord[]
+export type Cat_Allocation_ResponseBody = Cat_AllocationAllocationRecord.undefined[]
 

@@ -16,10 +16,10 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Notifications_Common from '../_types/notifications._common'
+import * as Notifications_CommonNotificationsConfig from '../_types/notifications._common___NotificationsConfig'
 
 export type Notifications_UpdateConfig_Request = Global.Params & {
-  body: Notifications_Common.NotificationsConfig;
+  body: Notifications_CommonNotificationsConfig.undefined;
   config_id: string;
 }
 

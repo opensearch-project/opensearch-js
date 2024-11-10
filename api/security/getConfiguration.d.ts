@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonSecurityConfig from '../_types/security._common___SecurityConfig'
 
 export type Security_GetConfiguration_Request = Global.Params & Record<string, any>
 
@@ -24,5 +24,5 @@ export type Security_GetConfiguration_Response = ApiResponse & {
   body: Security_GetConfiguration_ResponseBody;
 }
 
-export type Security_GetConfiguration_ResponseBody = Security_Common.SecurityConfig
+export type Security_GetConfiguration_ResponseBody = Security_CommonSecurityConfig.undefined
 

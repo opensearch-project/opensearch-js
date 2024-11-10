@@ -16,15 +16,16 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonGenerateOboToken from '../_types/security._common___GenerateOBOToken'
+import * as Security_CommonOboToken from '../_types/security._common___OBOToken'
 
 export type Security_GenerateOboToken_Request = Global.Params & {
-  body: Security_Common.OBOToken;
+  body: Security_CommonOboToken.undefined;
 }
 
 export type Security_GenerateOboToken_Response = ApiResponse & {
   body: Security_GenerateOboToken_ResponseBody;
 }
 
-export type Security_GenerateOboToken_ResponseBody = Security_Common.GenerateOBOToken
+export type Security_GenerateOboToken_ResponseBody = Security_CommonGenerateOboToken.undefined
 

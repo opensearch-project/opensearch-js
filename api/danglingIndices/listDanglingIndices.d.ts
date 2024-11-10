@@ -15,8 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as DanglingIndices_ListDanglingIndices from '../_types/dangling_indices.list_dangling_indices'
+import * as CommonName from '../_types/_common___Name'
+import * as CommonNodeStatistics from '../_types/_common___NodeStatistics'
+import * as DanglingIndices_ListDanglingIndicesDanglingIndex from '../_types/dangling_indices.list_dangling_indices___DanglingIndex'
 import * as Global from '../_types/_global'
 
 export type DanglingIndices_ListDanglingIndices_Request = Global.Params & Record<string, any>
@@ -26,8 +27,8 @@ export type DanglingIndices_ListDanglingIndices_Response = ApiResponse & {
 }
 
 export type DanglingIndices_ListDanglingIndices_ResponseBody = {
-  _nodes?: Common.NodeStatistics;
-  cluster_name?: Common.Name;
-  dangling_indices: DanglingIndices_ListDanglingIndices.DanglingIndex[];
+  _nodes?: CommonNodeStatistics.undefined;
+  cluster_name?: CommonName.undefined;
+  dangling_indices: DanglingIndices_ListDanglingIndicesDanglingIndex.undefined[];
 }
 

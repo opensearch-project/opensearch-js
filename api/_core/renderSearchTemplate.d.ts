@@ -15,12 +15,12 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonId from '../_types/_common___Id'
 import * as Global from '../_types/_global'
 
 export type RenderSearchTemplate_Request = Global.Params & {
   body?: RenderSearchTemplate_RequestBody;
-  id?: Common.Id;
+  id?: CommonId.undefined;
 }
 
 export type RenderSearchTemplate_RequestBody = {

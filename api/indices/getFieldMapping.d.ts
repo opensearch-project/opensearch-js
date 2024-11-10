@@ -15,17 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonIndices from '../_types/_common___Indices'
 import * as Global from '../_types/_global'
-import * as Indices_GetFieldMapping from '../_types/indices.get_field_mapping'
+import * as Indices_GetFieldMappingTypeFieldMappings from '../_types/indices.get_field_mapping___TypeFieldMappings'
 
 export type Indices_GetFieldMapping_Request = Global.Params & {
   allow_no_indices?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
-  fields: Common.Fields;
+  expand_wildcards?: CommonExpandWildcards.undefined;
+  fields: CommonFields.undefined;
   ignore_unavailable?: boolean;
   include_defaults?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   local?: boolean;
 }
 
@@ -33,5 +35,5 @@ export type Indices_GetFieldMapping_Response = ApiResponse & {
   body: Indices_GetFieldMapping_ResponseBody;
 }
 
-export type Indices_GetFieldMapping_ResponseBody = Record<string, Indices_GetFieldMapping.TypeFieldMappings>
+export type Indices_GetFieldMapping_ResponseBody = Record<string, Indices_GetFieldMappingTypeFieldMappings.undefined>
 

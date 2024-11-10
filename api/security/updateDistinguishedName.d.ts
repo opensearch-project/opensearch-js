@@ -16,10 +16,11 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonDistinguishedNames from '../_types/security._common___DistinguishedNames'
+import * as Security_CommonOk from '../_types/security._common___Ok'
 
 export type Security_UpdateDistinguishedName_Request = Global.Params & {
-  body?: Security_Common.DistinguishedNames;
+  body?: Security_CommonDistinguishedNames.undefined;
   cluster_name: string;
 }
 
@@ -27,5 +28,5 @@ export type Security_UpdateDistinguishedName_Response = ApiResponse & {
   body: Security_UpdateDistinguishedName_ResponseBody;
 }
 
-export type Security_UpdateDistinguishedName_ResponseBody = Security_Common.Ok
+export type Security_UpdateDistinguishedName_ResponseBody = Security_CommonOk.undefined
 

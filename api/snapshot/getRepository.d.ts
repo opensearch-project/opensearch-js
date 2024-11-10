@@ -15,20 +15,21 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonNames from '../_types/_common___Names'
 import * as Global from '../_types/_global'
-import * as Snapshot_Common from '../_types/snapshot._common'
+import * as Snapshot_CommonRepository from '../_types/snapshot._common___Repository'
 
 export type Snapshot_GetRepository_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   local?: boolean;
-  master_timeout?: Common.Duration;
-  repository?: Common.Names;
+  master_timeout?: CommonDuration.undefined;
+  repository?: CommonNames.undefined;
 }
 
 export type Snapshot_GetRepository_Response = ApiResponse & {
   body: Snapshot_GetRepository_ResponseBody;
 }
 
-export type Snapshot_GetRepository_ResponseBody = Record<string, Snapshot_Common.Repository>
+export type Snapshot_GetRepository_ResponseBody = Record<string, Snapshot_CommonRepository.undefined>
 

@@ -15,7 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
 import * as Global from '../_types/_global'
 
 export type Cluster_DeleteDecommissionAwareness_Request = Global.Params & Record<string, any>
@@ -24,5 +24,5 @@ export type Cluster_DeleteDecommissionAwareness_Response = ApiResponse & {
   body: Cluster_DeleteDecommissionAwareness_ResponseBody;
 }
 
-export type Cluster_DeleteDecommissionAwareness_ResponseBody = Common.AcknowledgedResponseBase
+export type Cluster_DeleteDecommissionAwareness_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

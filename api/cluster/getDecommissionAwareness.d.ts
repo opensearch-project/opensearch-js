@@ -15,7 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cluster_DecommissionAwareness from '../_types/cluster.decommission_awareness'
+import * as Cluster_DecommissionAwarenessDecommissionStatusResponse from '../_types/cluster.decommission_awareness___DecommissionStatusResponse'
 import * as Global from '../_types/_global'
 
 export type Cluster_GetDecommissionAwareness_Request = Global.Params & {
@@ -26,5 +26,5 @@ export type Cluster_GetDecommissionAwareness_Response = ApiResponse & {
   body: Cluster_GetDecommissionAwareness_ResponseBody;
 }
 
-export type Cluster_GetDecommissionAwareness_ResponseBody = Cluster_DecommissionAwareness.DecommissionStatusResponse
+export type Cluster_GetDecommissionAwareness_ResponseBody = Cluster_DecommissionAwarenessDecommissionStatusResponse.undefined
 

@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Notifications_Common from '../_types/notifications._common'
+import * as Notifications_CommonDeleteConfigsResponse from '../_types/notifications._common___DeleteConfigsResponse'
 
 export type Notifications_DeleteConfig_Request = Global.Params & {
   config_id: string;
@@ -26,5 +26,5 @@ export type Notifications_DeleteConfig_Response = ApiResponse & {
   body: Notifications_DeleteConfig_ResponseBody;
 }
 
-export type Notifications_DeleteConfig_ResponseBody = Notifications_Common.DeleteConfigsResponse
+export type Notifications_DeleteConfig_ResponseBody = Notifications_CommonDeleteConfigsResponse.undefined
 

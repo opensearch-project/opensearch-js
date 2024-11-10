@@ -15,20 +15,22 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Recovery from '../_types/cat.recovery'
-import * as Common from '../_types/_common'
+import * as Cat_RecoveryRecoveryRecord from '../_types/cat.recovery___RecoveryRecord'
+import * as CommonByteUnit from '../_types/_common___ByteUnit'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonTimeUnit from '../_types/_common___TimeUnit'
 import * as Global from '../_types/_global'
 
 export type Cat_Recovery_Request = Global.Params & {
   active_only?: boolean;
-  bytes?: Common.ByteUnit;
+  bytes?: CommonByteUnit.undefined;
   detailed?: boolean;
   format?: string;
   h?: string[];
   help?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   s?: string[];
-  time?: Common.TimeUnit;
+  time?: CommonTimeUnit.undefined;
   v?: boolean;
 }
 
@@ -36,5 +38,5 @@ export type Cat_Recovery_Response = ApiResponse & {
   body: Cat_Recovery_ResponseBody;
 }
 
-export type Cat_Recovery_ResponseBody = Cat_Recovery.RecoveryRecord[]
+export type Cat_Recovery_ResponseBody = Cat_RecoveryRecoveryRecord.undefined[]
 

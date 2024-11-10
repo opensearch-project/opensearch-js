@@ -16,10 +16,10 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Observability_Common from '../_types/observability._common'
+import * as Observability_CommonObservabilityObject from '../_types/observability._common___ObservabilityObject'
 
 export type Observability_CreateObject_Request = Global.Params & {
-  body?: Observability_Common.ObservabilityObject;
+  body?: Observability_CommonObservabilityObject.undefined;
 }
 
 export type Observability_CreateObject_Response = ApiResponse & {

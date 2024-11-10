@@ -16,10 +16,10 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Ml_Common from '../_types/ml._common'
+import * as Ml_CommonRegisterAgentsRequest from '../_types/ml._common___RegisterAgentsRequest'
 
 export type Ml_RegisterAgents_Request = Global.Params & {
-  body?: Ml_Common.RegisterAgentsRequest;
+  body?: Ml_CommonRegisterAgentsRequest.undefined;
 }
 
 export type Ml_RegisterAgents_Response = ApiResponse & {

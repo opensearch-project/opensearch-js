@@ -15,12 +15,12 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
 import * as Global from '../_types/_global'
 
 export type Indices_GetUpgrade_Request = Global.Params & {
   allow_no_indices?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
   index?: string[];
 }

@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Ism_Common from '../_types/ism._common'
+import * as Ism_CommonGetPoliciesResponse from '../_types/ism._common___GetPoliciesResponse'
 
 export type Ism_GetPolicies_Request = Global.Params & Record<string, any>
 
@@ -24,5 +24,5 @@ export type Ism_GetPolicies_Response = ApiResponse & {
   body: Ism_GetPolicies_ResponseBody;
 }
 
-export type Ism_GetPolicies_ResponseBody = Ism_Common.GetPoliciesResponse
+export type Ism_GetPolicies_ResponseBody = Ism_CommonGetPoliciesResponse.undefined
 

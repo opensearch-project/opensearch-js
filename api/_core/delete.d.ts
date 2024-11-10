@@ -15,25 +15,34 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonRefresh from '../_types/_common___Refresh'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as CommonSequenceNumber from '../_types/_common___SequenceNumber'
+import * as CommonVersionNumber from '../_types/_common___VersionNumber'
+import * as CommonVersionType from '../_types/_common___VersionType'
+import * as CommonWaitForActiveShards from '../_types/_common___WaitForActiveShards'
+import * as CommonWriteResponseBase from '../_types/_common___WriteResponseBase'
 import * as Global from '../_types/_global'
 
 export type Delete_Request = Global.Params & {
-  id: Common.Id;
+  id: CommonId.undefined;
   if_primary_term?: number;
-  if_seq_no?: Common.SequenceNumber;
-  index: Common.IndexName;
-  refresh?: Common.Refresh;
-  routing?: Common.RoutingInQueryString;
-  timeout?: Common.Duration;
-  version?: Common.VersionNumber;
-  version_type?: Common.VersionType;
-  wait_for_active_shards?: Common.WaitForActiveShards;
+  if_seq_no?: CommonSequenceNumber.undefined;
+  index: CommonIndexName.undefined;
+  refresh?: CommonRefresh.undefined;
+  routing?: CommonRoutingInQueryString.undefined;
+  timeout?: CommonDuration.undefined;
+  version?: CommonVersionNumber.undefined;
+  version_type?: CommonVersionType.undefined;
+  wait_for_active_shards?: CommonWaitForActiveShards.undefined;
 }
 
 export type Delete_Response = ApiResponse & {
   body: Delete_ResponseBody;
 }
 
-export type Delete_ResponseBody = Common.WriteResponseBase
+export type Delete_ResponseBody = CommonWriteResponseBase.undefined
 

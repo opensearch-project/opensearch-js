@@ -15,32 +15,42 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Common_Aggregations from '../_types/_common.aggregations'
-import * as Core_Search from '../_types/_core.search'
+import * as Common_AggregationsAggregate from '../_types/_common.aggregations___Aggregate'
+import * as CommonClusterStatistics from '../_types/_common___ClusterStatistics'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as CommonScrollId from '../_types/_common___ScrollId'
+import * as CommonSearchType from '../_types/_common___SearchType'
+import * as CommonShardStatistics from '../_types/_common___ShardStatistics'
+import * as Core_SearchHitsMetadata from '../_types/_core.search___HitsMetadata'
+import * as Core_SearchProfile from '../_types/_core.search___Profile'
+import * as Core_SearchSuggest from '../_types/_core.search___Suggest'
 import * as Global from '../_types/_global'
 
 export type SearchTemplate_Request = Global.Params & {
   allow_no_indices?: boolean;
   body: SearchTemplate_RequestBody;
   ccs_minimize_roundtrips?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   explain?: boolean;
   ignore_throttled?: boolean;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   preference?: string;
   profile?: boolean;
   rest_total_hits_as_int?: boolean;
-  routing?: Common.RoutingInQueryString;
-  scroll?: Common.Duration;
-  search_type?: Common.SearchType;
+  routing?: CommonRoutingInQueryString.undefined;
+  scroll?: CommonDuration.undefined;
+  search_type?: CommonSearchType.undefined;
   typed_keys?: boolean;
 }
 
 export type SearchTemplate_RequestBody = {
   explain?: boolean;
-  id?: Common.Id;
+  id?: CommonId.undefined;
   params?: Record<string, Record<string, any>>;
   profile?: boolean;
   source?: string;
@@ -51,17 +61,17 @@ export type SearchTemplate_Response = ApiResponse & {
 }
 
 export type SearchTemplate_ResponseBody = {
-  _clusters?: Common.ClusterStatistics;
-  _scroll_id?: Common.ScrollId;
-  _shards: Common.ShardStatistics;
-  aggregations?: Record<string, Common_Aggregations.Aggregate>;
+  _clusters?: CommonClusterStatistics.undefined;
+  _scroll_id?: CommonScrollId.undefined;
+  _shards: CommonShardStatistics.undefined;
+  aggregations?: Record<string, Common_AggregationsAggregate.undefined>;
   fields?: Record<string, Record<string, any>>;
-  hits: Core_Search.HitsMetadata;
+  hits: Core_SearchHitsMetadata.undefined;
   max_score?: number;
   num_reduce_phases?: number;
-  pit_id?: Common.Id;
-  profile?: Core_Search.Profile;
-  suggest?: Record<string, Core_Search.Suggest[]>;
+  pit_id?: CommonId.undefined;
+  profile?: Core_SearchProfile.undefined;
+  suggest?: Record<string, Core_SearchSuggest.undefined[]>;
   terminated_early?: boolean;
   timed_out: boolean;
   took: number;

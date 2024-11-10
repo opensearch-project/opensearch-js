@@ -15,16 +15,16 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonScrollIds from '../_types/_common___ScrollIds'
 import * as Global from '../_types/_global'
 
 export type ClearScroll_Request = Global.Params & {
   body?: ClearScroll_RequestBody;
-  scroll_id?: Common.ScrollIds;
+  scroll_id?: CommonScrollIds.undefined;
 }
 
 export type ClearScroll_RequestBody = {
-  scroll_id?: Common.ScrollIds;
+  scroll_id?: CommonScrollIds.undefined;
 }
 
 export type ClearScroll_Response = ApiResponse & {

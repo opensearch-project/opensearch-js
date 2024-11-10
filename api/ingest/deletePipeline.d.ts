@@ -15,19 +15,21 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonId from '../_types/_common___Id'
 import * as Global from '../_types/_global'
 
 export type Ingest_DeletePipeline_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
-  id: Common.Id;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  id: CommonId.undefined;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Ingest_DeletePipeline_Response = ApiResponse & {
   body: Ingest_DeletePipeline_ResponseBody;
 }
 
-export type Ingest_DeletePipeline_ResponseBody = Common.AcknowledgedResponseBase
+export type Ingest_DeletePipeline_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

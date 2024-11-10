@@ -15,19 +15,20 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cluster_Stats from '../_types/cluster.stats'
-import * as Common from '../_types/_common'
+import * as Cluster_StatsStatsResponseBase from '../_types/cluster.stats___StatsResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonNodeIds from '../_types/_common___NodeIds'
 import * as Global from '../_types/_global'
 
 export type Cluster_Stats_Request = Global.Params & {
   flat_settings?: boolean;
-  node_id?: Common.NodeIds;
-  timeout?: Common.Duration;
+  node_id?: CommonNodeIds.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Cluster_Stats_Response = ApiResponse & {
   body: Cluster_Stats_ResponseBody;
 }
 
-export type Cluster_Stats_ResponseBody = Cluster_Stats.StatsResponseBase
+export type Cluster_Stats_ResponseBody = Cluster_StatsStatsResponseBase.undefined
 

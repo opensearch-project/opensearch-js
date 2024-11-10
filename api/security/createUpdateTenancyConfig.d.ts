@@ -16,15 +16,15 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonMultiTenancyConfig from '../_types/security._common___MultiTenancyConfig'
 
 export type Security_CreateUpdateTenancyConfig_Request = Global.Params & {
-  body: Security_Common.MultiTenancyConfig;
+  body: Security_CommonMultiTenancyConfig.undefined;
 }
 
 export type Security_CreateUpdateTenancyConfig_Response = ApiResponse & {
   body: Security_CreateUpdateTenancyConfig_ResponseBody;
 }
 
-export type Security_CreateUpdateTenancyConfig_ResponseBody = Security_Common.MultiTenancyConfig
+export type Security_CreateUpdateTenancyConfig_ResponseBody = Security_CommonMultiTenancyConfig.undefined
 

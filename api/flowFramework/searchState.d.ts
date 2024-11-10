@@ -15,16 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as FlowFramework_Common from '../_types/flow_framework.common'
+import * as FlowFramework_CommonSearchWorkflowRequest from '../_types/flow_framework.common___SearchWorkflowRequest'
+import * as FlowFramework_CommonWorkflowSearchStateResponse from '../_types/flow_framework.common___WorkflowSearchStateResponse'
 import * as Global from '../_types/_global'
 
 export type FlowFramework_SearchState_Request = Global.Params & {
-  body: FlowFramework_Common.SearchWorkflowRequest;
+  body: FlowFramework_CommonSearchWorkflowRequest.undefined;
 }
 
 export type FlowFramework_SearchState_Response = ApiResponse & {
   body: FlowFramework_SearchState_ResponseBody;
 }
 
-export type FlowFramework_SearchState_ResponseBody = Record<string, any>
+export type FlowFramework_SearchState_ResponseBody = FlowFramework_CommonWorkflowSearchStateResponse.undefined
 

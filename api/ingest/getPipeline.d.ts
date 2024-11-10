@@ -15,19 +15,20 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonId from '../_types/_common___Id'
 import * as Global from '../_types/_global'
-import * as Ingest_Common from '../_types/ingest._common'
+import * as Ingest_CommonPipeline from '../_types/ingest._common___Pipeline'
 
 export type Ingest_GetPipeline_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
-  id?: Common.Id;
-  master_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  id?: CommonId.undefined;
+  master_timeout?: CommonDuration.undefined;
 }
 
 export type Ingest_GetPipeline_Response = ApiResponse & {
   body: Ingest_GetPipeline_ResponseBody;
 }
 
-export type Ingest_GetPipeline_ResponseBody = Record<string, Ingest_Common.Pipeline>
+export type Ingest_GetPipeline_ResponseBody = Record<string, Ingest_CommonPipeline.undefined>
 

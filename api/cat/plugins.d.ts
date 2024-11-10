@@ -15,17 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Plugins from '../_types/cat.plugins'
-import * as Common from '../_types/_common'
+import * as Cat_PluginsPluginsRecord from '../_types/cat.plugins___PluginsRecord'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
 
 export type Cat_Plugins_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
   local?: boolean;
-  master_timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
   s?: string[];
   v?: boolean;
 }
@@ -34,5 +34,5 @@ export type Cat_Plugins_Response = ApiResponse & {
   body: Cat_Plugins_ResponseBody;
 }
 
-export type Cat_Plugins_ResponseBody = Cat_Plugins.PluginsRecord[]
+export type Cat_Plugins_ResponseBody = Cat_PluginsPluginsRecord.undefined[]
 

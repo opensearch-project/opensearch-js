@@ -15,19 +15,21 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
 
 export type Cluster_DeleteComponentTemplate_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
-  master_timeout?: Common.Duration;
-  name: Common.Name;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  master_timeout?: CommonDuration.undefined;
+  name: CommonName.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Cluster_DeleteComponentTemplate_Response = ApiResponse & {
   body: Cluster_DeleteComponentTemplate_ResponseBody;
 }
 
-export type Cluster_DeleteComponentTemplate_ResponseBody = Common.AcknowledgedResponseBase
+export type Cluster_DeleteComponentTemplate_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

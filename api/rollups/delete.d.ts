@@ -15,11 +15,11 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonId from '../_types/_common___Id'
 import * as Global from '../_types/_global'
 
 export type Rollups_Delete_Request = Global.Params & {
-  id: Common.Id;
+  id: CommonId.undefined;
 }
 
 export type Rollups_Delete_Response = ApiResponse & {

@@ -15,14 +15,14 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cluster_PendingTasks from '../_types/cluster.pending_tasks'
-import * as Common from '../_types/_common'
+import * as Cluster_PendingTasksPendingTask from '../_types/cluster.pending_tasks___PendingTask'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
 
 export type Cluster_PendingTasks_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   local?: boolean;
-  master_timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
 }
 
 export type Cluster_PendingTasks_Response = ApiResponse & {
@@ -30,6 +30,6 @@ export type Cluster_PendingTasks_Response = ApiResponse & {
 }
 
 export type Cluster_PendingTasks_ResponseBody = {
-  tasks: Cluster_PendingTasks.PendingTask[];
+  tasks: Cluster_PendingTasksPendingTask.undefined[];
 }
 

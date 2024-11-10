@@ -15,32 +15,37 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Common_QueryDsl from '../_types/_common.query_dsl'
-import * as Core_Explain from '../_types/_core.explain'
-import * as Core_Search from '../_types/_core.search'
+import * as Common_QueryDslOperator from '../_types/_common.query_dsl___Operator'
+import * as Common_QueryDslQueryContainer from '../_types/_common.query_dsl___QueryContainer'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonInlineGet from '../_types/_common___InlineGet'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as Core_ExplainExplanationDetail from '../_types/_core.explain___ExplanationDetail'
+import * as Core_SearchSourceConfigParam from '../_types/_core.search___SourceConfigParam'
 import * as Global from '../_types/_global'
 
 export type Explain_Request = Global.Params & {
-  _source?: Core_Search.SourceConfigParam;
-  _source_excludes?: Common.Fields;
-  _source_includes?: Common.Fields;
+  _source?: Core_SearchSourceConfigParam.undefined;
+  _source_excludes?: CommonFields.undefined;
+  _source_includes?: CommonFields.undefined;
   analyze_wildcard?: boolean;
   analyzer?: string;
   body?: Explain_RequestBody;
-  default_operator?: Common_QueryDsl.Operator;
+  default_operator?: Common_QueryDslOperator.undefined;
   df?: string;
-  id: Common.Id;
-  index: Common.IndexName;
+  id: CommonId.undefined;
+  index: CommonIndexName.undefined;
   lenient?: boolean;
   preference?: string;
   q?: string;
-  routing?: Common.RoutingInQueryString;
-  stored_fields?: Common.Fields;
+  routing?: CommonRoutingInQueryString.undefined;
+  stored_fields?: CommonFields.undefined;
 }
 
 export type Explain_RequestBody = {
-  query?: Common_QueryDsl.QueryContainer;
+  query?: Common_QueryDslQueryContainer.undefined;
 }
 
 export type Explain_Response = ApiResponse & {
@@ -48,10 +53,10 @@ export type Explain_Response = ApiResponse & {
 }
 
 export type Explain_ResponseBody = {
-  _id: Common.Id;
-  _index: Common.IndexName;
-  explanation?: Core_Explain.ExplanationDetail;
-  get?: Common.InlineGet;
+  _id: CommonId.undefined;
+  _index: CommonIndexName.undefined;
+  explanation?: Core_ExplainExplanationDetail.undefined;
+  get?: CommonInlineGet.undefined;
   matched: boolean;
 }
 

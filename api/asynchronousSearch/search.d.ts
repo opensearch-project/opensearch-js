@@ -15,11 +15,12 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as AsynchronousSearch_Common from '../_types/asynchronous_search._common'
+import * as AsynchronousSearch_CommonResponseBody from '../_types/asynchronous_search._common___ResponseBody'
+import * as AsynchronousSearch_CommonSearch from '../_types/asynchronous_search._common___Search'
 import * as Global from '../_types/_global'
 
 export type AsynchronousSearch_Search_Request = Global.Params & {
-  body?: AsynchronousSearch_Common.Search;
+  body?: AsynchronousSearch_CommonSearch.undefined;
   index?: string;
   keep_alive?: string;
   keep_on_completion?: boolean;
@@ -30,5 +31,5 @@ export type AsynchronousSearch_Search_Response = ApiResponse & {
   body: AsynchronousSearch_Search_ResponseBody;
 }
 
-export type AsynchronousSearch_Search_ResponseBody = AsynchronousSearch_Common.ResponseBody
+export type AsynchronousSearch_Search_ResponseBody = AsynchronousSearch_CommonResponseBody.undefined
 

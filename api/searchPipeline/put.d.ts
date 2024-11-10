@@ -15,15 +15,15 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
-import * as SearchPipeline_Common from '../_types/search_pipeline._common'
+import * as SearchPipeline_CommonSearchPipelineStructure from '../_types/search_pipeline._common___SearchPipelineStructure'
 
 export type SearchPipeline_Put_Request = Global.Params & {
-  body: SearchPipeline_Common.SearchPipelineStructure;
-  cluster_manager_timeout?: Common.Duration;
+  body: SearchPipeline_CommonSearchPipelineStructure.undefined;
+  cluster_manager_timeout?: CommonDuration.undefined;
   id: string;
-  timeout?: Common.Duration;
+  timeout?: CommonDuration.undefined;
 }
 
 export type SearchPipeline_Put_Response = ApiResponse & {

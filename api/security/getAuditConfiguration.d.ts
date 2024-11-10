@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonAuditConfigWithReadOnly from '../_types/security._common___AuditConfigWithReadOnly'
 
 export type Security_GetAuditConfiguration_Request = Global.Params & Record<string, any>
 
@@ -24,5 +24,5 @@ export type Security_GetAuditConfiguration_Response = ApiResponse & {
   body: Security_GetAuditConfiguration_ResponseBody;
 }
 
-export type Security_GetAuditConfiguration_ResponseBody = Security_Common.AuditConfigWithReadOnly
+export type Security_GetAuditConfiguration_ResponseBody = Security_CommonAuditConfigWithReadOnly.undefined
 

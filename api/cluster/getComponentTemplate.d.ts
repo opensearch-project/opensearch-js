@@ -15,15 +15,16 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cluster_Common from '../_types/cluster._common'
-import * as Common from '../_types/_common'
+import * as Cluster_CommonComponentTemplate from '../_types/cluster._common___ComponentTemplate'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
 
 export type Cluster_GetComponentTemplate_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   local?: boolean;
-  master_timeout?: Common.Duration;
-  name?: Common.Name;
+  master_timeout?: CommonDuration.undefined;
+  name?: CommonName.undefined;
 }
 
 export type Cluster_GetComponentTemplate_Response = ApiResponse & {
@@ -31,6 +32,6 @@ export type Cluster_GetComponentTemplate_Response = ApiResponse & {
 }
 
 export type Cluster_GetComponentTemplate_ResponseBody = {
-  component_templates: Cluster_Common.ComponentTemplate[];
+  component_templates: Cluster_CommonComponentTemplate.undefined[];
 }
 

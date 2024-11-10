@@ -1326,19 +1326,23 @@ export default class OpenSearchAPI {
   };
 
   sql: {
-    settings (params: API.Sql_Settings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sql_Settings_Response>;
+    settings (params?: API.Sql_Settings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sql_Settings_Response>;
+    settings (callback: callbackFn<API.Sql_Settings_Response>): TransportRequestCallback;
     settings (params: API.Sql_Settings_Request, callback: callbackFn<API.Sql_Settings_Response>): TransportRequestCallback;
     settings (params: API.Sql_Settings_Request, options: TransportRequestOptions, callback: callbackFn<API.Sql_Settings_Response>): TransportRequestCallback;
 
-    query (params: API.Sql_Query_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sql_Query_Response>;
+    query (params?: API.Sql_Query_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sql_Query_Response>;
+    query (callback: callbackFn<API.Sql_Query_Response>): TransportRequestCallback;
     query (params: API.Sql_Query_Request, callback: callbackFn<API.Sql_Query_Response>): TransportRequestCallback;
     query (params: API.Sql_Query_Request, options: TransportRequestOptions, callback: callbackFn<API.Sql_Query_Response>): TransportRequestCallback;
 
-    explain (params: API.Sql_Explain_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sql_Explain_Response>;
+    explain (params?: API.Sql_Explain_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sql_Explain_Response>;
+    explain (callback: callbackFn<API.Sql_Explain_Response>): TransportRequestCallback;
     explain (params: API.Sql_Explain_Request, callback: callbackFn<API.Sql_Explain_Response>): TransportRequestCallback;
     explain (params: API.Sql_Explain_Request, options: TransportRequestOptions, callback: callbackFn<API.Sql_Explain_Response>): TransportRequestCallback;
 
-    close (params: API.Sql_Close_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sql_Close_Response>;
+    close (params?: API.Sql_Close_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sql_Close_Response>;
+    close (callback: callbackFn<API.Sql_Close_Response>): TransportRequestCallback;
     close (params: API.Sql_Close_Request, callback: callbackFn<API.Sql_Close_Response>): TransportRequestCallback;
     close (params: API.Sql_Close_Request, options: TransportRequestOptions, callback: callbackFn<API.Sql_Close_Response>): TransportRequestCallback;
 
@@ -1347,7 +1351,8 @@ export default class OpenSearchAPI {
     getStats (params: API.Sql_GetStats_Request, callback: callbackFn<API.Sql_GetStats_Response>): TransportRequestCallback;
     getStats (params: API.Sql_GetStats_Request, options: TransportRequestOptions, callback: callbackFn<API.Sql_GetStats_Response>): TransportRequestCallback;
 
-    postStats (params: API.Sql_PostStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sql_PostStats_Response>;
+    postStats (params?: API.Sql_PostStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sql_PostStats_Response>;
+    postStats (callback: callbackFn<API.Sql_PostStats_Response>): TransportRequestCallback;
     postStats (params: API.Sql_PostStats_Request, callback: callbackFn<API.Sql_PostStats_Response>): TransportRequestCallback;
     postStats (params: API.Sql_PostStats_Request, options: TransportRequestOptions, callback: callbackFn<API.Sql_PostStats_Response>): TransportRequestCallback;
 

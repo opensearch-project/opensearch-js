@@ -15,22 +15,25 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
-import * as Snapshot_Common from '../_types/snapshot._common'
+import * as Snapshot_CommonRepository from '../_types/snapshot._common___Repository'
+import * as Snapshot_CommonRepositorySettings from '../_types/snapshot._common___RepositorySettings'
 
 export type Snapshot_CreateRepository_Request = Global.Params & {
   body: Snapshot_CreateRepository_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
-  master_timeout?: Common.Duration;
-  repository: Common.Name;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  master_timeout?: CommonDuration.undefined;
+  repository: CommonName.undefined;
+  timeout?: CommonDuration.undefined;
   verify?: boolean;
 }
 
 export type Snapshot_CreateRepository_RequestBody = {
-  repository?: Snapshot_Common.Repository;
-  settings: Snapshot_Common.RepositorySettings;
+  repository?: Snapshot_CommonRepository.undefined;
+  settings: Snapshot_CommonRepositorySettings.undefined;
   type: string;
 }
 
@@ -38,5 +41,5 @@ export type Snapshot_CreateRepository_Response = ApiResponse & {
   body: Snapshot_CreateRepository_ResponseBody;
 }
 
-export type Snapshot_CreateRepository_ResponseBody = Common.AcknowledgedResponseBase
+export type Snapshot_CreateRepository_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

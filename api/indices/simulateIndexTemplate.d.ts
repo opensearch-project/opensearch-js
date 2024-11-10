@@ -15,29 +15,33 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonMetadata from '../_types/_common___Metadata'
+import * as CommonName from '../_types/_common___Name'
+import * as CommonVersionNumber from '../_types/_common___VersionNumber'
 import * as Global from '../_types/_global'
-import * as Indices_Common from '../_types/indices._common'
-import * as Indices_PutIndexTemplate from '../_types/indices.put_index_template'
+import * as Indices_CommonIndexTemplateDataStreamConfiguration from '../_types/indices._common___IndexTemplateDataStreamConfiguration'
+import * as Indices_PutIndexTemplateIndexTemplateMapping from '../_types/indices.put_index_template___IndexTemplateMapping'
 
 export type Indices_SimulateIndexTemplate_Request = Global.Params & {
   body?: Indices_SimulateIndexTemplate_RequestBody;
   cause?: string;
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   create?: boolean;
-  master_timeout?: Common.Duration;
-  name: Common.Name;
+  master_timeout?: CommonDuration.undefined;
+  name: CommonName.undefined;
 }
 
 export type Indices_SimulateIndexTemplate_RequestBody = {
-  _meta?: Common.Metadata;
+  _meta?: CommonMetadata.undefined;
   allow_auto_create?: boolean;
-  composed_of?: Common.Name[];
-  data_stream?: Indices_Common.IndexTemplateDataStreamConfiguration;
-  index_patterns?: Common.Indices;
+  composed_of?: CommonName.undefined[];
+  data_stream?: Indices_CommonIndexTemplateDataStreamConfiguration.undefined;
+  index_patterns?: CommonIndices.undefined;
   priority?: number;
-  template?: Indices_PutIndexTemplate.IndexTemplateMapping;
-  version?: Common.VersionNumber;
+  template?: Indices_PutIndexTemplateIndexTemplateMapping.undefined;
+  version?: CommonVersionNumber.undefined;
 }
 
 export type Indices_SimulateIndexTemplate_Response = ApiResponse & {

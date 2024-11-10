@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Observability_Common from '../_types/observability._common'
+import * as Observability_CommonObservabilityObjectList from '../_types/observability._common___ObservabilityObjectList'
 
 export type Observability_GetObject_Request = Global.Params & {
   object_id: string;
@@ -26,5 +26,5 @@ export type Observability_GetObject_Response = ApiResponse & {
   body: Observability_GetObject_ResponseBody;
 }
 
-export type Observability_GetObject_ResponseBody = Observability_Common.ObservabilityObjectList
+export type Observability_GetObject_ResponseBody = Observability_CommonObservabilityObjectList.undefined
 

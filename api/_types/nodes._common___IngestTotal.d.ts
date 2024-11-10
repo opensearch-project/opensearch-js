@@ -1,0 +1,29 @@
+/*
+ * Copyright OpenSearch Contributors
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ *
+ */
+
+/*
+ * This file was generated from the OpenSearch API Spec. Do NOT edit it
+ * manually. If you want to make changes, either update the spec or
+ * modify the API generator.
+ */
+
+import * as CommonDuration from './_common___Duration'
+import * as CommonDurationValueUnitMillis from './_common___DurationValueUnitMillis'
+import * as Nodes_CommonKeyedProcessor from './nodes._common___KeyedProcessor'
+
+export type undefined = {
+  count?: number;
+  current?: number;
+  failed?: number;
+  processors?: Record<string, Nodes_CommonKeyedProcessor.undefined>[];
+  time?: CommonDuration.undefined;
+  time_in_millis?: CommonDurationValueUnitMillis.undefined;
+}
+

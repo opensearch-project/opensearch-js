@@ -15,29 +15,33 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonMetadata from '../_types/_common___Metadata'
+import * as CommonName from '../_types/_common___Name'
+import * as CommonVersionNumber from '../_types/_common___VersionNumber'
 import * as Global from '../_types/_global'
-import * as Indices_Common from '../_types/indices._common'
+import * as Indices_CommonIndexState from '../_types/indices._common___IndexState'
 
 export type Cluster_PutComponentTemplate_Request = Global.Params & {
   body: Cluster_PutComponentTemplate_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   create?: boolean;
-  master_timeout?: Common.Duration;
-  name: Common.Name;
-  timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
+  name: CommonName.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Cluster_PutComponentTemplate_RequestBody = {
-  _meta?: Common.Metadata;
+  _meta?: CommonMetadata.undefined;
   allow_auto_create?: boolean;
-  template: Indices_Common.IndexState;
-  version?: Common.VersionNumber;
+  template: Indices_CommonIndexState.undefined;
+  version?: CommonVersionNumber.undefined;
 }
 
 export type Cluster_PutComponentTemplate_Response = ApiResponse & {
   body: Cluster_PutComponentTemplate_ResponseBody;
 }
 
-export type Cluster_PutComponentTemplate_ResponseBody = Common.AcknowledgedResponseBase
+export type Cluster_PutComponentTemplate_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

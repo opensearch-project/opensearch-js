@@ -16,19 +16,20 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Transforms_Common from '../_types/transforms._common'
+import * as Transforms_CommonPreview from '../_types/transforms._common___Preview'
+import * as Transforms_CommonTransform from '../_types/transforms._common___Transform'
 
 export type Transforms_Preview_Request = Global.Params & {
   body?: Transforms_Preview_RequestBody;
 }
 
 export type Transforms_Preview_RequestBody = {
-  transform: Transforms_Common.Transform;
+  transform: Transforms_CommonTransform.undefined;
 }
 
 export type Transforms_Preview_Response = ApiResponse & {
   body: Transforms_Preview_ResponseBody;
 }
 
-export type Transforms_Preview_ResponseBody = Transforms_Common.Preview
+export type Transforms_Preview_ResponseBody = Transforms_CommonPreview.undefined
 

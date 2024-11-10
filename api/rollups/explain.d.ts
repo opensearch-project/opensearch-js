@@ -15,17 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonId from '../_types/_common___Id'
 import * as Global from '../_types/_global'
-import * as Rollups_Common from '../_types/rollups._common'
+import * as Rollups_CommonExplainEntities from '../_types/rollups._common___ExplainEntities'
 
 export type Rollups_Explain_Request = Global.Params & {
-  id: Common.Id;
+  id: CommonId.undefined;
 }
 
 export type Rollups_Explain_Response = ApiResponse & {
   body: Rollups_Explain_ResponseBody;
 }
 
-export type Rollups_Explain_ResponseBody = Rollups_Common.ExplainEntities
+export type Rollups_Explain_ResponseBody = Rollups_CommonExplainEntities.undefined
 

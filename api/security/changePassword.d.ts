@@ -16,15 +16,16 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonChangePasswordRequestContent from '../_types/security._common___ChangePasswordRequestContent'
+import * as Security_CommonOk from '../_types/security._common___Ok'
 
 export type Security_ChangePassword_Request = Global.Params & {
-  body: Security_Common.ChangePasswordRequestContent;
+  body: Security_CommonChangePasswordRequestContent.undefined;
 }
 
 export type Security_ChangePassword_Response = ApiResponse & {
   body: Security_ChangePassword_ResponseBody;
 }
 
-export type Security_ChangePassword_ResponseBody = Security_Common.Ok
+export type Security_ChangePassword_ResponseBody = Security_CommonOk.undefined
 

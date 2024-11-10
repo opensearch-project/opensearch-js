@@ -15,15 +15,15 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
 
 export type Cluster_GetSettings_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   flat_settings?: boolean;
   include_defaults?: boolean;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Cluster_GetSettings_Response = ApiResponse & {

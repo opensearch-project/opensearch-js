@@ -15,13 +15,16 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonErrorCause from '../_types/_common___ErrorCause'
+import * as CommonId from '../_types/_common___Id'
 import * as Global from '../_types/_global'
-import * as Tasks_Common from '../_types/tasks._common'
+import * as Tasks_CommonTaskInfo from '../_types/tasks._common___TaskInfo'
+import * as Tasks_CommonTaskResponse from '../_types/tasks._common___TaskResponse'
 
 export type Tasks_Get_Request = Global.Params & {
-  task_id: Common.Id;
-  timeout?: Common.Duration;
+  task_id: CommonId.undefined;
+  timeout?: CommonDuration.undefined;
   wait_for_completion?: boolean;
 }
 
@@ -31,8 +34,8 @@ export type Tasks_Get_Response = ApiResponse & {
 
 export type Tasks_Get_ResponseBody = {
   completed: boolean;
-  error?: Common.ErrorCause;
-  response?: Tasks_Common.TaskResponse;
-  task: Tasks_Common.TaskInfo;
+  error?: CommonErrorCause.undefined;
+  response?: Tasks_CommonTaskResponse.undefined;
+  task: Tasks_CommonTaskInfo.undefined;
 }
 

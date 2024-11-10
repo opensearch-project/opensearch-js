@@ -15,30 +15,36 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_Mtermvectors from '../_types/_core.mtermvectors'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as CommonVersionNumber from '../_types/_common___VersionNumber'
+import * as CommonVersionType from '../_types/_common___VersionType'
+import * as Core_MtermvectorsOperation from '../_types/_core.mtermvectors___Operation'
+import * as Core_MtermvectorsTermVectorsResult from '../_types/_core.mtermvectors___TermVectorsResult'
 import * as Global from '../_types/_global'
 
 export type Mtermvectors_Request = Global.Params & {
   body?: Mtermvectors_RequestBody;
   field_statistics?: boolean;
-  fields?: Common.Fields;
-  ids?: Common.Id[];
-  index?: Common.IndexName;
+  fields?: CommonFields.undefined;
+  ids?: CommonId.undefined[];
+  index?: CommonIndexName.undefined;
   offsets?: boolean;
   payloads?: boolean;
   positions?: boolean;
   preference?: string;
   realtime?: boolean;
-  routing?: Common.RoutingInQueryString;
+  routing?: CommonRoutingInQueryString.undefined;
   term_statistics?: boolean;
-  version?: Common.VersionNumber;
-  version_type?: Common.VersionType;
+  version?: CommonVersionNumber.undefined;
+  version_type?: CommonVersionType.undefined;
 }
 
 export type Mtermvectors_RequestBody = {
-  docs?: Core_Mtermvectors.Operation[];
-  ids?: Common.Id[];
+  docs?: Core_MtermvectorsOperation.undefined[];
+  ids?: CommonId.undefined[];
 }
 
 export type Mtermvectors_Response = ApiResponse & {
@@ -46,6 +52,6 @@ export type Mtermvectors_Response = ApiResponse & {
 }
 
 export type Mtermvectors_ResponseBody = {
-  docs: Core_Mtermvectors.TermVectorsResult[];
+  docs: Core_MtermvectorsTermVectorsResult.undefined[];
 }
 

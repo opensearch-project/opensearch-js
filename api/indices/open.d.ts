@@ -15,19 +15,23 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonTaskId from '../_types/_common___TaskId'
+import * as CommonWaitForActiveShards from '../_types/_common___WaitForActiveShards'
 import * as Global from '../_types/_global'
 
 export type Indices_Open_Request = Global.Params & {
   allow_no_indices?: boolean;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
-  index: Common.Indices;
-  master_timeout?: Common.Duration;
-  task_execution_timeout?: Common.Duration;
-  timeout?: Common.Duration;
-  wait_for_active_shards?: Common.WaitForActiveShards;
+  index: CommonIndices.undefined;
+  master_timeout?: CommonDuration.undefined;
+  task_execution_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
+  wait_for_active_shards?: CommonWaitForActiveShards.undefined;
   wait_for_completion?: boolean;
 }
 
@@ -36,7 +40,7 @@ export type Indices_Open_Response = ApiResponse & {
 }
 
 export type Indices_Open_ResponseBody = {
-  task?: Common.TaskId;
+  task?: CommonTaskId.undefined;
 } | {
   acknowledged: boolean;
   shards_acknowledged: boolean;

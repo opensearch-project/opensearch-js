@@ -15,25 +15,26 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_Search from '../_types/_core.search'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonScrollId from '../_types/_common___ScrollId'
+import * as Core_SearchResponseBody from '../_types/_core.search___ResponseBody'
 import * as Global from '../_types/_global'
 
 export type Scroll_Request = Global.Params & {
   body?: Scroll_RequestBody;
   rest_total_hits_as_int?: boolean;
-  scroll?: Common.Duration;
-  scroll_id?: Common.ScrollId;
+  scroll?: CommonDuration.undefined;
+  scroll_id?: CommonScrollId.undefined;
 }
 
 export type Scroll_RequestBody = {
-  scroll?: Common.Duration;
-  scroll_id: Common.ScrollId;
+  scroll?: CommonDuration.undefined;
+  scroll_id: CommonScrollId.undefined;
 }
 
 export type Scroll_Response = ApiResponse & {
   body: Scroll_ResponseBody;
 }
 
-export type Scroll_ResponseBody = Core_Search.ResponseBody
+export type Scroll_ResponseBody = Core_SearchResponseBody.undefined
 

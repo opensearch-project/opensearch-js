@@ -16,7 +16,8 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Notifications_Common from '../_types/notifications._common'
+import * as Notifications_CommonNotificationChannel from '../_types/notifications._common___NotificationChannel'
+import * as Notifications_CommonTotalHitRelation from '../_types/notifications._common___TotalHitRelation'
 
 export type Notifications_ListChannels_Request = Global.Params & Record<string, any>
 
@@ -25,9 +26,9 @@ export type Notifications_ListChannels_Response = ApiResponse & {
 }
 
 export type Notifications_ListChannels_ResponseBody = {
-  channel_list?: Notifications_Common.NotificationChannel[];
+  channel_list?: Notifications_CommonNotificationChannel.undefined[];
   start_index?: number;
-  total_hit_relation?: Notifications_Common.TotalHitRelation;
+  total_hit_relation?: Notifications_CommonTotalHitRelation.undefined;
   total_hits?: number;
 }
 

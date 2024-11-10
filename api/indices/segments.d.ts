@@ -15,15 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonShardStatistics from '../_types/_common___ShardStatistics'
 import * as Global from '../_types/_global'
-import * as Indices_Segments from '../_types/indices.segments'
+import * as Indices_SegmentsIndexSegment from '../_types/indices.segments___IndexSegment'
 
 export type Indices_Segments_Request = Global.Params & {
   allow_no_indices?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   verbose?: boolean;
 }
 
@@ -32,7 +34,7 @@ export type Indices_Segments_Response = ApiResponse & {
 }
 
 export type Indices_Segments_ResponseBody = {
-  _shards: Common.ShardStatistics;
-  indices: Record<string, Indices_Segments.IndexSegment>;
+  _shards: CommonShardStatistics.undefined;
+  indices: Record<string, Indices_SegmentsIndexSegment.undefined>;
 }
 

@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonUpgradeCheck from '../_types/security._common___UpgradeCheck'
 
 export type Security_ConfigUpgradeCheck_Request = Global.Params & Record<string, any>
 
@@ -24,5 +24,5 @@ export type Security_ConfigUpgradeCheck_Response = ApiResponse & {
   body: Security_ConfigUpgradeCheck_ResponseBody;
 }
 
-export type Security_ConfigUpgradeCheck_ResponseBody = Security_Common.UpgradeCheck
+export type Security_ConfigUpgradeCheck_ResponseBody = Security_CommonUpgradeCheck.undefined
 

@@ -15,13 +15,15 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIds from '../_types/_common___Ids'
+import * as CommonNames from '../_types/_common___Names'
 import * as Global from '../_types/_global'
 
 export type Cluster_PostVotingConfigExclusions_Request = Global.Params & {
-  node_ids?: Common.Ids;
-  node_names?: Common.Names;
-  timeout?: Common.Duration;
+  node_ids?: CommonIds.undefined;
+  node_names?: CommonNames.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Cluster_PostVotingConfigExclusions_Response = ApiResponse & {

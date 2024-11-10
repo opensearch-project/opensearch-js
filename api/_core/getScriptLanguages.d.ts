@@ -15,7 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Core_GetScriptLanguages from '../_types/_core.get_script_languages'
+import * as Core_GetScriptLanguagesLanguageContext from '../_types/_core.get_script_languages___LanguageContext'
 import * as Global from '../_types/_global'
 
 export type GetScriptLanguages_Request = Global.Params & Record<string, any>
@@ -25,7 +25,7 @@ export type GetScriptLanguages_Response = ApiResponse & {
 }
 
 export type GetScriptLanguages_ResponseBody = {
-  language_contexts: Core_GetScriptLanguages.LanguageContext[];
+  language_contexts: Core_GetScriptLanguagesLanguageContext.undefined[];
   types_allowed: string[];
 }
 

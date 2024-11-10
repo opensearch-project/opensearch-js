@@ -15,29 +15,37 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_Bulk from '../_types/_core.bulk'
-import * as Core_Search from '../_types/_core.search'
+import * as CommonBatchSize from '../_types/_common___BatchSize'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonRefresh from '../_types/_common___Refresh'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as CommonWaitForActiveShards from '../_types/_common___WaitForActiveShards'
+import * as Core_BulkOperationContainer from '../_types/_core.bulk___OperationContainer'
+import * as Core_BulkResponseItem from '../_types/_core.bulk___ResponseItem'
+import * as Core_BulkUpdateAction from '../_types/_core.bulk___UpdateAction'
+import * as Core_SearchSourceConfigParam from '../_types/_core.search___SourceConfigParam'
 import * as Global from '../_types/_global'
 
 export type BulkStream_Request = Global.Params & {
-  _source?: Core_Search.SourceConfigParam;
-  _source_excludes?: Common.Fields;
-  _source_includes?: Common.Fields;
-  batch_interval?: Common.Duration;
-  batch_size?: Common.BatchSize;
+  _source?: Core_SearchSourceConfigParam.undefined;
+  _source_excludes?: CommonFields.undefined;
+  _source_includes?: CommonFields.undefined;
+  batch_interval?: CommonDuration.undefined;
+  batch_size?: CommonBatchSize.undefined;
   body: BulkStream_RequestBody;
-  index?: Common.IndexName;
+  index?: CommonIndexName.undefined;
   pipeline?: string;
-  refresh?: Common.Refresh;
+  refresh?: CommonRefresh.undefined;
   require_alias?: boolean;
-  routing?: Common.RoutingInQueryString;
-  timeout?: Common.Duration;
+  routing?: CommonRoutingInQueryString.undefined;
+  timeout?: CommonDuration.undefined;
   type?: string;
-  wait_for_active_shards?: Common.WaitForActiveShards;
+  wait_for_active_shards?: CommonWaitForActiveShards.undefined;
 }
 
-export type BulkStream_RequestBody = Core_Bulk.OperationContainer | Core_Bulk.UpdateAction | Record<string, any>[]
+export type BulkStream_RequestBody = Core_BulkOperationContainer.undefined | Core_BulkUpdateAction.undefined | Record<string, any>[]
 
 export type BulkStream_Response = ApiResponse & {
   body: BulkStream_ResponseBody;
@@ -46,7 +54,7 @@ export type BulkStream_Response = ApiResponse & {
 export type BulkStream_ResponseBody = {
   errors: boolean;
   ingest_took?: number;
-  items: Record<string, Core_Bulk.ResponseItem>[];
+  items: Record<string, Core_BulkResponseItem.undefined>[];
   took: number;
 }
 

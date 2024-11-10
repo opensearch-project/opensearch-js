@@ -15,21 +15,26 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonLevel from '../_types/_common___Level'
+import * as CommonNodeIds from '../_types/_common___NodeIds'
 import * as Global from '../_types/_global'
-import * as Nodes_Stats from '../_types/nodes.stats'
+import * as Nodes_StatsIndexMetric from '../_types/nodes.stats___IndexMetric'
+import * as Nodes_StatsMetric from '../_types/nodes.stats___Metric'
+import * as Nodes_StatsResponseBase from '../_types/nodes.stats___ResponseBase'
 
 export type Nodes_Stats_Request = Global.Params & {
-  completion_fields?: Common.Fields;
-  fielddata_fields?: Common.Fields;
-  fields?: Common.Fields;
+  completion_fields?: CommonFields.undefined;
+  fielddata_fields?: CommonFields.undefined;
+  fields?: CommonFields.undefined;
   groups?: string[];
   include_segment_file_sizes?: boolean;
-  index_metric?: Nodes_Stats.IndexMetric[];
-  level?: Common.Level;
-  metric?: Nodes_Stats.Metric[];
-  node_id?: Common.NodeIds;
-  timeout?: Common.Duration;
+  index_metric?: Nodes_StatsIndexMetric.undefined[];
+  level?: CommonLevel.undefined;
+  metric?: Nodes_StatsMetric.undefined[];
+  node_id?: CommonNodeIds.undefined;
+  timeout?: CommonDuration.undefined;
   types?: string[];
 }
 
@@ -37,5 +42,5 @@ export type Nodes_Stats_Response = ApiResponse & {
   body: Nodes_Stats_ResponseBody;
 }
 
-export type Nodes_Stats_ResponseBody = Nodes_Stats.ResponseBase
+export type Nodes_Stats_ResponseBody = Nodes_StatsResponseBase.undefined
 

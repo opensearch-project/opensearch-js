@@ -16,7 +16,8 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Notifications_Common from '../_types/notifications._common'
+import * as Notifications_CommonGetConfigsResponse from '../_types/notifications._common___GetConfigsResponse'
+import * as Notifications_CommonNotificationConfigType from '../_types/notifications._common___NotificationConfigType'
 
 export type Notifications_GetConfigs_Request = Global.Params & {
   body?: Notifications_GetConfigs_RequestBody;
@@ -24,7 +25,7 @@ export type Notifications_GetConfigs_Request = Global.Params & {
   'chime.url.keyword'?: string;
   config_id?: string;
   config_id_list?: string[];
-  config_type?: Notifications_Common.NotificationConfigType;
+  config_type?: Notifications_CommonNotificationConfigType.undefined;
   created_time_ms?: number;
   description?: string;
   'description.keyword'?: string;
@@ -74,5 +75,5 @@ export type Notifications_GetConfigs_Response = ApiResponse & {
   body: Notifications_GetConfigs_ResponseBody;
 }
 
-export type Notifications_GetConfigs_ResponseBody = Notifications_Common.GetConfigsResponse
+export type Notifications_GetConfigs_ResponseBody = Notifications_CommonGetConfigsResponse.undefined
 

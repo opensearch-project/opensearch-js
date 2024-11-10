@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Transforms_Common from '../_types/transforms._common'
+import * as Transforms_CommonTransformsResponse from '../_types/transforms._common___TransformsResponse'
 
 export type Transforms_Search_Request = Global.Params & {
   from?: number;
@@ -30,5 +30,5 @@ export type Transforms_Search_Response = ApiResponse & {
   body: Transforms_Search_ResponseBody;
 }
 
-export type Transforms_Search_ResponseBody = Transforms_Common.TransformsResponse
+export type Transforms_Search_ResponseBody = Transforms_CommonTransformsResponse.undefined
 

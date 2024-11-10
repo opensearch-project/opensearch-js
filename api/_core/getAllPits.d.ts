@@ -15,7 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Core_Common from '../_types/_core._common'
+import * as Core_CommonPitDetail from '../_types/_core._common___PitDetail'
 import * as Global from '../_types/_global'
 
 export type GetAllPits_Request = Global.Params & Record<string, any>
@@ -25,6 +25,6 @@ export type GetAllPits_Response = ApiResponse & {
 }
 
 export type GetAllPits_ResponseBody = {
-  pits?: Core_Common.PitDetail[];
+  pits?: Core_CommonPitDetail.undefined[];
 }
 

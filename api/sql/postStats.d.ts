@@ -16,10 +16,10 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Sql_Common from '../_types/sql._common'
+import * as Sql_CommonStats from '../_types/sql._common___Stats'
 
 export type Sql_PostStats_Request = Global.Params & {
-  body: Sql_Common.Stats;
+  body?: Sql_CommonStats.undefined;
   format?: string;
   sanitize?: boolean;
 }

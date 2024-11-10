@@ -15,20 +15,21 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonSequenceNumber from '../_types/_common___SequenceNumber'
 import * as Global from '../_types/_global'
-import * as Rollups_Common from '../_types/rollups._common'
+import * as Rollups_CommonRollupEntity from '../_types/rollups._common___RollupEntity'
 
 export type Rollups_Put_Request = Global.Params & {
-  body?: Rollups_Common.RollupEntity;
-  id: Common.Id;
+  body?: Rollups_CommonRollupEntity.undefined;
+  id: CommonId.undefined;
   if_primary_term?: number;
-  if_seq_no?: Common.SequenceNumber;
+  if_seq_no?: CommonSequenceNumber.undefined;
 }
 
 export type Rollups_Put_Response = ApiResponse & {
   body: Rollups_Put_ResponseBody;
 }
 
-export type Rollups_Put_ResponseBody = Rollups_Common.RollupEntity
+export type Rollups_Put_ResponseBody = Rollups_CommonRollupEntity.undefined
 

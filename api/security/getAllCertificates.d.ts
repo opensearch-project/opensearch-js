@@ -15,18 +15,18 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonGetCertificatesNew from '../_types/security._common___GetCertificatesNew'
 
 export type Security_GetAllCertificates_Request = Global.Params & {
   cert_type?: string;
-  timeout?: Common.Duration;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Security_GetAllCertificates_Response = ApiResponse & {
   body: Security_GetAllCertificates_ResponseBody;
 }
 
-export type Security_GetAllCertificates_ResponseBody = Security_Common.GetCertificatesNew
+export type Security_GetAllCertificates_ResponseBody = Security_CommonGetCertificatesNew.undefined
 

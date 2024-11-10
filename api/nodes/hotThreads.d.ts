@@ -15,18 +15,18 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
-import * as Nodes_Common from '../_types/nodes._common'
+import * as Nodes_CommonSampleType from '../_types/nodes._common___SampleType'
 
 export type Nodes_HotThreads_Request = Global.Params & {
   ignore_idle_threads?: boolean;
-  interval?: Common.Duration;
+  interval?: CommonDuration.undefined;
   node_id?: string[];
   snapshots?: number;
   threads?: number;
-  timeout?: Common.Duration;
-  type?: Nodes_Common.SampleType;
+  timeout?: CommonDuration.undefined;
+  type?: Nodes_CommonSampleType.undefined;
 }
 
 export type Nodes_HotThreads_Response = ApiResponse & {

@@ -15,16 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
-import * as Indices_GetIndexTemplate from '../_types/indices.get_index_template'
+import * as Indices_GetIndexTemplateIndexTemplateItem from '../_types/indices.get_index_template___IndexTemplateItem'
 
 export type Indices_GetIndexTemplate_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   flat_settings?: boolean;
   local?: boolean;
-  master_timeout?: Common.Duration;
-  name?: Common.Name;
+  master_timeout?: CommonDuration.undefined;
+  name?: CommonName.undefined;
 }
 
 export type Indices_GetIndexTemplate_Response = ApiResponse & {
@@ -32,6 +33,6 @@ export type Indices_GetIndexTemplate_Response = ApiResponse & {
 }
 
 export type Indices_GetIndexTemplate_ResponseBody = {
-  index_templates: Indices_GetIndexTemplate.IndexTemplateItem[];
+  index_templates: Indices_GetIndexTemplateIndexTemplateItem.undefined[];
 }
 

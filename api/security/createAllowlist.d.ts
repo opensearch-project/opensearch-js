@@ -16,15 +16,15 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonAllowListConfig from '../_types/security._common___AllowListConfig'
 
 export type Security_CreateAllowlist_Request = Global.Params & {
-  body: Security_Common.AllowListConfig;
+  body: Security_CommonAllowListConfig.undefined;
 }
 
 export type Security_CreateAllowlist_Response = ApiResponse & {
   body: Security_CreateAllowlist_ResponseBody;
 }
 
-export type Security_CreateAllowlist_ResponseBody = Security_Common.AllowListConfig
+export type Security_CreateAllowlist_ResponseBody = Security_CommonAllowListConfig.undefined
 

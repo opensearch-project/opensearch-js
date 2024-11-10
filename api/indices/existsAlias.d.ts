@@ -15,16 +15,18 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonNames from '../_types/_common___Names'
 import * as Global from '../_types/_global'
 
 export type Indices_ExistsAlias_Request = Global.Params & {
   allow_no_indices?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   local?: boolean;
-  name: Common.Names;
+  name: CommonNames.undefined;
 }
 
 export type Indices_ExistsAlias_Response = ApiResponse & {

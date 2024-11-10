@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonOk from '../_types/security._common___Ok'
 
 export type Security_DeleteTenant_Request = Global.Params & {
   tenant: string;
@@ -26,5 +26,5 @@ export type Security_DeleteTenant_Response = ApiResponse & {
   body: Security_DeleteTenant_ResponseBody;
 }
 
-export type Security_DeleteTenant_ResponseBody = Security_Common.Ok
+export type Security_DeleteTenant_ResponseBody = Security_CommonOk.undefined
 

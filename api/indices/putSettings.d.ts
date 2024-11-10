@@ -15,26 +15,29 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
 import * as Global from '../_types/_global'
-import * as Indices_Common from '../_types/indices._common'
+import * as Indices_CommonIndexSettings from '../_types/indices._common___IndexSettings'
 
 export type Indices_PutSettings_Request = Global.Params & {
   allow_no_indices?: boolean;
-  body: Indices_Common.IndexSettings;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
+  body: Indices_CommonIndexSettings.undefined;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   flat_settings?: boolean;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
-  master_timeout?: Common.Duration;
+  index?: CommonIndices.undefined;
+  master_timeout?: CommonDuration.undefined;
   preserve_existing?: boolean;
-  timeout?: Common.Duration;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Indices_PutSettings_Response = ApiResponse & {
   body: Indices_PutSettings_ResponseBody;
 }
 
-export type Indices_PutSettings_ResponseBody = Common.AcknowledgedResponseBase
+export type Indices_PutSettings_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

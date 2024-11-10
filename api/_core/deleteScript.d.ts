@@ -15,19 +15,21 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonId from '../_types/_common___Id'
 import * as Global from '../_types/_global'
 
 export type DeleteScript_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
-  id: Common.Id;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  id: CommonId.undefined;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type DeleteScript_Response = ApiResponse & {
   body: DeleteScript_ResponseBody;
 }
 
-export type DeleteScript_ResponseBody = Common.AcknowledgedResponseBase
+export type DeleteScript_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

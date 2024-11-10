@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonActionGroupsMap from '../_types/security._common___ActionGroupsMap'
 
 export type Security_GetActionGroup_Request = Global.Params & {
   action_group: string;
@@ -26,5 +26,5 @@ export type Security_GetActionGroup_Response = ApiResponse & {
   body: Security_GetActionGroup_ResponseBody;
 }
 
-export type Security_GetActionGroup_ResponseBody = Security_Common.ActionGroupsMap
+export type Security_GetActionGroup_ResponseBody = Security_CommonActionGroupsMap.undefined
 

@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonTenantInfo from '../_types/security._common___TenantInfo'
 
 export type Security_TenantInfo_Request = Global.Params & Record<string, any>
 
@@ -24,5 +24,5 @@ export type Security_TenantInfo_Response = ApiResponse & {
   body: Security_TenantInfo_ResponseBody;
 }
 
-export type Security_TenantInfo_ResponseBody = Security_Common.TenantInfo
+export type Security_TenantInfo_ResponseBody = Security_CommonTenantInfo.undefined
 

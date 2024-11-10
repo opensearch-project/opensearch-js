@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonAccountDetails from '../_types/security._common___AccountDetails'
 
 export type Security_GetAccountDetails_Request = Global.Params & Record<string, any>
 
@@ -24,5 +24,5 @@ export type Security_GetAccountDetails_Response = ApiResponse & {
   body: Security_GetAccountDetails_ResponseBody;
 }
 
-export type Security_GetAccountDetails_ResponseBody = Security_Common.AccountDetails
+export type Security_GetAccountDetails_ResponseBody = Security_CommonAccountDetails.undefined
 

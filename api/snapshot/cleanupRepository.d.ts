@@ -15,15 +15,16 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
-import * as Snapshot_CleanupRepository from '../_types/snapshot.cleanup_repository'
+import * as Snapshot_CleanupRepositoryCleanupRepositoryResults from '../_types/snapshot.cleanup_repository___CleanupRepositoryResults'
 
 export type Snapshot_CleanupRepository_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
-  master_timeout?: Common.Duration;
-  repository: Common.Name;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  master_timeout?: CommonDuration.undefined;
+  repository: CommonName.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Snapshot_CleanupRepository_Response = ApiResponse & {
@@ -31,6 +32,6 @@ export type Snapshot_CleanupRepository_Response = ApiResponse & {
 }
 
 export type Snapshot_CleanupRepository_ResponseBody = {
-  results: Snapshot_CleanupRepository.CleanupRepositoryResults;
+  results: Snapshot_CleanupRepositoryCleanupRepositoryResults.undefined;
 }
 

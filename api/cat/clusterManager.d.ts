@@ -15,17 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_ClusterManager from '../_types/cat.cluster_manager'
-import * as Common from '../_types/_common'
+import * as Cat_ClusterManagerClusterManagerRecord from '../_types/cat.cluster_manager___ClusterManagerRecord'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
 
 export type Cat_ClusterManager_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
   local?: boolean;
-  master_timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
   s?: string[];
   v?: boolean;
 }
@@ -34,5 +34,5 @@ export type Cat_ClusterManager_Response = ApiResponse & {
   body: Cat_ClusterManager_ResponseBody;
 }
 
-export type Cat_ClusterManager_ResponseBody = Cat_ClusterManager.ClusterManagerRecord[]
+export type Cat_ClusterManager_ResponseBody = Cat_ClusterManagerClusterManagerRecord.undefined[]
 

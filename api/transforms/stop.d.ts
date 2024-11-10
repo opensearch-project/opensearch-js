@@ -15,16 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonId from '../_types/_common___Id'
 import * as Global from '../_types/_global'
 
 export type Transforms_Stop_Request = Global.Params & {
-  id: Common.Id;
+  id: CommonId.undefined;
 }
 
 export type Transforms_Stop_Response = ApiResponse & {
   body: Transforms_Stop_ResponseBody;
 }
 
-export type Transforms_Stop_ResponseBody = Common.AcknowledgedResponseBase
+export type Transforms_Stop_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

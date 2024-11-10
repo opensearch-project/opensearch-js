@@ -15,15 +15,16 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
 
 export type Indices_ExistsIndexTemplate_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   flat_settings?: boolean;
   local?: boolean;
-  master_timeout?: Common.Duration;
-  name: Common.Name;
+  master_timeout?: CommonDuration.undefined;
+  name: CommonName.undefined;
 }
 
 export type Indices_ExistsIndexTemplate_Response = ApiResponse & {

@@ -15,8 +15,15 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_Reindex from '../_types/_core.reindex'
+import * as CommonBulkByScrollResponseBase from '../_types/_common___BulkByScrollResponseBase'
+import * as CommonConflicts from '../_types/_common___Conflicts'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonScript from '../_types/_common___Script'
+import * as CommonSlices from '../_types/_common___Slices'
+import * as CommonTaskId from '../_types/_common___TaskId'
+import * as CommonWaitForActiveShards from '../_types/_common___WaitForActiveShards'
+import * as Core_ReindexDestination from '../_types/_core.reindex___Destination'
+import * as Core_ReindexSource from '../_types/_core.reindex___Source'
 import * as Global from '../_types/_global'
 
 export type Reindex_Request = Global.Params & {
@@ -24,27 +31,27 @@ export type Reindex_Request = Global.Params & {
   max_docs?: number;
   refresh?: boolean;
   requests_per_second?: number;
-  scroll?: Common.Duration;
-  slices?: Common.Slices;
-  timeout?: Common.Duration;
-  wait_for_active_shards?: Common.WaitForActiveShards;
+  scroll?: CommonDuration.undefined;
+  slices?: CommonSlices.undefined;
+  timeout?: CommonDuration.undefined;
+  wait_for_active_shards?: CommonWaitForActiveShards.undefined;
   wait_for_completion?: boolean;
 }
 
 export type Reindex_RequestBody = {
-  conflicts?: Common.Conflicts;
-  dest: Core_Reindex.Destination;
+  conflicts?: CommonConflicts.undefined;
+  dest: Core_ReindexDestination.undefined;
   max_docs?: number;
-  script?: Common.Script;
+  script?: CommonScript.undefined;
   size?: number;
-  source: Core_Reindex.Source;
+  source: Core_ReindexSource.undefined;
 }
 
 export type Reindex_Response = ApiResponse & {
   body: Reindex_ResponseBody;
 }
 
-export type Reindex_ResponseBody = Common.BulkByScrollResponseBase | {
-  task?: Common.TaskId;
+export type Reindex_ResponseBody = CommonBulkByScrollResponseBase.undefined | {
+  task?: CommonTaskId.undefined;
 }
 

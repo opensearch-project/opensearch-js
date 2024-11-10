@@ -16,10 +16,11 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonOk from '../_types/security._common___Ok'
+import * as Security_CommonRole from '../_types/security._common___Role'
 
 export type Security_CreateRole_Request = Global.Params & {
-  body: Security_Common.Role;
+  body: Security_CommonRole.undefined;
   role: string;
 }
 
@@ -27,5 +28,5 @@ export type Security_CreateRole_Response = ApiResponse & {
   body: Security_CreateRole_ResponseBody;
 }
 
-export type Security_CreateRole_ResponseBody = Security_Common.Ok
+export type Security_CreateRole_ResponseBody = Security_CommonOk.undefined
 

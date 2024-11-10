@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Ml_Common from '../_types/ml._common'
+import * as Ml_CommonTask from '../_types/ml._common___Task'
 
 export type Ml_GetTask_Request = Global.Params & {
   task_id: string;
@@ -26,5 +26,5 @@ export type Ml_GetTask_Response = ApiResponse & {
   body: Ml_GetTask_ResponseBody;
 }
 
-export type Ml_GetTask_ResponseBody = Ml_Common.Task
+export type Ml_GetTask_ResponseBody = Ml_CommonTask.undefined
 

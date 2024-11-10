@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonAuthInfo from '../_types/security._common___AuthInfo'
 
 export type Security_Authinfo_Request = Global.Params & {
   auth_type?: string;
@@ -27,5 +27,5 @@ export type Security_Authinfo_Response = ApiResponse & {
   body: Security_Authinfo_ResponseBody;
 }
 
-export type Security_Authinfo_ResponseBody = Security_Common.AuthInfo
+export type Security_Authinfo_ResponseBody = Security_CommonAuthInfo.undefined
 

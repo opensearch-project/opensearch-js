@@ -15,17 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonId from '../_types/_common___Id'
 import * as Global from '../_types/_global'
-import * as Transforms_Common from '../_types/transforms._common'
+import * as Transforms_CommonExplainResponse from '../_types/transforms._common___ExplainResponse'
 
 export type Transforms_Explain_Request = Global.Params & {
-  id: Common.Id;
+  id: CommonId.undefined;
 }
 
 export type Transforms_Explain_Response = ApiResponse & {
   body: Transforms_Explain_ResponseBody;
 }
 
-export type Transforms_Explain_ResponseBody = Transforms_Common.ExplainResponse
+export type Transforms_Explain_ResponseBody = Transforms_CommonExplainResponse.undefined
 

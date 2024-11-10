@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonDistinguishedNamesMap from '../_types/security._common___DistinguishedNamesMap'
 
 export type Security_GetDistinguishedNames_Request = Global.Params & {
   show_all?: boolean;
@@ -26,5 +26,5 @@ export type Security_GetDistinguishedNames_Response = ApiResponse & {
   body: Security_GetDistinguishedNames_ResponseBody;
 }
 
-export type Security_GetDistinguishedNames_ResponseBody = Security_Common.DistinguishedNamesMap
+export type Security_GetDistinguishedNames_ResponseBody = Security_CommonDistinguishedNamesMap.undefined
 

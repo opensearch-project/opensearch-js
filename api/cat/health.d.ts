@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Health from '../_types/cat.health'
-import * as Common from '../_types/_common'
+import * as Cat_HealthHealthRecord from '../_types/cat.health___HealthRecord'
+import * as CommonTimeUnit from '../_types/_common___TimeUnit'
 import * as Global from '../_types/_global'
 
 export type Cat_Health_Request = Global.Params & {
@@ -24,7 +24,7 @@ export type Cat_Health_Request = Global.Params & {
   h?: string[];
   help?: boolean;
   s?: string[];
-  time?: Common.TimeUnit;
+  time?: CommonTimeUnit.undefined;
   ts?: boolean;
   v?: boolean;
 }
@@ -33,5 +33,5 @@ export type Cat_Health_Response = ApiResponse & {
   body: Cat_Health_ResponseBody;
 }
 
-export type Cat_Health_ResponseBody = Cat_Health.HealthRecord[]
+export type Cat_Health_ResponseBody = Cat_HealthHealthRecord.undefined[]
 

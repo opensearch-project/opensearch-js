@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_ScriptsPainlessExecute from '../_types/_core.scripts_painless_execute'
+import * as CommonInlineScript from '../_types/_common___InlineScript'
+import * as Core_ScriptsPainlessExecutePainlessContextSetup from '../_types/_core.scripts_painless_execute___PainlessContextSetup'
 import * as Global from '../_types/_global'
 
 export type ScriptsPainlessExecute_Request = Global.Params & {
@@ -25,8 +25,8 @@ export type ScriptsPainlessExecute_Request = Global.Params & {
 
 export type ScriptsPainlessExecute_RequestBody = {
   context?: string;
-  context_setup?: Core_ScriptsPainlessExecute.PainlessContextSetup;
-  script?: Common.InlineScript;
+  context_setup?: Core_ScriptsPainlessExecutePainlessContextSetup.undefined;
+  script?: CommonInlineScript.undefined;
 }
 
 export type ScriptsPainlessExecute_Response = ApiResponse & {

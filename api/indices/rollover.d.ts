@@ -15,27 +15,30 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Common_Mapping from '../_types/_common.mapping'
+import * as Common_MappingTypeMapping from '../_types/_common.mapping___TypeMapping'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIndexAlias from '../_types/_common___IndexAlias'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonWaitForActiveShards from '../_types/_common___WaitForActiveShards'
 import * as Global from '../_types/_global'
-import * as Indices_Common from '../_types/indices._common'
-import * as Indices_Rollover from '../_types/indices.rollover'
+import * as Indices_CommonAlias from '../_types/indices._common___Alias'
+import * as Indices_RolloverRolloverConditions from '../_types/indices.rollover___RolloverConditions'
 
 export type Indices_Rollover_Request = Global.Params & {
-  alias: Common.IndexAlias;
+  alias: CommonIndexAlias.undefined;
   body?: Indices_Rollover_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   dry_run?: boolean;
-  master_timeout?: Common.Duration;
-  new_index?: Common.IndexName;
-  timeout?: Common.Duration;
-  wait_for_active_shards?: Common.WaitForActiveShards;
+  master_timeout?: CommonDuration.undefined;
+  new_index?: CommonIndexName.undefined;
+  timeout?: CommonDuration.undefined;
+  wait_for_active_shards?: CommonWaitForActiveShards.undefined;
 }
 
 export type Indices_Rollover_RequestBody = {
-  aliases?: Record<string, Indices_Common.Alias>;
-  conditions?: Indices_Rollover.RolloverConditions;
-  mappings?: Common_Mapping.TypeMapping;
+  aliases?: Record<string, Indices_CommonAlias.undefined>;
+  conditions?: Indices_RolloverRolloverConditions.undefined;
+  mappings?: Common_MappingTypeMapping.undefined;
   settings?: Record<string, Record<string, any>>;
 }
 

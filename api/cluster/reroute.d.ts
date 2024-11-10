@@ -15,23 +15,25 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cluster_Reroute from '../_types/cluster.reroute'
-import * as Common from '../_types/_common'
+import * as Cluster_RerouteCommand from '../_types/cluster.reroute___Command'
+import * as Cluster_RerouteMetric from '../_types/cluster.reroute___Metric'
+import * as Cluster_RerouteRerouteExplanation from '../_types/cluster.reroute___RerouteExplanation'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
 
 export type Cluster_Reroute_Request = Global.Params & {
   body?: Cluster_Reroute_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   dry_run?: boolean;
   explain?: boolean;
-  master_timeout?: Common.Duration;
-  metric?: Cluster_Reroute.Metric | Cluster_Reroute.Metric[];
+  master_timeout?: CommonDuration.undefined;
+  metric?: Cluster_RerouteMetric.undefined | Cluster_RerouteMetric.undefined[];
   retry_failed?: boolean;
-  timeout?: Common.Duration;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Cluster_Reroute_RequestBody = {
-  commands?: Cluster_Reroute.Command[];
+  commands?: Cluster_RerouteCommand.undefined[];
 }
 
 export type Cluster_Reroute_Response = ApiResponse & {
@@ -40,7 +42,7 @@ export type Cluster_Reroute_Response = ApiResponse & {
 
 export type Cluster_Reroute_ResponseBody = {
   acknowledged: boolean;
-  explanations?: Cluster_Reroute.RerouteExplanation[];
+  explanations?: Cluster_RerouteRerouteExplanation.undefined[];
   state?: Record<string, any>;
 }
 

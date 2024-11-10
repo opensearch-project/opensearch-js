@@ -15,19 +15,21 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonNodeIds from '../_types/_common___NodeIds'
 import * as Global from '../_types/_global'
-import * as Nodes_Usage from '../_types/nodes.usage'
+import * as Nodes_UsageMetric from '../_types/nodes.usage___Metric'
+import * as Nodes_UsageResponseBase from '../_types/nodes.usage___ResponseBase'
 
 export type Nodes_Usage_Request = Global.Params & {
-  metric?: Nodes_Usage.Metric[];
-  node_id?: Common.NodeIds;
-  timeout?: Common.Duration;
+  metric?: Nodes_UsageMetric.undefined[];
+  node_id?: CommonNodeIds.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Nodes_Usage_Response = ApiResponse & {
   body: Nodes_Usage_ResponseBody;
 }
 
-export type Nodes_Usage_ResponseBody = Nodes_Usage.ResponseBase
+export type Nodes_Usage_ResponseBody = Nodes_UsageResponseBase.undefined
 

@@ -15,25 +15,29 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonName from '../_types/_common___Name'
+import * as CommonStoredScript from '../_types/_common___StoredScript'
 import * as Global from '../_types/_global'
 
 export type PutScript_Request = Global.Params & {
   body: PutScript_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
-  context?: Common.Name;
-  id: Common.Id;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  context?: CommonName.undefined;
+  id: CommonId.undefined;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type PutScript_RequestBody = {
-  script: Common.StoredScript;
+  script: CommonStoredScript.undefined;
 }
 
 export type PutScript_Response = ApiResponse & {
   body: PutScript_ResponseBody;
 }
 
-export type PutScript_ResponseBody = Common.AcknowledgedResponseBase
+export type PutScript_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

@@ -15,13 +15,16 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonNames from '../_types/_common___Names'
 import * as Global from '../_types/_global'
-import * as Indices_ResolveIndex from '../_types/indices.resolve_index'
+import * as Indices_ResolveIndexResolveIndexAliasItem from '../_types/indices.resolve_index___ResolveIndexAliasItem'
+import * as Indices_ResolveIndexResolveIndexDataStreamsItem from '../_types/indices.resolve_index___ResolveIndexDataStreamsItem'
+import * as Indices_ResolveIndexResolveIndexItem from '../_types/indices.resolve_index___ResolveIndexItem'
 
 export type Indices_ResolveIndex_Request = Global.Params & {
-  expand_wildcards?: Common.ExpandWildcards;
-  name: Common.Names;
+  expand_wildcards?: CommonExpandWildcards.undefined;
+  name: CommonNames.undefined;
 }
 
 export type Indices_ResolveIndex_Response = ApiResponse & {
@@ -29,8 +32,8 @@ export type Indices_ResolveIndex_Response = ApiResponse & {
 }
 
 export type Indices_ResolveIndex_ResponseBody = {
-  aliases: Indices_ResolveIndex.ResolveIndexAliasItem[];
-  data_streams: Indices_ResolveIndex.ResolveIndexDataStreamsItem[];
-  indices: Indices_ResolveIndex.ResolveIndexItem[];
+  aliases: Indices_ResolveIndexResolveIndexAliasItem.undefined[];
+  data_streams: Indices_ResolveIndexResolveIndexDataStreamsItem.undefined[];
+  indices: Indices_ResolveIndexResolveIndexItem.undefined[];
 }
 

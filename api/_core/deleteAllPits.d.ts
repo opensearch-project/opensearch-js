@@ -15,7 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Core_Common from '../_types/_core._common'
+import * as Core_CommonPitsDetailsDeleteAll from '../_types/_core._common___PitsDetailsDeleteAll'
 import * as Global from '../_types/_global'
 
 export type DeleteAllPits_Request = Global.Params & Record<string, any>
@@ -25,6 +25,6 @@ export type DeleteAllPits_Response = ApiResponse & {
 }
 
 export type DeleteAllPits_ResponseBody = {
-  pits?: Core_Common.PitsDetailsDeleteAll[];
+  pits?: Core_CommonPitsDetailsDeleteAll.undefined[];
 }
 

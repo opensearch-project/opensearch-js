@@ -15,22 +15,24 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonNames from '../_types/_common___Names'
 import * as Global from '../_types/_global'
-import * as Indices_GetAlias from '../_types/indices.get_alias'
+import * as Indices_GetAliasIndexAliases from '../_types/indices.get_alias___IndexAliases'
 
 export type Indices_GetAlias_Request = Global.Params & {
   allow_no_indices?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   local?: boolean;
-  name?: Common.Names;
+  name?: CommonNames.undefined;
 }
 
 export type Indices_GetAlias_Response = ApiResponse & {
   body: Indices_GetAlias_ResponseBody;
 }
 
-export type Indices_GetAlias_ResponseBody = Record<string, Indices_GetAlias.IndexAliases>
+export type Indices_GetAlias_ResponseBody = Record<string, Indices_GetAliasIndexAliases.undefined>
 

@@ -15,22 +15,28 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonLevel from '../_types/_common___Level'
+import * as CommonShardStatistics from '../_types/_common___ShardStatistics'
 import * as Global from '../_types/_global'
-import * as Indices_Stats from '../_types/indices.stats'
+import * as Indices_StatsAllIndicesStats from '../_types/indices.stats___AllIndicesStats'
+import * as Indices_StatsIndicesStats from '../_types/indices.stats___IndicesStats'
+import * as Indices_StatsMetric from '../_types/indices.stats___Metric'
 
 export type Indices_Stats_Request = Global.Params & {
-  completion_fields?: Common.Fields;
-  expand_wildcards?: Common.ExpandWildcards;
-  fielddata_fields?: Common.Fields;
-  fields?: Common.Fields;
+  completion_fields?: CommonFields.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
+  fielddata_fields?: CommonFields.undefined;
+  fields?: CommonFields.undefined;
   forbid_closed_indices?: boolean;
   groups?: string | string[];
   include_segment_file_sizes?: boolean;
   include_unloaded_segments?: boolean;
-  index?: Common.Indices;
-  level?: Common.Level;
-  metric?: Indices_Stats.Metric | Indices_Stats.Metric[];
+  index?: CommonIndices.undefined;
+  level?: CommonLevel.undefined;
+  metric?: Indices_StatsMetric.undefined | Indices_StatsMetric.undefined[];
 }
 
 export type Indices_Stats_Response = ApiResponse & {
@@ -38,8 +44,8 @@ export type Indices_Stats_Response = ApiResponse & {
 }
 
 export type Indices_Stats_ResponseBody = {
-  _all: Indices_Stats.AllIndicesStats;
-  _shards: Common.ShardStatistics;
-  indices?: Record<string, Indices_Stats.IndicesStats>;
+  _all: Indices_StatsAllIndicesStats.undefined;
+  _shards: CommonShardStatistics.undefined;
+  indices?: Record<string, Indices_StatsIndicesStats.undefined>;
 }
 

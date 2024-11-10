@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonOk from '../_types/security._common___Ok'
 
 export type Security_DeleteDistinguishedName_Request = Global.Params & {
   cluster_name: string;
@@ -26,5 +26,5 @@ export type Security_DeleteDistinguishedName_Response = ApiResponse & {
   body: Security_DeleteDistinguishedName_ResponseBody;
 }
 
-export type Security_DeleteDistinguishedName_ResponseBody = Security_Common.Ok
+export type Security_DeleteDistinguishedName_ResponseBody = Security_CommonOk.undefined
 

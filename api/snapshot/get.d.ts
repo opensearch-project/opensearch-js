@@ -15,16 +15,18 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
+import * as CommonNames from '../_types/_common___Names'
 import * as Global from '../_types/_global'
-import * as Snapshot_Common from '../_types/snapshot._common'
+import * as Snapshot_CommonSnapshotInfo from '../_types/snapshot._common___SnapshotInfo'
 
 export type Snapshot_Get_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   ignore_unavailable?: boolean;
-  master_timeout?: Common.Duration;
-  repository: Common.Name;
-  snapshot: Common.Names;
+  master_timeout?: CommonDuration.undefined;
+  repository: CommonName.undefined;
+  snapshot: CommonNames.undefined;
   verbose?: boolean;
 }
 
@@ -33,6 +35,6 @@ export type Snapshot_Get_Response = ApiResponse & {
 }
 
 export type Snapshot_Get_ResponseBody = {
-  snapshots: Snapshot_Common.SnapshotInfo[];
+  snapshots: Snapshot_CommonSnapshotInfo.undefined[];
 }
 

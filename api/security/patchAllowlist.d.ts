@@ -16,17 +16,18 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonAllowListConfig from '../_types/security._common___AllowListConfig'
+import * as Security_CommonPatchOperation from '../_types/security._common___PatchOperation'
 
 export type Security_PatchAllowlist_Request = Global.Params & {
   body: Security_PatchAllowlist_RequestBody;
 }
 
-export type Security_PatchAllowlist_RequestBody = Security_Common.PatchOperation[]
+export type Security_PatchAllowlist_RequestBody = Security_CommonPatchOperation.undefined[]
 
 export type Security_PatchAllowlist_Response = ApiResponse & {
   body: Security_PatchAllowlist_ResponseBody;
 }
 
-export type Security_PatchAllowlist_ResponseBody = Security_Common.AllowListConfig
+export type Security_PatchAllowlist_ResponseBody = Security_CommonAllowListConfig.undefined
 

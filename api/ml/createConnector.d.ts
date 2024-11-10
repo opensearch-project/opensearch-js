@@ -16,10 +16,10 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Ml_Common from '../_types/ml._common'
+import * as Ml_CommonCreateConnectorRequest from '../_types/ml._common___CreateConnectorRequest'
 
 export type Ml_CreateConnector_Request = Global.Params & {
-  body?: Ml_Common.CreateConnectorRequest;
+  body?: Ml_CommonCreateConnectorRequest.undefined;
 }
 
 export type Ml_CreateConnector_Response = ApiResponse & {

@@ -15,9 +15,13 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
 import * as Global from '../_types/_global'
-import * as Knn_Common from '../_types/knn._common'
+import * as Knn_CommonDefaultOperator from '../_types/knn._common___DefaultOperator'
+import * as Knn_CommonSearchType from '../_types/knn._common___SearchType'
+import * as Knn_CommonSuggestMode from '../_types/knn._common___SuggestMode'
 
 export type Knn_SearchModels_Request = Global.Params & {
   _source?: string[];
@@ -30,10 +34,10 @@ export type Knn_SearchModels_Request = Global.Params & {
   batched_reduce_size?: number;
   body?: Knn_SearchModels_RequestBody;
   ccs_minimize_roundtrips?: boolean;
-  default_operator?: Knn_Common.DefaultOperator;
+  default_operator?: Knn_CommonDefaultOperator.undefined;
   df?: string;
   docvalue_fields?: string[];
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   explain?: boolean;
   from?: number;
   ignore_throttled?: boolean;
@@ -45,20 +49,20 @@ export type Knn_SearchModels_Request = Global.Params & {
   q?: string;
   request_cache?: boolean;
   rest_total_hits_as_int?: boolean;
-  routing?: Common.RoutingInQueryString;
-  scroll?: Common.Duration;
-  search_type?: Knn_Common.SearchType;
+  routing?: CommonRoutingInQueryString.undefined;
+  scroll?: CommonDuration.undefined;
+  search_type?: Knn_CommonSearchType.undefined;
   seq_no_primary_term?: boolean;
   size?: number;
   sort?: string[];
   stats?: string[];
   stored_fields?: string[];
   suggest_field?: string;
-  suggest_mode?: Knn_Common.SuggestMode;
+  suggest_mode?: Knn_CommonSuggestMode.undefined;
   suggest_size?: number;
   suggest_text?: string;
   terminate_after?: number;
-  timeout?: Common.Duration;
+  timeout?: CommonDuration.undefined;
   track_scores?: boolean;
   track_total_hits?: boolean;
   typed_keys?: boolean;

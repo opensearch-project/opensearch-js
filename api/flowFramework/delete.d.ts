@@ -15,17 +15,18 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as FlowFramework_Common from '../_types/flow_framework.common'
+import * as FlowFramework_CommonFlowFrameworkDeleteResponse from '../_types/flow_framework.common___FlowFrameworkDeleteResponse'
+import * as FlowFramework_CommonWorkflowId from '../_types/flow_framework.common___WorkflowID'
 import * as Global from '../_types/_global'
 
 export type FlowFramework_Delete_Request = Global.Params & {
   clear_status?: boolean;
-  workflow_id: FlowFramework_Common.WorkflowID;
+  workflow_id: FlowFramework_CommonWorkflowId.undefined;
 }
 
 export type FlowFramework_Delete_Response = ApiResponse & {
   body: FlowFramework_Delete_ResponseBody;
 }
 
-export type FlowFramework_Delete_ResponseBody = Record<string, any>
+export type FlowFramework_Delete_ResponseBody = FlowFramework_CommonFlowFrameworkDeleteResponse.undefined
 

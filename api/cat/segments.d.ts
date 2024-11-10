@@ -15,18 +15,20 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Segments from '../_types/cat.segments'
-import * as Common from '../_types/_common'
+import * as Cat_SegmentsSegmentsRecord from '../_types/cat.segments___SegmentsRecord'
+import * as CommonByteUnit from '../_types/_common___ByteUnit'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIndices from '../_types/_common___Indices'
 import * as Global from '../_types/_global'
 
 export type Cat_Segments_Request = Global.Params & {
-  bytes?: Common.ByteUnit;
-  cluster_manager_timeout?: Common.Duration;
+  bytes?: CommonByteUnit.undefined;
+  cluster_manager_timeout?: CommonDuration.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
-  index?: Common.Indices;
-  master_timeout?: Common.Duration;
+  index?: CommonIndices.undefined;
+  master_timeout?: CommonDuration.undefined;
   s?: string[];
   v?: boolean;
 }
@@ -35,5 +37,5 @@ export type Cat_Segments_Response = ApiResponse & {
   body: Cat_Segments_ResponseBody;
 }
 
-export type Cat_Segments_ResponseBody = Cat_Segments.SegmentsRecord[]
+export type Cat_Segments_ResponseBody = Cat_SegmentsSegmentsRecord.undefined[]
 

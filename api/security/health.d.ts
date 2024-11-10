@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonHealthInfo from '../_types/security._common___HealthInfo'
 
 export type Security_Health_Request = Global.Params & {
   mode?: string;
@@ -26,5 +26,5 @@ export type Security_Health_Response = ApiResponse & {
   body: Security_Health_ResponseBody;
 }
 
-export type Security_Health_ResponseBody = Security_Common.HealthInfo
+export type Security_Health_ResponseBody = Security_CommonHealthInfo.undefined
 

@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonGetCertificates from '../_types/security._common___GetCertificates'
 
 export type Security_GetCertificates_Request = Global.Params & Record<string, any>
 
@@ -24,5 +24,5 @@ export type Security_GetCertificates_Response = ApiResponse & {
   body: Security_GetCertificates_ResponseBody;
 }
 
-export type Security_GetCertificates_ResponseBody = Security_Common.GetCertificates
+export type Security_GetCertificates_ResponseBody = Security_CommonGetCertificates.undefined
 

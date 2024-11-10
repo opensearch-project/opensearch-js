@@ -15,17 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
 import * as Global from '../_types/_global'
 
 export type Indices_Exists_Request = Global.Params & {
   allow_no_indices?: boolean;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   flat_settings?: boolean;
   ignore_unavailable?: boolean;
   include_defaults?: boolean;
-  index: Common.Indices;
+  index: CommonIndices.undefined;
   local?: boolean;
 }
 

@@ -15,7 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonWriteResponseBase from '../_types/_common___WriteResponseBase'
 import * as Global from '../_types/_global'
 
 export type Ml_DeleteTask_Request = Global.Params & {
@@ -26,5 +26,5 @@ export type Ml_DeleteTask_Response = ApiResponse & {
   body: Ml_DeleteTask_ResponseBody;
 }
 
-export type Ml_DeleteTask_ResponseBody = Common.WriteResponseBase
+export type Ml_DeleteTask_ResponseBody = CommonWriteResponseBase.undefined
 

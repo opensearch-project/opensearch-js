@@ -16,15 +16,16 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Ml_Common from '../_types/ml._common'
+import * as Ml_CommonSearchModelsQuery from '../_types/ml._common___SearchModelsQuery'
+import * as Ml_CommonSearchModelsResponse from '../_types/ml._common___SearchModelsResponse'
 
 export type Ml_SearchModels_Request = Global.Params & {
-  body?: Ml_Common.SearchModelsQuery;
+  body?: Ml_CommonSearchModelsQuery.undefined;
 }
 
 export type Ml_SearchModels_Response = ApiResponse & {
   body: Ml_SearchModels_ResponseBody;
 }
 
-export type Ml_SearchModels_ResponseBody = Ml_Common.SearchModelsResponse
+export type Ml_SearchModels_ResponseBody = Ml_CommonSearchModelsResponse.undefined
 

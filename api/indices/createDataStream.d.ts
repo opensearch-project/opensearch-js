@@ -15,12 +15,13 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDataStreamName from '../_types/_common___DataStreamName'
 import * as Global from '../_types/_global'
 
 export type Indices_CreateDataStream_Request = Global.Params & {
   body?: Indices_CreateDataStream_RequestBody;
-  name: Common.DataStreamName;
+  name: CommonDataStreamName.undefined;
 }
 
 export type Indices_CreateDataStream_RequestBody = Record<string, any>
@@ -29,5 +30,5 @@ export type Indices_CreateDataStream_Response = ApiResponse & {
   body: Indices_CreateDataStream_ResponseBody;
 }
 
-export type Indices_CreateDataStream_ResponseBody = Common.AcknowledgedResponseBase
+export type Indices_CreateDataStream_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

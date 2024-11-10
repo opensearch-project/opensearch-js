@@ -15,20 +15,22 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonSequenceNumber from '../_types/_common___SequenceNumber'
 import * as Global from '../_types/_global'
-import * as Transforms_Common from '../_types/transforms._common'
+import * as Transforms_CommonTransform from '../_types/transforms._common___Transform'
+import * as Transforms_CommonTransformEntity from '../_types/transforms._common___TransformEntity'
 
 export type Transforms_Put_Request = Global.Params & {
-  body?: Transforms_Common.Transform;
-  id: Common.Id;
+  body?: Transforms_CommonTransform.undefined;
+  id: CommonId.undefined;
   if_primary_term?: number;
-  if_seq_no?: Common.SequenceNumber;
+  if_seq_no?: CommonSequenceNumber.undefined;
 }
 
 export type Transforms_Put_Response = ApiResponse & {
   body: Transforms_Put_ResponseBody;
 }
 
-export type Transforms_Put_ResponseBody = Transforms_Common.TransformEntity
+export type Transforms_Put_ResponseBody = Transforms_CommonTransformEntity.undefined
 

@@ -15,18 +15,20 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
-import * as Indices_Common from '../_types/indices._common'
-import * as Indices_SimulateTemplate from '../_types/indices.simulate_template'
+import * as Indices_CommonIndexTemplate from '../_types/indices._common___IndexTemplate'
+import * as Indices_SimulateTemplateOverlapping from '../_types/indices.simulate_template___Overlapping'
+import * as Indices_SimulateTemplateTemplate from '../_types/indices.simulate_template___Template'
 
 export type Indices_SimulateTemplate_Request = Global.Params & {
-  body?: Indices_Common.IndexTemplate;
+  body?: Indices_CommonIndexTemplate.undefined;
   cause?: string;
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   create?: boolean;
-  master_timeout?: Common.Duration;
-  name?: Common.Name;
+  master_timeout?: CommonDuration.undefined;
+  name?: CommonName.undefined;
 }
 
 export type Indices_SimulateTemplate_Response = ApiResponse & {
@@ -34,7 +36,7 @@ export type Indices_SimulateTemplate_Response = ApiResponse & {
 }
 
 export type Indices_SimulateTemplate_ResponseBody = {
-  overlapping?: Indices_SimulateTemplate.Overlapping[];
-  template: Indices_SimulateTemplate.Template;
+  overlapping?: Indices_SimulateTemplateOverlapping.undefined[];
+  template: Indices_SimulateTemplateTemplate.undefined;
 }
 

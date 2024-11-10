@@ -15,16 +15,18 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
 import * as Global from '../_types/_global'
-import * as Indices_ShardStores from '../_types/indices.shard_stores'
+import * as Indices_ShardStoresIndicesShardStores from '../_types/indices.shard_stores___IndicesShardStores'
+import * as Indices_ShardStoresStatus from '../_types/indices.shard_stores___Status'
 
 export type Indices_ShardStores_Request = Global.Params & {
   allow_no_indices?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
-  status?: Indices_ShardStores.Status | Indices_ShardStores.Status[];
+  index?: CommonIndices.undefined;
+  status?: Indices_ShardStoresStatus.undefined | Indices_ShardStoresStatus.undefined[];
 }
 
 export type Indices_ShardStores_Response = ApiResponse & {
@@ -32,6 +34,6 @@ export type Indices_ShardStores_Response = ApiResponse & {
 }
 
 export type Indices_ShardStores_ResponseBody = {
-  indices: Record<string, Indices_ShardStores.IndicesShardStores>;
+  indices: Record<string, Indices_ShardStoresIndicesShardStores.undefined>;
 }
 

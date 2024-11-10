@@ -15,21 +15,24 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Shards from '../_types/cat.shards'
-import * as Common from '../_types/_common'
+import * as Cat_ShardsShardsRecord from '../_types/cat.shards___ShardsRecord'
+import * as CommonByteUnit from '../_types/_common___ByteUnit'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonTimeUnit from '../_types/_common___TimeUnit'
 import * as Global from '../_types/_global'
 
 export type Cat_Shards_Request = Global.Params & {
-  bytes?: Common.ByteUnit;
-  cluster_manager_timeout?: Common.Duration;
+  bytes?: CommonByteUnit.undefined;
+  cluster_manager_timeout?: CommonDuration.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   local?: boolean;
-  master_timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
   s?: string[];
-  time?: Common.TimeUnit;
+  time?: CommonTimeUnit.undefined;
   v?: boolean;
 }
 
@@ -37,5 +40,5 @@ export type Cat_Shards_Response = ApiResponse & {
   body: Cat_Shards_ResponseBody;
 }
 
-export type Cat_Shards_ResponseBody = Cat_Shards.ShardsRecord[]
+export type Cat_Shards_ResponseBody = Cat_ShardsShardsRecord.undefined[]
 

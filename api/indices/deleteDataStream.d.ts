@@ -15,16 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDataStreamNames from '../_types/_common___DataStreamNames'
 import * as Global from '../_types/_global'
 
 export type Indices_DeleteDataStream_Request = Global.Params & {
-  name: Common.DataStreamNames;
+  name: CommonDataStreamNames.undefined;
 }
 
 export type Indices_DeleteDataStream_Response = ApiResponse & {
   body: Indices_DeleteDataStream_ResponseBody;
 }
 
-export type Indices_DeleteDataStream_ResponseBody = Common.AcknowledgedResponseBase
+export type Indices_DeleteDataStream_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

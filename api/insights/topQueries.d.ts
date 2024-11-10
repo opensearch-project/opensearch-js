@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Insights_Common from '../_types/insights._common'
+import * as Insights_CommonTopQueriesResponse from '../_types/insights._common___TopQueriesResponse'
 
 export type Insights_TopQueries_Request = Global.Params & {
   type: 'cpu' | 'latency' | 'memory';
@@ -26,5 +26,5 @@ export type Insights_TopQueries_Response = ApiResponse & {
   body: Insights_TopQueries_ResponseBody;
 }
 
-export type Insights_TopQueries_ResponseBody = Insights_Common.TopQueriesResponse
+export type Insights_TopQueries_ResponseBody = Insights_CommonTopQueriesResponse.undefined
 

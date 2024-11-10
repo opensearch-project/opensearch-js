@@ -15,19 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonIndices from '../_types/_common___Indices'
 import * as Global from '../_types/_global'
-import * as Indices_Recovery from '../_types/indices.recovery'
+import * as Indices_RecoveryRecoveryStatus from '../_types/indices.recovery___RecoveryStatus'
 
 export type Indices_Recovery_Request = Global.Params & {
   active_only?: boolean;
   detailed?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
 }
 
 export type Indices_Recovery_Response = ApiResponse & {
   body: Indices_Recovery_ResponseBody;
 }
 
-export type Indices_Recovery_ResponseBody = Record<string, Indices_Recovery.RecoveryStatus>
+export type Indices_Recovery_ResponseBody = Record<string, Indices_RecoveryRecoveryStatus.undefined>
 

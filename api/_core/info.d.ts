@@ -15,7 +15,9 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonName from '../_types/_common___Name'
+import * as CommonOpenSearchVersionInfo from '../_types/_common___OpenSearchVersionInfo'
+import * as CommonUuid from '../_types/_common___Uuid'
 import * as Global from '../_types/_global'
 
 export type Info_Request = Global.Params & Record<string, any>
@@ -25,10 +27,10 @@ export type Info_Response = ApiResponse & {
 }
 
 export type Info_ResponseBody = {
-  cluster_name: Common.Name;
-  cluster_uuid: Common.Uuid;
-  name: Common.Name;
+  cluster_name: CommonName.undefined;
+  cluster_uuid: CommonUuid.undefined;
+  name: CommonName.undefined;
   tagline: string;
-  version: Common.OpenSearchVersionInfo;
+  version: CommonOpenSearchVersionInfo.undefined;
 }
 

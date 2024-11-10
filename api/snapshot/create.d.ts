@@ -15,16 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonMetadata from '../_types/_common___Metadata'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
-import * as Snapshot_Common from '../_types/snapshot._common'
+import * as Snapshot_CommonSnapshotInfo from '../_types/snapshot._common___SnapshotInfo'
 
 export type Snapshot_Create_Request = Global.Params & {
   body?: Snapshot_Create_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
-  master_timeout?: Common.Duration;
-  repository: Common.Name;
-  snapshot: Common.Name;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  master_timeout?: CommonDuration.undefined;
+  repository: CommonName.undefined;
+  snapshot: CommonName.undefined;
   wait_for_completion?: boolean;
 }
 
@@ -32,8 +35,8 @@ export type Snapshot_Create_RequestBody = {
   feature_states?: string[];
   ignore_unavailable?: boolean;
   include_global_state?: boolean;
-  indices?: Common.Indices;
-  metadata?: Common.Metadata;
+  indices?: CommonIndices.undefined;
+  metadata?: CommonMetadata.undefined;
   partial?: boolean;
 }
 
@@ -43,6 +46,6 @@ export type Snapshot_Create_Response = ApiResponse & {
 
 export type Snapshot_Create_ResponseBody = {
   accepted?: boolean;
-  snapshot?: Snapshot_Common.SnapshotInfo;
+  snapshot?: Snapshot_CommonSnapshotInfo.undefined;
 }
 

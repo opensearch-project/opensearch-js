@@ -15,20 +15,22 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonUuid from '../_types/_common___Uuid'
 import * as Global from '../_types/_global'
 
 export type DanglingIndices_ImportDanglingIndex_Request = Global.Params & {
   accept_data_loss: boolean;
-  cluster_manager_timeout?: Common.Duration;
-  index_uuid: Common.Uuid;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  index_uuid: CommonUuid.undefined;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type DanglingIndices_ImportDanglingIndex_Response = ApiResponse & {
   body: DanglingIndices_ImportDanglingIndex_ResponseBody;
 }
 
-export type DanglingIndices_ImportDanglingIndex_ResponseBody = Common.AcknowledgedResponseBase
+export type DanglingIndices_ImportDanglingIndex_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

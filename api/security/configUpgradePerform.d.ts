@@ -16,15 +16,16 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonConfigUpgradePayload from '../_types/security._common___ConfigUpgradePayload'
+import * as Security_CommonUpgradePerform from '../_types/security._common___UpgradePerform'
 
 export type Security_ConfigUpgradePerform_Request = Global.Params & {
-  body?: Security_Common.ConfigUpgradePayload;
+  body?: Security_CommonConfigUpgradePayload.undefined;
 }
 
 export type Security_ConfigUpgradePerform_Response = ApiResponse & {
   body: Security_ConfigUpgradePerform_ResponseBody;
 }
 
-export type Security_ConfigUpgradePerform_ResponseBody = Security_Common.UpgradePerform
+export type Security_ConfigUpgradePerform_ResponseBody = Security_CommonUpgradePerform.undefined
 

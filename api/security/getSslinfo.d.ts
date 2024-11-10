@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonSslInfo from '../_types/security._common___SSLInfo'
 
 export type Security_GetSslinfo_Request = Global.Params & {
   show_dn?: boolean | string;
@@ -26,5 +26,5 @@ export type Security_GetSslinfo_Response = ApiResponse & {
   body: Security_GetSslinfo_ResponseBody;
 }
 
-export type Security_GetSslinfo_ResponseBody = Security_Common.SSLInfo
+export type Security_GetSslinfo_ResponseBody = Security_CommonSslInfo.undefined
 

@@ -15,13 +15,15 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonStoredScript from '../_types/_common___StoredScript'
 import * as Global from '../_types/_global'
 
 export type GetScript_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
-  id: Common.Id;
-  master_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  id: CommonId.undefined;
+  master_timeout?: CommonDuration.undefined;
 }
 
 export type GetScript_Response = ApiResponse & {
@@ -29,8 +31,8 @@ export type GetScript_Response = ApiResponse & {
 }
 
 export type GetScript_ResponseBody = {
-  _id: Common.Id;
+  _id: CommonId.undefined;
   found: boolean;
-  script?: Common.StoredScript;
+  script?: CommonStoredScript.undefined;
 }
 

@@ -15,17 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
-import * as Indices_Common from '../_types/indices._common'
-import * as Snapshot_Restore from '../_types/snapshot.restore'
+import * as Indices_CommonIndexSettings from '../_types/indices._common___IndexSettings'
+import * as Snapshot_RestoreSnapshotRestore from '../_types/snapshot.restore___SnapshotRestore'
 
 export type Snapshot_Restore_Request = Global.Params & {
   body?: Snapshot_Restore_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
-  master_timeout?: Common.Duration;
-  repository: Common.Name;
-  snapshot: Common.Name;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  master_timeout?: CommonDuration.undefined;
+  repository: CommonName.undefined;
+  snapshot: CommonName.undefined;
   wait_for_completion?: boolean;
 }
 
@@ -35,8 +37,8 @@ export type Snapshot_Restore_RequestBody = {
   ignore_unavailable?: boolean;
   include_aliases?: boolean;
   include_global_state?: boolean;
-  index_settings?: Indices_Common.IndexSettings;
-  indices?: Common.Indices;
+  index_settings?: Indices_CommonIndexSettings.undefined;
+  indices?: CommonIndices.undefined;
   partial?: boolean;
   rename_pattern?: string;
   rename_replacement?: string;
@@ -48,6 +50,6 @@ export type Snapshot_Restore_Response = ApiResponse & {
 
 export type Snapshot_Restore_ResponseBody = {
   accepted?: boolean;
-  snapshot?: Snapshot_Restore.SnapshotRestore;
+  snapshot?: Snapshot_RestoreSnapshotRestore.undefined;
 }
 

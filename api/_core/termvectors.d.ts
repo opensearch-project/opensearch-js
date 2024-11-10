@@ -15,30 +15,36 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_Termvectors from '../_types/_core.termvectors'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as CommonVersionNumber from '../_types/_common___VersionNumber'
+import * as CommonVersionType from '../_types/_common___VersionType'
+import * as Core_TermvectorsFilter from '../_types/_core.termvectors___Filter'
+import * as Core_TermvectorsTermVector from '../_types/_core.termvectors___TermVector'
 import * as Global from '../_types/_global'
 
 export type Termvectors_Request = Global.Params & {
   body?: Termvectors_RequestBody;
   field_statistics?: boolean;
-  fields?: Common.Fields;
-  id?: Common.Id;
-  index: Common.IndexName;
+  fields?: CommonFields.undefined;
+  id?: CommonId.undefined;
+  index: CommonIndexName.undefined;
   offsets?: boolean;
   payloads?: boolean;
   positions?: boolean;
   preference?: string;
   realtime?: boolean;
-  routing?: Common.RoutingInQueryString;
+  routing?: CommonRoutingInQueryString.undefined;
   term_statistics?: boolean;
-  version?: Common.VersionNumber;
-  version_type?: Common.VersionType;
+  version?: CommonVersionNumber.undefined;
+  version_type?: CommonVersionType.undefined;
 }
 
 export type Termvectors_RequestBody = {
   doc?: Record<string, any>;
-  filter?: Core_Termvectors.Filter;
+  filter?: Core_TermvectorsFilter.undefined;
   per_field_analyzer?: Record<string, string>;
 }
 
@@ -47,11 +53,11 @@ export type Termvectors_Response = ApiResponse & {
 }
 
 export type Termvectors_ResponseBody = {
-  _id: Common.Id;
-  _index: Common.IndexName;
-  _version: Common.VersionNumber;
+  _id: CommonId.undefined;
+  _index: CommonIndexName.undefined;
+  _version: CommonVersionNumber.undefined;
   found: boolean;
-  term_vectors?: Record<string, Core_Termvectors.TermVector>;
+  term_vectors?: Record<string, Core_TermvectorsTermVector.undefined>;
   took: number;
 }
 

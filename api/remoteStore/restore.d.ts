@@ -15,13 +15,13 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
 import * as Global from '../_types/_global'
-import * as RemoteStore_Common from '../_types/remote_store._common'
+import * as RemoteStore_CommonRemoteStoreRestoreInfo from '../_types/remote_store._common___RemoteStoreRestoreInfo'
 
 export type RemoteStore_Restore_Request = Global.Params & {
   body: RemoteStore_Restore_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   wait_for_completion?: boolean;
 }
 
@@ -35,6 +35,6 @@ export type RemoteStore_Restore_Response = ApiResponse & {
 
 export type RemoteStore_Restore_ResponseBody = {
   accepted?: boolean;
-  remote_store?: RemoteStore_Common.RemoteStoreRestoreInfo;
+  remote_store?: RemoteStore_CommonRemoteStoreRestoreInfo.undefined;
 }
 

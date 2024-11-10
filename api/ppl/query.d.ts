@@ -16,10 +16,11 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Sql_Common from '../_types/sql._common'
+import * as Sql_CommonQuery from '../_types/sql._common___Query'
+import * as Sql_CommonQueryResponse from '../_types/sql._common___QueryResponse'
 
 export type Ppl_Query_Request = Global.Params & {
-  body: Sql_Common.Query;
+  body: Sql_CommonQuery.undefined;
   format?: string;
   sanitize?: boolean;
 }
@@ -28,5 +29,5 @@ export type Ppl_Query_Response = ApiResponse & {
   body: Ppl_Query_ResponseBody;
 }
 
-export type Ppl_Query_ResponseBody = Sql_Common.QueryResponse
+export type Ppl_Query_ResponseBody = Sql_CommonQueryResponse.undefined
 

@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Query_Common from '../_types/query._common'
+import * as Query_CommonDataSourceList from '../_types/query._common___DataSourceList'
 
 export type Query_DatasourcesList_Request = Global.Params & Record<string, any>
 
@@ -24,5 +24,5 @@ export type Query_DatasourcesList_Response = ApiResponse & {
   body: Query_DatasourcesList_ResponseBody;
 }
 
-export type Query_DatasourcesList_ResponseBody = Query_Common.DataSourceList
+export type Query_DatasourcesList_ResponseBody = Query_CommonDataSourceList.undefined
 

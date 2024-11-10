@@ -15,17 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonIndexName from '../_types/_common___IndexName'
 import * as Global from '../_types/_global'
-import * as Ism_Common from '../_types/ism._common'
+import * as Ism_CommonRefreshSearchAnalyzersResponse from '../_types/ism._common___RefreshSearchAnalyzersResponse'
 
 export type Ism_RefreshSearchAnalyzers_Request = Global.Params & {
-  index: Common.IndexName;
+  index: CommonIndexName.undefined;
 }
 
 export type Ism_RefreshSearchAnalyzers_Response = ApiResponse & {
   body: Ism_RefreshSearchAnalyzers_ResponseBody;
 }
 
-export type Ism_RefreshSearchAnalyzers_ResponseBody = Ism_Common.RefreshSearchAnalyzersResponse
+export type Ism_RefreshSearchAnalyzers_ResponseBody = Ism_CommonRefreshSearchAnalyzersResponse.undefined
 

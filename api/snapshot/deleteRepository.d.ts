@@ -15,19 +15,21 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonNames from '../_types/_common___Names'
 import * as Global from '../_types/_global'
 
 export type Snapshot_DeleteRepository_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
-  master_timeout?: Common.Duration;
-  repository: Common.Names;
-  timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  master_timeout?: CommonDuration.undefined;
+  repository: CommonNames.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Snapshot_DeleteRepository_Response = ApiResponse & {
   body: Snapshot_DeleteRepository_ResponseBody;
 }
 
-export type Snapshot_DeleteRepository_ResponseBody = Common.AcknowledgedResponseBase
+export type Snapshot_DeleteRepository_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

@@ -15,16 +15,18 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonAcknowledgedResponseBase from '../_types/_common___AcknowledgedResponseBase'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
 
 export type Snapshot_Clone_Request = Global.Params & {
   body: Snapshot_Clone_RequestBody;
-  cluster_manager_timeout?: Common.Duration;
-  master_timeout?: Common.Duration;
-  repository: Common.Name;
-  snapshot: Common.Name;
-  target_snapshot: Common.Name;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  master_timeout?: CommonDuration.undefined;
+  repository: CommonName.undefined;
+  snapshot: CommonName.undefined;
+  target_snapshot: CommonName.undefined;
 }
 
 export type Snapshot_Clone_RequestBody = {
@@ -35,5 +37,5 @@ export type Snapshot_Clone_Response = ApiResponse & {
   body: Snapshot_Clone_ResponseBody;
 }
 
-export type Snapshot_Clone_ResponseBody = Common.AcknowledgedResponseBase
+export type Snapshot_Clone_ResponseBody = CommonAcknowledgedResponseBase.undefined
 

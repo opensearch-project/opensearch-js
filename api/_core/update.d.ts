@@ -15,35 +15,44 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Core_Search from '../_types/_core.search'
-import * as Core_Update from '../_types/_core.update'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonId from '../_types/_common___Id'
+import * as CommonIndexName from '../_types/_common___IndexName'
+import * as CommonRefresh from '../_types/_common___Refresh'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as CommonScript from '../_types/_common___Script'
+import * as CommonSequenceNumber from '../_types/_common___SequenceNumber'
+import * as CommonWaitForActiveShards from '../_types/_common___WaitForActiveShards'
+import * as Core_SearchSourceConfig from '../_types/_core.search___SourceConfig'
+import * as Core_SearchSourceConfigParam from '../_types/_core.search___SourceConfigParam'
+import * as Core_UpdateUpdateWriteResponseBase from '../_types/_core.update___UpdateWriteResponseBase'
 import * as Global from '../_types/_global'
 
 export type Update_Request = Global.Params & {
-  _source?: Core_Search.SourceConfigParam;
-  _source_excludes?: Common.Fields;
-  _source_includes?: Common.Fields;
+  _source?: Core_SearchSourceConfigParam.undefined;
+  _source_excludes?: CommonFields.undefined;
+  _source_includes?: CommonFields.undefined;
   body: Update_RequestBody;
-  id: Common.Id;
+  id: CommonId.undefined;
   if_primary_term?: number;
-  if_seq_no?: Common.SequenceNumber;
-  index: Common.IndexName;
+  if_seq_no?: CommonSequenceNumber.undefined;
+  index: CommonIndexName.undefined;
   lang?: string;
-  refresh?: Common.Refresh;
+  refresh?: CommonRefresh.undefined;
   require_alias?: boolean;
   retry_on_conflict?: number;
-  routing?: Common.RoutingInQueryString;
-  timeout?: Common.Duration;
-  wait_for_active_shards?: Common.WaitForActiveShards;
+  routing?: CommonRoutingInQueryString.undefined;
+  timeout?: CommonDuration.undefined;
+  wait_for_active_shards?: CommonWaitForActiveShards.undefined;
 }
 
 export type Update_RequestBody = {
-  _source?: Core_Search.SourceConfig;
+  _source?: Core_SearchSourceConfig.undefined;
   detect_noop?: boolean;
   doc?: Record<string, any>;
   doc_as_upsert?: boolean;
-  script?: Common.Script;
+  script?: CommonScript.undefined;
   scripted_upsert?: boolean;
   upsert?: Record<string, any>;
 }
@@ -52,5 +61,5 @@ export type Update_Response = ApiResponse & {
   body: Update_ResponseBody;
 }
 
-export type Update_ResponseBody = Core_Update.UpdateWriteResponseBase
+export type Update_ResponseBody = Core_UpdateUpdateWriteResponseBase.undefined
 

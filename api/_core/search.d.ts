@@ -15,34 +15,56 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
-import * as Common_Aggregations from '../_types/_common.aggregations'
-import * as Common_QueryDsl from '../_types/_common.query_dsl'
-import * as Core_Search from '../_types/_core.search'
+import * as Common_AggregationsAggregationContainer from '../_types/_common.aggregations___AggregationContainer'
+import * as Common_QueryDslFieldAndFormat from '../_types/_common.query_dsl___FieldAndFormat'
+import * as Common_QueryDslOperator from '../_types/_common.query_dsl___Operator'
+import * as Common_QueryDslQueryContainer from '../_types/_common.query_dsl___QueryContainer'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonField from '../_types/_common___Field'
+import * as CommonFields from '../_types/_common___Fields'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonRankContainer from '../_types/_common___RankContainer'
+import * as CommonRoutingInQueryString from '../_types/_common___RoutingInQueryString'
+import * as CommonScriptField from '../_types/_common___ScriptField'
+import * as CommonSearchType from '../_types/_common___SearchType'
+import * as CommonSlicedScroll from '../_types/_common___SlicedScroll'
+import * as CommonSort from '../_types/_common___Sort'
+import * as CommonSortResults from '../_types/_common___SortResults'
+import * as CommonSuggestMode from '../_types/_common___SuggestMode'
+import * as Core_SearchFieldCollapse from '../_types/_core.search___FieldCollapse'
+import * as Core_SearchHighlight from '../_types/_core.search___Highlight'
+import * as Core_SearchPointInTimeReference from '../_types/_core.search___PointInTimeReference'
+import * as Core_SearchRescore from '../_types/_core.search___Rescore'
+import * as Core_SearchResponseBody from '../_types/_core.search___ResponseBody'
+import * as Core_SearchSourceConfig from '../_types/_core.search___SourceConfig'
+import * as Core_SearchSourceConfigParam from '../_types/_core.search___SourceConfigParam'
+import * as Core_SearchSuggester from '../_types/_core.search___Suggester'
+import * as Core_SearchTrackHits from '../_types/_core.search___TrackHits'
 import * as Global from '../_types/_global'
 
 export type Search_Request = Global.Params & {
-  _source?: Core_Search.SourceConfigParam;
-  _source_excludes?: Common.Fields;
-  _source_includes?: Common.Fields;
+  _source?: Core_SearchSourceConfigParam.undefined;
+  _source_excludes?: CommonFields.undefined;
+  _source_includes?: CommonFields.undefined;
   allow_no_indices?: boolean;
   allow_partial_search_results?: boolean;
   analyze_wildcard?: boolean;
   analyzer?: string;
   batched_reduce_size?: number;
   body?: Search_RequestBody;
-  cancel_after_time_interval?: Common.Duration;
+  cancel_after_time_interval?: CommonDuration.undefined;
   ccs_minimize_roundtrips?: boolean;
-  default_operator?: Common_QueryDsl.Operator;
+  default_operator?: Common_QueryDslOperator.undefined;
   df?: string;
-  docvalue_fields?: Common.Fields;
-  expand_wildcards?: Common.ExpandWildcards;
+  docvalue_fields?: CommonFields.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   explain?: boolean;
   from?: number;
   ignore_throttled?: boolean;
   ignore_unavailable?: boolean;
   include_named_queries_score?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   lenient?: boolean;
   max_concurrent_shard_requests?: number;
   phase_took?: boolean;
@@ -51,58 +73,58 @@ export type Search_Request = Global.Params & {
   q?: string;
   request_cache?: boolean;
   rest_total_hits_as_int?: boolean;
-  routing?: Common.RoutingInQueryString;
-  scroll?: Common.Duration;
+  routing?: CommonRoutingInQueryString.undefined;
+  scroll?: CommonDuration.undefined;
   search_pipeline?: string;
-  search_type?: Common.SearchType;
+  search_type?: CommonSearchType.undefined;
   seq_no_primary_term?: boolean;
   size?: number;
   sort?: string | string[];
   stats?: string[];
-  stored_fields?: Common.Fields;
-  suggest_field?: Common.Field;
-  suggest_mode?: Common.SuggestMode;
+  stored_fields?: CommonFields.undefined;
+  suggest_field?: CommonField.undefined;
+  suggest_mode?: CommonSuggestMode.undefined;
   suggest_size?: number;
   suggest_text?: string;
   terminate_after?: number;
-  timeout?: Common.Duration;
+  timeout?: CommonDuration.undefined;
   track_scores?: boolean;
-  track_total_hits?: Core_Search.TrackHits;
+  track_total_hits?: Core_SearchTrackHits.undefined;
   typed_keys?: boolean;
   version?: boolean;
 }
 
 export type Search_RequestBody = {
-  _source?: Core_Search.SourceConfig;
-  aggregations?: Record<string, Common_Aggregations.AggregationContainer>;
-  collapse?: Core_Search.FieldCollapse;
-  docvalue_fields?: Common_QueryDsl.FieldAndFormat[];
+  _source?: Core_SearchSourceConfig.undefined;
+  aggregations?: Record<string, Common_AggregationsAggregationContainer.undefined>;
+  collapse?: Core_SearchFieldCollapse.undefined;
+  docvalue_fields?: Common_QueryDslFieldAndFormat.undefined[];
   explain?: boolean;
   ext?: Record<string, Record<string, any>>;
-  fields?: Common_QueryDsl.FieldAndFormat[];
+  fields?: Common_QueryDslFieldAndFormat.undefined[];
   from?: number;
-  highlight?: Core_Search.Highlight;
+  highlight?: Core_SearchHighlight.undefined;
   indices_boost?: Record<string, number>[];
   min_score?: number;
-  pit?: Core_Search.PointInTimeReference;
-  post_filter?: Common_QueryDsl.QueryContainer;
+  pit?: Core_SearchPointInTimeReference.undefined;
+  post_filter?: Common_QueryDslQueryContainer.undefined;
   profile?: boolean;
-  query?: Common_QueryDsl.QueryContainer;
-  rank?: Common.RankContainer;
-  rescore?: Core_Search.Rescore | Core_Search.Rescore[];
-  script_fields?: Record<string, Common.ScriptField>;
-  search_after?: Common.SortResults;
+  query?: Common_QueryDslQueryContainer.undefined;
+  rank?: CommonRankContainer.undefined;
+  rescore?: Core_SearchRescore.undefined | Core_SearchRescore.undefined[];
+  script_fields?: Record<string, CommonScriptField.undefined>;
+  search_after?: CommonSortResults.undefined;
   seq_no_primary_term?: boolean;
   size?: number;
-  slice?: Common.SlicedScroll;
-  sort?: Common.Sort;
+  slice?: CommonSlicedScroll.undefined;
+  sort?: CommonSort.undefined;
   stats?: string[];
-  stored_fields?: Common.Fields;
-  suggest?: Core_Search.Suggester;
+  stored_fields?: CommonFields.undefined;
+  suggest?: Core_SearchSuggester.undefined;
   terminate_after?: number;
   timeout?: string;
   track_scores?: boolean;
-  track_total_hits?: Core_Search.TrackHits;
+  track_total_hits?: Core_SearchTrackHits.undefined;
   version?: boolean;
 }
 
@@ -110,5 +132,5 @@ export type Search_Response = ApiResponse & {
   body: Search_ResponseBody;
 }
 
-export type Search_ResponseBody = Core_Search.ResponseBody
+export type Search_ResponseBody = Core_SearchResponseBody.undefined
 

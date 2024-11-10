@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonPermissionsInfo from '../_types/security._common___PermissionsInfo'
 
 export type Security_GetPermissionsInfo_Request = Global.Params & Record<string, any>
 
@@ -24,5 +24,5 @@ export type Security_GetPermissionsInfo_Response = ApiResponse & {
   body: Security_GetPermissionsInfo_ResponseBody;
 }
 
-export type Security_GetPermissionsInfo_ResponseBody = Security_Common.PermissionsInfo
+export type Security_GetPermissionsInfo_ResponseBody = Security_CommonPermissionsInfo.undefined
 

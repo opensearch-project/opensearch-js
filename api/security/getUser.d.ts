@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonUsersMap from '../_types/security._common___UsersMap'
 
 export type Security_GetUser_Request = Global.Params & {
   username: string;
@@ -26,5 +26,5 @@ export type Security_GetUser_Response = ApiResponse & {
   body: Security_GetUser_ResponseBody;
 }
 
-export type Security_GetUser_ResponseBody = Security_Common.UsersMap
+export type Security_GetUser_ResponseBody = Security_CommonUsersMap.undefined
 

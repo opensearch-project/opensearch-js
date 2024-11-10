@@ -15,15 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonShardsOperationResponseBase from '../_types/_common___ShardsOperationResponseBase'
 import * as Global from '../_types/_global'
 
 export type Indices_Forcemerge_Request = Global.Params & {
   allow_no_indices?: boolean;
-  expand_wildcards?: Common.ExpandWildcards;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   flush?: boolean;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   max_num_segments?: number;
   only_expunge_deletes?: boolean;
   primary_only?: boolean;
@@ -34,7 +36,7 @@ export type Indices_Forcemerge_Response = ApiResponse & {
   body: Indices_Forcemerge_ResponseBody;
 }
 
-export type Indices_Forcemerge_ResponseBody = Common.ShardsOperationResponseBase & {
+export type Indices_Forcemerge_ResponseBody = CommonShardsOperationResponseBase.undefined & {
   task?: string;
 }
 

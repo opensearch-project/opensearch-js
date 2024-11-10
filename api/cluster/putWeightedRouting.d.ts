@@ -15,12 +15,12 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cluster_WeightedRouting from '../_types/cluster.weighted_routing'
+import * as Cluster_WeightedRoutingWeights from '../_types/cluster.weighted_routing___Weights'
 import * as Global from '../_types/_global'
 
 export type Cluster_PutWeightedRouting_Request = Global.Params & {
   attribute: string;
-  body?: Cluster_WeightedRouting.Weights;
+  body?: Cluster_WeightedRoutingWeights.undefined;
 }
 
 export type Cluster_PutWeightedRouting_Response = ApiResponse & {

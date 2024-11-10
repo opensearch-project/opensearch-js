@@ -16,7 +16,7 @@
 
 'use strict';
 
-const { normalizeArguments, handleMissingParam } = require('../utils');
+const { normalizeArguments } = require('../utils');
 
 /**
  * By a stats endpoint, you are able to collect metrics for the plugin within the interval.
@@ -24,10 +24,10 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
  *
  * @memberOf API-Sql
  *
- * @param {object} params
+ * @param {object} [params]
  * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
  * @param {boolean} [params.sanitize=true] - Specifies whether to escape special characters in the results
- * @param {object} params.body 
+ * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -36,12 +36,12 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
  */
 function postStatsFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.body == null) return handleMissingParam('body', this, callback);
 
   let { body, ...querystring } = params;
 
   const path = '/_plugins/_sql/stats';
   const method = 'POST';
+  body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }

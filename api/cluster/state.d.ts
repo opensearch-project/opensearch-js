@@ -15,22 +15,25 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cluster_State from '../_types/cluster.state'
-import * as Common from '../_types/_common'
+import * as Cluster_StateMetric from '../_types/cluster.state___Metric'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
+import * as CommonVersionNumber from '../_types/_common___VersionNumber'
 import * as Global from '../_types/_global'
 
 export type Cluster_State_Request = Global.Params & {
   allow_no_indices?: boolean;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   flat_settings?: boolean;
   ignore_unavailable?: boolean;
-  index?: Common.Indices;
+  index?: CommonIndices.undefined;
   local?: boolean;
-  master_timeout?: Common.Duration;
-  metric?: Cluster_State.Metric[];
-  wait_for_metadata_version?: Common.VersionNumber;
-  wait_for_timeout?: Common.Duration;
+  master_timeout?: CommonDuration.undefined;
+  metric?: Cluster_StateMetric.undefined[];
+  wait_for_metadata_version?: CommonVersionNumber.undefined;
+  wait_for_timeout?: CommonDuration.undefined;
 }
 
 export type Cluster_State_Response = ApiResponse & {

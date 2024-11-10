@@ -15,19 +15,22 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonExpandWildcards from '../_types/_common___ExpandWildcards'
+import * as CommonIndices from '../_types/_common___Indices'
 import * as Global from '../_types/_global'
-import * as Indices_AddBlock from '../_types/indices.add_block'
+import * as Indices_AddBlockIndicesBlockOptions from '../_types/indices.add_block___IndicesBlockOptions'
+import * as Indices_AddBlockIndicesBlockStatus from '../_types/indices.add_block___IndicesBlockStatus'
 
 export type Indices_AddBlock_Request = Global.Params & {
   allow_no_indices?: boolean;
-  block: Indices_AddBlock.IndicesBlockOptions;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
+  block: Indices_AddBlockIndicesBlockOptions.undefined;
+  cluster_manager_timeout?: CommonDuration.undefined;
+  expand_wildcards?: CommonExpandWildcards.undefined;
   ignore_unavailable?: boolean;
-  index: Common.Indices;
-  master_timeout?: Common.Duration;
-  timeout?: Common.Duration;
+  index: CommonIndices.undefined;
+  master_timeout?: CommonDuration.undefined;
+  timeout?: CommonDuration.undefined;
 }
 
 export type Indices_AddBlock_Response = ApiResponse & {
@@ -36,7 +39,7 @@ export type Indices_AddBlock_Response = ApiResponse & {
 
 export type Indices_AddBlock_ResponseBody = {
   acknowledged: boolean;
-  indices: Indices_AddBlock.IndicesBlockStatus[];
+  indices: Indices_AddBlockIndicesBlockStatus.undefined[];
   shards_acknowledged: boolean;
 }
 

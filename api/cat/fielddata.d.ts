@@ -15,13 +15,14 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Fielddata from '../_types/cat.fielddata'
-import * as Common from '../_types/_common'
+import * as Cat_FielddataFielddataRecord from '../_types/cat.fielddata___FielddataRecord'
+import * as CommonByteUnit from '../_types/_common___ByteUnit'
+import * as CommonFields from '../_types/_common___Fields'
 import * as Global from '../_types/_global'
 
 export type Cat_Fielddata_Request = Global.Params & {
-  bytes?: Common.ByteUnit;
-  fields?: Common.Fields;
+  bytes?: CommonByteUnit.undefined;
+  fields?: CommonFields.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
@@ -33,5 +34,5 @@ export type Cat_Fielddata_Response = ApiResponse & {
   body: Cat_Fielddata_ResponseBody;
 }
 
-export type Cat_Fielddata_ResponseBody = Cat_Fielddata.FielddataRecord[]
+export type Cat_Fielddata_ResponseBody = Cat_FielddataFielddataRecord.undefined[]
 

@@ -15,11 +15,5 @@
  */
 
 
-export type Params = {
-  error_trace?: boolean;
-  filter_path?: string | string[];
-  human?: boolean;
-  pretty?: boolean;
-  source?: string;
-}
+export type Params = Record<string, any>
 

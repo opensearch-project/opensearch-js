@@ -15,18 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Templates from '../_types/cat.templates'
-import * as Common from '../_types/_common'
+import * as Cat_TemplatesTemplatesRecord from '../_types/cat.templates___TemplatesRecord'
+import * as CommonDuration from '../_types/_common___Duration'
+import * as CommonName from '../_types/_common___Name'
 import * as Global from '../_types/_global'
 
 export type Cat_Templates_Request = Global.Params & {
-  cluster_manager_timeout?: Common.Duration;
+  cluster_manager_timeout?: CommonDuration.undefined;
   format?: string;
   h?: string[];
   help?: boolean;
   local?: boolean;
-  master_timeout?: Common.Duration;
-  name?: Common.Name;
+  master_timeout?: CommonDuration.undefined;
+  name?: CommonName.undefined;
   s?: string[];
   v?: boolean;
 }
@@ -35,5 +36,5 @@ export type Cat_Templates_Response = ApiResponse & {
   body: Cat_Templates_ResponseBody;
 }
 
-export type Cat_Templates_ResponseBody = Cat_Templates.TemplatesRecord[]
+export type Cat_Templates_ResponseBody = Cat_TemplatesTemplatesRecord.undefined[]
 

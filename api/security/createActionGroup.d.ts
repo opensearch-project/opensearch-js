@@ -16,16 +16,17 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Security_Common from '../_types/security._common'
+import * as Security_CommonActionGroup from '../_types/security._common___ActionGroup'
+import * as Security_CommonOk from '../_types/security._common___Ok'
 
 export type Security_CreateActionGroup_Request = Global.Params & {
   action_group: string;
-  body: Security_Common.ActionGroup;
+  body: Security_CommonActionGroup.undefined;
 }
 
 export type Security_CreateActionGroup_Response = ApiResponse & {
   body: Security_CreateActionGroup_ResponseBody;
 }
 
-export type Security_CreateActionGroup_ResponseBody = Security_Common.Ok
+export type Security_CreateActionGroup_ResponseBody = Security_CommonOk.undefined
 

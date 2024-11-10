@@ -16,7 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Ml_Common from '../_types/ml._common'
+import * as Ml_CommonModelGroup from '../_types/ml._common___ModelGroup'
 
 export type Ml_GetModelGroup_Request = Global.Params & {
   model_group_id: string;
@@ -26,5 +26,5 @@ export type Ml_GetModelGroup_Response = ApiResponse & {
   body: Ml_GetModelGroup_ResponseBody;
 }
 
-export type Ml_GetModelGroup_ResponseBody = Ml_Common.ModelGroup
+export type Ml_GetModelGroup_ResponseBody = Ml_CommonModelGroup.undefined
 

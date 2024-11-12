@@ -8,7 +8,7 @@
  *
  */
 
-import TypesContainer from './TypesContainer'
+import TypesContainer, { SEPARATOR } from './TypesContainer'
 import _ from 'lodash'
 import { type ApiFunctionTyping } from '../../spec_parser/ApiFunction'
 import type ApiFunction from '../../spec_parser/ApiFunction'
@@ -38,7 +38,7 @@ export default class FunctionTypesContainer extends TypesContainer {
   }
 
   create_ref (key: keyof ApiFunctionTyping): string {
-    return `${this._func.ns_prototype}/${this._func.prototype_name}:${this._func.types[key]}`
+    return `${this._func.ns_prototype}/${this._func.prototype_name}${SEPARATOR}${this._func.types[key]}`
   }
 
   #build_request (): Schema {
@@ -49,7 +49,7 @@ export default class FunctionTypesContainer extends TypesContainer {
     const required_params = Object.entries(params).filter(([, param]) => param.required).map(([name]) => name)
     const required = body?.required ? [...required_params, 'body'] : required_params
     const schema: Schema = { properties, required }
-    return { allOf: [schema, { $ref: '#/components/schemas/_global:Params' }] }
+    return { allOf: [schema, { $ref: `#/components/schemas/_global${SEPARATOR}Params` }] }
   }
 
   #build_response (): Schema {

@@ -51,11 +51,11 @@ jobs:
         with:
           token: ${{ steps.github_app_token.outputs.token }}
           commit-message: "Updated opensearch-js to reflect the latest OpenSearch API spec (${{ env.date }})"
-          title: "[AUTOCUT] Update opensearch-js to reflect the latest OpenSearch API spec"
+          title: "[AUTOCUT] Update opensearch-js to reflect the latest OpenSearch API spec (${{ env.date }})"
           body: |
             Update `opensearch-js` to reflect the latest [OpenSearch API spec](https://github.com/opensearch-project/opensearch-api-specification/releases/download/main-latest/opensearch-openapi.yaml).
             Date: ${{ env.date }}
-          branch: update-api-from-spec
+          branch: update-api-from-spec-${{ env.date }}
           base: main
           signoff: true
           labels: |

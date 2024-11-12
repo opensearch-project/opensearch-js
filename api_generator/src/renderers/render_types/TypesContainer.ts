@@ -15,6 +15,7 @@ import { to_pascal_case } from '../../helpers'
 
 type FilePath = string
 export const TYPE_COMPONENTS_FOLDER = '_types'
+export const SEPARATOR = '___' // separating fileName___schemaName in $ref
 
 export default class TypesContainer {
   static readonly REPO = new Map<FilePath, TypesContainer>()
@@ -47,7 +48,7 @@ export default class TypesContainer {
 
   ref_to_obj (ref: string): string {
     if (ref === 'ApiResponse') return ref
-    const schema_name = ref.split(':')[1]
+    const schema_name = ref.split(SEPARATOR)[1]
     const container = this.ref_to_container(ref)
     if (container === this) return schema_name
     return `${container.import_name}.${schema_name}`
@@ -56,10 +57,10 @@ export default class TypesContainer {
   ref_to_container (ref: string): TypesContainer {
     let file_path: string = 'UNSET'
     if (ref.startsWith('#/components')) {
-      const file_name = ref.split(':')[0].split('/').reverse()[0]
+      const file_name = ref.split(SEPARATOR)[0].split('/').reverse()[0]
       file_path = `${TYPE_COMPONENTS_FOLDER}/${file_name}.d.ts`
     } else {
-      const [folder_name, file_name] = ref.split(':')[0].split('/')
+      const [folder_name, file_name] = ref.split(SEPARATOR)[0].split('/')
       file_path = `${folder_name}/${file_name}.d.ts`
     }
     const container = TypesContainer.REPO.get(file_path)

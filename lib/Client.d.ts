@@ -10,7 +10,7 @@
 
 import { ConnectionOptions as TlsConnectionOptions } from 'tls';
 import { URL } from 'url';
-import OpenSearchAPI from '../api/OpenSearchAPI';
+import OpenSearchAPI from '../api/OpenSearchApi';
 import Serializer from './Serializer';
 import Helpers from './Helpers';
 import Connection, { AgentOptions, agentFn } from './Connection';

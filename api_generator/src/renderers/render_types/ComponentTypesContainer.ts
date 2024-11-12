@@ -8,7 +8,7 @@
  *
  */
 
-import TypesContainer, { TYPE_COMPONENTS_FOLDER } from './TypesContainer'
+import TypesContainer, { SEPARATOR, TYPE_COMPONENTS_FOLDER } from './TypesContainer'
 import type { JSONSchema7 as Schema } from 'json-schema'
 import type { RawOpenSearchSpec, RawParameter } from '../../spec_parser/types'
 import _ from 'lodash'
@@ -25,7 +25,7 @@ export default class ComponentTypesContainer extends TypesContainer {
 
   private static build_components (spec: RawOpenSearchSpec): void {
     const referenced_schemas = _.entries(spec.components.schemas).map(([key, schema]) => {
-      const [file_name, schema_name] = key.split(':')
+      const [file_name, schema_name] = key.split(SEPARATOR)
       return { file_name, schema_name, schema }
     })
     const ref_schemas_map = _.groupBy(referenced_schemas, 'file_name')
@@ -38,7 +38,7 @@ export default class ComponentTypesContainer extends TypesContainer {
 
   private static build_global_params (spec: RawOpenSearchSpec): void {
     const params: RawParameter[] = _.entries(spec.components.parameters)
-      .filter(([key]) => key.startsWith('_global::'))
+      .filter(([key]) => key.startsWith(`_global${SEPARATOR}`))
       .map(([, param]) => param)
     const required = params.filter(param => param.required).map(param => param.name)
     const properties = _.fromPairs(params.map(param => [param.name, param.schema]))

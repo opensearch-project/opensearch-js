@@ -27,5 +27,5 @@ export type FlowFramework_Provision_Response = ApiResponse & {
   body: FlowFramework_Provision_ResponseBody;
 }
 
-export type FlowFramework_Provision_ResponseBody = Record<string, any>
+export type FlowFramework_Provision_ResponseBody = FlowFramework_Common.WorkflowIDResponse
 

@@ -14,6 +14,7 @@
  * modify the API generator.
  */
 
+import * as Common from './_common'
 
 export type All = boolean
 
@@ -40,10 +41,12 @@ export type FlowFrameworkDeleteResponse = {
 export type FlowFrameworkGetResponse = {
   created_time?: number;
   description?: string;
+  last_provisioned_time?: number;
   last_updated_time?: number;
   name?: string;
   use_case?: string;
   user?: user;
+  version?: version;
   workflows?: Record<string, any>;
 }
 
@@ -57,7 +60,7 @@ export type FlowFrameworkUpdate = {
 
 export type hits = {
   hits?: itemsObject[];
-  max_score?: number;
+  max_score?: undefined | number;
   total?: total;
 }
 
@@ -93,13 +96,14 @@ export type SearchWorkflowRequest = {
 
 export type shards = {
   failed?: number;
+  skipped?: number;
   successful?: number;
   total?: number;
 }
 
 export type StateHits = {
   hits?: StateItems[];
-  max_score?: number;
+  max_score?: undefined | number;
   total?: total;
 }
 
@@ -141,6 +145,10 @@ export type version = {
 
 export type WorkflowID = string
 
+export type WorkflowIDResponse = {
+  workflow_id?: string;
+}
+
 export type WorkflowSearchResponse = {
   _shards?: shards;
   hits?: hits;
@@ -178,7 +186,10 @@ export type WorkflowStep = {
   inputs?: string[];
   outputs?: string[];
   required_plugins?: string[];
+  timeout?: Common.Duration;
 }
 
 export type WorkflowStepName = string
+
+export type WorkflowSteps = Record<string, WorkflowStep>
 

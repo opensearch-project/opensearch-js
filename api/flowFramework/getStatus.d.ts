@@ -27,5 +27,5 @@ export type FlowFramework_GetStatus_Response = ApiResponse & {
   body: FlowFramework_GetStatus_ResponseBody;
 }
 
-export type FlowFramework_GetStatus_ResponseBody = Record<string, any>
+export type FlowFramework_GetStatus_ResponseBody = FlowFramework_Common.WorkFlowStatusFullResponse | FlowFramework_Common.WorkFlowStatusDefaultResponse
 

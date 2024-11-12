@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 import * as Sql_Common from '../_types/sql._common'
 
 export type Sql_Close_Request = Global.Params & {
-  body: Sql_Common.SqlClose;
+  body?: Sql_Common.SqlClose;
   format?: string;
   sanitize?: boolean;
 }

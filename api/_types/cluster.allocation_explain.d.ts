@@ -71,7 +71,7 @@ export type NodeAllocationExplanation = {
   node_name: Common.Name;
   store?: AllocationStore;
   transport_address: Common.TransportAddress;
-  weight_ranking: number;
+  weight_ranking?: number;
 }
 
 export type NodeDiskUsage = {

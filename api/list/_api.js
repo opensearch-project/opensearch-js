@@ -14,19 +14,15 @@
  * modify the API generator.
  */
 
-import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
-import * as Sql_Common from '../_types/sql._common'
+'use strict';
 
-export type Sql_PostStats_Request = Global.Params & {
-  body?: Sql_Common.Stats;
-  format?: string;
-  sanitize?: boolean;
+/** @namespace API-List */
+
+function ListApi(bindObj) {
+  this.help = require('./help').bind(bindObj);
+  this.indices = require('./indices').bind(bindObj);
+  this.shards = require('./shards').bind(bindObj);
+
 }
 
-export type Sql_PostStats_Response = ApiResponse & {
-  body: Sql_PostStats_ResponseBody;
-}
-
-export type Sql_PostStats_ResponseBody = Record<string, any>
-
+module.exports = ListApi;

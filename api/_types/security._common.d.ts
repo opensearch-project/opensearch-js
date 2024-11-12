@@ -183,6 +183,11 @@ export type DynamicOptions = {
   respect_request_indices_options?: boolean;
 }
 
+export type Error = {
+  message?: string;
+  status?: 'BAD_REQUEST' | 'CONFLICT' | 'FORBIDDEN' | 'INTERNAL_SERVER_ERROR' | 'NOT_FOUND' | 'NOT_IMPLEMENTED' | 'UNAUTHORIZED';
+}
+
 export type GenerateOBOToken = {
   authenticationToken?: string;
   durationSeconds?: string;

@@ -204,6 +204,8 @@ export type FieldSizeUsage = {
 
 export type FieldValue = boolean | undefined | number | Record<string, any> | string
 
+export type FieldWithDirection = Record<string, SortOrder>
+
 export type FieldWithOrder = Record<string, ScoreSort>
 
 export type FlushStats = {
@@ -770,7 +772,7 @@ export type SlicesCalculation = 'auto'
 
 export type Sort = SortCombinations | SortCombinations[]
 
-export type SortCombinations = Field | FieldWithOrder | SortOptions
+export type SortCombinations = Field | FieldWithDirection | FieldWithOrder | SortOptions
 
 export type SortMode = 'avg' | 'max' | 'median' | 'min' | 'sum'
 

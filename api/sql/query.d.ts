@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 import * as Sql_Common from '../_types/sql._common'
 
 export type Sql_Query_Request = Global.Params & {
-  body: Sql_Common.Query;
+  body?: Sql_Common.Query;
   format?: string;
   sanitize?: boolean;
 }

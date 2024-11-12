@@ -15,7 +15,7 @@ import { to_pascal_case } from '../../helpers'
 
 type FilePath = string
 export const TYPE_COMPONENTS_FOLDER = '_types'
-export const SEPARATOR = '___'
+export const SEPARATOR = '___' // separating fileName___schemaName in $ref
 
 export default class TypesContainer {
   static readonly REPO = new Map<FilePath, TypesContainer>()

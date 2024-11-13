@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: api/security/getSslinfo.js</title>
+    <title>JSDoc: Source: api/list/help.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: api/security/getSslinfo.js</h1>
+    <h1 class="page-title">Source: api/list/help.js</h1>
 
     
 
@@ -47,32 +47,30 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Retrieves the SSL configuration information.
- * &lt;br/> See Also: {@link undefined - security.get_sslinfo}
+ * Returns help for the List APIs.
+ * &lt;br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/list/index/ - list.help}
  *
- * @memberOf API-Security
+ * @memberOf API-List
  *
- * @param {object} [params]
- * @param {boolean | string} [params.show_dn] - A boolean flag to indicate whether all domain names should be returned.
- *
+ * @param {object} [params] - (Unused)
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
  */
-function getSslinfoFunc(params, options, callback) {
+function helpFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
   let { body, ...querystring } = params;
 
-  const path = '/_opendistro/_security/sslinfo';
+  const path = '/_list';
   const method = 'GET';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = getSslinfoFunc;
+module.exports = helpFunc;
 </code></pre>
         </article>
     </section>

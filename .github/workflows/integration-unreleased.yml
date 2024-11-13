@@ -86,7 +86,7 @@ jobs:
           path: js-client
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.entry.node_version }}
 

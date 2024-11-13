@@ -1,10 +1,14 @@
+version: 2
 updates:
-  - directory: /
+  - package-ecosystem: "npm"
+    directory: /
     open-pull-requests-limit: 3
-    package-ecosystem: npm
     schedule:
-      interval: weekly
+      interval: "weekly"
     labels:
       - "dependabot"
       - "dependencies"
-version: 2
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

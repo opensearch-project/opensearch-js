@@ -16,7 +16,7 @@
 
 'use strict';
 
-const { normalizeArguments, handleMissingParam } = require('../utils');
+const { normalizeArguments } = require('../utils');
 
 /**
  * Adds SQL settings to the standard OpenSearch cluster settings.
@@ -24,9 +24,9 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
  *
  * @memberOf API-Sql
  *
- * @param {object} params
+ * @param {object} [params]
  * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
- * @param {string} params.body 
+ * @param {string} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -35,12 +35,12 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
  */
 function settingsFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.body == null) return handleMissingParam('body', this, callback);
 
   let { body, ...querystring } = params;
 
   const path = '/_plugins/_query/settings';
   const method = 'PUT';
+  body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }

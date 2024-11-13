@@ -20,7 +20,10 @@ export type BadRequestError = {
   status?: number;
 }
 
-export type ConflictError = Record<string, any>
+export type ConflictError = {
+  error?: string;
+  status?: number;
+}
 
 export type DeprovisioningError = {
   error: string;
@@ -35,22 +38,39 @@ export type DuplicateKeyError = {
   status?: number;
 }
 
-export type FlowFrameworkAPIDisabledError = Record<string, any>
+export type FlowFrameworkAPIDisabledError = {
+  error?: string;
+  status?: number;
+}
 
-export type InvalidParameterError = Record<string, any>
+export type InvalidParameterError = {
+  error?: string;
+  status?: number;
+}
 
 export type InvalidRequestBodyFieldError = {
   error?: string;
   status?: number;
 }
 
-export type InvalidTemplateVersionError = Record<string, any>
+export type InvalidTemplateVersionError = {
+  error?: string;
+}
 
-export type MaxWorkflowsLimitError = Record<string, any>
+export type MaxWorkflowsLimitError = {
+  code?: number;
+  error?: string;
+}
 
-export type MissingParameterError = Record<string, any>
+export type MissingParameterError = {
+  error?: string;
+  status?: number;
+}
 
-export type ParameterConflictError = Record<string, any>
+export type ParameterConflictError = {
+  error?: string;
+  status?: number;
+}
 
 export type RequestBodyParsingFailedError = {
   error?: string;
@@ -66,15 +86,31 @@ export type TemplateNameRequiredError = {
   error?: string;
 }
 
-export type TemplateNotFoundError = Record<string, any>
+export type TemplateNotFoundError = {
+  code?: number;
+  error?: string;
+}
 
-export type UnsupportedFieldUpdateError = Record<string, any>
+export type UnsupportedFieldUpdateError = {
+  error?: string;
+}
 
-export type WorkFlowIdNullError = Record<string, any>
+export type WorkFlowIdNullError = {
+  error?: string;
+  status?: number;
+}
 
-export type WorkflowParsingError = Record<string, any>
+export type WorkflowParsingError = {
+  error?: string;
+}
 
-export type WorkflowSaveError = Record<string, any>
+export type WorkflowSaveError = {
+  error?: string;
+  status?: number;
+}
 
-export type WorkflowStepsRetrieveError = Record<string, any>
+export type WorkflowStepsRetrieveError = {
+  code?: number;
+  error?: string;
+}
 

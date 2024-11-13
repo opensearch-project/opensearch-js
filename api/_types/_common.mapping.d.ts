@@ -159,6 +159,12 @@ export type FieldNamesField = {
   enabled: boolean;
 }
 
+export type FlatObjectProperty = PropertyBase & {
+  aggregatable?: boolean;
+  searchable?: boolean;
+  type: 'flat_object';
+}
+
 export type FlattenedProperty = PropertyBase & {
   boost?: number;
   depth_limit?: number;
@@ -331,7 +337,7 @@ export type PercolatorProperty = PropertyBase & {
   type: 'percolator';
 }
 
-export type Property = BinaryProperty | BooleanProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | DenseVectorProperty | SparseVectorProperty | FlattenedProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty
+export type Property = BinaryProperty | BooleanProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | DenseVectorProperty | SparseVectorProperty | FlattenedProperty | FlatObjectProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty
 
 export type PropertyBase = {
   dynamic?: DynamicMapping;

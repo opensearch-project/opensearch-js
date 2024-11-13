@@ -16,17 +16,12 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
-import * as Sql_Common from '../_types/sql._common'
 
-export type Sql_PostStats_Request = Global.Params & {
-  body?: Sql_Common.Stats;
-  format?: string;
-  sanitize?: boolean;
+export type List_Help_Request = Global.Params & Record<string, any>
+
+export type List_Help_Response = ApiResponse & {
+  body: List_Help_ResponseBody;
 }
 
-export type Sql_PostStats_Response = ApiResponse & {
-  body: Sql_PostStats_ResponseBody;
-}
-
-export type Sql_PostStats_ResponseBody = Record<string, any>
+export type List_Help_ResponseBody = Record<string, any>
 

@@ -19,31 +19,27 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Clear the cursor context.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/ - sql.close}
+ * Returns help for the List APIs.
+ * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/list/index/ - list.help}
  *
- * @memberOf API-Sql
+ * @memberOf API-List
  *
- * @param {object} [params]
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
- * @param {boolean} [params.sanitize=true] - Specifies whether to escape special characters in the results
- * @param {object} [params.body] 
- *
+ * @param {object} [params] - (Unused)
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function closeFunc(params, options, callback) {
+function helpFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
   let { body, ...querystring } = params;
 
-  const path = '/_plugins/_sql/close';
-  const method = 'POST';
+  const path = '/_list';
+  const method = 'GET';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = closeFunc;
+module.exports = helpFunc;

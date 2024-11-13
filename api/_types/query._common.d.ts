@@ -53,10 +53,15 @@ export type DataSourceRetrieve = {
   status: string;
 }
 
-export type ErrorResponse = {
+export type Error = {
   reason: string;
   root_cause: RootCause[];
   type: string;
+}
+
+export type ErrorResponse = {
+  error?: Error;
+  status?: number;
 }
 
 export type RootCause = {

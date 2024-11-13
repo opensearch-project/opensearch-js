@@ -26,5 +26,5 @@ export type FlowFramework_SearchState_Response = ApiResponse & {
   body: FlowFramework_SearchState_ResponseBody;
 }
 
-export type FlowFramework_SearchState_ResponseBody = Record<string, any>
+export type FlowFramework_SearchState_ResponseBody = FlowFramework_Common.WorkflowSearchStateResponse
 

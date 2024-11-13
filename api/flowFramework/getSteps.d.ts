@@ -26,5 +26,5 @@ export type FlowFramework_GetSteps_Response = ApiResponse & {
   body: FlowFramework_GetSteps_ResponseBody;
 }
 
-export type FlowFramework_GetSteps_ResponseBody = Record<string, any>
+export type FlowFramework_GetSteps_ResponseBody = FlowFramework_Common.WorkflowSteps
 

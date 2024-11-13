@@ -74,6 +74,11 @@ export type FielddataFrequencyFilter = {
 
 export type IndexCheckOnStartup = 'checksum' | 'false' | 'true'
 
+export type IndexError = {
+  error?: IndexErrorCause;
+  status?: number;
+}
+
 export type IndexErrorCause = {
   index?: Common.IndexName;
   index_uuid?: Common.Uuid;

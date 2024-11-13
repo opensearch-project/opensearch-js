@@ -159,6 +159,9 @@ import { Ingest_DeletePipeline_Request, Ingest_DeletePipeline_Response, Ingest_D
 import { Ingest_PutPipeline_Request, Ingest_PutPipeline_RequestBody, Ingest_PutPipeline_Response, Ingest_PutPipeline_ResponseBody } from './ingest/putPipeline';
 import { Ingest_ProcessorGrok_Request, Ingest_ProcessorGrok_Response, Ingest_ProcessorGrok_ResponseBody } from './ingest/processorGrok';
 import { Insights_TopQueries_Request, Insights_TopQueries_Response, Insights_TopQueries_ResponseBody } from './insights/topQueries';
+import { List_Help_Request, List_Help_Response, List_Help_ResponseBody } from './list/help';
+import { List_Indices_Request, List_Indices_Response, List_Indices_ResponseBody } from './list/indices';
+import { List_Shards_Request, List_Shards_Response, List_Shards_ResponseBody } from './list/shards';
 import { Nodes_Info_Request, Nodes_Info_Response, Nodes_Info_ResponseBody } from './nodes/info';
 import { Nodes_HotThreads_Request, Nodes_HotThreads_Response, Nodes_HotThreads_ResponseBody } from './nodes/hotThreads';
 import { Nodes_ReloadSecureSettings_Request, Nodes_ReloadSecureSettings_RequestBody, Nodes_ReloadSecureSettings_Response, Nodes_ReloadSecureSettings_ResponseBody } from './nodes/reloadSecureSettings';
@@ -500,6 +503,9 @@ export {
   Ingest_PutPipeline_Request, Ingest_PutPipeline_RequestBody, Ingest_PutPipeline_Response, Ingest_PutPipeline_ResponseBody,
   Ingest_ProcessorGrok_Request, Ingest_ProcessorGrok_Response, Ingest_ProcessorGrok_ResponseBody,
   Insights_TopQueries_Request, Insights_TopQueries_Response, Insights_TopQueries_ResponseBody,
+  List_Help_Request, List_Help_Response, List_Help_ResponseBody,
+  List_Indices_Request, List_Indices_Response, List_Indices_ResponseBody,
+  List_Shards_Request, List_Shards_Response, List_Shards_ResponseBody,
   Nodes_Info_Request, Nodes_Info_Response, Nodes_Info_ResponseBody,
   Nodes_HotThreads_Request, Nodes_HotThreads_Response, Nodes_HotThreads_ResponseBody,
   Nodes_ReloadSecureSettings_Request, Nodes_ReloadSecureSettings_RequestBody, Nodes_ReloadSecureSettings_Response, Nodes_ReloadSecureSettings_ResponseBody,

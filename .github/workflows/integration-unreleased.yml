@@ -43,7 +43,7 @@ jobs:
           key: ${{ steps.get-key.outputs.key }}
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         if: steps.cache-restore.outputs.cache-hit != 'true'
         with:
           distribution: 'temurin'

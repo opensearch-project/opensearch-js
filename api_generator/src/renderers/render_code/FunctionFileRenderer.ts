@@ -12,6 +12,7 @@ import BaseRenderer from '../BaseRenderer'
 import _ from 'lodash'
 import type ApiFunction from '../../spec_parser/ApiFunction'
 import type Namespace from '../../spec_parser/Namespace'
+import ApiPath from '../../spec_parser/ApiPath'
 
 export default class FunctionFileRenderer extends BaseRenderer {
   protected template_file = 'function.mustache'
@@ -35,8 +36,9 @@ export default class FunctionFileRenderer extends BaseRenderer {
       params_container_description: _.values(this.func.params).length === 0 ? ' - (Unused)' : undefined,
       parameter_descriptions: this.#parameter_descriptions(),
       function_name: this.func.function_name,
-      path_components: this.#path_components(),
-      path: this.#path(),
+      paths_are_uniform: ApiPath.statically_uniform(this.func.paths),
+      uniform_path: this.#uniform_path(),
+      diverged_paths: this.#diverged_paths(),
       http_verb: this.#http_verb(),
       body_required: this.func.request_body?.required,
       return_type: '{{abort: function(), then: function(), catch: function()}|Promise<never>|*}',
@@ -64,21 +66,6 @@ export default class FunctionFileRenderer extends BaseRenderer {
     return type
   }
 
-  #path (): string {
-    const path_params = _.values(this.func.path_params)
-    if (path_params.length === 0) return `'${this.func.url}'`
-    if (path_params.every((p) => p.required)) return `${this.#path_components().join(' + ')}`
-    return `[${this.#path_components().join(', ')}].filter(c => c).join('').replace('//', '/')`
-  }
-
-  #path_components (): string[] {
-    return this.func.url
-      .split('{')
-      .flatMap(x => x.split('}'))
-      .map(x => x.includes('/') ? `'${x}'` : x)
-      .filter(x => x !== '')
-  }
-
   #http_verb (): string {
     const verbs = Array.from(this.func.http_verbs).sort()
     if (_.isEqual(verbs, ['GET', 'POST'])) return "body ? 'POST' : 'GET'"
@@ -88,5 +75,26 @@ export default class FunctionFileRenderer extends BaseRenderer {
       return `${optional} == null ? 'POST' : 'PUT'`
     }
     return `'${verbs[0]}'`
+  }
+
+  #uniform_path (): string {
+    const path = _.maxBy(this.func.paths, (path) => path.params.length)
+    const path_params = _.values(this.func.path_params)
+    return path?.build(path_params.every((p) => p.required)) ?? 'UNKNOWN PATH'
+  }
+
+  #diverged_paths (): Array<Record<string, string>> {
+    const paths = this.func.paths.sort((a, b) => b.params.length - a.params.length)
+    const diverged_paths = paths.map((path) => {
+      return {
+        guard: 'else if',
+        condition: ` (${path.params.map((p) => `${p} != null`).join(' && ')})`,
+        path: path.build(true)
+      }
+    })
+    diverged_paths[0].guard = 'if'
+    diverged_paths[diverged_paths.length - 1].guard = 'else'
+    diverged_paths[diverged_paths.length - 1].condition = ''
+    return diverged_paths
   }
 }

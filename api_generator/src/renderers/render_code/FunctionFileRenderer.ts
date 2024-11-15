@@ -92,7 +92,7 @@ export default class FunctionFileRenderer extends BaseRenderer {
         path: path.build(true)
       }
     })
-    diverged_paths[0].guard = 'if'
+    diverged_paths[0].guard = ' if'
     diverged_paths[diverged_paths.length - 1].guard = 'else'
     diverged_paths[diverged_paths.length - 1].condition = ''
     return diverged_paths

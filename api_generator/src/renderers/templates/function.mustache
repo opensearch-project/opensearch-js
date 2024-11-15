@@ -40,7 +40,7 @@ function {{{function_name}}}(params, options, callback) {
   {{^paths_are_uniform}}
   let path;
   {{#diverged_paths}}
-  {{{guard}}}{{{condition}}} {
+ {{{guard}}}{{{condition}}} {
     path = {{{path}}};
   }{{/diverged_paths}}
   {{/paths_are_uniform}}

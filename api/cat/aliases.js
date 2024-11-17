@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Shows information about currently configured aliases to indices including filter and routing infos.
+ * Shows information about currently configured aliases to indexes including filter and routing info.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-aliases/ - cat.aliases}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
- * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indices that are open, closed or both.
+ * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
  * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.

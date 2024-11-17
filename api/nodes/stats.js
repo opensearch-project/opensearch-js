@@ -35,7 +35,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {array} [params.types] - A comma-separated list of document types for the indexing index metric.
  * @param {string} [params.node_id] - Comma-separated list of node IDs or names used to limit returned information.
  * @param {array} [params.metric] - Limit the information returned to the specified metrics
- * @param {array} [params.index_metric] - Limit the information returned for indices metric to the specific index metrics. It can be used only if indices (or all) metric is specified.
+ * @param {array} [params.index_metric] - Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric is specified.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -222,7 +222,6 @@ export type IndexSettings = {
   'soft_deletes.retention_lease.period'?: Common.Duration;
   sort?: IndexSegmentSort;
   store?: IndexSettingsStore;
-  time_series?: IndexSettingsTimeSeries;
   top_metrics_max_size?: number;
   translog?: Translog;
   'translog.durability'?: TranslogDurability;
@@ -381,11 +380,6 @@ export type IndexSettingsSimilarityScriptedTfidf = {
 export type IndexSettingsStore = {
   allow_mmap?: boolean;
   type: StorageType;
-}
-
-export type IndexSettingsTimeSeries = {
-  end_time?: Common.DateTime;
-  start_time?: Common.DateTime;
 }
 
 export type IndexState = {

@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Clones indices from one snapshot into another snapshot in the same repository.
+ * Clones indexes from one snapshot into another snapshot in the same repository.
  * <br/> See Also: {@link https://opensearch.org/docs/latest - snapshot.clone}
  *
  * @memberOf API-Snapshot

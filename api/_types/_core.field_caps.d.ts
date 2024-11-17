@@ -15,20 +15,15 @@
  */
 
 import * as Common from './_common'
-import * as Common_Mapping from './_common.mapping'
 
 export type FieldCapability = {
   aggregatable: boolean;
   indices?: Common.Indices;
   meta?: Common.Metadata;
   metadata_field?: boolean;
-  metric_conflicts_indices?: Common.IndexName[];
   non_aggregatable_indices?: Common.Indices;
-  non_dimension_indices?: Common.IndexName[];
   non_searchable_indices?: Common.Indices;
   searchable: boolean;
-  time_series_dimension?: boolean;
-  time_series_metric?: Common_Mapping.TimeSeriesMetricType;
   type: string;
 }
 

@@ -26,7 +26,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {boolean} [params.all_shards] - If `true`, the validation is executed on all shards instead of one random shard per index.
- * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices. This behavior applies even if the request targets other open indices.
+ * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes.
  * @param {boolean} [params.analyze_wildcard=false] - If `true`, wildcard and prefix queries are analyzed.
  * @param {string} [params.analyzer] - Analyzer to use for the query string. This parameter can only be used when the `q` query string parameter is specified.
  * @param {string} [params.default_operator] - The default operator for query string query: `AND` or `OR`.
@@ -37,7 +37,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.lenient] - If `true`, format-based query failures (such as providing text to a numeric field) in the query string will be ignored.
  * @param {string} [params.q] - Query in the Lucene query string syntax.
  * @param {boolean} [params.rewrite] - If `true`, returns a more detailed explanation showing the actual Lucene query that will be executed.
- * @param {string} [params.index] - Comma-separated list of data streams, indices, and aliases to search. Supports wildcards (`*`). To search all data streams or indices, omit this parameter or use `*` or `_all`.
+ * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (`*`). To search all data streams or indexes, omit this parameter or use `*` or `_all`.
  * @param {object} [params.body] - The query definition specified with the Query DSL
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

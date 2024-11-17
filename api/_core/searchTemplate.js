@@ -25,11 +25,11 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Core
  *
  * @param {object} params
- * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices. This behavior applies even if the request targets other open indices. For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
+ * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
  * @param {boolean} [params.ccs_minimize_roundtrips=true] - If `true`, network round-trips are minimized for cross-cluster search requests.
  * @param {string} [params.expand_wildcards] - Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
  * @param {boolean} [params.explain] - If `true`, the response includes additional details about score computation as part of a hit.
- * @param {boolean} [params.ignore_throttled] - If `true`, specified concrete, expanded, or aliased indices are not included in the response when throttled.
+ * @param {boolean} [params.ignore_throttled] - If `true`, specified concrete, expanded, or aliased indexes are not included in the response when throttled.
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
  * @param {boolean} [params.profile] - If `true`, the query execution is profiled.
@@ -38,7 +38,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.scroll] - Specifies how long a consistent view of the index should be maintained for scrolled search.
  * @param {string} [params.search_type] - The type of the search operation.
  * @param {boolean} [params.typed_keys] - If `true`, the response prefixes aggregation and suggester names with their respective types.
- * @param {string} [params.index] - Comma-separated list of data streams, indices, and aliases to search. Supports wildcards (*).
+ * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (*).
  * @param {object} params.body - The search definition template and its params
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

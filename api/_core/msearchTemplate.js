@@ -30,7 +30,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.rest_total_hits_as_int=false] - If `true`, the response returns `hits.total` as an integer. If `false`, it returns `hits.total` as an object.
  * @param {string} [params.search_type] - The type of the search operation. Available options: `query_then_fetch`, `dfs_query_then_fetch`.
  * @param {boolean} [params.typed_keys] - If `true`, the response prefixes aggregation and suggester names with their respective types.
- * @param {string} [params.index] - Comma-separated list of data streams, indices, and aliases to search. Supports wildcards (`*`). To search all data streams and indices, omit this parameter or use `*`.
+ * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (`*`). To search all data streams and indexes, omit this parameter or use `*`.
  * @param {array} params.body - The request definitions (metadata-search request definition pairs), separated by newlines
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

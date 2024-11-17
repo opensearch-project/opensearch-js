@@ -73,6 +73,13 @@ export type Memory = {
   type?: string;
 }
 
+export type ModelConfig = {
+  all_config?: string;
+  embedding_dimension?: number;
+  framework_type?: string;
+  model_type?: string;
+}
+
 export type ModelGroup = {
   access: string;
   created_time?: number;
@@ -102,13 +109,19 @@ export type RegisterAgentsRequest = {
 
 export type SearchModelsHits = {
   hits: SearchModelsHitsHit[];
+  max_score?: number;
   total: HitsTotal;
 }
 
 export type SearchModelsHitsHit = {
-  _id: string;
-  _index?: string;
-  model_id: string;
+  _id?: Common.Id;
+  _index?: Common.IndexName;
+  _primary_term?: number;
+  _score: number;
+  _seq_no?: Common.SequenceNumber;
+  _source?: Source;
+  _version?: Common.VersionNumber;
+  model_id?: Common.Name;
 }
 
 export type SearchModelsQuery = {
@@ -117,7 +130,40 @@ export type SearchModelsQuery = {
 }
 
 export type SearchModelsResponse = {
+  _shards?: Common.ShardStatistics;
   hits: SearchModelsHits;
+  timed_out?: boolean;
+  took?: number;
+}
+
+export type Source = {
+  algorithm?: string;
+  auto_redeploy_retry_times?: number;
+  chunk_number?: number;
+  connector_id?: string;
+  created_time?: number;
+  current_worker_node_count?: number;
+  deploy_to_all_nodes?: boolean;
+  description?: string;
+  is_hidden?: boolean;
+  last_deployed_time?: number;
+  last_registered_time?: number;
+  last_updated_time?: number;
+  model_config?: ModelConfig;
+  model_content_hash_value?: string;
+  model_content_size_in_bytes?: number;
+  model_format?: string;
+  model_group_id?: string;
+  model_id?: Common.Name;
+  model_state?: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING';
+  model_task_type?: string;
+  model_version?: string;
+  name?: string;
+  planning_worker_node_count?: number;
+  planning_worker_nodes?: Common.NodeIds[];
+  total_chunks?: number;
+  url?: string;
+  version?: Common.VersionString;
 }
 
 export type Task = {

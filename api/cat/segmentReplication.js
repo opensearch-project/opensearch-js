@@ -26,16 +26,16 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {boolean} [params.active_only=false] - If `true`, the response only includes ongoing segment replication events.
- * @param {boolean} [params.allow_no_indices] - Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
+ * @param {boolean} [params.allow_no_indices] - Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
  * @param {string} [params.bytes] - The unit in which to display byte values.
  * @param {boolean} [params.completed_only=false] - If `true`, the response only includes latest completed segment replication events.
  * @param {boolean} [params.detailed=false] - If `true`, the response includes detailed information about segment replications.
- * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indices that are open, closed or both.
+ * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
  * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
- * @param {boolean} [params.ignore_throttled] - Whether specified concrete, expanded or aliased indices should be ignored when throttled.
- * @param {boolean} [params.ignore_unavailable] - Whether specified concrete indices should be ignored when unavailable (missing or closed).
+ * @param {boolean} [params.ignore_throttled] - Whether specified concrete, expanded or aliased indexes should be ignored when throttled.
+ * @param {boolean} [params.ignore_unavailable] - Whether specified concrete indexes should be ignored when unavailable (missing or closed).
  * @param {array} [params.index] - Comma-separated list or wildcard expression of index names to limit the returned information.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {array} [params.shards] - Comma-separated list of shards to display.

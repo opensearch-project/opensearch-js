@@ -42,7 +42,7 @@ function cancelFunc(params, options, callback) {
   let { body, task_id, ...querystring } = params;
   task_id = parsePathParam(task_id);
 
-  const path = ['/_tasks/', task_id, '/_cancel'].filter(c => c).join('').replace('//', '/');
+  const path = ['/_tasks', task_id, '_cancel'].filter(c => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

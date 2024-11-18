@@ -28,7 +28,7 @@ export type Get_Request = Global.Params & {
   index: Common.IndexName;
   preference?: string;
   realtime?: boolean;
-  refresh?: boolean;
+  refresh?: Common.Refresh;
   routing?: Common.RoutingInQueryString;
   stored_fields?: Common.Fields;
   version?: Common.VersionNumber;

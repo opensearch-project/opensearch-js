@@ -913,6 +913,56 @@ export default class OpenSearchAPI {
 
   };
 
+  replication: {
+    deleteReplicationRule (params: API.Replication_DeleteReplicationRule_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_DeleteReplicationRule_Response>;
+    deleteReplicationRule (params: API.Replication_DeleteReplicationRule_Request, callback: callbackFn<API.Replication_DeleteReplicationRule_Response>): TransportRequestCallback;
+    deleteReplicationRule (params: API.Replication_DeleteReplicationRule_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_DeleteReplicationRule_Response>): TransportRequestCallback;
+
+    createReplicationRule (params: API.Replication_CreateReplicationRule_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_CreateReplicationRule_Response>;
+    createReplicationRule (params: API.Replication_CreateReplicationRule_Request, callback: callbackFn<API.Replication_CreateReplicationRule_Response>): TransportRequestCallback;
+    createReplicationRule (params: API.Replication_CreateReplicationRule_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_CreateReplicationRule_Response>): TransportRequestCallback;
+
+    pause (params: API.Replication_Pause_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_Pause_Response>;
+    pause (params: API.Replication_Pause_Request, callback: callbackFn<API.Replication_Pause_Response>): TransportRequestCallback;
+    pause (params: API.Replication_Pause_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_Pause_Response>): TransportRequestCallback;
+
+    resume (params: API.Replication_Resume_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_Resume_Response>;
+    resume (params: API.Replication_Resume_Request, callback: callbackFn<API.Replication_Resume_Response>): TransportRequestCallback;
+    resume (params: API.Replication_Resume_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_Resume_Response>): TransportRequestCallback;
+
+    start (params: API.Replication_Start_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_Start_Response>;
+    start (params: API.Replication_Start_Request, callback: callbackFn<API.Replication_Start_Response>): TransportRequestCallback;
+    start (params: API.Replication_Start_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_Start_Response>): TransportRequestCallback;
+
+    status (params: API.Replication_Status_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_Status_Response>;
+    status (params: API.Replication_Status_Request, callback: callbackFn<API.Replication_Status_Response>): TransportRequestCallback;
+    status (params: API.Replication_Status_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_Status_Response>): TransportRequestCallback;
+
+    stop (params: API.Replication_Stop_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_Stop_Response>;
+    stop (params: API.Replication_Stop_Request, callback: callbackFn<API.Replication_Stop_Response>): TransportRequestCallback;
+    stop (params: API.Replication_Stop_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_Stop_Response>): TransportRequestCallback;
+
+    updateSettings (params: API.Replication_UpdateSettings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_UpdateSettings_Response>;
+    updateSettings (params: API.Replication_UpdateSettings_Request, callback: callbackFn<API.Replication_UpdateSettings_Response>): TransportRequestCallback;
+    updateSettings (params: API.Replication_UpdateSettings_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_UpdateSettings_Response>): TransportRequestCallback;
+
+    autofollowStats (params?: API.Replication_AutofollowStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_AutofollowStats_Response>;
+    autofollowStats (callback: callbackFn<API.Replication_AutofollowStats_Response>): TransportRequestCallback;
+    autofollowStats (params: API.Replication_AutofollowStats_Request, callback: callbackFn<API.Replication_AutofollowStats_Response>): TransportRequestCallback;
+    autofollowStats (params: API.Replication_AutofollowStats_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_AutofollowStats_Response>): TransportRequestCallback;
+
+    followerStats (params?: API.Replication_FollowerStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_FollowerStats_Response>;
+    followerStats (callback: callbackFn<API.Replication_FollowerStats_Response>): TransportRequestCallback;
+    followerStats (params: API.Replication_FollowerStats_Request, callback: callbackFn<API.Replication_FollowerStats_Response>): TransportRequestCallback;
+    followerStats (params: API.Replication_FollowerStats_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_FollowerStats_Response>): TransportRequestCallback;
+
+    leaderStats (params?: API.Replication_LeaderStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Replication_LeaderStats_Response>;
+    leaderStats (callback: callbackFn<API.Replication_LeaderStats_Response>): TransportRequestCallback;
+    leaderStats (params: API.Replication_LeaderStats_Request, callback: callbackFn<API.Replication_LeaderStats_Response>): TransportRequestCallback;
+    leaderStats (params: API.Replication_LeaderStats_Request, options: TransportRequestOptions, callback: callbackFn<API.Replication_LeaderStats_Response>): TransportRequestCallback;
+
+  };
+
   rollups: {
     delete (params: API.Rollups_Delete_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Rollups_Delete_Response>;
     delete (params: API.Rollups_Delete_Request, callback: callbackFn<API.Rollups_Delete_Response>): TransportRequestCallback;

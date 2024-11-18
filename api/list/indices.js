@@ -32,11 +32,11 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {string} [params.health] - The health status used to limit returned indexes. By default, the response includes indexes of any health status.
  * @param {boolean} [params.help=false] - Return help information.
- * @param {boolean} [params.include_unloaded_segments=false] - If true, the response includes information from segments that are not loaded into memory.
+ * @param {boolean} [params.include_unloaded_segments=false] - If `true`, the response includes information from segments that are not loaded into memory.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster manager node.
+ * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
  * @param {null | string} [params.next_token] - Token to retrieve next page of indexes.
- * @param {boolean} [params.pri=false] - If true, the response only includes information from primary shards.
+ * @param {boolean} [params.pri=false] - If `true`, the response only includes information from primary shards.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {number} [params.size] - Maximum number of indexes to be displayed in a page.
  * @param {string} [params.sort] - Defines order in which indexes will be displayed. Accepted values are `asc` and `desc`. If `desc`, most recently created indexes would be displayed first.
@@ -55,7 +55,7 @@ function indicesFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_list/indices/', index].filter(c => c).join('').replace('//', '/');
+  const path = ['/_list/indices', index].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

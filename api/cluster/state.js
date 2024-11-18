@@ -49,7 +49,7 @@ function stateFunc(params, options, callback) {
   metric = parsePathParam(metric);
   index = parsePathParam(index);
 
-  const path = ['/_cluster/state/', metric, '/', index].filter(c => c).join('').replace('//', '/');
+  const path = ['/_cluster/state', metric, index].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

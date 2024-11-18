@@ -41,7 +41,7 @@ function trainModelFunc(params, options, callback) {
   let { body, model_id, ...querystring } = params;
   model_id = parsePathParam(model_id);
 
-  const path = ['/_plugins/_knn/models/', model_id, '/_train'].filter(c => c).join('').replace('//', '/');
+  const path = ['/_plugins/_knn/models', model_id, '_train'].filter(c => c != null).join('/');
   const method = 'POST';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);

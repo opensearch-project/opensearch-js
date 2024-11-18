@@ -26,7 +26,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.id] - Comma-separated list of pipeline IDs to retrieve. Wildcard (`*`) expressions are supported. To get all ingest pipelines, omit this parameter or use `*`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
@@ -40,7 +40,7 @@ function getPipelineFunc(params, options, callback) {
   let { body, id, ...querystring } = params;
   id = parsePathParam(id);
 
-  const path = ['/_ingest/pipeline/', id].filter(c => c).join('').replace('//', '/');
+  const path = ['/_ingest/pipeline', id].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

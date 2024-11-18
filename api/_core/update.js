@@ -25,14 +25,14 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Core
  *
  * @param {object} params
- * @param {string} [params._source] - Set to false to disable source retrieval. You can also specify a comma-separated list of the fields you want to retrieve.
+ * @param {string} [params._source] - Set to `false` to disable source retrieval. You can also specify a comma-separated list of the fields you want to retrieve.
  * @param {string} [params._source_excludes] - Specify the source fields you want to exclude.
  * @param {string} [params._source_includes] - Specify the source fields you want to retrieve.
  * @param {number} [params.if_primary_term] - Only perform the operation if the document has this primary term.
  * @param {number} [params.if_seq_no] - Only perform the operation if the document has this sequence number.
  * @param {string} [params.lang=painless] - The script language.
- * @param {string} [params.refresh] - If 'true', OpenSearch refreshes the affected shards to make this operation visible to search, if 'wait_for' then wait for a refresh to make this operation visible to search, if 'false' do nothing with refreshes.
- * @param {boolean} [params.require_alias=false] - If true, the destination must be an index alias.
+ * @param {string} [params.refresh] - If 'true', OpenSearch refreshes the affected shards to make this operation visible to search, if `wait_for` then wait for a refresh to make this operation visible to search, if `false` do nothing with refreshes.
+ * @param {boolean} [params.require_alias=false] - If `true`, the destination must be an index alias.
  * @param {number} [params.retry_on_conflict=0] - Specify how many times should the operation be retried when a conflict occurs.
  * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
  * @param {string} [params.timeout] - Period to wait for dynamic mapping updates and active shards. This guarantees OpenSearch waits for at least the timeout before failing. The actual wait time could be longer, particularly when multiple waits occur.

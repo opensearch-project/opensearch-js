@@ -25,9 +25,9 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Core
  *
  * @param {object} params
- * @param {array} [params._source] - True or false to return the _source field or not, or a list of fields to return.
- * @param {array} [params._source_excludes] - List of fields to exclude from the returned _source field.
- * @param {array} [params._source_includes] - List of fields to extract and return from the _source field.
+ * @param {array} [params._source] - Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
+ * @param {array} [params._source_excludes] - List of fields to exclude from the returned `_source` field.
+ * @param {array} [params._source_includes] - List of fields to extract and return from the `_source` field.
  * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
  * @param {boolean} [params.analyze_wildcard=false] - If `true`, wildcard and prefix queries are analyzed.
  * @param {string} [params.analyzer] - Analyzer to use for the query string.
@@ -41,7 +41,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {number} [params.max_docs] - Maximum number of documents to process. Defaults to all documents.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
  * @param {string} [params.q] - Query in the Lucene query string syntax.
- * @param {boolean} [params.refresh] - If `true`, OpenSearch refreshes all shards involved in the delete by query after the request completes.
+ * @param {string} [params.refresh] - If `true`, OpenSearch refreshes all shards involved in the delete by query after the request completes.
  * @param {boolean} [params.request_cache] - If `true`, the request cache is used for this request. Defaults to the index-level setting.
  * @param {number} [params.requests_per_second=0] - The throttle for this request in sub-requests per second.
  * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
@@ -49,7 +49,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {number} [params.scroll_size=100] - Size of the scroll request that powers the operation.
  * @param {string} [params.search_timeout] - Explicit timeout for each search request. Defaults to no timeout.
  * @param {string} [params.search_type] - The type of the search operation. Available options: `query_then_fetch`, `dfs_query_then_fetch`.
- * @param {number} [params.size] - Deprecated, please use `max_docs` instead.
+ * @param {number} [params.size] - Deprecated, use `max_docs` instead.
  * @param {string} [params.slices] - The number of slices this task should be divided into.
  * @param {array} [params.sort] - A comma-separated list of <field>:<direction> pairs.
  * @param {array} [params.stats] - Specific `tag` of the request for logging and statistical purposes.

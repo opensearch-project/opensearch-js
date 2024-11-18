@@ -29,8 +29,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
  * @param {string} [params.level] - Can be one of cluster, indexes or shards. Controls the details level of the health information returned.
- * @param {boolean} [params.local=false] - If true, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the master node.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the cluster-manager node.
+ * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.wait_for_active_shards] - A number controlling to how many active shards to wait for, all to wait for all shards in the cluster to be active, or 0 to not wait.
  * @param {string} [params.wait_for_events] - Can be one of immediate, urgent, high, normal, low, languid. Wait until all currently queued events with the given priority are processed.
@@ -51,7 +51,7 @@ function healthFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_cluster/health/', index].filter(c => c).join('').replace('//', '/');
+  const path = ['/_cluster/health', index].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.cause=false] - User defined reason for creating/updating the index template.
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {boolean} [params.create=false] - If `true`, this request cannot replace or update existing index templates.
- * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to master node.
+ * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
  * @param {string} params.name - Index or template name
  * @param {object} params.body - The template definition
  *

@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Nodes
  *
  * @param {object} [params]
- * @param {boolean} [params.flat_settings=false] - If true, returns settings in flat format.
+ * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {array} [params.metric] - Limits the information returned to the specific metrics. Supports a comma-separated list, such as http,ingest.
  * @param {string} [params.node_id] - Comma-separated list of node IDs or names used to limit returned information.
@@ -42,7 +42,7 @@ function infoFunc(params, options, callback) {
   metric = parsePathParam(metric);
   node_id = parsePathParam(node_id);
 
-  const path = ['/_nodes/', node_id, '/', metric].filter(c => c).join('').replace('//', '/');
+  const path = ['/_nodes', node_id, metric].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

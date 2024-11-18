@@ -27,8 +27,8 @@ allocate or fail shard) which have not yet been executed.
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only. If `false`, information is retrieved from the master node.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only. If `false`, information is retrieved from the cluster-manager node.
+ * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

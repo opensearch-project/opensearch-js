@@ -25,7 +25,7 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Ppl
  *
  * @param {object} [params]
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {boolean} [params.sanitize=true] - Specifies whether to escape special characters in the results.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

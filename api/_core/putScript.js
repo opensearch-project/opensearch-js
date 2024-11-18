@@ -27,7 +27,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {object} params
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {string} [params.context] - Context in which the script or search template should run. To prevent errors, the API immediately compiles the script or template in this context.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} params.id - Identifier for the stored script or search template. Must be unique within the cluster.
  * @param {object} params.body - The document
@@ -46,7 +46,7 @@ function putScriptFunc(params, options, callback) {
   id = parsePathParam(id);
   context = parsePathParam(context);
 
-  const path = ['/_scripts/', id, '/', context].filter(c => c).join('').replace('//', '/');
+  const path = ['/_scripts', id, context].filter(c => c != null).join('/');
   const method = context == null ? 'POST' : 'PUT';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);

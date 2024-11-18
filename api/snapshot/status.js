@@ -26,8 +26,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {boolean} [params.ignore_unavailable=false] - Whether to ignore unavailable snapshots, defaults to false which means a SnapshotMissingException is thrown
- * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to master node
+ * @param {boolean} [params.ignore_unavailable=false] - Whether to ignore unavailable snapshots, defaults to `false` which means a SnapshotMissingException is thrown
+ * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
  * @param {string} [params.repository] - A repository name
  * @param {string} [params.snapshot] - A comma-separated list of snapshot names
  *
@@ -43,7 +43,7 @@ function statusFunc(params, options, callback) {
   repository = parsePathParam(repository);
   snapshot = parsePathParam(snapshot);
 
-  const path = ['/_snapshot/', repository, '/', snapshot, '/_status'].filter(c => c).join('').replace('//', '/');
+  const path = ['/_snapshot', repository, snapshot, '_status'].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

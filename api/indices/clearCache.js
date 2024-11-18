@@ -29,7 +29,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.expand_wildcards] - Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
  * @param {boolean} [params.fielddata] - If `true`, clears the fields cache. Use the `fields` parameter to clear the cache of specific fields only.
  * @param {string} [params.fields] - Comma-separated list of field names used to limit the `fielddata` parameter.
- * @param {boolean} [params.file=false] - If true, clears the unused entries from the file cache on nodes with the Search role.
+ * @param {boolean} [params.file=false] - If `true`, clears the unused entries from the file cache on nodes with the Search role.
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  * @param {boolean} [params.query] - If `true`, clears the query cache.
@@ -46,7 +46,7 @@ function clearCacheFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_cache/clear'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_cache/clear'].filter(c => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

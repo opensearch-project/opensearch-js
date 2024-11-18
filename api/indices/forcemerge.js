@@ -46,7 +46,7 @@ function forcemergeFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_forcemerge'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_forcemerge'].filter(c => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

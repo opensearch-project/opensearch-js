@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.active_only=false] - If `true`, the response only includes ongoing shard recoveries.
  * @param {string} [params.bytes] - The unit used to display byte values.
  * @param {boolean} [params.detailed=false] - If `true`, the response includes detailed information about shard recoveries.
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
@@ -47,7 +47,7 @@ function recoveryFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_cat/recovery/', index].filter(c => c).join('').replace('//', '/');
+  const path = ['/_cat/recovery', index].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

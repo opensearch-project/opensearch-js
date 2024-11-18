@@ -27,7 +27,7 @@ export type ExistsSource_Request = Global.Params & {
   index: Common.IndexName;
   preference?: string;
   realtime?: boolean;
-  refresh?: boolean;
+  refresh?: Common.Refresh;
   routing?: Common.RoutingInQueryString;
   version?: Common.VersionNumber;
   version_type?: Common.VersionType;

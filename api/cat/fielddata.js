@@ -27,7 +27,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {object} [params]
  * @param {string} [params.bytes] - The unit used to display byte values.
  * @param {string} [params.fields] - Comma-separated list of fields used to limit returned information. To retrieve all fields, omit this parameter.
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
@@ -44,7 +44,7 @@ function fielddataFunc(params, options, callback) {
   let { body, fields, ...querystring } = params;
   fields = parsePathParam(fields);
 
-  const path = ['/_cat/fielddata/', fields].filter(c => c).join('').replace('//', '/');
+  const path = ['/_cat/fielddata', fields].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

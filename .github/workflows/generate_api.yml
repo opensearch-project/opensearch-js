@@ -47,7 +47,7 @@ jobs:
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ steps.github_app_token.outputs.token }}
           commit-message: "Updated opensearch-js to reflect the latest OpenSearch API spec (${{ env.date }})"

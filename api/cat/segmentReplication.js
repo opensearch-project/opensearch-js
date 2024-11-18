@@ -31,7 +31,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.completed_only=false] - If `true`, the response only includes latest completed segment replication events.
  * @param {boolean} [params.detailed=false] - If `true`, the response includes detailed information about segment replications.
  * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.ignore_throttled] - Whether specified concrete, expanded or aliased indexes should be ignored when throttled.
@@ -54,7 +54,7 @@ function segmentReplicationFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_cat/segment_replication/', index].filter(c => c).join('').replace('//', '/');
+  const path = ['/_cat/segment_replication', index].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

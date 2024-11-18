@@ -40,7 +40,7 @@ function recoveryFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_recovery'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_recovery'].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

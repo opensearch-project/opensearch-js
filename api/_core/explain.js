@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Core
  *
  * @param {object} params
- * @param {string} [params._source] - True or false to return the `_source` field or not, or a list of fields to return.
+ * @param {string} [params._source] - Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
  * @param {string} [params._source_excludes] - A comma-separated list of source fields to exclude from the response.
  * @param {string} [params._source_includes] - A comma-separated list of source fields to include in the response.
  * @param {boolean} [params.analyze_wildcard=false] - If `true`, wildcard and prefix queries are analyzed.

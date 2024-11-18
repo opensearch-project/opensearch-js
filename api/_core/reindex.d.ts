@@ -22,7 +22,7 @@ import * as Global from '../_types/_global'
 export type Reindex_Request = Global.Params & {
   body: Reindex_RequestBody;
   max_docs?: number;
-  refresh?: boolean;
+  refresh?: Common.Refresh;
   requests_per_second?: number;
   scroll?: Common.Duration;
   slices?: Common.Slices;

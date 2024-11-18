@@ -25,7 +25,7 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Sql
  *
  * @param {object} [params]
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {string} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

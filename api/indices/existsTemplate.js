@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {boolean} [params.flat_settings=false] - Return settings in flat format.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to master node
+ * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
  * @param {string} params.name - The comma separated names of the index templates
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

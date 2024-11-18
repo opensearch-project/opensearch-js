@@ -26,11 +26,11 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to master node.
+ * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
  * @param {string} [params.name] - The name of the template to return. Accepts wildcard expressions. If omitted, all templates are returned.
@@ -46,7 +46,7 @@ function templatesFunc(params, options, callback) {
   let { body, name, ...querystring } = params;
   name = parsePathParam(name);
 
-  const path = ['/_cat/templates/', name].filter(c => c).join('').replace('//', '/');
+  const path = ['/_cat/templates', name].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

@@ -54,7 +54,7 @@ function indexFunc(params, options, callback) {
   index = parsePathParam(index);
   id = parsePathParam(id);
 
-  const path = ['/', index, '/_doc/', id].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_doc', id].filter(c => c != null).join('/');
   const method = id == null ? 'POST' : 'PUT';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);

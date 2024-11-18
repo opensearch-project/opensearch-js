@@ -26,7 +26,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @param {object} params
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {boolean} [params.wait_for_completion=false] - If `true`, the request returns a response when the snapshot is complete. If `false`, the request returns a response when the snapshot initializes.
  * @param {string} params.repository - Repository for the snapshot.
  * @param {string} params.snapshot - Name of the snapshot. Must be unique in the repository.

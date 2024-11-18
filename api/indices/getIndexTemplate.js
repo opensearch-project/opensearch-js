@@ -26,9 +26,9 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {boolean} [params.flat_settings=false] - If true, returns settings in flat format.
- * @param {boolean} [params.local=false] - If true, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the master node.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
+ * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the cluster-manager node.
+ * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.name] - Name of the index template to retrieve. Wildcard (*) expressions are supported.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
@@ -42,7 +42,7 @@ function getIndexTemplateFunc(params, options, callback) {
   let { body, name, ...querystring } = params;
   name = parsePathParam(name);
 
-  const path = ['/_index_template/', name].filter(c => c).join('').replace('//', '/');
+  const path = ['/_index_template', name].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

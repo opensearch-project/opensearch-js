@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} params.index - Comma-separated list of data streams or indices used to limit the request. Supports wildcards (`*`).
+ * @param {string} params.index - Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (`*`).
  * @param {string} params.name - Comma-separated list of aliases to remove. Supports wildcards (`*`). To remove all aliases, use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

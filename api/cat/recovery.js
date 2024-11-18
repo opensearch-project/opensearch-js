@@ -31,7 +31,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
- * @param {string} [params.index] - A comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {string} [params.time] - The unit in which to display time values.
  * @param {boolean} [params.v=false] - Verbose mode. Display column headers.

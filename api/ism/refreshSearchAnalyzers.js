@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Ism
  *
  * @param {object} params
- * @param {string} params.index - Comma-separated list of data streams, indices, and aliases. Supports wildcards (`*`).
+ * @param {string} params.index - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

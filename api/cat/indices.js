@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Returns information about indices: number of primaries and replicas, document counts, disk size, ...
+ * Returns information about indexes: number of primaries and replicas, document counts, disk size, ...
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-indices/ - cat.indices}
  *
  * @memberOf API-Cat
@@ -30,7 +30,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.expand_wildcards] - The type of index that wildcard patterns can match.
  * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
  * @param {array} [params.h] - Comma-separated list of column names to display.
- * @param {string} [params.health] - The health status used to limit returned indices. By default, the response includes indices of any health status.
+ * @param {string} [params.health] - The health status used to limit returned indexes. By default, the response includes indexes of any health status.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.include_unloaded_segments=false] - If true, the response includes information from segments that are not loaded into memory.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
@@ -39,7 +39,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {string} [params.time] - The unit used to display time values.
  * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
- * @param {string} [params.index] - Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
+ * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

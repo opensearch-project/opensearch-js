@@ -35,7 +35,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {number} [params.version] - Explicit version number for concurrency control. The specified version must match the current version of the document for the request to succeed.
  * @param {string} [params.version_type] - Specific version type: `external`, `external_gte`.
  * @param {string} params.id - Identifier of the document.
- * @param {string} params.index - Comma-separated list of data streams, indices, and aliases. Supports wildcards (`*`).
+ * @param {string} params.index - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Deletes the specified QueryGroup.
+ * Deletes the specified query group.
  * <br/> See Also: {@link undefined - wlm.delete_query_group}
  *
  * @memberOf API-Wlm
  *
  * @param {object} params
- * @param {string} params.name - QueryGroup name.
+ * @param {string} params.name - The name of the query group.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

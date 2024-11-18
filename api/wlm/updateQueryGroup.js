@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Wlm
  *
  * @param {object} params
- * @param {string} params.name - QueryGroup name.
+ * @param {string} params.name - The name of the query group.
  * @param {object} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

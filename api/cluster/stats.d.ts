@@ -21,6 +21,8 @@ import * as Global from '../_types/_global'
 
 export type Cluster_Stats_Request = Global.Params & {
   flat_settings?: boolean;
+  index_metric?: Cluster_Stats.IndexMetric[];
+  metric?: Cluster_Stats.Metric[];
   node_id?: Common.NodeIds;
   timeout?: Common.Duration;
 }

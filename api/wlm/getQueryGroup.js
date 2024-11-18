@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Gets the specified QueryGroup or get all if no name is provided.
+ * Retrieves the specified query group. If no query group is specified, all query groups in the cluster are retrieved.
  * <br/> See Also: {@link undefined - wlm.get_query_group}
  *
  * @memberOf API-Wlm
  *
  * @param {object} [params]
- * @param {string} [params.name] - QueryGroup name.
+ * @param {string} [params.name] - The name of the query group.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

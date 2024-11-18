@@ -40,16 +40,16 @@ export type ClusterFileSystem = {
 }
 
 export type ClusterIndices = {
-  analysis: CharFilterTypes;
-  completion: Common.CompletionStats;
-  count: number;
-  docs: Common.DocStats;
-  fielddata: Common.FielddataStats;
-  mappings: FieldTypesMappings;
-  query_cache: Common.QueryCacheStats;
-  segments: Common.SegmentsStats;
-  shards: ClusterIndicesShards;
-  store: Common.StoreStats;
+  analysis?: CharFilterTypes;
+  completion?: Common.CompletionStats;
+  count?: number;
+  docs?: Common.DocStats;
+  fielddata?: Common.FielddataStats;
+  mappings?: FieldTypesMappings;
+  query_cache?: Common.QueryCacheStats;
+  segments?: Common.SegmentsStats;
+  shards?: ClusterIndicesShards;
+  store?: Common.StoreStats;
   versions?: IndicesVersions[];
 }
 
@@ -121,18 +121,18 @@ export type ClusterNodeCount = {
 }
 
 export type ClusterNodes = {
-  count: ClusterNodeCount;
-  discovery_types: Record<string, number>;
-  fs: ClusterFileSystem;
+  count?: ClusterNodeCount;
+  discovery_types?: Record<string, number>;
+  fs?: ClusterFileSystem;
   indexing_pressure?: IndexingPressure;
-  ingest: ClusterIngest;
-  jvm: ClusterJvm;
-  network_types: ClusterNetworkTypes;
-  os: ClusterOperatingSystem;
-  packaging_types: NodePackagingType[];
-  plugins: Common.PluginStats[];
-  process: ClusterProcess;
-  versions: Common.VersionString[];
+  ingest?: ClusterIngest;
+  jvm?: ClusterJvm;
+  network_types?: ClusterNetworkTypes;
+  os?: ClusterOperatingSystem;
+  packaging_types?: NodePackagingType[];
+  plugins?: Common.PluginStats[];
+  process?: ClusterProcess;
+  versions?: Common.VersionString[];
 }
 
 export type ClusterOperatingSystem = {
@@ -227,12 +227,16 @@ export type IndexingPressureMemorySummary = {
   replica_rejections?: number;
 }
 
+export type IndexMetric = '_all' | 'analysis' | 'completion' | 'docs' | 'fielddata' | 'mappings' | 'query_cache' | 'segments' | 'shards' | 'store'
+
 export type IndicesVersions = {
   index_count: number;
   primary_shard_count: number;
   total_primary_bytes: Common.ByteCount;
   version: Common.VersionString;
 }
+
+export type Metric = '_all' | 'discovery_type' | 'fs' | 'indices' | 'ingest' | 'jvm' | 'network_types' | 'os' | 'packaging_types' | 'plugins' | 'process'
 
 export type NodePackagingType = {
   count: number;
@@ -255,8 +259,8 @@ export type OperatingSystemMemoryInfo = {
 export type StatsResponseBase = Nodes_Common.NodesResponseBase & {
   cluster_name: Common.Name;
   cluster_uuid: Common.Uuid;
-  indices: ClusterIndices;
-  nodes: ClusterNodes;
+  indices?: ClusterIndices;
+  nodes?: ClusterNodes;
   status: Common.HealthStatus;
   timestamp: number;
 }

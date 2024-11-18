@@ -19,7 +19,7 @@
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * Creates the specified query group.
+ * Creates a new query group and sets the resource limits for the new query group.
  * <br/> See Also: {@link undefined - wlm.create_query_group}
  *
  * @memberOf API-Wlm

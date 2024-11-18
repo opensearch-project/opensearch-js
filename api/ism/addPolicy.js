@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Ism
  *
  * @param {object} [params]
- * @param {string} [params.index] - Comma-separated list of data streams, indices, and aliases. Supports wildcards (`*`).
+ * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
  * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

@@ -25,14 +25,14 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Indices
  *
  * @param {object} params
- * @param {boolean} [params.allow_no_indices=false] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices. This behavior applies even if the request targets other open indices.
+ * @param {boolean} [params.allow_no_indices=false] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes.
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {string} [params.expand_wildcards] - Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
  * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
  * @param {boolean} [params.ignore_unavailable=false] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {boolean} [params.include_defaults=false] - If `true`, return all default settings in the response.
  * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only.
- * @param {string} params.index - Comma-separated list of data streams, indices, and aliases. Supports wildcards (`*`).
+ * @param {string} params.index - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

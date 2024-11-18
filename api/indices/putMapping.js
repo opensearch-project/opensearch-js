@@ -25,14 +25,14 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Indices
  *
  * @param {object} params
- * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices. This behavior applies even if the request targets other open indices.
+ * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes.
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {string} [params.expand_wildcards] - Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {boolean} [params.write_index_only=false] - If `true`, the mappings are applied only to the current write index for the target.
- * @param {string} params.index - A comma-separated list of index names the mapping should be added to (supports wildcards); use `_all` or omit to add the mapping on all indices.
+ * @param {string} params.index - A comma-separated list of index names the mapping should be added to (supports wildcards); use `_all` or omit to add the mapping on all indexes.
  * @param {object} params.body - The mapping definition
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

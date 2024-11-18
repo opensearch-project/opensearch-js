@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Provides quick access to the document count of the entire cluster, or individual indices.
+ * Provides quick access to the document count of the entire cluster, or individual indexes.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-count/ - cat.count}
  *
  * @memberOf API-Cat
@@ -30,7 +30,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.help=false] - Return help information.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
- * @param {string} [params.index] - Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
+ * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

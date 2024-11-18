@@ -27,7 +27,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {object} [params]
  * @param {boolean} [params.active_only=false] - If `true`, the response only includes ongoing shard recoveries.
  * @param {boolean} [params.detailed=false] - If `true`, the response includes detailed information about shard recoveries.
- * @param {string} [params.index] - Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
+ * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -27,6 +27,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {object} [params]
  * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
  * @param {string} [params.timeout] - Period to wait for each node to respond. If a node does not respond before its timeout expires, the response does not include its stats. However, timed out nodes are included in the response's `_nodes.failed` property. Defaults to no timeout.
+ * @param {array} [params.index_metric] - Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric is specified.
+ * @param {array} [params.metric] - Limit the information returned to the specified metrics
  * @param {string} [params.node_id] - Comma-separated list of node filters used to limit returned information. Defaults to all nodes in the cluster.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
@@ -37,10 +39,12 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 function statsFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { body, node_id, ...querystring } = params;
+  let { body, index_metric, metric, node_id, ...querystring } = params;
+  index_metric = parsePathParam(index_metric);
+  metric = parsePathParam(metric);
   node_id = parsePathParam(node_id);
 
-  const path = ['/_cluster/stats/nodes/', node_id].filter(c => c).join('').replace('//', '/');
+  const path = ['/_cluster/stats/', metric, '/', index_metric, '/nodes/', node_id].filter(c => c).join('').replace('//', '/');
   const method = 'GET';
   body = body || '';
 

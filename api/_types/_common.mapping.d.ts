@@ -15,12 +15,12 @@
  */
 
 import * as Common from './_common'
+import * as Common_Analysis from './_common.analysis'
 import * as Indices_Common from './indices._common'
 
 export type AggregateMetricDoubleProperty = PropertyBase & {
   default_metric: string;
   metrics: string[];
-  time_series_metric?: TimeSeriesMetricType;
   type: 'aggregate_metric_double';
 }
 
@@ -106,20 +106,6 @@ export type DateRangeProperty = RangePropertyBase & {
   type: 'date_range';
 }
 
-export type DenseVectorIndexOptions = {
-  ef_construction: number;
-  m: number;
-  type: string;
-}
-
-export type DenseVectorProperty = PropertyBase & {
-  dims: number;
-  index?: boolean;
-  index_options?: DenseVectorIndexOptions;
-  similarity?: string;
-  type: 'dense_vector';
-}
-
 export type DocValuesPropertyBase = CorePropertyBase & {
   doc_values?: boolean;
 }
@@ -165,19 +151,6 @@ export type FlatObjectProperty = PropertyBase & {
   type: 'flat_object';
 }
 
-export type FlattenedProperty = PropertyBase & {
-  boost?: number;
-  depth_limit?: number;
-  doc_values?: boolean;
-  eager_global_ordinals?: boolean;
-  index?: boolean;
-  index_options?: IndexOptions;
-  null_value?: string;
-  similarity?: string;
-  split_queries_on_whitespace?: boolean;
-  type: 'flattened';
-}
-
 export type FloatNumberProperty = NumberPropertyBase & {
   null_value?: number;
   type: 'float';
@@ -187,7 +160,7 @@ export type FloatRangeProperty = RangePropertyBase & {
   type: 'float_range';
 }
 
-export type GeoOrientation = 'LEFT' | 'clockwise' | 'cw' | 'left' | 'RIGHT' | 'ccw' | 'counterclockwise' | 'right'
+export type GeoOrientation = 'left' | 'LEFT' | 'clockwise' | 'cw' | 'right' | 'RIGHT' | 'counterclockwise' | 'ccw'
 
 export type GeoPointProperty = DocValuesPropertyBase & {
   ignore_malformed?: boolean;
@@ -218,6 +191,23 @@ export type HistogramProperty = PropertyBase & {
   type: 'histogram';
 }
 
+export type IcuCollationKeywordProperty = DocValuesPropertyBase & {
+  alternate?: Common_Analysis.IcuCollationAlternate;
+  case_first?: Common_Analysis.IcuCollationCaseFirst;
+  case_level?: boolean;
+  country?: string;
+  decomposition?: Common_Analysis.IcuCollationDecomposition;
+  hiragana_quaternary_mode?: boolean;
+  index?: boolean;
+  language?: string;
+  null_value?: string;
+  numeric?: boolean;
+  strength?: Common_Analysis.IcuCollationStrength;
+  type: 'icu_collation_keyword';
+  variable_top?: string;
+  variant?: string;
+}
+
 export type IndexField = {
   enabled: boolean;
 }
@@ -238,9 +228,6 @@ export type IpProperty = DocValuesPropertyBase & {
   ignore_malformed?: boolean;
   index?: boolean;
   null_value?: string;
-  on_script_error?: OnScriptError;
-  script?: Common.Script;
-  time_series_dimension?: boolean;
   type: 'ip';
 }
 
@@ -263,7 +250,6 @@ export type KeywordProperty = DocValuesPropertyBase & {
   norms?: boolean;
   null_value?: string;
   split_queries_on_whitespace?: boolean;
-  time_series_dimension?: boolean;
   type: 'keyword';
 }
 
@@ -320,10 +306,6 @@ export type NumberPropertyBase = DocValuesPropertyBase & {
   coerce?: boolean;
   ignore_malformed?: boolean;
   index?: boolean;
-  on_script_error?: OnScriptError;
-  script?: Common.Script;
-  time_series_dimension?: boolean;
-  time_series_metric?: TimeSeriesMetricType;
 }
 
 export type ObjectProperty = CorePropertyBase & {
@@ -331,13 +313,11 @@ export type ObjectProperty = CorePropertyBase & {
   type?: 'object';
 }
 
-export type OnScriptError = 'continue' | 'fail'
-
 export type PercolatorProperty = PropertyBase & {
   type: 'percolator';
 }
 
-export type Property = BinaryProperty | BooleanProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | DenseVectorProperty | SparseVectorProperty | FlattenedProperty | FlatObjectProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty
+export type Property = BinaryProperty | BooleanProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | FlatObjectProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty | IcuCollationKeywordProperty
 
 export type PropertyBase = {
   dynamic?: DynamicMapping;
@@ -401,10 +381,6 @@ export type SourceField = {
   includes?: string[];
 }
 
-export type SparseVectorProperty = PropertyBase & {
-  type: 'sparse_vector';
-}
-
 export type SuggestContext = {
   name: Common.Name;
   path?: Common.Field;
@@ -436,8 +412,6 @@ export type TextProperty = CorePropertyBase & {
   term_vector?: TermVectorOption;
   type: 'text';
 }
-
-export type TimeSeriesMetricType = 'counter' | 'gauge' | 'histogram' | 'position' | 'summary'
 
 export type TokenCountProperty = DocValuesPropertyBase & {
   analyzer?: string;

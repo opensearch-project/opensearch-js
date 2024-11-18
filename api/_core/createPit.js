@@ -26,11 +26,11 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @param {object} params
  * @param {boolean} [params.allow_partial_pit_creation] - Allow if point in time can be created with partial failures.
- * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indices that are open, closed or both.
+ * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
  * @param {string} [params.keep_alive] - Specify the keep alive for point in time.
  * @param {string} [params.preference=random] - Specify the node or shard the operation should be performed on.
  * @param {string} [params.routing] - Comma-separated list of specific routing values.
- * @param {array} params.index - Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+ * @param {array} params.index - Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

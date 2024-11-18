@@ -19,7 +19,7 @@
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * Creates or replaces the allowlisted APIs. Accessible via Super Admin certificate or REST API permission.
+ * Creates or replaces the permitted APIs. Accessible using Super Admin certificate or REST API permission.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#access-control-for-the-api - security.create_allowlist}
  *
  * @memberOf API-Security

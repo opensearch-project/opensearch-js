@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Returns information about one or more indices.
+ * Returns information about one or more indexes.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/get-index/ - indices.get}
  *
  * @memberOf API-Indices
  *
  * @param {object} params
- * @param {boolean} [params.allow_no_indices=false] - If false, the request returns an error if any wildcard expression, index alias, or _all value targets only missing or closed indices. This behavior applies even if the request targets other open indices. For example, a request targeting foo*,bar* returns an error if an index starts with foo but no index starts with bar.
+ * @param {boolean} [params.allow_no_indices=false] - If false, the request returns an error if any wildcard expression, index alias, or _all value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting foo*,bar* returns an error if an index starts with foo but no index starts with bar.
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {string} [params.expand_wildcards] - Type of index that wildcard expressions can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as open,hidden.
  * @param {boolean} [params.flat_settings=false] - If true, returns settings in flat format.
@@ -33,7 +33,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.include_defaults=false] - If true, return all default settings in the response.
  * @param {boolean} [params.local=false] - If true, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the master node.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} params.index - Comma-separated list of data streams, indices, and index aliases used to limit the request. Wildcard expressions (*) are supported.
+ * @param {string} params.index - Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*) are supported.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

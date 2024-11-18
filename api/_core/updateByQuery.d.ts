@@ -39,7 +39,7 @@ export type UpdateByQuery_Request = Global.Params & {
   pipeline?: string;
   preference?: string;
   q?: string;
-  refresh?: boolean;
+  refresh?: Common.Refresh;
   request_cache?: boolean;
   requests_per_second?: number;
   routing?: Common.RoutingInQueryString;

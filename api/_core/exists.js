@@ -30,7 +30,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params._source_includes] - A comma-separated list of source fields to include in the response.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
  * @param {boolean} [params.realtime] - If `true`, the request is real-time as opposed to near-real-time.
- * @param {boolean} [params.refresh] - If `true`, OpenSearch refreshes all shards involved in the delete by query after the request completes.
+ * @param {string} [params.refresh] - If `true`, OpenSearch refreshes all shards involved in the delete by query after the request completes.
  * @param {string} [params.routing] - Target the specified primary shard.
  * @param {string} [params.stored_fields] - List of stored fields to return as part of a hit. If no fields are specified, no stored fields are included in the response. If this field is specified, the `_source` parameter defaults to false.
  * @param {number} [params.version] - Explicit version number for concurrency control. The specified version must match the current version of the document for the request to succeed.

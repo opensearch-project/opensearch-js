@@ -31,7 +31,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster manager node.
+ * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
  * @param {null | string} [params.next_token] - Token to retrieve next page of shards.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {number} [params.size] - Maximum number of shards to be displayed in a page.
@@ -51,7 +51,7 @@ function shardsFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_list/shards/', index].filter(c => c).join('').replace('//', '/');
+  const path = ['/_list/shards', index].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

@@ -26,7 +26,7 @@ const { normalizeArguments } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.bytes] - The unit in which to display byte values.
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.

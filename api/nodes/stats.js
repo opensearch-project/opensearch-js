@@ -29,7 +29,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.fielddata_fields] - Comma-separated list or wildcard expressions of fields to include in fielddata statistics.
  * @param {string} [params.fields] - Comma-separated list or wildcard expressions of fields to include in the statistics.
  * @param {array} [params.groups] - Comma-separated list of search groups to include in the search statistics.
- * @param {boolean} [params.include_segment_file_sizes=false] - If true, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested).
+ * @param {boolean} [params.include_segment_file_sizes=false] - If `true`, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested).
  * @param {string} [params.level] - Indicates whether statistics are aggregated at the cluster, index, or shard level.
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {array} [params.types] - A comma-separated list of document types for the indexing index metric.
@@ -50,7 +50,7 @@ function statsFunc(params, options, callback) {
   metric = parsePathParam(metric);
   index_metric = parsePathParam(index_metric);
 
-  const path = ['/_nodes/', node_id, '/stats/', metric, '/', index_metric].filter(c => c).join('').replace('//', '/');
+  const path = ['/_nodes', node_id, 'stats', metric, index_metric].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

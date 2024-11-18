@@ -26,11 +26,11 @@ const { normalizeArguments } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to master node.
+ * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {string} [params.time] - The unit in which to display time values.
  * @param {boolean} [params.v=false] - Verbose mode. Display column headers.

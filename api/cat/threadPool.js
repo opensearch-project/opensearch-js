@@ -27,11 +27,11 @@ By default the active, queue and rejected statistics are returned for all thread
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to master node.
+ * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {number} [params.size] - The multiplier in which to display values.
  * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
@@ -48,7 +48,7 @@ function threadPoolFunc(params, options, callback) {
   let { body, thread_pool_patterns, ...querystring } = params;
   thread_pool_patterns = parsePathParam(thread_pool_patterns);
 
-  const path = ['/_cat/thread_pool/', thread_pool_patterns].filter(c => c).join('').replace('//', '/');
+  const path = ['/_cat/thread_pool', thread_pool_patterns].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

@@ -38,7 +38,7 @@ export type DeleteByQuery_Request = Global.Params & {
   max_docs?: number;
   preference?: string;
   q?: string;
-  refresh?: boolean;
+  refresh?: Common.Refresh;
   request_cache?: boolean;
   requests_per_second?: number;
   routing?: Common.RoutingInQueryString;

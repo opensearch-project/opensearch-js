@@ -25,9 +25,9 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Indices
  *
  * @param {object} [params]
- * @param {boolean} [params.allow_no_indices] - If false, the request returns an error if any wildcard expression, index alias, or _all value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes.
+ * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or _all value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes.
  * @param {string} [params.expand_wildcards] - Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.
- * @param {boolean} [params.ignore_unavailable] - If true, missing or closed indexes are not included in the response.
+ * @param {boolean} [params.ignore_unavailable] - If `true`, missing or closed indexes are not included in the response.
  * @param {string} [params.status] - List of shard health statuses used to limit the request.
  * @param {string} [params.index] - List of data streams, indexes, and aliases used to limit the request.
  *
@@ -42,7 +42,7 @@ function shardStoresFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_shard_stores'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_shard_stores'].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

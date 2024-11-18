@@ -39,7 +39,7 @@ function analyzeFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_analyze'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_analyze'].filter(c => c).join('/');
   const method = body ? 'POST' : 'GET';
   body = body || '';
 

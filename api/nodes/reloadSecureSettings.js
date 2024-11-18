@@ -40,7 +40,7 @@ function reloadSecureSettingsFunc(params, options, callback) {
   let { body, node_id, ...querystring } = params;
   node_id = parsePathParam(node_id);
 
-  const path = ['/_nodes/', node_id, '/reload_secure_settings'].filter(c => c).join('').replace('//', '/');
+  const path = ['/_nodes', node_id, 'reload_secure_settings'].filter(c => c).join('/');
   const method = 'POST';
   body = body || '';
 

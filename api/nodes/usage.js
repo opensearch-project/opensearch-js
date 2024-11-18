@@ -41,7 +41,7 @@ function usageFunc(params, options, callback) {
   node_id = parsePathParam(node_id);
   metric = parsePathParam(metric);
 
-  const path = ['/_nodes/', node_id, '/usage/', metric].filter(c => c).join('').replace('//', '/');
+  const path = ['/_nodes', node_id, 'usage', metric].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

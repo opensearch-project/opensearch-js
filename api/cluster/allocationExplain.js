@@ -25,8 +25,8 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Cluster
  *
  * @param {object} [params]
- * @param {boolean} [params.include_disk_info=false] - If true, returns information about disk usage and shard sizes.
- * @param {boolean} [params.include_yes_decisions=false] - If true, returns YES decisions in explanation.
+ * @param {boolean} [params.include_disk_info=false] - If `true`, returns information about disk usage and shard sizes.
+ * @param {boolean} [params.include_yes_decisions=false] - If `true`, returns YES decisions in explanation.
  * @param {object} [params.body] - The index, shard, and primary flag to explain. Empty means 'explain the first unassigned shard'
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

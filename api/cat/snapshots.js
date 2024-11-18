@@ -26,11 +26,11 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.ignore_unavailable=false] - If `true`, the response does not include information from unavailable snapshots.
- * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to master node.
+ * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {string} [params.time] - The unit in which to display time values.
  * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
@@ -47,7 +47,7 @@ function snapshotsFunc(params, options, callback) {
   let { body, repository, ...querystring } = params;
   repository = parsePathParam(repository);
 
-  const path = ['/_cat/snapshots/', repository].filter(c => c).join('').replace('//', '/');
+  const path = ['/_cat/snapshots', repository].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

@@ -39,7 +39,7 @@ function clearScrollFunc(params, options, callback) {
   let { body, scroll_id, ...querystring } = params;
   scroll_id = parsePathParam(scroll_id);
 
-  const path = ['/_search/scroll/', scroll_id].filter(c => c).join('').replace('//', '/');
+  const path = ['/_search/scroll', scroll_id].filter(c => c).join('/');
   const method = 'DELETE';
   body = body || '';
 

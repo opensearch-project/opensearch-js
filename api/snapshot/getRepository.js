@@ -27,7 +27,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to master node
+ * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
  * @param {string} [params.repository] - A comma-separated list of repository names
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
@@ -41,7 +41,7 @@ function getRepositoryFunc(params, options, callback) {
   let { body, repository, ...querystring } = params;
   repository = parsePathParam(repository);
 
-  const path = ['/_snapshot/', repository].filter(c => c).join('').replace('//', '/');
+  const path = ['/_snapshot', repository].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

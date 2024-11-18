@@ -38,7 +38,7 @@ function dataStreamsStatsFunc(params, options, callback) {
   let { body, name, ...querystring } = params;
   name = parsePathParam(name);
 
-  const path = ['/_data_stream/', name, '/_stats'].filter(c => c).join('').replace('//', '/');
+  const path = ['/_data_stream', name, '_stats'].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

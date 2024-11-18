@@ -32,9 +32,9 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.payloads=true] - If `true`, the response includes term payloads.
  * @param {boolean} [params.positions=true] - If `true`, the response includes term positions.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
- * @param {boolean} [params.realtime=true] - If true, the request is real-time as opposed to near-real-time.
+ * @param {boolean} [params.realtime=true] - If `true`, the request is real-time as opposed to near-real-time.
  * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
- * @param {boolean} [params.term_statistics=false] - If true, the response includes term frequency and document frequency.
+ * @param {boolean} [params.term_statistics=false] - If `true`, the response includes term frequency and document frequency.
  * @param {number} [params.version] - If `true`, returns the document version as part of a hit.
  * @param {string} [params.version_type] - Specific version type.
  * @param {string} [params.index] - Name of the index that contains the documents.
@@ -51,7 +51,7 @@ function mtermvectorsFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_mtermvectors'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_mtermvectors'].filter(c => c).join('/');
   const method = body ? 'POST' : 'GET';
   body = body || '';
 

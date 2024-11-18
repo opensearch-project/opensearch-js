@@ -38,7 +38,7 @@ function getQueryGroupFunc(params, options, callback) {
   let { body, name, ...querystring } = params;
   name = parsePathParam(name);
 
-  const path = ['/_wlm/query_group/', name].filter(c => c).join('').replace('//', '/');
+  const path = ['/_wlm/query_group', name].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

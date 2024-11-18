@@ -46,7 +46,7 @@ function getFieldMappingFunc(params, options, callback) {
   fields = parsePathParam(fields);
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_mapping/field/', fields].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_mapping/field', fields].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

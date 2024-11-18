@@ -26,7 +26,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.id] - ID of the search template to render. If no `source` is specified, this or the `id` request body parameter is required.
- * @param {object} [params.body] - The search definition template and its params
+ * @param {object} [params.body] - The search definition template and its parameters.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -39,7 +39,7 @@ function renderSearchTemplateFunc(params, options, callback) {
   let { body, id, ...querystring } = params;
   id = parsePathParam(id);
 
-  const path = ['/_render/template/', id].filter(c => c).join('').replace('//', '/');
+  const path = ['/_render/template', id].filter(c => c).join('/');
   const method = body ? 'POST' : 'GET';
   body = body || '';
 

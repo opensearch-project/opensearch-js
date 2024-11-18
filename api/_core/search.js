@@ -29,12 +29,12 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params._source_excludes] - A comma-separated list of source fields to exclude from the response. You can also use this parameter to exclude fields from the subset specified in `_source_includes` query parameter. If the `_source` parameter is `false`, this parameter is ignored.
  * @param {string} [params._source_includes] - A comma-separated list of source fields to include in the response. If this parameter is specified, only these source fields are returned. You can exclude fields from this subset using the `_source_excludes` query parameter. If the `_source` parameter is `false`, this parameter is ignored.
  * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
- * @param {boolean} [params.allow_partial_search_results=true] - If true, returns partial results if there are shard request timeouts or shard failures. If false, returns an error with no partial results.
- * @param {boolean} [params.analyze_wildcard=false] - If true, wildcard and prefix queries are analyzed. This parameter can only be used when the q query string parameter is specified.
+ * @param {boolean} [params.allow_partial_search_results=true] - If `true`, returns partial results if there are shard request timeouts or shard failures. If `false`, returns an error with no partial results.
+ * @param {boolean} [params.analyze_wildcard=false] - If `true`, wildcard and prefix queries are analyzed. This parameter can only be used when the q query string parameter is specified.
  * @param {string} [params.analyzer] - Analyzer to use for the query string. This parameter can only be used when the q query string parameter is specified.
  * @param {number} [params.batched_reduce_size=512] - The number of shard results that should be reduced at once on the coordinating node. This value should be used as a protection mechanism to reduce the memory overhead per search request if the potential number of shards in the request can be large.
  * @param {string} [params.cancel_after_time_interval] - The time after which the search request will be canceled. Request-level parameter takes precedence over `cancel_after_time_interval` cluster setting.
- * @param {boolean} [params.ccs_minimize_roundtrips=true] - If true, network round-trips between the coordinating node and the remote clusters are minimized when executing cross-cluster search (CCS) requests.
+ * @param {boolean} [params.ccs_minimize_roundtrips=true] - If `true`, network round-trips between the coordinating node and the remote clusters are minimized when executing cross-cluster search (CCS) requests.
  * @param {string} [params.default_operator] - The default operator for query string query: AND or OR. This parameter can only be used when the `q` query string parameter is specified.
  * @param {string} [params.df] - Field to use as default where no field prefix is given in the query string. This parameter can only be used when the q query string parameter is specified.
  * @param {string} [params.docvalue_fields] - A comma-separated list of fields to return as the docvalue representation for each hit.
@@ -43,7 +43,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {number} [params.from=0] - Starting document offset. Needs to be non-negative. By default, you cannot page through more than 10,000 hits using the `from` and `size` parameters. To page through more hits, use the `search_after` parameter.
  * @param {boolean} [params.ignore_throttled] - If `true`, concrete, expanded or aliased indexes will be ignored when frozen.
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
- * @param {boolean} [params.include_named_queries_score=false] - Indicates whether hit.matched_queries should be rendered as a map that includes the name of the matched query associated with its score (true) or as an array containing the name of the matched queries (false)
+ * @param {boolean} [params.include_named_queries_score=false] - Indicates whether `hit.matched_queries` should be rendered as a map that includes the name of the matched query associated with its score (true) or as an array containing the name of the matched queries (false)
  * @param {boolean} [params.lenient] - If `true`, format-based query failures (such as providing text to a numeric field) in the query string will be ignored. This parameter can only be used when the `q` query string parameter is specified.
  * @param {number} [params.max_concurrent_shard_requests=5] - Defines the number of concurrent shard requests per node this search executes concurrently. This value should be used to limit the impact of the search on the cluster in order to limit the number of concurrent shard requests.
  * @param {boolean} [params.phase_took=false] - Indicates whether to return phase-level `took` time values in the response.
@@ -85,7 +85,7 @@ function searchFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_search'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_search'].filter(c => c).join('/');
   const method = body ? 'POST' : 'GET';
   body = body || '';
 

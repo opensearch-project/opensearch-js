@@ -41,7 +41,7 @@ function statsFunc(params, options, callback) {
   node_id = parsePathParam(node_id);
   stat = parsePathParam(stat);
 
-  const path = ['/_plugins/_knn/', node_id, '/stats/', stat].filter(c => c).join('').replace('//', '/');
+  const path = ['/_plugins/_knn', node_id, 'stats', stat].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

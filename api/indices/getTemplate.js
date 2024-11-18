@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
  * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.name] - Comma-separated list of index template names used to limit the request. Wildcard (`*`) expressions are supported. To return all index templates, omit this parameter or use a value of `_all` or `*`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
@@ -42,7 +42,7 @@ function getTemplateFunc(params, options, callback) {
   let { body, name, ...querystring } = params;
   name = parsePathParam(name);
 
-  const path = ['/_template/', name].filter(c => c).join('').replace('//', '/');
+  const path = ['/_template', name].filter(c => c).join('/');
   const method = 'GET';
   body = body || '';
 

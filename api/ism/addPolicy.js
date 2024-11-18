@@ -39,7 +39,7 @@ function addPolicyFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_plugins/_ism/add/', index].filter(c => c).join('').replace('//', '/');
+  const path = ['/_plugins/_ism/add', index].filter(c => c).join('/');
   const method = 'POST';
   body = body || '';
 

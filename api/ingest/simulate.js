@@ -41,7 +41,7 @@ function simulateFunc(params, options, callback) {
   let { body, id, ...querystring } = params;
   id = parsePathParam(id);
 
-  const path = ['/_ingest/pipeline/', id, '/_simulate'].filter(c => c).join('').replace('//', '/');
+  const path = ['/_ingest/pipeline', id, '_simulate'].filter(c => c).join('/');
   const method = body ? 'POST' : 'GET';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);

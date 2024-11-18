@@ -28,7 +28,7 @@ is considered to be too large or too old.
  * @param {object} params
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {boolean} [params.dry_run=false] - If `true`, checks whether the current index satisfies the specified conditions but does not perform a rollover.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.wait_for_active_shards] - The number of shard copies that must be active before proceeding with the operation. Set to all or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
  * @param {string} params.alias - Name of the data stream or index alias to roll over.
@@ -48,7 +48,7 @@ function rolloverFunc(params, options, callback) {
   alias = parsePathParam(alias);
   new_index = parsePathParam(new_index);
 
-  const path = ['/', alias, '/_rollover/', new_index].filter(c => c).join('').replace('//', '/');
+  const path = ['', alias, '_rollover', new_index].filter(c => c).join('/');
   const method = 'POST';
   body = body || '';
 

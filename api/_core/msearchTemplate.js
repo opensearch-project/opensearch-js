@@ -45,7 +45,7 @@ function msearchTemplateFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_msearch/template'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_msearch/template'].filter(c => c).join('/');
   const method = body ? 'POST' : 'GET';
 
   return this.transport.request({ method, path, querystring, bulkBody: body }, options, callback);

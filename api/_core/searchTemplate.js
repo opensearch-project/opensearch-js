@@ -33,13 +33,13 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
  * @param {boolean} [params.profile] - If `true`, the query execution is profiled.
- * @param {boolean} [params.rest_total_hits_as_int=false] - If true, hits.total are rendered as an integer in the response.
+ * @param {boolean} [params.rest_total_hits_as_int=false] - If `true`, hits.total are rendered as an integer in the response.
  * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
  * @param {string} [params.scroll] - Specifies how long a consistent view of the index should be maintained for scrolled search.
  * @param {string} [params.search_type] - The type of the search operation.
  * @param {boolean} [params.typed_keys] - If `true`, the response prefixes aggregation and suggester names with their respective types.
  * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (*).
- * @param {object} params.body - The search definition template and its params
+ * @param {object} params.body - The search definition template and its parameters.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -53,7 +53,7 @@ function searchTemplateFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_search/template'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_search/template'].filter(c => c).join('/');
   const method = body ? 'POST' : 'GET';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);

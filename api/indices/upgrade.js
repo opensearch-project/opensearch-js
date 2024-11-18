@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.allow_no_indices] - Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
  * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
  * @param {boolean} [params.ignore_unavailable] - Whether specified concrete indexes should be ignored when unavailable (missing or closed).
- * @param {boolean} [params.only_ancient_segments] - If true, only ancient (an older Lucene major release) segments will be upgraded.
+ * @param {boolean} [params.only_ancient_segments] - If `true`, only ancient (an older Lucene major release) segments will be upgraded.
  * @param {boolean} [params.wait_for_completion=false] - Should this request wait until the operation has completed before returning.
  * @param {array} [params.index] - Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
  *
@@ -43,7 +43,7 @@ function upgradeFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_upgrade'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_upgrade'].filter(c => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

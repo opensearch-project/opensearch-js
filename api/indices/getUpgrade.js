@@ -41,7 +41,7 @@ function getUpgradeFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_upgrade'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_upgrade'].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

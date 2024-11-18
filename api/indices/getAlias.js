@@ -44,7 +44,7 @@ function getAliasFunc(params, options, callback) {
   name = parsePathParam(name);
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_alias/', name].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_alias', name].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

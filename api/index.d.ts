@@ -320,6 +320,17 @@ import { Sql_Explain_Request, Sql_Explain_Response, Sql_Explain_ResponseBody } f
 import { Sql_Close_Request, Sql_Close_Response, Sql_Close_ResponseBody } from './sql/close';
 import { Sql_GetStats_Request, Sql_GetStats_Response, Sql_GetStats_ResponseBody } from './sql/getStats';
 import { Sql_PostStats_Request, Sql_PostStats_Response, Sql_PostStats_ResponseBody } from './sql/postStats';
+import { Replication_DeleteReplicationRule_Request, Replication_DeleteReplicationRule_Response, Replication_DeleteReplicationRule_ResponseBody } from './replication/deleteReplicationRule';
+import { Replication_CreateReplicationRule_Request, Replication_CreateReplicationRule_Response, Replication_CreateReplicationRule_ResponseBody } from './replication/createReplicationRule';
+import { Replication_Pause_Request, Replication_Pause_RequestBody, Replication_Pause_Response, Replication_Pause_ResponseBody } from './replication/pause';
+import { Replication_Resume_Request, Replication_Resume_RequestBody, Replication_Resume_Response, Replication_Resume_ResponseBody } from './replication/resume';
+import { Replication_Start_Request, Replication_Start_Response, Replication_Start_ResponseBody } from './replication/start';
+import { Replication_Status_Request, Replication_Status_Response, Replication_Status_ResponseBody } from './replication/status';
+import { Replication_Stop_Request, Replication_Stop_RequestBody, Replication_Stop_Response, Replication_Stop_ResponseBody } from './replication/stop';
+import { Replication_UpdateSettings_Request, Replication_UpdateSettings_Response, Replication_UpdateSettings_ResponseBody } from './replication/updateSettings';
+import { Replication_AutofollowStats_Request, Replication_AutofollowStats_Response, Replication_AutofollowStats_ResponseBody } from './replication/autofollowStats';
+import { Replication_FollowerStats_Request, Replication_FollowerStats_Response, Replication_FollowerStats_ResponseBody } from './replication/followerStats';
+import { Replication_LeaderStats_Request, Replication_LeaderStats_Response, Replication_LeaderStats_ResponseBody } from './replication/leaderStats';
 import { Rollups_Delete_Request, Rollups_Delete_Response, Rollups_Delete_ResponseBody } from './rollups/delete';
 import { Rollups_Get_Request, Rollups_Get_Response, Rollups_Get_ResponseBody } from './rollups/get';
 import { Rollups_Put_Request, Rollups_Put_Response, Rollups_Put_ResponseBody } from './rollups/put';
@@ -664,6 +675,17 @@ export {
   Sql_Close_Request, Sql_Close_Response, Sql_Close_ResponseBody,
   Sql_GetStats_Request, Sql_GetStats_Response, Sql_GetStats_ResponseBody,
   Sql_PostStats_Request, Sql_PostStats_Response, Sql_PostStats_ResponseBody,
+  Replication_DeleteReplicationRule_Request, Replication_DeleteReplicationRule_Response, Replication_DeleteReplicationRule_ResponseBody,
+  Replication_CreateReplicationRule_Request, Replication_CreateReplicationRule_Response, Replication_CreateReplicationRule_ResponseBody,
+  Replication_Pause_Request, Replication_Pause_RequestBody, Replication_Pause_Response, Replication_Pause_ResponseBody,
+  Replication_Resume_Request, Replication_Resume_RequestBody, Replication_Resume_Response, Replication_Resume_ResponseBody,
+  Replication_Start_Request, Replication_Start_Response, Replication_Start_ResponseBody,
+  Replication_Status_Request, Replication_Status_Response, Replication_Status_ResponseBody,
+  Replication_Stop_Request, Replication_Stop_RequestBody, Replication_Stop_Response, Replication_Stop_ResponseBody,
+  Replication_UpdateSettings_Request, Replication_UpdateSettings_Response, Replication_UpdateSettings_ResponseBody,
+  Replication_AutofollowStats_Request, Replication_AutofollowStats_Response, Replication_AutofollowStats_ResponseBody,
+  Replication_FollowerStats_Request, Replication_FollowerStats_Response, Replication_FollowerStats_ResponseBody,
+  Replication_LeaderStats_Request, Replication_LeaderStats_Response, Replication_LeaderStats_ResponseBody,
   Rollups_Delete_Request, Rollups_Delete_Response, Rollups_Delete_ResponseBody,
   Rollups_Get_Request, Rollups_Get_Response, Rollups_Get_ResponseBody,
   Rollups_Put_Request, Rollups_Put_Response, Rollups_Put_ResponseBody,

@@ -27,7 +27,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
  * @param {object} params
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {boolean} [params.flat_settings=false] - Return settings in flat format.
- * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to master node
+ * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
  * @param {string} [params.timeout] - Explicit operation timeout
  * @param {object} params.body - The settings to be updated. Can be either `transient` or `persistent` (survives cluster restart).
  *

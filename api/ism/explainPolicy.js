@@ -39,7 +39,7 @@ function explainPolicyFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_plugins/_ism/explain/', index].filter(c => c).join('').replace('//', '/');
+  const path = ['/_plugins/_ism/explain', index].filter(c => c != null).join('/');
   const method = body ? 'POST' : 'GET';
   body = body || '';
 

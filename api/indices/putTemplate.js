@@ -26,8 +26,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @param {object} params
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {boolean} [params.create=false] - If true, this request cannot replace or update existing index templates.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {boolean} [params.create=false] - If `true`, this request cannot replace or update existing index templates.
+ * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {number} [params.order] - Order in which OpenSearch applies this template if index matches multiple templates.  Templates with lower 'order' values are merged first. Templates with higher 'order' values are merged later, overriding templates with lower values.
  * @param {string} params.name - The name of the template
  * @param {object} params.body - The template definition

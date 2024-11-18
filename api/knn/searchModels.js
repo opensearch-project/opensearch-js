@@ -25,9 +25,9 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Knn
  *
  * @param {object} [params]
- * @param {array} [params._source] - True or false to return the _source field or not, or a list of fields to return.
- * @param {array} [params._source_excludes] - List of fields to exclude from the returned _source field.
- * @param {array} [params._source_includes] - List of fields to extract and return from the _source field.
+ * @param {array} [params._source] - Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
+ * @param {array} [params._source_excludes] - List of fields to exclude from the returned `_source` field.
+ * @param {array} [params._source_includes] - List of fields to extract and return from the `_source` field.
  * @param {boolean} [params.allow_no_indices] - Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
  * @param {boolean} [params.allow_partial_search_results=true] - Indicate if an error should be returned if there is a partial search failure or timeout.
  * @param {boolean} [params.analyze_wildcard=false] - Specify whether wildcard and prefix queries should be analyzed.
@@ -44,7 +44,7 @@ const { normalizeArguments } = require('../utils');
  * @param {boolean} [params.ignore_unavailable] - Whether specified concrete indexes should be ignored when unavailable (missing or closed).
  * @param {boolean} [params.lenient] - Specify whether format-based query failures (such as providing text to a numeric field) should be ignored.
  * @param {number} [params.max_concurrent_shard_requests=5] - The number of concurrent shard requests per node this search executes concurrently. This value should be used to limit the impact of the search on the cluster in order to limit the number of concurrent shard requests.
- * @param {number} [params.pre_filter_shard_size] - Threshold that enforces a pre-filter round-trip to prefilter search shards based on query rewriting if the number of shards the search request expands to exceeds the threshold. This filter round-trip can limit the number of shards significantly if for instance a shard can not match any documents based on its rewrite method ie. if date filters are mandatory to match but the shard bounds and the query are disjoint.
+ * @param {number} [params.pre_filter_shard_size] - Threshold that enforces a pre-filter round-trip to prefilter search shards based on query rewriting if the number of shards the search request expands to exceeds the threshold. This filter round-trip can limit the number of shards significantly if for instance a shard can not match any documents based on its rewrite method, that is if date filters are mandatory to match but the shard bounds and the query are disjoint.
  * @param {string} [params.preference=random] - Specify the node or shard the operation should be performed on.
  * @param {string} [params.q] - Query in the Lucene query string syntax.
  * @param {boolean} [params.request_cache] - Specify if request cache should be used for this request or not, defaults to index level setting.

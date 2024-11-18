@@ -25,12 +25,12 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Core
  *
  * @param {object} [params]
- * @param {boolean} [params.allow_no_indices] - If false, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting `foo*,bar*` returns an error if an index starts with foo but no index starts with bar.
+ * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting `foo*,bar*` returns an error if an index starts with foo but no index starts with bar.
  * @param {string} [params.expand_wildcards] - Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`.
  * @param {string} [params.fields] - Comma-separated list of fields to retrieve capabilities for. Wildcard (`*`) expressions are supported.
  * @param {boolean} [params.ignore_unavailable] - If `true`, missing or closed indexes are not included in the response.
- * @param {boolean} [params.include_unmapped=false] - If true, unmapped fields are included in the response.
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (*). To target all data streams and indexes, omit this parameter or use * or _all.
+ * @param {boolean} [params.include_unmapped=false] - If `true`, unmapped fields are included in the response.
+ * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (*). To target all data streams and indexes, omit this parameter or use * or `_all`.
  * @param {object} [params.body] - An index filter specified with the Query DSL
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
@@ -44,7 +44,7 @@ function fieldCapsFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/', index, '/_field_caps'].filter(c => c).join('').replace('//', '/');
+  const path = ['', index, '_field_caps'].filter(c => c != null).join('/');
   const method = body ? 'POST' : 'GET';
   body = body || '';
 

@@ -26,7 +26,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @param {object} params
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the master node.
+ * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node.
  * @param {string} [params.timeout] - Period to wait for a response.
  * @param {string} params.repository - Snapshot repository to clean up.
  *

@@ -27,7 +27,7 @@ const { normalizeArguments } = require('../utils');
  * @param {object} [params]
  * @param {array} [params.actions] - The task action names, which are used to limit the response.
  * @param {boolean} [params.detailed=false] - If `true`, the response includes detailed information about shard recoveries.
- * @param {string} [params.format] - A short version of the Accept header, e.g. json, yaml.
+ * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
  * @param {array} [params.h] - Comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {array} [params.nodes] - Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.

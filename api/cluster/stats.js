@@ -44,7 +44,16 @@ function statsFunc(params, options, callback) {
   metric = parsePathParam(metric);
   node_id = parsePathParam(node_id);
 
-  const path = ['/_cluster/stats/', metric, '/', index_metric, '/nodes/', node_id].filter(c => c).join('').replace('//', '/');
+  let path;
+  if (metric != null && index_metric != null && node_id != null) {
+    path = '/_cluster/stats/' + metric + '/' + index_metric + '/nodes/' + node_id;
+  } else if (metric != null && node_id != null) {
+    path = '/_cluster/stats/' + metric + '/nodes/' + node_id;
+  } else if (node_id != null) {
+    path = '/_cluster/stats/nodes/' + node_id;
+  } else {
+    path = '/_cluster/stats';
+  }
   const method = 'GET';
   body = body || '';
 

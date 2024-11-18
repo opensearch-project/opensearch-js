@@ -510,7 +510,7 @@ export type RecoveryStats = {
   throttle_time_in_millis: DurationValueUnitMillis;
 }
 
-export type Refresh = 'false' | 'true' | 'wait_for'
+export type Refresh = boolean | 'false' | 'true' | 'wait_for'
 
 export type RefreshStats = {
   external_total: number;

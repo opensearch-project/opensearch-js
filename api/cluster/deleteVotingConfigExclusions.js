@@ -25,7 +25,7 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Cluster
  *
  * @param {object} [params]
- * @param {boolean} [params.wait_for_removal=true] - Specifies whether to wait for all excluded nodes to be removed from the cluster before clearing the voting configuration exclusions list. Defaults to true, meaning that all excluded nodes must be removed from the cluster before this API takes any action. If set to false then the voting configuration exclusions list is cleared even if some excluded nodes are still in the cluster.
+ * @param {boolean} [params.wait_for_removal=true] - Specifies whether to wait for all excluded nodes to be removed from the cluster before clearing the voting configuration exclusions list. Defaults to true, meaning that all excluded nodes must be removed from the cluster before this API takes any action. If set to `false` then the voting configuration exclusions list is cleared even if some excluded nodes are still in the cluster.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

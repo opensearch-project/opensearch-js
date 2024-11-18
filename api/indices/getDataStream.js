@@ -38,7 +38,7 @@ function getDataStreamFunc(params, options, callback) {
   let { body, name, ...querystring } = params;
   name = parsePathParam(name);
 
-  const path = ['/_data_stream/', name].filter(c => c).join('').replace('//', '/');
+  const path = ['/_data_stream', name].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

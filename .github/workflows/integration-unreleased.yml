@@ -102,7 +102,7 @@ jobs:
 
       - name: Save server logs
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: opensearch-logs-${{ matrix.entry.opensearch_ref }}-js-${{ matrix.entry.node_version }}
           path: |

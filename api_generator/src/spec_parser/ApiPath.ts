@@ -62,13 +62,13 @@ export default class ApiPath {
       }).join(' + ')
   }
 
-  // turn ['one', a, b, 'two/three', c] into `['/one', a, b, 'two/three', c].filter(c => c).join('/')`
-  // turn [a, b, 'one', c] into `['', a, b, 'one', c].filter(c => c).join('/')`
+  // turn ['one', a, b, 'two/three', c] into `['/one', a, b, 'two/three', c].filter(c => c != null).join('/')`
+  // turn [a, b, 'one', c] into `['', a, b, 'one', c].filter(c => c != null).join('/')`
   #build_optional (): string {
     const components = _.clone(this.components)
     if (components[0].startsWith("'")) components[0] = `'/${components[0].slice(1)}`
     else components.unshift("''")
-    return `[${components.join(', ')}].filter(c => c).join('/')`
+    return `[${components.join(', ')}].filter(c => c != null).join('/')`
   }
 
   // turn '/one/{a}/{b}/two/three/{c}' into ['one', a, b, 'two/three', c]

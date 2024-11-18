@@ -34,7 +34,16 @@ function {{{function_name}}}(params, options, callback) {
   {{{.}}} = parsePathParam({{{.}}});
   {{/path_params}}
 
-  const path = {{{path}}};
+  {{#paths_are_uniform}}
+  const path = {{{uniform_path}}};
+  {{/paths_are_uniform}}
+  {{^paths_are_uniform}}
+  let path;
+  {{#diverged_paths}}
+ {{{guard}}}{{{condition}}} {
+    path = {{{path}}};
+  }{{/diverged_paths}}
+  {{/paths_are_uniform}}
   const method = {{{http_verb}}};
   {{^body_required}}
   body = body || '';

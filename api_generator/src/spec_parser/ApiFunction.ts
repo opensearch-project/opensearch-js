@@ -11,6 +11,7 @@
 import _ from 'lodash'
 import type { Parameter, RequestBody, ResponseBody, Operation } from './types'
 import { to_pascal_case } from '../helpers'
+import ApiPath from './ApiPath'
 
 export interface ApiFunctionTyping {
   request: string
@@ -25,7 +26,7 @@ export default class ApiFunction {
   readonly ns_prototype: string
   readonly name: string
   readonly full_name: string
-  readonly url: string
+  readonly paths: ApiPath[]
   readonly http_verbs: Set<string>
   readonly description: string
   readonly api_reference: string | undefined
@@ -44,7 +45,7 @@ export default class ApiFunction {
     this.name = operations[0].group
     this.full_name = operations[0].full_name
     this.ns_prototype = ns_prototype
-    this.url = _.maxBy(operations, (o) => o.url.split('/').length)?.url ?? ''
+    this.paths = ApiPath.from_operations(operations)
     this.path_params = this.#path_params(operations)
     this.query_params = this.#query_params(operations)
     this.http_verbs = new Set(operations.map((o) => o.http_verb.toUpperCase()))

@@ -100,8 +100,8 @@ export type IndexingPressureMemory = {
 
 export type IndexingSlowlog = {
   level?: string;
-  reformat?: boolean;
-  source?: number;
+  reformat?: Common.StringifiedBoolean;
+  source?: Common.StringifiedInteger;
   threshold?: IndexingSlowlogThresholds;
 }
 
@@ -119,10 +119,11 @@ export type IndexRoutingAllocation = {
   enable?: IndexRoutingAllocationOptions;
   include?: IndexRoutingAllocationInclude;
   initial_recovery?: IndexRoutingAllocationInitialRecovery;
+  total_shards_per_node?: Common.StringifiedInteger;
 }
 
 export type IndexRoutingAllocationDisk = {
-  threshold_enabled?: Common.Stringifiedboolean;
+  threshold_enabled?: Common.StringifiedBoolean;
 }
 
 export type IndexRoutingAllocationInclude = {
@@ -150,69 +151,70 @@ export type IndexSegmentSort = {
 }
 
 export type IndexSettingBlocks = {
-  metadata?: Common.Stringifiedboolean;
-  read?: Common.Stringifiedboolean;
-  read_only?: Common.Stringifiedboolean;
-  read_only_allow_delete?: Common.Stringifiedboolean;
-  write?: Common.Stringifiedboolean;
+  metadata?: Common.StringifiedBoolean;
+  read?: Common.StringifiedBoolean;
+  read_only?: Common.StringifiedBoolean;
+  read_only_allow_delete?: Common.StringifiedBoolean;
+  write?: Common.StringifiedBoolean;
 }
 
 export type IndexSettings = {
   analysis?: IndexSettingsAnalysis;
   analyze?: IndexSettingsAnalyze;
-  'analyze.max_token_count'?: Common.Stringifiedinteger;
+  'analyze.max_token_count'?: Common.StringifiedInteger;
   auto_expand_replicas?: string;
   blocks?: IndexSettingBlocks;
-  'blocks.metadata'?: Common.Stringifiedboolean;
-  'blocks.read'?: Common.Stringifiedboolean;
-  'blocks.read_only'?: Common.Stringifiedboolean;
-  'blocks.read_only_allow_delete'?: Common.Stringifiedboolean;
-  'blocks.write'?: Common.Stringifiedboolean;
+  'blocks.metadata'?: Common.StringifiedBoolean;
+  'blocks.read'?: Common.StringifiedBoolean;
+  'blocks.read_only'?: Common.StringifiedBoolean;
+  'blocks.read_only_allow_delete'?: Common.StringifiedBoolean;
+  'blocks.write'?: Common.StringifiedBoolean;
   check_on_startup?: IndexCheckOnStartup;
   codec?: string;
+  'composite_index.star_tree'?: IndexSettingsStarTree;
   creation_date?: Common.StringifiedEpochTimeUnitMillis;
   creation_date_string?: Common.DateTime;
   default_pipeline?: Common.PipelineName;
   final_pipeline?: Common.PipelineName;
   format?: string | number;
   gc_deletes?: Common.Duration;
-  hidden?: Common.Stringifiedboolean;
+  hidden?: Common.StringifiedBoolean;
   highlight?: IndexSettingsHighlight;
-  'highlight.max_analyzed_offset'?: number;
+  'highlight.max_analyzed_offset'?: Common.StringifiedInteger;
   index?: IndexSettings;
   indexing?: IndexSettingsIndexing;
   indexing_pressure?: IndexingPressure;
-  knn?: boolean;
-  'knn.algo_param.ef_search'?: number;
+  knn?: Common.StringifiedBoolean;
+  'knn.algo_param.ef_search'?: Common.StringifiedInteger;
   lifecycle?: IndexSettingsLifecycle;
   'lifecycle.name'?: Common.Name;
-  load_fixed_bitset_filters_eagerly?: boolean;
+  load_fixed_bitset_filters_eagerly?: Common.StringifiedBoolean;
   mapping?: IndexSettingsMapping;
-  max_docvalue_fields_search?: number;
-  max_inner_result_window?: number;
-  max_ngram_diff?: number;
-  max_refresh_listeners?: number;
-  max_regex_length?: number;
-  max_rescore_window?: number;
-  max_result_window?: number;
-  max_script_fields?: number;
-  max_shingle_diff?: number;
-  max_slices_per_scroll?: number;
-  max_terms_count?: number;
+  max_docvalue_fields_search?: Common.StringifiedInteger;
+  max_inner_result_window?: Common.StringifiedInteger;
+  max_ngram_diff?: Common.StringifiedInteger;
+  max_refresh_listeners?: Common.StringifiedInteger;
+  max_regex_length?: Common.StringifiedInteger;
+  max_rescore_window?: Common.StringifiedInteger;
+  max_result_window?: Common.StringifiedInteger;
+  max_script_fields?: Common.StringifiedInteger;
+  max_shingle_diff?: Common.StringifiedInteger;
+  max_slices_per_scroll?: Common.StringifiedInteger;
+  max_terms_count?: Common.StringifiedInteger;
   merge?: IndexSettingsMerge;
-  'merge.scheduler.max_thread_count'?: Common.Stringifiedinteger;
+  'merge.scheduler.max_thread_count'?: Common.StringifiedInteger;
   mode?: string;
-  number_of_replicas?: number | string;
-  number_of_routing_shards?: number;
-  number_of_shards?: number | string;
+  number_of_replicas?: Common.StringifiedInteger;
+  number_of_routing_shards?: Common.StringifiedInteger;
+  number_of_shards?: Common.StringifiedInteger;
   priority?: number | string;
   provided_name?: Common.Name;
   queries?: IndexSettingsQueries;
   query_string?: IndexSettingsQueryString;
-  'query_string.lenient'?: Common.Stringifiedboolean;
+  'query_string.lenient'?: Common.StringifiedBoolean;
   refresh_interval?: Common.Duration;
   routing?: IndexRouting;
-  routing_partition_size?: Common.Stringifiedinteger;
+  routing_partition_size?: Common.StringifiedInteger;
   routing_path?: string | string[];
   search?: IndexSettingsSearch;
   'search.idle.after'?: Common.Duration;
@@ -222,12 +224,12 @@ export type IndexSettings = {
   'soft_deletes.retention_lease.period'?: Common.Duration;
   sort?: IndexSegmentSort;
   store?: IndexSettingsStore;
-  top_metrics_max_size?: number;
+  top_metrics_max_size?: Common.StringifiedInteger;
   translog?: Translog;
   'translog.durability'?: TranslogDurability;
   'translog.flush_threshold_size'?: Common.HumanReadableByteCount;
   uuid?: Common.Uuid;
-  verified_before_close?: Common.Stringifiedboolean;
+  verified_before_close?: Common.StringifiedBoolean;
   version?: IndexVersioning;
   [key: string]: any | Record<string, any>;
 }
@@ -241,11 +243,11 @@ export type IndexSettingsAnalysis = {
 }
 
 export type IndexSettingsAnalyze = {
-  max_token_count?: Common.Stringifiedinteger;
+  max_token_count?: Common.StringifiedInteger;
 }
 
 export type IndexSettingsHighlight = {
-  max_analyzed_offset?: number;
+  max_analyzed_offset?: Common.StringifiedInteger;
 }
 
 export type IndexSettingsIndexing = {
@@ -253,7 +255,7 @@ export type IndexSettingsIndexing = {
 }
 
 export type IndexSettingsLifecycle = {
-  indexing_complete?: Common.Stringifiedboolean;
+  indexing_complete?: Common.StringifiedBoolean;
   name: Common.Name;
   origination_date?: Common.StringifiedEpochTimeUnitMillis;
   parse_origination_date?: boolean;
@@ -266,47 +268,81 @@ export type IndexSettingsLifecycleStep = {
 }
 
 export type IndexSettingsMapping = {
-  coerce?: boolean;
+  coerce?: Common.StringifiedBoolean;
   depth?: IndexSettingsMappingLimitDepth;
   dimension_fields?: IndexSettingsMappingLimitDimensionFields;
   field_name_length?: IndexSettingsMappingLimitFieldNameLength;
-  ignore_malformed?: boolean;
+  ignore_malformed?: Common.StringifiedBoolean;
   nested_fields?: IndexSettingsMappingLimitNestedFields;
   nested_objects?: IndexSettingsMappingLimitNestedObjects;
   total_fields?: IndexSettingsMappingLimitTotalFields;
 }
 
 export type IndexSettingsMappingLimitDepth = {
-  limit?: number;
+  limit?: Common.StringifiedLong;
 }
 
 export type IndexSettingsMappingLimitDimensionFields = {
-  limit?: number;
+  limit?: Common.StringifiedLong;
 }
 
 export type IndexSettingsMappingLimitFieldNameLength = {
-  limit?: number;
+  limit?: Common.StringifiedLong;
 }
 
 export type IndexSettingsMappingLimitNestedFields = {
-  limit?: number;
+  limit?: Common.StringifiedLong;
 }
 
 export type IndexSettingsMappingLimitNestedObjects = {
-  limit?: number;
+  limit?: Common.StringifiedLong;
 }
 
 export type IndexSettingsMappingLimitTotalFields = {
-  limit?: number;
+  limit?: Common.StringifiedLong;
 }
 
 export type IndexSettingsMerge = {
+  log_byte_size_policy?: IndexSettingsMergeLogByteSizePolicy;
+  policy?: IndexSettingsMergePolicy;
+  'policy.deletes_pct_allowed'?: Common.StringifiedDouble;
+  'policy.expunge_deletes_allowed'?: Common.StringifiedDouble;
+  'policy.floor_segment'?: Common.HumanReadableByteCount;
+  'policy.max_merge_at_once'?: Common.StringifiedInteger;
+  'policy.max_merged_segment'?: Common.HumanReadableByteCount;
+  'policy.reclaim_deletes_weight'?: Common.StringifiedDouble;
+  'policy.segments_per_tier'?: Common.StringifiedDouble;
   scheduler?: IndexSettingsMergeScheduler;
 }
 
+export type IndexSettingsMergeLogByteSizePolicy = {
+  max_merge_segment?: Common.HumanReadableByteCount;
+  max_merge_segment_forced_merge?: Common.HumanReadableByteCount;
+  max_merged_docs?: Common.StringifiedInteger;
+  merge_factor?: Common.StringifiedInteger;
+  min_merge?: Common.HumanReadableByteCount;
+  no_cfs_ratio?: Common.StringifiedDouble;
+}
+
+export type IndexSettingsMergePolicy = IndexSettingsMergePolicyName | IndexSettingsMergeTieredPolicy
+
+export type IndexSettingsMergePolicyName = 'default' | 'log_byte_size' | 'tiered'
+
 export type IndexSettingsMergeScheduler = {
-  max_merge_count?: Common.Stringifiedinteger;
-  max_thread_count?: Common.Stringifiedinteger;
+  auto_throttle?: Common.StringifiedBoolean;
+  max_merge_count?: Common.StringifiedInteger;
+  max_thread_count?: Common.StringifiedInteger;
+}
+
+export type IndexSettingsMergeTieredPolicy = {
+  deletes_pct_allowed?: Common.StringifiedDouble;
+  expunge_deletes_allowed?: Common.StringifiedDouble;
+  floor_segment?: Common.HumanReadableByteCount;
+  max_merge_at_once?: Common.StringifiedInteger;
+  max_merge_at_once_explicit?: Common.StringifiedInteger;
+  max_merged_segment?: Common.HumanReadableByteCount;
+  reclaim_deletes_weight?: Common.StringifiedDouble;
+  segments_per_tier?: Common.StringifiedDouble;
 }
 
 export type IndexSettingsQueries = {
@@ -314,16 +350,29 @@ export type IndexSettingsQueries = {
 }
 
 export type IndexSettingsQueriesCache = {
-  enabled: boolean;
+  enabled: Common.StringifiedBoolean;
 }
 
 export type IndexSettingsQueryString = {
-  lenient?: Common.Stringifiedboolean;
+  lenient?: Common.StringifiedBoolean;
 }
 
 export type IndexSettingsSearch = {
+  concurrent?: IndexSettingsSearchConcurrent;
+  concurrent_segment_search?: IndexSettingsSearchConcurrentSegmentSearch;
+  default_pipeline?: string;
   idle?: SearchIdle;
   slowlog?: SearchSlowlog;
+  throttled?: Common.StringifiedBoolean;
+}
+
+export type IndexSettingsSearchConcurrent = {
+  max_slice_count?: Common.StringifiedInteger;
+}
+
+export type IndexSettingsSearchConcurrentSegmentSearch = {
+  enabled?: Common.StringifiedBoolean;
+  mode?: string;
 }
 
 export type IndexSettingsSimilarity = {
@@ -377,9 +426,54 @@ export type IndexSettingsSimilarityScriptedTfidf = {
   type: 'scripted';
 }
 
+export type IndexSettingsStarTree = {
+  default?: IndexSettingsStarTreeDefault;
+  field?: IndexSettingsStarTreeField;
+  max_fields?: Common.StringifiedInteger;
+}
+
+export type IndexSettingsStarTreeDefault = {
+  max_leaf_docs?: Common.StringifiedInteger;
+}
+
+export type IndexSettingsStarTreeField = {
+  default?: IndexSettingsStarTreeFieldDefault;
+  max_base_metrics?: Common.StringifiedInteger;
+  max_date_intervals?: Common.StringifiedInteger;
+  max_dimensions?: Common.StringifiedInteger;
+}
+
+export type IndexSettingsStarTreeFieldDefault = {
+  date_intervals?: string[];
+  metrics?: string[];
+}
+
 export type IndexSettingsStore = {
-  allow_mmap?: boolean;
+  allow_mmap?: Common.StringifiedBoolean;
+  fs?: IndexSettingsStoreFs;
+  hybrid?: IndexSettingsStoreHybrid;
+  preload?: string[];
+  stats_refresh_interval?: Common.Duration;
   type: StorageType;
+}
+
+export type IndexSettingsStoreFs = {
+  fs_lock?: IndexSettingsStoreFsLock;
+}
+
+export type IndexSettingsStoreFsLock = 'native' | 'simple'
+
+export type IndexSettingsStoreHybrid = {
+  mmap?: IndexSettingsStoreHybridMmap;
+  nio?: IndexSettingsStoreHybridNio;
+}
+
+export type IndexSettingsStoreHybridMmap = {
+  extensions?: string[];
+}
+
+export type IndexSettingsStoreHybridNio = {
+  extensions?: string[];
 }
 
 export type IndexState = {
@@ -459,11 +553,16 @@ export type SlowlogThresholdLevels = {
 }
 
 export type SoftDeletes = {
-  enabled?: boolean;
+  enabled?: Common.StringifiedBoolean;
+  retention?: SoftDeletesRetention;
   retention_lease?: RetentionLease;
 }
 
-export type StorageType = 'fs' | 'hybridfs' | 'mmapfs' | 'niofs'
+export type SoftDeletesRetention = {
+  operations?: Common.StringifiedLong;
+}
+
+export type StorageType = 'fs' | 'hybridfs' | 'mmapfs' | 'niofs' | string
 
 export type TemplateMapping = {
   aliases: Record<string, Alias>;
@@ -477,6 +576,7 @@ export type TemplateMapping = {
 export type Translog = {
   durability?: TranslogDurability;
   flush_threshold_size?: Common.HumanReadableByteCount;
+  generation_threshold_size?: Common.HumanReadableByteCount;
   retention?: TranslogRetention;
   sync_interval?: Common.Duration;
 }

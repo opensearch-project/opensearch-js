@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.cluster_name - The cluster-name to update nodesDn value.
+ * @param {string} params.cluster_name - The cluster name to update `nodesDn` value.
  * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

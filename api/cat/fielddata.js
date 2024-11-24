@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Shows how much heap memory is currently being used by fielddata on every data node in the cluster.
+ * Shows how much heap memory is currently being used by field data on every data node in the cluster.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-field-data/ - cat.fielddata}
  *
  * @memberOf API-Cat

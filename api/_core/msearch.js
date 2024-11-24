@@ -29,7 +29,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {number} [params.max_concurrent_searches] - Maximum number of concurrent searches the multi search API can execute.
  * @param {number} [params.max_concurrent_shard_requests=5] - Maximum number of concurrent shard requests that each sub-search request executes per node.
  * @param {number} [params.pre_filter_shard_size] - Defines a threshold that enforces a pre-filter roundtrip to prefilter search shards based on query rewriting if the number of shards the search request expands to exceeds the threshold. This filter roundtrip can limit the number of shards significantly if for instance a shard can not match any documents based on its rewrite method i.e., if date filters are mandatory to match but the shard bounds and the query are disjoint.
- * @param {boolean} [params.rest_total_hits_as_int=false] - If `true`, hits.total are returned as an integer in the response. Defaults to false, which returns an object.
+ * @param {boolean} [params.rest_total_hits_as_int=false] - If `true`, `hits.total` are returned as an integer in the response. Defaults to false, which returns an object.
  * @param {string} [params.search_type] - Indicates whether global term and document frequencies should be used when scoring returned documents.
  * @param {boolean} [params.typed_keys] - Specifies whether aggregation and suggester names should be prefixed by their respective types in the response.
  * @param {string} [params.index] - Comma-separated list of data streams, indexes, and index aliases to search.

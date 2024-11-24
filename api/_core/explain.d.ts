@@ -50,6 +50,7 @@ export type Explain_Response = ApiResponse & {
 export type Explain_ResponseBody = {
   _id: Common.Id;
   _index: Common.IndexName;
+  _type?: Common.Type;
   explanation?: Core_Explain.ExplanationDetail;
   get?: Common.InlineGet;
   matched: boolean;

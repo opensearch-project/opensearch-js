@@ -31,9 +31,9 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.flat_settings=false] - Return settings in flat format.
  * @param {boolean} [params.ignore_unavailable] - Whether specified concrete indexes should be ignored when unavailable (missing or closed)
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Specify timeout for connection to master
- * @param {number} [params.wait_for_metadata_version] - Wait for the metadata version to be equal or greater than the specified metadata version
- * @param {string} [params.wait_for_timeout] - The maximum time to wait for wait_for_metadata_version before timing out
+ * @param {string} [params.master_timeout] DEPRECATED - Specify timeout for connection to cluster manager.
+ * @param {number} [params.wait_for_metadata_version] - Wait for the metadata version to be equal or greater than the specified metadata version.
+ * @param {string} [params.wait_for_timeout] - The maximum time to wait for `wait_for_metadata_version` before timing out.
  * @param {array} [params.metric] - Limit the information returned to the specified metrics
  * @param {string} [params.index] - A comma-separated list of index names; use `_all` or empty string to perform the operation on all indexes
  *

@@ -27,7 +27,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {object} [params]
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.node_id] - The names of particular nodes in the cluster to target.
- * @param {object} [params.body] - An object containing the password for the opensearch keystore
+ * @param {object} [params.body] - An object containing the password for the OpenSearch keystore.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

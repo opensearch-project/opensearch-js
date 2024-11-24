@@ -33,7 +33,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
  * @param {boolean} [params.profile] - If `true`, the query execution is profiled.
- * @param {boolean} [params.rest_total_hits_as_int=false] - If `true`, hits.total are rendered as an integer in the response.
+ * @param {boolean} [params.rest_total_hits_as_int=false] - If `true`, `hits.total` are rendered as an integer in the response.
  * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
  * @param {string} [params.scroll] - Specifies how long a consistent view of the index should be maintained for scrolled search.
  * @param {string} [params.search_type] - The type of the search operation.

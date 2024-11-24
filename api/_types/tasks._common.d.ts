@@ -34,11 +34,13 @@ export type TaskExecutingNode = Common.BaseNode & {
   tasks: Record<string, TaskInfo>;
 }
 
-export type TaskGroup = TaskInfo & {
+export type TaskGroup = TaskInfoBase & {
   children?: TaskGroup[];
 }
 
-export type TaskInfo = {
+export type TaskInfo = TaskInfoBase & Record<string, any>
+
+export type TaskInfoBase = {
   action: string;
   cancellable: boolean;
   cancelled?: boolean;

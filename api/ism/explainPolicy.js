@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Gets the currently applied policy on indices.
+ * Gets the currently applied policy on indexes.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index - ism.explain_policy}
  *
  * @memberOf API-Ism

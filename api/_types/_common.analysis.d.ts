@@ -19,7 +19,7 @@ import * as Common from './_common'
 export type Analyzer = CustomAnalyzer | FingerprintAnalyzer | KeywordAnalyzer | LanguageAnalyzer | NoriAnalyzer | PatternAnalyzer | SimpleAnalyzer | StandardAnalyzer | StopAnalyzer | WhitespaceAnalyzer | IcuAnalyzer | KuromojiAnalyzer | SnowballAnalyzer | DutchAnalyzer | SmartcnAnalyzer | CjkAnalyzer | PhoneAnalyzer
 
 export type AsciiFoldingTokenFilter = TokenFilterBase & {
-  preserve_original?: Common.Stringifiedboolean;
+  preserve_original?: Common.StringifiedBoolean;
   type: 'asciifolding';
 }
 
@@ -104,7 +104,7 @@ export type EdgeNGramSide = 'back' | 'front'
 export type EdgeNGramTokenFilter = TokenFilterBase & {
   max_gram?: number;
   min_gram?: number;
-  preserve_original?: Common.Stringifiedboolean;
+  preserve_original?: Common.StringifiedBoolean;
   side?: EdgeNGramSide;
   type: 'edge_ngram';
 }
@@ -119,7 +119,7 @@ export type EdgeNGramTokenizer = TokenizerBase & {
 
 export type ElisionTokenFilter = TokenFilterBase & {
   articles?: string[];
-  articles_case?: Common.Stringifiedboolean;
+  articles_case?: Common.StringifiedBoolean;
   articles_path?: string;
   type: 'elision';
 }
@@ -319,7 +319,7 @@ export type LetterTokenizer = TokenizerBase & {
 
 export type LimitTokenCountTokenFilter = TokenFilterBase & {
   consume_all_tokens?: boolean;
-  max_token_count?: Common.Stringifiedinteger;
+  max_token_count?: Common.StringifiedInteger;
   type: 'limit';
 }
 
@@ -344,14 +344,14 @@ export type MappingCharFilter = CharFilterBase & {
 
 export type MultiplexerTokenFilter = TokenFilterBase & {
   filters: string[];
-  preserve_original?: Common.Stringifiedboolean;
+  preserve_original?: Common.StringifiedBoolean;
   type: 'multiplexer';
 }
 
 export type NGramTokenFilter = TokenFilterBase & {
   max_gram?: number;
   min_gram?: number;
-  preserve_original?: Common.Stringifiedboolean;
+  preserve_original?: Common.StringifiedBoolean;
   type: 'ngram';
 }
 
@@ -389,11 +389,11 @@ export type NoriTokenizer = TokenizerBase & {
 export type Normalizer = LowercaseNormalizer | CustomNormalizer
 
 export type PathHierarchyTokenizer = TokenizerBase & {
-  buffer_size: Common.Stringifiedinteger;
+  buffer_size: Common.StringifiedInteger;
   delimiter: string;
   replacement?: string;
-  reverse: Common.Stringifiedboolean;
-  skip: Common.Stringifiedinteger;
+  reverse: Common.StringifiedBoolean;
+  skip: Common.StringifiedInteger;
   type: 'path_hierarchy';
 }
 
@@ -408,7 +408,7 @@ export type PatternAnalyzer = {
 
 export type PatternCaptureTokenFilter = TokenFilterBase & {
   patterns: string[];
-  preserve_original?: Common.Stringifiedboolean;
+  preserve_original?: Common.StringifiedBoolean;
   type: 'pattern_capture';
 }
 
@@ -641,7 +641,7 @@ export type WordDelimiterGraphTokenFilter = TokenFilterBase & {
   generate_number_parts?: boolean;
   generate_word_parts?: boolean;
   ignore_keywords?: boolean;
-  preserve_original?: Common.Stringifiedboolean;
+  preserve_original?: Common.StringifiedBoolean;
   protected_words?: string[];
   protected_words_path?: string;
   split_on_case_change?: boolean;
@@ -658,7 +658,7 @@ export type WordDelimiterTokenFilter = TokenFilterBase & {
   catenate_words?: boolean;
   generate_number_parts?: boolean;
   generate_word_parts?: boolean;
-  preserve_original?: Common.Stringifiedboolean;
+  preserve_original?: Common.StringifiedBoolean;
   protected_words?: string[];
   protected_words_path?: string;
   split_on_case_change?: boolean;

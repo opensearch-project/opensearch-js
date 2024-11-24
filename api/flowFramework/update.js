@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.provision=false] - Provision the workflow as part of the request.
  * @param {boolean} [params.reprovision=false] 
  * @param {boolean} [params.update_fields=false] - Update only the fields included in the request body.
- * @param {string} [params.use_case] - To use a workflow template, specify it in the use_case query parameter when creating a workflow.
+ * @param {string} [params.use_case] - To use a workflow template, specify it in the `use_case` query parameter when creating a workflow.
  * @param {string} [params.validation=all] - Validate the workflow. Valid values are all (validate the template) and none (do not validate the template). Default is all.
  * @param {string} params.workflow_id 
  * @param {object} [params.body] 

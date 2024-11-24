@@ -30,7 +30,6 @@ export type Snapshot_Restore_Request = Global.Params & {
 }
 
 export type Snapshot_Restore_RequestBody = {
-  feature_states?: string[];
   ignore_index_settings?: string[];
   ignore_unavailable?: boolean;
   include_aliases?: boolean;
@@ -38,8 +37,12 @@ export type Snapshot_Restore_RequestBody = {
   index_settings?: Indices_Common.IndexSettings;
   indices?: Common.Indices;
   partial?: boolean;
+  rename_alias_pattern?: string;
+  rename_alias_replacement?: string;
   rename_pattern?: string;
   rename_replacement?: string;
+  source_remote_store_repository?: string;
+  storage_type?: string;
 }
 
 export type Snapshot_Restore_Response = ApiResponse & {

@@ -25,9 +25,9 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Indices
  *
  * @param {object} params
- * @param {boolean} [params.allow_no_indices=false] - If `false`, the request returns an error if any wildcard expression, index alias, or _all value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting foo*,bar* returns an error if an index starts with foo but no index starts with bar.
+ * @param {boolean} [params.allow_no_indices=false] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting foo*,bar* returns an error if an index starts with foo but no index starts with bar.
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.expand_wildcards] - Type of index that wildcard expressions can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as open,hidden.
+ * @param {string} [params.expand_wildcards] - Type of index that wildcard expressions can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`.
  * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
  * @param {boolean} [params.ignore_unavailable=false] - If `false`, requests that target a missing index return an error.
  * @param {boolean} [params.include_defaults=false] - If `true`, return all default settings in the response.

@@ -25,7 +25,7 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Security
  *
  * @param {object} [params]
- * @param {boolean | string} [params.show_dn] - A boolean flag to indicate whether all domain names should be returned.
+ * @param {boolean | string} [params.show_dn] - A Boolean flag to indicate whether all domain names should be returned.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

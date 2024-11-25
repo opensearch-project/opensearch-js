@@ -804,13 +804,17 @@ export type StoreStats = {
   size_in_bytes: ByteCount;
 }
 
-export type Stringifiedboolean = boolean | string
+export type StringifiedBoolean = boolean | string
+
+export type StringifiedDouble = number | string
 
 export type StringifiedEpochTimeUnitMillis = EpochTimeUnitMillis | string
 
 export type StringifiedEpochTimeUnitSeconds = EpochTimeUnitSeconds | string
 
-export type Stringifiedinteger = number | string
+export type StringifiedInteger = number | string
+
+export type StringifiedLong = number | string
 
 export type StringifiedVersionNumber = VersionNumber | string
 

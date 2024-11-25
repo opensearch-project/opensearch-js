@@ -27,7 +27,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {object} [params]
  * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {array} [params.metric] - Limits the information returned to the specific metrics. Supports a comma-separated list, such as http,ingest.
+ * @param {array} [params.metric] - Limits the information returned to the specific metrics. Supports a comma-separated list, such as `http,ingest`.
  * @param {string} [params.node_id] - Comma-separated list of node IDs or names used to limit returned information.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

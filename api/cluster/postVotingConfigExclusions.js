@@ -25,8 +25,8 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Cluster
  *
  * @param {object} [params]
- * @param {string} [params.node_ids] - A comma-separated list of the persistent ids of the nodes to exclude from the voting configuration. If specified, you may not also specify node_names.
- * @param {string} [params.node_names] - A comma-separated list of the names of the nodes to exclude from the voting configuration. If specified, you may not also specify node_ids.
+ * @param {string} [params.node_ids] - A comma-separated list of the persistent ids of the nodes to exclude from the voting configuration. If specified, you may not also specify `node_names`.
+ * @param {string} [params.node_names] - A comma-separated list of the names of the nodes to exclude from the voting configuration. If specified, you may not also specify `node_ids`.
  * @param {string} [params.timeout] - When adding a voting configuration exclusion, the API waits for the specified nodes to be excluded from the voting configuration before returning. If the timeout expires before the appropriate condition is satisfied, the request fails and returns an error.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Generates authorization token for the given user. Legacy API.  Not Implemented.
+ * Generates authorization token for the given user. Legacy API. Not Implemented.
  * <br/> See Also: {@link undefined - security.generate_user_token_legacy}
  *
  * @memberOf API-Security

@@ -25,11 +25,11 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Dangling-Indices
  *
  * @param {object} params
- * @param {boolean} params.accept_data_loss - Must be set to true in order to delete the dangling index
+ * @param {boolean} params.accept_data_loss - Must be set to true in order to delete the dangling index.
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Specify timeout for connection to master
- * @param {string} [params.timeout] - Explicit operation timeout
- * @param {string} params.index_uuid - The UUID of the dangling index
+ * @param {string} [params.master_timeout] DEPRECATED - Specify timeout for connection to cluster manager.
+ * @param {string} [params.timeout] - Explicit operation timeout.
+ * @param {string} params.index_uuid - The UUID of the dangling index.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
  * @param {string} [params.timeout] - Period to wait for each node to respond. If a node does not respond before its timeout expires, the response does not include its stats. However, timed out nodes are included in the response's `_nodes.failed` property. Defaults to no timeout.
  * @param {array} [params.index_metric] - Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric is specified.
- * @param {array} [params.metric] - Limit the information returned to the specified metrics
+ * @param {array} [params.metric] - Limit the information returned to the specified metrics.
  * @param {string} [params.node_id] - Comma-separated list of node filters used to limit returned information. Defaults to all nodes in the cluster.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

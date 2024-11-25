@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Nodes
  *
  * @param {object} [params]
- * @param {string} [params.completion_fields] - Comma-separated list or wildcard expressions of fields to include in fielddata and suggest statistics.
- * @param {string} [params.fielddata_fields] - Comma-separated list or wildcard expressions of fields to include in fielddata statistics.
+ * @param {string} [params.completion_fields] - Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
+ * @param {string} [params.fielddata_fields] - Comma-separated list or wildcard expressions of fields to include in field data statistics.
  * @param {string} [params.fields] - Comma-separated list or wildcard expressions of fields to include in the statistics.
  * @param {array} [params.groups] - Comma-separated list of search groups to include in the search statistics.
  * @param {boolean} [params.include_segment_file_sizes=false] - If `true`, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested).

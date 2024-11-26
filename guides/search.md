@@ -39,7 +39,7 @@ await client.index({
   }
 });
 
-await client.index({index: 'movies', refresh: true});
+await client.index({index: 'movies', refresh: true, body: {} });
 ```
 # Search API
 ### Basic Search

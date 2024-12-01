@@ -24,7 +24,9 @@ const { normalizeArguments } = require('../utils');
  *
  * @memberOf API-Ingest
  *
- * @param {object} [params] - (Unused)
+ * @param {object} [params]
+ * @param {boolean} [params.s=false] - Sort returned patterns by key name.
+ *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *

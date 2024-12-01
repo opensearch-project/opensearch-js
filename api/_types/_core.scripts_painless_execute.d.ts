@@ -20,6 +20,6 @@ import * as Common_QueryDsl from './_common.query_dsl'
 export type PainlessContextSetup = {
   document: Record<string, any>;
   index: Common.IndexName;
-  query: Common_QueryDsl.QueryContainer;
+  query?: Common_QueryDsl.QueryContainer;
 }
 

@@ -49,6 +49,7 @@ export type TaskInfoBase = {
   id: number;
   node: Common.NodeId;
   parent_task_id?: Common.TaskId;
+  resource_stats?: Common.ResourceStats;
   running_time?: Common.Duration;
   running_time_in_nanos: Common.DurationValueUnitNanos;
   start_time_in_millis: Common.EpochTimeUnitMillis;

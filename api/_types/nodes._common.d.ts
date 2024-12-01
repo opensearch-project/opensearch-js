@@ -322,12 +322,15 @@ export type NodeBufferPool = {
   used_in_bytes?: Common.ByteCount;
 }
 
-export type NodeReloadError = {
-  name: Common.Name;
+export type NodeReloadError = NodeReloadResponse & {
   reload_exception?: Common.ErrorCause;
 }
 
-export type NodeReloadResult = Stats | NodeReloadError
+export type NodeReloadResponse = {
+  name: Common.Name;
+}
+
+export type NodeReloadResult = NodeReloadResponse | NodeReloadError
 
 export type NodesResponseBase = {
   _nodes?: Common.NodeStatistics;

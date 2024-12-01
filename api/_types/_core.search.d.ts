@@ -203,7 +203,7 @@ export type Hit = {
   _source?: Record<string, any>;
   _type?: Common.Type;
   _version?: Common.VersionNumber;
-  fields?: Record<string, Record<string, any>>;
+  fields?: Record<string, any>;
   highlight?: Record<string, string[]>;
   ignored_field_values?: Record<string, string[]>;
   inner_hits?: Record<string, InnerHitsResult>;

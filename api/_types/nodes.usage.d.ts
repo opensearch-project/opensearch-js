@@ -17,11 +17,11 @@
 import * as Common from './_common'
 import * as Nodes_Common from './nodes._common'
 
-export type Metric = '_all' | 'rest_actions'
+export type Metric = '_all' | 'aggregations' | 'rest_actions'
 
 export type NodeUsage = {
-  aggregations: Record<string, Record<string, any>>;
-  rest_actions: Record<string, number>;
+  aggregations?: Record<string, Record<string, any>>;
+  rest_actions?: Record<string, number>;
   since: Common.EpochTimeUnitMillis;
   timestamp: Common.EpochTimeUnitMillis;
 }

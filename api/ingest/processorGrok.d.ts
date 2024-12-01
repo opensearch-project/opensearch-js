@@ -17,7 +17,9 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export type Ingest_ProcessorGrok_Request = Global.Params & Record<string, any>
+export type Ingest_ProcessorGrok_Request = Global.Params & {
+  s?: boolean;
+}
 
 export type Ingest_ProcessorGrok_Response = ApiResponse & {
   body: Ingest_ProcessorGrok_ResponseBody;

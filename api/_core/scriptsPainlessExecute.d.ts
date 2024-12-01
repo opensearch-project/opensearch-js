@@ -34,6 +34,6 @@ export type ScriptsPainlessExecute_Response = ApiResponse & {
 }
 
 export type ScriptsPainlessExecute_ResponseBody = {
-  result: Record<string, any>;
+  result: number | string | boolean;
 }
 

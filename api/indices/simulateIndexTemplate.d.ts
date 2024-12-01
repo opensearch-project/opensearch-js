@@ -22,9 +22,7 @@ import * as Indices_PutIndexTemplate from '../_types/indices.put_index_template'
 
 export type Indices_SimulateIndexTemplate_Request = Global.Params & {
   body?: Indices_SimulateIndexTemplate_RequestBody;
-  cause?: string;
   cluster_manager_timeout?: Common.Duration;
-  create?: boolean;
   master_timeout?: Common.Duration;
   name: Common.Name;
 }

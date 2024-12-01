@@ -27,7 +27,7 @@ export type DocumentSimulation = {
   _index: Common.IndexName;
   _ingest: Ingest;
   _routing?: string;
-  _source: Record<string, Record<string, any>>;
+  _source: Record<string, any>;
   _version?: Common.StringifiedVersionNumber;
   _version_type?: Common.VersionType;
 }

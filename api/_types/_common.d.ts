@@ -608,6 +608,19 @@ export type RequestStats = {
   total?: number;
 }
 
+export type ResourceStat = {
+  cpu_time_in_nanos: DurationValueUnitNanos;
+  memory_in_bytes: ByteCount;
+}
+
+export type ResourceStats = {
+  average: ResourceStat;
+  max: ResourceStat;
+  min: ResourceStat;
+  thread_info: ThreadInfo;
+  total: ResourceStat;
+}
+
 export type ResourceType = 'index_or_alias'
 
 export type Result = 'created' | 'deleted' | 'noop' | 'not_found' | 'updated'
@@ -830,6 +843,11 @@ export type TaskFailure = {
 export type TaskId = string | number
 
 export type TermFrequencyNormalization = 'h1' | 'h2' | 'h3' | 'no' | 'z'
+
+export type ThreadInfo = {
+  active_threads: number;
+  thread_executions: number;
+}
 
 export type TimeOfDay = string
 

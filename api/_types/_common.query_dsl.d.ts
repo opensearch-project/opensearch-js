@@ -48,14 +48,14 @@ export type CombinedFieldsQuery = QueryBase & {
 
 export type CombinedFieldsZeroTerms = 'all' | 'none'
 
-export type CommonTermsQuery = QueryBase & {
+export type CommonTermsQuery = string | (QueryBase & {
   analyzer?: string;
   cutoff_frequency?: number;
   high_freq_operator?: Operator;
   low_freq_operator?: Operator;
   minimum_should_match?: Common.MinimumShouldMatch;
   query: string;
-}
+})
 
 export type ConstantScoreQuery = QueryBase & {
   filter: QueryContainer;
@@ -105,7 +105,7 @@ export type ExistsQuery = QueryBase & {
   field: Common.Field;
 }
 
-export type FieldAndFormat = {
+export type FieldAndFormat = Common.Field | {
   field: Common.Field;
   format?: string;
   include_unmapped?: boolean;
@@ -144,14 +144,14 @@ export type FunctionScoreQuery = QueryBase & {
   score_mode?: FunctionScoreMode;
 }
 
-export type FuzzyQuery = QueryBase & {
+export type FuzzyQuery = Common.FieldValue | (QueryBase & {
   fuzziness?: Common.Fuzziness;
   max_expansions?: number;
   prefix_length?: number;
   rewrite?: Common.MultiTermQueryRewrite;
   transpositions?: boolean;
-  value: string | number | boolean;
-}
+  value: Common.FieldValue;
+})
 
 export type GeoBoundingBoxQuery = QueryBase & {
   ignore_unmapped?: IgnoreUnmapped;
@@ -212,6 +212,10 @@ export type HasParentQuery = QueryBase & {
   parent_type: Common.RelationName;
   query: QueryContainer;
   score?: boolean;
+}
+
+export type HybridQuery = QueryBase & {
+  queries?: QueryContainer[];
 }
 
 export type IdsQuery = QueryBase & {
@@ -292,13 +296,22 @@ export type IntervalsWildcard = {
   use_field?: Common.Field;
 }
 
-export type KnnQuery = Record<string, Common.KnnField>
+export type KnnQuery = QueryBase & {
+  filter?: QueryContainer | QueryContainer[];
+  k?: number;
+  max_distance?: number;
+  method_parameters?: Record<string, number>;
+  min_score?: number;
+  rescore?: Record<string, number>;
+  vector: QueryVector;
+}
 
 export type Like = string | LikeDocument
 
 export type LikeDocument = {
   _id?: Common.Id;
   _index?: Common.IndexName;
+  _type?: Common.Type;
   doc?: Record<string, any>;
   fields?: Common.Field[];
   per_field_analyzer?: Record<string, string>;
@@ -307,9 +320,9 @@ export type LikeDocument = {
   version_type?: Common.VersionType;
 }
 
-export type MatchAllQuery = QueryBase
+export type MatchAllQuery = QueryBase & Record<string, any>
 
-export type MatchBoolPrefixQuery = QueryBase & {
+export type MatchBoolPrefixQuery = string | (QueryBase & {
   analyzer?: string;
   fuzziness?: Common.Fuzziness;
   fuzzy_rewrite?: Common.MultiTermQueryRewrite;
@@ -319,26 +332,26 @@ export type MatchBoolPrefixQuery = QueryBase & {
   operator?: Operator;
   prefix_length?: number;
   query: string;
-}
+})
 
 export type MatchNoneQuery = QueryBase & Record<string, any>
 
-export type MatchPhrasePrefixQuery = QueryBase & {
+export type MatchPhrasePrefixQuery = string | (QueryBase & {
   analyzer?: string;
   max_expansions?: number;
   query: string;
   slop?: number;
   zero_terms_query?: ZeroTermsQuery;
-}
+})
 
-export type MatchPhraseQuery = QueryBase & {
+export type MatchPhraseQuery = string | (QueryBase & {
   analyzer?: string;
   query: string;
   slop?: number;
   zero_terms_query?: ZeroTermsQuery;
-}
+})
 
-export type MatchQuery = QueryBase & {
+export type MatchQuery = Common.FieldValue | (QueryBase & {
   analyzer?: string;
   auto_generate_synonyms_phrase_query?: boolean;
   cutoff_frequency?: number;
@@ -350,9 +363,9 @@ export type MatchQuery = QueryBase & {
   minimum_should_match?: Common.MinimumShouldMatch;
   operator?: Operator;
   prefix_length?: number;
-  query: string | number | boolean;
+  query: Common.FieldValue;
   zero_terms_query?: ZeroTermsQuery;
-}
+})
 
 export type MoreLikeThisQuery = QueryBase & {
   analyzer?: string;
@@ -406,9 +419,7 @@ export type NestedQuery = QueryBase & {
   score_mode?: ChildScoreMode;
 }
 
-export type NeuralQuery = QueryBase & Record<string, NeuralQueryVectorField>
-
-export type NeuralQueryVectorField = {
+export type NeuralQuery = QueryBase & {
   filter?: QueryContainer;
   k?: number;
   max_distance?: number;
@@ -429,7 +440,7 @@ export type NumberRangeQuery = RangeQueryBase & {
 
 export type NumericDecayFunction = DecayFunctionBase & Record<string, any>
 
-export type Operator = 'and' | 'or'
+export type Operator = 'and' | 'AND' | 'or' | 'OR'
 
 export type ParentIdQuery = QueryBase & {
   id?: Common.Id;
@@ -439,7 +450,7 @@ export type ParentIdQuery = QueryBase & {
 
 export type PercolateQuery = QueryBase & {
   document?: Record<string, any>;
-  documents?: Record<string, any>[];
+  documents?: any[];
   field: Common.Field;
   id?: Common.Id;
   index?: Common.IndexName;
@@ -456,11 +467,11 @@ export type PinnedDoc = {
 
 export type PinnedQuery = QueryBase & Record<string, any>
 
-export type PrefixQuery = QueryBase & {
+export type PrefixQuery = string | (QueryBase & {
   case_insensitive?: boolean;
   rewrite?: Common.MultiTermQueryRewrite;
   value: string;
-}
+})
 
 export type QueryBase = {
   _name?: string;
@@ -485,10 +496,11 @@ export type QueryContainer = {
   geo_shape?: GeoShapeQuery;
   has_child?: HasChildQuery;
   has_parent?: HasParentQuery;
+  hybrid?: HybridQuery;
   ids?: IdsQuery;
   intervals?: Record<string, IntervalsQuery>;
-  knn?: KnnQuery;
-  match?: Record<string, MatchQuery | any>;
+  knn?: Record<string, KnnQuery>;
+  match?: Record<string, MatchQuery>;
   match_all?: MatchAllQuery;
   match_bool_prefix?: Record<string, MatchBoolPrefixQuery>;
   match_none?: MatchNoneQuery;
@@ -497,7 +509,7 @@ export type QueryContainer = {
   more_like_this?: MoreLikeThisQuery;
   multi_match?: MultiMatchQuery;
   nested?: NestedQuery;
-  neural?: NeuralQuery;
+  neural?: Record<string, NeuralQuery>;
   parent_id?: ParentIdQuery;
   percolate?: PercolateQuery;
   pinned?: PinnedQuery;
@@ -506,7 +518,6 @@ export type QueryContainer = {
   range?: Record<string, RangeQuery>;
   rank_feature?: RankFeatureQuery;
   regexp?: Record<string, RegexpQuery>;
-  rule_query?: RuleQuery;
   script?: ScriptQuery;
   script_score?: ScriptScoreQuery;
   simple_query_string?: SimpleQueryStringQuery;
@@ -518,12 +529,10 @@ export type QueryContainer = {
   span_or?: SpanOrQuery;
   span_term?: Record<string, SpanTermQuery>;
   span_within?: SpanWithinQuery;
-  term?: Record<string, TermQuery | Common.FieldValue>;
-  terms?: TermsQueryField;
+  term?: Record<string, TermQuery>;
+  terms?: TermsQuery;
   terms_set?: Record<string, TermsSetQuery>;
-  text_expansion?: Record<string, TextExpansionQuery>;
   type?: TypeQuery;
-  weighted_tokens?: Record<string, WeightedTokensQuery>;
   wildcard?: Record<string, WildcardQuery>;
   wrapper?: WrapperQuery;
   xy_shape?: XyShapeQuery;
@@ -556,6 +565,8 @@ export type QueryStringQuery = QueryBase & {
   time_zone?: Common.TimeZone;
   type?: TextQueryType;
 }
+
+export type QueryVector = number[]
 
 export type RandomScoreFunction = {
   field?: Common.Field;
@@ -595,19 +606,13 @@ export type RankFeatureQuery = QueryBase & {
   sigmoid?: RankFeatureFunctionSigmoid;
 }
 
-export type RegexpQuery = QueryBase & {
+export type RegexpQuery = string | (QueryBase & {
   case_insensitive?: boolean;
   flags?: string;
   max_determinized_states?: number;
   rewrite?: Common.MultiTermQueryRewrite;
   value: string;
-}
-
-export type RuleQuery = QueryBase & {
-  match_criteria: Record<string, any>;
-  organic: QueryContainer;
-  ruleset_id: Common.Id;
-}
+})
 
 export type ScriptQuery = QueryBase & {
   script: Common.Script;
@@ -625,7 +630,7 @@ export type ScriptScoreQuery = QueryBase & {
 
 export type SimpleQueryStringFlag = 'ALL' | 'AND' | 'ESCAPE' | 'FUZZY' | 'NEAR' | 'NONE' | 'NOT' | 'OR' | 'PHRASE' | 'PRECEDENCE' | 'PREFIX' | 'SLOP' | 'WHITESPACE'
 
-export type SimpleQueryStringFlags = Common.PipeSeparatedFlagsSimpleQueryStringFlag
+export type SimpleQueryStringFlags = SimpleQueryStringFlag | string
 
 export type SimpleQueryStringQuery = QueryBase & {
   analyze_wildcard?: boolean;
@@ -695,31 +700,34 @@ export type SpanQuery = {
   span_within?: SpanWithinQuery;
 }
 
-export type SpanTermQuery = QueryBase & {
+export type SpanTermQuery = string | (QueryBase & {
   value: string;
-}
+})
 
 export type SpanWithinQuery = QueryBase & {
   big: SpanQuery;
   little: SpanQuery;
 }
 
-export type TermQuery = QueryBase & {
+export type TermQuery = Common.FieldValue | (QueryBase & {
   case_insensitive?: boolean;
   value: Common.FieldValue;
-}
+})
 
-export type TermsLookupField = {
+export type TermsLookup = {
   id?: Common.Id;
   index?: Common.IndexName;
   path?: Common.Field;
   routing?: Common.Routing;
 }
 
-export type TermsQueryField = {
-  boost?: number;
-  [key: string]: any | TermsLookupField | string[];
+export type TermsQuery = QueryBase & {
+  _name?: any;
+  boost?: any;
+  [key: string]: any | TermsQueryField;
 }
+
+export type TermsQueryField = Common.FieldValue[] | TermsLookup
 
 export type TermsSetQuery = QueryBase & {
   minimum_should_match_field?: Common.Field;
@@ -727,35 +735,18 @@ export type TermsSetQuery = QueryBase & {
   terms: string[];
 }
 
-export type TextExpansionQuery = QueryBase & {
-  model_id: string;
-  model_text: string;
-  pruning_config?: TokenPruningConfig;
-}
-
 export type TextQueryType = 'best_fields' | 'bool_prefix' | 'cross_fields' | 'most_fields' | 'phrase' | 'phrase_prefix'
-
-export type TokenPruningConfig = {
-  only_score_pruned_tokens?: boolean;
-  tokens_freq_ratio_threshold?: number;
-  tokens_weight_threshold?: number;
-}
 
 export type TypeQuery = QueryBase & {
   value: string;
 }
 
-export type WeightedTokensQuery = QueryBase & {
-  pruning_config?: TokenPruningConfig;
-  tokens: Record<string, number>;
-}
-
-export type WildcardQuery = QueryBase & {
+export type WildcardQuery = string | (QueryBase & {
   case_insensitive?: boolean;
   rewrite?: Common.MultiTermQueryRewrite;
   value?: string;
   wildcard?: string;
-}
+})
 
 export type WrapperQuery = QueryBase & {
   query: string;

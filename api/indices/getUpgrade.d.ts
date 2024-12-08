@@ -17,6 +17,7 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as Indices_Common from '../_types/indices._common'
 
 export type Indices_GetUpgrade_Request = Global.Params & {
   allow_no_indices?: boolean;
@@ -29,5 +30,5 @@ export type Indices_GetUpgrade_Response = ApiResponse & {
   body: Indices_GetUpgrade_ResponseBody;
 }
 
-export type Indices_GetUpgrade_ResponseBody = Record<string, any>
+export type Indices_GetUpgrade_ResponseBody = Indices_Common.IndexGetUpgradeStatus
 

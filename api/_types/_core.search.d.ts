@@ -84,7 +84,7 @@ export type AggregationProfileDelegateDebugFilter = {
 
 export type BoundaryScanner = 'chars' | 'sentence' | 'word'
 
-export type BuiltinHighlighterType = 'fvh' | 'plain' | 'unified'
+export type BuiltinHighlighterType = 'plain' | 'fvh' | 'unified'
 
 export type Collector = {
   children?: Collector[];
@@ -154,11 +154,12 @@ export type HighlightBase = {
   boundary_scanner?: BoundaryScanner;
   boundary_scanner_locale?: string;
   force_source?: boolean;
+  fragment_offset?: number;
   fragment_size?: number;
   fragmenter?: HighlighterFragmenter;
   highlight_filter?: boolean;
   highlight_query?: Common_QueryDsl.QueryContainer;
-  max_analyzed_offset?: number;
+  max_analyzer_offset?: number;
   max_fragment_length?: number;
   no_match_size?: number;
   number_of_fragments?: number;
@@ -184,7 +185,6 @@ export type HighlighterType = BuiltinHighlighterType | string
 
 export type HighlightField = HighlightBase & {
   analyzer?: Common_Analysis.Analyzer;
-  fragment_offset?: number;
   matched_fields?: Common.Fields;
 }
 
@@ -231,7 +231,7 @@ export type InnerHits = {
   seq_no_primary_term?: boolean;
   size?: number;
   sort?: Common.Sort;
-  stored_field?: Common.Fields;
+  stored_fields?: Common.Fields;
   track_scores?: boolean;
   version?: boolean;
 }
@@ -340,11 +340,11 @@ export type ShardProfile = {
   searches: SearchProfile[];
 }
 
-export type SourceConfig = boolean | Common.Field[] | SourceFilter
+export type SourceConfig = boolean | SourceFilter
 
 export type SourceConfigParam = boolean | Common.Fields
 
-export type SourceFilter = {
+export type SourceFilter = Common.Fields | {
   excludes?: Common.Fields;
   includes?: Common.Fields;
 }

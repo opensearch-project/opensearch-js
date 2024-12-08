@@ -34,7 +34,7 @@ export type Indices_PutTemplate_RequestBody = {
   index_patterns?: string | string[];
   mappings?: Common_Mapping.TypeMapping;
   order?: number;
-  settings?: Record<string, Record<string, any>>;
+  settings?: Record<string, any>;
   version?: Common.VersionNumber;
 }
 

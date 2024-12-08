@@ -27,6 +27,7 @@ export type RankEvalHit = {
   _id: Common.Id;
   _index: Common.IndexName;
   _score: number;
+  _type?: Common.Type;
 }
 
 export type RankEvalHitItem = {
@@ -48,7 +49,7 @@ export type RankEvalMetricBase = {
 
 export type RankEvalMetricDetail = {
   hits: RankEvalHitItem[];
-  metric_details: Record<string, Record<string, Record<string, any>>>;
+  metric_details: Record<string, Record<string, number>>;
   metric_score: number;
   unrated_docs: UnratedDocument[];
 }

@@ -271,7 +271,7 @@ export type NodeInfoSettingsNode = {
   name: Common.Name;
 }
 
-export type NodeInfoSettingsPlugins = Record<string, Common.FieldValue>
+export type NodeInfoSettingsPlugins = Record<string, any>
 
 export type NodeInfoSettingsTransport = {
   type: string;

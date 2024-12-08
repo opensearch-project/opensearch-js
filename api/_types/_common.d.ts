@@ -15,6 +15,7 @@
  */
 
 import * as Cluster_AllocationExplain from './cluster.allocation_explain'
+import * as Common_Mapping from './_common.mapping'
 import * as Common_QueryDsl from './_common.query_dsl'
 import * as Indices_Stats from './indices.stats'
 
@@ -202,11 +203,19 @@ export type FieldSizeUsage = {
   size_in_bytes: ByteCount;
 }
 
-export type FieldValue = boolean | undefined | number | Record<string, any> | string
+export type FieldSort = SortOrder | {
+  format?: string;
+  missing?: FieldValue;
+  mode?: SortMode;
+  nested?: NestedSortValue;
+  numeric_type?: FieldSortNumericType;
+  order?: SortOrder;
+  unmapped_type?: Common_Mapping.FieldType;
+}
 
-export type FieldWithDirection = Record<string, SortOrder>
+export type FieldSortNumericType = 'date' | 'date_nanos' | 'double' | 'long'
 
-export type FieldWithOrder = Record<string, ScoreSort>
+export type FieldValue = boolean | undefined | number | string
 
 export type FlushStats = {
   periodic: number;
@@ -342,17 +351,6 @@ export type InlineScript = string | (ScriptBase & {
 
 export type Ip = string
 
-export type KnnField = {
-  boost?: number;
-  filter?: Common_QueryDsl.QueryContainer | Common_QueryDsl.QueryContainer[];
-  k?: number;
-  max_distance?: number;
-  method_parameters?: Record<string, number>;
-  min_score?: number;
-  rescore?: Record<string, number>;
-  vector: QueryVector;
-}
-
 export type LatLonGeoLocation = {
   lat: number;
   lon: number;
@@ -384,7 +382,7 @@ export type Metadata = Record<string, any>
 
 export type MinimumShouldMatch = number | string
 
-export type MultiTermQueryRewrite = 'constant_score' | 'constant_score_boolean' | 'scoring_boolean' | 'top_terms_N' | 'top_terms_blended_freqs_N' | 'top_terms_boost_N'
+export type MultiTermQueryRewrite = 'constant_score' | 'constant_score_boolean' | 'scoring_boolean' | string
 
 export type Name = string
 
@@ -469,8 +467,6 @@ export type PhaseTook = {
 
 export type PipelineName = string
 
-export type PipeSeparatedFlagsSimpleQueryStringFlag = Common_QueryDsl.SimpleQueryStringFlag | string
-
 export type PluginStats = {
   classname: string;
   custom_foldername?: undefined | string;
@@ -494,8 +490,6 @@ export type QueryCacheStats = {
   miss_count: number;
   total_count: number;
 }
-
-export type QueryVector = number[]
 
 export type RankBase = Record<string, any>
 
@@ -783,18 +777,16 @@ export type Slices = number | SlicesCalculation
 
 export type SlicesCalculation = 'auto'
 
-export type Sort = SortCombinations | SortCombinations[]
-
-export type SortCombinations = Field | FieldWithDirection | FieldWithOrder | SortOptions
+export type Sort = SortOptions | SortOptions[]
 
 export type SortMode = 'avg' | 'max' | 'median' | 'min' | 'sum'
 
-export type SortOptions = {
+export type SortOptions = '_score' | '_doc' | string | {
   _doc?: ScoreSort;
   _geo_distance?: GeoDistanceSort;
   _score?: ScoreSort;
   _script?: ScriptSort;
-}
+} | Record<string, FieldSort>
 
 export type SortOrder = 'asc' | 'desc'
 

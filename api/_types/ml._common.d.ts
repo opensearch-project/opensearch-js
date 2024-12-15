@@ -36,17 +36,6 @@ export type ClientConfig = {
   retry_timeout_seconds?: number;
 }
 
-export type CreateConnectorRequest = {
-  actions: Action[];
-  client_config?: ClientConfig;
-  credential: Credential;
-  description: string;
-  name: string;
-  parameters: Parameters;
-  protocol: string;
-  version: number;
-}
-
 export type Credential = {
   access_key?: string;
   secret_key?: string;
@@ -96,17 +85,6 @@ export type ModelGroupRegistration = {
 
 export type Parameters = Record<string, any>
 
-export type RegisterAgentsRequest = {
-  app_type?: string;
-  description?: string;
-  llm?: LLM;
-  memory?: Memory;
-  name: string;
-  parameters?: Parameters;
-  tools?: ToolItems[];
-  type: string;
-}
-
 export type SearchModelsHits = {
   hits: SearchModelsHitsHit[];
   max_score?: number;
@@ -122,11 +100,6 @@ export type SearchModelsHitsHit = {
   _source?: Source;
   _version?: Common.VersionNumber;
   model_id?: Common.Name;
-}
-
-export type SearchModelsQuery = {
-  query: Record<string, any>;
-  size: number;
 }
 
 export type SearchModelsResponse = {

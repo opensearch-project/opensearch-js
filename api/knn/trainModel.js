@@ -16,7 +16,7 @@
 
 'use strict';
 
-const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
+const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Create and train a model that can be used for initializing k-NN native library indexes during indexing.
@@ -24,10 +24,10 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @memberOf API-Knn
  *
- * @param {object} params
+ * @param {object} [params]
  * @param {string} [params.preference] - Preferred node to execute training.
  * @param {string} [params.model_id] - The id of the model.
- * @param {object} params.body 
+ * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -36,13 +36,13 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  */
 function trainModelFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.body == null) return handleMissingParam('body', this, callback);
 
   let { body, model_id, ...querystring } = params;
   model_id = parsePathParam(model_id);
 
   const path = ['/_plugins/_knn/models', model_id, '_train'].filter(c => c != null).join('/');
   const method = 'POST';
+  body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }

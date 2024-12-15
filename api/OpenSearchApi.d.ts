@@ -655,7 +655,8 @@ export default class OpenSearchAPI {
     searchModels (params: API.Knn_SearchModels_Request, callback: callbackFn<API.Knn_SearchModels_Response>): TransportRequestCallback;
     searchModels (params: API.Knn_SearchModels_Request, options: TransportRequestOptions, callback: callbackFn<API.Knn_SearchModels_Response>): TransportRequestCallback;
 
-    trainModel (params: API.Knn_TrainModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Knn_TrainModel_Response>;
+    trainModel (params?: API.Knn_TrainModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Knn_TrainModel_Response>;
+    trainModel (callback: callbackFn<API.Knn_TrainModel_Response>): TransportRequestCallback;
     trainModel (params: API.Knn_TrainModel_Request, callback: callbackFn<API.Knn_TrainModel_Response>): TransportRequestCallback;
     trainModel (params: API.Knn_TrainModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Knn_TrainModel_Response>): TransportRequestCallback;
 
@@ -1341,6 +1342,42 @@ export default class OpenSearchAPI {
     whoAmIProtected (callback: callbackFn<API.Security_WhoAmIProtected_Response>): TransportRequestCallback;
     whoAmIProtected (params: API.Security_WhoAmIProtected_Request, callback: callbackFn<API.Security_WhoAmIProtected_Response>): TransportRequestCallback;
     whoAmIProtected (params: API.Security_WhoAmIProtected_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_WhoAmIProtected_Response>): TransportRequestCallback;
+
+  };
+
+  sm: {
+    getPolicies (params?: API.Sm_GetPolicies_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sm_GetPolicies_Response>;
+    getPolicies (callback: callbackFn<API.Sm_GetPolicies_Response>): TransportRequestCallback;
+    getPolicies (params: API.Sm_GetPolicies_Request, callback: callbackFn<API.Sm_GetPolicies_Response>): TransportRequestCallback;
+    getPolicies (params: API.Sm_GetPolicies_Request, options: TransportRequestOptions, callback: callbackFn<API.Sm_GetPolicies_Response>): TransportRequestCallback;
+
+    deletePolicy (params: API.Sm_DeletePolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sm_DeletePolicy_Response>;
+    deletePolicy (params: API.Sm_DeletePolicy_Request, callback: callbackFn<API.Sm_DeletePolicy_Response>): TransportRequestCallback;
+    deletePolicy (params: API.Sm_DeletePolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Sm_DeletePolicy_Response>): TransportRequestCallback;
+
+    getPolicy (params: API.Sm_GetPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sm_GetPolicy_Response>;
+    getPolicy (params: API.Sm_GetPolicy_Request, callback: callbackFn<API.Sm_GetPolicy_Response>): TransportRequestCallback;
+    getPolicy (params: API.Sm_GetPolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Sm_GetPolicy_Response>): TransportRequestCallback;
+
+    createPolicy (params: API.Sm_CreatePolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sm_CreatePolicy_Response>;
+    createPolicy (params: API.Sm_CreatePolicy_Request, callback: callbackFn<API.Sm_CreatePolicy_Response>): TransportRequestCallback;
+    createPolicy (params: API.Sm_CreatePolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Sm_CreatePolicy_Response>): TransportRequestCallback;
+
+    updatePolicy (params: API.Sm_UpdatePolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sm_UpdatePolicy_Response>;
+    updatePolicy (params: API.Sm_UpdatePolicy_Request, callback: callbackFn<API.Sm_UpdatePolicy_Response>): TransportRequestCallback;
+    updatePolicy (params: API.Sm_UpdatePolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Sm_UpdatePolicy_Response>): TransportRequestCallback;
+
+    explainPolicy (params: API.Sm_ExplainPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sm_ExplainPolicy_Response>;
+    explainPolicy (params: API.Sm_ExplainPolicy_Request, callback: callbackFn<API.Sm_ExplainPolicy_Response>): TransportRequestCallback;
+    explainPolicy (params: API.Sm_ExplainPolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Sm_ExplainPolicy_Response>): TransportRequestCallback;
+
+    startPolicy (params: API.Sm_StartPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sm_StartPolicy_Response>;
+    startPolicy (params: API.Sm_StartPolicy_Request, callback: callbackFn<API.Sm_StartPolicy_Response>): TransportRequestCallback;
+    startPolicy (params: API.Sm_StartPolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Sm_StartPolicy_Response>): TransportRequestCallback;
+
+    stopPolicy (params: API.Sm_StopPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sm_StopPolicy_Response>;
+    stopPolicy (params: API.Sm_StopPolicy_Request, callback: callbackFn<API.Sm_StopPolicy_Response>): TransportRequestCallback;
+    stopPolicy (params: API.Sm_StopPolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Sm_StopPolicy_Response>): TransportRequestCallback;
 
   };
 

@@ -15,17 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
-import * as Transforms_Common from '../_types/transforms._common'
+import * as Sm_Common from '../_types/sm._common'
 
-export type Transforms_Get_Request = Global.Params & {
-  id: Common.Id;
+export type Sm_UpdatePolicy_Request = Global.Params & {
+  body?: Sm_Common.CreateUpdatePolicyRequest;
+  if_primary_term: number;
+  if_seq_no: number;
+  policy_name: string;
 }
 
-export type Transforms_Get_Response = ApiResponse & {
-  body: Transforms_Get_ResponseBody;
+export type Sm_UpdatePolicy_Response = ApiResponse & {
+  body: Sm_UpdatePolicy_ResponseBody;
 }
 
-export type Transforms_Get_ResponseBody = Transforms_Common.TransformResponse
+export type Sm_UpdatePolicy_ResponseBody = Sm_Common.PolicyResponse
 

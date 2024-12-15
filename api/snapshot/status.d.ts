@@ -32,6 +32,6 @@ export type Snapshot_Status_Response = ApiResponse & {
 }
 
 export type Snapshot_Status_ResponseBody = {
-  snapshots: Snapshot_Common.Status[];
+  snapshots: Snapshot_Common.SnapshotStatus[];
 }
 

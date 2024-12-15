@@ -17,6 +17,7 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as Transforms_Common from '../_types/transforms._common'
 
 export type Transforms_Delete_Request = Global.Params & {
   id: Common.Id;
@@ -26,5 +27,5 @@ export type Transforms_Delete_Response = ApiResponse & {
   body: Transforms_Delete_ResponseBody;
 }
 
-export type Transforms_Delete_ResponseBody = Record<string, any>
+export type Transforms_Delete_ResponseBody = Transforms_Common.DeleteTransformsResponse
 

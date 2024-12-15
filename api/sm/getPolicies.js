@@ -19,27 +19,33 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Retrieves local stats of all observability objects.
- * <br/> See Also: {@link undefined - observability.get_localstats}
+ * Retrieves all snapshot management policies with optional pagination and filtering.
+ * <br/> See Also: {@link undefined - sm.get_policies}
  *
- * @memberOf API-Observability
+ * @memberOf API-Sm
  *
- * @param {object} [params] - (Unused)
+ * @param {object} [params]
+ * @param {number} [params.from] - The starting index (default: 0)
+ * @param {string} [params.queryString] - A query string to filter policies.
+ * @param {number} [params.size] - The number of policies to return.
+ * @param {string} [params.sortField] - The field to sort on.
+ * @param {string} [params.sortOrder=asc] - The order of sorting.
+ *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function getLocalstatsFunc(params, options, callback) {
+function getPoliciesFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
   let { body, ...querystring } = params;
 
-  const path = '/_plugins/_observability/_local/stats';
+  const path = '/_plugins/_sm/policies';
   const method = 'GET';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = getLocalstatsFunc;
+module.exports = getPoliciesFunc;

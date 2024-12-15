@@ -19,7 +19,18 @@ import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
 export type Ml_RegisterAgents_Request = Global.Params & {
-  body?: Ml_Common.RegisterAgentsRequest;
+  body?: Ml_RegisterAgents_RequestBody;
+}
+
+export type Ml_RegisterAgents_RequestBody = {
+  app_type?: string;
+  description?: string;
+  llm?: Ml_Common.LLM;
+  memory?: Ml_Common.Memory;
+  name: string;
+  parameters?: Ml_Common.Parameters;
+  tools?: Ml_Common.ToolItems[];
+  type: string;
 }
 
 export type Ml_RegisterAgents_Response = ApiResponse & {

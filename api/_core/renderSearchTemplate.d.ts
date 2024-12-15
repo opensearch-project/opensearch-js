@@ -24,8 +24,8 @@ export type RenderSearchTemplate_Request = Global.Params & {
 }
 
 export type RenderSearchTemplate_RequestBody = {
-  file?: string;
-  params?: Record<string, Record<string, any>>;
+  id?: Common.Id;
+  params?: Record<string, any>;
   source?: string;
 }
 

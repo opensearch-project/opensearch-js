@@ -24,6 +24,7 @@ export type ShardStore = {
   allocation: ShardStoreAllocation;
   allocation_id?: Common.Id;
   store_exception?: ShardStoreException;
+  [key: string]: any | Common.NodeAttributes;
 }
 
 export type ShardStoreAllocation = 'primary' | 'replica' | 'unused'

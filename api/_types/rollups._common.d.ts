@@ -14,14 +14,7 @@
  * modify the API generator.
  */
 
-
-export type Continuous = {
-  failure_reason?: string;
-  next_window_end_time?: number;
-  next_window_start_time?: number;
-  stats?: Stats;
-  status?: string;
-}
+import * as Common from './_common'
 
 export type Cron = {
   expression?: string;
@@ -31,6 +24,7 @@ export type Cron = {
 export type DateHistogramDimension = {
   calendar_interval?: string;
   fixed_interval?: string;
+  format?: undefined | string;
   source_field?: string;
   target_field?: string;
   timezone?: string;
@@ -43,14 +37,11 @@ export type DimensionsConfigItem = {
 }
 
 export type Explain = {
-  continuous?: Continuous;
-  last_updated_time?: number;
-  rollup_id?: string;
+  metadata_id?: undefined | string;
+  rollup_metadata?: undefined | Record<string, any>;
 }
 
-export type ExplainEntities = {
-  item?: Explain;
-}
+export type ExplainEntities = Record<string, Explain>
 
 export type HistogramDimension = {
   interval?: string;
@@ -89,7 +80,7 @@ export type Rollup = {
   enabled_time?: number;
   error_notification?: string;
   last_updated_time?: number;
-  metadata_id?: string;
+  metadata_id?: undefined | string;
   metrics?: MetricsConfigItem[];
   page_size?: number;
   rollup_id?: string;
@@ -100,22 +91,15 @@ export type Rollup = {
 }
 
 export type RollupEntity = {
-  _id?: string;
-  _primaryTerm?: number;
-  _seqNo?: number;
+  _id?: Common.Id;
+  _primary_term?: number;
+  _seq_no?: Common.SequenceNumber;
+  _version?: Common.VersionNumber;
   rollup?: Rollup;
 }
 
 export type Schedule = {
   interval?: Interval;
-}
-
-export type Stats = {
-  documents_processed?: number;
-  index_time_in_ms?: number;
-  pages_processed?: number;
-  rollups_indexed?: number;
-  search_time_in_ms?: number;
 }
 
 export type TermsDimension = {

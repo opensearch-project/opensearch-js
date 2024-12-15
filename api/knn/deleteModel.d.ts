@@ -16,6 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
+import * as Knn_Common from '../_types/knn._common'
 
 export type Knn_DeleteModel_Request = Global.Params & {
   model_id: string;
@@ -25,5 +26,5 @@ export type Knn_DeleteModel_Response = ApiResponse & {
   body: Knn_DeleteModel_ResponseBody;
 }
 
-export type Knn_DeleteModel_ResponseBody = Record<string, any>
+export type Knn_DeleteModel_ResponseBody = Knn_Common.DeletedModel
 

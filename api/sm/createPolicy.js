@@ -16,30 +16,35 @@
 
 'use strict';
 
-const { normalizeArguments } = require('../utils');
+const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Retrieves local stats of all observability objects.
- * <br/> See Also: {@link undefined - observability.get_localstats}
+ * Creates a snapshot management policy.
+ * <br/> See Also: {@link undefined - sm.create_policy}
  *
- * @memberOf API-Observability
+ * @memberOf API-Sm
  *
- * @param {object} [params] - (Unused)
+ * @param {object} params
+ * @param {string} params.policy_name - The name of the snapshot management policy.
+ * @param {object} [params.body] 
+ *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function getLocalstatsFunc(params, options, callback) {
+function createPolicyFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.policy_name == null) return handleMissingParam('policy_name', this, callback);
 
-  let { body, ...querystring } = params;
+  let { body, policy_name, ...querystring } = params;
+  policy_name = parsePathParam(policy_name);
 
-  const path = '/_plugins/_observability/_local/stats';
-  const method = 'GET';
+  const path = '/_plugins/_sm/policies/' + policy_name;
+  const method = 'POST';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = getLocalstatsFunc;
+module.exports = createPolicyFunc;

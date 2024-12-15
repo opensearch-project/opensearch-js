@@ -145,6 +145,8 @@ export type FieldNamesField = {
   enabled: boolean;
 }
 
+export type FieldType = 'aggregate_metric_double' | 'alias' | 'binary' | 'boolean' | 'byte' | 'completion' | 'constant_keyword' | 'date' | 'date_nanos' | 'date_range' | 'double' | 'double_range' | 'flat_object' | 'float' | 'float_range' | 'geo_point' | 'geo_shape' | 'half_float' | 'histogram' | 'icu_collation_keyword' | 'integer' | 'integer_range' | 'ip' | 'ip_range' | 'join' | 'keyword' | 'knn_vector' | 'long' | 'long_range' | 'match_only_text' | 'murmur3' | 'nested' | 'object' | 'percolator' | 'rank_feature' | 'rank_features' | 'scaled_float' | 'search_as_you_type' | 'short' | 'text' | 'token_count' | 'unsigned_long' | 'version' | 'wildcard' | 'xy_point' | 'xy_shape'
+
 export type FlatObjectProperty = PropertyBase & {
   aggregatable?: boolean;
   searchable?: boolean;

@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
 export type Knn_Warmup_Request = Global.Params & {
@@ -25,5 +26,5 @@ export type Knn_Warmup_Response = ApiResponse & {
   body: Knn_Warmup_ResponseBody;
 }
 
-export type Knn_Warmup_ResponseBody = Record<string, any>
+export type Knn_Warmup_ResponseBody = Common.ShardsOperationResponseBase
 

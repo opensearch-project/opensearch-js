@@ -16,24 +16,12 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
+import * as Knn_Common from '../_types/knn._common'
 
 export type Knn_TrainModel_Request = Global.Params & {
-  body: Knn_TrainModel_RequestBody;
+  body?: Knn_Common.TrainedModel;
   model_id?: string;
   preference?: string;
-}
-
-export type Knn_TrainModel_RequestBody = {
-  compression_level?: string;
-  description?: string;
-  dimension: number;
-  max_training_vector_count?: number;
-  method?: string;
-  mode?: string;
-  search_size?: number;
-  spaceType?: string;
-  training_field: string;
-  training_index: string;
 }
 
 export type Knn_TrainModel_Response = ApiResponse & {

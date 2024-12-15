@@ -31,10 +31,10 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.ignore_unavailable=false] - If `true`, the response does not include information from unavailable snapshots.
  * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
+ * @param {string} [params.repository] - A comma-separated list of snapshot repositories used to limit the request. Accepts wildcard expressions. `_all` returns all repositories. If any repository fails during the request, OpenSearch returns an error.
  * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
  * @param {string} [params.time] - The unit in which to display time values.
  * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
- * @param {string} [params.repository] - A comma-separated list of snapshot repositories used to limit the request. Accepts wildcard expressions. `_all` returns all repositories. If any repository fails during the request, OpenSearch returns an error.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

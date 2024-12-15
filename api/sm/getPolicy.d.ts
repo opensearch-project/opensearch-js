@@ -14,13 +14,17 @@
  * modify the API generator.
  */
 
-import * as Common from './_common'
+import { ApiResponse } from '../../lib/Transport'
+import * as Global from '../_types/_global'
+import * as Sm_Common from '../_types/sm._common'
 
-export type DataStreamsStatsItem = {
-  backing_indices: number;
-  data_stream: Common.Name;
-  maximum_timestamp: Common.EpochTimeUnitMillis;
-  store_size?: Common.HumanReadableByteCount;
-  store_size_bytes: Common.ByteCount;
+export type Sm_GetPolicy_Request = Global.Params & {
+  policy_name: string;
 }
+
+export type Sm_GetPolicy_Response = ApiResponse & {
+  body: Sm_GetPolicy_ResponseBody;
+}
+
+export type Sm_GetPolicy_ResponseBody = Sm_Common.PolicyResponse
 

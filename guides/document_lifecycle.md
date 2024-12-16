@@ -16,7 +16,7 @@ Next, create an index named `movies` with the default settings:
 const index = 'movies';
 client.indices.exists({ index: index })
   .then(exists => {
-    if (!exists) {
+    if (!exists.body) {
       return client.indices.create({ index: index });
     }
   })

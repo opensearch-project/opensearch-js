@@ -48,7 +48,7 @@ export type DataStream = {
   next_generation_managed_by?: ManagedBy;
   prefer_ilm?: boolean;
   replicated?: boolean;
-  status: Common.HealthStatusCapitalized;
+  status: Common.HealthStatus;
   system?: boolean;
   template: Common.Name;
   timestamp_field: DataStreamTimestampField;
@@ -60,6 +60,14 @@ export type DataStreamIndex = {
   index_uuid: Common.Uuid;
   managed_by?: ManagedBy;
   prefer_ilm?: boolean;
+}
+
+export type DataStreamStats = {
+  backing_indices: number;
+  data_stream: Common.Name;
+  maximum_timestamp: Common.EpochTimeUnitMillis;
+  store_size?: Common.HumanReadableByteCount;
+  store_size_bytes: Common.ByteCount;
 }
 
 export type DataStreamTimestampField = {
@@ -90,6 +98,13 @@ export type IndexErrorCause = {
   [key: string]: any | Record<string, any>;
 }
 
+export type IndexGetUpgradeStatus = {
+  indices?: Record<string, UpgradeStatus>;
+  size_in_bytes?: Common.ByteCount;
+  size_to_upgrade_ancient_in_bytes?: Common.ByteCount;
+  size_to_upgrade_in_bytes?: Common.ByteCount;
+}
+
 export type IndexingPressure = {
   memory: IndexingPressureMemory;
 }
@@ -107,6 +122,11 @@ export type IndexingSlowlog = {
 
 export type IndexingSlowlogThresholds = {
   index?: SlowlogThresholdLevels;
+}
+
+export type IndexPostUpgradeStatus = {
+  _shards?: Common.ShardStatistics;
+  upgraded_indices?: Record<string, UpgradeVersionStatus>;
 }
 
 export type IndexRouting = {
@@ -569,7 +589,7 @@ export type TemplateMapping = {
   index_patterns: Common.Name[];
   mappings: Common_Mapping.TypeMapping;
   order: number;
-  settings: Record<string, Record<string, any>>;
+  settings: Record<string, any>;
   version?: Common.VersionNumber;
 }
 
@@ -586,5 +606,23 @@ export type TranslogDurability = 'ASYNC' | 'REQUEST' | 'async' | 'request'
 export type TranslogRetention = {
   age?: Common.Duration;
   size?: Common.HumanReadableByteCount;
+}
+
+export type UpgradeRequest = {
+  allow_no_indices?: boolean;
+  expand_wildcards?: 'all' | 'closed' | 'none' | 'open';
+  ignore_unavailable?: boolean;
+  wait_for_completion?: boolean;
+}
+
+export type UpgradeStatus = {
+  size_in_bytes?: Common.ByteCount;
+  size_to_upgrade_ancient_in_bytes?: Common.ByteCount;
+  size_to_upgrade_in_bytes?: Common.ByteCount;
+}
+
+export type UpgradeVersionStatus = {
+  oldest_lucene_segment_version?: Common.VersionString;
+  upgrade_version?: Common.VersionString;
 }
 

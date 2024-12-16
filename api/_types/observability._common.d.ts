@@ -33,7 +33,7 @@ export type ObservabilityObject = {
   operationalPanel?: OperationalPanel;
   savedQuery?: SavedQuery;
   savedVisualization?: SavedVisualization;
-  tenant: string;
+  tenant?: string;
 }
 
 export type ObservabilityObjectList = {

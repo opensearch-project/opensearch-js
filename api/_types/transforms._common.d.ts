@@ -14,6 +14,7 @@
  * modify the API generator.
  */
 
+import * as Common from './_common'
 import * as Common_QueryDsl from './_common.query_dsl'
 
 export type ContinuousStats = {
@@ -29,9 +30,32 @@ export type DateHistogramGroup = {
   timezone?: string;
 }
 
+export type DeletedTransformResponse = {
+  _id: Common.Id;
+  _index: string;
+  _primary_term: number;
+  _seq_no: Common.SequenceNumber;
+  _shards: Common.ShardStatistics;
+  _type?: Common.Type;
+  _version: Common.VersionNumber;
+  forced_refresh: boolean;
+  result: string;
+  status: number;
+}
+
+export type DeleteTransformResponseItem = {
+  delete?: DeletedTransformResponse;
+}
+
+export type DeleteTransformsResponse = {
+  errors?: boolean;
+  items?: DeleteTransformResponseItem[];
+  took?: number;
+}
+
 export type Explain = {
-  metadata_id?: string;
-  transform_metadata?: TransformMetadata;
+  metadata_id?: undefined | string;
+  transform_metadata?: TransformMetadata | undefined;
 }
 
 export type ExplainResponse = Record<string, Explain>
@@ -56,20 +80,6 @@ export type HistogramGroup = {
   target_field?: string;
 }
 
-export type MetricsConfigItem = {
-  metrics?: MetricsConfigMetrics[];
-  source_field?: string;
-  target_field?: string;
-}
-
-export type MetricsConfigMetrics = {
-  avg?: Record<string, any>;
-  max?: Record<string, any>;
-  min?: Record<string, any>;
-  sum?: Record<string, any>;
-  value_count?: Record<string, any>;
-}
-
 export type Preview = {
   documents?: Record<string, any>[];
 }
@@ -90,14 +100,14 @@ export type TermsGroup = {
 }
 
 export type Transform = {
-  aggregations?: MetricsConfigItem[];
+  aggregations?: Record<string, GroupsConfigItem>;
   continuous?: boolean;
   data_selection_query?: Common_QueryDsl.QueryContainer;
   description?: string;
   enabled?: boolean;
-  enabled_at?: number;
+  enabled_at?: undefined | number;
   groups?: GroupsConfigItem[];
-  metadata_id?: string;
+  metadata_id?: undefined | string;
   page_size?: number;
   roles?: string[];
   schedule?: Schedule;
@@ -105,14 +115,7 @@ export type Transform = {
   source_index?: string;
   target_index?: string;
   transform_id?: string;
-  updated_at?: string;
-}
-
-export type TransformEntity = {
-  _id?: string;
-  _primaryTerm?: number;
-  _seqNo?: number;
-  transform?: Transform;
+  updated_at?: number;
 }
 
 export type TransformMetadata = {
@@ -124,8 +127,20 @@ export type TransformMetadata = {
   transform_id?: string;
 }
 
+export type TransformRequest = {
+  transform: Transform;
+}
+
+export type TransformResponse = {
+  _id?: Common.Id;
+  _primary_term?: number;
+  _seq_no?: Common.SequenceNumber;
+  _version?: Common.VersionNumber;
+  transform?: Transform;
+}
+
 export type TransformsResponse = {
   total_transforms?: number;
-  transforms?: TransformEntity[];
+  transforms?: TransformResponse[];
 }
 

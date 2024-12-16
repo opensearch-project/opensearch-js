@@ -61,6 +61,7 @@ export type SearchTemplate_ResponseBody = {
   num_reduce_phases?: number;
   pit_id?: Common.Id;
   profile?: Core_Search.Profile;
+  status?: number;
   suggest?: Record<string, Core_Search.Suggest[]>;
   terminated_early?: boolean;
   timed_out: boolean;

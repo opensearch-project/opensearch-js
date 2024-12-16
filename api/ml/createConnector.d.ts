@@ -19,7 +19,18 @@ import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
 export type Ml_CreateConnector_Request = Global.Params & {
-  body?: Ml_Common.CreateConnectorRequest;
+  body?: Ml_CreateConnector_RequestBody;
+}
+
+export type Ml_CreateConnector_RequestBody = {
+  actions: Ml_Common.Action[];
+  client_config?: Ml_Common.ClientConfig;
+  credential: Ml_Common.Credential;
+  description: string;
+  name: string;
+  parameters: Ml_Common.Parameters;
+  protocol: string;
+  version: number;
 }
 
 export type Ml_CreateConnector_Response = ApiResponse & {

@@ -17,7 +17,7 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
-import * as Indices_DataStreamsStats from '../_types/indices.data_streams_stats'
+import * as Indices_Common from '../_types/indices._common'
 
 export type Indices_DataStreamsStats_Request = Global.Params & {
   name?: Common.Indices;
@@ -31,8 +31,8 @@ export type Indices_DataStreamsStats_ResponseBody = {
   _shards: Common.ShardStatistics;
   backing_indices: number;
   data_stream_count: number;
-  data_streams: Indices_DataStreamsStats.DataStreamsStatsItem[];
+  data_streams: Indices_Common.DataStreamStats[];
+  total_store_size?: Common.HumanReadableByteCount;
   total_store_size_bytes: Common.ByteCount;
-  total_store_sizes?: Common.HumanReadableByteCount;
 }
 

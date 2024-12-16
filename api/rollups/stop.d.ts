@@ -26,5 +26,5 @@ export type Rollups_Stop_Response = ApiResponse & {
   body: Rollups_Stop_ResponseBody;
 }
 
-export type Rollups_Stop_ResponseBody = Record<string, any>
+export type Rollups_Stop_ResponseBody = Common.AcknowledgedResponseBase
 

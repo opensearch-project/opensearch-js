@@ -36,7 +36,7 @@ import { GetScript_Request, GetScript_Response, GetScript_ResponseBody } from '.
 import { PutScript_Request, PutScript_RequestBody, PutScript_Response, PutScript_ResponseBody } from './_core/putScript';
 import { ScriptsPainlessExecute_Request, ScriptsPainlessExecute_RequestBody, ScriptsPainlessExecute_Response, ScriptsPainlessExecute_ResponseBody } from './_core/scriptsPainlessExecute';
 import { Search_Request, Search_RequestBody, Search_Response, Search_ResponseBody } from './_core/search';
-import { SearchShards_Request, SearchShards_Response, SearchShards_ResponseBody } from './_core/searchShards';
+import { SearchShards_Request, SearchShards_RequestBody, SearchShards_Response, SearchShards_ResponseBody } from './_core/searchShards';
 import { DeletePit_Request, DeletePit_RequestBody, DeletePit_Response, DeletePit_ResponseBody } from './_core/deletePit';
 import { DeleteAllPits_Request, DeleteAllPits_Response, DeleteAllPits_ResponseBody } from './_core/deleteAllPits';
 import { GetAllPits_Request, GetAllPits_Response, GetAllPits_ResponseBody } from './_core/getAllPits';
@@ -271,19 +271,19 @@ import { Ism_RetryIndex_Request, Ism_RetryIndex_Response, Ism_RetryIndex_Respons
 import { Ism_RefreshSearchAnalyzers_Request, Ism_RefreshSearchAnalyzers_Response, Ism_RefreshSearchAnalyzers_ResponseBody } from './ism/refreshSearchAnalyzers';
 import { Knn_Stats_Request, Knn_Stats_Response, Knn_Stats_ResponseBody } from './knn/stats';
 import { Knn_SearchModels_Request, Knn_SearchModels_RequestBody, Knn_SearchModels_Response, Knn_SearchModels_ResponseBody } from './knn/searchModels';
-import { Knn_TrainModel_Request, Knn_TrainModel_RequestBody, Knn_TrainModel_Response, Knn_TrainModel_ResponseBody } from './knn/trainModel';
+import { Knn_TrainModel_Request, Knn_TrainModel_Response, Knn_TrainModel_ResponseBody } from './knn/trainModel';
 import { Knn_DeleteModel_Request, Knn_DeleteModel_Response, Knn_DeleteModel_ResponseBody } from './knn/deleteModel';
 import { Knn_GetModel_Request, Knn_GetModel_Response, Knn_GetModel_ResponseBody } from './knn/getModel';
 import { Knn_Warmup_Request, Knn_Warmup_Response, Knn_Warmup_ResponseBody } from './knn/warmup';
-import { Ml_RegisterAgents_Request, Ml_RegisterAgents_Response, Ml_RegisterAgents_ResponseBody } from './ml/registerAgents';
+import { Ml_RegisterAgents_Request, Ml_RegisterAgents_RequestBody, Ml_RegisterAgents_Response, Ml_RegisterAgents_ResponseBody } from './ml/registerAgents';
 import { Ml_DeleteAgent_Request, Ml_DeleteAgent_Response, Ml_DeleteAgent_ResponseBody } from './ml/deleteAgent';
-import { Ml_CreateConnector_Request, Ml_CreateConnector_Response, Ml_CreateConnector_ResponseBody } from './ml/createConnector';
+import { Ml_CreateConnector_Request, Ml_CreateConnector_RequestBody, Ml_CreateConnector_Response, Ml_CreateConnector_ResponseBody } from './ml/createConnector';
 import { Ml_DeleteConnector_Request, Ml_DeleteConnector_Response, Ml_DeleteConnector_ResponseBody } from './ml/deleteConnector';
 import { Ml_RegisterModelGroup_Request, Ml_RegisterModelGroup_RequestBody, Ml_RegisterModelGroup_Response, Ml_RegisterModelGroup_ResponseBody } from './ml/registerModelGroup';
 import { Ml_DeleteModelGroup_Request, Ml_DeleteModelGroup_Response, Ml_DeleteModelGroup_ResponseBody } from './ml/deleteModelGroup';
 import { Ml_GetModelGroup_Request, Ml_GetModelGroup_Response, Ml_GetModelGroup_ResponseBody } from './ml/getModelGroup';
 import { Ml_RegisterModel_Request, Ml_RegisterModel_RequestBody, Ml_RegisterModel_Response, Ml_RegisterModel_ResponseBody } from './ml/registerModel';
-import { Ml_SearchModels_Request, Ml_SearchModels_Response, Ml_SearchModels_ResponseBody } from './ml/searchModels';
+import { Ml_SearchModels_Request, Ml_SearchModels_RequestBody, Ml_SearchModels_Response, Ml_SearchModels_ResponseBody } from './ml/searchModels';
 import { Ml_DeleteModel_Request, Ml_DeleteModel_Response, Ml_DeleteModel_ResponseBody } from './ml/deleteModel';
 import { Ml_DeployModel_Request, Ml_DeployModel_Response, Ml_DeployModel_ResponseBody } from './ml/deployModel';
 import { Ml_UndeployModel_Request, Ml_UndeployModel_Response, Ml_UndeployModel_ResponseBody } from './ml/undeployModel';
@@ -337,8 +337,16 @@ import { Rollups_Put_Request, Rollups_Put_Response, Rollups_Put_ResponseBody } f
 import { Rollups_Explain_Request, Rollups_Explain_Response, Rollups_Explain_ResponseBody } from './rollups/explain';
 import { Rollups_Start_Request, Rollups_Start_Response, Rollups_Start_ResponseBody } from './rollups/start';
 import { Rollups_Stop_Request, Rollups_Stop_Response, Rollups_Stop_ResponseBody } from './rollups/stop';
+import { Sm_GetPolicies_Request, Sm_GetPolicies_Response, Sm_GetPolicies_ResponseBody } from './sm/getPolicies';
+import { Sm_DeletePolicy_Request, Sm_DeletePolicy_Response, Sm_DeletePolicy_ResponseBody } from './sm/deletePolicy';
+import { Sm_GetPolicy_Request, Sm_GetPolicy_Response, Sm_GetPolicy_ResponseBody } from './sm/getPolicy';
+import { Sm_CreatePolicy_Request, Sm_CreatePolicy_Response, Sm_CreatePolicy_ResponseBody } from './sm/createPolicy';
+import { Sm_UpdatePolicy_Request, Sm_UpdatePolicy_Response, Sm_UpdatePolicy_ResponseBody } from './sm/updatePolicy';
+import { Sm_ExplainPolicy_Request, Sm_ExplainPolicy_Response, Sm_ExplainPolicy_ResponseBody } from './sm/explainPolicy';
+import { Sm_StartPolicy_Request, Sm_StartPolicy_Response, Sm_StartPolicy_ResponseBody } from './sm/startPolicy';
+import { Sm_StopPolicy_Request, Sm_StopPolicy_Response, Sm_StopPolicy_ResponseBody } from './sm/stopPolicy';
 import { Transforms_Search_Request, Transforms_Search_Response, Transforms_Search_ResponseBody } from './transforms/search';
-import { Transforms_Preview_Request, Transforms_Preview_RequestBody, Transforms_Preview_Response, Transforms_Preview_ResponseBody } from './transforms/preview';
+import { Transforms_Preview_Request, Transforms_Preview_Response, Transforms_Preview_ResponseBody } from './transforms/preview';
 import { Transforms_Delete_Request, Transforms_Delete_Response, Transforms_Delete_ResponseBody } from './transforms/delete';
 import { Transforms_Get_Request, Transforms_Get_Response, Transforms_Get_ResponseBody } from './transforms/get';
 import { Transforms_Put_Request, Transforms_Put_Response, Transforms_Put_ResponseBody } from './transforms/put';
@@ -391,7 +399,7 @@ export {
   PutScript_Request, PutScript_RequestBody, PutScript_Response, PutScript_ResponseBody,
   ScriptsPainlessExecute_Request, ScriptsPainlessExecute_RequestBody, ScriptsPainlessExecute_Response, ScriptsPainlessExecute_ResponseBody,
   Search_Request, Search_RequestBody, Search_Response, Search_ResponseBody,
-  SearchShards_Request, SearchShards_Response, SearchShards_ResponseBody,
+  SearchShards_Request, SearchShards_RequestBody, SearchShards_Response, SearchShards_ResponseBody,
   DeletePit_Request, DeletePit_RequestBody, DeletePit_Response, DeletePit_ResponseBody,
   DeleteAllPits_Request, DeleteAllPits_Response, DeleteAllPits_ResponseBody,
   GetAllPits_Request, GetAllPits_Response, GetAllPits_ResponseBody,
@@ -626,19 +634,19 @@ export {
   Ism_RefreshSearchAnalyzers_Request, Ism_RefreshSearchAnalyzers_Response, Ism_RefreshSearchAnalyzers_ResponseBody,
   Knn_Stats_Request, Knn_Stats_Response, Knn_Stats_ResponseBody,
   Knn_SearchModels_Request, Knn_SearchModels_RequestBody, Knn_SearchModels_Response, Knn_SearchModels_ResponseBody,
-  Knn_TrainModel_Request, Knn_TrainModel_RequestBody, Knn_TrainModel_Response, Knn_TrainModel_ResponseBody,
+  Knn_TrainModel_Request, Knn_TrainModel_Response, Knn_TrainModel_ResponseBody,
   Knn_DeleteModel_Request, Knn_DeleteModel_Response, Knn_DeleteModel_ResponseBody,
   Knn_GetModel_Request, Knn_GetModel_Response, Knn_GetModel_ResponseBody,
   Knn_Warmup_Request, Knn_Warmup_Response, Knn_Warmup_ResponseBody,
-  Ml_RegisterAgents_Request, Ml_RegisterAgents_Response, Ml_RegisterAgents_ResponseBody,
+  Ml_RegisterAgents_Request, Ml_RegisterAgents_RequestBody, Ml_RegisterAgents_Response, Ml_RegisterAgents_ResponseBody,
   Ml_DeleteAgent_Request, Ml_DeleteAgent_Response, Ml_DeleteAgent_ResponseBody,
-  Ml_CreateConnector_Request, Ml_CreateConnector_Response, Ml_CreateConnector_ResponseBody,
+  Ml_CreateConnector_Request, Ml_CreateConnector_RequestBody, Ml_CreateConnector_Response, Ml_CreateConnector_ResponseBody,
   Ml_DeleteConnector_Request, Ml_DeleteConnector_Response, Ml_DeleteConnector_ResponseBody,
   Ml_RegisterModelGroup_Request, Ml_RegisterModelGroup_RequestBody, Ml_RegisterModelGroup_Response, Ml_RegisterModelGroup_ResponseBody,
   Ml_DeleteModelGroup_Request, Ml_DeleteModelGroup_Response, Ml_DeleteModelGroup_ResponseBody,
   Ml_GetModelGroup_Request, Ml_GetModelGroup_Response, Ml_GetModelGroup_ResponseBody,
   Ml_RegisterModel_Request, Ml_RegisterModel_RequestBody, Ml_RegisterModel_Response, Ml_RegisterModel_ResponseBody,
-  Ml_SearchModels_Request, Ml_SearchModels_Response, Ml_SearchModels_ResponseBody,
+  Ml_SearchModels_Request, Ml_SearchModels_RequestBody, Ml_SearchModels_Response, Ml_SearchModels_ResponseBody,
   Ml_DeleteModel_Request, Ml_DeleteModel_Response, Ml_DeleteModel_ResponseBody,
   Ml_DeployModel_Request, Ml_DeployModel_Response, Ml_DeployModel_ResponseBody,
   Ml_UndeployModel_Request, Ml_UndeployModel_Response, Ml_UndeployModel_ResponseBody,
@@ -692,8 +700,16 @@ export {
   Rollups_Explain_Request, Rollups_Explain_Response, Rollups_Explain_ResponseBody,
   Rollups_Start_Request, Rollups_Start_Response, Rollups_Start_ResponseBody,
   Rollups_Stop_Request, Rollups_Stop_Response, Rollups_Stop_ResponseBody,
+  Sm_GetPolicies_Request, Sm_GetPolicies_Response, Sm_GetPolicies_ResponseBody,
+  Sm_DeletePolicy_Request, Sm_DeletePolicy_Response, Sm_DeletePolicy_ResponseBody,
+  Sm_GetPolicy_Request, Sm_GetPolicy_Response, Sm_GetPolicy_ResponseBody,
+  Sm_CreatePolicy_Request, Sm_CreatePolicy_Response, Sm_CreatePolicy_ResponseBody,
+  Sm_UpdatePolicy_Request, Sm_UpdatePolicy_Response, Sm_UpdatePolicy_ResponseBody,
+  Sm_ExplainPolicy_Request, Sm_ExplainPolicy_Response, Sm_ExplainPolicy_ResponseBody,
+  Sm_StartPolicy_Request, Sm_StartPolicy_Response, Sm_StartPolicy_ResponseBody,
+  Sm_StopPolicy_Request, Sm_StopPolicy_Response, Sm_StopPolicy_ResponseBody,
   Transforms_Search_Request, Transforms_Search_Response, Transforms_Search_ResponseBody,
-  Transforms_Preview_Request, Transforms_Preview_RequestBody, Transforms_Preview_Response, Transforms_Preview_ResponseBody,
+  Transforms_Preview_Request, Transforms_Preview_Response, Transforms_Preview_ResponseBody,
   Transforms_Delete_Request, Transforms_Delete_Response, Transforms_Delete_ResponseBody,
   Transforms_Get_Request, Transforms_Get_Response, Transforms_Get_ResponseBody,
   Transforms_Put_Request, Transforms_Put_Response, Transforms_Put_ResponseBody,

@@ -26,5 +26,5 @@ export type Rollups_Delete_Response = ApiResponse & {
   body: Rollups_Delete_ResponseBody;
 }
 
-export type Rollups_Delete_ResponseBody = Record<string, any>
+export type Rollups_Delete_ResponseBody = Common.WriteResponseBase
 

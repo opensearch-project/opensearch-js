@@ -23,5 +23,5 @@ export type Observability_GetLocalstats_Response = ApiResponse & {
   body: Observability_GetLocalstats_ResponseBody;
 }
 
-export type Observability_GetLocalstats_ResponseBody = string
+export type Observability_GetLocalstats_ResponseBody = Record<string, any>
 

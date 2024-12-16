@@ -29,39 +29,15 @@ export type Repository = {
 
 export type RepositorySettings = {
   chunk_size?: string;
-  compress?: string | boolean;
-  concurrent_streams?: string | number;
+  compress?: Common.StringifiedBoolean;
+  concurrent_streams?: Common.StringifiedInteger;
   location: string;
-  read_only?: string | boolean;
-}
-
-export type ShardsStats = {
-  done: number;
-  failed: number;
-  finalizing: number;
-  initializing: number;
-  started: number;
-  total: number;
-}
-
-export type ShardsStatsStage = 'DONE' | 'FAILURE' | 'FINALIZE' | 'INIT' | 'STARTED'
-
-export type ShardsStatsSummary = {
-  incremental: ShardsStatsSummaryItem;
-  start_time_in_millis: Common.EpochTimeUnitMillis;
-  time?: Common.Duration;
-  time_in_millis: Common.DurationValueUnitMillis;
-  total: ShardsStatsSummaryItem;
-}
-
-export type ShardsStatsSummaryItem = {
-  file_count: number;
-  size_in_bytes: Common.ByteCount;
+  read_only?: Common.StringifiedBoolean;
 }
 
 export type SnapshotIndexStats = {
   shards: Record<string, SnapshotShardsStatus>;
-  shards_stats: ShardsStats;
+  shards_stats: SnapshotShardsStats;
   stats: SnapshotStats;
 }
 
@@ -96,24 +72,52 @@ export type SnapshotShardFailure = {
   status: string;
 }
 
+export type SnapshotShardsStats = {
+  done: number;
+  failed: number;
+  finalizing: number;
+  initializing: number;
+  started: number;
+  total: number;
+}
+
+export type SnapshotShardsStatsStage = 'DONE' | 'FAILURE' | 'FINALIZE' | 'INIT' | 'STARTED'
+
+export type SnapshotShardsStatsSummary = {
+  incremental: SnapshotShardsStatsSummaryItem;
+  processed?: SnapshotShardsStatsSummaryItem;
+  start_time_in_millis: Common.EpochTimeUnitMillis;
+  time?: Common.Duration;
+  time_in_millis: Common.DurationValueUnitMillis;
+  total: SnapshotShardsStatsSummaryItem;
+}
+
+export type SnapshotShardsStatsSummaryItem = {
+  file_count: number;
+  size_in_bytes: Common.ByteCount;
+}
+
 export type SnapshotShardsStatus = {
-  stage: ShardsStatsStage;
-  stats: ShardsStatsSummary;
+  node?: Common.NodeId;
+  reason?: string;
+  stage: SnapshotShardsStatsStage;
+  stats: SnapshotShardsStatsSummary;
 }
 
 export type SnapshotStats = {
   incremental: FileCountSnapshotStats;
+  processed?: FileCountSnapshotStats;
   start_time_in_millis: Common.EpochTimeUnitMillis;
   time?: Common.Duration;
   time_in_millis: Common.DurationValueUnitMillis;
   total: FileCountSnapshotStats;
 }
 
-export type Status = {
-  include_global_state: boolean;
+export type SnapshotStatus = {
+  include_global_state?: boolean;
   indices: Record<string, SnapshotIndexStats>;
   repository: string;
-  shards_stats: ShardsStats;
+  shards_stats: SnapshotShardsStats;
   snapshot: string;
   state: string;
   stats: SnapshotStats;

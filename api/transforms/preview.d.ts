@@ -19,11 +19,7 @@ import * as Global from '../_types/_global'
 import * as Transforms_Common from '../_types/transforms._common'
 
 export type Transforms_Preview_Request = Global.Params & {
-  body?: Transforms_Preview_RequestBody;
-}
-
-export type Transforms_Preview_RequestBody = {
-  transform: Transforms_Common.Transform;
+  body?: Transforms_Common.TransformRequest;
 }
 
 export type Transforms_Preview_Response = ApiResponse & {

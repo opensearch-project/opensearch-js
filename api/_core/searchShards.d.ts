@@ -21,12 +21,23 @@ import * as Global from '../_types/_global'
 
 export type SearchShards_Request = Global.Params & {
   allow_no_indices?: boolean;
+  body?: SearchShards_RequestBody;
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
   index?: Common.Indices;
   local?: boolean;
   preference?: string;
   routing?: Common.RoutingInQueryString;
+}
+
+export type SearchShards_RequestBody = {
+  _source?: boolean | string[];
+  allow_partial_search_results?: boolean;
+  from?: number;
+  indices_boost?: Record<string, number>;
+  query?: Record<string, Record<string, any>>;
+  size?: number;
+  sort?: Record<string, string>[];
 }
 
 export type SearchShards_Response = ApiResponse & {

@@ -16,6 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
+import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 import * as Knn_Common from '../_types/knn._common'
 
@@ -71,5 +72,5 @@ export type Knn_SearchModels_Response = ApiResponse & {
   body: Knn_SearchModels_ResponseBody;
 }
 
-export type Knn_SearchModels_ResponseBody = Record<string, any>
+export type Knn_SearchModels_ResponseBody = Core_Search.ResponseBody
 

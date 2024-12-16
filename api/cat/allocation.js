@@ -25,16 +25,16 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Cat
  *
  * @param {object} [params]
- * @param {string} [params.bytes] - The unit used to display byte values.
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
- * @param {array} [params.h] - Comma-separated list of column names to display.
- * @param {boolean} [params.help=false] - Return help information.
- * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
- * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
- * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
- * @param {string} [params.node_id] - Comma-separated list of node identifiers or names used to limit the returned information.
+ * @param {string} [params.bytes] - The units used to display byte values.
+ * @param {string} [params.cluster_manager_timeout] - A timeout for connection to the cluster manager node.
+ * @param {string} [params.format] - A short version of the HTTP `Accept` header, such as `json` or `yaml`.
+ * @param {array} [params.h] - A comma-separated list of column names to display.
+ * @param {boolean} [params.help=false] - Returns help information.
+ * @param {boolean} [params.local=false] - Returns local information but does not retrieve the state from cluster-manager node.
+ * @param {string} [params.master_timeout] DEPRECATED - A timeout for connection to the cluster manager node.
+ * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
+ * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.
+ * @param {string} [params.node_id] - A comma-separated list of node IDs or names used to limit the returned information.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

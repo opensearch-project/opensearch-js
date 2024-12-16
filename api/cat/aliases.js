@@ -25,13 +25,13 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Cat
  *
  * @param {object} [params]
- * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
- * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
- * @param {array} [params.h] - Comma-separated list of column names to display.
- * @param {boolean} [params.help=false] - Return help information.
- * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
- * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
+ * @param {string} [params.expand_wildcards] - Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are `all`, `open`, `closed`, `hidden`, and `none`.
+ * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {array} [params.h] - A comma-separated list of column names to display.
+ * @param {boolean} [params.help=false] - Returns help information.
+ * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.
+ * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
+ * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.
  * @param {string} [params.name] - A comma-separated list of aliases to retrieve. Supports wildcards (`*`).  To retrieve all aliases, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

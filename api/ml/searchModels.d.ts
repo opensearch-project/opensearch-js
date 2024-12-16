@@ -19,7 +19,12 @@ import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
 export type Ml_SearchModels_Request = Global.Params & {
-  body?: Ml_Common.SearchModelsQuery;
+  body?: Ml_SearchModels_RequestBody;
+}
+
+export type Ml_SearchModels_RequestBody = {
+  query: Record<string, any>;
+  size: number;
 }
 
 export type Ml_SearchModels_Response = ApiResponse & {

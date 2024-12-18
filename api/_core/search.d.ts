@@ -111,4 +111,3 @@ export interface Search_Response extends ApiResponse {
 }
 
 export type Search_ResponseBody = Core_Search.ResponseBody
-

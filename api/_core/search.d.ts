@@ -106,9 +106,8 @@ export type Search_RequestBody = {
   version?: boolean;
 }
 
-export type Search_Response = ApiResponse & {
+export interface Search_Response extends ApiResponse {
   body: Search_ResponseBody;
 }
 
 export type Search_ResponseBody = Core_Search.ResponseBody
-

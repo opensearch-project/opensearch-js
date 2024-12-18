@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 
 export type AsynchronousSearch_Stats_Request = Global.Params & Record<string, any>
 
-export type AsynchronousSearch_Stats_Response = ApiResponse & {
+export interface AsynchronousSearch_Stats_Response extends ApiResponse {
   body: AsynchronousSearch_Stats_ResponseBody;
 }
 

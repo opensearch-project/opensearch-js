@@ -19,7 +19,7 @@ import * as Cat_Common from '../_types/cat._common'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cat_SegmentReplication_Request = Global.Params & {
+export interface Cat_SegmentReplication_Request extends Global.Params {
   active_only?: boolean;
   allow_no_indices?: boolean;
   bytes?: Common.ByteUnit;
@@ -39,7 +39,7 @@ export type Cat_SegmentReplication_Request = Global.Params & {
   v?: boolean;
 }
 
-export type Cat_SegmentReplication_Response = ApiResponse & {
+export interface Cat_SegmentReplication_Response extends ApiResponse {
   body: Cat_SegmentReplication_ResponseBody;
 }
 

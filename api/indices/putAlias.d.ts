@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Global from '../_types/_global'
 
-export type Indices_PutAlias_Request = Global.Params & {
+export interface Indices_PutAlias_Request extends Global.Params {
   body?: Indices_PutAlias_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   index?: Common.Indices;
@@ -39,7 +39,7 @@ export type Indices_PutAlias_RequestBody = {
   search_routing?: Common.Routing;
 }
 
-export type Indices_PutAlias_Response = ApiResponse & {
+export interface Indices_PutAlias_Response extends ApiResponse {
   body: Indices_PutAlias_ResponseBody;
 }
 

@@ -19,7 +19,7 @@ import * as Cat_Fielddata from '../_types/cat.fielddata'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cat_Fielddata_Request = Global.Params & {
+export interface Cat_Fielddata_Request extends Global.Params {
   bytes?: Common.ByteUnit;
   fields?: Common.Fields;
   format?: string;
@@ -29,7 +29,7 @@ export type Cat_Fielddata_Request = Global.Params & {
   v?: boolean;
 }
 
-export type Cat_Fielddata_Response = ApiResponse & {
+export interface Cat_Fielddata_Response extends ApiResponse {
   body: Cat_Fielddata_ResponseBody;
 }
 

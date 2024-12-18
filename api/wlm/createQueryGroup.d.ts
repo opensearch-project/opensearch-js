@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Wlm_Common from '../_types/wlm._common'
 
-export type Wlm_CreateQueryGroup_Request = Global.Params & {
+export interface Wlm_CreateQueryGroup_Request extends Global.Params {
   body: Wlm_Common.QueryGroupCreate;
 }
 
-export type Wlm_CreateQueryGroup_Response = ApiResponse & {
+export interface Wlm_CreateQueryGroup_Response extends ApiResponse {
   body: Wlm_CreateQueryGroup_ResponseBody;
 }
 

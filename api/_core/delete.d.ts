@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Delete_Request = Global.Params & {
+export interface Delete_Request extends Global.Params {
   id: Common.Id;
   if_primary_term?: number;
   if_seq_no?: Common.SequenceNumber;
@@ -31,7 +31,7 @@ export type Delete_Request = Global.Params & {
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export type Delete_Response = ApiResponse & {
+export interface Delete_Response extends ApiResponse {
   body: Delete_ResponseBody;
 }
 

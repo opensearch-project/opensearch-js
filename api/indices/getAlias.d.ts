@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_GetAlias from '../_types/indices.get_alias'
 
-export type Indices_GetAlias_Request = Global.Params & {
+export interface Indices_GetAlias_Request extends Global.Params {
   allow_no_indices?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
@@ -28,7 +28,7 @@ export type Indices_GetAlias_Request = Global.Params & {
   name?: Common.Names;
 }
 
-export type Indices_GetAlias_Response = ApiResponse & {
+export interface Indices_GetAlias_Response extends ApiResponse {
   body: Indices_GetAlias_ResponseBody;
 }
 

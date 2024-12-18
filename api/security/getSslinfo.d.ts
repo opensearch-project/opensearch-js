@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_GetSslinfo_Request = Global.Params & {
+export interface Security_GetSslinfo_Request extends Global.Params {
   show_dn?: boolean | string;
 }
 
-export type Security_GetSslinfo_Response = ApiResponse & {
+export interface Security_GetSslinfo_Response extends ApiResponse {
   body: Security_GetSslinfo_ResponseBody;
 }
 

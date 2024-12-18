@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Query_Common from '../_types/query._common'
 
-export type Query_DatasourceRetrieve_Request = Global.Params & {
+export interface Query_DatasourceRetrieve_Request extends Global.Params {
   datasource_name: string;
 }
 
-export type Query_DatasourceRetrieve_Response = ApiResponse & {
+export interface Query_DatasourceRetrieve_Response extends ApiResponse {
   body: Query_DatasourceRetrieve_ResponseBody;
 }
 

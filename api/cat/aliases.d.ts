@@ -19,7 +19,7 @@ import * as Cat_Aliases from '../_types/cat.aliases'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cat_Aliases_Request = Global.Params & {
+export interface Cat_Aliases_Request extends Global.Params {
   expand_wildcards?: Common.ExpandWildcards;
   format?: string;
   h?: string[];
@@ -30,7 +30,7 @@ export type Cat_Aliases_Request = Global.Params & {
   v?: boolean;
 }
 
-export type Cat_Aliases_Response = ApiResponse & {
+export interface Cat_Aliases_Response extends ApiResponse {
   body: Cat_Aliases_ResponseBody;
 }
 

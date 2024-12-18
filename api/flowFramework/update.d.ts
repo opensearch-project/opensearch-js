@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as FlowFramework_Common from '../_types/flow_framework.common'
 import * as Global from '../_types/_global'
 
-export type FlowFramework_Update_Request = Global.Params & {
+export interface FlowFramework_Update_Request extends Global.Params {
   body?: FlowFramework_Common.FlowFrameworkUpdate;
   provision?: FlowFramework_Common.Provision;
   reprovision?: FlowFramework_Common.Reprovision;
@@ -28,7 +28,7 @@ export type FlowFramework_Update_Request = Global.Params & {
   workflow_id: FlowFramework_Common.WorkflowID;
 }
 
-export type FlowFramework_Update_Response = ApiResponse & {
+export interface FlowFramework_Update_Response extends ApiResponse {
   body: FlowFramework_Update_ResponseBody;
 }
 

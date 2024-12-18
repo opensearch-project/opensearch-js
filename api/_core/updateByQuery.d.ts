@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Global from '../_types/_global'
 
-export type UpdateByQuery_Request = Global.Params & {
+export interface UpdateByQuery_Request extends Global.Params {
   _source?: string[];
   _source_excludes?: string[];
   _source_includes?: string[];
@@ -66,7 +66,7 @@ export type UpdateByQuery_RequestBody = {
   slice?: Common.SlicedScroll;
 }
 
-export type UpdateByQuery_Response = ApiResponse & {
+export interface UpdateByQuery_Response extends ApiResponse {
   body: UpdateByQuery_ResponseBody;
 }
 

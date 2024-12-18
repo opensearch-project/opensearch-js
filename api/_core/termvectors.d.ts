@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Core_Termvectors from '../_types/_core.termvectors'
 import * as Global from '../_types/_global'
 
-export type Termvectors_Request = Global.Params & {
+export interface Termvectors_Request extends Global.Params {
   body?: Termvectors_RequestBody;
   field_statistics?: boolean;
   fields?: Common.Fields;
@@ -42,13 +42,14 @@ export type Termvectors_RequestBody = {
   per_field_analyzer?: Record<string, string>;
 }
 
-export type Termvectors_Response = ApiResponse & {
+export interface Termvectors_Response extends ApiResponse {
   body: Termvectors_ResponseBody;
 }
 
 export type Termvectors_ResponseBody = {
-  _id: Common.Id;
+  _id?: Common.Id;
   _index: Common.IndexName;
+  _type?: Common.Type;
   _version: Common.VersionNumber;
   found: boolean;
   term_vectors?: Record<string, Core_Termvectors.TermVector>;

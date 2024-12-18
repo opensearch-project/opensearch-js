@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Transforms_Common from '../_types/transforms._common'
 
-export type Transforms_Preview_Request = Global.Params & {
+export interface Transforms_Preview_Request extends Global.Params {
   body?: Transforms_Common.TransformRequest;
 }
 
-export type Transforms_Preview_Response = ApiResponse & {
+export interface Transforms_Preview_Response extends ApiResponse {
   body: Transforms_Preview_ResponseBody;
 }
 

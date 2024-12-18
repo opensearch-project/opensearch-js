@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Insights_Common from '../_types/insights._common'
 
-export type Insights_TopQueries_Request = Global.Params & {
+export interface Insights_TopQueries_Request extends Global.Params {
   type: 'cpu' | 'latency' | 'memory';
 }
 
-export type Insights_TopQueries_Response = ApiResponse & {
+export interface Insights_TopQueries_Response extends ApiResponse {
   body: Insights_TopQueries_ResponseBody;
 }
 

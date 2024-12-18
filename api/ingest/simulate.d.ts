@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 import * as Ingest_Common from '../_types/ingest._common'
 import * as Ingest_Simulate from '../_types/ingest.simulate'
 
-export type Ingest_Simulate_Request = Global.Params & {
+export interface Ingest_Simulate_Request extends Global.Params {
   body: Ingest_Simulate_RequestBody;
   id?: Common.Id;
   verbose?: boolean;
@@ -31,7 +31,7 @@ export type Ingest_Simulate_RequestBody = {
   pipeline?: Ingest_Common.Pipeline;
 }
 
-export type Ingest_Simulate_Response = ApiResponse & {
+export interface Ingest_Simulate_Response extends ApiResponse {
   body: Ingest_Simulate_ResponseBody;
 }
 

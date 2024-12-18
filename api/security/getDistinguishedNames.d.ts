@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_GetDistinguishedNames_Request = Global.Params & {
+export interface Security_GetDistinguishedNames_Request extends Global.Params {
   show_all?: boolean;
 }
 
-export type Security_GetDistinguishedNames_Response = ApiResponse & {
+export interface Security_GetDistinguishedNames_Response extends ApiResponse {
   body: Security_GetDistinguishedNames_ResponseBody;
 }
 

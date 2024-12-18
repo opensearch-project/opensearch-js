@@ -19,7 +19,7 @@ import * as Cluster_AllocationExplain from '../_types/cluster.allocation_explain
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cluster_AllocationExplain_Request = Global.Params & {
+export interface Cluster_AllocationExplain_Request extends Global.Params {
   body?: Cluster_AllocationExplain_RequestBody;
   include_disk_info?: boolean;
   include_yes_decisions?: boolean;
@@ -32,7 +32,7 @@ export type Cluster_AllocationExplain_RequestBody = {
   shard?: number;
 }
 
-export type Cluster_AllocationExplain_Response = ApiResponse & {
+export interface Cluster_AllocationExplain_Response extends ApiResponse {
   body: Cluster_AllocationExplain_ResponseBody;
 }
 

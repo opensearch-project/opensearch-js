@@ -247,6 +247,8 @@ export type PatchOperation = {
   value?: Record<string, any>;
 }
 
+export type PatchOperations = PatchOperation[]
+
 export type PermissionsInfo = {
   disabled_endpoints?: Record<string, any>;
   has_api_access?: boolean;

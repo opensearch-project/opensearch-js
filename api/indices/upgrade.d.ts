@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export type Indices_Upgrade_Request = Global.Params & {
+export interface Indices_Upgrade_Request extends Global.Params {
   allow_no_indices?: boolean;
   body?: Indices_Common.UpgradeRequest;
   expand_wildcards?: Common.ExpandWildcards;
@@ -29,7 +29,7 @@ export type Indices_Upgrade_Request = Global.Params & {
   wait_for_completion?: boolean;
 }
 
-export type Indices_Upgrade_Response = ApiResponse & {
+export interface Indices_Upgrade_Response extends ApiResponse {
   body: Indices_Upgrade_ResponseBody;
 }
 

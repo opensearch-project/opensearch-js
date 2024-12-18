@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_Validate_Request = Global.Params & {
+export interface Security_Validate_Request extends Global.Params {
   accept_invalid?: boolean;
 }
 
-export type Security_Validate_Response = ApiResponse & {
+export interface Security_Validate_Response extends ApiResponse {
   body: Security_Validate_ResponseBody;
 }
 

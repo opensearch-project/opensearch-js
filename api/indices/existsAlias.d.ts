@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Indices_ExistsAlias_Request = Global.Params & {
+export interface Indices_ExistsAlias_Request extends Global.Params {
   allow_no_indices?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
@@ -27,7 +27,7 @@ export type Indices_ExistsAlias_Request = Global.Params & {
   name: Common.Names;
 }
 
-export type Indices_ExistsAlias_Response = ApiResponse & {
+export interface Indices_ExistsAlias_Response extends ApiResponse {
   body: Indices_ExistsAlias_ResponseBody;
 }
 

@@ -19,11 +19,11 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Ism_Common from '../_types/ism._common'
 
-export type Ism_RefreshSearchAnalyzers_Request = Global.Params & {
+export interface Ism_RefreshSearchAnalyzers_Request extends Global.Params {
   index: Common.IndexName;
 }
 
-export type Ism_RefreshSearchAnalyzers_Response = ApiResponse & {
+export interface Ism_RefreshSearchAnalyzers_Response extends ApiResponse {
   body: Ism_RefreshSearchAnalyzers_ResponseBody;
 }
 

@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as AsynchronousSearch_Common from '../_types/asynchronous_search._common'
 import * as Global from '../_types/_global'
 
-export type AsynchronousSearch_Search_Request = Global.Params & {
+export interface AsynchronousSearch_Search_Request extends Global.Params {
   body?: AsynchronousSearch_Common.Search;
   index?: string;
   keep_alive?: string;
@@ -26,7 +26,7 @@ export type AsynchronousSearch_Search_Request = Global.Params & {
   wait_for_completion_timeout?: string;
 }
 
-export type AsynchronousSearch_Search_Response = ApiResponse & {
+export interface AsynchronousSearch_Search_Response extends ApiResponse {
   body: AsynchronousSearch_Search_ResponseBody;
 }
 

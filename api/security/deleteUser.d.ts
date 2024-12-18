@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_DeleteUser_Request = Global.Params & {
+export interface Security_DeleteUser_Request extends Global.Params {
   username: string;
 }
 
-export type Security_DeleteUser_Response = ApiResponse & {
+export interface Security_DeleteUser_Response extends ApiResponse {
   body: Security_DeleteUser_ResponseBody;
 }
 

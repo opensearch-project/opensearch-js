@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as FlowFramework_Common from '../_types/flow_framework.common'
 import * as Global from '../_types/_global'
 
-export type FlowFramework_GetSteps_Request = Global.Params & {
+export interface FlowFramework_GetSteps_Request extends Global.Params {
   workflow_step?: FlowFramework_Common.WorkflowStepName;
 }
 
-export type FlowFramework_GetSteps_Response = ApiResponse & {
+export interface FlowFramework_GetSteps_Response extends ApiResponse {
   body: FlowFramework_GetSteps_ResponseBody;
 }
 

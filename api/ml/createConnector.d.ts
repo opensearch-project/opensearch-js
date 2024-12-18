@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export type Ml_CreateConnector_Request = Global.Params & {
+export interface Ml_CreateConnector_Request extends Global.Params {
   body?: Ml_CreateConnector_RequestBody;
 }
 
@@ -33,7 +33,7 @@ export type Ml_CreateConnector_RequestBody = {
   version: number;
 }
 
-export type Ml_CreateConnector_Response = ApiResponse & {
+export interface Ml_CreateConnector_Response extends ApiResponse {
   body: Ml_CreateConnector_ResponseBody;
 }
 

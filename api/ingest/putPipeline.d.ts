@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Ingest_Common from '../_types/ingest._common'
 
-export type Ingest_PutPipeline_Request = Global.Params & {
+export interface Ingest_PutPipeline_Request extends Global.Params {
   body: Ingest_PutPipeline_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   id: Common.Id;
@@ -35,7 +35,7 @@ export type Ingest_PutPipeline_RequestBody = {
   version?: Common.VersionNumber;
 }
 
-export type Ingest_PutPipeline_Response = ApiResponse & {
+export interface Ingest_PutPipeline_Response extends ApiResponse {
   body: Ingest_PutPipeline_ResponseBody;
 }
 

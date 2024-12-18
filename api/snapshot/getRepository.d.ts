@@ -19,14 +19,14 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Snapshot_Common from '../_types/snapshot._common'
 
-export type Snapshot_GetRepository_Request = Global.Params & {
+export interface Snapshot_GetRepository_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;
   local?: boolean;
   master_timeout?: Common.Duration;
   repository?: Common.Names;
 }
 
-export type Snapshot_GetRepository_Response = ApiResponse & {
+export interface Snapshot_GetRepository_Response extends ApiResponse {
   body: Snapshot_GetRepository_ResponseBody;
 }
 

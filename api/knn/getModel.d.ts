@@ -17,11 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export type Knn_GetModel_Request = Global.Params & {
+export interface Knn_GetModel_Request extends Global.Params {
   model_id: string;
 }
 
-export type Knn_GetModel_Response = ApiResponse & {
+export interface Knn_GetModel_Response extends ApiResponse {
   body: Knn_GetModel_ResponseBody;
 }
 

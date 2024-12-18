@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Knn_Common from '../_types/knn._common'
 
-export type Knn_DeleteModel_Request = Global.Params & {
+export interface Knn_DeleteModel_Request extends Global.Params {
   model_id: string;
 }
 
-export type Knn_DeleteModel_Response = ApiResponse & {
+export interface Knn_DeleteModel_Response extends ApiResponse {
   body: Knn_DeleteModel_ResponseBody;
 }
 

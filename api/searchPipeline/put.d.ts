@@ -19,14 +19,14 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as SearchPipeline_Common from '../_types/search_pipeline._common'
 
-export type SearchPipeline_Put_Request = Global.Params & {
+export interface SearchPipeline_Put_Request extends Global.Params {
   body: SearchPipeline_Common.SearchPipelineStructure;
   cluster_manager_timeout?: Common.Duration;
   id: string;
   timeout?: Common.Duration;
 }
 
-export type SearchPipeline_Put_Response = ApiResponse & {
+export interface SearchPipeline_Put_Response extends ApiResponse {
   body: SearchPipeline_Put_ResponseBody;
 }
 

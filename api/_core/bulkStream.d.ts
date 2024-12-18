@@ -20,7 +20,7 @@ import * as Core_Bulk from '../_types/_core.bulk'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export type BulkStream_Request = Global.Params & {
+export interface BulkStream_Request extends Global.Params {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -39,7 +39,7 @@ export type BulkStream_Request = Global.Params & {
 
 export type BulkStream_RequestBody = Core_Bulk.OperationContainer | Core_Bulk.UpdateAction | Record<string, any>[]
 
-export type BulkStream_Response = ApiResponse & {
+export interface BulkStream_Response extends ApiResponse {
   body: BulkStream_ResponseBody;
 }
 

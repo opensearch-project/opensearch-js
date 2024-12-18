@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Indices_Flush_Request = Global.Params & {
+export interface Indices_Flush_Request extends Global.Params {
   allow_no_indices?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
   force?: boolean;
@@ -27,7 +27,7 @@ export type Indices_Flush_Request = Global.Params & {
   wait_if_ongoing?: boolean;
 }
 
-export type Indices_Flush_Response = ApiResponse & {
+export interface Indices_Flush_Response extends ApiResponse {
   body: Indices_Flush_ResponseBody;
 }
 

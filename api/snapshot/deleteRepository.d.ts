@@ -18,14 +18,14 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Snapshot_DeleteRepository_Request = Global.Params & {
+export interface Snapshot_DeleteRepository_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;
   master_timeout?: Common.Duration;
   repository: Common.Names;
   timeout?: Common.Duration;
 }
 
-export type Snapshot_DeleteRepository_Response = ApiResponse & {
+export interface Snapshot_DeleteRepository_Response extends ApiResponse {
   body: Snapshot_DeleteRepository_ResponseBody;
 }
 

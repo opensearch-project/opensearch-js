@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Sm_Common from '../_types/sm._common'
 
-export type Sm_DeletePolicy_Request = Global.Params & {
+export interface Sm_DeletePolicy_Request extends Global.Params {
   policy_name: string;
 }
 
-export type Sm_DeletePolicy_Response = ApiResponse & {
+export interface Sm_DeletePolicy_Response extends ApiResponse {
   body: Sm_DeletePolicy_ResponseBody;
 }
 

@@ -18,12 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as FlowFramework_Common from '../_types/flow_framework.common'
 import * as Global from '../_types/_global'
 
-export type FlowFramework_Provision_Request = Global.Params & {
+export interface FlowFramework_Provision_Request extends Global.Params {
   body?: FlowFramework_Common.UserProvidedSubstitutionExpressions;
   workflow_id: FlowFramework_Common.WorkflowID;
 }
 
-export type FlowFramework_Provision_Response = ApiResponse & {
+export interface FlowFramework_Provision_Response extends ApiResponse {
   body: FlowFramework_Provision_ResponseBody;
 }
 

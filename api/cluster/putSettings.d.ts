@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cluster_PutSettings_Request = Global.Params & {
+export interface Cluster_PutSettings_Request extends Global.Params {
   body: Cluster_PutSettings_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   flat_settings?: boolean;
@@ -33,7 +33,7 @@ export type Cluster_PutSettings_RequestBody = {
 };
 }
 
-export type Cluster_PutSettings_Response = ApiResponse & {
+export interface Cluster_PutSettings_Response extends ApiResponse {
   body: Cluster_PutSettings_ResponseBody;
 }
 

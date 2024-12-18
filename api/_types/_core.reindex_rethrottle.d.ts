@@ -39,10 +39,12 @@ export type ReindexStatus = {
 export type ReindexTask = {
   action: string;
   cancellable: boolean;
+  cancelled?: boolean;
   description: string;
   headers: Common.HttpHeaders;
   id: number;
   node: Common.Name;
+  resource_stats?: Common.ResourceStats;
   running_time_in_nanos: Common.DurationValueUnitNanos;
   start_time_in_millis: Common.EpochTimeUnitMillis;
   status: ReindexStatus;

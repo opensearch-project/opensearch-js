@@ -19,11 +19,11 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export type Indices_DataStreamsStats_Request = Global.Params & {
+export interface Indices_DataStreamsStats_Request extends Global.Params {
   name?: Common.Indices;
 }
 
-export type Indices_DataStreamsStats_Response = ApiResponse & {
+export interface Indices_DataStreamsStats_Response extends ApiResponse {
   body: Indices_DataStreamsStats_ResponseBody;
 }
 

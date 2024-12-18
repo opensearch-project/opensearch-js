@@ -17,11 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export type Ingest_ProcessorGrok_Request = Global.Params & {
+export interface Ingest_ProcessorGrok_Request extends Global.Params {
   s?: boolean;
 }
 
-export type Ingest_ProcessorGrok_Response = ApiResponse & {
+export interface Ingest_ProcessorGrok_Response extends ApiResponse {
   body: Ingest_ProcessorGrok_ResponseBody;
 }
 

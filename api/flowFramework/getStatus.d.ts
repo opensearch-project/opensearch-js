@@ -18,12 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as FlowFramework_Common from '../_types/flow_framework.common'
 import * as Global from '../_types/_global'
 
-export type FlowFramework_GetStatus_Request = Global.Params & {
+export interface FlowFramework_GetStatus_Request extends Global.Params {
   all?: FlowFramework_Common.All;
   workflow_id: FlowFramework_Common.WorkflowID;
 }
 
-export type FlowFramework_GetStatus_Response = ApiResponse & {
+export interface FlowFramework_GetStatus_Response extends ApiResponse {
   body: FlowFramework_GetStatus_ResponseBody;
 }
 

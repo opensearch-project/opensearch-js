@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export type Ml_SearchModels_Request = Global.Params & {
+export interface Ml_SearchModels_Request extends Global.Params {
   body?: Ml_SearchModels_RequestBody;
 }
 
@@ -27,7 +27,7 @@ export type Ml_SearchModels_RequestBody = {
   size: number;
 }
 
-export type Ml_SearchModels_Response = ApiResponse & {
+export interface Ml_SearchModels_Response extends ApiResponse {
   body: Ml_SearchModels_ResponseBody;
 }
 

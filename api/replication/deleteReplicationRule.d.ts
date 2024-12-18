@@ -19,11 +19,11 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Replication_Common from '../_types/replication._common'
 
-export type Replication_DeleteReplicationRule_Request = Global.Params & {
+export interface Replication_DeleteReplicationRule_Request extends Global.Params {
   body: Replication_Common.DeleteReplicationRule;
 }
 
-export type Replication_DeleteReplicationRule_Response = ApiResponse & {
+export interface Replication_DeleteReplicationRule_Response extends ApiResponse {
   body: Replication_DeleteReplicationRule_ResponseBody;
 }
 

@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 
 export type Cluster_RemoteInfo_Request = Global.Params & Record<string, any>
 
-export type Cluster_RemoteInfo_Response = ApiResponse & {
+export interface Cluster_RemoteInfo_Response extends ApiResponse {
   body: Cluster_RemoteInfo_ResponseBody;
 }
 

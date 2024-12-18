@@ -20,7 +20,7 @@ import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Core_FieldCaps from '../_types/_core.field_caps'
 import * as Global from '../_types/_global'
 
-export type FieldCaps_Request = Global.Params & {
+export interface FieldCaps_Request extends Global.Params {
   allow_no_indices?: boolean;
   body?: FieldCaps_RequestBody;
   expand_wildcards?: Common.ExpandWildcards;
@@ -35,7 +35,7 @@ export type FieldCaps_RequestBody = {
   index_filter?: Common_QueryDsl.QueryContainer;
 }
 
-export type FieldCaps_Response = ApiResponse & {
+export interface FieldCaps_Response extends ApiResponse {
   body: FieldCaps_ResponseBody;
 }
 

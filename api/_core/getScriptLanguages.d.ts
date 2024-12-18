@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 
 export type GetScriptLanguages_Request = Global.Params & Record<string, any>
 
-export type GetScriptLanguages_Response = ApiResponse & {
+export interface GetScriptLanguages_Response extends ApiResponse {
   body: GetScriptLanguages_ResponseBody;
 }
 

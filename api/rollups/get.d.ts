@@ -19,11 +19,11 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Rollups_Common from '../_types/rollups._common'
 
-export type Rollups_Get_Request = Global.Params & {
+export interface Rollups_Get_Request extends Global.Params {
   id: Common.Id;
 }
 
-export type Rollups_Get_Response = ApiResponse & {
+export interface Rollups_Get_Response extends ApiResponse {
   body: Rollups_Get_ResponseBody;
 }
 

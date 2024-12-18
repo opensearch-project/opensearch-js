@@ -21,7 +21,7 @@ import * as Global from '../_types/_global'
 
 export type DanglingIndices_ListDanglingIndices_Request = Global.Params & Record<string, any>
 
-export type DanglingIndices_ListDanglingIndices_Response = ApiResponse & {
+export interface DanglingIndices_ListDanglingIndices_Response extends ApiResponse {
   body: DanglingIndices_ListDanglingIndices_ResponseBody;
 }
 

@@ -20,7 +20,7 @@ import * as Core_Search from '../_types/_core.search'
 import * as Core_Update from '../_types/_core.update'
 import * as Global from '../_types/_global'
 
-export type Update_Request = Global.Params & {
+export interface Update_Request extends Global.Params {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -48,7 +48,7 @@ export type Update_RequestBody = {
   upsert?: Record<string, any>;
 }
 
-export type Update_Response = ApiResponse & {
+export interface Update_Response extends ApiResponse {
   body: Update_ResponseBody;
 }
 

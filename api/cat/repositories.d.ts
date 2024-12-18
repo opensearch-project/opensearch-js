@@ -19,7 +19,7 @@ import * as Cat_Repositories from '../_types/cat.repositories'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cat_Repositories_Request = Global.Params & {
+export interface Cat_Repositories_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;
   format?: string;
   h?: string[];
@@ -30,7 +30,7 @@ export type Cat_Repositories_Request = Global.Params & {
   v?: boolean;
 }
 
-export type Cat_Repositories_Response = ApiResponse & {
+export interface Cat_Repositories_Response extends ApiResponse {
   body: Cat_Repositories_ResponseBody;
 }
 

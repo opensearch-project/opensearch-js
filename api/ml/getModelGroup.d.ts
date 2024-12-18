@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export type Ml_GetModelGroup_Request = Global.Params & {
+export interface Ml_GetModelGroup_Request extends Global.Params {
   model_group_id: string;
 }
 
-export type Ml_GetModelGroup_Response = ApiResponse & {
+export interface Ml_GetModelGroup_Response extends ApiResponse {
   body: Ml_GetModelGroup_ResponseBody;
 }
 

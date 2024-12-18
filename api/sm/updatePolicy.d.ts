@@ -18,14 +18,14 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Sm_Common from '../_types/sm._common'
 
-export type Sm_UpdatePolicy_Request = Global.Params & {
+export interface Sm_UpdatePolicy_Request extends Global.Params {
   body?: Sm_Common.CreateUpdatePolicyRequest;
   if_primary_term: number;
   if_seq_no: number;
   policy_name: string;
 }
 
-export type Sm_UpdatePolicy_Response = ApiResponse & {
+export interface Sm_UpdatePolicy_Response extends ApiResponse {
   body: Sm_UpdatePolicy_ResponseBody;
 }
 

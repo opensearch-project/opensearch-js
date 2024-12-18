@@ -19,14 +19,14 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Nodes_Info from '../_types/nodes.info'
 
-export type Nodes_Info_Request = Global.Params & {
+export interface Nodes_Info_Request extends Global.Params {
   flat_settings?: boolean;
   metric?: Nodes_Info.Metric[];
   node_id?: Common.NodeIds;
   timeout?: Common.Duration;
 }
 
-export type Nodes_Info_Response = ApiResponse & {
+export interface Nodes_Info_Response extends ApiResponse {
   body: Nodes_Info_ResponseBody;
 }
 

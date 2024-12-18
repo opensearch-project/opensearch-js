@@ -19,13 +19,13 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Nodes_Usage from '../_types/nodes.usage'
 
-export type Nodes_Usage_Request = Global.Params & {
+export interface Nodes_Usage_Request extends Global.Params {
   metric?: Nodes_Usage.Metric[];
   node_id?: Common.NodeIds;
   timeout?: Common.Duration;
 }
 
-export type Nodes_Usage_Response = ApiResponse & {
+export interface Nodes_Usage_Response extends ApiResponse {
   body: Nodes_Usage_ResponseBody;
 }
 

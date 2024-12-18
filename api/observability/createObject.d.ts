@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Observability_Common from '../_types/observability._common'
 
-export type Observability_CreateObject_Request = Global.Params & {
+export interface Observability_CreateObject_Request extends Global.Params {
   body?: Observability_Common.ObservabilityObject;
 }
 
-export type Observability_CreateObject_Response = ApiResponse & {
+export interface Observability_CreateObject_Response extends ApiResponse {
   body: Observability_CreateObject_ResponseBody;
 }
 

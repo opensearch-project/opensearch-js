@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Common_Mapping from '../_types/_common.mapping'
 import * as Global from '../_types/_global'
 
-export type Indices_PutMapping_Request = Global.Params & {
+export interface Indices_PutMapping_Request extends Global.Params {
   allow_no_indices?: boolean;
   body: Indices_PutMapping_RequestBody;
   cluster_manager_timeout?: Common.Duration;
@@ -44,7 +44,7 @@ export type Indices_PutMapping_RequestBody = {
   properties?: Record<string, Common_Mapping.Property>;
 }
 
-export type Indices_PutMapping_Response = ApiResponse & {
+export interface Indices_PutMapping_Response extends ApiResponse {
   body: Indices_PutMapping_ResponseBody;
 }
 

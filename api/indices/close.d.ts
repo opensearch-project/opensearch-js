@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Close from '../_types/indices.close'
 
-export type Indices_Close_Request = Global.Params & {
+export interface Indices_Close_Request extends Global.Params {
   allow_no_indices?: boolean;
   cluster_manager_timeout?: Common.Duration;
   expand_wildcards?: Common.ExpandWildcards;
@@ -30,7 +30,7 @@ export type Indices_Close_Request = Global.Params & {
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export type Indices_Close_Response = ApiResponse & {
+export interface Indices_Close_Response extends ApiResponse {
   body: Indices_Close_ResponseBody;
 }
 

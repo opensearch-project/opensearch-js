@@ -18,12 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_UpdateDistinguishedName_Request = Global.Params & {
+export interface Security_UpdateDistinguishedName_Request extends Global.Params {
   body?: Security_Common.DistinguishedNames;
   cluster_name: string;
 }
 
-export type Security_UpdateDistinguishedName_Response = ApiResponse & {
+export interface Security_UpdateDistinguishedName_Response extends ApiResponse {
   body: Security_UpdateDistinguishedName_ResponseBody;
 }
 

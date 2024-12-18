@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Nodes_Common from '../_types/nodes._common'
 
-export type Nodes_HotThreads_Request = Global.Params & {
+export interface Nodes_HotThreads_Request extends Global.Params {
   ignore_idle_threads?: boolean;
   interval?: Common.Duration;
   node_id?: string[];
@@ -29,7 +29,7 @@ export type Nodes_HotThreads_Request = Global.Params & {
   type?: Nodes_Common.SampleType;
 }
 
-export type Nodes_HotThreads_Response = ApiResponse & {
+export interface Nodes_HotThreads_Response extends ApiResponse {
   body: Nodes_HotThreads_ResponseBody;
 }
 

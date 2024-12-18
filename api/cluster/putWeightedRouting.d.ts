@@ -18,12 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Cluster_WeightedRouting from '../_types/cluster.weighted_routing'
 import * as Global from '../_types/_global'
 
-export type Cluster_PutWeightedRouting_Request = Global.Params & {
+export interface Cluster_PutWeightedRouting_Request extends Global.Params {
   attribute: string;
   body?: Cluster_WeightedRouting.Weights;
 }
 
-export type Cluster_PutWeightedRouting_Response = ApiResponse & {
+export interface Cluster_PutWeightedRouting_Response extends ApiResponse {
   body: Cluster_PutWeightedRouting_ResponseBody;
 }
 

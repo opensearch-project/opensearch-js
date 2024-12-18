@@ -18,12 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Notifications_Common from '../_types/notifications._common'
 
-export type Notifications_DeleteConfigs_Request = Global.Params & {
+export interface Notifications_DeleteConfigs_Request extends Global.Params {
   config_id: string;
   config_id_list?: string;
 }
 
-export type Notifications_DeleteConfigs_Response = ApiResponse & {
+export interface Notifications_DeleteConfigs_Response extends ApiResponse {
   body: Notifications_DeleteConfigs_ResponseBody;
 }
 

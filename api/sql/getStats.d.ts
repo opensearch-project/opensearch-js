@@ -17,12 +17,12 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export type Sql_GetStats_Request = Global.Params & {
+export interface Sql_GetStats_Request extends Global.Params {
   format?: string;
   sanitize?: boolean;
 }
 
-export type Sql_GetStats_Response = ApiResponse & {
+export interface Sql_GetStats_Response extends ApiResponse {
   body: Sql_GetStats_ResponseBody;
 }
 

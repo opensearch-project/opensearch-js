@@ -17,11 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export type AsynchronousSearch_Delete_Request = Global.Params & {
+export interface AsynchronousSearch_Delete_Request extends Global.Params {
   id: string;
 }
 
-export type AsynchronousSearch_Delete_Response = ApiResponse & {
+export interface AsynchronousSearch_Delete_Response extends ApiResponse {
   body: AsynchronousSearch_Delete_ResponseBody;
 }
 

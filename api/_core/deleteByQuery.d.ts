@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Global from '../_types/_global'
 
-export type DeleteByQuery_Request = Global.Params & {
+export interface DeleteByQuery_Request extends Global.Params {
   _source?: string[];
   _source_excludes?: string[];
   _source_includes?: string[];
@@ -63,7 +63,7 @@ export type DeleteByQuery_RequestBody = {
   slice?: Common.SlicedScroll;
 }
 
-export type DeleteByQuery_Response = ApiResponse & {
+export interface DeleteByQuery_Response extends ApiResponse {
   body: DeleteByQuery_ResponseBody;
 }
 

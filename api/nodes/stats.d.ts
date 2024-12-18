@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Nodes_Stats from '../_types/nodes.stats'
 
-export type Nodes_Stats_Request = Global.Params & {
+export interface Nodes_Stats_Request extends Global.Params {
   completion_fields?: Common.Fields;
   fielddata_fields?: Common.Fields;
   fields?: Common.Fields;
@@ -33,7 +33,7 @@ export type Nodes_Stats_Request = Global.Params & {
   types?: string[];
 }
 
-export type Nodes_Stats_Response = ApiResponse & {
+export interface Nodes_Stats_Response extends ApiResponse {
   body: Nodes_Stats_ResponseBody;
 }
 

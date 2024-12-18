@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Core_SearchShards from '../_types/_core.search_shards'
 import * as Global from '../_types/_global'
 
-export type SearchShards_Request = Global.Params & {
+export interface SearchShards_Request extends Global.Params {
   allow_no_indices?: boolean;
   body?: SearchShards_RequestBody;
   expand_wildcards?: Common.ExpandWildcards;
@@ -40,7 +40,7 @@ export type SearchShards_RequestBody = {
   sort?: Record<string, string>[];
 }
 
-export type SearchShards_Response = ApiResponse & {
+export interface SearchShards_Response extends ApiResponse {
   body: SearchShards_ResponseBody;
 }
 

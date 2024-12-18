@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Transforms_Common from '../_types/transforms._common'
 
-export type Transforms_Search_Request = Global.Params & {
+export interface Transforms_Search_Request extends Global.Params {
   from?: number;
   search?: string;
   size?: number;
@@ -26,7 +26,7 @@ export type Transforms_Search_Request = Global.Params & {
   sortField?: string;
 }
 
-export type Transforms_Search_Response = ApiResponse & {
+export interface Transforms_Search_Response extends ApiResponse {
   body: Transforms_Search_ResponseBody;
 }
 

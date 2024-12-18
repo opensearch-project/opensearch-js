@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export type Ml_RegisterModelGroup_Request = Global.Params & {
+export interface Ml_RegisterModelGroup_Request extends Global.Params {
   body?: Ml_RegisterModelGroup_RequestBody;
 }
 
@@ -30,7 +30,7 @@ export type Ml_RegisterModelGroup_RequestBody = {
   name: string;
 }
 
-export type Ml_RegisterModelGroup_Response = ApiResponse & {
+export interface Ml_RegisterModelGroup_Response extends ApiResponse {
   body: Ml_RegisterModelGroup_ResponseBody;
 }
 

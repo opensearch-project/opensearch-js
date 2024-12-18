@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export type Ml_UndeployModel_Request = Global.Params & {
+export interface Ml_UndeployModel_Request extends Global.Params {
   model_id: string;
 }
 
-export type Ml_UndeployModel_Response = ApiResponse & {
+export interface Ml_UndeployModel_Response extends ApiResponse {
   body: Ml_UndeployModel_ResponseBody;
 }
 

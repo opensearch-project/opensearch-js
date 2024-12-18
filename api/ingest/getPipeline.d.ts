@@ -19,13 +19,13 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Ingest_Common from '../_types/ingest._common'
 
-export type Ingest_GetPipeline_Request = Global.Params & {
+export interface Ingest_GetPipeline_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;
   id?: Common.Id;
   master_timeout?: Common.Duration;
 }
 
-export type Ingest_GetPipeline_Response = ApiResponse & {
+export interface Ingest_GetPipeline_Response extends ApiResponse {
   body: Ingest_GetPipeline_ResponseBody;
 }
 

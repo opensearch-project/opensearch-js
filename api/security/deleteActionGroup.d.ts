@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_DeleteActionGroup_Request = Global.Params & {
+export interface Security_DeleteActionGroup_Request extends Global.Params {
   action_group: string;
 }
 
-export type Security_DeleteActionGroup_Response = ApiResponse & {
+export interface Security_DeleteActionGroup_Response extends ApiResponse {
   body: Security_DeleteActionGroup_ResponseBody;
 }
 

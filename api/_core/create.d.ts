@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Create_Request = Global.Params & {
+export interface Create_Request extends Global.Params {
   body: Create_RequestBody;
   id: Common.Id;
   index: Common.IndexName;
@@ -33,7 +33,7 @@ export type Create_Request = Global.Params & {
 
 export type Create_RequestBody = Record<string, any>
 
-export type Create_Response = ApiResponse & {
+export interface Create_Response extends ApiResponse {
   body: Create_ResponseBody;
 }
 

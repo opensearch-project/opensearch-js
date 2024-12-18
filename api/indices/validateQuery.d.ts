@@ -20,7 +20,7 @@ import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Global from '../_types/_global'
 import * as Indices_ValidateQuery from '../_types/indices.validate_query'
 
-export type Indices_ValidateQuery_Request = Global.Params & {
+export interface Indices_ValidateQuery_Request extends Global.Params {
   all_shards?: boolean;
   allow_no_indices?: boolean;
   analyze_wildcard?: boolean;
@@ -41,7 +41,7 @@ export type Indices_ValidateQuery_RequestBody = {
   query?: Common_QueryDsl.QueryContainer;
 }
 
-export type Indices_ValidateQuery_Response = ApiResponse & {
+export interface Indices_ValidateQuery_Response extends ApiResponse {
   body: Indices_ValidateQuery_ResponseBody;
 }
 

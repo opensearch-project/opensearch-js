@@ -17,11 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export type Cluster_DeleteVotingConfigExclusions_Request = Global.Params & {
+export interface Cluster_DeleteVotingConfigExclusions_Request extends Global.Params {
   wait_for_removal?: boolean;
 }
 
-export type Cluster_DeleteVotingConfigExclusions_Response = ApiResponse & {
+export interface Cluster_DeleteVotingConfigExclusions_Response extends ApiResponse {
   body: Cluster_DeleteVotingConfigExclusions_ResponseBody;
 }
 

@@ -20,7 +20,7 @@ import * as Common_Mapping from '../_types/_common.mapping'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export type Indices_Create_Request = Global.Params & {
+export interface Indices_Create_Request extends Global.Params {
   body?: Indices_Create_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   index: Common.IndexName;
@@ -35,7 +35,7 @@ export type Indices_Create_RequestBody = {
   settings?: Indices_Common.IndexSettings;
 }
 
-export type Indices_Create_Response = ApiResponse & {
+export interface Indices_Create_Response extends ApiResponse {
   body: Indices_Create_ResponseBody;
 }
 

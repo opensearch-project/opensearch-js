@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type RenderSearchTemplate_Request = Global.Params & {
+export interface RenderSearchTemplate_Request extends Global.Params {
   body?: RenderSearchTemplate_RequestBody;
   id?: Common.Id;
 }
@@ -29,7 +29,7 @@ export type RenderSearchTemplate_RequestBody = {
   source?: string;
 }
 
-export type RenderSearchTemplate_Response = ApiResponse & {
+export interface RenderSearchTemplate_Response extends ApiResponse {
   body: RenderSearchTemplate_ResponseBody;
 }
 

@@ -19,11 +19,11 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Replication_Common from '../_types/replication._common'
 
-export type Replication_Status_Request = Global.Params & {
+export interface Replication_Status_Request extends Global.Params {
   index: Common.IndexName;
 }
 
-export type Replication_Status_Response = ApiResponse & {
+export interface Replication_Status_Response extends ApiResponse {
   body: Replication_Status_ResponseBody;
 }
 

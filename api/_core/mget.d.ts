@@ -20,7 +20,7 @@ import * as Core_Mget from '../_types/_core.mget'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export type Mget_Request = Global.Params & {
+export interface Mget_Request extends Global.Params {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -38,7 +38,7 @@ export type Mget_RequestBody = {
   ids?: Common.Ids;
 }
 
-export type Mget_Response = ApiResponse & {
+export interface Mget_Response extends ApiResponse {
   body: Mget_ResponseBody;
 }
 

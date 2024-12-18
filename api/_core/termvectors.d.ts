@@ -47,8 +47,9 @@ export type Termvectors_Response = ApiResponse & {
 }
 
 export type Termvectors_ResponseBody = {
-  _id: Common.Id;
+  _id?: Common.Id;
   _index: Common.IndexName;
+  _type?: Common.Type;
   _version: Common.VersionNumber;
   found: boolean;
   term_vectors?: Record<string, Core_Termvectors.TermVector>;

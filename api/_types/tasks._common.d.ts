@@ -43,6 +43,7 @@ export type TaskInfo = TaskInfoBase & Record<string, any>
 export type TaskInfoBase = {
   action: string;
   cancellable: boolean;
+  cancellation_time_millis?: Common.EpochTimeUnitMillis;
   cancelled?: boolean;
   description?: string;
   headers: Record<string, string>;

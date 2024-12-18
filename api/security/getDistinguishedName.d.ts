@@ -27,5 +27,5 @@ export type Security_GetDistinguishedName_Response = ApiResponse & {
   body: Security_GetDistinguishedName_ResponseBody;
 }
 
-export type Security_GetDistinguishedName_ResponseBody = Security_Common.DistinguishedNames
+export type Security_GetDistinguishedName_ResponseBody = Security_Common.DistinguishedNamesMap
 

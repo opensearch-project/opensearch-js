@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
 export type Security_PatchDistinguishedName_Request = Global.Params & {
-  body?: Security_Common.PatchOperation;
+  body?: Security_Common.PatchOperations;
   cluster_name: string;
 }
 

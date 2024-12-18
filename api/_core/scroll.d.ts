@@ -28,7 +28,7 @@ export type Scroll_Request = Global.Params & {
 
 export type Scroll_RequestBody = {
   scroll?: Common.Duration;
-  scroll_id: Common.ScrollId;
+  scroll_id?: Common.ScrollId;
 }
 
 export type Scroll_Response = ApiResponse & {

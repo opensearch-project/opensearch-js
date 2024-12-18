@@ -22,7 +22,7 @@ export type RequestItem = Core_Msearch.MultisearchHeader | TemplateConfig
 export type TemplateConfig = {
   explain?: boolean;
   id?: Common.Id;
-  params?: Record<string, Record<string, any>>;
+  params?: Record<string, string | Record<string, any>>;
   profile?: boolean;
   source?: string;
 }

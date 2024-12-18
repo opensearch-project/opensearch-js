@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Changes the number of requests per second for a particular Reindex operation.
+ * Changes the number of requests per second for a particular reindex operation.
  * <br/> See Also: {@link https://opensearch.org/docs/latest - reindex_rethrottle}
  *
  * @memberOf API-Core

@@ -36,6 +36,7 @@ export type Operation = {
 export type TermVectorsResult = {
   _id: Common.Id;
   _index: Common.IndexName;
+  _type?: Common.Type;
   _version?: Common.VersionNumber;
   error?: Common.ErrorCause;
   found?: boolean;

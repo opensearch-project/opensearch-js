@@ -19,13 +19,13 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Tasks_Common from '../_types/tasks._common'
 
-export type Tasks_Get_Request = Global.Params & {
+export interface Tasks_Get_Request extends Global.Params {
   task_id: Common.Id;
   timeout?: Common.Duration;
   wait_for_completion?: boolean;
 }
 
-export type Tasks_Get_Response = ApiResponse & {
+export interface Tasks_Get_Response extends ApiResponse {
   body: Tasks_Get_ResponseBody;
 }
 

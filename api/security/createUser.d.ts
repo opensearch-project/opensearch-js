@@ -18,12 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_CreateUser_Request = Global.Params & {
+export interface Security_CreateUser_Request extends Global.Params {
   body: Security_Common.User;
   username: string;
 }
 
-export type Security_CreateUser_Response = ApiResponse & {
+export interface Security_CreateUser_Response extends ApiResponse {
   body: Security_CreateUser_ResponseBody;
 }
 

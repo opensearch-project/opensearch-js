@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Global from '../_types/_global'
 
-export type Count_Request = Global.Params & {
+export interface Count_Request extends Global.Params {
   allow_no_indices?: boolean;
   analyze_wildcard?: boolean;
   analyzer?: string;
@@ -42,7 +42,7 @@ export type Count_RequestBody = {
   query?: Common_QueryDsl.QueryContainer;
 }
 
-export type Count_Response = ApiResponse & {
+export interface Count_Response extends ApiResponse {
   body: Count_ResponseBody;
 }
 

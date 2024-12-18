@@ -17,11 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export type Ism_ExistsPolicy_Request = Global.Params & {
+export interface Ism_ExistsPolicy_Request extends Global.Params {
   policy_id: string;
 }
 
-export type Ism_ExistsPolicy_Response = ApiResponse & {
+export interface Ism_ExistsPolicy_Response extends ApiResponse {
   body: Ism_ExistsPolicy_ResponseBody;
 }
 

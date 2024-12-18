@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 
 export type Cat_Help_Request = Global.Params & Record<string, any>
 
-export type Cat_Help_Response = ApiResponse & {
+export interface Cat_Help_Response extends ApiResponse {
   body: Cat_Help_ResponseBody;
 }
 

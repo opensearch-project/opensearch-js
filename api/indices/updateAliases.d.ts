@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_UpdateAliases from '../_types/indices.update_aliases'
 
-export type Indices_UpdateAliases_Request = Global.Params & {
+export interface Indices_UpdateAliases_Request extends Global.Params {
   body: Indices_UpdateAliases_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   master_timeout?: Common.Duration;
@@ -30,7 +30,7 @@ export type Indices_UpdateAliases_RequestBody = {
   actions?: Indices_UpdateAliases.Action[];
 }
 
-export type Indices_UpdateAliases_Response = ApiResponse & {
+export interface Indices_UpdateAliases_Response extends ApiResponse {
   body: Indices_UpdateAliases_ResponseBody;
 }
 

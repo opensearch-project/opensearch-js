@@ -18,13 +18,13 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cluster_PostVotingConfigExclusions_Request = Global.Params & {
+export interface Cluster_PostVotingConfigExclusions_Request extends Global.Params {
   node_ids?: Common.Ids;
   node_names?: Common.Names;
   timeout?: Common.Duration;
 }
 
-export type Cluster_PostVotingConfigExclusions_Response = ApiResponse & {
+export interface Cluster_PostVotingConfigExclusions_Response extends ApiResponse {
   body: Cluster_PostVotingConfigExclusions_ResponseBody;
 }
 

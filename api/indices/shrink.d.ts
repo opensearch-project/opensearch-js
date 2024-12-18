@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export type Indices_Shrink_Request = Global.Params & {
+export interface Indices_Shrink_Request extends Global.Params {
   body?: Indices_Shrink_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   copy_settings?: boolean;
@@ -37,7 +37,7 @@ export type Indices_Shrink_RequestBody = {
   settings?: Record<string, Record<string, any>>;
 }
 
-export type Indices_Shrink_Response = ApiResponse & {
+export interface Indices_Shrink_Response extends ApiResponse {
   body: Indices_Shrink_ResponseBody;
 }
 

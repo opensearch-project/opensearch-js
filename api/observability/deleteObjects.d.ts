@@ -17,12 +17,12 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export type Observability_DeleteObjects_Request = Global.Params & {
+export interface Observability_DeleteObjects_Request extends Global.Params {
   objectId?: string;
   objectIdList?: string;
 }
 
-export type Observability_DeleteObjects_Response = ApiResponse & {
+export interface Observability_DeleteObjects_Response extends ApiResponse {
   body: Observability_DeleteObjects_ResponseBody;
 }
 

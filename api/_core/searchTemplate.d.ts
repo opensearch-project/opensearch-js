@@ -20,7 +20,7 @@ import * as Common_Aggregations from '../_types/_common.aggregations'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export type SearchTemplate_Request = Global.Params & {
+export interface SearchTemplate_Request extends Global.Params {
   allow_no_indices?: boolean;
   body: SearchTemplate_RequestBody;
   ccs_minimize_roundtrips?: boolean;
@@ -46,7 +46,7 @@ export type SearchTemplate_RequestBody = {
   source?: string;
 }
 
-export type SearchTemplate_Response = ApiResponse & {
+export interface SearchTemplate_Response extends ApiResponse {
   body: SearchTemplate_ResponseBody;
 }
 

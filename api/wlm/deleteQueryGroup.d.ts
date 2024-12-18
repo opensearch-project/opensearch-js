@@ -17,11 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export type Wlm_DeleteQueryGroup_Request = Global.Params & {
+export interface Wlm_DeleteQueryGroup_Request extends Global.Params {
   name: string;
 }
 
-export type Wlm_DeleteQueryGroup_Response = ApiResponse & {
+export interface Wlm_DeleteQueryGroup_Response extends ApiResponse {
   body: Wlm_DeleteQueryGroup_ResponseBody;
 }
 

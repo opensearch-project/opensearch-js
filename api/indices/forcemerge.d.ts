@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Indices_Forcemerge_Request = Global.Params & {
+export interface Indices_Forcemerge_Request extends Global.Params {
   allow_no_indices?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
   flush?: boolean;
@@ -30,11 +30,11 @@ export type Indices_Forcemerge_Request = Global.Params & {
   wait_for_completion?: boolean;
 }
 
-export type Indices_Forcemerge_Response = ApiResponse & {
+export interface Indices_Forcemerge_Response extends ApiResponse {
   body: Indices_Forcemerge_ResponseBody;
 }
 
-export type Indices_Forcemerge_ResponseBody = Common.ShardsOperationResponseBase & {
+export interface Indices_Forcemerge_ResponseBody extends Common.ShardsOperationResponseBase {
   task?: string;
 }
 

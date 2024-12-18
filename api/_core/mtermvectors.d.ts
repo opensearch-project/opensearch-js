@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Core_Mtermvectors from '../_types/_core.mtermvectors'
 import * as Global from '../_types/_global'
 
-export type Mtermvectors_Request = Global.Params & {
+export interface Mtermvectors_Request extends Global.Params {
   body?: Mtermvectors_RequestBody;
   field_statistics?: boolean;
   fields?: Common.Fields;
@@ -41,7 +41,7 @@ export type Mtermvectors_RequestBody = {
   ids?: Common.Id[];
 }
 
-export type Mtermvectors_Response = ApiResponse & {
+export interface Mtermvectors_Response extends ApiResponse {
   body: Mtermvectors_ResponseBody;
 }
 

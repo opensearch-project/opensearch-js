@@ -33,7 +33,11 @@ export default class TypesFileRenderder extends BaseRenderer {
     const con = this._container
     return {
       is_function: con.is_function,
-      types: _.entries(con.schemas).map(([name, schema]) => ({ name, definition: this.#render_schema(schema) })),
+      types: _.entries(con.schemas).map(([name, schema]) => {
+        const definition = this.#render_schema(schema)
+        const is_interface = definition.startsWith('extends')
+        return { name, definition, is_interface }
+      }),
       imports: Array.from(con.referenced_containers)
         .sort((a, b) => a.import_name.localeCompare(b.import_name))
         .map(container => {
@@ -87,7 +91,10 @@ export default class TypesFileRenderder extends BaseRenderer {
     const named_schemas_render = named_schemas.map(schema => this.#render_schema(schema)).join(' & ')
 
     if (named_schemas.length === 0) return inline_schemas_render
-    if (inline_schemas_render.includes('{')) return `${named_schemas_render} & ${inline_schemas_render}`
+    if (inline_schemas_render.includes('{')) {
+      if (this._container.is_function) return `extends ${named_schemas_render} ${inline_schemas_render}`
+      else return `${named_schemas_render} & ${inline_schemas_render}`
+    }
     return `${named_schemas_render} & ${this.#render_simple_obj(compound_inline)}`
   }
 

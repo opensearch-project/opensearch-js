@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 import * as Snapshot_Restore from '../_types/snapshot.restore'
 
-export type Snapshot_Restore_Request = Global.Params & {
+export interface Snapshot_Restore_Request extends Global.Params {
   body?: Snapshot_Restore_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   master_timeout?: Common.Duration;
@@ -45,7 +45,7 @@ export type Snapshot_Restore_RequestBody = {
   storage_type?: string;
 }
 
-export type Snapshot_Restore_Response = ApiResponse & {
+export interface Snapshot_Restore_Response extends ApiResponse {
   body: Snapshot_Restore_ResponseBody;
 }
 

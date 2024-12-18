@@ -21,7 +21,7 @@ import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export type Search_Request = Global.Params & {
+export interface Search_Request extends Global.Params {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -106,7 +106,7 @@ export type Search_RequestBody = {
   version?: boolean;
 }
 
-export type Search_Response = ApiResponse & {
+export interface Search_Response extends ApiResponse {
   body: Search_ResponseBody;
 }
 

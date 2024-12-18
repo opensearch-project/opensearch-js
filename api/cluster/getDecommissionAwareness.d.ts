@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Cluster_DecommissionAwareness from '../_types/cluster.decommission_awareness'
 import * as Global from '../_types/_global'
 
-export type Cluster_GetDecommissionAwareness_Request = Global.Params & {
+export interface Cluster_GetDecommissionAwareness_Request extends Global.Params {
   awareness_attribute_name: string;
 }
 
-export type Cluster_GetDecommissionAwareness_Response = ApiResponse & {
+export interface Cluster_GetDecommissionAwareness_Response extends ApiResponse {
   body: Cluster_GetDecommissionAwareness_ResponseBody;
 }
 

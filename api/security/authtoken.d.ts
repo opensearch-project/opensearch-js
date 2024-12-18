@@ -20,7 +20,7 @@ import * as Security_Common from '../_types/security._common'
 
 export type Security_Authtoken_Request = Global.Params & Record<string, any>
 
-export type Security_Authtoken_Response = ApiResponse & {
+export interface Security_Authtoken_Response extends ApiResponse {
   body: Security_Authtoken_ResponseBody;
 }
 

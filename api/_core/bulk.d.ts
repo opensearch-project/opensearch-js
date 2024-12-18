@@ -20,7 +20,7 @@ import * as Core_Bulk from '../_types/_core.bulk'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export type Bulk_Request = Global.Params & {
+export interface Bulk_Request extends Global.Params {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -37,7 +37,7 @@ export type Bulk_Request = Global.Params & {
 
 export type Bulk_RequestBody = Core_Bulk.OperationContainer | Core_Bulk.UpdateAction | Record<string, any>[]
 
-export type Bulk_Response = ApiResponse & {
+export interface Bulk_Response extends ApiResponse {
   body: Bulk_ResponseBody;
 }
 

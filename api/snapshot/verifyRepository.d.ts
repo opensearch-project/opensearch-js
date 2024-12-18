@@ -19,14 +19,14 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Snapshot_VerifyRepository from '../_types/snapshot.verify_repository'
 
-export type Snapshot_VerifyRepository_Request = Global.Params & {
+export interface Snapshot_VerifyRepository_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;
   master_timeout?: Common.Duration;
   repository: Common.Name;
   timeout?: Common.Duration;
 }
 
-export type Snapshot_VerifyRepository_Response = ApiResponse & {
+export interface Snapshot_VerifyRepository_Response extends ApiResponse {
   body: Snapshot_VerifyRepository_ResponseBody;
 }
 

@@ -19,7 +19,7 @@ import * as Cluster_Health from '../_types/cluster.health'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cluster_Health_Request = Global.Params & {
+export interface Cluster_Health_Request extends Global.Params {
   awareness_attribute?: string;
   cluster_manager_timeout?: Common.Duration;
   expand_wildcards?: Common.ExpandWildcards;
@@ -36,7 +36,7 @@ export type Cluster_Health_Request = Global.Params & {
   wait_for_status?: Common.HealthStatus;
 }
 
-export type Cluster_Health_Response = ApiResponse & {
+export interface Cluster_Health_Response extends ApiResponse {
   body: Cluster_Health_ResponseBody;
 }
 

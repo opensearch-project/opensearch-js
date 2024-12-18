@@ -18,13 +18,13 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Knn_Common from '../_types/knn._common'
 
-export type Knn_TrainModel_Request = Global.Params & {
+export interface Knn_TrainModel_Request extends Global.Params {
   body?: Knn_Common.TrainedModel;
   model_id?: string;
   preference?: string;
 }
 
-export type Knn_TrainModel_Response = ApiResponse & {
+export interface Knn_TrainModel_Response extends ApiResponse {
   body: Knn_TrainModel_ResponseBody;
 }
 

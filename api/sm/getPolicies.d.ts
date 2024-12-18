@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Sm_Common from '../_types/sm._common'
 
-export type Sm_GetPolicies_Request = Global.Params & {
+export interface Sm_GetPolicies_Request extends Global.Params {
   from?: number;
   queryString?: string;
   size?: number;
@@ -26,7 +26,7 @@ export type Sm_GetPolicies_Request = Global.Params & {
   sortOrder?: 'asc' | 'desc';
 }
 
-export type Sm_GetPolicies_Response = ApiResponse & {
+export interface Sm_GetPolicies_Response extends ApiResponse {
   body: Sm_GetPolicies_ResponseBody;
 }
 

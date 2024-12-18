@@ -20,7 +20,7 @@ import * as Security_Common from '../_types/security._common'
 
 export type Security_FlushCache_Request = Global.Params & Record<string, any>
 
-export type Security_FlushCache_Response = ApiResponse & {
+export interface Security_FlushCache_Response extends ApiResponse {
   body: Security_FlushCache_ResponseBody;
 }
 

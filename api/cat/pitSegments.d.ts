@@ -19,7 +19,7 @@ import * as Cat_Common from '../_types/cat._common'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cat_PitSegments_Request = Global.Params & {
+export interface Cat_PitSegments_Request extends Global.Params {
   body?: Cat_PitSegments_RequestBody;
   bytes?: Common.ByteUnit;
   format?: string;
@@ -33,7 +33,7 @@ export type Cat_PitSegments_RequestBody = {
   pit_id: string[];
 }
 
-export type Cat_PitSegments_Response = ApiResponse & {
+export interface Cat_PitSegments_Response extends ApiResponse {
   body: Cat_PitSegments_ResponseBody;
 }
 

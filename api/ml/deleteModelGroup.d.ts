@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Ml_DeleteModelGroup_Request = Global.Params & {
+export interface Ml_DeleteModelGroup_Request extends Global.Params {
   model_group_id: string;
 }
 
-export type Ml_DeleteModelGroup_Response = ApiResponse & {
+export interface Ml_DeleteModelGroup_Response extends ApiResponse {
   body: Ml_DeleteModelGroup_ResponseBody;
 }
 

@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_DeleteDistinguishedName_Request = Global.Params & {
+export interface Security_DeleteDistinguishedName_Request extends Global.Params {
   cluster_name: string;
 }
 
-export type Security_DeleteDistinguishedName_Response = ApiResponse & {
+export interface Security_DeleteDistinguishedName_Response extends ApiResponse {
   body: Security_DeleteDistinguishedName_ResponseBody;
 }
 

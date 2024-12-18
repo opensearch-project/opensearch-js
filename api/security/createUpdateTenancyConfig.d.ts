@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_CreateUpdateTenancyConfig_Request = Global.Params & {
+export interface Security_CreateUpdateTenancyConfig_Request extends Global.Params {
   body: Security_Common.MultiTenancyConfig;
 }
 
-export type Security_CreateUpdateTenancyConfig_Response = ApiResponse & {
+export interface Security_CreateUpdateTenancyConfig_Response extends ApiResponse {
   body: Security_CreateUpdateTenancyConfig_ResponseBody;
 }
 

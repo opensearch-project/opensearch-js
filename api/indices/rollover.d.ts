@@ -21,7 +21,7 @@ import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 import * as Indices_Rollover from '../_types/indices.rollover'
 
-export type Indices_Rollover_Request = Global.Params & {
+export interface Indices_Rollover_Request extends Global.Params {
   alias: Common.IndexAlias;
   body?: Indices_Rollover_RequestBody;
   cluster_manager_timeout?: Common.Duration;
@@ -39,7 +39,7 @@ export type Indices_Rollover_RequestBody = {
   settings?: Record<string, Record<string, any>>;
 }
 
-export type Indices_Rollover_Response = ApiResponse & {
+export interface Indices_Rollover_Response extends ApiResponse {
   body: Indices_Rollover_ResponseBody;
 }
 

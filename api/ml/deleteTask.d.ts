@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Ml_DeleteTask_Request = Global.Params & {
+export interface Ml_DeleteTask_Request extends Global.Params {
   task_id: string;
 }
 
-export type Ml_DeleteTask_Response = ApiResponse & {
+export interface Ml_DeleteTask_Response extends ApiResponse {
   body: Ml_DeleteTask_ResponseBody;
 }
 

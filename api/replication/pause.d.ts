@@ -18,14 +18,14 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Replication_Pause_Request = Global.Params & {
+export interface Replication_Pause_Request extends Global.Params {
   body: Replication_Pause_RequestBody;
   index: Common.IndexName;
 }
 
 export type Replication_Pause_RequestBody = Record<string, any>
 
-export type Replication_Pause_Response = ApiResponse & {
+export interface Replication_Pause_Response extends ApiResponse {
   body: Replication_Pause_ResponseBody;
 }
 

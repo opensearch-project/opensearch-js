@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Stats from '../_types/indices.stats'
 
-export type Indices_Stats_Request = Global.Params & {
+export interface Indices_Stats_Request extends Global.Params {
   completion_fields?: Common.Fields;
   expand_wildcards?: Common.ExpandWildcards;
   fielddata_fields?: Common.Fields;
@@ -33,7 +33,7 @@ export type Indices_Stats_Request = Global.Params & {
   metric?: Indices_Stats.Metric | Indices_Stats.Metric[];
 }
 
-export type Indices_Stats_Response = ApiResponse & {
+export interface Indices_Stats_Response extends ApiResponse {
   body: Indices_Stats_ResponseBody;
 }
 

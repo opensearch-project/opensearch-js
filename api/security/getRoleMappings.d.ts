@@ -20,7 +20,7 @@ import * as Security_Common from '../_types/security._common'
 
 export type Security_GetRoleMappings_Request = Global.Params & Record<string, any>
 
-export type Security_GetRoleMappings_Response = ApiResponse & {
+export interface Security_GetRoleMappings_Response extends ApiResponse {
   body: Security_GetRoleMappings_ResponseBody;
 }
 

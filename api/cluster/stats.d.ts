@@ -19,7 +19,7 @@ import * as Cluster_Stats from '../_types/cluster.stats'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cluster_Stats_Request = Global.Params & {
+export interface Cluster_Stats_Request extends Global.Params {
   flat_settings?: boolean;
   index_metric?: Cluster_Stats.IndexMetric[];
   metric?: Cluster_Stats.Metric[];
@@ -27,7 +27,7 @@ export type Cluster_Stats_Request = Global.Params & {
   timeout?: Common.Duration;
 }
 
-export type Cluster_Stats_Response = ApiResponse & {
+export interface Cluster_Stats_Response extends ApiResponse {
   body: Cluster_Stats_ResponseBody;
 }
 

@@ -19,7 +19,7 @@ import * as Cat_Indices from '../_types/cat.indices'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cat_Indices_Request = Global.Params & {
+export interface Cat_Indices_Request extends Global.Params {
   bytes?: Common.ByteUnit;
   cluster_manager_timeout?: Common.Duration;
   expand_wildcards?: Common.ExpandWildcards;
@@ -37,7 +37,7 @@ export type Cat_Indices_Request = Global.Params & {
   v?: boolean;
 }
 
-export type Cat_Indices_Response = ApiResponse & {
+export interface Cat_Indices_Response extends ApiResponse {
   body: Cat_Indices_ResponseBody;
 }
 

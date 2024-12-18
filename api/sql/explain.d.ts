@@ -18,13 +18,13 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Sql_Common from '../_types/sql._common'
 
-export type Sql_Explain_Request = Global.Params & {
+export interface Sql_Explain_Request extends Global.Params {
   body?: Sql_Common.Explain;
   format?: string;
   sanitize?: boolean;
 }
 
-export type Sql_Explain_Response = ApiResponse & {
+export interface Sql_Explain_Response extends ApiResponse {
   body: Sql_Explain_ResponseBody;
 }
 

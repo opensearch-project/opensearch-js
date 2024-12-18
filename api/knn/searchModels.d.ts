@@ -20,7 +20,7 @@ import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 import * as Knn_Common from '../_types/knn._common'
 
-export type Knn_SearchModels_Request = Global.Params & {
+export interface Knn_SearchModels_Request extends Global.Params {
   _source?: string[];
   _source_excludes?: string[];
   _source_includes?: string[];
@@ -68,7 +68,7 @@ export type Knn_SearchModels_Request = Global.Params & {
 
 export type Knn_SearchModels_RequestBody = Record<string, any>
 
-export type Knn_SearchModels_Response = ApiResponse & {
+export interface Knn_SearchModels_Response extends ApiResponse {
   body: Knn_SearchModels_ResponseBody;
 }
 

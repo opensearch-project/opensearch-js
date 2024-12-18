@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export type Indices_Split_Request = Global.Params & {
+export interface Indices_Split_Request extends Global.Params {
   body?: Indices_Split_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   copy_settings?: boolean;
@@ -38,7 +38,7 @@ export type Indices_Split_RequestBody = {
 };
 }
 
-export type Indices_Split_Response = ApiResponse & {
+export interface Indices_Split_Response extends ApiResponse {
   body: Indices_Split_ResponseBody;
 }
 

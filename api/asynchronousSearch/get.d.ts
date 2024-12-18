@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as AsynchronousSearch_Common from '../_types/asynchronous_search._common'
 import * as Global from '../_types/_global'
 
-export type AsynchronousSearch_Get_Request = Global.Params & {
+export interface AsynchronousSearch_Get_Request extends Global.Params {
   id: string;
 }
 
-export type AsynchronousSearch_Get_Response = ApiResponse & {
+export interface AsynchronousSearch_Get_Response extends ApiResponse {
   body: AsynchronousSearch_Get_ResponseBody;
 }
 

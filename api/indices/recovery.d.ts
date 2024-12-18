@@ -19,13 +19,13 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Recovery from '../_types/indices.recovery'
 
-export type Indices_Recovery_Request = Global.Params & {
+export interface Indices_Recovery_Request extends Global.Params {
   active_only?: boolean;
   detailed?: boolean;
   index?: Common.Indices;
 }
 
-export type Indices_Recovery_Response = ApiResponse & {
+export interface Indices_Recovery_Response extends ApiResponse {
   body: Indices_Recovery_ResponseBody;
 }
 

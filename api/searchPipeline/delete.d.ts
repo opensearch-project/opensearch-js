@@ -18,13 +18,13 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type SearchPipeline_Delete_Request = Global.Params & {
+export interface SearchPipeline_Delete_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;
   id: string;
   timeout?: Common.Duration;
 }
 
-export type SearchPipeline_Delete_Response = ApiResponse & {
+export interface SearchPipeline_Delete_Response extends ApiResponse {
   body: SearchPipeline_Delete_ResponseBody;
 }
 

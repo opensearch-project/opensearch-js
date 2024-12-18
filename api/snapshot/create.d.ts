@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Snapshot_Common from '../_types/snapshot._common'
 
-export type Snapshot_Create_Request = Global.Params & {
+export interface Snapshot_Create_Request extends Global.Params {
   body?: Snapshot_Create_RequestBody;
   cluster_manager_timeout?: Common.Duration;
   master_timeout?: Common.Duration;
@@ -37,7 +37,7 @@ export type Snapshot_Create_RequestBody = {
   partial?: boolean;
 }
 
-export type Snapshot_Create_Response = ApiResponse & {
+export interface Snapshot_Create_Response extends ApiResponse {
   body: Snapshot_Create_ResponseBody;
 }
 

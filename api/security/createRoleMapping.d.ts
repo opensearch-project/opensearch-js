@@ -18,12 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_CreateRoleMapping_Request = Global.Params & {
+export interface Security_CreateRoleMapping_Request extends Global.Params {
   body: Security_Common.RoleMapping;
   role: string;
 }
 
-export type Security_CreateRoleMapping_Response = ApiResponse & {
+export interface Security_CreateRoleMapping_Response extends ApiResponse {
   body: Security_CreateRoleMapping_ResponseBody;
 }
 

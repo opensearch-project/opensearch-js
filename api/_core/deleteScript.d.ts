@@ -18,14 +18,14 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type DeleteScript_Request = Global.Params & {
+export interface DeleteScript_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;
   id: Common.Id;
   master_timeout?: Common.Duration;
   timeout?: Common.Duration;
 }
 
-export type DeleteScript_Response = ApiResponse & {
+export interface DeleteScript_Response extends ApiResponse {
   body: DeleteScript_ResponseBody;
 }
 

@@ -9,6 +9,11 @@ import * as {{{name}}} from '{{{path}}}'
 {{/imports}}
 
 {{#types}}
+{{#is_interface}}
+export interface {{{name}}} {{{definition}}}
+{{/is_interface}}
+{{^is_interface}}
 export type {{{name}}} = {{{definition}}}
+{{/is_interface}}
 
 {{/types}}

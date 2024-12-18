@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Indices_ClearCache_Request = Global.Params & {
+export interface Indices_ClearCache_Request extends Global.Params {
   allow_no_indices?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
   fielddata?: boolean;
@@ -30,7 +30,7 @@ export type Indices_ClearCache_Request = Global.Params & {
   request?: boolean;
 }
 
-export type Indices_ClearCache_Response = ApiResponse & {
+export interface Indices_ClearCache_Response extends ApiResponse {
   body: Indices_ClearCache_ResponseBody;
 }
 

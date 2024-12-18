@@ -20,7 +20,7 @@ import * as Replication_Common from '../_types/replication._common'
 
 export type Replication_AutofollowStats_Request = Global.Params & Record<string, any>
 
-export type Replication_AutofollowStats_Response = ApiResponse & {
+export interface Replication_AutofollowStats_Response extends ApiResponse {
   body: Replication_AutofollowStats_ResponseBody;
 }
 

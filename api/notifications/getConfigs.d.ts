@@ -18,7 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Notifications_Common from '../_types/notifications._common'
 
-export type Notifications_GetConfigs_Request = Global.Params & {
+export interface Notifications_GetConfigs_Request extends Global.Params {
   body?: Notifications_GetConfigs_RequestBody;
   'chime.url'?: string;
   'chime.url.keyword'?: string;
@@ -70,7 +70,7 @@ export type Notifications_GetConfigs_RequestBody = {
   sort_order?: string;
 }
 
-export type Notifications_GetConfigs_Response = ApiResponse & {
+export interface Notifications_GetConfigs_Response extends ApiResponse {
   body: Notifications_GetConfigs_ResponseBody;
 }
 

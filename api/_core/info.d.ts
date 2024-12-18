@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 
 export type Info_Request = Global.Params & Record<string, any>
 
-export type Info_Response = ApiResponse & {
+export interface Info_Response extends ApiResponse {
   body: Info_ResponseBody;
 }
 

@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Segments from '../_types/indices.segments'
 
-export type Indices_Segments_Request = Global.Params & {
+export interface Indices_Segments_Request extends Global.Params {
   allow_no_indices?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
@@ -27,7 +27,7 @@ export type Indices_Segments_Request = Global.Params & {
   verbose?: boolean;
 }
 
-export type Indices_Segments_Response = ApiResponse & {
+export interface Indices_Segments_Response extends ApiResponse {
   body: Indices_Segments_ResponseBody;
 }
 

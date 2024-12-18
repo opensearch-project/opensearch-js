@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_CreateAllowlist_Request = Global.Params & {
+export interface Security_CreateAllowlist_Request extends Global.Params {
   body: Security_Common.AllowListConfig;
 }
 
-export type Security_CreateAllowlist_Response = ApiResponse & {
+export interface Security_CreateAllowlist_Response extends ApiResponse {
   body: Security_CreateAllowlist_ResponseBody;
 }
 

@@ -17,11 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 
-export type Sm_StopPolicy_Request = Global.Params & {
+export interface Sm_StopPolicy_Request extends Global.Params {
   policy_name: string;
 }
 
-export type Sm_StopPolicy_Response = ApiResponse & {
+export interface Sm_StopPolicy_Response extends ApiResponse {
   body: Sm_StopPolicy_ResponseBody;
 }
 

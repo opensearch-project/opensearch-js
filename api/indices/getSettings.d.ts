@@ -19,7 +19,7 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Indices_Common from '../_types/indices._common'
 
-export type Indices_GetSettings_Request = Global.Params & {
+export interface Indices_GetSettings_Request extends Global.Params {
   allow_no_indices?: boolean;
   cluster_manager_timeout?: Common.Duration;
   expand_wildcards?: Common.ExpandWildcards;
@@ -32,7 +32,7 @@ export type Indices_GetSettings_Request = Global.Params & {
   name?: Common.Names;
 }
 
-export type Indices_GetSettings_Response = ApiResponse & {
+export interface Indices_GetSettings_Response extends ApiResponse {
   body: Indices_GetSettings_ResponseBody;
 }
 

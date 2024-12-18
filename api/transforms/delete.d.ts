@@ -19,11 +19,11 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Transforms_Common from '../_types/transforms._common'
 
-export type Transforms_Delete_Request = Global.Params & {
+export interface Transforms_Delete_Request extends Global.Params {
   id: Common.Id;
 }
 
-export type Transforms_Delete_Response = ApiResponse & {
+export interface Transforms_Delete_Response extends ApiResponse {
   body: Transforms_Delete_ResponseBody;
 }
 

@@ -19,11 +19,11 @@ import * as Cluster_WeightedRouting from '../_types/cluster.weighted_routing'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
-export type Cluster_DeleteWeightedRouting_Request = Global.Params & {
+export interface Cluster_DeleteWeightedRouting_Request extends Global.Params {
   body?: Cluster_WeightedRouting.WeightsBase;
 }
 
-export type Cluster_DeleteWeightedRouting_Response = ApiResponse & {
+export interface Cluster_DeleteWeightedRouting_Response extends ApiResponse {
   body: Cluster_DeleteWeightedRouting_ResponseBody;
 }
 

@@ -20,7 +20,7 @@ import * as Core_Get from '../_types/_core.get'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
-export type Get_Request = Global.Params & {
+export interface Get_Request extends Global.Params {
   _source?: Core_Search.SourceConfigParam;
   _source_excludes?: Common.Fields;
   _source_includes?: Common.Fields;
@@ -35,7 +35,7 @@ export type Get_Request = Global.Params & {
   version_type?: Common.VersionType;
 }
 
-export type Get_Response = ApiResponse & {
+export interface Get_Response extends ApiResponse {
   body: Get_ResponseBody;
 }
 

@@ -18,11 +18,11 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_Health_Request = Global.Params & {
+export interface Security_Health_Request extends Global.Params {
   mode?: string;
 }
 
-export type Security_Health_Response = ApiResponse & {
+export interface Security_Health_Response extends ApiResponse {
   body: Security_Health_ResponseBody;
 }
 

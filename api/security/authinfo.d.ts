@@ -18,12 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
-export type Security_Authinfo_Request = Global.Params & {
+export interface Security_Authinfo_Request extends Global.Params {
   auth_type?: string;
   verbose?: boolean;
 }
 
-export type Security_Authinfo_Response = ApiResponse & {
+export interface Security_Authinfo_Response extends ApiResponse {
   body: Security_Authinfo_ResponseBody;
 }
 

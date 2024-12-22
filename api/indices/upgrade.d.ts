@@ -21,7 +21,6 @@ import * as Indices_Common from '../_types/indices._common'
 
 export interface Indices_Upgrade_Request extends Global.Params {
   allow_no_indices?: boolean;
-  body?: Indices_Common.UpgradeRequest;
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
   index?: string[];
@@ -33,5 +32,7 @@ export interface Indices_Upgrade_Response extends ApiResponse {
   body: Indices_Upgrade_ResponseBody;
 }
 
-export type Indices_Upgrade_ResponseBody = Indices_Common.IndexPostUpgradeStatus
+export interface Indices_Upgrade_ResponseBody extends Common.ShardsOperationResponseBase {
+  upgraded_indices?: Record<string, Indices_Common.UpgradeVersionStatus>;
+}
 

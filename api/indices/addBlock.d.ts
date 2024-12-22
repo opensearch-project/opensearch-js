@@ -34,8 +34,7 @@ export interface Indices_AddBlock_Response extends ApiResponse {
   body: Indices_AddBlock_ResponseBody;
 }
 
-export type Indices_AddBlock_ResponseBody = {
-  acknowledged: boolean;
+export interface Indices_AddBlock_ResponseBody extends Common.AcknowledgedResponseBase {
   indices: Indices_AddBlock.IndicesBlockStatus[];
   shards_acknowledged: boolean;
 }

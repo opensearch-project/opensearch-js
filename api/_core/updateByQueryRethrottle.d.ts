@@ -29,6 +29,7 @@ export interface UpdateByQueryRethrottle_Response extends ApiResponse {
 }
 
 export type UpdateByQueryRethrottle_ResponseBody = {
+  node_failures?: Common.ErrorCause[];
   nodes: Record<string, Core_UpdateByQueryRethrottle.UpdateByQueryRethrottleNode>;
 }
 

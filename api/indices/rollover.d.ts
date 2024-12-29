@@ -36,15 +36,14 @@ export type Indices_Rollover_RequestBody = {
   aliases?: Record<string, Indices_Common.Alias>;
   conditions?: Indices_Rollover.RolloverConditions;
   mappings?: Common_Mapping.TypeMapping;
-  settings?: Record<string, Record<string, any>>;
+  settings?: Record<string, any>;
 }
 
 export interface Indices_Rollover_Response extends ApiResponse {
   body: Indices_Rollover_ResponseBody;
 }
 
-export type Indices_Rollover_ResponseBody = {
-  acknowledged: boolean;
+export interface Indices_Rollover_ResponseBody extends Common.AcknowledgedResponseBase {
   conditions: Record<string, boolean>;
   dry_run: boolean;
   new_index: string;

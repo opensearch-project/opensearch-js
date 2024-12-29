@@ -578,7 +578,7 @@ export type RemoteStoreUploadRefreshSizeLagStats = {
 export type RemoteStoreUploadStats = {
   max_refresh_time_lag?: Duration;
   max_refresh_time_lag_in_millis: DurationValueUnitMillis;
-  pressure: RemoteStoreUploadPressureStats;
+  pressure?: RemoteStoreUploadPressureStats;
   refresh_size_lag: RemoteStoreUploadRefreshSizeLagStats;
   total_time_spent?: Duration;
   total_time_spent_in_millis: DurationValueUnitMillis;
@@ -707,8 +707,12 @@ export type SearchStats = {
 export type SearchType = 'dfs_query_then_fetch' | 'query_then_fetch'
 
 export type SegmentReplicationStats = {
+  max_bytes_behind: HumanReadableByteCount;
+  max_replication_lag: Duration;
+  total_bytes_behind: HumanReadableByteCount;
+} | {
   max_bytes_behind: ByteCount;
-  max_replication_lag: ByteCount;
+  max_replication_lag: DurationValueUnitMillis;
   total_bytes_behind: ByteCount;
 }
 
@@ -722,7 +726,7 @@ export type SegmentsStats = {
   index_writer_max_memory_in_bytes?: ByteCount;
   index_writer_memory?: HumanReadableByteCount;
   index_writer_memory_in_bytes: ByteCount;
-  max_unsafe_auto_id_timestamp: number;
+  max_unsafe_auto_id_timestamp: EpochTimeUnitMillis;
   memory?: HumanReadableByteCount;
   memory_in_bytes: ByteCount;
   norms_memory?: HumanReadableByteCount;

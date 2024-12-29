@@ -18,6 +18,7 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Cluster_Stats from '../_types/cluster.stats'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as Nodes_Common from '../_types/nodes._common'
 
 export interface Cluster_Stats_Request extends Global.Params {
   flat_settings?: boolean;
@@ -31,5 +32,12 @@ export interface Cluster_Stats_Response extends ApiResponse {
   body: Cluster_Stats_ResponseBody;
 }
 
-export type Cluster_Stats_ResponseBody = Cluster_Stats.StatsResponseBase
+export interface Cluster_Stats_ResponseBody extends Nodes_Common.NodesResponseBase {
+  cluster_name: Common.Name;
+  cluster_uuid: Common.Uuid;
+  indices?: Cluster_Stats.ClusterIndices;
+  nodes?: Cluster_Stats.ClusterNodes;
+  status: Common.HealthStatus;
+  timestamp: Common.EpochTimeUnitMillis;
+}
 

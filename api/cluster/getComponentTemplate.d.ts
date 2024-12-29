@@ -21,6 +21,7 @@ import * as Global from '../_types/_global'
 
 export interface Cluster_GetComponentTemplate_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;
+  flat_settings?: boolean;
   local?: boolean;
   master_timeout?: Common.Duration;
   name?: Common.Name;

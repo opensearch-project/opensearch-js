@@ -26,6 +26,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
+ * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
  * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only. If `false`, information is retrieved from the cluster-manager node.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.name] - Name of the component template to retrieve. Wildcard (`*`) expressions are supported.

@@ -34,8 +34,7 @@ export interface Indices_Close_Response extends ApiResponse {
   body: Indices_Close_ResponseBody;
 }
 
-export type Indices_Close_ResponseBody = {
-  acknowledged: boolean;
+export interface Indices_Close_ResponseBody extends Common.AcknowledgedResponseBase {
   indices: Record<string, Indices_Close.CloseIndexResult>;
   shards_acknowledged: boolean;
 }

@@ -34,15 +34,14 @@ export interface Indices_Shrink_Request extends Global.Params {
 
 export type Indices_Shrink_RequestBody = {
   aliases?: Record<string, Indices_Common.Alias>;
-  settings?: Record<string, Record<string, any>>;
+  settings?: Record<string, any>;
 }
 
 export interface Indices_Shrink_Response extends ApiResponse {
   body: Indices_Shrink_ResponseBody;
 }
 
-export type Indices_Shrink_ResponseBody = {
-  acknowledged: boolean;
+export interface Indices_Shrink_ResponseBody extends Common.AcknowledgedResponseBase {
   index: Common.IndexName;
   shards_acknowledged: boolean;
 }

@@ -38,8 +38,7 @@ export interface Cluster_Reroute_Response extends ApiResponse {
   body: Cluster_Reroute_ResponseBody;
 }
 
-export type Cluster_Reroute_ResponseBody = {
-  acknowledged: boolean;
+export interface Cluster_Reroute_ResponseBody extends Common.AcknowledgedResponseBase {
   explanations?: Cluster_Reroute.RerouteExplanation[];
   state?: Record<string, any>;
 }

@@ -15,7 +15,6 @@
  */
 
 import * as Common from './_common'
-import * as Nodes_Common from './nodes._common'
 
 export type CharFilterTypes = {
   analyzer_types: FieldTypes[];
@@ -191,19 +190,11 @@ export type ClusterShardMetrics = {
 export type FieldTypes = {
   count: number;
   index_count: number;
-  indexed_vector_count?: number;
-  indexed_vector_dim_max?: number;
-  indexed_vector_dim_min?: number;
   name: Common.Name;
-  script_count?: number;
 }
 
 export type FieldTypesMappings = {
   field_types: FieldTypes[];
-  total_deduplicated_field_count?: number;
-  total_deduplicated_mapping_size?: Common.HumanReadableByteCount;
-  total_deduplicated_mapping_size_in_bytes?: Common.ByteCount;
-  total_field_count?: number;
 }
 
 export type IndexingPressure = {
@@ -254,14 +245,5 @@ export type OperatingSystemMemoryInfo = {
   used?: Common.HumanReadableByteCount;
   used_in_bytes: Common.ByteCount;
   used_percent: Common.PercentageNumber;
-}
-
-export type StatsResponseBase = Nodes_Common.NodesResponseBase & {
-  cluster_name: Common.Name;
-  cluster_uuid: Common.Uuid;
-  indices?: ClusterIndices;
-  nodes?: ClusterNodes;
-  status: Common.HealthStatus;
-  timestamp: number;
 }
 

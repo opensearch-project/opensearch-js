@@ -37,5 +37,5 @@ export interface Cluster_State_Response extends ApiResponse {
   body: Cluster_State_ResponseBody;
 }
 
-export type Cluster_State_ResponseBody = Record<string, any>
+export type Cluster_State_ResponseBody = any
 

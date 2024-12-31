@@ -42,8 +42,7 @@ export interface Indices_Split_Response extends ApiResponse {
   body: Indices_Split_ResponseBody;
 }
 
-export type Indices_Split_ResponseBody = {
-  acknowledged: boolean;
+export interface Indices_Split_ResponseBody extends Common.AcknowledgedResponseBase {
   index: Common.IndexName;
   shards_acknowledged: boolean;
 }

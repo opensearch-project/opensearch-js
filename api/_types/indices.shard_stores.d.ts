@@ -34,9 +34,9 @@ export type ShardStoreException = {
   type: string;
 }
 
+export type ShardStoreStatus = 'all' | 'green' | 'red' | 'yellow'
+
 export type ShardStoreWrapper = {
   stores: ShardStore[];
 }
-
-export type Status = 'all' | 'green' | 'red' | 'yellow'
 

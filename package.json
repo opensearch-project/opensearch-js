@@ -36,7 +36,7 @@
     "LICENSE.txt"
   ],
   "homepage": "https://www.opensearch.org/",
-  "version": "3.0.0-beta.9",
+  "version": "3.0.0",
   "versionCanary": "7.10.0-canary.6",
   "keywords": [
     "opensearch",

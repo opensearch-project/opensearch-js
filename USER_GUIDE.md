@@ -1,22 +1,27 @@
-# User Guide
+<!-- TOC -->
+* [User Guide](#user-guide)
+  * [Initializing a Client](#initializing-a-client)
+    * [Authenticate with Amazon OpenSearch Service](#authenticate-with-amazon-opensearch-service)
+      * [Using AWS V2 SDK](#using-aws-v2-sdk)
+      * [Using AWS V3 SDK](#using-aws-v3-sdk)
+  * [Special topics](#special-topics)
+    * [TypeScript: Handling Request and Response Types](#typescript-handling-request-and-response-types)
+    * [Enable Handling of Long Numerals](#enable-handling-of-long-numerals)
+  * [Examples](#examples)
+    * [Create an Index](#create-an-index)
+    * [Add a Document to the Index](#add-a-document-to-the-index)
+    * [Search for the Document](#search-for-the-document)
+    * [Multi-Search (msearch)](#multi-search-msearch)
+    * [Delete the document](#delete-the-document)
+    * [Delete the index](#delete-the-index)
+    * [Create a Point in Time](#create-a-point-in-time)
+    * [Get all PITs](#get-all-pits)
+    * [Delete a Point in Time](#delete-a-point-in-time)
+    * [Delete all PITs](#delete-all-pits)
+    * [Empty all Pool Connections](#empty-all-pool-connections)
+<!-- TOC -->
 
-- [User Guide](#user-guide)
-  - [Initializing a Client](#initializing-a-client)
-    - [Authenticate with Amazon OpenSearch Service](#authenticate-with-amazon-opensearch-service)
-      - [Using AWS V2 SDK](#using-aws-v2-sdk)
-      - [Using AWS V3 SDK](#using-aws-v3-sdk)
-    - [Enable Handling of Long Numerals](#enable-handling-of-long-numerals)
-  - [Create an Index](#create-an-index)
-  - [Add a Document to the Index](#add-a-document-to-the-index)
-  - [Search for the Document](#search-for-the-document)
-  - [Multi-Search (msearch)](#multi-search-msearch)
-  - [Delete the document](#delete-the-document)
-  - [Delete the index](#delete-the-index)
-  - [Create a Point in Time](#create-a-point-in-time)
-  - [Get all PITs](#get-all-pits)
-  - [Delete a Point in Time](#delete-a-point-in-time)
-  - [Delete all PITs](#delete-all-pits)
-  - [Empty all Pool Connections](#empty-all-pool-connections)
+# User Guide
 
 ## Initializing a Client
 
@@ -120,6 +125,31 @@ const client = new Client({
   // node: "https://xxx.region.aoss.amazonaws.com" for OpenSearch Serverless
 });
 ```
+## Special topics
+
+### TypeScript: Handling Request and Response Types
+All API functions in the client, along with their request and response types, are generated from the OpenSearch REST API specification. This provides a better developer experience, especially for TypeScript users. Here's how you can use the generated types: 
+
+```typescript
+import { Client, type API } from '@opensearch-project/opensearch';
+
+const client = new Client({ node: 'http://localhost:9200' });
+
+const searchRequest: API.Search_Request = { body: { query: { match: { director: 'miller' } } } }; // is type checked against API.Search_Request
+const searchResponse = (await client.search(searchRequest)).body; // is inferred as API.Search_ResponseBody
+```
+
+Note that even though there are types generated for the components of the request and response, only the top-level request and response types are exported. This is intentional! You should NOT access those component types directly, as it can result in breaking changes when the API spec changes. Instead, access the component types through the top-level request and response types:
+
+```typescript
+// Do NOT do this!
+import { type IndexSettings } from '@opensearch-project/opensearch/api/_types/indices._common';
+const settings: IndexSettings = { number_of_shards: 1, number_of_replicas: 0 };
+
+// Do this instead!
+import { type API } from '@opensearch-project/opensearch';
+const settings: API.Indices_Create_RequestBody['settings'] = { number_of_shards: 1, number_of_replicas: 0 };
+```
 
 ### Enable Handling of Long Numerals
 
@@ -135,8 +165,11 @@ const client = new Client({
   enableLongNumeralSupport: true,
 });
 ```
+## Examples
 
-## Create an Index
+(for more examples, see the [guides](guides) directory)
+
+### Create an Index
 
 ```javascript
 console.log('Creating index:');
@@ -159,7 +192,7 @@ var response = await client.indices.create({
 console.log(response.body);
 ```
 
-## Add a Document to the Index
+### Add a Document to the Index
 
 ```javascript
 console.log('Adding document:');
@@ -183,7 +216,7 @@ var response = await client.index({
 console.log(response.body);
 ```
 
-## Search for the Document
+### Search for the Document
 
 ```javascript
 console.log('Search results:');
@@ -206,7 +239,7 @@ var response = await client.search({
 console.log(response.body.hits);
 ```
 
-## Multi-Search (msearch)
+### Multi-Search (msearch)
 
 ```javascript
 const queries = [
@@ -230,7 +263,7 @@ const queries = [
 
 Explore `msearch` further with a detailed guide in [msearch.md](guides/msearch.md) and find sample code in [msearch.js](samples/msearch.js).
 
-## Delete the document
+### Delete the document
 
 ```javascript
 console.log('Deleting document:');
@@ -243,7 +276,7 @@ var response = await client.delete({
 console.log(response.body);
 ```
 
-## Delete the index
+### Delete the index
 
 ```javascript
 console.log('Deleting index:');
@@ -255,7 +288,7 @@ var response = await client.indices.delete({
 console.log(response.body);
 ```
 
-## Create a Point in Time
+### Create a Point in Time
 
 ```javascript
 console.log('Creating a PIT:');
@@ -269,7 +302,7 @@ var response = await client.createPit({
 console.log(response.body);
 ```
 
-## Get all PITs
+### Get all PITs
 
 ```javascript
 console.log('Getting all PITs:');
@@ -279,7 +312,7 @@ var response = await client.getAllPits();
 console.log(response.body);
 ```
 
-## Delete a Point in Time
+### Delete a Point in Time
 
 ```javascript
 console.log('Deleting a PIT:');
@@ -295,7 +328,7 @@ var response = await client.deletePit({
 console.log(response.body);
 ```
 
-## Delete all PITs
+### Delete all PITs
 
 ```javascript
 console.log('Deleting all PITs:');
@@ -305,7 +338,7 @@ var response = await client.deleteAllPits();
 console.log(response.body);
 ```
 
-## Empty all Pool Connections
+### Empty all Pool Connections
 
 ```javascript
 var pool = new ConnectionPool({ Connection });

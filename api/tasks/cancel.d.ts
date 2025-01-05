@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 import * as Tasks_Common from '../_types/tasks._common'
 
 export interface Tasks_Cancel_Request extends Global.Params {
-  actions?: string | string[];
+  actions?: Common.StringOrStringArray;
   nodes?: string[];
   parent_task_id?: string;
   task_id?: Common.TaskId;

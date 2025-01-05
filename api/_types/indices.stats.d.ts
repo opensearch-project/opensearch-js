@@ -21,7 +21,9 @@ export type AllIndicesStats = {
   total: IndexStats;
 }
 
-export type IndexShardStats = IndexStatsBase & {
+export type IndexShardStats = IndexShardStatsBase & Record<string, any>
+
+export type IndexShardStatsBase = IndexStatsBase & {
   commit?: ShardCommit;
   retention_leases?: ShardRetentionLeases;
   routing?: ShardRouting;

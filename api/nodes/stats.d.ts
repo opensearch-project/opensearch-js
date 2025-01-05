@@ -17,6 +17,7 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as Nodes_Common from '../_types/nodes._common'
 import * as Nodes_Stats from '../_types/nodes.stats'
 
 export interface Nodes_Stats_Request extends Global.Params {
@@ -37,5 +38,8 @@ export interface Nodes_Stats_Response extends ApiResponse {
   body: Nodes_Stats_ResponseBody;
 }
 
-export type Nodes_Stats_ResponseBody = Nodes_Stats.ResponseBase
+export interface Nodes_Stats_ResponseBody extends Nodes_Common.NodesResponseBase {
+  cluster_name?: Common.Name;
+  nodes: Record<string, Nodes_Stats.Stats>;
+}
 

@@ -18,19 +18,13 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_SearchModels_Request extends Global.Params {
-  body?: Ml_SearchModels_RequestBody;
+export interface Ml_GetConnector_Request extends Global.Params {
+  connector_id: string;
 }
 
-export type Ml_SearchModels_RequestBody = {
-  query?: Ml_Common.Query;
-  size?: number;
-  sort?: Ml_Common.Sort[];
+export interface Ml_GetConnector_Response extends ApiResponse {
+  body: Ml_GetConnector_ResponseBody;
 }
 
-export interface Ml_SearchModels_Response extends ApiResponse {
-  body: Ml_SearchModels_ResponseBody;
-}
-
-export type Ml_SearchModels_ResponseBody = Ml_Common.SearchModelsResponse
+export type Ml_GetConnector_ResponseBody = Ml_Common.GetConnectorResponse
 

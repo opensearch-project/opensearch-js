@@ -17,6 +17,7 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as Nodes_Common from '../_types/nodes._common'
 import * as Nodes_ReloadSecureSettings from '../_types/nodes.reload_secure_settings'
 
 export interface Nodes_ReloadSecureSettings_Request extends Global.Params {
@@ -33,5 +34,8 @@ export interface Nodes_ReloadSecureSettings_Response extends ApiResponse {
   body: Nodes_ReloadSecureSettings_ResponseBody;
 }
 
-export type Nodes_ReloadSecureSettings_ResponseBody = Nodes_ReloadSecureSettings.ResponseBase
+export interface Nodes_ReloadSecureSettings_ResponseBody extends Nodes_Common.NodesResponseBase {
+  cluster_name: Common.Name;
+  nodes: Record<string, Nodes_ReloadSecureSettings.NodeReloadResult>;
+}
 

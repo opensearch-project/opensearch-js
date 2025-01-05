@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Shows information about currently configured aliases to indexes including filter and routing info.
+ * Shows information about aliases currently configured to indexes, including filter and routing information.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-aliases/ - cat.aliases}
  *
  * @memberOf API-Cat

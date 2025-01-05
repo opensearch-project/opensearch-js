@@ -693,6 +693,18 @@ export default class OpenSearchAPI {
   };
 
   ml: {
+    predict (params: API.Ml_Predict_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_Predict_Response>;
+    predict (params: API.Ml_Predict_Request, callback: callbackFn<API.Ml_Predict_Response>): TransportRequestCallback;
+    predict (params: API.Ml_Predict_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_Predict_Response>): TransportRequestCallback;
+
+    trainPredict (params: API.Ml_TrainPredict_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_TrainPredict_Response>;
+    trainPredict (params: API.Ml_TrainPredict_Request, callback: callbackFn<API.Ml_TrainPredict_Response>): TransportRequestCallback;
+    trainPredict (params: API.Ml_TrainPredict_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_TrainPredict_Response>): TransportRequestCallback;
+
+    train (params: API.Ml_Train_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_Train_Response>;
+    train (params: API.Ml_Train_Request, callback: callbackFn<API.Ml_Train_Response>): TransportRequestCallback;
+    train (params: API.Ml_Train_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_Train_Response>): TransportRequestCallback;
+
     registerAgents (params?: API.Ml_RegisterAgents_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_RegisterAgents_Response>;
     registerAgents (callback: callbackFn<API.Ml_RegisterAgents_Response>): TransportRequestCallback;
     registerAgents (params: API.Ml_RegisterAgents_Request, callback: callbackFn<API.Ml_RegisterAgents_Response>): TransportRequestCallback;
@@ -707,14 +719,32 @@ export default class OpenSearchAPI {
     createConnector (params: API.Ml_CreateConnector_Request, callback: callbackFn<API.Ml_CreateConnector_Response>): TransportRequestCallback;
     createConnector (params: API.Ml_CreateConnector_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_CreateConnector_Response>): TransportRequestCallback;
 
+    searchConnectors (params?: API.Ml_SearchConnectors_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_SearchConnectors_Response>;
+    searchConnectors (callback: callbackFn<API.Ml_SearchConnectors_Response>): TransportRequestCallback;
+    searchConnectors (params: API.Ml_SearchConnectors_Request, callback: callbackFn<API.Ml_SearchConnectors_Response>): TransportRequestCallback;
+    searchConnectors (params: API.Ml_SearchConnectors_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_SearchConnectors_Response>): TransportRequestCallback;
+
     deleteConnector (params: API.Ml_DeleteConnector_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteConnector_Response>;
     deleteConnector (params: API.Ml_DeleteConnector_Request, callback: callbackFn<API.Ml_DeleteConnector_Response>): TransportRequestCallback;
     deleteConnector (params: API.Ml_DeleteConnector_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteConnector_Response>): TransportRequestCallback;
+
+    getConnector (params: API.Ml_GetConnector_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetConnector_Response>;
+    getConnector (params: API.Ml_GetConnector_Request, callback: callbackFn<API.Ml_GetConnector_Response>): TransportRequestCallback;
+    getConnector (params: API.Ml_GetConnector_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetConnector_Response>): TransportRequestCallback;
+
+    updateConnector (params: API.Ml_UpdateConnector_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UpdateConnector_Response>;
+    updateConnector (params: API.Ml_UpdateConnector_Request, callback: callbackFn<API.Ml_UpdateConnector_Response>): TransportRequestCallback;
+    updateConnector (params: API.Ml_UpdateConnector_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UpdateConnector_Response>): TransportRequestCallback;
 
     registerModelGroup (params?: API.Ml_RegisterModelGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_RegisterModelGroup_Response>;
     registerModelGroup (callback: callbackFn<API.Ml_RegisterModelGroup_Response>): TransportRequestCallback;
     registerModelGroup (params: API.Ml_RegisterModelGroup_Request, callback: callbackFn<API.Ml_RegisterModelGroup_Response>): TransportRequestCallback;
     registerModelGroup (params: API.Ml_RegisterModelGroup_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_RegisterModelGroup_Response>): TransportRequestCallback;
+
+    searchModelGroup (params?: API.Ml_SearchModelGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_SearchModelGroup_Response>;
+    searchModelGroup (callback: callbackFn<API.Ml_SearchModelGroup_Response>): TransportRequestCallback;
+    searchModelGroup (params: API.Ml_SearchModelGroup_Request, callback: callbackFn<API.Ml_SearchModelGroup_Response>): TransportRequestCallback;
+    searchModelGroup (params: API.Ml_SearchModelGroup_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_SearchModelGroup_Response>): TransportRequestCallback;
 
     deleteModelGroup (params: API.Ml_DeleteModelGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteModelGroup_Response>;
     deleteModelGroup (params: API.Ml_DeleteModelGroup_Request, callback: callbackFn<API.Ml_DeleteModelGroup_Response>): TransportRequestCallback;
@@ -723,6 +753,10 @@ export default class OpenSearchAPI {
     getModelGroup (params: API.Ml_GetModelGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetModelGroup_Response>;
     getModelGroup (params: API.Ml_GetModelGroup_Request, callback: callbackFn<API.Ml_GetModelGroup_Response>): TransportRequestCallback;
     getModelGroup (params: API.Ml_GetModelGroup_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetModelGroup_Response>): TransportRequestCallback;
+
+    updateModelGroup (params: API.Ml_UpdateModelGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UpdateModelGroup_Response>;
+    updateModelGroup (params: API.Ml_UpdateModelGroup_Request, callback: callbackFn<API.Ml_UpdateModelGroup_Response>): TransportRequestCallback;
+    updateModelGroup (params: API.Ml_UpdateModelGroup_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UpdateModelGroup_Response>): TransportRequestCallback;
 
     registerModel (params?: API.Ml_RegisterModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_RegisterModel_Response>;
     registerModel (callback: callbackFn<API.Ml_RegisterModel_Response>): TransportRequestCallback;

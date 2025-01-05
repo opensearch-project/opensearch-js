@@ -18,26 +18,19 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_CreateConnector_Request extends Global.Params {
-  body?: Ml_CreateConnector_RequestBody;
+export interface Ml_SearchConnectors_Request extends Global.Params {
+  body?: Ml_SearchConnectors_RequestBody;
 }
 
-export type Ml_CreateConnector_RequestBody = {
-  actions: Ml_Common.Action[];
-  client_config?: Ml_Common.ClientConfig;
-  credential: Ml_Common.Credential;
-  description: string;
-  name: string;
-  parameters: Ml_Common.Parameters;
-  protocol: 'aws_sigv4' | 'http';
-  version: number;
+export type Ml_SearchConnectors_RequestBody = {
+  query?: Ml_Common.Query;
+  size?: number;
+  sort?: string[];
 }
 
-export interface Ml_CreateConnector_Response extends ApiResponse {
-  body: Ml_CreateConnector_ResponseBody;
+export interface Ml_SearchConnectors_Response extends ApiResponse {
+  body: Ml_SearchConnectors_ResponseBody;
 }
 
-export type Ml_CreateConnector_ResponseBody = {
-  connector_id?: string;
-}
+export type Ml_SearchConnectors_ResponseBody = Ml_Common.SearchConnectorsResponse
 

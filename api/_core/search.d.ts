@@ -57,7 +57,7 @@ export interface Search_Request extends Global.Params {
   search_type?: Common.SearchType;
   seq_no_primary_term?: boolean;
   size?: number;
-  sort?: string | string[];
+  sort?: Common.StringOrStringArray;
   stats?: string[];
   stored_fields?: Common.Fields;
   suggest_field?: Common.Field;

@@ -19,18 +19,18 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * List segments for one or several PITs.
+ * Lists one or several CAT point-in-time segments.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/point-in-time-api/ - cat.pit_segments}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
- * @param {string} [params.bytes] - The unit in which to display byte values.
- * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
- * @param {array} [params.h] - Comma-separated list of column names to display.
+ * @param {string} [params.bytes] - The units used to display byte values.
+ * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
- * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
- * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
+ * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
+ * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.
  * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

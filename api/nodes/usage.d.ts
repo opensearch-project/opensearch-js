@@ -17,6 +17,7 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as Nodes_Common from '../_types/nodes._common'
 import * as Nodes_Usage from '../_types/nodes.usage'
 
 export interface Nodes_Usage_Request extends Global.Params {
@@ -29,5 +30,8 @@ export interface Nodes_Usage_Response extends ApiResponse {
   body: Nodes_Usage_ResponseBody;
 }
 
-export type Nodes_Usage_ResponseBody = Nodes_Usage.ResponseBase
+export interface Nodes_Usage_ResponseBody extends Nodes_Common.NodesResponseBase {
+  cluster_name: Common.Name;
+  nodes: Record<string, Nodes_Usage.NodeUsage>;
+}
 

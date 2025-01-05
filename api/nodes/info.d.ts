@@ -17,6 +17,7 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as Nodes_Common from '../_types/nodes._common'
 import * as Nodes_Info from '../_types/nodes.info'
 
 export interface Nodes_Info_Request extends Global.Params {
@@ -30,5 +31,8 @@ export interface Nodes_Info_Response extends ApiResponse {
   body: Nodes_Info_ResponseBody;
 }
 
-export type Nodes_Info_ResponseBody = Nodes_Info.ResponseBase
+export interface Nodes_Info_ResponseBody extends Nodes_Common.NodesResponseBase {
+  cluster_name: Common.Name;
+  nodes: Record<string, Nodes_Info.NodeInfo>;
+}
 

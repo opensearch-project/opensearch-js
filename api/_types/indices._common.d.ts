@@ -230,7 +230,7 @@ export type IndexSettings = {
   refresh_interval?: Common.Duration;
   routing?: IndexRouting;
   routing_partition_size?: Common.StringifiedInteger;
-  routing_path?: string | string[];
+  routing_path?: Common.StringOrStringArray;
   search?: IndexSettingsSearch;
   'search.idle.after'?: Common.Duration;
   settings?: IndexSettings;

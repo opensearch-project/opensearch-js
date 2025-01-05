@@ -20,21 +20,21 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns cluster-wide thread pool statistics per node.
-By default the active, queue and rejected statistics are returned for all thread pools.
+By default the active, queued, and rejected statistics are returned for all thread pools.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-thread-pool/ - cat.thread_pool}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
- * @param {array} [params.h] - Comma-separated list of column names to display.
+ * @param {string} [params.cluster_manager_timeout] - A timeout for connection to the cluster manager node.
+ * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
- * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
- * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
+ * @param {boolean} [params.local=false] - Returns local information but does not retrieve the state from the cluster manager node.
+ * @param {string} [params.master_timeout] DEPRECATED - The amount of time allowed to establish a connection to the cluster manager node.
+ * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {number} [params.size] - The multiplier in which to display values.
- * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
+ * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.
  * @param {string} [params.thread_pool_patterns] - A comma-separated list of thread pool names used to limit the request. Accepts wildcard expressions.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

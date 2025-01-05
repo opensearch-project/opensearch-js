@@ -275,13 +275,21 @@ import { Knn_TrainModel_Request, Knn_TrainModel_Response, Knn_TrainModel_Respons
 import { Knn_DeleteModel_Request, Knn_DeleteModel_Response, Knn_DeleteModel_ResponseBody } from './knn/deleteModel';
 import { Knn_GetModel_Request, Knn_GetModel_Response, Knn_GetModel_ResponseBody } from './knn/getModel';
 import { Knn_Warmup_Request, Knn_Warmup_Response, Knn_Warmup_ResponseBody } from './knn/warmup';
+import { Ml_Predict_Request, Ml_Predict_RequestBody, Ml_Predict_Response, Ml_Predict_ResponseBody } from './ml/predict';
+import { Ml_TrainPredict_Request, Ml_TrainPredict_RequestBody, Ml_TrainPredict_Response, Ml_TrainPredict_ResponseBody } from './ml/trainPredict';
+import { Ml_Train_Request, Ml_Train_RequestBody, Ml_Train_Response, Ml_Train_ResponseBody } from './ml/train';
 import { Ml_RegisterAgents_Request, Ml_RegisterAgents_RequestBody, Ml_RegisterAgents_Response, Ml_RegisterAgents_ResponseBody } from './ml/registerAgents';
 import { Ml_DeleteAgent_Request, Ml_DeleteAgent_Response, Ml_DeleteAgent_ResponseBody } from './ml/deleteAgent';
 import { Ml_CreateConnector_Request, Ml_CreateConnector_RequestBody, Ml_CreateConnector_Response, Ml_CreateConnector_ResponseBody } from './ml/createConnector';
+import { Ml_SearchConnectors_Request, Ml_SearchConnectors_RequestBody, Ml_SearchConnectors_Response, Ml_SearchConnectors_ResponseBody } from './ml/searchConnectors';
 import { Ml_DeleteConnector_Request, Ml_DeleteConnector_Response, Ml_DeleteConnector_ResponseBody } from './ml/deleteConnector';
+import { Ml_GetConnector_Request, Ml_GetConnector_Response, Ml_GetConnector_ResponseBody } from './ml/getConnector';
+import { Ml_UpdateConnector_Request, Ml_UpdateConnector_RequestBody, Ml_UpdateConnector_Response, Ml_UpdateConnector_ResponseBody } from './ml/updateConnector';
 import { Ml_RegisterModelGroup_Request, Ml_RegisterModelGroup_RequestBody, Ml_RegisterModelGroup_Response, Ml_RegisterModelGroup_ResponseBody } from './ml/registerModelGroup';
+import { Ml_SearchModelGroup_Request, Ml_SearchModelGroup_RequestBody, Ml_SearchModelGroup_Response, Ml_SearchModelGroup_ResponseBody } from './ml/searchModelGroup';
 import { Ml_DeleteModelGroup_Request, Ml_DeleteModelGroup_Response, Ml_DeleteModelGroup_ResponseBody } from './ml/deleteModelGroup';
 import { Ml_GetModelGroup_Request, Ml_GetModelGroup_Response, Ml_GetModelGroup_ResponseBody } from './ml/getModelGroup';
+import { Ml_UpdateModelGroup_Request, Ml_UpdateModelGroup_RequestBody, Ml_UpdateModelGroup_Response, Ml_UpdateModelGroup_ResponseBody } from './ml/updateModelGroup';
 import { Ml_RegisterModel_Request, Ml_RegisterModel_RequestBody, Ml_RegisterModel_Response, Ml_RegisterModel_ResponseBody } from './ml/registerModel';
 import { Ml_SearchModels_Request, Ml_SearchModels_RequestBody, Ml_SearchModels_Response, Ml_SearchModels_ResponseBody } from './ml/searchModels';
 import { Ml_DeleteModel_Request, Ml_DeleteModel_Response, Ml_DeleteModel_ResponseBody } from './ml/deleteModel';
@@ -638,13 +646,21 @@ export {
   Knn_DeleteModel_Request, Knn_DeleteModel_Response, Knn_DeleteModel_ResponseBody,
   Knn_GetModel_Request, Knn_GetModel_Response, Knn_GetModel_ResponseBody,
   Knn_Warmup_Request, Knn_Warmup_Response, Knn_Warmup_ResponseBody,
+  Ml_Predict_Request, Ml_Predict_RequestBody, Ml_Predict_Response, Ml_Predict_ResponseBody,
+  Ml_TrainPredict_Request, Ml_TrainPredict_RequestBody, Ml_TrainPredict_Response, Ml_TrainPredict_ResponseBody,
+  Ml_Train_Request, Ml_Train_RequestBody, Ml_Train_Response, Ml_Train_ResponseBody,
   Ml_RegisterAgents_Request, Ml_RegisterAgents_RequestBody, Ml_RegisterAgents_Response, Ml_RegisterAgents_ResponseBody,
   Ml_DeleteAgent_Request, Ml_DeleteAgent_Response, Ml_DeleteAgent_ResponseBody,
   Ml_CreateConnector_Request, Ml_CreateConnector_RequestBody, Ml_CreateConnector_Response, Ml_CreateConnector_ResponseBody,
+  Ml_SearchConnectors_Request, Ml_SearchConnectors_RequestBody, Ml_SearchConnectors_Response, Ml_SearchConnectors_ResponseBody,
   Ml_DeleteConnector_Request, Ml_DeleteConnector_Response, Ml_DeleteConnector_ResponseBody,
+  Ml_GetConnector_Request, Ml_GetConnector_Response, Ml_GetConnector_ResponseBody,
+  Ml_UpdateConnector_Request, Ml_UpdateConnector_RequestBody, Ml_UpdateConnector_Response, Ml_UpdateConnector_ResponseBody,
   Ml_RegisterModelGroup_Request, Ml_RegisterModelGroup_RequestBody, Ml_RegisterModelGroup_Response, Ml_RegisterModelGroup_ResponseBody,
+  Ml_SearchModelGroup_Request, Ml_SearchModelGroup_RequestBody, Ml_SearchModelGroup_Response, Ml_SearchModelGroup_ResponseBody,
   Ml_DeleteModelGroup_Request, Ml_DeleteModelGroup_Response, Ml_DeleteModelGroup_ResponseBody,
   Ml_GetModelGroup_Request, Ml_GetModelGroup_Response, Ml_GetModelGroup_ResponseBody,
+  Ml_UpdateModelGroup_Request, Ml_UpdateModelGroup_RequestBody, Ml_UpdateModelGroup_Response, Ml_UpdateModelGroup_ResponseBody,
   Ml_RegisterModel_Request, Ml_RegisterModel_RequestBody, Ml_RegisterModel_Response, Ml_RegisterModel_ResponseBody,
   Ml_SearchModels_Request, Ml_SearchModels_RequestBody, Ml_SearchModels_Response, Ml_SearchModels_ResponseBody,
   Ml_DeleteModel_Request, Ml_DeleteModel_Response, Ml_DeleteModel_ResponseBody,

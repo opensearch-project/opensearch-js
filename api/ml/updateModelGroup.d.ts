@@ -18,26 +18,23 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_CreateConnector_Request extends Global.Params {
-  body?: Ml_CreateConnector_RequestBody;
+export interface Ml_UpdateModelGroup_Request extends Global.Params {
+  body?: Ml_UpdateModelGroup_RequestBody;
+  model_group_id: string;
 }
 
-export type Ml_CreateConnector_RequestBody = {
-  actions: Ml_Common.Action[];
-  client_config?: Ml_Common.ClientConfig;
-  credential: Ml_Common.Credential;
-  description: string;
-  name: string;
-  parameters: Ml_Common.Parameters;
-  protocol: 'aws_sigv4' | 'http';
-  version: number;
+export type Ml_UpdateModelGroup_RequestBody = {
+  add_all_backend_roles?: boolean;
+  add_backend_roles?: string[];
+  backend_roles?: string[];
+  description?: string;
+  model_access_name?: string;
+  name?: string;
 }
 
-export interface Ml_CreateConnector_Response extends ApiResponse {
-  body: Ml_CreateConnector_ResponseBody;
+export interface Ml_UpdateModelGroup_Response extends ApiResponse {
+  body: Ml_UpdateModelGroup_ResponseBody;
 }
 
-export type Ml_CreateConnector_ResponseBody = {
-  connector_id?: string;
-}
+export type Ml_UpdateModelGroup_ResponseBody = Ml_Common.UpdateModelGroupResponse
 

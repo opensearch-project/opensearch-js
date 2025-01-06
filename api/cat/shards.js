@@ -19,22 +19,22 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Provides a detailed view of shard allocation on nodes.
+ * Lists the states of all primary and replica shards and how they are distributed.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-shards/ - cat.shards}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
- * @param {string} [params.bytes] - The unit used to display byte values.
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
- * @param {array} [params.h] - Comma-separated list of column names to display.
+ * @param {string} [params.bytes] - The units used to display byte values.
+ * @param {string} [params.cluster_manager_timeout] - The amount of time allowed to establish a connection to the cluster manager node.
+ * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
- * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
- * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
- * @param {string} [params.time] - The unit in which to display time values.
- * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
+ * @param {boolean} [params.local=false] - Returns local information but does not retrieve the state from the cluster manager node.
+ * @param {string} [params.master_timeout] DEPRECATED - The amount of time allowed to establish a connection to the cluster manager node.
+ * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
+ * @param {string} [params.time] - Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
+ * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.
  * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

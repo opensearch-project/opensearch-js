@@ -25,7 +25,7 @@ export interface Indices_Stats_Request extends Global.Params {
   fielddata_fields?: Common.Fields;
   fields?: Common.Fields;
   forbid_closed_indices?: boolean;
-  groups?: string | string[];
+  groups?: Common.StringOrStringArray;
   include_segment_file_sizes?: boolean;
   include_unloaded_segments?: boolean;
   index?: Common.Indices;

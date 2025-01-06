@@ -153,6 +153,8 @@ export type Duration = string
 
 export type DurationLarge = string
 
+export type DurationValueUnitMicros = UnitMicros
+
 export type DurationValueUnitMillis = UnitMillis
 
 export type DurationValueUnitNanos = UnitNanos
@@ -283,7 +285,7 @@ export type HourAndMinute = {
   minute: number[];
 }
 
-export type HttpHeaders = Record<string, string | string[]>
+export type HttpHeaders = Record<string, StringOrStringArray>
 
 export type HumanReadableByteCount = string
 
@@ -624,7 +626,7 @@ export type Retries = {
 
 export type Routing = string
 
-export type RoutingInQueryString = string | string[]
+export type RoutingInQueryString = StringOrStringArray
 
 export type RrfRank = RankBase & {
   rank_constant?: number;
@@ -825,6 +827,8 @@ export type StringifiedLong = number | string
 
 export type StringifiedVersionNumber = VersionNumber | string
 
+export type StringOrStringArray = string | string[]
+
 export type SuggestMode = 'always' | 'missing' | 'popular'
 
 export type TaskFailure = {
@@ -877,6 +881,8 @@ export type Type = string
 export type uint = number
 
 export type ulong = number
+
+export type UnitMicros = number
 
 export type UnitMillis = number
 

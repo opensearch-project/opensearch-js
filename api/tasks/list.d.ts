@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 import * as Tasks_Common from '../_types/tasks._common'
 
 export interface Tasks_List_Request extends Global.Params {
-  actions?: string | string[];
+  actions?: Common.StringOrStringArray;
   detailed?: boolean;
   group_by?: Tasks_Common.GroupBy;
   nodes?: string[];

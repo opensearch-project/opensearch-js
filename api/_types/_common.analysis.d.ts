@@ -556,7 +556,7 @@ export type StopTokenFilter = TokenFilterBase & {
   type: 'stop';
 }
 
-export type StopWords = string | string[]
+export type StopWords = Common.StringOrStringArray
 
 export type SynonymFormat = 'solr' | 'wordnet'
 

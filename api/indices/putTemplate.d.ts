@@ -31,7 +31,7 @@ export interface Indices_PutTemplate_Request extends Global.Params {
 
 export type Indices_PutTemplate_RequestBody = {
   aliases?: Record<string, Indices_Common.Alias>;
-  index_patterns?: string | string[];
+  index_patterns?: Common.StringOrStringArray;
   mappings?: Common_Mapping.TypeMapping;
   order?: number;
   settings?: Record<string, any>;

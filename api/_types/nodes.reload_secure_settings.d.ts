@@ -15,10 +15,14 @@
  */
 
 import * as Common from './_common'
-import * as Nodes_Common from './nodes._common'
 
-export type ResponseBase = Nodes_Common.NodesResponseBase & {
-  cluster_name: Common.Name;
-  nodes: Record<string, Nodes_Common.NodeReloadResult>;
+export type NodeReloadError = NodeReloadResponse & {
+  reload_exception?: Common.ErrorCause;
 }
+
+export type NodeReloadResponse = {
+  name: Common.Name;
+}
+
+export type NodeReloadResult = NodeReloadResponse | NodeReloadError
 

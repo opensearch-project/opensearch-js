@@ -14,10 +14,11 @@
  * modify the API generator.
  */
 
+import * as Common from './_common'
 
 export type Params = {
   error_trace?: boolean;
-  filter_path?: string | string[];
+  filter_path?: Common.StringOrStringArray;
   human?: boolean;
   pretty?: boolean;
   source?: string;

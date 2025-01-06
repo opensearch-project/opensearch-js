@@ -16,11 +16,6 @@
 
 import * as Common from './_common'
 import * as Indices_Common from './indices._common'
-import * as Nodes_Common from './nodes._common'
-
-export type DeprecationIndexing = {
-  enabled: boolean | string;
-}
 
 export type Metric = '_all' | 'aggregations' | 'http' | 'indices' | 'ingest' | 'jvm' | 'os' | 'plugins' | 'process' | 'search_pipelines' | 'settings' | 'thread_pool' | 'transport'
 
@@ -45,8 +40,8 @@ export type NodeInfo = {
   search_pipelines?: NodeInfoSearchPipelines;
   settings?: NodeInfoSettings;
   thread_pool?: Record<string, NodeThreadPoolInfo>;
-  total_indexing_buffer?: number;
-  total_indexing_buffer_in_bytes?: Common.ByteCount;
+  total_indexing_buffer?: Common.ByteCount;
+  total_indexing_buffer_in_bytes?: Common.HumanReadableByteCount;
   transport?: NodeInfoTransport;
   transport_address?: Common.TransportAddress;
   version: Common.VersionString;
@@ -189,10 +184,10 @@ export type NodeInfoSettings = {
 }
 
 export type NodeInfoSettingsCluster = {
-  deprecation_indexing?: DeprecationIndexing;
+  deprecation_indexing?: NodeInfoSettingsDeprecationIndexing;
   election?: NodeInfoSettingsClusterElection;
-  initial_cluster_manager_nodes?: string;
-  initial_master_nodes?: string;
+  initial_cluster_manager_nodes?: Common.StringOrStringArray;
+  initial_master_nodes?: Common.StringOrStringArray;
   name: Common.Name;
   routing?: Indices_Common.IndexRouting;
 }
@@ -201,9 +196,13 @@ export type NodeInfoSettingsClusterElection = {
   strategy: Common.Name;
 }
 
+export type NodeInfoSettingsDeprecationIndexing = {
+  enabled: Common.StringifiedBoolean;
+}
+
 export type NodeInfoSettingsHttp = {
-  compression?: boolean | string;
-  port?: number | string;
+  compression?: Common.StringifiedBoolean;
+  port?: Common.StringifiedInteger;
   type: string;
   'type.default'?: string;
 }
@@ -266,7 +265,7 @@ export type NodeInfoSettingsNetwork = {
 }
 
 export type NodeInfoSettingsNode = {
-  attr: NodeInfoShardIndexingPressureEnabled;
+  attr: Record<string, any>;
   max_local_storage_nodes?: string;
   name: Common.Name;
 }
@@ -276,10 +275,6 @@ export type NodeInfoSettingsPlugins = Record<string, any>
 export type NodeInfoSettingsTransport = {
   type: string;
   'type.default'?: string;
-}
-
-export type NodeInfoShardIndexingPressureEnabled = {
-  shard_indexing_pressure_enabled: string;
 }
 
 export type NodeInfoTransport = {
@@ -295,9 +290,10 @@ export type NodeJvmInfo = {
   mem: NodeInfoJvmMemory;
   memory_pools?: string[];
   pid: number;
+  start_time?: Common.DateTime;
   start_time_in_millis: Common.EpochTimeUnitMillis;
   using_bundled_jdk?: boolean | undefined;
-  using_compressed_ordinary_object_pointers?: boolean | string;
+  using_compressed_ordinary_object_pointers?: Common.StringifiedBoolean;
   version?: Common.VersionString;
   vm_name?: Common.Name;
   vm_vendor?: string;
@@ -312,6 +308,7 @@ export type NodeOperatingSystemInfo = {
   mem?: NodeInfoMemory;
   name?: Common.Name;
   pretty_name?: Common.Name;
+  refresh_interval?: Common.Duration;
   refresh_interval_in_millis: Common.DurationValueUnitMillis;
   swap?: NodeInfoMemory;
   version?: Common.VersionString;
@@ -320,6 +317,7 @@ export type NodeOperatingSystemInfo = {
 export type NodeProcessInfo = {
   id: number;
   mlockall: boolean;
+  refresh_interval?: Common.Duration;
   refresh_interval_in_millis: Common.DurationValueUnitMillis;
 }
 
@@ -330,10 +328,5 @@ export type NodeThreadPoolInfo = {
   queue_size: number;
   size?: number;
   type: string;
-}
-
-export type ResponseBase = Nodes_Common.NodesResponseBase & {
-  cluster_name: Common.Name;
-  nodes: Record<string, NodeInfo>;
 }
 

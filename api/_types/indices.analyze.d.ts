@@ -14,6 +14,7 @@
  * modify the API generator.
  */
 
+import * as Common from './_common'
 
 export type AnalyzeDetail = {
   analyzer?: AnalyzerDetail;
@@ -54,7 +55,7 @@ export type ExplainAnalyzeToken = {
   type: string;
 }
 
-export type TextToAnalyze = string | string[]
+export type TextToAnalyze = Common.StringOrStringArray
 
 export type TokenDetail = {
   name: string;

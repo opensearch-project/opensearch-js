@@ -26,7 +26,7 @@ export type SnapshotsRecord = {
   reason?: string;
   repository?: string;
   start_epoch?: Common.StringifiedEpochTimeUnitSeconds;
-  start_time?: Common.ScheduleTimeOfDay;
+  start_time?: Common.TimeOfDay;
   status?: string;
   successful_shards?: string;
   total_shards?: string;

@@ -15,7 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Common from '../_types/cat._common'
+import * as Cat_SegmentReplication from '../_types/cat.segment_replication'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
@@ -43,5 +43,5 @@ export interface Cat_SegmentReplication_Response extends ApiResponse {
   body: Cat_SegmentReplication_ResponseBody;
 }
 
-export type Cat_SegmentReplication_ResponseBody = Cat_Common.CatSegmentReplicationRecord[]
+export type Cat_SegmentReplication_ResponseBody = Cat_SegmentReplication.SegmentReplicationRecord[]
 

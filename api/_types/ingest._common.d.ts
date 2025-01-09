@@ -19,7 +19,7 @@ import * as Common from './_common'
 export type AppendProcessor = ProcessorBase & {
   allow_duplicates?: boolean;
   field: Common.Field;
-  value: Record<string, any>[];
+  value: any[];
 }
 
 export type AttachmentProcessor = ProcessorBase & {
@@ -97,16 +97,6 @@ export type DotExpanderProcessor = ProcessorBase & {
 
 export type DropProcessor = ProcessorBase & Record<string, any>
 
-export type EnrichProcessor = ProcessorBase & {
-  field: Common.Field;
-  ignore_missing?: boolean;
-  max_matches?: number;
-  override?: boolean;
-  policy_name: string;
-  shape_relation?: Common.GeoShapeRelation;
-  target_field: Common.Field;
-}
-
 export type FailProcessor = ProcessorBase & {
   message: string;
 }
@@ -139,31 +129,6 @@ export type GsubProcessor = ProcessorBase & {
   ignore_missing?: boolean;
   pattern: string;
   replacement: string;
-  target_field?: Common.Field;
-}
-
-export type InferenceConfig = {
-  classification?: InferenceConfigClassification;
-  regression?: InferenceConfigRegression;
-}
-
-export type InferenceConfigClassification = {
-  num_top_classes?: number;
-  num_top_feature_importance_values?: number;
-  prediction_field_type?: string;
-  results_field?: Common.Field;
-  top_classes_results_field?: Common.Field;
-}
-
-export type InferenceConfigRegression = {
-  num_top_feature_importance_values?: number;
-  results_field?: Common.Field;
-}
-
-export type InferenceProcessor = ProcessorBase & {
-  field_map?: Record<string, Record<string, any>>;
-  inference_config?: InferenceConfig;
-  model_id: Common.Id;
   target_field?: Common.Field;
 }
 
@@ -236,13 +201,11 @@ export type ProcessorContainer = {
   dissect?: DissectProcessor;
   dot_expander?: DotExpanderProcessor;
   drop?: DropProcessor;
-  enrich?: EnrichProcessor;
   fail?: FailProcessor;
   foreach?: ForeachProcessor;
   geoip?: GeoIpProcessor;
   grok?: GrokProcessor;
   gsub?: GsubProcessor;
-  inference?: InferenceProcessor;
   join?: JoinProcessor;
   json?: JsonProcessor;
   kv?: KeyValueProcessor;
@@ -287,7 +250,7 @@ export type SetSecurityUserProcessor = ProcessorBase & {
   properties?: string[];
 }
 
-export type ShapeType = 'geo_shape' | 'shape'
+export type ShapeType = 'geo_shape' | 'xy_shape'
 
 export type SortProcessor = ProcessorBase & {
   field: Common.Field;
@@ -304,7 +267,7 @@ export type SplitProcessor = ProcessorBase & {
 }
 
 export type TextEmbeddingProcessor = ProcessorBase & {
-  description?: string;
+  batch_size?: number;
   field_map: Record<string, string>;
   model_id: Common.Id;
 }

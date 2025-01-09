@@ -16,24 +16,7 @@
 
 import * as Common from './_common'
 
-export type CatPitSegmentsRecord = {
-  committed?: string;
-  compound?: string;
-  'docs.count'?: string;
-  'docs.deleted'?: string;
-  generation?: string;
-  index?: string;
-  ip?: string;
-  prirep?: string;
-  searchable?: string;
-  segment?: string;
-  shard?: string;
-  size?: string;
-  'size.memory'?: string;
-  version?: string;
-}
-
-export type CatSegmentReplicationRecord = {
+export type SegmentReplicationRecord = {
   bytes?: string;
   bytes_behind?: string;
   bytes_fetched?: string;

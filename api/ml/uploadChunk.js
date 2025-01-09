@@ -16,15 +16,17 @@
 
 'use strict';
 
-const { normalizeArguments } = require('../utils');
+const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Searches for models.
- * <br/> See Also: {@link undefined - ml.search_models}
+ * Uploads model chunk.
+ * <br/> See Also: {@link undefined - ml.upload_chunk}
  *
  * @memberOf API-Ml
  *
- * @param {object} [params]
+ * @param {object} params
+ * @param {number} params.chunk_number 
+ * @param {string} params.model_id 
  * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
@@ -32,16 +34,20 @@ const { normalizeArguments } = require('../utils');
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function searchModelsFunc(params, options, callback) {
+function uploadChunkFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.chunk_number == null) return handleMissingParam('chunk_number', this, callback);
+  if (params.model_id == null) return handleMissingParam('model_id', this, callback);
 
-  let { body, ...querystring } = params;
+  let { body, chunk_number, model_id, ...querystring } = params;
+  chunk_number = parsePathParam(chunk_number);
+  model_id = parsePathParam(model_id);
 
-  const path = '/_plugins/_ml/models/_search';
-  const method = body ? 'POST' : 'GET';
+  const path = '/_plugins/_ml/models/' + model_id + '/upload_chunk/' + chunk_number;
+  const method = 'POST';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = searchModelsFunc;
+module.exports = uploadChunkFunc;

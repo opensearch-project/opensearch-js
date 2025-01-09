@@ -16,32 +16,34 @@
 
 'use strict';
 
-const { normalizeArguments } = require('../utils');
+const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Searches for models.
- * <br/> See Also: {@link undefined - ml.search_models}
+ * Retrieves a model.
+ * <br/> See Also: {@link undefined - ml.get_model}
  *
  * @memberOf API-Ml
  *
- * @param {object} [params]
- * @param {object} [params.body] 
+ * @param {object} params
+ * @param {string} params.model_id 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function searchModelsFunc(params, options, callback) {
+function getModelFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.model_id == null) return handleMissingParam('model_id', this, callback);
 
-  let { body, ...querystring } = params;
+  let { body, model_id, ...querystring } = params;
+  model_id = parsePathParam(model_id);
 
-  const path = '/_plugins/_ml/models/_search';
-  const method = body ? 'POST' : 'GET';
+  const path = '/_plugins/_ml/models/' + model_id;
+  const method = 'GET';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = searchModelsFunc;
+module.exports = getModelFunc;

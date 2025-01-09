@@ -75,6 +75,7 @@ export interface Search_Request extends Global.Params {
 export type Search_RequestBody = {
   _source?: Core_Search.SourceConfig;
   aggregations?: Record<string, Common_Aggregations.AggregationContainer>;
+  aggs?: Record<string, Common_Aggregations.AggregationContainer>;
   collapse?: Core_Search.FieldCollapse;
   docvalue_fields?: Common_QueryDsl.FieldAndFormat[];
   explain?: boolean;

@@ -15,6 +15,7 @@
  */
 
 import * as Common from './_common'
+import * as Common_Analysis from './_common.analysis'
 
 export type Action = {
   action_type?: string;
@@ -103,6 +104,24 @@ export type GetMessageTracesResponse = {
   traces?: Message[];
 }
 
+export type Guardrails = {
+  index_name?: Common.IndexName;
+  input_guardrail?: GuardrailsInputOutput;
+  model_id?: string;
+  output_guardrail?: GuardrailsInputOutput;
+  regex?: Record<string, any>;
+  response_filter?: string;
+  response_validation_regex?: string;
+  source_fields?: Common.Fields;
+  stop_words?: Common_Analysis.StopWords;
+  type?: 'local_regex' | 'model';
+}
+
+export type GuardrailsInputOutput = {
+  model_id?: string;
+  response_validation_regex?: string;
+}
+
 export type Headers = {
   content_type?: string;
   [key: string]: any;
@@ -165,6 +184,23 @@ export type Message = {
   trace_number?: number;
 }
 
+export type Model = {
+  algorithm?: string;
+  created_time?: number;
+  is_hidden?: boolean;
+  last_registered_time?: number;
+  last_updated_time?: number;
+  model_config?: ModelConfig;
+  model_content_hash_value?: string;
+  model_content_size_in_bytes?: number;
+  model_format?: Common.ModelFormat;
+  model_group_id?: string;
+  model_state: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED';
+  model_version?: string;
+  name?: string;
+  total_chunks?: number;
+}
+
 export type ModelConfig = {
   all_config?: string;
   embedding_dimension?: number;
@@ -223,6 +259,22 @@ export type PredictionResult = {
   rows?: Rows[];
 }
 
+export type PredictModelOutput = {
+  byte_buffer?: ByteBuffer;
+  data: number[];
+  data_type?: 'BOOLEAN' | 'FLOAT16' | 'FLOAT32' | 'FLOAT64' | 'INT32' | 'INT64' | 'INT8' | 'STRING' | 'UINT8' | 'UNKNOWN';
+  name?: string;
+  shape?: number[];
+}
+
+export type PredictModelResponse = {
+  inference_results?: PredictModelResult[];
+}
+
+export type PredictModelResult = {
+  output?: PredictModelOutput[];
+}
+
 export type PredictResponse = {
   inference_results?: InferenceResults[];
   prediction_result?: PredictionResult;
@@ -240,6 +292,11 @@ export type Range = {
   k1?: Key;
   k2?: Key;
   k3?: Key;
+}
+
+export type RateLimiter = {
+  limit: number;
+  unit: 'DAYS' | 'HOURS' | 'MICROSECONDS' | 'MILLISECONDS' | 'MINUTES' | 'NANOSECONDS' | 'SECONDS';
 }
 
 export type Rows = {
@@ -360,7 +417,7 @@ export type Source = {
   model_config?: ModelConfig;
   model_content_hash_value?: string;
   model_content_size_in_bytes?: number;
-  model_format?: string;
+  model_format?: Common.ModelFormat;
   model_group_id?: string;
   model_id?: Common.Name;
   model_state?: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED';
@@ -438,8 +495,27 @@ export type UndeployModelNodeStats = Record<string, any>
 
 export type UndeployModelResponse = Record<string, UndeployModelNode>
 
+export type UnloadModelNode = {
+  stats?: UnloadModelNodeStats;
+}
+
+export type UnloadModelNodeStats = Record<string, any>
+
+export type UnloadModelResponse = Record<string, UnloadModelNode>
+
 export type UpdateModelGroupResponse = {
   status?: string;
+}
+
+export type UpdateModelResponse = {
+  _id?: Common.Id;
+  _index: Common.IndexName;
+  _primary_term?: number;
+  _seq_no?: Common.SequenceNumber;
+  _shards?: Common.ShardStatistics;
+  _version?: Common.VersionNumber;
+  forced_refresh?: boolean;
+  result?: Common.Result;
 }
 
 export type Values = {

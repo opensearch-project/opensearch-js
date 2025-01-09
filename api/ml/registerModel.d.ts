@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
 export interface Ml_RegisterModel_Request extends Global.Params {
@@ -23,10 +24,10 @@ export interface Ml_RegisterModel_Request extends Global.Params {
 
 export type Ml_RegisterModel_RequestBody = {
   description?: string;
-  model_format: 'ONNX' | 'TORCH_SCRIPT';
-  model_group_id?: string;
+  model_format?: Common.ModelFormat;
+  model_group_id?: Common.Id;
   name: string;
-  version: string;
+  version: Common.VersionString;
 }
 
 export interface Ml_RegisterModel_Response extends ApiResponse {

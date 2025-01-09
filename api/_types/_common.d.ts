@@ -377,6 +377,8 @@ export type Metadata = Record<string, any>
 
 export type MinimumShouldMatch = number | string
 
+export type ModelFormat = 'ONNX' | 'TORCH_SCRIPT'
+
 export type MultiTermQueryRewrite = 'constant_score' | 'constant_score_boolean' | 'scoring_boolean' | string
 
 export type Name = string

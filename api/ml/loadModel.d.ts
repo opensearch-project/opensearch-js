@@ -15,23 +15,19 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
-import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_UndeployModel_Request extends Global.Params {
-  body?: Ml_UndeployModel_RequestBody;
-  model_id?: string;
+export interface Ml_LoadModel_Request extends Global.Params {
+  model_id: string;
 }
 
-export type Ml_UndeployModel_RequestBody = {
-  model_ids: Common.Id[];
-  node_ids?: Common.Id[];
+export interface Ml_LoadModel_Response extends ApiResponse {
+  body: Ml_LoadModel_ResponseBody;
 }
 
-export interface Ml_UndeployModel_Response extends ApiResponse {
-  body: Ml_UndeployModel_ResponseBody;
+export type Ml_LoadModel_ResponseBody = {
+  status: string;
+  task_id: string;
+  task_type: 'BATCH_INGEST' | 'BATCH_PREDICTION' | 'DEPLOY_MODEL' | 'EXECUTION' | 'PREDICTION' | 'REGISTER_MODEL' | 'TRAINING' | 'TRAINING_AND_PREDICTION';
 }
-
-export type Ml_UndeployModel_ResponseBody = Ml_Common.UndeployModelResponse
 

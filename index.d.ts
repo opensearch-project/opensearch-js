@@ -43,6 +43,7 @@ import {
 import Serializer from './lib/Serializer';
 import * as errors from './lib/errors';
 import * as API from './api';
+import * as Types from './api/_types';
 import { Client, ClientOptions, NodeOptions, ClientExtendsCallbackOptions } from './lib/Client';
 
 declare const events: {
@@ -56,6 +57,7 @@ declare const events: {
 
 export {
   API,
+  Types,
   Client,
   Transport,
   ConnectionPool,

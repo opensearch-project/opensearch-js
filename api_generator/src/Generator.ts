@@ -27,6 +27,7 @@ import FunctionTypesContainer from './renderers/render_types/FunctionTypesContai
 import { clear_child_dirs, recreate_dir } from './helpers'
 import OpenSearchApiTypeRenderer from './renderers/render_types/OpensearchApiTypeRenderer'
 import ApiTypeRenderer from './renderers/render_types/ApiTypeRenderer'
+import ComponentTypesRenderer from './renderers/render_types/ComponentTypesRenderer'
 
 const HTTP_METHODS = ['get', 'post', 'put', 'delete', 'head', 'patch', 'options', 'trace', 'connect'].sort()
 
@@ -55,6 +56,7 @@ export default class Generator {
     this.#generate_namespace_modules()
     this.#generate_opensearch_api()
     this.#generate_types_containers()
+    this.#generate_types_index_type()
     this.#generate_api_index_type()
     this.#generate_opensearch_api_type()
   }
@@ -116,5 +118,11 @@ export default class Generator {
     const file_path = path.join(this.repo_folder, 'api', 'index.d.ts')
     const renderder = new ApiTypeRenderer()
     fs.writeFileSync(file_path, renderder.render())
+  }
+
+  #generate_types_index_type (): void {
+    const file_path = path.join(this.repo_folder, 'api', '_types', 'index.d.ts')
+    const renderer = new ComponentTypesRenderer()
+    fs.writeFileSync(file_path, renderer.render())
   }
 }

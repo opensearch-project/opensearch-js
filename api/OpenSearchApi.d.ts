@@ -807,22 +807,67 @@ export default class OpenSearchAPI {
     registerModel (params: API.Ml_RegisterModel_Request, callback: callbackFn<API.Ml_RegisterModel_Response>): TransportRequestCallback;
     registerModel (params: API.Ml_RegisterModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_RegisterModel_Response>): TransportRequestCallback;
 
+    registerModelMeta (params?: API.Ml_RegisterModelMeta_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_RegisterModelMeta_Response>;
+    registerModelMeta (callback: callbackFn<API.Ml_RegisterModelMeta_Response>): TransportRequestCallback;
+    registerModelMeta (params: API.Ml_RegisterModelMeta_Request, callback: callbackFn<API.Ml_RegisterModelMeta_Response>): TransportRequestCallback;
+    registerModelMeta (params: API.Ml_RegisterModelMeta_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_RegisterModelMeta_Response>): TransportRequestCallback;
+
     searchModels (params?: API.Ml_SearchModels_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_SearchModels_Response>;
     searchModels (callback: callbackFn<API.Ml_SearchModels_Response>): TransportRequestCallback;
     searchModels (params: API.Ml_SearchModels_Request, callback: callbackFn<API.Ml_SearchModels_Response>): TransportRequestCallback;
     searchModels (params: API.Ml_SearchModels_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_SearchModels_Response>): TransportRequestCallback;
 
+    undeployModel (params?: API.Ml_UndeployModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UndeployModel_Response>;
+    undeployModel (callback: callbackFn<API.Ml_UndeployModel_Response>): TransportRequestCallback;
+    undeployModel (params: API.Ml_UndeployModel_Request, callback: callbackFn<API.Ml_UndeployModel_Response>): TransportRequestCallback;
+    undeployModel (params: API.Ml_UndeployModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UndeployModel_Response>): TransportRequestCallback;
+
+    unloadModel (params?: API.Ml_UnloadModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UnloadModel_Response>;
+    unloadModel (callback: callbackFn<API.Ml_UnloadModel_Response>): TransportRequestCallback;
+    unloadModel (params: API.Ml_UnloadModel_Request, callback: callbackFn<API.Ml_UnloadModel_Response>): TransportRequestCallback;
+    unloadModel (params: API.Ml_UnloadModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UnloadModel_Response>): TransportRequestCallback;
+
+    uploadModel (params?: API.Ml_UploadModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UploadModel_Response>;
+    uploadModel (callback: callbackFn<API.Ml_UploadModel_Response>): TransportRequestCallback;
+    uploadModel (params: API.Ml_UploadModel_Request, callback: callbackFn<API.Ml_UploadModel_Response>): TransportRequestCallback;
+    uploadModel (params: API.Ml_UploadModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UploadModel_Response>): TransportRequestCallback;
+
     deleteModel (params: API.Ml_DeleteModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteModel_Response>;
     deleteModel (params: API.Ml_DeleteModel_Request, callback: callbackFn<API.Ml_DeleteModel_Response>): TransportRequestCallback;
     deleteModel (params: API.Ml_DeleteModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteModel_Response>): TransportRequestCallback;
+
+    getModel (params: API.Ml_GetModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetModel_Response>;
+    getModel (params: API.Ml_GetModel_Request, callback: callbackFn<API.Ml_GetModel_Response>): TransportRequestCallback;
+    getModel (params: API.Ml_GetModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetModel_Response>): TransportRequestCallback;
+
+    updateModel (params: API.Ml_UpdateModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UpdateModel_Response>;
+    updateModel (params: API.Ml_UpdateModel_Request, callback: callbackFn<API.Ml_UpdateModel_Response>): TransportRequestCallback;
+    updateModel (params: API.Ml_UpdateModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UpdateModel_Response>): TransportRequestCallback;
 
     deployModel (params: API.Ml_DeployModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeployModel_Response>;
     deployModel (params: API.Ml_DeployModel_Request, callback: callbackFn<API.Ml_DeployModel_Response>): TransportRequestCallback;
     deployModel (params: API.Ml_DeployModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeployModel_Response>): TransportRequestCallback;
 
-    undeployModel (params: API.Ml_UndeployModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UndeployModel_Response>;
-    undeployModel (params: API.Ml_UndeployModel_Request, callback: callbackFn<API.Ml_UndeployModel_Response>): TransportRequestCallback;
-    undeployModel (params: API.Ml_UndeployModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UndeployModel_Response>): TransportRequestCallback;
+    loadModel (params: API.Ml_LoadModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_LoadModel_Response>;
+    loadModel (params: API.Ml_LoadModel_Request, callback: callbackFn<API.Ml_LoadModel_Response>): TransportRequestCallback;
+    loadModel (params: API.Ml_LoadModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_LoadModel_Response>): TransportRequestCallback;
+
+    predictModel (params: API.Ml_PredictModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_PredictModel_Response>;
+    predictModel (params: API.Ml_PredictModel_Request, callback: callbackFn<API.Ml_PredictModel_Response>): TransportRequestCallback;
+    predictModel (params: API.Ml_PredictModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_PredictModel_Response>): TransportRequestCallback;
+
+    chunkModel (params: API.Ml_ChunkModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_ChunkModel_Response>;
+    chunkModel (params: API.Ml_ChunkModel_Request, callback: callbackFn<API.Ml_ChunkModel_Response>): TransportRequestCallback;
+    chunkModel (params: API.Ml_ChunkModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_ChunkModel_Response>): TransportRequestCallback;
+
+    uploadChunk (params: API.Ml_UploadChunk_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UploadChunk_Response>;
+    uploadChunk (params: API.Ml_UploadChunk_Request, callback: callbackFn<API.Ml_UploadChunk_Response>): TransportRequestCallback;
+    uploadChunk (params: API.Ml_UploadChunk_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UploadChunk_Response>): TransportRequestCallback;
+
+    createModelMeta (params?: API.Ml_CreateModelMeta_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_CreateModelMeta_Response>;
+    createModelMeta (callback: callbackFn<API.Ml_CreateModelMeta_Response>): TransportRequestCallback;
+    createModelMeta (params: API.Ml_CreateModelMeta_Request, callback: callbackFn<API.Ml_CreateModelMeta_Response>): TransportRequestCallback;
+    createModelMeta (params: API.Ml_CreateModelMeta_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_CreateModelMeta_Response>): TransportRequestCallback;
 
     deleteTask (params: API.Ml_DeleteTask_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteTask_Response>;
     deleteTask (params: API.Ml_DeleteTask_Request, callback: callbackFn<API.Ml_DeleteTask_Response>): TransportRequestCallback;

@@ -301,10 +301,20 @@ import { Ml_DeleteModelGroup_Request, Ml_DeleteModelGroup_Response, Ml_DeleteMod
 import { Ml_GetModelGroup_Request, Ml_GetModelGroup_Response, Ml_GetModelGroup_ResponseBody } from './ml/getModelGroup';
 import { Ml_UpdateModelGroup_Request, Ml_UpdateModelGroup_RequestBody, Ml_UpdateModelGroup_Response, Ml_UpdateModelGroup_ResponseBody } from './ml/updateModelGroup';
 import { Ml_RegisterModel_Request, Ml_RegisterModel_RequestBody, Ml_RegisterModel_Response, Ml_RegisterModel_ResponseBody } from './ml/registerModel';
+import { Ml_RegisterModelMeta_Request, Ml_RegisterModelMeta_RequestBody, Ml_RegisterModelMeta_Response, Ml_RegisterModelMeta_ResponseBody } from './ml/registerModelMeta';
 import { Ml_SearchModels_Request, Ml_SearchModels_RequestBody, Ml_SearchModels_Response, Ml_SearchModels_ResponseBody } from './ml/searchModels';
+import { Ml_UndeployModel_Request, Ml_UndeployModel_RequestBody, Ml_UndeployModel_Response, Ml_UndeployModel_ResponseBody } from './ml/undeployModel';
+import { Ml_UnloadModel_Request, Ml_UnloadModel_RequestBody, Ml_UnloadModel_Response, Ml_UnloadModel_ResponseBody } from './ml/unloadModel';
+import { Ml_UploadModel_Request, Ml_UploadModel_RequestBody, Ml_UploadModel_Response, Ml_UploadModel_ResponseBody } from './ml/uploadModel';
 import { Ml_DeleteModel_Request, Ml_DeleteModel_Response, Ml_DeleteModel_ResponseBody } from './ml/deleteModel';
+import { Ml_GetModel_Request, Ml_GetModel_Response, Ml_GetModel_ResponseBody } from './ml/getModel';
+import { Ml_UpdateModel_Request, Ml_UpdateModel_RequestBody, Ml_UpdateModel_Response, Ml_UpdateModel_ResponseBody } from './ml/updateModel';
 import { Ml_DeployModel_Request, Ml_DeployModel_Response, Ml_DeployModel_ResponseBody } from './ml/deployModel';
-import { Ml_UndeployModel_Request, Ml_UndeployModel_Response, Ml_UndeployModel_ResponseBody } from './ml/undeployModel';
+import { Ml_LoadModel_Request, Ml_LoadModel_Response, Ml_LoadModel_ResponseBody } from './ml/loadModel';
+import { Ml_PredictModel_Request, Ml_PredictModel_RequestBody, Ml_PredictModel_Response, Ml_PredictModel_ResponseBody } from './ml/predictModel';
+import { Ml_ChunkModel_Request, Ml_ChunkModel_RequestBody, Ml_ChunkModel_Response, Ml_ChunkModel_ResponseBody } from './ml/chunkModel';
+import { Ml_UploadChunk_Request, Ml_UploadChunk_RequestBody, Ml_UploadChunk_Response, Ml_UploadChunk_ResponseBody } from './ml/uploadChunk';
+import { Ml_CreateModelMeta_Request, Ml_CreateModelMeta_RequestBody, Ml_CreateModelMeta_Response, Ml_CreateModelMeta_ResponseBody } from './ml/createModelMeta';
 import { Ml_DeleteTask_Request, Ml_DeleteTask_Response, Ml_DeleteTask_ResponseBody } from './ml/deleteTask';
 import { Ml_GetTask_Request, Ml_GetTask_Response, Ml_GetTask_ResponseBody } from './ml/getTask';
 import { Notifications_ListChannels_Request, Notifications_ListChannels_Response, Notifications_ListChannels_ResponseBody } from './notifications/listChannels';
@@ -682,10 +692,20 @@ export {
   Ml_GetModelGroup_Request, Ml_GetModelGroup_Response, Ml_GetModelGroup_ResponseBody,
   Ml_UpdateModelGroup_Request, Ml_UpdateModelGroup_RequestBody, Ml_UpdateModelGroup_Response, Ml_UpdateModelGroup_ResponseBody,
   Ml_RegisterModel_Request, Ml_RegisterModel_RequestBody, Ml_RegisterModel_Response, Ml_RegisterModel_ResponseBody,
+  Ml_RegisterModelMeta_Request, Ml_RegisterModelMeta_RequestBody, Ml_RegisterModelMeta_Response, Ml_RegisterModelMeta_ResponseBody,
   Ml_SearchModels_Request, Ml_SearchModels_RequestBody, Ml_SearchModels_Response, Ml_SearchModels_ResponseBody,
+  Ml_UndeployModel_Request, Ml_UndeployModel_RequestBody, Ml_UndeployModel_Response, Ml_UndeployModel_ResponseBody,
+  Ml_UnloadModel_Request, Ml_UnloadModel_RequestBody, Ml_UnloadModel_Response, Ml_UnloadModel_ResponseBody,
+  Ml_UploadModel_Request, Ml_UploadModel_RequestBody, Ml_UploadModel_Response, Ml_UploadModel_ResponseBody,
   Ml_DeleteModel_Request, Ml_DeleteModel_Response, Ml_DeleteModel_ResponseBody,
+  Ml_GetModel_Request, Ml_GetModel_Response, Ml_GetModel_ResponseBody,
+  Ml_UpdateModel_Request, Ml_UpdateModel_RequestBody, Ml_UpdateModel_Response, Ml_UpdateModel_ResponseBody,
   Ml_DeployModel_Request, Ml_DeployModel_Response, Ml_DeployModel_ResponseBody,
-  Ml_UndeployModel_Request, Ml_UndeployModel_Response, Ml_UndeployModel_ResponseBody,
+  Ml_LoadModel_Request, Ml_LoadModel_Response, Ml_LoadModel_ResponseBody,
+  Ml_PredictModel_Request, Ml_PredictModel_RequestBody, Ml_PredictModel_Response, Ml_PredictModel_ResponseBody,
+  Ml_ChunkModel_Request, Ml_ChunkModel_RequestBody, Ml_ChunkModel_Response, Ml_ChunkModel_ResponseBody,
+  Ml_UploadChunk_Request, Ml_UploadChunk_RequestBody, Ml_UploadChunk_Response, Ml_UploadChunk_ResponseBody,
+  Ml_CreateModelMeta_Request, Ml_CreateModelMeta_RequestBody, Ml_CreateModelMeta_Response, Ml_CreateModelMeta_ResponseBody,
   Ml_DeleteTask_Request, Ml_DeleteTask_Response, Ml_DeleteTask_ResponseBody,
   Ml_GetTask_Request, Ml_GetTask_Response, Ml_GetTask_ResponseBody,
   Notifications_ListChannels_Request, Notifications_ListChannels_Response, Notifications_ListChannels_ResponseBody,

@@ -16,7 +16,7 @@
 
 'use strict';
 
-const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
+const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Undeploys a model.
@@ -24,8 +24,9 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @memberOf API-Ml
  *
- * @param {object} params
- * @param {string} params.model_id 
+ * @param {object} [params]
+ * @param {string} [params.model_id] 
+ * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -34,12 +35,11 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  */
 function undeployModelFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.model_id == null) return handleMissingParam('model_id', this, callback);
 
   let { body, model_id, ...querystring } = params;
   model_id = parsePathParam(model_id);
 
-  const path = '/_plugins/_ml/models/' + model_id + '/_undeploy';
+  const path = ['/_plugins/_ml/models', model_id, '_undeploy'].filter(c => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

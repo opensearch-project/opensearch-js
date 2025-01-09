@@ -19,19 +19,28 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_UndeployModel_Request extends Global.Params {
-  body?: Ml_UndeployModel_RequestBody;
-  model_id?: string;
+export interface Ml_RegisterModelMeta_Request extends Global.Params {
+  body?: Ml_RegisterModelMeta_RequestBody;
 }
 
-export type Ml_UndeployModel_RequestBody = {
-  model_ids: Common.Id[];
-  node_ids?: Common.Id[];
+export type Ml_RegisterModelMeta_RequestBody = {
+  description?: string;
+  model_config: Ml_Common.ModelConfig;
+  model_content_hash_value: string;
+  model_format: Common.ModelFormat;
+  model_group_id?: Common.Id;
+  name: string;
+  total_chunks: number;
+  url?: string;
+  version: Common.VersionString;
 }
 
-export interface Ml_UndeployModel_Response extends ApiResponse {
-  body: Ml_UndeployModel_ResponseBody;
+export interface Ml_RegisterModelMeta_Response extends ApiResponse {
+  body: Ml_RegisterModelMeta_ResponseBody;
 }
 
-export type Ml_UndeployModel_ResponseBody = Ml_Common.UndeployModelResponse
+export type Ml_RegisterModelMeta_ResponseBody = {
+  model_id: string;
+  status: string;
+}
 

@@ -19,8 +19,8 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Searches for models.
- * <br/> See Also: {@link undefined - ml.search_models}
+ * Registers model metadata.
+ * <br/> See Also: {@link undefined - ml.create_model_meta}
  *
  * @memberOf API-Ml
  *
@@ -32,16 +32,16 @@ const { normalizeArguments } = require('../utils');
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function searchModelsFunc(params, options, callback) {
+function createModelMetaFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
   let { body, ...querystring } = params;
 
-  const path = '/_plugins/_ml/models/_search';
-  const method = body ? 'POST' : 'GET';
+  const path = '/_plugins/_ml/models/meta';
+  const method = 'POST';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = searchModelsFunc;
+module.exports = createModelMetaFunc;

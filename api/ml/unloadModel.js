@@ -16,15 +16,16 @@
 
 'use strict';
 
-const { normalizeArguments } = require('../utils');
+const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Searches for models.
- * <br/> See Also: {@link undefined - ml.search_models}
+ * Unloads a model.
+ * <br/> See Also: {@link undefined - ml.unload_model}
  *
  * @memberOf API-Ml
  *
  * @param {object} [params]
+ * @param {string} [params.model_id] 
  * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
@@ -32,16 +33,17 @@ const { normalizeArguments } = require('../utils');
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function searchModelsFunc(params, options, callback) {
+function unloadModelFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { body, ...querystring } = params;
+  let { body, model_id, ...querystring } = params;
+  model_id = parsePathParam(model_id);
 
-  const path = '/_plugins/_ml/models/_search';
-  const method = body ? 'POST' : 'GET';
+  const path = ['/_plugins/_ml/models', model_id, '_unload'].filter(c => c != null).join('/');
+  const method = 'POST';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = searchModelsFunc;
+module.exports = unloadModelFunc;

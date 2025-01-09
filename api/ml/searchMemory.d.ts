@@ -15,22 +15,22 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Cat_Segments from '../_types/cat.segments'
-import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as Ml_Common from '../_types/ml._common'
 
-export interface Cat_AllPitSegments_Request extends Global.Params {
-  bytes?: Common.ByteUnit;
-  format?: string;
-  h?: string[];
-  help?: boolean;
-  s?: string[];
-  v?: boolean;
+export interface Ml_SearchMemory_Request extends Global.Params {
+  body?: Ml_SearchMemory_RequestBody;
 }
 
-export interface Cat_AllPitSegments_Response extends ApiResponse {
-  body: Cat_AllPitSegments_ResponseBody;
+export type Ml_SearchMemory_RequestBody = {
+  query?: Ml_Common.Query;
+  size?: number;
+  sort?: Ml_Common.SortMemory[];
 }
 
-export type Cat_AllPitSegments_ResponseBody = Cat_Segments.SegmentsRecord[]
+export interface Ml_SearchMemory_Response extends ApiResponse {
+  body: Ml_SearchMemory_ResponseBody;
+}
+
+export type Ml_SearchMemory_ResponseBody = Ml_Common.SearchMemoryResponse
 

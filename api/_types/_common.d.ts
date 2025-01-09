@@ -78,7 +78,7 @@ export type byte = number
 
 export type ByteCount = number
 
-export type ByteUnit = 'b' | 'g' | 'gb' | 'k' | 'kb' | 'm' | 'mb' | 'p' | 'pb' | 't' | 'tb'
+export type ByteUnit = 'b' | 'kb' | 'k' | 'mb' | 'm' | 'gb' | 'g' | 'tb' | 't' | 'pb' | 'p'
 
 export type ClusterDetails = {
   _shards?: ShardStatistics;
@@ -279,11 +279,6 @@ export type GetStats = {
 export type HealthStatus = 'green' | 'GREEN' | 'yellow' | 'YELLOW' | 'red' | 'RED'
 
 export type Host = string
-
-export type HourAndMinute = {
-  hour: number[];
-  minute: number[];
-}
 
 export type HttpHeaders = Record<string, StringOrStringArray>
 
@@ -633,8 +628,6 @@ export type RrfRank = RankBase & {
   window_size?: number;
 }
 
-export type ScheduleTimeOfDay = string | HourAndMinute
-
 export type ScoreSort = {
   order?: SortOrder;
 }
@@ -849,7 +842,7 @@ export type ThreadInfo = {
 
 export type TimeOfDay = string
 
-export type TimeUnit = 'd' | 'h' | 'm' | 'micros' | 'ms' | 'nanos' | 's'
+export type TimeUnit = 'nanos' | 'micros' | 'ms' | 's' | 'm' | 'h' | 'd'
 
 export type TimeZone = string
 

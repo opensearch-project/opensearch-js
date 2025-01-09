@@ -26,6 +26,8 @@ export type Action = {
   url?: string;
 }
 
+export type AdditionalInfo = Record<string, any>
+
 export type Algorithm = {
   value?: 'AD_LIBSVM' | 'AGENT' | 'ANOMALY_LOCALIZATION' | 'BATCH_RCF' | 'CONNECTOR' | 'FIT_RCF' | 'KMEANS' | 'LINEAR_REGRESSION' | 'LOCAL_SAMPLE_CALCULATOR' | 'LOGISTIC_REGRESSION' | 'METRICS_CORRELATION' | 'QUESTION_ANSWERING' | 'RCF_SUMMARIZE' | 'REMOTE' | 'SAMPLE_ALGO' | 'SPARSE_ENCODING' | 'SPARSE_TOKENIZE' | 'TEXT_EMBEDDING' | 'TEXT_SIMILARITY';
 }
@@ -88,6 +90,19 @@ export type GetConnectorResponse = {
   version?: Common.VersionString;
 }
 
+export type GetMemoryResponse = Memory | {
+  memories?: Memory[];
+  next_token?: number;
+}
+
+export type GetMessageResponse = Message | {
+  messages?: Message[];
+}
+
+export type GetMessageTracesResponse = {
+  traces?: Message[];
+}
+
 export type Headers = {
   content_type?: string;
   [key: string]: any;
@@ -122,12 +137,32 @@ export type LLM = {
 
 export type Match = {
   description?: string;
+  [key: string]: any;
 }
 
 export type MatchAllQuery = Record<string, any>
 
 export type Memory = {
+  additional_info?: AdditionalInfo;
+  create_time?: string;
+  memory_id?: Common.Name;
+  name?: Common.Name;
   type?: string;
+  updated_time?: string;
+  user?: string;
+}
+
+export type Message = {
+  additional_info?: AdditionalInfo;
+  create_time?: string;
+  input?: undefined | string;
+  memory_id?: Common.Name;
+  message_id?: Common.Name;
+  origin?: undefined | string;
+  parent_message_id?: undefined | string;
+  prompt_template?: undefined | string;
+  response?: undefined | string;
+  trace_number?: number;
 }
 
 export type ModelConfig = {
@@ -196,6 +231,7 @@ export type PredictResponse = {
 
 export type Query = {
   bool?: BoolQuery;
+  match?: Match;
   match_all?: MatchAllQuery;
   term?: Term;
 }
@@ -214,7 +250,7 @@ export type SearchConnectorsResponse = SearchResponse
 
 export type SearchHits = {
   hits: SearchHitsHit[];
-  max_score?: number;
+  max_score?: undefined | number;
   total: HitsTotal;
 }
 
@@ -227,7 +263,12 @@ export type SearchHitsHit = {
   _source?: Source;
   _version?: Common.VersionNumber;
   model_id?: Common.Name;
+  sort?: number[];
 }
+
+export type SearchMemoryResponse = SearchResponse
+
+export type SearchMessageResponse = SearchResponse
 
 export type SearchModelGroupsResponse = SearchResponse
 
@@ -265,6 +306,31 @@ export type Sort = {
   total_chunks?: SortOrder;
 }
 
+export type SortMemory = {
+  _id?: SortOrder;
+  _index?: SortOrder;
+  _score?: SortOrder;
+  _seq_no?: SortOrder;
+  additional_info?: SortOrder;
+  application_time?: SortOrder;
+  create_time?: SortOrder;
+  updated_time?: SortOrder;
+  user?: SortOrder;
+}
+
+export type SortMessage = {
+  _id?: SortOrder;
+  _index?: SortOrder;
+  _score?: SortOrder;
+  _seq_no?: SortOrder;
+  additional_info?: SortOrder;
+  create_time?: SortOrder;
+  memory_id?: SortOrder;
+  origin?: SortOrder;
+  parent_message_id?: SortOrder;
+  trace_number?: SortOrder;
+}
+
 export type SortOrder = {
   order?: 'asc' | 'desc';
 }
@@ -272,20 +338,25 @@ export type SortOrder = {
 export type Source = {
   access?: 'private' | 'public' | 'restricted';
   actions?: Action[];
+  additional_info?: AdditionalInfo;
   algorithm?: string;
+  application_type?: undefined | string;
   auto_redeploy_retry_times?: number;
   backend_roles?: string[];
   chunk_number?: number;
   connector_id?: string;
+  create_time?: string;
   created_time?: number;
   current_worker_node_count?: number;
   deploy_to_all_nodes?: boolean;
   description?: string;
+  input?: undefined | string;
   is_hidden?: boolean;
   last_deployed_time?: number;
   last_registered_time?: number;
   last_updated_time?: number;
   latest_version?: number;
+  memory_id?: Common.Name;
   model_config?: ModelConfig;
   model_content_hash_value?: string;
   model_content_size_in_bytes?: number;
@@ -295,14 +366,21 @@ export type Source = {
   model_state?: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED';
   model_task_type?: string;
   model_version?: string;
-  name?: string;
+  name?: Common.Name;
+  origin?: undefined | string;
   owner?: Owner;
   parameters?: Parameters;
+  parent_message_id?: undefined | string;
   planning_worker_node_count?: number;
   planning_worker_nodes?: Common.NodeIds[];
+  prompt_template?: undefined | string;
   protocol?: 'aws_sigv4' | 'http';
+  response?: undefined | string;
   total_chunks?: number;
+  trace_number?: undefined | string;
+  updated_time?: string;
   url?: string;
+  user?: string;
   version?: Common.VersionString;
 }
 
@@ -325,6 +403,7 @@ export type Term = {
   _id?: Common.Id[];
   algorithm?: Algorithm;
   model_id?: Common.Name;
+  name?: OwnerNameKeyword;
   'owner.name.keyword'?: OwnerNameKeyword;
 }
 

@@ -285,6 +285,16 @@ import { Ml_SearchConnectors_Request, Ml_SearchConnectors_RequestBody, Ml_Search
 import { Ml_DeleteConnector_Request, Ml_DeleteConnector_Response, Ml_DeleteConnector_ResponseBody } from './ml/deleteConnector';
 import { Ml_GetConnector_Request, Ml_GetConnector_Response, Ml_GetConnector_ResponseBody } from './ml/getConnector';
 import { Ml_UpdateConnector_Request, Ml_UpdateConnector_RequestBody, Ml_UpdateConnector_Response, Ml_UpdateConnector_ResponseBody } from './ml/updateConnector';
+import { Ml_GetMemory_Request, Ml_GetMemory_RequestBody, Ml_GetMemory_Response, Ml_GetMemory_ResponseBody } from './ml/getMemory';
+import { Ml_CreateMemory_Request, Ml_CreateMemory_RequestBody, Ml_CreateMemory_Response, Ml_CreateMemory_ResponseBody } from './ml/createMemory';
+import { Ml_SearchMemory_Request, Ml_SearchMemory_RequestBody, Ml_SearchMemory_Response, Ml_SearchMemory_ResponseBody } from './ml/searchMemory';
+import { Ml_DeleteMemory_Request, Ml_DeleteMemory_Response, Ml_DeleteMemory_ResponseBody } from './ml/deleteMemory';
+import { Ml_UpdateMemory_Request, Ml_UpdateMemory_RequestBody, Ml_UpdateMemory_Response, Ml_UpdateMemory_ResponseBody } from './ml/updateMemory';
+import { Ml_SearchMessage_Request, Ml_SearchMessage_RequestBody, Ml_SearchMessage_Response, Ml_SearchMessage_ResponseBody } from './ml/searchMessage';
+import { Ml_GetMessage_Request, Ml_GetMessage_Response, Ml_GetMessage_ResponseBody } from './ml/getMessage';
+import { Ml_CreateMessage_Request, Ml_CreateMessage_RequestBody, Ml_CreateMessage_Response, Ml_CreateMessage_ResponseBody } from './ml/createMessage';
+import { Ml_UpdateMessage_Request, Ml_UpdateMessage_RequestBody, Ml_UpdateMessage_Response, Ml_UpdateMessage_ResponseBody } from './ml/updateMessage';
+import { Ml_GetMessageTraces_Request, Ml_GetMessageTraces_Response, Ml_GetMessageTraces_ResponseBody } from './ml/getMessageTraces';
 import { Ml_RegisterModelGroup_Request, Ml_RegisterModelGroup_RequestBody, Ml_RegisterModelGroup_Response, Ml_RegisterModelGroup_ResponseBody } from './ml/registerModelGroup';
 import { Ml_SearchModelGroup_Request, Ml_SearchModelGroup_RequestBody, Ml_SearchModelGroup_Response, Ml_SearchModelGroup_ResponseBody } from './ml/searchModelGroup';
 import { Ml_DeleteModelGroup_Request, Ml_DeleteModelGroup_Response, Ml_DeleteModelGroup_ResponseBody } from './ml/deleteModelGroup';
@@ -656,6 +666,16 @@ export {
   Ml_DeleteConnector_Request, Ml_DeleteConnector_Response, Ml_DeleteConnector_ResponseBody,
   Ml_GetConnector_Request, Ml_GetConnector_Response, Ml_GetConnector_ResponseBody,
   Ml_UpdateConnector_Request, Ml_UpdateConnector_RequestBody, Ml_UpdateConnector_Response, Ml_UpdateConnector_ResponseBody,
+  Ml_GetMemory_Request, Ml_GetMemory_RequestBody, Ml_GetMemory_Response, Ml_GetMemory_ResponseBody,
+  Ml_CreateMemory_Request, Ml_CreateMemory_RequestBody, Ml_CreateMemory_Response, Ml_CreateMemory_ResponseBody,
+  Ml_SearchMemory_Request, Ml_SearchMemory_RequestBody, Ml_SearchMemory_Response, Ml_SearchMemory_ResponseBody,
+  Ml_DeleteMemory_Request, Ml_DeleteMemory_Response, Ml_DeleteMemory_ResponseBody,
+  Ml_UpdateMemory_Request, Ml_UpdateMemory_RequestBody, Ml_UpdateMemory_Response, Ml_UpdateMemory_ResponseBody,
+  Ml_SearchMessage_Request, Ml_SearchMessage_RequestBody, Ml_SearchMessage_Response, Ml_SearchMessage_ResponseBody,
+  Ml_GetMessage_Request, Ml_GetMessage_Response, Ml_GetMessage_ResponseBody,
+  Ml_CreateMessage_Request, Ml_CreateMessage_RequestBody, Ml_CreateMessage_Response, Ml_CreateMessage_ResponseBody,
+  Ml_UpdateMessage_Request, Ml_UpdateMessage_RequestBody, Ml_UpdateMessage_Response, Ml_UpdateMessage_ResponseBody,
+  Ml_GetMessageTraces_Request, Ml_GetMessageTraces_Response, Ml_GetMessageTraces_ResponseBody,
   Ml_RegisterModelGroup_Request, Ml_RegisterModelGroup_RequestBody, Ml_RegisterModelGroup_Response, Ml_RegisterModelGroup_ResponseBody,
   Ml_SearchModelGroup_Request, Ml_SearchModelGroup_RequestBody, Ml_SearchModelGroup_Response, Ml_SearchModelGroup_ResponseBody,
   Ml_DeleteModelGroup_Request, Ml_DeleteModelGroup_Response, Ml_DeleteModelGroup_ResponseBody,

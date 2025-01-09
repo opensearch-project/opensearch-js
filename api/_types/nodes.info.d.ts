@@ -156,8 +156,8 @@ export type NodeInfoSearch = {
 }
 
 export type NodeInfoSearchPipelines = {
-  request_processors: NodeInfoIngestProcessor[];
-  response_processors: NodeInfoIngestProcessor[];
+  request_processors?: NodeInfoIngestProcessor[];
+  response_processors?: NodeInfoIngestProcessor[];
 }
 
 export type NodeInfoSearchRemote = {
@@ -203,8 +203,14 @@ export type NodeInfoSettingsDeprecationIndexing = {
 export type NodeInfoSettingsHttp = {
   compression?: Common.StringifiedBoolean;
   port?: Common.StringifiedInteger;
-  type: string;
+  type: NodeInfoSettingsHttpType;
   'type.default'?: string;
+}
+
+export type NodeInfoSettingsHttpType = string | NodeInfoSettingsHttpTypeConfig
+
+export type NodeInfoSettingsHttpTypeConfig = {
+  default?: string;
 }
 
 export type NodeInfoSettingsIndex = {
@@ -265,7 +271,7 @@ export type NodeInfoSettingsNetwork = {
 }
 
 export type NodeInfoSettingsNode = {
-  attr: Record<string, any>;
+  attr?: Record<string, any>;
   max_local_storage_nodes?: string;
   name: Common.Name;
 }
@@ -273,8 +279,14 @@ export type NodeInfoSettingsNode = {
 export type NodeInfoSettingsPlugins = Record<string, any>
 
 export type NodeInfoSettingsTransport = {
-  type: string;
+  type: NodeInfoSettingsTransportType;
   'type.default'?: string;
+}
+
+export type NodeInfoSettingsTransportType = string | NodeInfoSettingsTransportTypeConfig
+
+export type NodeInfoSettingsTransportTypeConfig = {
+  default?: string;
 }
 
 export type NodeInfoTransport = {

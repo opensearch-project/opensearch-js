@@ -5,6 +5,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Added export of component types ([#955])
 ### Dependencies
 ### Changed
 ### Deprecated

@@ -38,7 +38,7 @@ export default class TypesContainer {
   }
 
   static import_path (from: { file_path: string }, to: { file_path: string }): string {
-    const relative = path.relative(path.dirname(to.file_path), from.file_path).replace('.d.ts', '')
+    const relative = path.relative(path.dirname(to.file_path), from.file_path).replace('.d.ts', '').replaceAll('\\', '/')
     return relative.startsWith('.') ? relative : `./${relative}`
   }
 
@@ -58,10 +58,10 @@ export default class TypesContainer {
     let file_path: string = 'UNSET'
     if (ref.startsWith('#/components')) {
       const file_name = ref.split(SEPARATOR)[0].split('/').reverse()[0]
-      file_path = `${TYPE_COMPONENTS_FOLDER}/${file_name}.d.ts`
+      file_path = path.join(TYPE_COMPONENTS_FOLDER, `${file_name}.d.ts`)
     } else {
       const [folder_name, file_name] = ref.split(SEPARATOR)[0].split('/')
-      file_path = `${folder_name}/${file_name}.d.ts`
+      file_path = path.join(folder_name, `${file_name}.d.ts`)
     }
     const container = TypesContainer.REPO.get(file_path)
     if (!container) throw new Error(`Container not found for: ${ref} -> ${file_path}`)

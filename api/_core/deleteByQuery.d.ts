@@ -17,10 +17,11 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
+import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
 export interface DeleteByQuery_Request extends Global.Params {
-  _source?: string[];
+  _source?: Core_Search.SourceConfigParam;
   _source_excludes?: string[];
   _source_includes?: string[];
   allow_no_indices?: boolean;

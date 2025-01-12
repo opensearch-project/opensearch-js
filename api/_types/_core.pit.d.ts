@@ -26,15 +26,3 @@ export type PitDetail = {
   pit_id?: string;
 }
 
-export type PitsDetailsDeleteAll = {
-  pit_id?: string;
-  successful?: boolean;
-}
-
-export type ShardStatistics = {
-  failed?: number;
-  skipped?: number;
-  successful?: number;
-  total?: number;
-}
-

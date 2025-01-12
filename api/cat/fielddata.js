@@ -29,7 +29,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.fields] - A comma-separated list of fields used to limit the amount of returned information. To retrieve all fields, omit this parameter.
  * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
- * @param {boolean} [params.help=false] - Return help information.
+ * @param {boolean} [params.help=false] - Returns help information.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.
  *

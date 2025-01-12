@@ -36,7 +36,7 @@ import { GetScript_Request, GetScript_Response, GetScript_ResponseBody } from '.
 import { PutScript_Request, PutScript_RequestBody, PutScript_Response, PutScript_ResponseBody } from './_core/putScript';
 import { ScriptsPainlessExecute_Request, ScriptsPainlessExecute_RequestBody, ScriptsPainlessExecute_Response, ScriptsPainlessExecute_ResponseBody } from './_core/scriptsPainlessExecute';
 import { Search_Request, Search_RequestBody, Search_Response, Search_ResponseBody } from './_core/search';
-import { SearchShards_Request, SearchShards_RequestBody, SearchShards_Response, SearchShards_ResponseBody } from './_core/searchShards';
+import { SearchShards_Request, SearchShards_Response, SearchShards_ResponseBody } from './_core/searchShards';
 import { DeletePit_Request, DeletePit_RequestBody, DeletePit_Response, DeletePit_ResponseBody } from './_core/deletePit';
 import { DeleteAllPits_Request, DeleteAllPits_Response, DeleteAllPits_ResponseBody } from './_core/deleteAllPits';
 import { GetAllPits_Request, GetAllPits_Response, GetAllPits_ResponseBody } from './_core/getAllPits';
@@ -427,7 +427,7 @@ export {
   PutScript_Request, PutScript_RequestBody, PutScript_Response, PutScript_ResponseBody,
   ScriptsPainlessExecute_Request, ScriptsPainlessExecute_RequestBody, ScriptsPainlessExecute_Response, ScriptsPainlessExecute_ResponseBody,
   Search_Request, Search_RequestBody, Search_Response, Search_ResponseBody,
-  SearchShards_Request, SearchShards_RequestBody, SearchShards_Response, SearchShards_ResponseBody,
+  SearchShards_Request, SearchShards_Response, SearchShards_ResponseBody,
   DeletePit_Request, DeletePit_RequestBody, DeletePit_Response, DeletePit_ResponseBody,
   DeleteAllPits_Request, DeleteAllPits_Response, DeleteAllPits_ResponseBody,
   GetAllPits_Request, GetAllPits_Response, GetAllPits_ResponseBody,

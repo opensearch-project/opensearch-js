@@ -419,7 +419,6 @@ export type NodeShard = {
   primary: boolean;
   recovery_source?: Record<string, Id>;
   relocating_node?: NodeId | undefined;
-  relocation_failure_info?: RelocationFailureInfo;
   shard: number;
   state: Indices_Stats.ShardRoutingState;
   unassigned_info?: Cluster_AllocationExplain.UnassignedInformation;
@@ -514,10 +513,6 @@ export type RefreshStats = {
 }
 
 export type RelationName = string
-
-export type RelocationFailureInfo = {
-  failed_attempts: number;
-}
 
 export type RemoteStoreDownloadStats = {
   total_download_size: RemoteStoreUploadDownloadStats;
@@ -768,7 +763,7 @@ export type short = number
 
 export type SlicedScroll = {
   field?: Field;
-  id: Id;
+  id: number;
   max: number;
 }
 

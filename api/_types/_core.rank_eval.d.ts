@@ -32,7 +32,7 @@ export type RankEvalHit = {
 
 export type RankEvalHitItem = {
   hit: RankEvalHit;
-  rating?: undefined | number | string;
+  rating?: number;
 }
 
 export type RankEvalMetric = {
@@ -49,7 +49,7 @@ export type RankEvalMetricBase = {
 
 export type RankEvalMetricDetail = {
   hits: RankEvalHitItem[];
-  metric_details: Record<string, Record<string, number>>;
+  metric_details: Record<string, Record<string, any>>;
   metric_score: number;
   unrated_docs: UnratedDocument[];
 }
@@ -81,7 +81,7 @@ export type RankEvalQuery = {
 
 export type RankEvalRequestItem = {
   id: Common.Id;
-  params?: Record<string, Record<string, any>>;
+  params?: Record<string, any>;
   ratings: DocumentRating[];
   request?: RankEvalQuery;
   template_id?: Common.Id;

@@ -39,7 +39,7 @@ export interface RankEval_Response extends ApiResponse {
 
 export type RankEval_ResponseBody = {
   details: Record<string, Core_RankEval.RankEvalMetricDetail>;
-  failures: Record<string, Record<string, any>>;
+  failures: Record<string, any>;
   metric_score: number;
 }
 

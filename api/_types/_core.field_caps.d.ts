@@ -19,7 +19,7 @@ import * as Common from './_common'
 export type FieldCapability = {
   aggregatable: boolean;
   indices?: Common.Indices;
-  meta?: Common.Metadata;
+  meta?: Record<string, string[]>;
   metadata_field?: boolean;
   non_aggregatable_indices?: Common.Indices;
   non_searchable_indices?: Common.Indices;

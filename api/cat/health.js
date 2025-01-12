@@ -27,7 +27,7 @@ const { normalizeArguments } = require('../utils');
  * @param {object} [params]
  * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
- * @param {boolean} [params.help=false] - Return help information.
+ * @param {boolean} [params.help=false] - Returns help information.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {string} [params.time] - The unit used to display time values.
  * @param {boolean} [params.ts=true] - When `true`, returns `HH:MM:SS` and Unix epoch timestamps.

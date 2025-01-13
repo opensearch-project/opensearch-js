@@ -30,7 +30,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.detailed=false] - When `true`, includes detailed information about shard recoveries.
  * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
- * @param {boolean} [params.help=false] - Return help information.
+ * @param {boolean} [params.help=false] - Returns help information.
  * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {string} [params.time] - Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).

@@ -31,10 +31,10 @@ These metrics provide information about how far behind the primary shard the rep
  * @param {string} [params.bytes] - The units used to display byte values.
  * @param {boolean} [params.completed_only=false] - When `true`, the response only includes the last-completed segment replication events.
  * @param {boolean} [params.detailed=false] - When `true`, the response includes additional metrics for each stage of a segment replication event.
- * @param {string} [params.expand_wildcards] - Whether to expand the wildcard expression to include concrete indexes that are open, closed, or both.
+ * @param {string} [params.expand_wildcards] - The type of index that wildcard patterns can match. Supported values are `all`, `open`, `closed`, `hidden`, and `none`.
  * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
- * @param {boolean} [params.help=false] - Return help information.
+ * @param {boolean} [params.help=false] - Returns help information.
  * @param {boolean} [params.ignore_throttled] - Whether specified concrete, expanded, or aliased indexes should be ignored when throttled.
  * @param {boolean} [params.ignore_unavailable] - Whether the specified concrete indexes should be ignored when missing or closed.
  * @param {array} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.

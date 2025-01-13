@@ -30,7 +30,7 @@ const { normalizeArguments } = require('../utils');
  * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {string} [params.full_id] - When `true`, returns the full node ID. When `false`, returns the shortened node ID.
  * @param {array} [params.h] - A comma-separated list of column names to display.
- * @param {boolean} [params.help=false] - Return help information.
+ * @param {boolean} [params.help=false] - Returns help information.
  * @param {boolean} [params.local=false] DEPRECATED - Returns local information but does not retrieve the state from the cluster manager node.
  * @param {string} [params.master_timeout] DEPRECATED - The amount of time allowed to establish a connection to the cluster manager node.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.

@@ -19,7 +19,6 @@ import * as Common_Aggregations from './_common.aggregations'
 import * as Common_Analysis from './_common.analysis'
 import * as Common_Mapping from './_common.mapping'
 import * as Common_QueryDsl from './_common.query_dsl'
-import * as Core_Common from './_core._common'
 import * as Core_Bulk from './_core.bulk'
 import * as Core_Explain from './_core.explain'
 import * as Core_FieldCaps from './_core.field_caps'
@@ -30,6 +29,7 @@ import * as Core_Mget from './_core.mget'
 import * as Core_MsearchTemplate from './_core.msearch_template'
 import * as Core_Msearch from './_core.msearch'
 import * as Core_Mtermvectors from './_core.mtermvectors'
+import * as Core_Pit from './_core.pit'
 import * as Core_RankEval from './_core.rank_eval'
 import * as Core_ReindexRethrottle from './_core.reindex_rethrottle'
 import * as Core_Reindex from './_core.reindex'
@@ -128,7 +128,6 @@ export {
   Common_Analysis,
   Common_Mapping,
   Common_QueryDsl,
-  Core_Common,
   Core_Bulk,
   Core_Explain,
   Core_FieldCaps,
@@ -139,6 +138,7 @@ export {
   Core_MsearchTemplate,
   Core_Msearch,
   Core_Mtermvectors,
+  Core_Pit,
   Core_RankEval,
   Core_ReindexRethrottle,
   Core_Reindex,

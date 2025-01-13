@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Core
  *
  * @param {object} params
- * @param {array} [params._source] - Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
+ * @param {string} [params._source] - Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
  * @param {array} [params._source_excludes] - List of fields to exclude from the returned `_source` field.
  * @param {array} [params._source_includes] - List of fields to extract and return from the `_source` field.
  * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.

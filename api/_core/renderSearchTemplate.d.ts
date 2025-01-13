@@ -34,6 +34,6 @@ export interface RenderSearchTemplate_Response extends ApiResponse {
 }
 
 export type RenderSearchTemplate_ResponseBody = {
-  template_output: Record<string, Record<string, any>>;
+  template_output: Record<string, any>;
 }
 

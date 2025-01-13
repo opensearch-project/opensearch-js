@@ -15,7 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
-import * as Core_Common from '../_types/_core._common'
+import * as Core_Pit from '../_types/_core.pit'
 import * as Global from '../_types/_global'
 
 export interface DeletePit_Request extends Global.Params {
@@ -31,6 +31,6 @@ export interface DeletePit_Response extends ApiResponse {
 }
 
 export type DeletePit_ResponseBody = {
-  pits?: Core_Common.DeletedPit[];
+  pits?: Core_Pit.DeletedPit[];
 }
 

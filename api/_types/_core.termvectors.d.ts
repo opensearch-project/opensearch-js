@@ -40,7 +40,7 @@ export type Term = {
 }
 
 export type TermVector = {
-  field_statistics: FieldStatistics;
+  field_statistics?: FieldStatistics;
   terms: Record<string, Term>;
 }
 

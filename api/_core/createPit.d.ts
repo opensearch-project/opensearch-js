@@ -16,7 +16,6 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
-import * as Core_Common from '../_types/_core._common'
 import * as Global from '../_types/_global'
 
 export interface CreatePit_Request extends Global.Params {
@@ -33,7 +32,7 @@ export interface CreatePit_Response extends ApiResponse {
 }
 
 export type CreatePit_ResponseBody = {
-  _shards?: Core_Common.ShardStatistics;
+  _shards?: Common.ShardStatistics;
   creation_time?: number;
   pit_id?: string;
 }

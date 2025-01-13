@@ -24,6 +24,7 @@ export interface Reindex_Request extends Global.Params {
   max_docs?: number;
   refresh?: Common.Refresh;
   requests_per_second?: number;
+  require_alias?: boolean;
   scroll?: Common.Duration;
   slices?: Common.Slices;
   timeout?: Common.Duration;

@@ -30,6 +30,7 @@ documents from a remote cluster.
  * @param {number} [params.max_docs] - Maximum number of documents to process. By default, all documents.
  * @param {string} [params.refresh] - If `true`, the request refreshes affected shards to make this operation visible to search.
  * @param {number} [params.requests_per_second=0] - The throttle for this request in sub-requests per second. Defaults to no throttle.
+ * @param {boolean} [params.require_alias] 
  * @param {string} [params.scroll] - Specifies how long a consistent view of the index should be maintained for scrolled search.
  * @param {string} [params.slices] - The number of slices this task should be divided into. Defaults to 1 slice, meaning the task isn't sliced into subtasks.
  * @param {string} [params.timeout] - Period each indexing waits for automatic index creation, dynamic mapping updates, and waiting for active shards.

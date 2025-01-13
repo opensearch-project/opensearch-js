@@ -2,12 +2,21 @@
 
 Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-
 ## [Unreleased]
 ### Added
-- Added export of component types ([#955])
 ### Dependencies
 ### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [3.1.0]
+### Added
+- Added export of component types ([#955](https://github.com/opensearch-project/opensearch-js/issues/955))
+### Dependencies
+### Changed
+- Updated API to match the OpenSearch spec from Jan 09, 2025
 ### Deprecated
 ### Removed
 ### Fixed
@@ -18,6 +27,18 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added API Generator ([#789](https://github.com/opensearch-project/opensearch-js/issues/789))
 - Added missing API functions and modules.
 - Added missing request and response types.
+### Changed
+- All API functions are now generated from the OpenSearch API specification.
+- API request and response types are now generated from the OpenSearch API specification.
+- Overhauled API codebase and break it into smaller, more manageable files for better readability and maintainability.
+### Deprecated
+- Support for snake_cased API function aliases have been deprecated to conform to JavaScript naming conventions.
+### Removed
+- Removed support for API param aliases. That is, the API functions now only accept params with the exact names specified in the OpenSearch API specification.
+- Removed support for overriding HTTP methods in API functions.
+- Removed support for Node.js 10 and 12. The minimum supported Node.js version is now 14.
+
+## [2.13.0]
 ### Dependencies
 - Bumps `@babel/traverse` from 7.22.8 to 7.24.7
 - Bumps `@types/node` from 22.5.0 to 22.5.4
@@ -29,20 +50,9 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `simple-git` from 3.24.0 to 3.26.0
 - Bumps `simple-git` from 3.25.0 to 3.26.0
 - Bumps `simple-statistics` from 7.8.4 to 7.8.5
-### Changed
-- All API functions are now generated from the OpenSearch API specification.
-- API request and response types are now generated from the OpenSearch API specification.
-- Overhauled API codebase and break it into smaller, more manageable files for better readability and maintainability.
-### Deprecated
-- Support for snake_cased API function aliases have been deprecated to conform to JavaScript naming conventions.
-### Removed
-- Removed support for API param aliases. That is, the API functions now only accept params with the exact names specified in the OpenSearch API specification.
-- Removed support for overriding HTTP methods in API functions.
-- Removed support for Node.js 10 and 12. The minimum supported Node.js version is now 14.
 ### Fixed
 - Upgrade JSON11 from 1.1.2 to 2.0.0 to ensure UTF-8 safety when stringifying JSON data
 - Fixed typo cause JSON11 parse will always be executed when json string has number inside
-### Security
 
 ## [2.12.0]
 ### Dependencies

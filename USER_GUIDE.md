@@ -136,17 +136,20 @@ import { Client, type API } from '@opensearch-project/opensearch';
 const client = new Client({ node: 'http://localhost:9200' });
 
 const searchRequest: API.Search_Request = { body: { query: { match: { director: 'miller' } } } }; // is type checked against API.Search_Request
-const searchResponse = (await client.search(searchRequest)).body; // is inferred as API.Search_ResponseBody
+const searchResponseBody = (await client.search(searchRequest)).body; // is inferred as API.Search_ResponseBody
 ```
 
-Note that even though there are types generated for the components of the request and response, only the top-level request and response types are exported. This is intentional! You should NOT access those component types directly, as it can result in breaking changes when the API spec changes. Instead, access the component types through the top-level request and response types:
-
+### Typescript: Accessing component types
+There are 2 ways to access components of the request and response types. For example, if you want to access the type for an index settings object:
+1. Through the Types module (Note that this could result in a breaking change when the name of the component type is changed with the spec)
 ```typescript
-// Do NOT do this!
-import { type IndexSettings } from '@opensearch-project/opensearch/api/_types/indices._common';
-const settings: IndexSettings = { number_of_shards: 1, number_of_replicas: 0 };
 
-// Do this instead!
+import { type Types } from '@opensearch-project/opensearch';
+const settings: Types.Indices_Common.IndexSettings = { number_of_shards: 1, number_of_replicas: 0 };
+```
+
+2. Through the API module (This is helpful when you don't know the exact path to the type)
+```typescript
 import { type API } from '@opensearch-project/opensearch';
 const settings: API.Indices_Create_RequestBody['settings'] = { number_of_shards: 1, number_of_replicas: 0 };
 ```

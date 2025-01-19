@@ -25,7 +25,7 @@ export interface Ml_UndeployModel_Request extends Global.Params {
 }
 
 export type Ml_UndeployModel_RequestBody = {
-  model_ids: Common.Id[];
+  model_ids?: Common.Id[];
   node_ids?: Common.Id[];
 }
 

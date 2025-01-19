@@ -19,33 +19,31 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Get a message traces.
- * <br/> See Also: {@link undefined - ml.get_message_traces}
+ * Retrieves a controller.
+ * <br/> See Also: {@link undefined - ml.get_controller}
  *
  * @memberOf API-Ml
  *
  * @param {object} params
- * @param {number} [params.max_results] 
- * @param {number} [params.next_token] 
- * @param {string} params.message_id 
+ * @param {string} params.model_id 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function getMessageTracesFunc(params, options, callback) {
+function getControllerFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.message_id == null) return handleMissingParam('message_id', this, callback);
+  if (params.model_id == null) return handleMissingParam('model_id', this, callback);
 
-  let { body, message_id, ...querystring } = params;
-  message_id = parsePathParam(message_id);
+  let { body, model_id, ...querystring } = params;
+  model_id = parsePathParam(model_id);
 
-  const path = '/_plugins/_ml/memory/message/' + message_id + '/traces';
+  const path = '/_plugins/_ml/controllers/' + model_id;
   const method = 'GET';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = getMessageTracesFunc;
+module.exports = getControllerFunc;

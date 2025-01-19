@@ -18,18 +18,14 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_GetMessageTraces_Request extends Global.Params {
-  max_results?: number;
-  message_id: string;
-  next_token?: number;
+export interface Ml_GetStats_Request extends Global.Params {
+  node_id?: string;
+  stat?: 'ml_config_index_status' | 'ml_connector_count' | 'ml_connector_index_status' | 'ml_controller_index_status' | 'ml_model_count' | 'ml_model_index_status' | 'ml_task_index_status';
 }
 
-export interface Ml_GetMessageTraces_Response extends ApiResponse {
-  body: Ml_GetMessageTraces_ResponseBody;
+export interface Ml_GetStats_Response extends ApiResponse {
+  body: Ml_GetStats_ResponseBody;
 }
 
-export type Ml_GetMessageTraces_ResponseBody = {
-  next_token?: number;
-  traces: Ml_Common.Message[];
-}
+export type Ml_GetStats_ResponseBody = Ml_Common.GetStatsResponse
 

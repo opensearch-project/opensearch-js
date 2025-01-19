@@ -21,23 +21,36 @@
 function MlApi(bindObj) {
   this.chunkModel = require('./chunkModel').bind(bindObj);
   this.createConnector = require('./createConnector').bind(bindObj);
+  this.createController = require('./createController').bind(bindObj);
   this.createMemory = require('./createMemory').bind(bindObj);
   this.createMessage = require('./createMessage').bind(bindObj);
   this.createModelMeta = require('./createModelMeta').bind(bindObj);
   this.deleteAgent = require('./deleteAgent').bind(bindObj);
   this.deleteConnector = require('./deleteConnector').bind(bindObj);
+  this.deleteController = require('./deleteController').bind(bindObj);
   this.deleteMemory = require('./deleteMemory').bind(bindObj);
   this.deleteModel = require('./deleteModel').bind(bindObj);
   this.deleteModelGroup = require('./deleteModelGroup').bind(bindObj);
   this.deleteTask = require('./deleteTask').bind(bindObj);
   this.deployModel = require('./deployModel').bind(bindObj);
+  this.executeAgent = require('./executeAgent').bind(bindObj);
+  this.getAgent = require('./getAgent').bind(bindObj);
+  this.getAllMemories = require('./getAllMemories').bind(bindObj);
+  this.getAllMessages = require('./getAllMessages').bind(bindObj);
+  this.getAllTools = require('./getAllTools').bind(bindObj);
   this.getConnector = require('./getConnector').bind(bindObj);
+  this.getController = require('./getController').bind(bindObj);
   this.getMemory = require('./getMemory').bind(bindObj);
   this.getMessage = require('./getMessage').bind(bindObj);
   this.getMessageTraces = require('./getMessageTraces').bind(bindObj);
   this.getModel = require('./getModel').bind(bindObj);
   this.getModelGroup = require('./getModelGroup').bind(bindObj);
+  this.getProfile = require('./getProfile').bind(bindObj);
+  this.getProfileModels = require('./getProfileModels').bind(bindObj);
+  this.getProfileTasks = require('./getProfileTasks').bind(bindObj);
+  this.getStats = require('./getStats').bind(bindObj);
   this.getTask = require('./getTask').bind(bindObj);
+  this.getTool = require('./getTool').bind(bindObj);
   this.loadModel = require('./loadModel').bind(bindObj);
   this.predict = require('./predict').bind(bindObj);
   this.predictModel = require('./predictModel').bind(bindObj);
@@ -45,16 +58,19 @@ function MlApi(bindObj) {
   this.registerModel = require('./registerModel').bind(bindObj);
   this.registerModelGroup = require('./registerModelGroup').bind(bindObj);
   this.registerModelMeta = require('./registerModelMeta').bind(bindObj);
+  this.searchAgents = require('./searchAgents').bind(bindObj);
   this.searchConnectors = require('./searchConnectors').bind(bindObj);
   this.searchMemory = require('./searchMemory').bind(bindObj);
   this.searchMessage = require('./searchMessage').bind(bindObj);
   this.searchModelGroup = require('./searchModelGroup').bind(bindObj);
   this.searchModels = require('./searchModels').bind(bindObj);
+  this.searchTasks = require('./searchTasks').bind(bindObj);
   this.train = require('./train').bind(bindObj);
   this.trainPredict = require('./trainPredict').bind(bindObj);
   this.undeployModel = require('./undeployModel').bind(bindObj);
   this.unloadModel = require('./unloadModel').bind(bindObj);
   this.updateConnector = require('./updateConnector').bind(bindObj);
+  this.updateController = require('./updateController').bind(bindObj);
   this.updateMemory = require('./updateMemory').bind(bindObj);
   this.updateMessage = require('./updateMessage').bind(bindObj);
   this.updateModel = require('./updateModel').bind(bindObj);
@@ -66,6 +82,8 @@ function MlApi(bindObj) {
   this.chunk_model = require('./chunkModel').bind(bindObj);
   // Deprecated: Use createConnector instead.
   this.create_connector = require('./createConnector').bind(bindObj);
+  // Deprecated: Use createController instead.
+  this.create_controller = require('./createController').bind(bindObj);
   // Deprecated: Use createMemory instead.
   this.create_memory = require('./createMemory').bind(bindObj);
   // Deprecated: Use createMessage instead.
@@ -76,6 +94,8 @@ function MlApi(bindObj) {
   this.delete_agent = require('./deleteAgent').bind(bindObj);
   // Deprecated: Use deleteConnector instead.
   this.delete_connector = require('./deleteConnector').bind(bindObj);
+  // Deprecated: Use deleteController instead.
+  this.delete_controller = require('./deleteController').bind(bindObj);
   // Deprecated: Use deleteMemory instead.
   this.delete_memory = require('./deleteMemory').bind(bindObj);
   // Deprecated: Use deleteModel instead.
@@ -86,8 +106,20 @@ function MlApi(bindObj) {
   this.delete_task = require('./deleteTask').bind(bindObj);
   // Deprecated: Use deployModel instead.
   this.deploy_model = require('./deployModel').bind(bindObj);
+  // Deprecated: Use executeAgent instead.
+  this.execute_agent = require('./executeAgent').bind(bindObj);
+  // Deprecated: Use getAgent instead.
+  this.get_agent = require('./getAgent').bind(bindObj);
+  // Deprecated: Use getAllMemories instead.
+  this.get_all_memories = require('./getAllMemories').bind(bindObj);
+  // Deprecated: Use getAllMessages instead.
+  this.get_all_messages = require('./getAllMessages').bind(bindObj);
+  // Deprecated: Use getAllTools instead.
+  this.get_all_tools = require('./getAllTools').bind(bindObj);
   // Deprecated: Use getConnector instead.
   this.get_connector = require('./getConnector').bind(bindObj);
+  // Deprecated: Use getController instead.
+  this.get_controller = require('./getController').bind(bindObj);
   // Deprecated: Use getMemory instead.
   this.get_memory = require('./getMemory').bind(bindObj);
   // Deprecated: Use getMessage instead.
@@ -98,8 +130,18 @@ function MlApi(bindObj) {
   this.get_model = require('./getModel').bind(bindObj);
   // Deprecated: Use getModelGroup instead.
   this.get_model_group = require('./getModelGroup').bind(bindObj);
+  // Deprecated: Use getProfile instead.
+  this.get_profile = require('./getProfile').bind(bindObj);
+  // Deprecated: Use getProfileModels instead.
+  this.get_profile_models = require('./getProfileModels').bind(bindObj);
+  // Deprecated: Use getProfileTasks instead.
+  this.get_profile_tasks = require('./getProfileTasks').bind(bindObj);
+  // Deprecated: Use getStats instead.
+  this.get_stats = require('./getStats').bind(bindObj);
   // Deprecated: Use getTask instead.
   this.get_task = require('./getTask').bind(bindObj);
+  // Deprecated: Use getTool instead.
+  this.get_tool = require('./getTool').bind(bindObj);
   // Deprecated: Use loadModel instead.
   this.load_model = require('./loadModel').bind(bindObj);
   // Deprecated: Use predictModel instead.
@@ -112,6 +154,8 @@ function MlApi(bindObj) {
   this.register_model_group = require('./registerModelGroup').bind(bindObj);
   // Deprecated: Use registerModelMeta instead.
   this.register_model_meta = require('./registerModelMeta').bind(bindObj);
+  // Deprecated: Use searchAgents instead.
+  this.search_agents = require('./searchAgents').bind(bindObj);
   // Deprecated: Use searchConnectors instead.
   this.search_connectors = require('./searchConnectors').bind(bindObj);
   // Deprecated: Use searchMemory instead.
@@ -122,6 +166,8 @@ function MlApi(bindObj) {
   this.search_model_group = require('./searchModelGroup').bind(bindObj);
   // Deprecated: Use searchModels instead.
   this.search_models = require('./searchModels').bind(bindObj);
+  // Deprecated: Use searchTasks instead.
+  this.search_tasks = require('./searchTasks').bind(bindObj);
   // Deprecated: Use trainPredict instead.
   this.train_predict = require('./trainPredict').bind(bindObj);
   // Deprecated: Use undeployModel instead.
@@ -130,6 +176,8 @@ function MlApi(bindObj) {
   this.unload_model = require('./unloadModel').bind(bindObj);
   // Deprecated: Use updateConnector instead.
   this.update_connector = require('./updateConnector').bind(bindObj);
+  // Deprecated: Use updateController instead.
+  this.update_controller = require('./updateController').bind(bindObj);
   // Deprecated: Use updateMemory instead.
   this.update_memory = require('./updateMemory').bind(bindObj);
   // Deprecated: Use updateMessage instead.

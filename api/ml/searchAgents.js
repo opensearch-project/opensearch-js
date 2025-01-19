@@ -16,36 +16,32 @@
 
 'use strict';
 
-const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
+const { normalizeArguments } = require('../utils');
 
 /**
- * Get a message traces.
- * <br/> See Also: {@link undefined - ml.get_message_traces}
+ * Search agents.
+ * <br/> See Also: {@link undefined - ml.search_agents}
  *
  * @memberOf API-Ml
  *
- * @param {object} params
- * @param {number} [params.max_results] 
- * @param {number} [params.next_token] 
- * @param {string} params.message_id 
+ * @param {object} [params]
+ * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function getMessageTracesFunc(params, options, callback) {
+function searchAgentsFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.message_id == null) return handleMissingParam('message_id', this, callback);
 
-  let { body, message_id, ...querystring } = params;
-  message_id = parsePathParam(message_id);
+  let { body, ...querystring } = params;
 
-  const path = '/_plugins/_ml/memory/message/' + message_id + '/traces';
-  const method = 'GET';
+  const path = '/_plugins/_ml/agents/_search';
+  const method = body ? 'POST' : 'GET';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = getMessageTracesFunc;
+module.exports = searchAgentsFunc;

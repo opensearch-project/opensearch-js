@@ -705,14 +705,32 @@ export default class OpenSearchAPI {
     train (params: API.Ml_Train_Request, callback: callbackFn<API.Ml_Train_Response>): TransportRequestCallback;
     train (params: API.Ml_Train_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_Train_Response>): TransportRequestCallback;
 
+    getStats (params?: API.Ml_GetStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetStats_Response>;
+    getStats (callback: callbackFn<API.Ml_GetStats_Response>): TransportRequestCallback;
+    getStats (params: API.Ml_GetStats_Request, callback: callbackFn<API.Ml_GetStats_Response>): TransportRequestCallback;
+    getStats (params: API.Ml_GetStats_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetStats_Response>): TransportRequestCallback;
+
     registerAgents (params?: API.Ml_RegisterAgents_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_RegisterAgents_Response>;
     registerAgents (callback: callbackFn<API.Ml_RegisterAgents_Response>): TransportRequestCallback;
     registerAgents (params: API.Ml_RegisterAgents_Request, callback: callbackFn<API.Ml_RegisterAgents_Response>): TransportRequestCallback;
     registerAgents (params: API.Ml_RegisterAgents_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_RegisterAgents_Response>): TransportRequestCallback;
 
+    searchAgents (params?: API.Ml_SearchAgents_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_SearchAgents_Response>;
+    searchAgents (callback: callbackFn<API.Ml_SearchAgents_Response>): TransportRequestCallback;
+    searchAgents (params: API.Ml_SearchAgents_Request, callback: callbackFn<API.Ml_SearchAgents_Response>): TransportRequestCallback;
+    searchAgents (params: API.Ml_SearchAgents_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_SearchAgents_Response>): TransportRequestCallback;
+
     deleteAgent (params: API.Ml_DeleteAgent_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteAgent_Response>;
     deleteAgent (params: API.Ml_DeleteAgent_Request, callback: callbackFn<API.Ml_DeleteAgent_Response>): TransportRequestCallback;
     deleteAgent (params: API.Ml_DeleteAgent_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteAgent_Response>): TransportRequestCallback;
+
+    getAgent (params: API.Ml_GetAgent_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetAgent_Response>;
+    getAgent (params: API.Ml_GetAgent_Request, callback: callbackFn<API.Ml_GetAgent_Response>): TransportRequestCallback;
+    getAgent (params: API.Ml_GetAgent_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetAgent_Response>): TransportRequestCallback;
+
+    executeAgent (params: API.Ml_ExecuteAgent_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_ExecuteAgent_Response>;
+    executeAgent (params: API.Ml_ExecuteAgent_Request, callback: callbackFn<API.Ml_ExecuteAgent_Response>): TransportRequestCallback;
+    executeAgent (params: API.Ml_ExecuteAgent_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_ExecuteAgent_Response>): TransportRequestCallback;
 
     createConnector (params?: API.Ml_CreateConnector_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_CreateConnector_Response>;
     createConnector (callback: callbackFn<API.Ml_CreateConnector_Response>): TransportRequestCallback;
@@ -736,10 +754,26 @@ export default class OpenSearchAPI {
     updateConnector (params: API.Ml_UpdateConnector_Request, callback: callbackFn<API.Ml_UpdateConnector_Response>): TransportRequestCallback;
     updateConnector (params: API.Ml_UpdateConnector_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UpdateConnector_Response>): TransportRequestCallback;
 
-    getMemory (params?: API.Ml_GetMemory_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetMemory_Response>;
-    getMemory (callback: callbackFn<API.Ml_GetMemory_Response>): TransportRequestCallback;
-    getMemory (params: API.Ml_GetMemory_Request, callback: callbackFn<API.Ml_GetMemory_Response>): TransportRequestCallback;
-    getMemory (params: API.Ml_GetMemory_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetMemory_Response>): TransportRequestCallback;
+    deleteController (params: API.Ml_DeleteController_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteController_Response>;
+    deleteController (params: API.Ml_DeleteController_Request, callback: callbackFn<API.Ml_DeleteController_Response>): TransportRequestCallback;
+    deleteController (params: API.Ml_DeleteController_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteController_Response>): TransportRequestCallback;
+
+    getController (params: API.Ml_GetController_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetController_Response>;
+    getController (params: API.Ml_GetController_Request, callback: callbackFn<API.Ml_GetController_Response>): TransportRequestCallback;
+    getController (params: API.Ml_GetController_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetController_Response>): TransportRequestCallback;
+
+    createController (params: API.Ml_CreateController_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_CreateController_Response>;
+    createController (params: API.Ml_CreateController_Request, callback: callbackFn<API.Ml_CreateController_Response>): TransportRequestCallback;
+    createController (params: API.Ml_CreateController_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_CreateController_Response>): TransportRequestCallback;
+
+    updateController (params: API.Ml_UpdateController_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UpdateController_Response>;
+    updateController (params: API.Ml_UpdateController_Request, callback: callbackFn<API.Ml_UpdateController_Response>): TransportRequestCallback;
+    updateController (params: API.Ml_UpdateController_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UpdateController_Response>): TransportRequestCallback;
+
+    getAllMemories (params?: API.Ml_GetAllMemories_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetAllMemories_Response>;
+    getAllMemories (callback: callbackFn<API.Ml_GetAllMemories_Response>): TransportRequestCallback;
+    getAllMemories (params: API.Ml_GetAllMemories_Request, callback: callbackFn<API.Ml_GetAllMemories_Response>): TransportRequestCallback;
+    getAllMemories (params: API.Ml_GetAllMemories_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetAllMemories_Response>): TransportRequestCallback;
 
     createMemory (params?: API.Ml_CreateMemory_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_CreateMemory_Response>;
     createMemory (callback: callbackFn<API.Ml_CreateMemory_Response>): TransportRequestCallback;
@@ -755,6 +789,10 @@ export default class OpenSearchAPI {
     deleteMemory (params: API.Ml_DeleteMemory_Request, callback: callbackFn<API.Ml_DeleteMemory_Response>): TransportRequestCallback;
     deleteMemory (params: API.Ml_DeleteMemory_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteMemory_Response>): TransportRequestCallback;
 
+    getMemory (params: API.Ml_GetMemory_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetMemory_Response>;
+    getMemory (params: API.Ml_GetMemory_Request, callback: callbackFn<API.Ml_GetMemory_Response>): TransportRequestCallback;
+    getMemory (params: API.Ml_GetMemory_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetMemory_Response>): TransportRequestCallback;
+
     updateMemory (params: API.Ml_UpdateMemory_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UpdateMemory_Response>;
     updateMemory (params: API.Ml_UpdateMemory_Request, callback: callbackFn<API.Ml_UpdateMemory_Response>): TransportRequestCallback;
     updateMemory (params: API.Ml_UpdateMemory_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UpdateMemory_Response>): TransportRequestCallback;
@@ -763,14 +801,17 @@ export default class OpenSearchAPI {
     searchMessage (params: API.Ml_SearchMessage_Request, callback: callbackFn<API.Ml_SearchMessage_Response>): TransportRequestCallback;
     searchMessage (params: API.Ml_SearchMessage_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_SearchMessage_Response>): TransportRequestCallback;
 
-    getMessage (params?: API.Ml_GetMessage_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetMessage_Response>;
-    getMessage (callback: callbackFn<API.Ml_GetMessage_Response>): TransportRequestCallback;
-    getMessage (params: API.Ml_GetMessage_Request, callback: callbackFn<API.Ml_GetMessage_Response>): TransportRequestCallback;
-    getMessage (params: API.Ml_GetMessage_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetMessage_Response>): TransportRequestCallback;
+    getAllMessages (params: API.Ml_GetAllMessages_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetAllMessages_Response>;
+    getAllMessages (params: API.Ml_GetAllMessages_Request, callback: callbackFn<API.Ml_GetAllMessages_Response>): TransportRequestCallback;
+    getAllMessages (params: API.Ml_GetAllMessages_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetAllMessages_Response>): TransportRequestCallback;
 
     createMessage (params: API.Ml_CreateMessage_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_CreateMessage_Response>;
     createMessage (params: API.Ml_CreateMessage_Request, callback: callbackFn<API.Ml_CreateMessage_Response>): TransportRequestCallback;
     createMessage (params: API.Ml_CreateMessage_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_CreateMessage_Response>): TransportRequestCallback;
+
+    getMessage (params: API.Ml_GetMessage_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetMessage_Response>;
+    getMessage (params: API.Ml_GetMessage_Request, callback: callbackFn<API.Ml_GetMessage_Response>): TransportRequestCallback;
+    getMessage (params: API.Ml_GetMessage_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetMessage_Response>): TransportRequestCallback;
 
     updateMessage (params: API.Ml_UpdateMessage_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UpdateMessage_Response>;
     updateMessage (params: API.Ml_UpdateMessage_Request, callback: callbackFn<API.Ml_UpdateMessage_Response>): TransportRequestCallback;
@@ -869,6 +910,26 @@ export default class OpenSearchAPI {
     createModelMeta (params: API.Ml_CreateModelMeta_Request, callback: callbackFn<API.Ml_CreateModelMeta_Response>): TransportRequestCallback;
     createModelMeta (params: API.Ml_CreateModelMeta_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_CreateModelMeta_Response>): TransportRequestCallback;
 
+    getProfile (params?: API.Ml_GetProfile_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetProfile_Response>;
+    getProfile (callback: callbackFn<API.Ml_GetProfile_Response>): TransportRequestCallback;
+    getProfile (params: API.Ml_GetProfile_Request, callback: callbackFn<API.Ml_GetProfile_Response>): TransportRequestCallback;
+    getProfile (params: API.Ml_GetProfile_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetProfile_Response>): TransportRequestCallback;
+
+    getProfileModels (params?: API.Ml_GetProfileModels_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetProfileModels_Response>;
+    getProfileModels (callback: callbackFn<API.Ml_GetProfileModels_Response>): TransportRequestCallback;
+    getProfileModels (params: API.Ml_GetProfileModels_Request, callback: callbackFn<API.Ml_GetProfileModels_Response>): TransportRequestCallback;
+    getProfileModels (params: API.Ml_GetProfileModels_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetProfileModels_Response>): TransportRequestCallback;
+
+    getProfileTasks (params?: API.Ml_GetProfileTasks_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetProfileTasks_Response>;
+    getProfileTasks (callback: callbackFn<API.Ml_GetProfileTasks_Response>): TransportRequestCallback;
+    getProfileTasks (params: API.Ml_GetProfileTasks_Request, callback: callbackFn<API.Ml_GetProfileTasks_Response>): TransportRequestCallback;
+    getProfileTasks (params: API.Ml_GetProfileTasks_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetProfileTasks_Response>): TransportRequestCallback;
+
+    searchTasks (params?: API.Ml_SearchTasks_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_SearchTasks_Response>;
+    searchTasks (callback: callbackFn<API.Ml_SearchTasks_Response>): TransportRequestCallback;
+    searchTasks (params: API.Ml_SearchTasks_Request, callback: callbackFn<API.Ml_SearchTasks_Response>): TransportRequestCallback;
+    searchTasks (params: API.Ml_SearchTasks_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_SearchTasks_Response>): TransportRequestCallback;
+
     deleteTask (params: API.Ml_DeleteTask_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteTask_Response>;
     deleteTask (params: API.Ml_DeleteTask_Request, callback: callbackFn<API.Ml_DeleteTask_Response>): TransportRequestCallback;
     deleteTask (params: API.Ml_DeleteTask_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteTask_Response>): TransportRequestCallback;
@@ -876,6 +937,15 @@ export default class OpenSearchAPI {
     getTask (params: API.Ml_GetTask_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetTask_Response>;
     getTask (params: API.Ml_GetTask_Request, callback: callbackFn<API.Ml_GetTask_Response>): TransportRequestCallback;
     getTask (params: API.Ml_GetTask_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetTask_Response>): TransportRequestCallback;
+
+    getAllTools (params?: API.Ml_GetAllTools_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetAllTools_Response>;
+    getAllTools (callback: callbackFn<API.Ml_GetAllTools_Response>): TransportRequestCallback;
+    getAllTools (params: API.Ml_GetAllTools_Request, callback: callbackFn<API.Ml_GetAllTools_Response>): TransportRequestCallback;
+    getAllTools (params: API.Ml_GetAllTools_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetAllTools_Response>): TransportRequestCallback;
+
+    getTool (params: API.Ml_GetTool_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetTool_Response>;
+    getTool (params: API.Ml_GetTool_Request, callback: callbackFn<API.Ml_GetTool_Response>): TransportRequestCallback;
+    getTool (params: API.Ml_GetTool_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetTool_Response>): TransportRequestCallback;
 
   };
 

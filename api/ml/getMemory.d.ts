@@ -19,18 +19,12 @@ import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
 export interface Ml_GetMemory_Request extends Global.Params {
-  body?: Ml_GetMemory_RequestBody;
-  memory_id?: string;
-}
-
-export type Ml_GetMemory_RequestBody = {
-  max_results?: number;
-  next_token?: number;
+  memory_id: string;
 }
 
 export interface Ml_GetMemory_Response extends ApiResponse {
   body: Ml_GetMemory_ResponseBody;
 }
 
-export type Ml_GetMemory_ResponseBody = Ml_Common.GetMemoryResponse
+export type Ml_GetMemory_ResponseBody = Ml_Common.Memory
 

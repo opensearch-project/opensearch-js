@@ -19,26 +19,19 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_UpdateModel_Request extends Global.Params {
-  body?: Ml_UpdateModel_RequestBody;
+export interface Ml_UpdateController_Request extends Global.Params {
+  body?: Ml_UpdateController_RequestBody;
   model_id: string;
 }
 
-export type Ml_UpdateModel_RequestBody = {
-  connector?: Record<string, any>;
-  connector_id?: string;
-  description?: string;
-  guardrails?: Ml_Common.Guardrails;
-  interface?: Record<string, any>;
-  is_enabled?: boolean;
-  model_config?: Ml_Common.ModelConfig;
-  name?: string;
-  rate_limiter?: Ml_Common.RateLimiter;
+export type Ml_UpdateController_RequestBody = {
+  model_id?: Common.Name;
+  user_rate_limiter?: Record<string, Ml_Common.RateLimiter>;
 }
 
-export interface Ml_UpdateModel_Response extends ApiResponse {
-  body: Ml_UpdateModel_ResponseBody;
+export interface Ml_UpdateController_Response extends ApiResponse {
+  body: Ml_UpdateController_ResponseBody;
 }
 
-export type Ml_UpdateModel_ResponseBody = Common.WriteResponseBase
+export type Ml_UpdateController_ResponseBody = Common.WriteResponseBase
 

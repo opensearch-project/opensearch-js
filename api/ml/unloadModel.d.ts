@@ -25,7 +25,7 @@ export interface Ml_UnloadModel_Request extends Global.Params {
 }
 
 export type Ml_UnloadModel_RequestBody = {
-  model_ids: Common.Id[];
+  model_ids?: Common.Id[];
   node_ids?: Common.Id[];
 }
 

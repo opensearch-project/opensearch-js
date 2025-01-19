@@ -17,6 +17,7 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as Ml_Common from '../_types/ml._common'
 
 export interface Ml_UploadModel_Request extends Global.Params {
   body?: Ml_UploadModel_RequestBody;
@@ -24,7 +25,7 @@ export interface Ml_UploadModel_Request extends Global.Params {
 
 export type Ml_UploadModel_RequestBody = {
   description?: string;
-  model_format?: Common.ModelFormat;
+  model_format?: Ml_Common.ModelFormat;
   model_group_id?: Common.Id;
   name: string;
   version: Common.VersionString;

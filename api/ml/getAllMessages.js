@@ -19,33 +19,33 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Get a message traces.
- * <br/> See Also: {@link undefined - ml.get_message_traces}
+ * Get all messages in a memory.
+ * <br/> See Also: {@link undefined - ml.get_all_messages}
  *
  * @memberOf API-Ml
  *
  * @param {object} params
  * @param {number} [params.max_results] 
  * @param {number} [params.next_token] 
- * @param {string} params.message_id 
+ * @param {string} params.memory_id 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function getMessageTracesFunc(params, options, callback) {
+function getAllMessagesFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.message_id == null) return handleMissingParam('message_id', this, callback);
+  if (params.memory_id == null) return handleMissingParam('memory_id', this, callback);
 
-  let { body, message_id, ...querystring } = params;
-  message_id = parsePathParam(message_id);
+  let { body, memory_id, ...querystring } = params;
+  memory_id = parsePathParam(memory_id);
 
-  const path = '/_plugins/_ml/memory/message/' + message_id + '/traces';
+  const path = '/_plugins/_ml/memory/' + memory_id + '/messages';
   const method = 'GET';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = getMessageTracesFunc;
+module.exports = getAllMessagesFunc;

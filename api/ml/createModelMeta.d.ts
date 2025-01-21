@@ -27,7 +27,7 @@ export type Ml_CreateModelMeta_RequestBody = {
   description?: string;
   model_config: Ml_Common.ModelConfig;
   model_content_hash_value: string;
-  model_format: Common.ModelFormat;
+  model_format: Ml_Common.ModelFormat;
   model_group_id?: Common.Id;
   name: string;
   total_chunks: number;

@@ -18,18 +18,19 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
-export interface Ml_GetMessageTraces_Request extends Global.Params {
-  max_results?: number;
-  message_id: string;
-  next_token?: number;
+export interface Ml_SearchAgents_Request extends Global.Params {
+  body?: Ml_SearchAgents_RequestBody;
 }
 
-export interface Ml_GetMessageTraces_Response extends ApiResponse {
-  body: Ml_GetMessageTraces_ResponseBody;
+export type Ml_SearchAgents_RequestBody = {
+  query?: Ml_Common.Query;
+  size?: number;
+  sort?: Ml_Common.SortAgent[];
 }
 
-export type Ml_GetMessageTraces_ResponseBody = {
-  next_token?: number;
-  traces: Ml_Common.Message[];
+export interface Ml_SearchAgents_Response extends ApiResponse {
+  body: Ml_SearchAgents_ResponseBody;
 }
+
+export type Ml_SearchAgents_ResponseBody = Ml_Common.SearchAgentsResponse
 

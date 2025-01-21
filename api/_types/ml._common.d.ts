@@ -29,9 +29,26 @@ export type Action = {
 
 export type AdditionalInfo = Record<string, any>
 
-export type Algorithm = {
-  value?: 'AD_LIBSVM' | 'AGENT' | 'ANOMALY_LOCALIZATION' | 'BATCH_RCF' | 'CONNECTOR' | 'FIT_RCF' | 'KMEANS' | 'LINEAR_REGRESSION' | 'LOCAL_SAMPLE_CALCULATOR' | 'LOGISTIC_REGRESSION' | 'METRICS_CORRELATION' | 'QUESTION_ANSWERING' | 'RCF_SUMMARIZE' | 'REMOTE' | 'SAMPLE_ALGO' | 'SPARSE_ENCODING' | 'SPARSE_TOKENIZE' | 'TEXT_EMBEDDING' | 'TEXT_SIMILARITY';
+export type Aggregation = {
+  field?: string;
+  sum?: Aggregation;
+  [key: string]: any;
 }
+
+export type Algorithm = {
+  value?: FunctionName;
+}
+
+export type AlgorithmOperations = {
+  deploy?: ModelStats;
+  predict?: ModelStats;
+  register?: ModelStats;
+  train?: ModelStats;
+  train_predict?: ModelStats;
+  undeploy?: ModelStats;
+}
+
+export type Algorithms = Record<string, AlgorithmOperations>
 
 export type BoolQuery = {
   filter?: Filter[];
@@ -80,6 +97,18 @@ export type Filter = {
   terms?: Term;
 }
 
+export type FunctionName = 'AD_LIBSVM' | 'AGENT' | 'ANOMALY_LOCALIZATION' | 'BATCH_RCF' | 'CONNECTOR' | 'FIT_RCF' | 'KMEANS' | 'LINEAR_REGRESSION' | 'LOCAL_SAMPLE_CALCULATOR' | 'LOGISTIC_REGRESSION' | 'METRICS_CORRELATION' | 'QUESTION_ANSWERING' | 'RCF_SUMMARIZE' | 'REMOTE' | 'SAMPLE_ALGO' | 'SPARSE_ENCODING' | 'SPARSE_TOKENIZE' | 'TEXT_EMBEDDING' | 'TEXT_SIMILARITY'
+
+export type GetAgentResponse = {
+  created_time?: number;
+  description?: string;
+  is_hidden?: boolean;
+  last_updated_time?: number;
+  name?: Common.Name;
+  tools?: ToolItems[];
+  type?: 'conversational' | 'conversational_flow' | 'flow';
+}
+
 export type GetConnectorResponse = {
   actions?: Action[];
   created_time?: number;
@@ -91,17 +120,19 @@ export type GetConnectorResponse = {
   version?: Common.VersionString;
 }
 
-export type GetMemoryResponse = Memory | {
-  memories?: Memory[];
-  next_token?: number;
+export type GetProfileResponse = {
+  nodes?: Nodes;
 }
 
-export type GetMessageResponse = Message | {
-  messages?: Message[];
-}
-
-export type GetMessageTracesResponse = {
-  traces?: Message[];
+export type GetStatsResponse = {
+  ml_config_index_status?: 'green' | 'non-existent' | 'red' | 'yellow';
+  ml_connector_count?: number;
+  ml_connector_index_status?: 'green' | 'non-existent' | 'red' | 'yellow';
+  ml_controller_index_status?: 'green' | 'non-existent' | 'red' | 'yellow';
+  ml_model_count?: number;
+  ml_model_index_status?: 'green' | 'non-existent' | 'red' | 'yellow';
+  ml_task_index_status?: 'green' | 'non-existent' | 'red' | 'yellow';
+  nodes?: NodeStats;
 }
 
 export type Guardrails = {
@@ -193,7 +224,7 @@ export type Model = {
   model_config?: ModelConfig;
   model_content_hash_value?: string;
   model_content_size_in_bytes?: number;
-  model_format?: Common.ModelFormat;
+  model_format?: ModelFormat;
   model_group_id?: string;
   model_state: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED';
   model_version?: string;
@@ -207,6 +238,8 @@ export type ModelConfig = {
   framework_type?: string;
   model_type?: string;
 }
+
+export type ModelFormat = 'ONNX' | 'TORCH_SCRIPT'
 
 export type ModelGroup = {
   access: 'private' | 'public' | 'restricted';
@@ -223,6 +256,30 @@ export type ModelGroupRegistration = {
   status: string;
 }
 
+export type ModelProfile = {
+  deploy?: ModelStats;
+  memory_size_estimation_cpu?: number;
+  memory_size_estimation_gpu?: number;
+  model_state?: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED';
+  predict?: ModelStats;
+  predict_request_stats?: PredictRequestStats;
+  predictor?: string;
+  register?: ModelStats;
+  target_worker_nodes?: Common.NodeIds[];
+  train?: ModelStats;
+  train_predict?: ModelStats;
+  undeploy?: ModelStats;
+  worker_nodes?: Common.NodeIds[];
+}
+
+export type Models = Record<string, ModelProfile>
+
+export type ModelStats = {
+  ml_action_failure_count?: number;
+  ml_action_request_count?: number;
+  ml_executing_task_count?: number;
+}
+
 export type Nested = {
   boost?: number;
   ignore_unmapped?: boolean;
@@ -231,11 +288,32 @@ export type Nested = {
   score_mode?: 'avg' | 'max' | 'min' | 'none' | 'sum';
 }
 
+export type Node = {
+  models?: Models;
+  tasks?: Tasks;
+}
+
+export type Nodes = Record<string, Node>
+
+export type NodeStats = Record<string, NodeStatsDetails>
+
+export type NodeStatsDetails = {
+  algorithms?: Algorithms;
+  ml_circuit_breaker_trigger_count?: number;
+  ml_deployed_model_count?: number;
+  ml_executing_task_count?: number;
+  ml_failure_count?: number;
+  ml_jvm_heap_usage?: number;
+  ml_request_count?: number;
+  models?: Models;
+}
+
 export type Output = {
   byte_buffer?: ByteBuffer;
   data: number[];
   data_type?: 'BOOLEAN' | 'FLOAT16' | 'FLOAT32' | 'FLOAT64' | 'INT32' | 'INT64' | 'INT8' | 'STRING' | 'UINT8' | 'UNKNOWN';
   name?: string;
+  result?: string;
   shape?: number[];
 }
 
@@ -275,10 +353,28 @@ export type PredictModelResult = {
   output?: PredictModelOutput[];
 }
 
+export type PredictRequestStats = {
+  average?: number;
+  count?: number;
+  max?: number;
+  min?: number;
+  p50?: number;
+  p90?: number;
+  p99?: number;
+}
+
 export type PredictResponse = {
   inference_results?: InferenceResults[];
   prediction_result?: PredictionResult;
   status?: Status;
+}
+
+export type ProfileRequest = {
+  model_ids?: Common.Id[];
+  node_ids?: Common.Id[];
+  return_all_models?: boolean;
+  return_all_tasks?: boolean;
+  task_ids?: Common.Id[];
 }
 
 export type Query = {
@@ -286,6 +382,7 @@ export type Query = {
   match?: Match;
   match_all?: MatchAllQuery;
   term?: Term;
+  [key: string]: any;
 }
 
 export type Range = {
@@ -295,13 +392,15 @@ export type Range = {
 }
 
 export type RateLimiter = {
-  limit: number;
+  limit: Common.StringifiedDouble;
   unit: 'DAYS' | 'HOURS' | 'MICROSECONDS' | 'MILLISECONDS' | 'MINUTES' | 'NANOSECONDS' | 'SECONDS';
 }
 
 export type Rows = {
   values?: Values[];
 }
+
+export type SearchAgentsResponse = SearchResponse
 
 export type SearchConnectorsResponse = SearchResponse
 
@@ -315,7 +414,7 @@ export type SearchHitsHit = {
   _id?: Common.Id;
   _index?: Common.IndexName;
   _primary_term?: number;
-  _score: number;
+  _score: undefined | number;
   _seq_no?: Common.SequenceNumber;
   _source?: Source;
   _version?: Common.VersionNumber;
@@ -337,6 +436,8 @@ export type SearchResponse = {
   timed_out?: boolean;
   took?: number;
 }
+
+export type SearchTasksResponse = SearchResponse
 
 export type Sort = {
   _id?: SortOrder;
@@ -361,6 +462,19 @@ export type Sort = {
   planning_worker_node_count?: SortOrder;
   planning_worker_nodes?: SortOrder;
   total_chunks?: SortOrder;
+}
+
+export type SortAgent = {
+  _id?: SortOrder;
+  _index?: SortOrder;
+  _score?: SortOrder;
+  _seq_no?: SortOrder;
+  created_time?: SortOrder;
+  is_hidden?: SortOrder;
+  last_updated_time?: SortOrder;
+  parameters?: SortOrder;
+  tools?: SortOrder;
+  type?: SortOrder;
 }
 
 export type SortMemory = {
@@ -397,27 +511,34 @@ export type Source = {
   actions?: Action[];
   additional_info?: AdditionalInfo;
   algorithm?: string;
+  app_type?: string;
   application_type?: undefined | string;
   auto_redeploy_retry_times?: number;
   backend_roles?: string[];
   chunk_number?: number;
   connector_id?: string;
-  create_time?: string;
+  create_time?: string | number;
   created_time?: number;
   current_worker_node_count?: number;
   deploy_to_all_nodes?: boolean;
   description?: string;
+  error?: string;
+  function_name?: FunctionName;
   input?: undefined | string;
+  input_type?: 'DATA_FRAME' | 'QUESTION_ANSWERING' | 'REMOTE' | 'SEARCH_QUERY' | 'TEXT_DOCS' | 'TEXT_SIMILARITY';
+  is_async?: boolean;
   is_hidden?: boolean;
   last_deployed_time?: number;
   last_registered_time?: number;
+  last_update_time?: number;
   last_updated_time?: number;
   latest_version?: number;
+  memory?: Memory;
   memory_id?: Common.Name;
   model_config?: ModelConfig;
   model_content_hash_value?: string;
   model_content_size_in_bytes?: number;
-  model_format?: Common.ModelFormat;
+  model_format?: ModelFormat;
   model_group_id?: string;
   model_id?: Common.Name;
   model_state?: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED';
@@ -433,12 +554,17 @@ export type Source = {
   prompt_template?: undefined | string;
   protocol?: 'aws_sigv4' | 'http';
   response?: undefined | string;
+  state?: Status;
+  task_type?: 'BATCH_INGEST' | 'BATCH_PREDICTION' | 'DEPLOY_MODEL' | 'EXECUTION' | 'PREDICTION' | 'REGISTER_MODEL' | 'TRAINING' | 'TRAINING_AND_PREDICTION';
+  tools?: ToolItems[];
   total_chunks?: number;
   trace_number?: undefined | string;
+  type?: 'conversational' | 'conversational_flow' | 'flow';
   updated_time?: string;
   url?: string;
   user?: string;
   version?: Common.VersionString;
+  worker_node?: Common.NodeIds[];
 }
 
 export type Status = 'CANCELLED' | 'COMPLETED' | 'COMPLETED_WITH_ERROR' | 'CREATED' | 'FAILED' | 'RUNNING'
@@ -446,25 +572,37 @@ export type Status = 'CANCELLED' | 'COMPLETED' | 'COMPLETED_WITH_ERROR' | 'CREAT
 export type Task = {
   create_time?: number;
   error?: string;
-  function_name?: string;
+  function_name?: FunctionName;
   is_async?: boolean;
   last_update_time?: number;
   model_id?: string;
   state: 'CANCELLED' | 'CANCELLING' | 'COMPLETED' | 'COMPLETED_WITH_ERROR' | 'CREATED' | 'EXPIRED' | 'FAILED' | 'RUNNING';
   task_id?: string;
-  task_type?: 'DEPLOY_MODEL' | 'REGISTER_MODEL';
+  task_type?: 'BATCH_INGEST' | 'BATCH_PREDICTION' | 'DEPLOY_MODEL' | 'EXECUTION' | 'PREDICTION' | 'REGISTER_MODEL' | 'TRAINING' | 'TRAINING_AND_PREDICTION';
   worker_node?: Common.NodeIds[];
 }
+
+export type Tasks = Record<string, Task>
 
 export type Term = {
   _id?: Common.Id[];
   algorithm?: Algorithm;
+  function_name?: FunctionName;
   model_id?: Common.Name;
   name?: OwnerNameKeyword;
   'owner.name.keyword'?: OwnerNameKeyword;
+  type?: Type;
+}
+
+export type Tool = {
+  description?: string;
+  name?: Common.Name;
+  type?: string;
+  version?: Common.VersionString;
 }
 
 export type ToolItems = {
+  include_output_in_agent_response?: boolean;
   name?: string;
   parameters?: Parameters;
   type?: string;
@@ -487,6 +625,10 @@ export type TrainResponse = {
   status: Status;
 }
 
+export type Type = {
+  value?: 'conversational' | 'conversational_flow' | 'flow';
+}
+
 export type UndeployModelNode = {
   stats?: UndeployModelNodeStats;
 }
@@ -505,17 +647,6 @@ export type UnloadModelResponse = Record<string, UnloadModelNode>
 
 export type UpdateModelGroupResponse = {
   status?: string;
-}
-
-export type UpdateModelResponse = {
-  _id?: Common.Id;
-  _index: Common.IndexName;
-  _primary_term?: number;
-  _seq_no?: Common.SequenceNumber;
-  _shards?: Common.ShardStatistics;
-  _version?: Common.VersionNumber;
-  forced_refresh?: boolean;
-  result?: Common.Result;
 }
 
 export type Values = {

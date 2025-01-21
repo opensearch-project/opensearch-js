@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Delete asynchronous search.
+ * Deletes any responses from an asynchronous search.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/async/index/#delete-searches-and-results - asynchronous_search.delete}
  *
  * @memberOf API-Asynchronous-Search

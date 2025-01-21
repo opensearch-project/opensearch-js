@@ -16,7 +16,7 @@
 
 'use strict';
 
-const { normalizeArguments, parsePathParam } = require('../utils');
+const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
  * Get a memory.
@@ -24,9 +24,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @memberOf API-Ml
  *
- * @param {object} [params]
- * @param {string} [params.memory_id] 
- * @param {object} [params.body] 
+ * @param {object} params
+ * @param {string} params.memory_id 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -35,11 +34,12 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  */
 function getMemoryFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.memory_id == null) return handleMissingParam('memory_id', this, callback);
 
   let { body, memory_id, ...querystring } = params;
   memory_id = parsePathParam(memory_id);
 
-  const path = ['/_plugins/_ml/memory', memory_id].filter(c => c != null).join('/');
+  const path = '/_plugins/_ml/memory/' + memory_id;
   const method = 'GET';
   body = body || '';
 

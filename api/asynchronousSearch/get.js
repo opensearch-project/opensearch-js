@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Get partial responses from asynchronous search.
+ * Gets partial responses from an asynchronous search.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/async/index/#get-partial-results - asynchronous_search.get}
  *
  * @memberOf API-Asynchronous-Search

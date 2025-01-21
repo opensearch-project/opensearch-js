@@ -30,7 +30,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.analyzer] - Analyzer to use for the query string. This parameter can only be used when the `q` query string parameter is specified.
  * @param {string} [params.default_operator] - The default operator for query string query: `AND` or `OR`. This parameter can only be used when the `q` query string parameter is specified.
  * @param {string} [params.df] - Field to use as default where no field prefix is given in the query string. This parameter can only be used when the `q` query string parameter is specified.
- * @param {string} [params.expand_wildcards] - Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`.
+ * @param {string} [params.expand_wildcards] - Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
  * @param {boolean} [params.ignore_throttled] - If `true`, concrete, expanded or aliased indexes are ignored when frozen.
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {boolean} [params.lenient] - If `true`, format-based query failures (such as providing text to a numeric field) in the query string will be ignored.

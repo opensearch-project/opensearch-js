@@ -19,13 +19,12 @@ import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
 export interface Ml_GetMessage_Request extends Global.Params {
-  memory_id?: string;
-  message_id?: string;
+  message_id: string;
 }
 
 export interface Ml_GetMessage_Response extends ApiResponse {
   body: Ml_GetMessage_ResponseBody;
 }
 
-export type Ml_GetMessage_ResponseBody = Ml_Common.GetMessageResponse
+export type Ml_GetMessage_ResponseBody = Ml_Common.Message
 

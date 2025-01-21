@@ -16,7 +16,7 @@
 
 'use strict';
 
-const { normalizeArguments, parsePathParam } = require('../utils');
+const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
  * Get a message.
@@ -24,9 +24,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @memberOf API-Ml
  *
- * @param {object} [params]
- * @param {string} [params.memory_id] 
- * @param {string} [params.message_id] 
+ * @param {object} params
+ * @param {string} params.message_id 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -35,17 +34,12 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  */
 function getMessageFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.message_id == null) return handleMissingParam('message_id', this, callback);
 
-  let { body, memory_id, message_id, ...querystring } = params;
-  memory_id = parsePathParam(memory_id);
+  let { body, message_id, ...querystring } = params;
   message_id = parsePathParam(message_id);
 
-  let path;
-  if (memory_id != null) {
-    path = '/_plugins/_ml/memory/' + memory_id + '/messages';
-  } else {
-    path = '/_plugins/_ml/memory/message/' + message_id;
-  }
+  const path = '/_plugins/_ml/memory/message/' + message_id;
   const method = 'GET';
   body = body || '';
 

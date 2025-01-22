@@ -236,6 +236,7 @@ export type GeoDistanceSort = {
   mode?: SortMode;
   order?: SortOrder;
   unit?: DistanceUnit;
+  [key: string]: any | GeoLocation[];
 }
 
 export type GeoDistanceType = 'arc' | 'plane'
@@ -247,8 +248,6 @@ export type GeoHashLocation = {
 }
 
 export type GeoHashPrecision = number | string
-
-export type GeoHexCell = string
 
 export type GeoLine = {
   coordinates: number[][];

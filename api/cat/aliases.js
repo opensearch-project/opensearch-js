@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Cat
  *
  * @param {object} [params]
- * @param {string} [params.expand_wildcards] - Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are `all`, `open`, `closed`, `hidden`, and `none`.
+ * @param {string} [params.expand_wildcards] - Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
  * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.

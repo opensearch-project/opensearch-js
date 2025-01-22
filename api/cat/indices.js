@@ -27,7 +27,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {object} [params]
  * @param {string} [params.bytes] - The units used to display byte values.
  * @param {string} [params.cluster_manager_timeout] - The amount of time allowed to establish a connection to the cluster manager node.
- * @param {string} [params.expand_wildcards] - The type of index that wildcard patterns can match.  Supported values are `all`, `open`, `closed`, `hidden`, and `none`.
+ * @param {string} [params.expand_wildcards] - Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
  * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {string} [params.health] - Limits indexes based on their health status. Supported values are `green`, `yellow`, and `red`.

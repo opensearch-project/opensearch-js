@@ -11,16 +11,15 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 ### Security
 
+## [3.2.0]
+### Changed
+- Updated API to match the OpenSearch spec from Jan 21, 2025
+
 ## [3.1.0]
 ### Added
 - Added export of component types ([#955](https://github.com/opensearch-project/opensearch-js/issues/955))
-### Dependencies
 ### Changed
 - Updated API to match the OpenSearch spec from Jan 09, 2025
-### Deprecated
-### Removed
-### Fixed
-### Security
 
 ## [3.0.0]
 ### Added

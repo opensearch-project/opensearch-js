@@ -31,7 +31,7 @@ These metrics provide information about how far behind the primary shard the rep
  * @param {string} [params.bytes] - The units used to display byte values.
  * @param {boolean} [params.completed_only=false] - When `true`, the response only includes the last-completed segment replication events.
  * @param {boolean} [params.detailed=false] - When `true`, the response includes additional metrics for each stage of a segment replication event.
- * @param {string} [params.expand_wildcards] - The type of index that wildcard patterns can match. Supported values are `all`, `open`, `closed`, `hidden`, and `none`.
+ * @param {string} [params.expand_wildcards] - Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
  * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.

@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Monitors any asynchronous searches that are `running`, `completed`, `persisted`.
+ * Monitors any asynchronous searches that are `running`, `completed`, or `persisted`.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/async/index/#monitor-stats - asynchronous_search.stats}
  *
  * @memberOf API-Asynchronous-Search

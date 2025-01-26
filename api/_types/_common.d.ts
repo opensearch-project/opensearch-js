@@ -271,6 +271,7 @@ export type GetStats = {
   missing_time?: Duration;
   missing_time_in_millis: DurationValueUnitMillis;
   missing_total: number;
+  time?: Duration;
   time_in_millis: DurationValueUnitMillis;
   total: number;
 }

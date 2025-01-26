@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Cluster
  *
  * @param {object} params
- * @param {string} params.attribute - Awareness attribute name.
+ * @param {string} params.attribute - The name of the awareness attribute.
  * @param {string} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

@@ -19,15 +19,15 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Provides explanations for shard allocations in the cluster.
+ * Explains how shards are allocated in the current cluster and provides an explanation for why unassigned shards can't be allocated to a node.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-allocation/ - cluster.allocation_explain}
  *
  * @memberOf API-Cluster
  *
  * @param {object} [params]
- * @param {boolean} [params.include_disk_info=false] - If `true`, returns information about disk usage and shard sizes.
- * @param {boolean} [params.include_yes_decisions=false] - If `true`, returns YES decisions in explanation.
- * @param {object} [params.body] - The index, shard, and primary flag to explain. Empty means 'explain the first unassigned shard'
+ * @param {boolean} [params.include_disk_info=false] - When `true`, returns information about disk usage and shard sizes.
+ * @param {boolean} [params.include_yes_decisions=false] - When `true`, returns any `YES` decisions in the allocation explanation.
+ * @param {object} [params.body] - The index, shard, and primary flag for which to generate an explanation. Leave this empty to generate an explanation for the first unassigned shard.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

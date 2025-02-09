@@ -25,13 +25,13 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Cluster
  *
  * @param {object} [params]
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {boolean} [params.dry_run] - If `true`, then the request simulates the operation only and returns the resulting state.
- * @param {boolean} [params.explain] - If `true`, then the response contains an explanation of why the commands can or cannot be executed.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {string} [params.cluster_manager_timeout] - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {boolean} [params.dry_run] - When `true`, the request simulates the operation and returns the resulting state.
+ * @param {boolean} [params.explain] - When `true`, the response contains an explanation of why certain commands can or cannot be executed.
+ * @param {string} [params.master_timeout] DEPRECATED - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
  * @param {string} [params.metric] - Limits the information returned to the specified metrics.
- * @param {boolean} [params.retry_failed] - If `true`, then retries allocation of shards that are blocked due to too many subsequent allocation failures.
- * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {boolean} [params.retry_failed] - When `true`, retries shard allocation if it was blocked because of too many subsequent failures.
+ * @param {string} [params.timeout] - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
  * @param {object} [params.body] - The definition of `commands` to perform (`move`, `cancel`, `allocate`)
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

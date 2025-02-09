@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Get details and status of decommissioned attribute.
+ * Retrieves the decommission status for all zones.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-decommission/#example-getting-zone-decommission-status - cluster.get_decommission_awareness}
  *
  * @memberOf API-Cluster
  *
  * @param {object} params
- * @param {string} params.awareness_attribute_name - Awareness attribute name.
+ * @param {string} params.awareness_attribute_name - The name of the awareness attribute.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -25,11 +25,11 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
  * @memberOf API-Cluster
  *
  * @param {object} params
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {boolean} [params.flat_settings=false] - Return settings in flat format.
- * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
- * @param {string} [params.timeout] - Explicit operation timeout
- * @param {object} params.body - The settings to be updated. Can be either `transient` or `persistent` (survives cluster restart).
+ * @param {string} [params.cluster_manager_timeout] - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {boolean} [params.flat_settings=false] - Returns settings in a flat format.
+ * @param {string} [params.master_timeout] DEPRECATED - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {string} [params.timeout] - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {object} params.body - The cluster settings to update.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

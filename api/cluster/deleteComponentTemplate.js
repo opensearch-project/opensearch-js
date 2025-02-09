@@ -26,9 +26,9 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @param {object} params
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} params.name - Name of the component template to delete. Wildcard (*) expressions are supported.
+ * @param {string} [params.master_timeout] DEPRECATED - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {string} [params.timeout] - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {string} params.name - The name of the component template to delete. Supports wildcard (*) expressions.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

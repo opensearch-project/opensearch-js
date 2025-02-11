@@ -53,20 +53,20 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Cluster
  *
  * @param {object} [params]
- * @param {string} [params.awareness_attribute] - The awareness attribute for which the health is required.
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
- * @param {string} [params.level] - Can be one of cluster, indexes or shards. Controls the details level of the health information returned.
- * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the cluster-manager node.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} [params.wait_for_active_shards] - A number controlling to how many active shards to wait for, all to wait for all shards in the cluster to be active, or 0 to not wait.
- * @param {string} [params.wait_for_events] - Can be one of immediate, urgent, high, normal, low, languid. Wait until all currently queued events with the given priority are processed.
- * @param {boolean} [params.wait_for_no_initializing_shards] - A Boolean value which controls whether to wait (until the timeout provided) for the cluster to have no shard initializations. Defaults to false, which means it will not wait for initializing shards.
- * @param {boolean} [params.wait_for_no_relocating_shards] - A Boolean value which controls whether to wait (until the timeout provided) for the cluster to have no shard relocations. Defaults to false, which means it will not wait for relocating shards.
- * @param {string} [params.wait_for_nodes] - The request waits until the specified number N of nodes is available. It also accepts >=N, &lt;=N, >N and &lt;N. Alternatively, it is possible to use ge(N), le(N), gt(N) and lt(N) notation.
- * @param {string} [params.wait_for_status] - One of green, yellow or red. Will wait (until the timeout provided) until the status of the cluster changes to the one provided or better, i.e. green > yellow > red. By default, will not wait for any status.
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*) are supported. To target all data streams and indexes in a cluster, omit this parameter or use `_all` or `*`.
+ * @param {string} [params.awareness_attribute] - The name of the awareness attribute for which to return the cluster health status (for example, `zone`). Applicable only if `level` is set to `awareness_attributes`.
+ * @param {string} [params.cluster_manager_timeout] - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {string} [params.expand_wildcards] - Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
+ * @param {string} [params.level] 
+ * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.
+ * @param {string} [params.master_timeout] DEPRECATED - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {string} [params.timeout] - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {string} [params.wait_for_active_shards] - Waits until the specified number of shards is active before returning a response. Use `all` for all shards.
+ * @param {string} [params.wait_for_events] - Waits until all currently queued events with the given priority are processed.
+ * @param {boolean} [params.wait_for_no_initializing_shards=false] - Whether to wait until there are no initializing shards in the cluster.
+ * @param {boolean} [params.wait_for_no_relocating_shards] - Whether to wait until there are no relocating shards in the cluster.
+ * @param {string} [params.wait_for_nodes] - Waits until the specified number of nodes (`N`) is available. Accepts `>=N`, `&lt;=N`, `>N`, and `&lt;N`. You can also use `ge(N)`, `le(N)`, `gt(N)`, and `lt(N)` notation.
+ * @param {string} [params.wait_for_status] - Waits until the cluster health reaches the specified status or better.
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -103,7 +103,7 @@ module.exports = healthFunc;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Feb 10 2025 21:58:24 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Feb 11 2025 16:32:51 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

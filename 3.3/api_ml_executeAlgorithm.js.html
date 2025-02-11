@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: api/security/getAllowlist.js</title>
+    <title>JSDoc: Source: api/ml/executeAlgorithm.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: api/security/getAllowlist.js</h1>
+    <h1 class="page-title">Source: api/ml/executeAlgorithm.js</h1>
 
     
 
@@ -44,33 +44,38 @@
 
 'use strict';
 
-const { normalizeArguments } = require('../utils');
+const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Retrieves the current list of allowed API accessible to normal user.
- * &lt;br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#access-control-for-the-api - security.get_allowlist}
+ * Execute an algorithm.
+ * &lt;br/> See Also: {@link undefined - ml.execute_algorithm}
  *
- * @memberOf API-Security
+ * @memberOf API-Ml
  *
- * @param {object} [params] - (Unused)
+ * @param {object} params
+ * @param {string} params.algorithm_name 
+ * @param {object} [params.body] 
+ *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
  */
-function getAllowlistFunc(params, options, callback) {
+function executeAlgorithmFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.algorithm_name == null) return handleMissingParam('algorithm_name', this, callback);
 
-  let { body, ...querystring } = params;
+  let { body, algorithm_name, ...querystring } = params;
+  algorithm_name = parsePathParam(algorithm_name);
 
-  const path = '/_plugins/_security/api/allowlist';
-  const method = 'GET';
+  const path = '/_plugins/_ml/_execute/' + algorithm_name;
+  const method = 'POST';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = getAllowlistFunc;
+module.exports = executeAlgorithmFunc;
 </code></pre>
         </article>
     </section>

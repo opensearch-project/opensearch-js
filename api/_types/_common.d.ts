@@ -271,6 +271,7 @@ export type GetStats = {
   missing_time?: Duration;
   missing_time_in_millis: DurationValueUnitMillis;
   missing_total: number;
+  time?: Duration;
   time_in_millis: DurationValueUnitMillis;
   total: number;
 }
@@ -825,7 +826,7 @@ export type TaskFailure = {
   task_id: number;
 }
 
-export type TaskId = string | number
+export type TaskId = string
 
 export type TermFrequencyNormalization = 'h1' | 'h2' | 'h3' | 'no' | 'z'
 

@@ -25,11 +25,11 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Cluster
  *
  * @param {object} [params]
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
- * @param {boolean} [params.include_defaults=false] - If `true`, returns default cluster settings from the local node.
- * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+ * @param {string} [params.cluster_manager_timeout] - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {boolean} [params.flat_settings=false] - When `true`, returns cluster settings in a flat format.
+ * @param {boolean} [params.include_defaults=false] - When `true`, returns default cluster settings from the local node.
+ * @param {string} [params.master_timeout] DEPRECATED - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {string} [params.timeout] - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

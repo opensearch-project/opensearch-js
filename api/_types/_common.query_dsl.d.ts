@@ -61,11 +61,14 @@ export type ConstantScoreQuery = QueryBase & {
   filter: QueryContainer;
 }
 
-export type DateDecayFunction = DecayFunctionBase & Record<string, any>
+export type DateDecayPlacement = {
+  decay?: number;
+  offset?: Common.Duration;
+  origin?: Common.DateTime;
+  scale?: Common.Duration;
+}
 
-export type DateDistanceFeatureQuery = DistanceFeatureQueryBaseDateMathDuration & Record<string, any>
-
-export type DateRangeQuery = RangeQueryBase & {
+export type DateRangeQueryParameters = {
   format?: Common.DateFormat;
   from?: Common.DateMath | undefined;
   gt?: Common.DateMath;
@@ -76,30 +79,20 @@ export type DateRangeQuery = RangeQueryBase & {
   to?: Common.DateMath | undefined;
 }
 
-export type DecayFunction = DateDecayFunction | NumericDecayFunction | GeoDecayFunction
+export type DecayFunction = DecayFunctionBase & Record<string, DecayPlacement>
 
 export type DecayFunctionBase = {
   multi_value_mode?: MultiValueMode;
 }
+
+export type DecayPlacement = DateDecayPlacement | GeoDecayPlacement | NumericDecayPlacement
 
 export type DisMaxQuery = QueryBase & {
   queries: QueryContainer[];
   tie_breaker?: number;
 }
 
-export type DistanceFeatureQuery = GeoDistanceFeatureQuery | DateDistanceFeatureQuery
-
-export type DistanceFeatureQueryBaseDateMathDuration = QueryBase & {
-  field: Common.Field;
-  origin: Common.DateMath;
-  pivot: Common.Duration;
-}
-
-export type DistanceFeatureQueryBaseGeoLocationDistance = QueryBase & {
-  field: Common.Field;
-  origin: Common.GeoLocation;
-  pivot: Common.Distance;
-}
+export type DistanceFeatureQuery = QueryBase & Record<string, any>
 
 export type ExistsQuery = QueryBase & {
   field: Common.Field;
@@ -109,6 +102,13 @@ export type FieldAndFormat = Common.Field | {
   field: Common.Field;
   format?: string;
   include_unmapped?: boolean;
+}
+
+export type FieldLookup = {
+  id: Common.Id;
+  index?: Common.IndexName;
+  path?: Common.Field;
+  routing?: Common.Routing;
 }
 
 export type FieldValueFactorModifier = 'ln' | 'ln1p' | 'ln2p' | 'log' | 'log1p' | 'log2p' | 'none' | 'reciprocal' | 'sqrt' | 'square'
@@ -160,9 +160,12 @@ export type GeoBoundingBoxQuery = QueryBase & {
   [key: string]: any | Common.GeoBounds;
 }
 
-export type GeoDecayFunction = DecayFunctionBase & Record<string, any>
-
-export type GeoDistanceFeatureQuery = DistanceFeatureQueryBaseGeoLocationDistance & Record<string, any>
+export type GeoDecayPlacement = {
+  decay?: number;
+  offset?: Common.Distance;
+  origin?: Common.GeoLocation;
+  scale?: Common.Distance;
+}
 
 export type GeoDistanceQuery = QueryBase & {
   distance: Common.Distance;
@@ -174,9 +177,14 @@ export type GeoDistanceQuery = QueryBase & {
 
 export type GeoExecution = 'indexed' | 'memory'
 
+export type GeoPolygonPoints = {
+  points: Common.GeoLocation[];
+}
+
 export type GeoPolygonQuery = QueryBase & {
   ignore_unmapped?: IgnoreUnmapped;
   validation_method?: GeoValidationMethod;
+  [key: string]: any | GeoPolygonPoints;
 }
 
 export type GeoShape = {
@@ -184,14 +192,15 @@ export type GeoShape = {
   type?: string;
 }
 
-export type GeoShapeField = {
-  relation?: Common.GeoShapeRelation;
-  shape: GeoShape;
-}
-
 export type GeoShapeQuery = QueryBase & {
   ignore_unmapped?: IgnoreUnmapped;
-  [key: string]: any | GeoShapeField;
+  [key: string]: any | GeoShapeQueryField;
+}
+
+export type GeoShapeQueryField = {
+  indexed_shape?: FieldLookup;
+  relation?: Common.GeoShapeRelation;
+  shape: GeoShape;
 }
 
 export type GeoValidationMethod = 'coerce' | 'ignore_malformed' | 'strict'
@@ -297,14 +306,17 @@ export type IntervalsWildcard = {
 }
 
 export type KnnQuery = QueryBase & {
-  filter?: QueryContainer | QueryContainer[];
+  expand_nested_docs?: boolean;
+  filter?: QueryContainer;
   k?: number;
   max_distance?: number;
-  method_parameters?: Record<string, number>;
+  method_parameters?: Record<string, any>;
   min_score?: number;
-  rescore?: Record<string, number>;
+  rescore?: KnnQueryRescore;
   vector: QueryVector;
 }
+
+export type KnnQueryRescore = boolean | RescoreContext
 
 export type Like = string | LikeDocument
 
@@ -429,16 +441,21 @@ export type NeuralQuery = QueryBase & {
   query_text?: string;
 }
 
-export type NumberRangeQuery = RangeQueryBase & {
-  from?: undefined | number | string;
+export type NumberRangeQueryParameters = {
+  from?: number | string | undefined;
   gt?: number;
   gte?: number;
   lt?: number;
   lte?: number;
-  to?: undefined | number | string;
+  to?: number | string | undefined;
 }
 
-export type NumericDecayFunction = DecayFunctionBase & Record<string, any>
+export type NumericDecayPlacement = {
+  decay?: number;
+  offset?: number;
+  origin?: number;
+  scale?: number;
+}
 
 export type Operator = 'and' | 'AND' | 'or' | 'OR'
 
@@ -573,7 +590,7 @@ export type RandomScoreFunction = {
   seed?: number | string;
 }
 
-export type RangeQuery = DateRangeQuery | NumberRangeQuery
+export type RangeQuery = RangeQueryBase & Record<string, any>
 
 export type RangeQueryBase = QueryBase & {
   relation?: RangeRelation;
@@ -613,6 +630,10 @@ export type RegexpQuery = string | (QueryBase & {
   rewrite?: Common.MultiTermQueryRewrite;
   value: string;
 })
+
+export type RescoreContext = {
+  oversample_factor?: number;
+}
 
 export type ScriptQuery = QueryBase & {
   script: Common.Script;
@@ -757,12 +778,16 @@ export type XyShape = {
   type?: string;
 }
 
-export type XyShapeField = {
+export type XyShapeQuery = QueryBase & {
+  ignore_unmapped?: boolean;
+  [key: string]: any | XyShapeQueryField;
+}
+
+export type XyShapeQueryField = {
+  indexed_shape?: FieldLookup;
   relation?: Common.GeoShapeRelation;
   shape: XyShape;
 }
 
-export type XyShapeQuery = QueryBase & Record<string, XyShapeField>
-
-export type ZeroTermsQuery = 'all' | 'none'
+export type ZeroTermsQuery = 'all' | 'ALL' | 'none' | 'NONE'
 

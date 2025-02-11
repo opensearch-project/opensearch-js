@@ -275,6 +275,7 @@ import { Knn_TrainModel_Request, Knn_TrainModel_Response, Knn_TrainModel_Respons
 import { Knn_DeleteModel_Request, Knn_DeleteModel_Response, Knn_DeleteModel_ResponseBody } from './knn/deleteModel';
 import { Knn_GetModel_Request, Knn_GetModel_Response, Knn_GetModel_ResponseBody } from './knn/getModel';
 import { Knn_Warmup_Request, Knn_Warmup_Response, Knn_Warmup_ResponseBody } from './knn/warmup';
+import { Ml_ExecuteAlgorithm_Request, Ml_ExecuteAlgorithm_RequestBody, Ml_ExecuteAlgorithm_Response, Ml_ExecuteAlgorithm_ResponseBody } from './ml/executeAlgorithm';
 import { Ml_Predict_Request, Ml_Predict_RequestBody, Ml_Predict_Response, Ml_Predict_ResponseBody } from './ml/predict';
 import { Ml_TrainPredict_Request, Ml_TrainPredict_RequestBody, Ml_TrainPredict_Response, Ml_TrainPredict_ResponseBody } from './ml/trainPredict';
 import { Ml_Train_Request, Ml_Train_RequestBody, Ml_Train_Response, Ml_Train_ResponseBody } from './ml/train';
@@ -682,6 +683,7 @@ export {
   Knn_DeleteModel_Request, Knn_DeleteModel_Response, Knn_DeleteModel_ResponseBody,
   Knn_GetModel_Request, Knn_GetModel_Response, Knn_GetModel_ResponseBody,
   Knn_Warmup_Request, Knn_Warmup_Response, Knn_Warmup_ResponseBody,
+  Ml_ExecuteAlgorithm_Request, Ml_ExecuteAlgorithm_RequestBody, Ml_ExecuteAlgorithm_Response, Ml_ExecuteAlgorithm_ResponseBody,
   Ml_Predict_Request, Ml_Predict_RequestBody, Ml_Predict_Response, Ml_Predict_ResponseBody,
   Ml_TrainPredict_Request, Ml_TrainPredict_RequestBody, Ml_TrainPredict_Response, Ml_TrainPredict_ResponseBody,
   Ml_Train_Request, Ml_Train_RequestBody, Ml_Train_Response, Ml_Train_ResponseBody,

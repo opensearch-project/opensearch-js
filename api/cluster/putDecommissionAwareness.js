@@ -19,14 +19,14 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Decommissions an awareness attribute.
+ * Decommissions a cluster zone based on awareness. This can greatly benefit multi-zone deployments, where awareness attributes can aid in applying new upgrades to a cluster in a controlled fashion.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-decommission/#example-decommissioning-and-recommissioning-a-zone - cluster.put_decommission_awareness}
  *
  * @memberOf API-Cluster
  *
  * @param {object} params
- * @param {string} params.awareness_attribute_name - Awareness attribute name.
- * @param {string} params.awareness_attribute_value - Awareness attribute value.
+ * @param {string} params.awareness_attribute_name - The name of the awareness attribute.
+ * @param {string} params.awareness_attribute_value - The value of the awareness attribute.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

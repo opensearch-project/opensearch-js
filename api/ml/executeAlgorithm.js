@@ -16,30 +16,35 @@
 
 'use strict';
 
-const { normalizeArguments } = require('../utils');
+const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Monitors any asynchronous searches that are `running`, `completed`, or `persisted`.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/async/index/#monitor-stats - asynchronous_search.stats}
+ * Execute an algorithm.
+ * <br/> See Also: {@link undefined - ml.execute_algorithm}
  *
- * @memberOf API-Asynchronous-Search
+ * @memberOf API-Ml
  *
- * @param {object} [params] - (Unused)
+ * @param {object} params
+ * @param {string} params.algorithm_name 
+ * @param {object} [params.body] 
+ *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function statsFunc(params, options, callback) {
+function executeAlgorithmFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.algorithm_name == null) return handleMissingParam('algorithm_name', this, callback);
 
-  let { body, ...querystring } = params;
+  let { body, algorithm_name, ...querystring } = params;
+  algorithm_name = parsePathParam(algorithm_name);
 
-  const path = '/_plugins/_asynchronous_search/stats';
-  const method = 'GET';
+  const path = '/_plugins/_ml/_execute/' + algorithm_name;
+  const method = 'POST';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = statsFunc;
+module.exports = executeAlgorithmFunc;

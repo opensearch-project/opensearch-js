@@ -31,6 +31,7 @@ export type AdditionalInfo = Record<string, any>
 
 export type Aggregation = {
   field?: string;
+  max?: Aggregation;
   sum?: Aggregation;
   [key: string]: any;
 }
@@ -41,6 +42,7 @@ export type Algorithm = {
 
 export type AlgorithmOperations = {
   deploy?: ModelStats;
+  execute?: ModelStats;
   predict?: ModelStats;
   register?: ModelStats;
   train?: ModelStats;
@@ -55,6 +57,13 @@ export type BoolQuery = {
   must?: Filter[];
   must_not?: Filter;
   should?: Filter[];
+}
+
+export type Buckets = {
+  end_time?: number;
+  entities?: Entity[];
+  overall_aggregate_value?: number;
+  start_time?: number;
 }
 
 export type ByteBuffer = {
@@ -82,6 +91,26 @@ export type Credential = {
   secret_key?: string;
   session_token?: string;
   [key: string]: any;
+}
+
+export type Entity = {
+  base_value?: number;
+  contribution_value?: number;
+  key?: string[];
+  new_value?: number;
+}
+
+export type ExecuteAlgorithmResponse = ExecuteLocalSampleCalculatorResponse | {
+  results?: ExecuteAnomalyLocalizationResponse[];
+}
+
+export type ExecuteAnomalyLocalizationResponse = {
+  name?: string;
+  result?: Result;
+}
+
+export type ExecuteLocalSampleCalculatorResponse = {
+  result?: number;
 }
 
 export type Exists = {
@@ -258,6 +287,7 @@ export type ModelGroupRegistration = {
 
 export type ModelProfile = {
   deploy?: ModelStats;
+  execute?: ModelStats;
   memory_size_estimation_cpu?: number;
   memory_size_estimation_gpu?: number;
   model_state?: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED';
@@ -394,6 +424,10 @@ export type Range = {
 export type RateLimiter = {
   limit: Common.StringifiedDouble;
   unit: 'DAYS' | 'HOURS' | 'MICROSECONDS' | 'MILLISECONDS' | 'MINUTES' | 'NANOSECONDS' | 'SECONDS';
+}
+
+export type Result = {
+  buckets?: Buckets[];
 }
 
 export type Rows = {

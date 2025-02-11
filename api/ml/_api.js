@@ -34,6 +34,7 @@ function MlApi(bindObj) {
   this.deleteTask = require('./deleteTask').bind(bindObj);
   this.deployModel = require('./deployModel').bind(bindObj);
   this.executeAgent = require('./executeAgent').bind(bindObj);
+  this.executeAlgorithm = require('./executeAlgorithm').bind(bindObj);
   this.getAgent = require('./getAgent').bind(bindObj);
   this.getAllMemories = require('./getAllMemories').bind(bindObj);
   this.getAllMessages = require('./getAllMessages').bind(bindObj);
@@ -108,6 +109,8 @@ function MlApi(bindObj) {
   this.deploy_model = require('./deployModel').bind(bindObj);
   // Deprecated: Use executeAgent instead.
   this.execute_agent = require('./executeAgent').bind(bindObj);
+  // Deprecated: Use executeAlgorithm instead.
+  this.execute_algorithm = require('./executeAlgorithm').bind(bindObj);
   // Deprecated: Use getAgent instead.
   this.get_agent = require('./getAgent').bind(bindObj);
   // Deprecated: Use getAllMemories instead.

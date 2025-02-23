@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Updates individual attributes of a role mapping.
+ * Updates the individual attributes of a role mapping.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-role-mapping - security.patch_role_mapping}
  *
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.role - The name of the role to update role-mapping for.
+ * @param {string} params.role - The name of the role to update a role mapping for
  * @param {array} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Reload Transport layer communication certificates.
+ * Reloads the transport communication certificates.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#reload-transport-certificates - security.reload_transport_certificates}
  *
  * @memberOf API-Security

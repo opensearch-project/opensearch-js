@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Retrieves the tenant names if any exist. Only accessible to super admins or kibanaserver user.
+ * Retrieves the names of current tenants. Requires super admin or `kibanaserver` permissions.
  * <br/> See Also: {@link undefined - security.tenant_info}
  *
  * @memberOf API-Security

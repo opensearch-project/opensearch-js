@@ -19,7 +19,7 @@
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * A PATCH call is used to update specified fields in the audit configuration.
+ * Updates the specified fields in the audit configuration.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#audit-logs - security.patch_audit_configuration}
  *
  * @memberOf API-Security

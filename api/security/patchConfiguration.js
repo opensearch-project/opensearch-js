@@ -19,7 +19,7 @@
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * A `PATCH` call is used to update the existing configuration using the REST API. Only accessible by admins and users with REST API access and only when put or patch is enabled.
+ * Updates the existing security configuration using the REST API. Requires super admin or REST API permissions.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-configuration - security.patch_configuration}
  *
  * @memberOf API-Security

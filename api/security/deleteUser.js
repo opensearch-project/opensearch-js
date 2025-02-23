@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Delete the specified user.
+ * Deletes the specified internal user.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#delete-user - security.delete_user}
  *
  * @memberOf API-Security

@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Retrieves one role mapping.
+ * Retrieves the specified role mapping.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-role-mapping - security.get_role_mapping}
  *
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.role 
+ * @param {string} params.role - The name of the role mapping to retrieve.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

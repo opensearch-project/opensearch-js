@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Helps cluster operator upgrade missing defaults and stale default definitions.
+ * Assists the cluster operator with upgrading missing default values and stale default definitions.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#configuration-upgrade - security.config_upgrade_perform}
  *
  * @memberOf API-Security

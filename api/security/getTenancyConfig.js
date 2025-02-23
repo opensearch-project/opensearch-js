@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Retrieves multi-tenancy configuration. Only accessible to admins and users with REST API permissions.
+ * Retrieves the multi-tenancy configuration. Requires super admin or REST API permissions.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/multi-tenancy/dynamic-config/#configuring-multi-tenancy-with-the-rest-api - security.get_tenancy_config}
  *
  * @memberOf API-Security

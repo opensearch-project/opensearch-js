@@ -19,15 +19,15 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Retrieves the given node's security certificates.
+ * Retrieves the specified node's security certificates.
  * <br/> See Also: {@link undefined - security.get_node_certificates}
  *
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} [params.cert_type] - The type of certificates (HTTP, TRANSPORT, ALL) to retrieve for a node.
- * @param {string} [params.timeout] - The maximum duration, in seconds, to be spent to retrieve a node's certificates.
- * @param {string} params.node_id - The full-id of the node to retrieve certificates.
+ * @param {string} [params.cert_type] - The type of certificates (`HTTP`, `TRANSPORT`, or `ALL`) to retrieve from a node.
+ * @param {string} [params.timeout] - The maximum duration, in seconds, to spend retrieving certificates from all nodes before a timeout.
+ * @param {string} params.node_id - The node ID to retrieve certificates for.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

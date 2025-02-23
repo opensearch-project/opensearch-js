@@ -25,8 +25,8 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Security
  *
  * @param {object} [params]
- * @param {string} [params.cert_type] - The type of certificates (HTTP, TRANSPORT, ALL) to retrieve from all nodes.
- * @param {string} [params.timeout] - The maximum duration, in seconds, to be spent to retrieve certificates from all nodes.
+ * @param {string} [params.cert_type] - The type of certificates (`HTTP`, `TRANSPORT`, or `ALL`) to retrieve from all nodes.
+ * @param {string} [params.timeout] - The maximum duration, in seconds, to spend retrieving certificates from all nodes before a timeout.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

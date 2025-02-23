@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Updates a distinguished cluster name for a specific cluster. Only accessible to super-admins and with rest-api permissions when enabled.
+ * Updates the distinguished cluster name for the specified cluster. Requires super admin or REST API permissions.
  * <br/> See Also: {@link undefined - security.patch_distinguished_name}
  *
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.cluster_name - The cluster name to update `nodesDn` value.
+ * @param {string} params.cluster_name - The cluster name to update the `nodesDn` value.
  * @param {array} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

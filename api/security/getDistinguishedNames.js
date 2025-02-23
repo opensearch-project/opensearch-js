@@ -19,13 +19,13 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Retrieves distinguished names. Only accessible to super-admins and with rest-api permissions when enabled.
+ * Retrieves all node distinguished names. Requires super admin or REST API permissions.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-distinguished-names - security.get_distinguished_names}
  *
  * @memberOf API-Security
  *
  * @param {object} [params]
- * @param {boolean} [params.show_all] - A Boolean flag to include/exclude static nodes DN from final result.
+ * @param {boolean} [params.show_all] - Whether to include or exclude any static node's DN settings from the final result.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

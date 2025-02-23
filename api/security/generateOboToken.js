@@ -19,7 +19,7 @@
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * Generates On-Behalf-Of token for the current user.
+ * Generates a `On-Behalf-Of` token for the current user.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/authentication-tokens/#api-endpoint - security.generate_obo_token}
  *
  * @memberOf API-Security

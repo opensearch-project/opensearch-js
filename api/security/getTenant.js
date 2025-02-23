@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Retrieves one tenant.
+ * Retrieves the specified tenant.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-tenant - security.get_tenant}
  *
  * @memberOf API-Security

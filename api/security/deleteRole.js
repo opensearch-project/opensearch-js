@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Delete the specified role.
+ * Deletes the specified role.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#delete-role - security.delete_role}
  *
  * @memberOf API-Security

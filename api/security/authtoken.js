@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Returns the authorization token.
+ * Returns the authorization token for the current user.
  * <br/> See Also: {@link undefined - security.authtoken}
  *
  * @memberOf API-Security

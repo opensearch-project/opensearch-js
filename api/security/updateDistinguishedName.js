@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Adds or updates the specified distinguished names in the cluster or node allow list. Only accessible to super-admins and with rest-api permissions when enabled.
+ * Adds or updates the specified distinguished names in the cluster or node allowlist. Requires super admin or REST API permissions.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#update-distinguished-names - security.update_distinguished_name}
  *
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.cluster_name - The cluster-name to create/update `nodesDn` value for.
+ * @param {string} params.cluster_name - The name of the cluster containing the `nodesDn` value to create or update.
  * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

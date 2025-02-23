@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Check whether or not an upgrade can be performed and what resources can be updated.
+ * Checks whether or not an upgrade can be performed and which security resources can be updated.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#configuration-upgrade-check - security.config_upgrade_check}
  *
  * @memberOf API-Security

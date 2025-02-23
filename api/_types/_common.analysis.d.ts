@@ -493,6 +493,16 @@ export type SimpleAnalyzer = {
   version?: Common.VersionString;
 }
 
+export type SimplePatternSplitTokenizer = TokenizerBase & {
+  pattern?: string;
+  type: 'simple_pattern_split';
+}
+
+export type SimplePatternTokenizer = TokenizerBase & {
+  pattern?: string;
+  type: 'simple_pattern';
+}
+
 export type SmartcnAnalyzer = {
   type?: 'smartcn';
 }
@@ -598,7 +608,7 @@ export type TokenizerBase = {
   version?: Common.VersionString;
 }
 
-export type TokenizerDefinition = CharGroupTokenizer | EdgeNGramTokenizer | KeywordTokenizer | LetterTokenizer | LowercaseTokenizer | NGramTokenizer | NoriTokenizer | PathHierarchyTokenizer | StandardTokenizer | UaxEmailUrlTokenizer | WhitespaceTokenizer | KuromojiTokenizer | PatternTokenizer | IcuTokenizer | SmartcnTokenizer
+export type TokenizerDefinition = CharGroupTokenizer | EdgeNGramTokenizer | KeywordTokenizer | LetterTokenizer | LowercaseTokenizer | NGramTokenizer | NoriTokenizer | PathHierarchyTokenizer | StandardTokenizer | UaxEmailUrlTokenizer | WhitespaceTokenizer | KuromojiTokenizer | PatternTokenizer | SimplePatternTokenizer | SimplePatternSplitTokenizer | IcuTokenizer | SmartcnTokenizer
 
 export type TrimTokenFilter = TokenFilterBase & {
   type: 'trim';

@@ -19,13 +19,13 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Retrieves the SSL configuration information.
+ * Retrieves information about the SSL configuration.
  * <br/> See Also: {@link undefined - security.get_sslinfo}
  *
  * @memberOf API-Security
  *
  * @param {object} [params]
- * @param {boolean | string} [params.show_dn] - A Boolean flag to indicate whether all domain names should be returned.
+ * @param {boolean | string} [params.show_dn] - Whether to include all domain names in the response.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

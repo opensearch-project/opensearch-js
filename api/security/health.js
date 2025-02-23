@@ -19,13 +19,13 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Checks to see if the Security plugin is up and running.
+ * Checks to see if the Security plugin is running.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#health-check - security.health}
  *
  * @memberOf API-Security
  *
  * @param {object} [params]
- * @param {string} [params.mode] - A flag to indicate whether service should consider security-plugin's status before returning health response. `strict` mode indicates service should check Security plugin status.
+ * @param {string} [params.mode] - A flag that determines whether to consider the security status before returning a response for a health query response. For example, `strict` mode indicates service should check the Security plugin status.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

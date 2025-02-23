@@ -19,7 +19,7 @@
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * Bulk update of distinguished names. Only accessible to super-admins and with rest-api permissions when enabled.
+ * Bulk updates specified node distinguished names. Requires super admin or REST API permissions.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#update-all-distinguished-names - security.patch_distinguished_names}
  *
  * @memberOf API-Security

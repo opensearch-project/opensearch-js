@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Updates individual attributes of an action group.
+ * Updates the individual attributes of an action group.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-action-group - security.patch_action_group}
  *
  * @memberOf API-Security

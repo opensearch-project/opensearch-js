@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Deletes all distinguished names in the specified cluster or node allow list. Only accessible to super-admins and with rest-api permissions when enabled.
+ * Deletes all distinguished names in the specified cluster or node allowlist. Requires super admin or REST API permissions.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#delete-distinguished-names - security.delete_distinguished_name}
  *
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.cluster_name - The cluster-name to delete from list of distinguished names.
+ * @param {string} params.cluster_name - The cluster name to delete from list of distinguished names.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

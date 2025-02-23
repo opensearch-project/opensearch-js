@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Migrates security configuration from v6 to v7.
+ * Migrates the security configuration from v6 to v7.
  * <br/> See Also: {@link undefined - security.migrate}
  *
  * @memberOf API-Security

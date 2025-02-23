@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Gets the user identity related information for currently logged in user.
+ * Gets the identity information for the user currently logged in.
  * <br/> See Also: {@link undefined - security.who_am_i}
  *
  * @memberOf API-Security

@@ -14,6 +14,7 @@
  * modify the API generator.
  */
 
+import * as Common_QueryDsl from './_common.query_dsl'
 
 export type CollapseResponseProcessor = {
   context_prefix?: string;
@@ -26,7 +27,7 @@ export type CollapseResponseProcessor = {
 export type FilterQueryRequestProcessor = {
   description?: string;
   ignore_failure?: boolean;
-  query?: UserDefinedObjectStructure;
+  query?: Common_QueryDsl.QueryContainer;
   tag?: string;
 }
 
@@ -186,64 +187,5 @@ export type TruncateHitsResponseProcessor = {
   ignore_failure?: boolean;
   tag?: string;
   target_size?: number;
-}
-
-export type UserDefinedObjectStructure = {
-  bool?: any;
-  boosting?: any;
-  combined_fields?: any;
-  constant_score?: any;
-  dis_max?: any;
-  distance_feature?: any;
-  exists?: any;
-  field_masking_span?: any;
-  function_score?: any;
-  fuzzy?: UserDefinedValueMap;
-  geo_bounding_box?: any;
-  geo_distance?: any;
-  geo_polygon?: any;
-  geo_shape?: any;
-  has_child?: any;
-  has_parent?: any;
-  ids?: any;
-  intervals?: UserDefinedValueMap;
-  knn?: any;
-  match?: UserDefinedValueMap;
-  match_all?: any;
-  match_bool_prefix?: UserDefinedValueMap;
-  match_none?: any;
-  match_phrase?: UserDefinedValueMap;
-  match_phrase_prefix?: UserDefinedValueMap;
-  more_like_this?: any;
-  multi_match?: any;
-  nested?: any;
-  parent_id?: any;
-  percolate?: any;
-  pinned?: any;
-  prefix?: UserDefinedValueMap;
-  query_string?: any;
-  range?: UserDefinedValueMap;
-  rank_feature?: any;
-  regexp?: UserDefinedValueMap;
-  script?: any;
-  script_score?: any;
-  shape?: any;
-  simple_query_string?: any;
-  span_containing?: any;
-  span_first?: any;
-  span_multi?: any;
-  span_near?: any;
-  span_not?: any;
-  span_or?: any;
-  span_term?: UserDefinedValueMap;
-  span_within?: any;
-  term?: UserDefinedValueMap;
-  terms?: any;
-  terms_set?: UserDefinedValueMap;
-  wildcard?: UserDefinedValueMap;
-  wrapper?: any;
-}
-
-export type UserDefinedValueMap = {
 }
 

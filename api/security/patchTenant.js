@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Add, delete, or modify a single tenant.
+ * Adds, deletes, or modifies a single tenant.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-tenant - security.patch_tenant}
  *
  * @memberOf API-Security

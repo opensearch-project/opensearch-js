@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Gets the evaluated REST API permissions for the currently logged in user.
+ * Retrieves the evaluated REST API permissions for the currently logged in user.
  * <br/> See Also: {@link undefined - security.get_permissions_info}
  *
  * @memberOf API-Security

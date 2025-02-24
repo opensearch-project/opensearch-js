@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Updates the current security-dashboards plugin configuration.
+ * Retrieves the current values for dynamic security settings for OpenSearch Dashboards.
  * <br/> See Also: {@link undefined - security.post_dashboards_info}
  *
  * @memberOf API-Security

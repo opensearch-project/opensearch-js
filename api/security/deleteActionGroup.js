@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Delete a specified action group.
+ * Deletes the specified action group.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#delete-action-group - security.delete_action_group}
  *
  * @memberOf API-Security

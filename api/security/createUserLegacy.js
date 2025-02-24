@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.username - The name of the user to be created.
+ * @param {string} params.username - The name of the user to create.
  * @param {object} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

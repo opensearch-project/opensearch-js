@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.username - The name of the user for whom an auth token is to be vended.
+ * @param {string} params.username - The name of the user for whom to issue an authorization token.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

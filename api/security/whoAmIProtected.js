@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Gets the user identity related information for currently logged in user. User needs to have access to this endpoint when authorization at REST layer is enabled.
+ * Gets the identity information for the user currently logged in. To use this operation, you must have access to this endpoint when authorization at REST layer is enabled.
  * <br/> See Also: {@link undefined - security.who_am_i_protected}
  *
  * @memberOf API-Security

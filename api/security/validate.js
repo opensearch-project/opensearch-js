@@ -25,7 +25,7 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Security
  *
  * @param {object} [params]
- * @param {boolean} [params.accept_invalid] - A Boolean flag to indicate whether invalid v6 configuration should be allowed.
+ * @param {boolean} [params.accept_invalid] - Whether an invalid v6 configuration should be allowed.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

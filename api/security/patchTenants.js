@@ -19,7 +19,7 @@
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * Add, delete, or modify multiple tenants in a single call.
+ * Adds, deletes, or modifies multiple tenants in a single request.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-tenants - security.patch_tenants}
  *
  * @memberOf API-Security

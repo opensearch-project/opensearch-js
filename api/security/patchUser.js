@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Updates individual attributes of an internal user.
+ * Updates individual attributes for an internal user.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-user - security.patch_user}
  *
  * @memberOf API-Security

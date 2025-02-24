@@ -19,7 +19,7 @@
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * Creates or updates multiple role mappings in a single call.
+ * Creates or updates multiple role mappings in a single request.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-role-mappings - security.patch_role_mappings}
  *
  * @memberOf API-Security

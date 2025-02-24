@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Delete the specified tenant.
+ * Deletes the specified tenant.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#delete-action-group - security.delete_tenant}
  *
  * @memberOf API-Security

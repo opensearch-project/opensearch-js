@@ -52,27 +52,30 @@ export type AggregationProfileDebug = {
   collection_strategy?: string;
   deferred_aggregators?: string[];
   delegate?: string;
-  delegate_debug?: AggregationProfileDebug;
+  delegate_debug?: AggregationProfileDelegateDebug;
   empty_collectors_used?: number;
   extract_count?: number;
   extract_ns?: number;
-  filters?: AggregationProfileDelegateDebugFilter[];
   has_filter?: boolean;
   map_reducer?: string;
   numeric_collectors_used?: number;
   ordinals_collectors_overhead_too_high?: number;
   ordinals_collectors_used?: number;
   result_strategy?: string;
-  segments_collected?: number;
-  segments_counted?: number;
-  segments_with_deleted_docs?: number;
-  segments_with_doc_count_field?: number;
   segments_with_multi_valued_ords?: number;
   segments_with_single_valued_ords?: number;
   string_hashing_collectors_used?: number;
   surviving_buckets?: number;
   total_buckets?: number;
   values_fetched?: number;
+}
+
+export type AggregationProfileDelegateDebug = {
+  filters?: AggregationProfileDelegateDebugFilter[];
+  segments_collected?: number;
+  segments_counted?: number;
+  segments_with_deleted_docs?: number;
+  segments_with_doc_count_field?: number;
 }
 
 export type AggregationProfileDelegateDebugFilter = {
@@ -93,8 +96,23 @@ export type Collector = {
   time_in_nanos: Common.DurationValueUnitNanos;
 }
 
+export type CompletionContext = Context | {
+  boost?: number;
+  context: Context;
+  neighbours?: Common.GeoHashPrecision[];
+  precision?: Common.GeoHashPrecision;
+  prefix?: boolean;
+}
+
 export type CompletionSuggest = SuggestBase & {
   options: CompletionSuggestOption | CompletionSuggestOption[];
+}
+
+export type CompletionSuggester = SuggesterBase & {
+  contexts?: Record<string, CompletionContext[]>;
+  fuzzy?: SuggestFuzziness;
+  regex?: string;
+  skip_duplicates?: boolean;
 }
 
 export type CompletionSuggestOption = {
@@ -111,6 +129,20 @@ export type CompletionSuggestOption = {
 }
 
 export type Context = string | Common.GeoLocation
+
+export type DirectGenerator = {
+  field: string;
+  max_edits?: number;
+  max_inspections?: number;
+  max_term_freq?: number;
+  min_doc_freq?: number;
+  min_word_length?: number;
+  post_filter?: string;
+  pre_filter?: string;
+  prefix_length?: number;
+  size?: number;
+  suggest_mode?: Common.SuggestMode;
+}
 
 export type FetchProfile = {
   breakdown: FetchProfileBreakdown;
@@ -141,6 +173,15 @@ export type FieldCollapse = {
   field: Common.Field;
   inner_hits?: InnerHits | InnerHits[];
   max_concurrent_group_searches?: number;
+}
+
+export type FieldSuggester = {
+  completion?: CompletionSuggester;
+  phrase?: PhraseSuggester;
+  prefix?: string;
+  regex?: string;
+  term?: TermSuggester;
+  text?: string;
 }
 
 export type Highlight = HighlightBase & {
@@ -240,6 +281,16 @@ export type InnerHitsResult = {
   hits: HitsMetadata;
 }
 
+export type LaplaceSmoothingModel = {
+  alpha: number;
+}
+
+export type LinearInterpolationSmoothingModel = {
+  bigram_lambda: number;
+  trigram_lambda: number;
+  unigram_lambda: number;
+}
+
 export type NestedIdentity = {
   _nested?: NestedIdentity;
   field: Common.Field;
@@ -248,6 +299,38 @@ export type NestedIdentity = {
 
 export type PhraseSuggest = SuggestBase & {
   options: PhraseSuggestOption | PhraseSuggestOption[];
+}
+
+export type PhraseSuggestCollate = {
+  params?: Record<string, any>;
+  prune?: boolean;
+  query: PhraseSuggestCollateQuery;
+}
+
+export type PhraseSuggestCollateQuery = {
+  id?: string;
+  source?: string;
+}
+
+export type PhraseSuggester = SuggesterBase & {
+  collate?: PhraseSuggestCollate;
+  confidence?: number;
+  direct_generator?: DirectGenerator[];
+  force_unigrams?: boolean;
+  gram_size?: number;
+  highlight?: PhraseSuggestHighlight;
+  max_errors?: number;
+  real_word_error_likelihood?: number;
+  separator?: string;
+  shard_size?: number;
+  smoothing?: SmoothingModel;
+  text?: string;
+  token_limit?: number;
+}
+
+export type PhraseSuggestHighlight = {
+  post_tag: string;
+  pre_tag: string;
 }
 
 export type PhraseSuggestOption = {
@@ -340,6 +423,12 @@ export type ShardProfile = {
   searches: SearchProfile[];
 }
 
+export type SmoothingModel = {
+  laplace?: LaplaceSmoothingModel;
+  linear_interpolation?: LinearInterpolationSmoothingModel;
+  stupid_backoff?: StupidBackoffSmoothingModel;
+}
+
 export type SourceConfig = boolean | SourceFilter
 
 export type SourceConfigParam = boolean | Common.Fields
@@ -347,6 +436,12 @@ export type SourceConfigParam = boolean | Common.Fields
 export type SourceFilter = Common.Fields | {
   excludes?: Common.Fields;
   includes?: Common.Fields;
+}
+
+export type StringDistance = 'damerau_levenshtein' | 'internal' | 'jaro_winkler' | 'levenshtein' | 'ngram'
+
+export type StupidBackoffSmoothingModel = {
+  discount: number;
 }
 
 export type Suggest = CompletionSuggest | PhraseSuggest | TermSuggest
@@ -359,15 +454,47 @@ export type SuggestBase = {
 
 export type Suggester = {
   text?: string;
+  [key: string]: any | FieldSuggester;
 }
+
+export type SuggesterBase = {
+  analyzer?: string;
+  field: string;
+  size?: number;
+}
+
+export type SuggestFuzziness = {
+  fuzziness: string;
+  min_length: number;
+  prefix_length: number;
+  transpositions: boolean;
+  unicode_aware: boolean;
+}
+
+export type SuggestSort = 'frequency' | 'score'
 
 export type TermSuggest = SuggestBase & {
   options: TermSuggestOption | TermSuggestOption[];
 }
 
+export type TermSuggester = SuggesterBase & {
+  lowercase_terms?: boolean;
+  max_edits?: number;
+  max_inspections?: number;
+  max_term_freq?: number;
+  min_doc_freq?: number;
+  min_word_length?: number;
+  prefix_length?: number;
+  shard_size?: number;
+  sort?: SuggestSort;
+  string_distance?: StringDistance;
+  suggest_mode?: Common.SuggestMode;
+  text?: string;
+}
+
 export type TermSuggestOption = {
   collate_match?: boolean;
-  freq: number;
+  freq?: number;
   highlighted?: string;
   score: number;
   text: string;

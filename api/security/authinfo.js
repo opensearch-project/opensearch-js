@@ -19,14 +19,14 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Returns the authentication information.
+ * Returns or updates authentication information for the currently authenticated user.
  * <br/> See Also: {@link undefined - security.authinfo}
  *
  * @memberOf API-Security
  *
  * @param {object} [params]
- * @param {string} [params.auth_type] - The type of current authentication request.
- * @param {boolean} [params.verbose] - Indicates whether a verbose response should be returned.
+ * @param {string} [params.auth_type] - The type of the current authentication request.
+ * @param {boolean} [params.verbose] - Whether to return a verbose response.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

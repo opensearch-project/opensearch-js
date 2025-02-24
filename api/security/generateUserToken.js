@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Generates authorization token for the given user.
+ * Generates an authorization token for the specified user.
  * <br/> See Also: {@link undefined - security.generate_user_token}
  *
  * @memberOf API-Security
  *
  * @param {object} params
- * @param {string} params.username - The name of the user for whom an auth token is to be vended.
+ * @param {string} params.username - The name of the user for whom to issue an authorization token.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

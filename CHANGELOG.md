@@ -11,6 +11,10 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 ### Security
 
+## [3.4.0]
+### Changed
+- Updated API to match the OpenSearch spec from Feb 24, 2025
+
 ## [3.3.0]
 ### Changed
 - Updated API to match the OpenSearch spec from Feb 11, 2025

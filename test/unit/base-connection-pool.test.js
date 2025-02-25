@@ -628,5 +628,36 @@ test('API', (t) => {
     }
   });
 
+  t.test('Should skip nodes when the http property is undefined', (t) => {
+    const pool = new BaseConnectionPool({ Connection });
+    const nodes = {
+      a1: {
+        http: {
+          publish_address: '127.0.0.1:9200',
+        },
+        roles: ['master', 'data', 'ingest'],
+      },
+      a2: {
+        roles: ['master', 'data', 'ingest'],
+      },
+    };
+
+    t.same(pool.nodesToHost(nodes, 'http:'), [
+      {
+        url: new URL('http://127.0.0.1:9200'),
+        id: 'a1',
+        roles: {
+          master: true,
+          data: true,
+          ingest: true,
+        },
+      },
+    ]);
+
+    t.equal(pool.nodesToHost(nodes, 'http:').length, 1);
+    t.equal(pool.nodesToHost(nodes, 'http:')[0].url.host, '127.0.0.1:9200');
+    t.end();
+  });
+
   t.end();
 });

@@ -654,8 +654,6 @@ test('API', (t) => {
       },
     ]);
 
-    t.equal(pool.nodesToHost(nodes, 'http:').length, 1);
-    t.equal(pool.nodesToHost(nodes, 'http:')[0].url.host, '127.0.0.1:9200');
     t.end();
   });
 

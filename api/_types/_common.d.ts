@@ -471,6 +471,7 @@ export type PluginStats = {
   licensed?: boolean;
   name: Name;
   opensearch_version: VersionString;
+  optional_extended_plugins?: string[];
   version: VersionString;
 }
 

@@ -18,6 +18,8 @@ import * as Common from './_common'
 import * as Common_QueryDsl from './_common.query_dsl'
 import * as Core_Search from './_core.search'
 
+export type GroupingType = 'NONE' | 'SIMILARITY' | 'none' | 'similarity'
+
 export type Measurement = {
   aggregationType?: string;
   count?: number;
@@ -80,6 +82,8 @@ export type TopQueriesResponse = {
 }
 
 export type TopQuery = {
+  group_by?: GroupingType;
+  id?: string;
   indices?: string[];
   labels?: Record<string, any>;
   measurements?: Measurements;

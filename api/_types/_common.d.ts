@@ -471,6 +471,7 @@ export type PluginStats = {
   licensed?: boolean;
   name: Name;
   opensearch_version: VersionString;
+  optional_extended_plugins?: string[];
   version: VersionString;
 }
 
@@ -894,7 +895,7 @@ export type WaitForActiveShardOptions = 'all' | 'index-setting'
 
 export type WaitForActiveShards = number | WaitForActiveShardOptions
 
-export type WaitForEvents = 'high' | 'immediate' | 'languid' | 'low' | 'normal' | 'urgent'
+export type WaitForEvents = 'immediate' | 'urgent' | 'high' | 'normal' | 'low' | 'languid'
 
 export type WarmerStats = {
   current: number;

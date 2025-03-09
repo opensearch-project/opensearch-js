@@ -25,7 +25,7 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Cluster
  *
  * @param {object} [params]
- * @param {string} [params.cluster_manager_timeout] - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
  * @param {boolean} [params.flat_settings=false] - When `true`, returns cluster settings in a flat format.
  * @param {boolean} [params.include_defaults=false] - When `true`, returns default cluster settings from the local node.
  * @param {string} [params.master_timeout] DEPRECATED - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value.

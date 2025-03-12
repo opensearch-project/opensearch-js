@@ -9,6 +9,8 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Api Generator: API functions that perform `HEAD` requests now return boolean values instead of the response body ([#993](https://github.com/opensearch-project/opensearch-js/pull/993))
+- Api Generator: Account for oneOf nested within AllOf ([#993](https://github.com/opensearch-project/opensearch-js/pull/993))
 ### Security
 
 ## [3.4.0]

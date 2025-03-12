@@ -6,7 +6,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 ### Changed
-- Api Generator: API functions that perform `HEAD` requests now return boolean values instead of the response body
+- Api Generator: API functions that perform `HEAD` requests now return boolean values instead of the response body ([#992](https://github.com/opensearch-project/opensearch-js/pull/992))
 ### Deprecated
 ### Removed
 ### Fixed

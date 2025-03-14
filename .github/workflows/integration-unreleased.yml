@@ -21,7 +21,7 @@ jobs:
         entry:
           - { node_version: '18.x', opensearch_ref: '1.x', jdk_version: '11' }
           - { node_version: '18.x', opensearch_ref: '2.x', jdk_version: '17' }
-          - { node_version: '18.x', opensearch_ref: 'main', jdk_version: '21' }
+          - { node_version: '18.x', opensearch_ref: 'main', jdk_version: '17' }
     steps:
       - name: Checkout OpenSearch
         uses: actions/checkout@v4

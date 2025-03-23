@@ -25,11 +25,11 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Snapshot
  *
  * @param {object} [params]
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {boolean} [params.ignore_unavailable=false] - Whether to ignore unavailable snapshots, defaults to `false` which means a SnapshotMissingException is thrown
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+ * @param {boolean} [params.ignore_unavailable=false] - Whether to ignore any unavailable snapshots, When `false`, a `SnapshotMissingException` is thrown.
  * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
- * @param {string} [params.repository] - A repository name
- * @param {string} [params.snapshot] - A comma-separated list of snapshot names
+ * @param {string} [params.repository] - The name of the repository containing the snapshot.
+ * @param {string} [params.snapshot] - A comma-separated list of snapshot names.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

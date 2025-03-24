@@ -46,7 +46,7 @@ export default class TypesContainer {
     return TypesContainer.import_path(from, this)
   }
 
-  ref_to_obj (ref: string): string {
+  ref_to_imported_type (ref: string): string {
     if (ref === 'ApiResponse') return ref
     const schema_name = ref.split(SEPARATOR)[1]
     const container = this.ref_to_container(ref)
@@ -55,7 +55,7 @@ export default class TypesContainer {
   }
 
   ref_to_container (ref: string): TypesContainer {
-    let file_path: string = 'UNSET'
+    let file_path: string
     if (ref.startsWith('#/components')) {
       const file_name = ref.split(SEPARATOR)[0].split('/').reverse()[0]
       file_path = path.join(TYPE_COMPONENTS_FOLDER, `${file_name}.d.ts`)

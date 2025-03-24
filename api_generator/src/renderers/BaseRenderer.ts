@@ -22,10 +22,10 @@ export default class BaseRenderer {
     throw Error('Not implemented')
   }
 
-  render (template_path?: string, view?: Record<string, any>): string {
-    const full_path = path.join(__dirname, './templates', template_path ?? this.template_file)
+  render (args: { template_path?: string, view?: Record<string, any> } = {}): string {
+    const full_path = path.join(__dirname, './templates', args.template_path ?? this.template_file)
     const template = fs.readFileSync(full_path, 'utf8')
-    view = view ?? this.view()
+    const view = args.view ?? this.view()
     return Mustache.render(template, { ...this.#commons(), ...view }, this.#partials())
   }
 

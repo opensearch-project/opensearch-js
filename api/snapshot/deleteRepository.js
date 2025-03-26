@@ -19,16 +19,16 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Deletes a repository.
+ * Deletes a snapshot repository.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/snapshots/delete-snapshot-repository/ - snapshot.delete_repository}
  *
  * @memberOf API-Snapshot
  *
  * @param {object} params
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
  * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
- * @param {string} [params.timeout] - Explicit operation timeout
- * @param {string} params.repository - Name of the snapshot repository to unregister. Wildcard (`*`) patterns are supported.
+ * @param {string} [params.timeout] - The amount of time to wait for a response.
+ * @param {string} params.repository - The name of the snapshot repository to unregister. Wildcard (`*`) patterns are supported.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

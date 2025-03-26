@@ -16,8 +16,6 @@
 
 import * as Common from './_common'
 
-export type DefaultOperator = 'AND' | 'OR'
-
 export type DeletedModel = {
   model_id: string;
   result: 'deleted' | 'error';
@@ -41,6 +39,13 @@ export type GraphRefreshStats = {
 export type GraphStats = {
   merge?: GraphMergeStats;
   refresh?: GraphRefreshStats;
+}
+
+export type KnnMethod = {
+  engine?: string;
+  name: string;
+  parameters?: Record<string, any>;
+  space_type?: string;
 }
 
 export type NodeStats = {
@@ -79,8 +84,6 @@ export type NodeStats = {
   training_requests?: number;
 }
 
-export type SearchType = 'dfs_query_then_fetch' | 'query_then_fetch'
-
 export type Stats = {
   _nodes?: Common.NodeStatistics;
   circuit_breaker_triggered?: boolean;
@@ -89,14 +92,12 @@ export type Stats = {
   nodes?: Record<string, NodeStats>;
 }
 
-export type SuggestMode = 'always' | 'missing' | 'popular'
-
 export type TrainedModel = {
   compression_level?: string;
   description?: string;
   dimension: number;
   max_training_vector_count?: number;
-  method?: string;
+  method?: KnnMethod;
   mode?: string;
   search_size?: number;
   spaceType?: string;

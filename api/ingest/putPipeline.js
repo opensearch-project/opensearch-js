@@ -19,17 +19,17 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Creates or updates a pipeline.
+ * Creates or updates an ingest pipeline.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/create-update-ingest/ - ingest.put_pipeline}
  *
  * @memberOf API-Ingest
  *
  * @param {object} params
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
+ * @param {string} [params.cluster_manager_timeout] - The amount of time allowed to establish a connection to the cluster manager node.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} params.id - ID of the ingest pipeline to create or update.
- * @param {object} params.body - The ingest definition
+ * @param {string} [params.timeout] - The amount of time to wait for a response.
+ * @param {string} params.id - The ID of the ingest pipeline.
+ * @param {object} params.body - The ingest definition.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

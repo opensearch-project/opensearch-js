@@ -15,6 +15,7 @@
  */
 
 import * as Common from './_common'
+import * as Common_QueryDsl from './_common.query_dsl'
 
 export type All = boolean
 
@@ -26,16 +27,6 @@ export type FlowFrameworkCreate = {
   use_case?: string;
   version?: version;
   workflows?: Record<string, any>;
-}
-
-export type FlowFrameworkDeleteResponse = {
-  _id?: string;
-  _index?: string;
-  _primary_term?: number;
-  _seq_no?: number;
-  _shards?: shards;
-  _version?: number;
-  result?: 'deleted' | 'not_found';
 }
 
 export type FlowFrameworkGetResponse = {
@@ -76,22 +67,27 @@ export type itemsObject = {
 
 export type Provision = boolean
 
-export type query = {
-  match?: Record<string, any>;
-  match_all?: Record<string, any>;
-}
-
 export type Reprovision = boolean
 
+export type ResourcesCreated = {
+  resource_id?: string;
+  resource_type?: string;
+  workflow_step_id?: string;
+  workflow_step_name?: string;
+}
+
 export type SearchStateResponse = {
+  provision_end_time?: Common.DateTime;
+  provision_start_time?: Common.DateTime;
   provisioning_progress?: string;
+  resources_created?: ResourcesCreated;
   state?: string;
   user?: user;
   workflow_id?: string;
 }
 
 export type SearchWorkflowRequest = {
-  query?: query;
+  query?: Common_QueryDsl.QueryContainer;
 }
 
 export type shards = {

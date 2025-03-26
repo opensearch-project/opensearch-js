@@ -27,9 +27,7 @@ export interface Indices_ExistsAlias_Request extends Global.Params {
   name: Common.Names;
 }
 
-export interface Indices_ExistsAlias_Response extends ApiResponse {
-  body: Indices_ExistsAlias_ResponseBody;
-}
+export type Indices_ExistsAlias_Response = boolean
 
 export type Indices_ExistsAlias_ResponseBody = Record<string, any>
 

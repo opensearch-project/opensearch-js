@@ -17,13 +17,13 @@
 import * as Common from './_common'
 
 export type FileCountSnapshotStats = {
-  file_count: number;
-  size_in_bytes: Common.ByteCount;
+  file_count?: number;
+  size_in_bytes?: Common.ByteCount;
 }
 
 export type Repository = {
-  settings: RepositorySettings;
-  type: string;
+  settings?: RepositorySettings;
+  type?: string;
   uuid?: Common.Uuid;
 }
 
@@ -31,18 +31,18 @@ export type RepositorySettings = {
   chunk_size?: string;
   compress?: Common.StringifiedBoolean;
   concurrent_streams?: Common.StringifiedInteger;
-  location: string;
+  location?: string;
   read_only?: Common.StringifiedBoolean;
 }
 
 export type SnapshotIndexStats = {
-  shards: Record<string, SnapshotShardsStatus>;
-  shards_stats: SnapshotShardsStats;
-  stats: SnapshotStats;
+  shards?: Record<string, SnapshotShardsStatus>;
+  shards_stats?: SnapshotShardsStats;
+  stats?: SnapshotStats;
 }
 
 export type SnapshotInfo = {
-  data_streams: string[];
+  data_streams?: string[];
   duration?: Common.Duration;
   duration_in_millis?: Common.DurationValueUnitMillis;
   end_time?: Common.DateTime;
@@ -55,46 +55,46 @@ export type SnapshotInfo = {
   reason?: string;
   remote_store_index_shallow_copy?: boolean;
   shards?: Common.ShardStatistics;
-  snapshot: Common.Name;
+  snapshot?: Common.Name;
   start_time?: Common.DateTime;
   start_time_in_millis?: Common.EpochTimeUnitMillis;
   state?: string;
-  uuid: Common.Uuid;
+  uuid?: Common.Uuid;
   version?: Common.VersionString;
   version_id?: Common.VersionNumber;
 }
 
 export type SnapshotShardFailure = {
-  index: Common.IndexName;
+  index?: Common.IndexName;
   node_id?: Common.Id;
-  reason: string;
-  shard_id: Common.Id;
-  status: string;
+  reason?: string;
+  shard_id?: Common.Id;
+  status?: string;
 }
 
 export type SnapshotShardsStats = {
-  done: number;
-  failed: number;
-  finalizing: number;
-  initializing: number;
-  started: number;
-  total: number;
+  done?: number;
+  failed?: number;
+  finalizing?: number;
+  initializing?: number;
+  started?: number;
+  total?: number;
 }
 
 export type SnapshotShardsStatsStage = 'DONE' | 'FAILURE' | 'FINALIZE' | 'INIT' | 'STARTED'
 
 export type SnapshotShardsStatsSummary = {
-  incremental: SnapshotShardsStatsSummaryItem;
+  incremental?: SnapshotShardsStatsSummaryItem;
   processed?: SnapshotShardsStatsSummaryItem;
-  start_time_in_millis: Common.EpochTimeUnitMillis;
+  start_time_in_millis?: Common.EpochTimeUnitMillis;
   time?: Common.Duration;
-  time_in_millis: Common.DurationValueUnitMillis;
-  total: SnapshotShardsStatsSummaryItem;
+  time_in_millis?: Common.DurationValueUnitMillis;
+  total?: SnapshotShardsStatsSummaryItem;
 }
 
 export type SnapshotShardsStatsSummaryItem = {
-  file_count: number;
-  size_in_bytes: Common.ByteCount;
+  file_count?: number;
+  size_in_bytes?: Common.ByteCount;
 }
 
 export type SnapshotShardsStatus = {
@@ -105,22 +105,22 @@ export type SnapshotShardsStatus = {
 }
 
 export type SnapshotStats = {
-  incremental: FileCountSnapshotStats;
+  incremental?: FileCountSnapshotStats;
   processed?: FileCountSnapshotStats;
-  start_time_in_millis: Common.EpochTimeUnitMillis;
+  start_time_in_millis?: Common.EpochTimeUnitMillis;
   time?: Common.Duration;
-  time_in_millis: Common.DurationValueUnitMillis;
-  total: FileCountSnapshotStats;
+  time_in_millis?: Common.DurationValueUnitMillis;
+  total?: FileCountSnapshotStats;
 }
 
 export type SnapshotStatus = {
   include_global_state?: boolean;
-  indices: Record<string, SnapshotIndexStats>;
-  repository: string;
-  shards_stats: SnapshotShardsStats;
-  snapshot: string;
-  state: string;
-  stats: SnapshotStats;
-  uuid: Common.Uuid;
+  indices?: Record<string, SnapshotIndexStats>;
+  repository?: string;
+  shards_stats?: SnapshotShardsStats;
+  snapshot?: string;
+  state?: string;
+  stats?: SnapshotStats;
+  uuid?: Common.Uuid;
 }
 

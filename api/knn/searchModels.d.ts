@@ -16,9 +16,9 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
+import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
-import * as Knn_Common from '../_types/knn._common'
 
 export interface Knn_SearchModels_Request extends Global.Params {
   _source?: string[];
@@ -31,7 +31,7 @@ export interface Knn_SearchModels_Request extends Global.Params {
   batched_reduce_size?: number;
   body?: Knn_SearchModels_RequestBody;
   ccs_minimize_roundtrips?: boolean;
-  default_operator?: Knn_Common.DefaultOperator;
+  default_operator?: Common_QueryDsl.Operator;
   df?: string;
   docvalue_fields?: string[];
   expand_wildcards?: Common.ExpandWildcards;
@@ -48,14 +48,14 @@ export interface Knn_SearchModels_Request extends Global.Params {
   rest_total_hits_as_int?: boolean;
   routing?: Common.RoutingInQueryString;
   scroll?: Common.Duration;
-  search_type?: Knn_Common.SearchType;
+  search_type?: Common.SearchType;
   seq_no_primary_term?: boolean;
   size?: number;
   sort?: string[];
   stats?: string[];
   stored_fields?: string[];
   suggest_field?: string;
-  suggest_mode?: Knn_Common.SuggestMode;
+  suggest_mode?: Common.SuggestMode;
   suggest_size?: number;
   suggest_text?: string;
   terminate_after?: number;

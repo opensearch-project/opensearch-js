@@ -25,11 +25,11 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Tasks
  *
  * @param {object} [params]
- * @param {string} [params.actions] - Comma-separated list or wildcard expression of actions used to limit the request.
- * @param {array} [params.nodes] - Comma-separated list of node IDs or names used to limit the request.
- * @param {string} [params.parent_task_id] - Parent task ID used to limit the tasks.
- * @param {boolean} [params.wait_for_completion=false] - Should the request block until the cancellation of the task and its descendant tasks is completed. Defaults to false
- * @param {string} [params.task_id] - ID of the task.
+ * @param {string} [params.actions] - A comma-separated list of actions that should be returned. Keep empty to return all.
+ * @param {array} [params.nodes] - A comma-separated list of node IDs or names used to limit the returned information. Use `_local` to return information from the node you're connecting to, specify the node name to get information from a specific node, or keep the parameter empty to get information from all nodes.
+ * @param {string} [params.parent_task_id] - Returns tasks with a specified parent task ID (`node_id:task_number`). Keep empty or set to -1 to return all.
+ * @param {boolean} [params.wait_for_completion=false] - Waits for the matching task to complete. When `true`, the request is blocked until the task has completed.
+ * @param {string} [params.task_id] - The task ID.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

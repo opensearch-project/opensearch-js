@@ -19,14 +19,14 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Allows to simulate a pipeline with example documents.
+ * Simulates an ingest pipeline with example documents.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/simulate-ingest/ - ingest.simulate}
  *
  * @memberOf API-Ingest
  *
  * @param {object} params
- * @param {boolean} [params.verbose=false] - If `true`, the response includes output data for each processor in the executed pipeline.
- * @param {string} [params.id] - Pipeline to test. If you don't specify a `pipeline` in the request body, this parameter is required.
+ * @param {boolean} [params.verbose=false] - When `true`, the response includes output data for each processor in the pipeline
+ * @param {string} [params.id] - The pipeline to test. If you don't specify a `pipeline` in the request body, this parameter is required.
  * @param {object} params.body - The simulate definition
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

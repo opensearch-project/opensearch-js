@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as FlowFramework_Common from '../_types/flow_framework.common'
 import * as Global from '../_types/_global'
 
@@ -27,5 +28,5 @@ export interface FlowFramework_Delete_Response extends ApiResponse {
   body: FlowFramework_Delete_ResponseBody;
 }
 
-export type FlowFramework_Delete_ResponseBody = FlowFramework_Common.FlowFrameworkDeleteResponse
+export type FlowFramework_Delete_ResponseBody = Common.WriteResponseBase
 

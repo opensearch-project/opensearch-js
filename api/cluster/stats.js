@@ -25,9 +25,9 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Cluster
  *
  * @param {object} [params]
- * @param {boolean} [params.flat_settings=false] - When `true`, returns settings in a flat format.
+ * @param {boolean} [params.flat_settings=false] - Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings. For example, the flat form of `"cluster": { "max_shards_per_node": 500 }` is `"cluster.max_shards_per_node": "500"`.
  * @param {string} [params.timeout] - The amount of time to wait for each node to respond. If a node does not respond before its timeout expires, the response does not include its stats. However, timed out nodes are included in the response's `_nodes.failed` property. Defaults to no timeout.
- * @param {array} [params.index_metric] - A comma-separated list of index metric groups, for example, `docs,store`.
+ * @param {array} [params.index_metric] - A comma-separated list of [index metric groups](https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups), for example, `docs,store`.
  * @param {array} [params.metric] - Limit the information returned to the specified metrics.
  * @param {string} [params.node_id] - A comma-separated list of node IDs used to filter results. Supports [node filters](https://opensearch.org/docs/latest/api-reference/nodes-apis/index/#node-filters).
  *

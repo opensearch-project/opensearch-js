@@ -19,15 +19,15 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Removes stale data from repository.
+ * Removes any stale data from a snapshot repository.
  * <br/> See Also: {@link https://opensearch.org/docs/latest - snapshot.cleanup_repository}
  *
  * @memberOf API-Snapshot
  *
  * @param {object} params
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node.
- * @param {string} [params.timeout] - Period to wait for a response.
+ * @param {string} [params.timeout] - The amount of time to wait for a response.
  * @param {string} params.repository - Snapshot repository to clean up.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

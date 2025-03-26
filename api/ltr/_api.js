@@ -14,14 +14,13 @@
  * modify the API generator.
  */
 
-import { ApiResponse } from '../../lib/Transport'
-import * as Global from '../_types/_global'
+'use strict';
 
-export interface Ism_ExistsPolicy_Request extends Global.Params {
-  policy_id: string;
+/** @namespace API-Ltr */
+
+function LtrApi(bindObj) {
+  this.stats = require('./stats').bind(bindObj);
+
 }
 
-export type Ism_ExistsPolicy_Response = boolean
-
-export type Ism_ExistsPolicy_ResponseBody = any
-
+module.exports = LtrApi;

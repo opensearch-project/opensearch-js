@@ -62,10 +62,8 @@ export default class TypesFileRenderder extends BaseRenderer {
   }
 
   #render_oneOf (schemas: Schema[]): string {
-    return schemas.map((sch) => {
-      const render = this.#render_schema(sch)
-      return render.includes(' & ') ? `(${render})` : render
-    }).join(' | ')
+    const renders = schemas.map(schema => this.#render_schema(schema))
+    return this.#union(renders)
   }
 
   #render_allOf (schemas: Schema[]): string {
@@ -81,14 +79,27 @@ export default class TypesFileRenderder extends BaseRenderer {
     }, {})
 
     const inline_schemas = [compound_schema].concat(one_of_schemas).filter(schema => !_.isEmpty(schema))
-    const inline_render = inline_schemas.map(schema => this.#render_schema(schema)).join(' & ')
-    const named_render = named_schemas.map(schema => this.#render_schema(schema)).join(' & ')
+    const inline_render = this.#intersection(inline_schemas.map(schema => this.#render_schema(schema)))
+    const named_render = this.#intersection(named_schemas.map(schema => this.#render_schema(schema)))
 
     if (inline_schemas.length === 0) return named_render
     if (named_schemas.length === 0) return inline_render
 
     if (inline_render.includes('{') && this._container.is_function) return `extends ${named_render} ${inline_render}`
-    else return `${named_render} & ${inline_render}`
+    else return this.#intersection([named_render, inline_render])
+  }
+
+  #union (renders: string[]): string {
+    return renders.map(render => this.#parenthesize(render, ' & ')).join(' | ')
+  }
+
+  #intersection (renders: string[]): string {
+    return renders.map(render => this.#parenthesize(render, ' | ')).join(' & ')
+  }
+
+  #parenthesize (render: string, token: ' | ' | ' & '): string {
+    const required = !render.startsWith('(') && _.some(render.split('\n').map(line => line.includes(token) && !line.endsWith(';')))
+    return required ? `(${render})` : render
   }
 
   #render_simple_obj (schema: Schema): string {

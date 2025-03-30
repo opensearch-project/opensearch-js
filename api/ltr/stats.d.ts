@@ -17,19 +17,17 @@
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as Ltr_Common from '../_types/ltr._common'
 
-export interface Indices_Exists_Request extends Global.Params {
-  allow_no_indices?: boolean;
-  cluster_manager_timeout?: Common.Duration;
-  expand_wildcards?: Common.ExpandWildcards;
-  flat_settings?: boolean;
-  ignore_unavailable?: boolean;
-  include_defaults?: boolean;
-  index: Common.Indices;
-  local?: boolean;
+export interface Ltr_Stats_Request extends Global.Params {
+  node_id?: string[];
+  stat?: 'cache' | 'request_error_count' | 'request_total_count'[];
+  timeout?: Common.Duration;
 }
 
-export type Indices_Exists_Response = boolean
+export interface Ltr_Stats_Response extends ApiResponse {
+  body: Ltr_Stats_ResponseBody;
+}
 
-export type Indices_Exists_ResponseBody = Record<string, any>
+export type Ltr_Stats_ResponseBody = Ltr_Common.Stats
 

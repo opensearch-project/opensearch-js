@@ -23,18 +23,20 @@ client.indices.putIndexTemplate({
   name: 'books',
   body: {
     index_patterns: ['books-*'],
-    settings: {
-      index: {
-        number_of_shards: 3,
-        number_of_replicas: 0
-      }
-    },
-    mappings: {
-      properties: {
-        title: { type: 'text' },
-        author: { type: 'text' },
-        published_on: { type: 'date' },
-        pages: { type: 'integer' }
+    template: {
+      settings: {
+        index: {
+          number_of_shards: 3,
+          number_of_replicas: 0
+        }
+      },
+      mappings: {
+        properties: {
+          title: { type: 'text' },
+          author: { type: 'text' },
+          published_on: { type: 'date' },
+          pages: { type: 'integer' }
+        }
       }
     }
   }
@@ -64,10 +66,12 @@ client.indices.putIndexTemplate({
   name: 'books',
   body: {
     index_patterns: ['books-*'],
-    settings: {
-      index: {
-        number_of_shards: 3,
-        number_of_replicas: 0
+    template: {
+      settings: {
+        index: {
+          number_of_shards: 3,
+          number_of_replicas: 0
+        }
       }
     }
   }

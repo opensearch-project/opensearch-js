@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: api/security/getAllCertificates.js</title>
+    <title>JSDoc: Source: api/ltr/stats.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: api/security/getAllCertificates.js</h1>
+    <h1 class="page-title">Source: api/ltr/stats.js</h1>
 
     
 
@@ -44,36 +44,39 @@
 
 'use strict';
 
-const { normalizeArguments } = require('../utils');
+const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Retrieves the cluster security certificates.
- * &lt;br/> See Also: {@link undefined - security.get_all_certificates}
+ * Provides information about the current status of the LTR plugin.
+ * &lt;br/> See Also: {@link undefined - ltr.stats}
  *
- * @memberOf API-Security
+ * @memberOf API-Ltr
  *
  * @param {object} [params]
- * @param {string} [params.cert_type] - The type of certificates (`HTTP`, `TRANSPORT`, or `ALL`) to retrieve from all nodes.
- * @param {string} [params.timeout] - The maximum duration, in seconds, to spend retrieving certificates from all nodes before a timeout.
+ * @param {string} [params.timeout] - The time in milliseconds to wait for a response.
+ * @param {array} [params.node_id] - Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+ * @param {array} [params.stat] - Comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise&lt;never>|*}
  */
-function getAllCertificatesFunc(params, options, callback) {
+function statsFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { body, ...querystring } = params;
+  let { body, node_id, stat, ...querystring } = params;
+  node_id = parsePathParam(node_id);
+  stat = parsePathParam(stat);
 
-  const path = '/_plugins/_security/api/certificates';
+  const path = ['/_plugins/_ltr', node_id, 'stats', stat].filter(c => c != null).join('/');
   const method = 'GET';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = getAllCertificatesFunc;
+module.exports = statsFunc;
 </code></pre>
         </article>
     </section>

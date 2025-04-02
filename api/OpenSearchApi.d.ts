@@ -692,6 +692,14 @@ export default class OpenSearchAPI {
 
   };
 
+  ltr: {
+    stats (params?: API.Ltr_Stats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_Stats_Response>;
+    stats (callback: callbackFn<API.Ltr_Stats_Response>): TransportRequestCallback;
+    stats (params: API.Ltr_Stats_Request, callback: callbackFn<API.Ltr_Stats_Response>): TransportRequestCallback;
+    stats (params: API.Ltr_Stats_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_Stats_Response>): TransportRequestCallback;
+
+  };
+
   ml: {
     executeAlgorithm (params: API.Ml_ExecuteAlgorithm_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_ExecuteAlgorithm_Response>;
     executeAlgorithm (params: API.Ml_ExecuteAlgorithm_Request, callback: callbackFn<API.Ml_ExecuteAlgorithm_Response>): TransportRequestCallback;

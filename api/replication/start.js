@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Initiate replication of an index from the leader cluster to the follower cluster.
+ * Initiates the replication of an index from the leader cluster to the follower cluster.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/replication-plugin/api/#start-replication - replication.start}
  *
  * @memberOf API-Replication
  *
  * @param {object} params
- * @param {string} params.index - Name of the data stream, index, or index alias to perform bulk actions on.
+ * @param {string} params.index - The name of the data stream, index, or index alias to perform bulk actions on.
  * @param {object} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

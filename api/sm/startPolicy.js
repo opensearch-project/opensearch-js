@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Sm
  *
  * @param {object} params
- * @param {string} params.policy_name - The name of the snapshot management policy.
+ * @param {string} params.policy_name - The name of the snapshot management policy to start.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

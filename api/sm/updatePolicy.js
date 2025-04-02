@@ -27,7 +27,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {object} params
  * @param {number} params.if_primary_term - The primary term of the policy to update.
  * @param {number} params.if_seq_no - The sequence number of the policy to update.
- * @param {string} params.policy_name - The name of the snapshot management policy.
+ * @param {string} params.policy_name - The name of the snapshot management policy to update.
  * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

@@ -40,8 +40,8 @@ export type NodeInfo = {
   search_pipelines?: NodeInfoSearchPipelines;
   settings?: NodeInfoSettings;
   thread_pool?: Record<string, NodeThreadPoolInfo>;
-  total_indexing_buffer?: Common.ByteCount;
-  total_indexing_buffer_in_bytes?: Common.HumanReadableByteCount;
+  total_indexing_buffer?: Common.ByteCount | Common.HumanReadableByteCount;
+  total_indexing_buffer_in_bytes?: Common.HumanReadableByteCount | Common.ByteCount;
   transport?: NodeInfoTransport;
   transport_address?: Common.TransportAddress;
   version: Common.VersionString;

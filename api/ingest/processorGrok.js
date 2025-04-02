@@ -19,13 +19,13 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Returns a list of the built-in patterns.
+ * Returns a list of built-in grok patterns.
  * <br/> See Also: {@link https://opensearch.org/docs/latest - ingest.processor_grok}
  *
  * @memberOf API-Ingest
  *
  * @param {object} [params]
- * @param {boolean} [params.s=false] - Sort returned patterns by key name.
+ * @param {boolean} [params.s=false] - Determines how to sort returned grok patterns by key name.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

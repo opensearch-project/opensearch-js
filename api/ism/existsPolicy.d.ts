@@ -21,9 +21,7 @@ export interface Ism_ExistsPolicy_Request extends Global.Params {
   policy_id: string;
 }
 
-export interface Ism_ExistsPolicy_Response extends ApiResponse {
-  body: Ism_ExistsPolicy_ResponseBody;
-}
+export type Ism_ExistsPolicy_Response = boolean
 
 export type Ism_ExistsPolicy_ResponseBody = any
 

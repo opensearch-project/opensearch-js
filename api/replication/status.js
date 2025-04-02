@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Gets the status of index replication.
+ * Retrieves the the status of an index replication.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/replication-plugin/api/#get-replication-status - replication.status}
  *
  * @memberOf API-Replication
  *
  * @param {object} params
- * @param {string} params.index - Name of the data stream, index, or index alias to perform bulk actions on.
+ * @param {string} params.index - The name of the data stream, index, or index alias to perform bulk actions on.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

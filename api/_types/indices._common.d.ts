@@ -134,6 +134,7 @@ export type IndexRoutingAllocation = {
   enable?: IndexRoutingAllocationOptions;
   include?: IndexRoutingAllocationInclude;
   initial_recovery?: IndexRoutingAllocationInitialRecovery;
+  total_primary_shards_per_node?: Common.StringifiedInteger;
   total_shards_per_node?: Common.StringifiedInteger;
 }
 

@@ -36,6 +36,27 @@ export type Breaker = {
   tripped?: number;
 }
 
+export type CacheIndicesStats = CacheStatsBase & Record<string, any>
+
+export type CacheShardStats = CacheStatsBase & Record<string, any>
+
+export type CachesStats = Record<string, CacheStats>
+
+export type CacheStats = CacheStatsBase & {
+  indices?: Record<string, CacheIndicesStats>;
+  shards?: Record<string, CacheShardStats>;
+  store_name?: string;
+}
+
+export type CacheStatsBase = {
+  evictions?: number;
+  hit_count?: number;
+  item_count?: number;
+  miss_count?: number;
+  size?: Common.HumanReadableByteCount;
+  size_in_bytes?: Common.ByteCount;
+}
+
 export type CgroupCpuAcctStats = {
   control_group?: string;
   usage_nanos?: Common.DurationValueUnitNanos;
@@ -363,18 +384,6 @@ export type ShardAdmissionControlStats = {
   global_io_usage?: UsageStats;
 }
 
-export type ShardCachesStats = Record<string, ShardCacheStats>
-
-export type ShardCacheStats = {
-  evictions?: number;
-  hit_count?: number;
-  item_count?: number;
-  miss_count?: number;
-  size?: Common.HumanReadableByteCount;
-  size_in_bytes?: Common.ByteCount;
-  store_name?: string;
-}
-
 export type ShardClusterManagerThrottlingStats = {
   stats?: ShardClusterManagerThrottlingStatsDetail;
 }
@@ -594,7 +603,7 @@ export type Stats = {
   admission_control?: ShardAdmissionControlStats;
   attributes?: Record<string, string>;
   breakers?: Record<string, Breaker>;
-  caches?: ShardCachesStats;
+  caches?: CachesStats;
   cluster_manager_throttling?: ShardClusterManagerThrottlingStats;
   discovery?: Discovery;
   fs?: FileSystem;

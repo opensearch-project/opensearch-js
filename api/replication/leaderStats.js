@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Gets information about replicated leader indexes on a specified cluster.
+ * Retrieves information about any replicated leader indexes on a specified cluster.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/replication-plugin/api/#get-leader-cluster-stats - replication.leader_stats}
  *
  * @memberOf API-Replication

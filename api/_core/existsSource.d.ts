@@ -33,9 +33,7 @@ export interface ExistsSource_Request extends Global.Params {
   version_type?: Common.VersionType;
 }
 
-export interface ExistsSource_Response extends ApiResponse {
-  body: ExistsSource_ResponseBody;
-}
+export type ExistsSource_Response = boolean
 
 export type ExistsSource_ResponseBody = Record<string, any>
 

@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Replication
  *
  * @param {object} params
- * @param {string} params.index - Name of the data stream, index, or index alias to perform bulk actions on.
+ * @param {string} params.index - The name of the data stream, index, or index alias to perform bulk actions on.
  * @param {object} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

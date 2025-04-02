@@ -19,18 +19,18 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Clones indexes from one snapshot into another snapshot in the same repository.
+ * Creates a clone of all or part of a snapshot in the same repository as the original snapshot.
  * <br/> See Also: {@link https://opensearch.org/docs/latest - snapshot.clone}
  *
  * @memberOf API-Snapshot
  *
  * @param {object} params
- * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
  * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
- * @param {string} params.repository - A repository name
- * @param {string} params.snapshot - The name of the snapshot to clone from
- * @param {string} params.target_snapshot - The name of the cloned snapshot to create
- * @param {object} params.body - The snapshot clone definition
+ * @param {string} params.repository - The name of repository which will contain the snapshots clone.
+ * @param {string} params.snapshot - The name of the original snapshot.
+ * @param {string} params.target_snapshot - The name of the cloned snapshot.
+ * @param {object} params.body - The snapshot clone definition.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

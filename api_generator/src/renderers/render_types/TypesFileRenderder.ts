@@ -90,11 +90,11 @@ export default class TypesFileRenderder extends BaseRenderer {
   }
 
   #union (renders: string[]): string {
-    return renders.map(render => this.#parenthesize(render, ' & ')).join(' | ')
+    return _.uniq(renders.map(render => this.#parenthesize(render, ' & '))).join(' | ')
   }
 
   #intersection (renders: string[]): string {
-    return renders.map(render => this.#parenthesize(render, ' | ')).join(' & ')
+    return _.uniq(renders.map(render => this.#parenthesize(render, ' | '))).join(' & ')
   }
 
   #parenthesize (render: string, token: ' | ' | ' & '): string {

@@ -452,6 +452,7 @@ export type VersionProperty = DocValuesPropertyBase & {
 }
 
 export type WildcardProperty = DocValuesPropertyBase & {
+  normalizer?: string;
   null_value?: string;
   type: 'wildcard';
 }

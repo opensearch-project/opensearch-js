@@ -115,6 +115,11 @@ export type ChangePasswordRequestContent = {
   password: string;
 }
 
+export type ClientError = {
+  error?: string;
+  status?: number;
+}
+
 export type ComplianceConfig = {
   enabled?: boolean;
   external_config?: boolean;

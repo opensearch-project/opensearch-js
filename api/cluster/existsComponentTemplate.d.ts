@@ -25,9 +25,7 @@ export interface Cluster_ExistsComponentTemplate_Request extends Global.Params {
   name: Common.Name;
 }
 
-export interface Cluster_ExistsComponentTemplate_Response extends ApiResponse {
-  body: Cluster_ExistsComponentTemplate_ResponseBody;
-}
+export type Cluster_ExistsComponentTemplate_Response = boolean
 
 export type Cluster_ExistsComponentTemplate_ResponseBody = Record<string, any>
 

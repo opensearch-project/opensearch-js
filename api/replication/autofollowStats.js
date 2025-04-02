@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Gets information about auto-follow activity and any replication rules configured on the specified cluster.
+ * Retrieves information about any auto-follow activity and any replication rules configured on the specified cluster.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/replication-plugin/api/#get-auto-follow-stats - replication.autofollow_stats}
  *
  * @memberOf API-Replication

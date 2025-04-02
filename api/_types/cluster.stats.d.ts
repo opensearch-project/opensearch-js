@@ -117,6 +117,7 @@ export type ClusterNodeCount = {
   total: number;
   transform?: number;
   voting_only?: number;
+  warm?: number;
 }
 
 export type ClusterNodes = {

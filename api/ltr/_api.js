@@ -14,16 +14,13 @@
  * modify the API generator.
  */
 
+'use strict';
 
-export type Explanation = {
-  description: string;
-  details: ExplanationDetail[];
-  value: number;
+/** @namespace API-Ltr */
+
+function LtrApi(bindObj) {
+  this.stats = require('./stats').bind(bindObj);
+
 }
 
-export type ExplanationDetail = {
-  description: string;
-  details?: ExplanationDetail[];
-  value: number;
-}
-
+module.exports = LtrApi;

@@ -19,7 +19,7 @@
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * Automatically starts replication on indexes matching a specified pattern.
+ * Automatically starts the replication on indexes matching a specified pattern.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/replication-plugin/api/#create-replication-rule - replication.create_replication_rule}
  *
  * @memberOf API-Replication

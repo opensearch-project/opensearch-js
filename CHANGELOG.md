@@ -9,8 +9,19 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+### Security
+
+## [3.5.0]
+### Added
+### Dependencies
+### Changed
+- Updated API to match the OpenSearch spec from April 02, 2025
+### Deprecated
+### Removed
+### Fixed
 - Api Generator: API functions that perform `HEAD` requests now return boolean values instead of the response body ([#993](https://github.com/opensearch-project/opensearch-js/pull/993))
 - Api Generator: Account for oneOf nested within AllOf ([#993](https://github.com/opensearch-project/opensearch-js/pull/993))
+- Api Generator: Removed duplicated component types within intersection/union types ([#998](https://github.com/opensearch-project/opensearch-js/pull/998))
 ### Security
 
 ## [3.4.0]

@@ -9,6 +9,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Api Generator: fix HEAD request boolean response type ([#1006](https://github.com/opensearch-project/opensearch-js/pull/1006))
 ### Security
 
 ## [3.5.0]

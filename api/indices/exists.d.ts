@@ -29,7 +29,9 @@ export interface Indices_Exists_Request extends Global.Params {
   local?: boolean;
 }
 
-export type Indices_Exists_Response = boolean
+export interface Indices_Exists_Response extends ApiResponse {
+  body: Indices_Exists_ResponseBody;
+}
 
-export type Indices_Exists_ResponseBody = Record<string, any>
+export type Indices_Exists_ResponseBody = boolean
 

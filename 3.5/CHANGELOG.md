@@ -2,6 +2,7 @@
 
 Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+
 ## [Unreleased]
 ### Added
 ### Dependencies
@@ -10,6 +11,10 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 ### Fixed
 ### Security
+
+## [3.5.1]
+### Fixed
+- Api Generator: fix HEAD request boolean response type ([#1006](https://github.com/opensearch-project/opensearch-js/pull/1006))
 
 ## [3.5.0]
 ### Added

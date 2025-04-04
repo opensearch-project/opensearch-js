@@ -53,12 +53,12 @@ export default class FunctionTypesContainer extends TypesContainer {
   }
 
   #build_response (): Schema {
-    if (this._func.http_verbs.has('HEAD')) return { type: 'boolean' }
     const schema = { properties: { body: { $ref: this.create_ref('response_body') } }, required: ['body'] }
     return { allOf: [schema, { $ref: 'ApiResponse' }] }
   }
 
   #build_response_body (): Schema {
+    if (this._func.http_verbs.has('HEAD')) return { type: 'boolean' }
     const body = this._func.response_body
     if (body == null) return { type: 'object' }
     if (body.ref_obj != null) return body.ref_obj

@@ -75,7 +75,7 @@ export type ClusterJvm = {
   max_uptime_in_millis: Common.DurationValueUnitMillis;
   mem: ClusterJvmMemory;
   threads: number;
-  versions: ClusterJvmVersion[];
+  versions?: ClusterJvmVersion[];
 }
 
 export type ClusterJvmMemory = {
@@ -151,12 +151,12 @@ export type ClusterOperatingSystemArchitecture = {
 
 export type ClusterOperatingSystemName = {
   count: number;
-  name: Common.Name;
+  name?: Common.Name;
 }
 
 export type ClusterOperatingSystemPrettyName = {
   count: number;
-  pretty_name: Common.Name;
+  pretty_name?: Common.Name;
 }
 
 export type ClusterProcess = {

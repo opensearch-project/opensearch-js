@@ -92,11 +92,11 @@ export type DisMaxQuery = QueryBase & {
   tie_breaker?: number;
 }
 
-export type DistanceFeatureQuery = QueryBase & ({
+export type DistanceFeatureQuery = (QueryBase & {
   field: Common.Field;
   origin: Common.GeoLocation;
   pivot: Common.Distance;
-} | {
+}) | (QueryBase & {
   field: Common.Field;
   origin: Common.DateMath;
   pivot: Common.Duration;
@@ -599,7 +599,7 @@ export type RandomScoreFunction = {
   seed?: number | string;
 }
 
-export type RangeQuery = RangeQueryBase & (NumberRangeQueryParameters | DateRangeQueryParameters)
+export type RangeQuery = (RangeQueryBase & NumberRangeQueryParameters) | (RangeQueryBase & DateRangeQueryParameters)
 
 export type RangeQueryBase = QueryBase & {
   relation?: RangeRelation;

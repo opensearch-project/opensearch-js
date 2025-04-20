@@ -19,14 +19,14 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Get the provisioning deployment status until it is complete.
+ * Retrieves the current workflow provisioning status.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/get-workflow-status/ - flow_framework.get_status}
  *
  * @memberOf API-Flow-Framework
  *
  * @param {object} params
- * @param {boolean} [params.all=false] - The all parameter specifies whether the response should return all fields.
- * @param {string} params.workflow_id 
+ * @param {boolean} [params.all=false] - Whether to return all fields in the response.
+ * @param {string} params.workflow_id - The ID of the workflow.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

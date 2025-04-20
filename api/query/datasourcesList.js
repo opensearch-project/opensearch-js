@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Retrieves list of all datasources.
+ * Retrieves a list of all available datasources.
  * <br/> See Also: {@link undefined - query.datasources_list}
  *
  * @memberOf API-Query

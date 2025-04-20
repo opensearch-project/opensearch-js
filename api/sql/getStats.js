@@ -19,14 +19,14 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Collect metrics for the plugin within the interval.
+ * Retrieves performance metrics for the SQL plugin.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/monitoring/ - sql.get_stats}
  *
  * @memberOf API-Sql
  *
  * @param {object} [params]
- * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
- * @param {boolean} [params.sanitize=true] - Specifies whether to escape special characters in the results
+ * @param {string} [params.format] - Specifies the response format (JSON or YAML).
+ * @param {boolean} [params.sanitize=true] - Whether to escape special characters in the results.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

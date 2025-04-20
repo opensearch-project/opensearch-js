@@ -19,15 +19,15 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Send a SQL/PPL query to the SQL plugin.
+ * Executes SQL or PPL queries against OpenSearch indices.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/ - sql.query}
  *
  * @memberOf API-Sql
  *
  * @param {object} [params]
- * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
- * @param {boolean} [params.sanitize=true] - Specifies whether to escape special characters in the results
- * @param {object} [params.body] 
+ * @param {string} [params.format] - Specifies the response format (JSON or YAML).
+ * @param {boolean} [params.sanitize=true] - Whether to escape special characters in the results.
+ * @param {object} [params.body] - Contains the SQL or PPL query to execute.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

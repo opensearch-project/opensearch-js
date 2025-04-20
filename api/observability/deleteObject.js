@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Observability
  *
  * @param {object} params
- * @param {string} params.object_id - The ID of the Observability Object.
+ * @param {string} params.object_id - The ID of the observability object to delete.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

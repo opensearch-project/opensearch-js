@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Get an index rollup.
+ * Retrieves an index rollup job configuration by ID.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#get-an-index-rollup-job - rollups.get}
  *
  * @memberOf API-Rollups
  *
  * @param {object} params
- * @param {string} params.id - Rollup to access
+ * @param {string} params.id - The ID of the rollup job.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

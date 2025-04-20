@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Gets the currently applied policy on indexes.
+ * Retrieves the currently applied policy on the specified indexes.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index - ism.explain_policy}
  *
  * @memberOf API-Ism
  *
  * @param {object} [params]
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
+ * @param {string} [params.index] 
  * @param {string} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

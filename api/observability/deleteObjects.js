@@ -25,8 +25,8 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Observability
  *
  * @param {object} [params]
- * @param {string} [params.objectId] - The ID of a single Observability Object to delete.
- * @param {string} [params.objectIdList] - A comma-separated list of Observability Object IDs to delete.
+ * @param {string} [params.objectId] - The ID of a single observability object to delete.
+ * @param {string} [params.objectIdList] - A comma-separated list of observability object IDs to delete.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

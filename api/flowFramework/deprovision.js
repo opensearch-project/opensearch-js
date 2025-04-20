@@ -19,14 +19,14 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Deprovision workflow's resources when you no longer need it.
+ * Deprovision workflow's resources when you no longer need them.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/deprovision-workflow/ - flow_framework.deprovision}
  *
  * @memberOf API-Flow-Framework
  *
  * @param {object} params
- * @param {string} [params.allow_delete] - Required when deleting resources involves a high potential for data loss.
- * @param {string} params.workflow_id 
+ * @param {string} [params.allow_delete] - Specifies whether to allow deletion of resources with potential data loss.
+ * @param {string} params.workflow_id - The ID of the workflow.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

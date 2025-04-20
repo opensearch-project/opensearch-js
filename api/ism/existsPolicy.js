@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Checks whether the policy exists.
+ * Checks for the existence of a policy.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/ism/api/#get-policy - ism.exists_policy}
  *
  * @memberOf API-Ism

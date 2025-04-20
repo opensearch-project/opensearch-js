@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Retry the failed action for an index.
+ * Retries the failed action for an index.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/ism/api/#retry-failed-index - ism.retry_index}
  *
  * @memberOf API-Ism
  *
  * @param {object} [params]
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
+ * @param {string} [params.index] 
  * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

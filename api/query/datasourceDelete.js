@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Deletes specific datasource specified by name.
+ * Deletes a specific data source by name.
  * <br/> See Also: {@link undefined - query.datasource_delete}
  *
  * @memberOf API-Query
  *
  * @param {object} params
- * @param {string} params.datasource_name - The Name of the DataSource to delete.
+ * @param {string} params.datasource_name - The name of the data source to delete.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

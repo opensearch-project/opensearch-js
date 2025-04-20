@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Observability
  *
  * @param {object} params
- * @param {string} params.object_id - The ID of the Observability Object.
- * @param {object} [params.body] 
+ * @param {string} params.object_id - The ID of the observability object to update.
+ * @param {object} [params.body] - The core observability object containing visualization and query data.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

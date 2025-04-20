@@ -19,16 +19,16 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Create or update index rollup.
+ * Creates or updates an index rollup job configuration.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#create-or-update-an-index-rollup-job - rollups.put}
  *
  * @memberOf API-Rollups
  *
  * @param {object} params
- * @param {number} [params.if_primary_term] - Only perform the operation if the document has this primary term.
- * @param {number} [params.if_seq_no] - Only perform the operation if the document has this sequence number.
- * @param {string} params.id - Rollup to access
- * @param {object} [params.body] 
+ * @param {number} [params.if_primary_term] - Only performs the operation if the document has the specified primary term.
+ * @param {number} [params.if_seq_no] - Only performs the operation if the document has the specified sequence number.
+ * @param {string} params.id - The ID of the rollup job.
+ * @param {object} [params.body] - Updates the rollup job configuration.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Flow-Framework
  *
  * @param {object} params
- * @param {string} params.workflow_id 
- * @param {object} [params.body] 
+ * @param {string} params.workflow_id - The ID of the workflow.
+ * @param {object} [params.body] - A map of user-provided substitution expressions and their values.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Retrieves specific datasource specified by name.
+ * Retrieves a specific data source by name.
  * <br/> See Also: {@link undefined - query.datasource_retrieve}
  *
  * @memberOf API-Query
  *
  * @param {object} params
- * @param {string} params.datasource_name - The Name of the DataSource to retrieve.
+ * @param {string} params.datasource_name - The name of the data source to retrieve.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

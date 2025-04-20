@@ -19,13 +19,13 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Creates a new query datasource.
+ * Creates a new query data source.
  * <br/> See Also: {@link undefined - query.datasources_create}
  *
  * @memberOf API-Query
  *
  * @param {object} [params]
- * @param {object} [params.body] 
+ * @param {object} [params.body] - The data source configuration to create.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

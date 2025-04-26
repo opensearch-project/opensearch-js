@@ -19,13 +19,13 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Get a list of workflow steps.
+ * Retrieves available workflow steps.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/get-workflow-steps/ - flow_framework.get_steps}
  *
  * @memberOf API-Flow-Framework
  *
  * @param {object} [params]
- * @param {string} [params.workflow_step] 
+ * @param {string} [params.workflow_step] - The name of the workflow step.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

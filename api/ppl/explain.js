@@ -19,15 +19,15 @@
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * Shows how a query is executed against OpenSearch.
+ * Returns the execution plan for a PPL query.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/ - ppl.explain}
  *
  * @memberOf API-Ppl
  *
  * @param {object} params
- * @param {string} [params.format] - A short version of the Accept header (for example, `json`, `yaml`).
- * @param {boolean} [params.sanitize=true] - Specifies whether to escape special characters in the results.
- * @param {object} params.body 
+ * @param {string} [params.format] - Specifies the response format (JSON, YAML).
+ * @param {boolean} [params.sanitize=true] - Whether to escape special characters in the results.
+ * @param {object} params.body - Contains the PPL query to explain.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

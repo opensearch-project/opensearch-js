@@ -19,14 +19,14 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Delete a workflow.
+ * Deletes a workflow template.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/delete-workflow/ - flow_framework.delete}
  *
  * @memberOf API-Flow-Framework
  *
  * @param {object} params
- * @param {boolean} [params.clear_status=false] - Delete the workflow state (without deprovisioning resources) after deleting the template. OpenSearch deletes the workflow state only if the provisioning status is not IN_PROGRESS. Default is false.
- * @param {string} params.workflow_id 
+ * @param {boolean} [params.clear_status=false] - Whether to delete the workflow state without deprovisioning resources. OpenSearch deletes the workflow state only if the provisioning status is not `IN_PROGRESS`. .
+ * @param {string} params.workflow_id - The ID of the workflow.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

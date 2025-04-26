@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Refresh search analyzers in real time.
+ * Refreshes search analyzers in real time.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/refresh-analyzer/ - ism.refresh_search_analyzers}
  *
  * @memberOf API-Ism
  *
  * @param {object} params
- * @param {string} params.index - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
+ * @param {string} params.index 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

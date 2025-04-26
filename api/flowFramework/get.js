@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Get a workflow.
+ * Retrieves a workflow template.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/get-workflow/ - flow_framework.get}
  *
  * @memberOf API-Flow-Framework
  *
  * @param {object} params
- * @param {string} params.workflow_id 
+ * @param {string} params.workflow_id - The ID of the workflow.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

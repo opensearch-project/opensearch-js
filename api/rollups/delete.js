@@ -19,13 +19,13 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Delete index rollup.
+ * Deletes an index rollup job configuration.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#delete-an-index-rollup-job - rollups.delete}
  *
  * @memberOf API-Rollups
  *
  * @param {object} params
- * @param {string} params.id - Rollup to access
+ * @param {string} params.id - The ID of the rollup job.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

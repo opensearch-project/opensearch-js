@@ -25,7 +25,7 @@ const { normalizeArguments } = require('../utils');
  * @memberOf API-Observability
  *
  * @param {object} [params]
- * @param {object} [params.body] 
+ * @param {object} [params.body] - The core observability object containing visualization and query data.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

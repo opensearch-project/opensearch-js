@@ -19,18 +19,18 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Update a workflow. You can only update a complete workflow if it has not yet been provisioned.
+ * Updates a workflow template that has not been provisioned.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/create-workflow/ - flow_framework.update}
  *
  * @memberOf API-Flow-Framework
  *
  * @param {object} params
- * @param {boolean} [params.provision=false] - Provision the workflow as part of the request.
- * @param {boolean} [params.reprovision=false] 
- * @param {boolean} [params.update_fields=false] - Update only the fields included in the request body.
- * @param {string} [params.use_case] - To use a workflow template, specify it in the `use_case` query parameter when creating a workflow.
- * @param {string} [params.validation=all] - Validate the workflow. Valid values are all (validate the template) and none (do not validate the template). Default is all.
- * @param {string} params.workflow_id 
+ * @param {boolean} [params.provision=false] - Whether to provision the workflow as part of the request.
+ * @param {boolean} [params.reprovision=false] - Whether to reprovision an existing workflow.
+ * @param {boolean} [params.update_fields=false] - Whether to update only the fields included in the request body..
+ * @param {string} [params.use_case] - Specifies the workflow template to use.
+ * @param {string} [params.validation=all] - Specifies the validation type. Valid values are `all` (validate the template) and `none` (do not validate the template).
+ * @param {string} params.workflow_id - The ID of the workflow.
  * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

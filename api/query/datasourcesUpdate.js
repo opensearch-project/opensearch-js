@@ -19,13 +19,13 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Updates an existing query datasource.
+ * Updates an existing query data source.
  * <br/> See Also: {@link undefined - query.datasources_update}
  *
  * @memberOf API-Query
  *
  * @param {object} [params]
- * @param {object} [params.body] 
+ * @param {object} [params.body] - The updated data source configuration.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

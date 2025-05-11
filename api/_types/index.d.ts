@@ -99,6 +99,7 @@ import * as Ism_Common from './ism._common'
 import * as Knn_Common from './knn._common'
 import * as Ltr_Common from './ltr._common'
 import * as Ml_Common from './ml._common'
+import * as Neural_Common from './neural._common'
 import * as Nodes_Common from './nodes._common'
 import * as Nodes_Info from './nodes.info'
 import * as Nodes_ReloadSecureSettings from './nodes.reload_secure_settings'
@@ -209,6 +210,7 @@ export {
   Knn_Common,
   Ltr_Common,
   Ml_Common,
+  Neural_Common,
   Nodes_Common,
   Nodes_Info,
   Nodes_ReloadSecureSettings,

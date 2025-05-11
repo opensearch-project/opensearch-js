@@ -133,8 +133,12 @@ export type RetrievalAugmentedGenerationResponseProcessor = {
 }
 
 export type ScoreCombination = {
-  parameters?: number[];
+  parameters?: ScoreCombinationParameters;
   technique?: ScoreCombinationTechnique;
+}
+
+export type ScoreCombinationParameters = {
+  weights?: number[];
 }
 
 export type ScoreCombinationTechnique = 'arithmetic_mean' | 'geometric_mean' | 'harmonic_mean'
@@ -148,6 +152,7 @@ export type ScoreNormalizationTechnique = 'l2' | 'min_max'
 export type SearchPipelineMap = Record<string, SearchPipelineStructure>
 
 export type SearchPipelineStructure = {
+  description?: string;
   phase_results_processors?: PhaseResultsProcessor[];
   request_processors?: RequestProcessor[];
   response_processors?: ResponseProcessor[];

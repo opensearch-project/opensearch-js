@@ -234,8 +234,10 @@ export type GeoDistanceSort = {
   distance_type?: GeoDistanceType;
   ignore_unmapped?: boolean;
   mode?: SortMode;
+  nested?: NestedSortValue;
   order?: SortOrder;
   unit?: DistanceUnit;
+  validation_method?: Common_QueryDsl.GeoValidationMethod;
   [key: string]: any | GeoLocation[];
 }
 
@@ -248,11 +250,6 @@ export type GeoHashLocation = {
 }
 
 export type GeoHashPrecision = number | string
-
-export type GeoLine = {
-  coordinates: number[][];
-  type: string;
-}
 
 export type GeoLocation = LatLonGeoLocation | GeoHashLocation | number[] | string
 
@@ -336,6 +333,7 @@ export type InlineGetDictUserDefined = {
   _source?: Record<string, any>;
   fields?: Record<string, Record<string, any>>;
   found: boolean;
+  [key: string]: any | Record<string, any>;
 }
 
 export type InlineScript = string | (ScriptBase & {
@@ -417,6 +415,7 @@ export type NodeShard = {
   primary: boolean;
   recovery_source?: Record<string, Id>;
   relocating_node?: NodeId | undefined;
+  searchOnly?: boolean;
   shard: number;
   state: Indices_Stats.ShardRoutingState;
   unassigned_info?: Cluster_AllocationExplain.UnassignedInformation;
@@ -746,6 +745,13 @@ export type ShardFailure = {
   status?: string;
 }
 
+export type ShardInfo = {
+  failed: uint;
+  failures?: ShardFailure[];
+  successful: uint;
+  total: uint;
+}
+
 export type ShardsOperationResponseBase = {
   _shards: ShardStatistics;
 }
@@ -891,7 +897,7 @@ export type VersionType = 'external' | 'external_gte' | 'force' | 'internal'
 
 export type Void = Record<string, any>
 
-export type WaitForActiveShardOptions = 'all' | 'index-setting'
+export type WaitForActiveShardOptions = 'all' | string | undefined
 
 export type WaitForActiveShards = number | WaitForActiveShardOptions
 

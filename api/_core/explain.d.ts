@@ -51,7 +51,7 @@ export type Explain_ResponseBody = {
   _id: Common.Id;
   _index: Common.IndexName;
   _type?: Common.Type;
-  explanation?: Core_Explain.ExplanationDetail;
+  explanation?: Core_Explain.Explanation;
   get?: Common.InlineGet;
   matched: boolean;
 }

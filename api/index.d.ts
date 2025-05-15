@@ -335,6 +335,7 @@ import { Ml_DeleteTask_Request, Ml_DeleteTask_Response, Ml_DeleteTask_ResponseBo
 import { Ml_GetTask_Request, Ml_GetTask_Response, Ml_GetTask_ResponseBody } from './ml/getTask';
 import { Ml_GetAllTools_Request, Ml_GetAllTools_Response, Ml_GetAllTools_ResponseBody } from './ml/getAllTools';
 import { Ml_GetTool_Request, Ml_GetTool_Response, Ml_GetTool_ResponseBody } from './ml/getTool';
+import { Neural_Stats_Request, Neural_Stats_Response, Neural_Stats_ResponseBody } from './neural/stats';
 import { Notifications_ListChannels_Request, Notifications_ListChannels_Response, Notifications_ListChannels_ResponseBody } from './notifications/listChannels';
 import { Notifications_DeleteConfigs_Request, Notifications_DeleteConfigs_Response, Notifications_DeleteConfigs_ResponseBody } from './notifications/deleteConfigs';
 import { Notifications_GetConfigs_Request, Notifications_GetConfigs_RequestBody, Notifications_GetConfigs_Response, Notifications_GetConfigs_ResponseBody } from './notifications/getConfigs';
@@ -744,6 +745,7 @@ export {
   Ml_GetTask_Request, Ml_GetTask_Response, Ml_GetTask_ResponseBody,
   Ml_GetAllTools_Request, Ml_GetAllTools_Response, Ml_GetAllTools_ResponseBody,
   Ml_GetTool_Request, Ml_GetTool_Response, Ml_GetTool_ResponseBody,
+  Neural_Stats_Request, Neural_Stats_Response, Neural_Stats_ResponseBody,
   Notifications_ListChannels_Request, Notifications_ListChannels_Response, Notifications_ListChannels_ResponseBody,
   Notifications_DeleteConfigs_Request, Notifications_DeleteConfigs_Response, Notifications_DeleteConfigs_ResponseBody,
   Notifications_GetConfigs_Request, Notifications_GetConfigs_RequestBody, Notifications_GetConfigs_Response, Notifications_GetConfigs_ResponseBody,

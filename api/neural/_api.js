@@ -14,11 +14,13 @@
  * modify the API generator.
  */
 
-import * as Common from './_common'
+'use strict';
 
-export type NodesResponseBase = {
-  _nodes?: Common.NodeStatistics;
+/** @namespace API-Neural */
+
+function NeuralApi(bindObj) {
+  this.stats = require('./stats').bind(bindObj);
+
 }
 
-export type SampleType = string
-
+module.exports = NeuralApi;

@@ -961,6 +961,14 @@ export default class OpenSearchAPI {
 
   };
 
+  neural: {
+    stats (params?: API.Neural_Stats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Neural_Stats_Response>;
+    stats (callback: callbackFn<API.Neural_Stats_Response>): TransportRequestCallback;
+    stats (params: API.Neural_Stats_Request, callback: callbackFn<API.Neural_Stats_Response>): TransportRequestCallback;
+    stats (params: API.Neural_Stats_Request, options: TransportRequestOptions, callback: callbackFn<API.Neural_Stats_Response>): TransportRequestCallback;
+
+  };
+
   nodes: {
     info (params?: API.Nodes_Info_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Nodes_Info_Response>;
     info (callback: callbackFn<API.Nodes_Info_Response>): TransportRequestCallback;

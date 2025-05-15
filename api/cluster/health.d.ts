@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Cluster_Common from '../_types/cluster._common'
 import * as Cluster_Health from '../_types/cluster.health'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
@@ -32,7 +33,7 @@ export interface Cluster_Health_Request extends Global.Params {
   wait_for_events?: Common.WaitForEvents;
   wait_for_no_initializing_shards?: boolean;
   wait_for_no_relocating_shards?: boolean;
-  wait_for_nodes?: string | number;
+  wait_for_nodes?: Cluster_Common.WaitForNodes;
   wait_for_status?: Common.HealthStatus;
 }
 

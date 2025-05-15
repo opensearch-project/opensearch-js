@@ -234,8 +234,10 @@ export type GeoDistanceSort = {
   distance_type?: GeoDistanceType;
   ignore_unmapped?: boolean;
   mode?: SortMode;
+  nested?: NestedSortValue;
   order?: SortOrder;
   unit?: DistanceUnit;
+  validation_method?: Common_QueryDsl.GeoValidationMethod;
   [key: string]: any | GeoLocation[];
 }
 
@@ -248,11 +250,6 @@ export type GeoHashLocation = {
 }
 
 export type GeoHashPrecision = number | string
-
-export type GeoLine = {
-  coordinates: number[][];
-  type: string;
-}
 
 export type GeoLocation = LatLonGeoLocation | GeoHashLocation | number[] | string
 

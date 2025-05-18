@@ -16,34 +16,34 @@
 
 'use strict';
 
-const { normalizeArguments } = require('../utils');
+const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Executes SQL or PPL queries against OpenSearch indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/ - sql.query}
+ * Delete a specific IP2Geo data source.
+ * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#deleting-the-ip2geo-data-source - geospatial.delete_ip2geo_datasource}
  *
- * @memberOf API-Sql
+ * @memberOf API-Geospatial
  *
- * @param {object} [params]
- * @param {string} [params.format] - Specifies the response format (JSON or YAML).
- * @param {boolean} [params.sanitize=true] - Whether to escape special characters in the results.
- * @param {object} [params.body] - Contains the SQL or PPL query to execute.
+ * @param {object} params
+ * @param {string} params.name 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function queryFunc(params, options, callback) {
+function deleteIp2GeoDatasourceFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.name == null) return handleMissingParam('name', this, callback);
 
-  let { body, ...querystring } = params;
+  let { body, name, ...querystring } = params;
+  name = parsePathParam(name);
 
-  const path = '/_plugins/_sql';
-  const method = 'POST';
+  const path = '/_plugins/geospatial/ip2geo/datasource/' + name;
+  const method = 'DELETE';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = queryFunc;
+module.exports = deleteIp2GeoDatasourceFunc;

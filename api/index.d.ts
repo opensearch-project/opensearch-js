@@ -335,6 +335,7 @@ import { Ml_DeleteTask_Request, Ml_DeleteTask_Response, Ml_DeleteTask_ResponseBo
 import { Ml_GetTask_Request, Ml_GetTask_Response, Ml_GetTask_ResponseBody } from './ml/getTask';
 import { Ml_GetAllTools_Request, Ml_GetAllTools_Response, Ml_GetAllTools_ResponseBody } from './ml/getAllTools';
 import { Ml_GetTool_Request, Ml_GetTool_Response, Ml_GetTool_ResponseBody } from './ml/getTool';
+import { Neural_Stats_Request, Neural_Stats_Response, Neural_Stats_ResponseBody } from './neural/stats';
 import { Notifications_ListChannels_Request, Notifications_ListChannels_Response, Notifications_ListChannels_ResponseBody } from './notifications/listChannels';
 import { Notifications_DeleteConfigs_Request, Notifications_DeleteConfigs_Response, Notifications_DeleteConfigs_ResponseBody } from './notifications/deleteConfigs';
 import { Notifications_GetConfigs_Request, Notifications_GetConfigs_RequestBody, Notifications_GetConfigs_Response, Notifications_GetConfigs_ResponseBody } from './notifications/getConfigs';
@@ -399,6 +400,13 @@ import { Transforms_Put_Request, Transforms_Put_Response, Transforms_Put_Respons
 import { Transforms_Explain_Request, Transforms_Explain_Response, Transforms_Explain_ResponseBody } from './transforms/explain';
 import { Transforms_Start_Request, Transforms_Start_Response, Transforms_Start_ResponseBody } from './transforms/start';
 import { Transforms_Stop_Request, Transforms_Stop_Response, Transforms_Stop_ResponseBody } from './transforms/stop';
+import { Geospatial_GetUploadStats_Request, Geospatial_GetUploadStats_Response, Geospatial_GetUploadStats_ResponseBody } from './geospatial/getUploadStats';
+import { Geospatial_GeojsonUploadPost_Request, Geospatial_GeojsonUploadPost_Response, Geospatial_GeojsonUploadPost_ResponseBody } from './geospatial/geojsonUploadPost';
+import { Geospatial_GeojsonUploadPut_Request, Geospatial_GeojsonUploadPut_Response, Geospatial_GeojsonUploadPut_ResponseBody } from './geospatial/geojsonUploadPut';
+import { Geospatial_GetIp2GeoDatasource_Request, Geospatial_GetIp2GeoDatasource_Response, Geospatial_GetIp2GeoDatasource_ResponseBody } from './geospatial/getIp2GeoDatasource';
+import { Geospatial_DeleteIp2GeoDatasource_Request, Geospatial_DeleteIp2GeoDatasource_Response, Geospatial_DeleteIp2GeoDatasource_ResponseBody } from './geospatial/deleteIp2GeoDatasource';
+import { Geospatial_PutIp2GeoDatasource_Request, Geospatial_PutIp2GeoDatasource_Response, Geospatial_PutIp2GeoDatasource_ResponseBody } from './geospatial/putIp2GeoDatasource';
+import { Geospatial_PutIp2GeoDatasourceSettings_Request, Geospatial_PutIp2GeoDatasourceSettings_Response, Geospatial_PutIp2GeoDatasourceSettings_ResponseBody } from './geospatial/putIp2GeoDatasourceSettings';
 import { RemoteStore_Restore_Request, RemoteStore_Restore_RequestBody, RemoteStore_Restore_Response, RemoteStore_Restore_ResponseBody } from './remoteStore/restore';
 import { SearchPipeline_Get_Request, SearchPipeline_Get_Response, SearchPipeline_Get_ResponseBody } from './searchPipeline/get';
 import { SearchPipeline_Delete_Request, SearchPipeline_Delete_Response, SearchPipeline_Delete_ResponseBody } from './searchPipeline/delete';
@@ -744,6 +752,7 @@ export {
   Ml_GetTask_Request, Ml_GetTask_Response, Ml_GetTask_ResponseBody,
   Ml_GetAllTools_Request, Ml_GetAllTools_Response, Ml_GetAllTools_ResponseBody,
   Ml_GetTool_Request, Ml_GetTool_Response, Ml_GetTool_ResponseBody,
+  Neural_Stats_Request, Neural_Stats_Response, Neural_Stats_ResponseBody,
   Notifications_ListChannels_Request, Notifications_ListChannels_Response, Notifications_ListChannels_ResponseBody,
   Notifications_DeleteConfigs_Request, Notifications_DeleteConfigs_Response, Notifications_DeleteConfigs_ResponseBody,
   Notifications_GetConfigs_Request, Notifications_GetConfigs_RequestBody, Notifications_GetConfigs_Response, Notifications_GetConfigs_ResponseBody,
@@ -808,6 +817,13 @@ export {
   Transforms_Explain_Request, Transforms_Explain_Response, Transforms_Explain_ResponseBody,
   Transforms_Start_Request, Transforms_Start_Response, Transforms_Start_ResponseBody,
   Transforms_Stop_Request, Transforms_Stop_Response, Transforms_Stop_ResponseBody,
+  Geospatial_GetUploadStats_Request, Geospatial_GetUploadStats_Response, Geospatial_GetUploadStats_ResponseBody,
+  Geospatial_GeojsonUploadPost_Request, Geospatial_GeojsonUploadPost_Response, Geospatial_GeojsonUploadPost_ResponseBody,
+  Geospatial_GeojsonUploadPut_Request, Geospatial_GeojsonUploadPut_Response, Geospatial_GeojsonUploadPut_ResponseBody,
+  Geospatial_GetIp2GeoDatasource_Request, Geospatial_GetIp2GeoDatasource_Response, Geospatial_GetIp2GeoDatasource_ResponseBody,
+  Geospatial_DeleteIp2GeoDatasource_Request, Geospatial_DeleteIp2GeoDatasource_Response, Geospatial_DeleteIp2GeoDatasource_ResponseBody,
+  Geospatial_PutIp2GeoDatasource_Request, Geospatial_PutIp2GeoDatasource_Response, Geospatial_PutIp2GeoDatasource_ResponseBody,
+  Geospatial_PutIp2GeoDatasourceSettings_Request, Geospatial_PutIp2GeoDatasourceSettings_Response, Geospatial_PutIp2GeoDatasourceSettings_ResponseBody,
   RemoteStore_Restore_Request, RemoteStore_Restore_RequestBody, RemoteStore_Restore_Response, RemoteStore_Restore_ResponseBody,
   SearchPipeline_Get_Request, SearchPipeline_Get_Response, SearchPipeline_Get_ResponseBody,
   SearchPipeline_Delete_Request, SearchPipeline_Delete_Response, SearchPipeline_Delete_ResponseBody,

@@ -16,34 +16,34 @@
 
 'use strict';
 
-const { normalizeArguments } = require('../utils');
+const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
- * Executes SQL or PPL queries against OpenSearch indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/ - sql.query}
+ * Use an OpenSearch query to upload `GeoJSON` regardless if index exists.
+- When type is `geo_point`, only Point geometry is allowed
+- When type is `geo_shape`, all geometry types are allowed (Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, GeometryCollection, Envelope).
+ * <br/> See Also: {@link undefined - geospatial.geojson_upload_put}
  *
- * @memberOf API-Sql
+ * @memberOf API-Geospatial
  *
- * @param {object} [params]
- * @param {string} [params.format] - Specifies the response format (JSON or YAML).
- * @param {boolean} [params.sanitize=true] - Whether to escape special characters in the results.
- * @param {object} [params.body] - Contains the SQL or PPL query to execute.
+ * @param {object} params
+ * @param {object} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function queryFunc(params, options, callback) {
+function geojsonUploadPutFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.body == null) return handleMissingParam('body', this, callback);
 
   let { body, ...querystring } = params;
 
-  const path = '/_plugins/_sql';
-  const method = 'POST';
-  body = body || '';
+  const path = '/_plugins/geospatial/geojson/_upload';
+  const method = 'PUT';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = queryFunc;
+module.exports = geojsonUploadPutFunc;

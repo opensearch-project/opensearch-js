@@ -19,32 +19,30 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Reloads secure settings.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-reload-secure/ - nodes.reload_secure_settings}
+ * Get one or more IP2Geo data sources, defaulting to returning all if no names specified.
+ * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#sending-a-get-request - geospatial.get_ip2geo_datasource}
  *
- * @memberOf API-Nodes
+ * @memberOf API-Geospatial
  *
  * @param {object} [params]
- * @param {string} [params.timeout] - The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} [params.node_id] - The names of particular nodes in the cluster to target.
- * @param {object} [params.body] - An object containing the password for the OpenSearch keystore.
+ * @param {string} [params.name] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *
  * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
  */
-function reloadSecureSettingsFunc(params, options, callback) {
+function getIp2GeoDatasourceFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
 
-  let { body, node_id, ...querystring } = params;
-  node_id = parsePathParam(node_id);
+  let { body, name, ...querystring } = params;
+  name = parsePathParam(name);
 
-  const path = ['/_nodes', node_id, 'reload_secure_settings'].filter(c => c != null).join('/');
-  const method = 'POST';
+  const path = ['/_plugins/geospatial/ip2geo/datasource', name].filter(c => c != null).join('/');
+  const method = 'GET';
   body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }
 
-module.exports = reloadSecureSettingsFunc;
+module.exports = getIp2GeoDatasourceFunc;

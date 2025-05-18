@@ -745,13 +745,14 @@ export type TermQuery = Common.FieldValue | (QueryBase & {
 })
 
 export type TermsLookup = {
-  id?: Common.Id;
-  index?: Common.IndexName;
-  path?: Common.Field;
+  id: Common.Id;
+  index: Common.IndexName;
+  path: Common.Field;
   routing?: Common.Routing;
+  store?: boolean;
 }
 
-export type TermsQuery = QueryBase & {
+export type TermsQuery = QueryBase & ValueType & {
   _name?: any;
   boost?: any;
   [key: string]: any | TermsQueryField;
@@ -769,6 +770,10 @@ export type TextQueryType = 'best_fields' | 'bool_prefix' | 'cross_fields' | 'mo
 
 export type TypeQuery = QueryBase & {
   value: string;
+}
+
+export type ValueType = {
+  value_type?: 'bitmap' | 'default';
 }
 
 export type WildcardQuery = string | (QueryBase & {

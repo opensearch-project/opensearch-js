@@ -119,7 +119,7 @@ export type DoubleRangeProperty = RangePropertyBase & {
   type: 'double_range';
 }
 
-export type DynamicMapping = 'false' | 'strict' | 'strict_allow_templates' | 'true'
+export type DynamicMapping = 'false' | 'strict' | 'strict_allow_templates' | 'true' | boolean
 
 export type DynamicTemplate = {
   mapping?: Property;

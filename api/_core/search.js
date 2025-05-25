@@ -70,6 +70,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.track_scores] - If `true`, calculate and return document scores, even if the scores are not used for sorting.
  * @param {string} [params.track_total_hits] - Number of hits matching the query to count accurately. If `true`, the exact number of hits is returned at the cost of some performance. If `false`, the response does not include the total number of hits matching the query.
  * @param {boolean} [params.typed_keys] - If `true`, aggregation and suggester names are be prefixed by their respective types in the response.
+ * @param {boolean} [params.verbose_pipeline] - Enables or disables verbose mode for the search pipeline. When verbose mode is enabled, detailed information about each processor in the search pipeline is included in the search response. This includes the processor name, execution status, input, output, and time taken for processing. This parameter is primarily intended for debugging purposes, allowing users to track how data flows and transforms through the search pipeline.
  * @param {boolean} [params.version] - If `true`, returns document version as part of a hit.
  * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (`*`). To search all data streams and indexes, omit this parameter or use `*` or `_all`.
  * @param {object} [params.body] - The search definition using the Query DSL

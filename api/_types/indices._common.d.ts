@@ -37,6 +37,8 @@ export type AliasDefinition = {
   search_routing?: string;
 }
 
+export type BuiltinStorageType = 'fs' | 'hybridfs' | 'mmapfs' | 'niofs'
+
 export type DataStream = {
   _meta?: Common.Metadata;
   allow_custom_routing?: boolean;
@@ -171,6 +173,7 @@ export type IndexSettingBlocks = {
   read?: Common.StringifiedBoolean;
   read_only?: Common.StringifiedBoolean;
   read_only_allow_delete?: Common.StringifiedBoolean;
+  search_only?: Common.StringifiedBoolean;
   write?: Common.StringifiedBoolean;
 }
 
@@ -192,7 +195,7 @@ export type IndexSettings = {
   creation_date_string?: Common.DateTime;
   default_pipeline?: Common.PipelineName;
   final_pipeline?: Common.PipelineName;
-  format?: string | number;
+  format?: Common.StringifiedInteger;
   gc_deletes?: Common.Duration;
   hidden?: Common.StringifiedBoolean;
   highlight?: IndexSettingsHighlight;
@@ -223,7 +226,7 @@ export type IndexSettings = {
   number_of_replicas?: Common.StringifiedInteger;
   number_of_routing_shards?: Common.StringifiedInteger;
   number_of_shards?: Common.StringifiedInteger;
-  priority?: number | string;
+  priority?: Common.StringifiedInteger;
   provided_name?: Common.Name;
   queries?: IndexSettingsQueries;
   query_string?: IndexSettingsQueryString;
@@ -578,7 +581,7 @@ export type SoftDeletesRetention = {
   operations?: Common.StringifiedLong;
 }
 
-export type StorageType = 'fs' | 'hybridfs' | 'mmapfs' | 'niofs' | string
+export type StorageType = BuiltinStorageType | string
 
 export type TemplateMapping = {
   aliases: Record<string, Alias>;

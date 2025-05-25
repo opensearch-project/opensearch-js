@@ -480,8 +480,8 @@ export type ReverseTokenFilter = TokenFilterBase & {
 
 export type ShingleTokenFilter = TokenFilterBase & {
   filler_token?: string;
-  max_shingle_size?: number | string;
-  min_shingle_size?: number | string;
+  max_shingle_size?: Common.StringifiedInteger;
+  min_shingle_size?: Common.StringifiedInteger;
   output_unigrams?: boolean;
   output_unigrams_if_no_shingles?: boolean;
   token_separator?: string;

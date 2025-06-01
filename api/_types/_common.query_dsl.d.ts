@@ -745,19 +745,23 @@ export type TermQuery = Common.FieldValue | (QueryBase & {
 })
 
 export type TermsLookup = {
-  id?: Common.Id;
-  index?: Common.IndexName;
-  path?: Common.Field;
+  id: Common.Id;
+  index: Common.IndexName;
+  path: Common.Field;
   routing?: Common.Routing;
+  store?: boolean;
 }
 
 export type TermsQuery = QueryBase & {
   _name?: any;
   boost?: any;
+  value_type?: TermsQueryValueType;
   [key: string]: any | TermsQueryField;
 }
 
 export type TermsQueryField = Common.FieldValue[] | TermsLookup
+
+export type TermsQueryValueType = 'bitmap' | 'default'
 
 export type TermsSetQuery = QueryBase & {
   minimum_should_match_field?: Common.Field;

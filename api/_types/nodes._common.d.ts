@@ -20,5 +20,5 @@ export type NodesResponseBase = {
   _nodes?: Common.NodeStatistics;
 }
 
-export type SampleType = 'block' | 'cpu' | 'wait'
+export type SampleType = string
 

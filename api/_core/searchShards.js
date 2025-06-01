@@ -32,6 +32,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
  * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
  * @param {string} [params.index] - Returns the indexes and shards that a search request would be executed against.
+ * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

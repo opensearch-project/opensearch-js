@@ -339,6 +339,39 @@ export default class OpenSearchAPI {
 
   };
 
+  geospatial: {
+    getUploadStats (params?: API.Geospatial_GetUploadStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Geospatial_GetUploadStats_Response>;
+    getUploadStats (callback: callbackFn<API.Geospatial_GetUploadStats_Response>): TransportRequestCallback;
+    getUploadStats (params: API.Geospatial_GetUploadStats_Request, callback: callbackFn<API.Geospatial_GetUploadStats_Response>): TransportRequestCallback;
+    getUploadStats (params: API.Geospatial_GetUploadStats_Request, options: TransportRequestOptions, callback: callbackFn<API.Geospatial_GetUploadStats_Response>): TransportRequestCallback;
+
+    geojsonUploadPost (params: API.Geospatial_GeojsonUploadPost_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Geospatial_GeojsonUploadPost_Response>;
+    geojsonUploadPost (params: API.Geospatial_GeojsonUploadPost_Request, callback: callbackFn<API.Geospatial_GeojsonUploadPost_Response>): TransportRequestCallback;
+    geojsonUploadPost (params: API.Geospatial_GeojsonUploadPost_Request, options: TransportRequestOptions, callback: callbackFn<API.Geospatial_GeojsonUploadPost_Response>): TransportRequestCallback;
+
+    geojsonUploadPut (params: API.Geospatial_GeojsonUploadPut_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Geospatial_GeojsonUploadPut_Response>;
+    geojsonUploadPut (params: API.Geospatial_GeojsonUploadPut_Request, callback: callbackFn<API.Geospatial_GeojsonUploadPut_Response>): TransportRequestCallback;
+    geojsonUploadPut (params: API.Geospatial_GeojsonUploadPut_Request, options: TransportRequestOptions, callback: callbackFn<API.Geospatial_GeojsonUploadPut_Response>): TransportRequestCallback;
+
+    getIp2GeoDatasource (params?: API.Geospatial_GetIp2GeoDatasource_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Geospatial_GetIp2GeoDatasource_Response>;
+    getIp2GeoDatasource (callback: callbackFn<API.Geospatial_GetIp2GeoDatasource_Response>): TransportRequestCallback;
+    getIp2GeoDatasource (params: API.Geospatial_GetIp2GeoDatasource_Request, callback: callbackFn<API.Geospatial_GetIp2GeoDatasource_Response>): TransportRequestCallback;
+    getIp2GeoDatasource (params: API.Geospatial_GetIp2GeoDatasource_Request, options: TransportRequestOptions, callback: callbackFn<API.Geospatial_GetIp2GeoDatasource_Response>): TransportRequestCallback;
+
+    deleteIp2GeoDatasource (params: API.Geospatial_DeleteIp2GeoDatasource_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Geospatial_DeleteIp2GeoDatasource_Response>;
+    deleteIp2GeoDatasource (params: API.Geospatial_DeleteIp2GeoDatasource_Request, callback: callbackFn<API.Geospatial_DeleteIp2GeoDatasource_Response>): TransportRequestCallback;
+    deleteIp2GeoDatasource (params: API.Geospatial_DeleteIp2GeoDatasource_Request, options: TransportRequestOptions, callback: callbackFn<API.Geospatial_DeleteIp2GeoDatasource_Response>): TransportRequestCallback;
+
+    putIp2GeoDatasource (params: API.Geospatial_PutIp2GeoDatasource_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Geospatial_PutIp2GeoDatasource_Response>;
+    putIp2GeoDatasource (params: API.Geospatial_PutIp2GeoDatasource_Request, callback: callbackFn<API.Geospatial_PutIp2GeoDatasource_Response>): TransportRequestCallback;
+    putIp2GeoDatasource (params: API.Geospatial_PutIp2GeoDatasource_Request, options: TransportRequestOptions, callback: callbackFn<API.Geospatial_PutIp2GeoDatasource_Response>): TransportRequestCallback;
+
+    putIp2GeoDatasourceSettings (params: API.Geospatial_PutIp2GeoDatasourceSettings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Geospatial_PutIp2GeoDatasourceSettings_Response>;
+    putIp2GeoDatasourceSettings (params: API.Geospatial_PutIp2GeoDatasourceSettings_Request, callback: callbackFn<API.Geospatial_PutIp2GeoDatasourceSettings_Response>): TransportRequestCallback;
+    putIp2GeoDatasourceSettings (params: API.Geospatial_PutIp2GeoDatasourceSettings_Request, options: TransportRequestOptions, callback: callbackFn<API.Geospatial_PutIp2GeoDatasourceSettings_Response>): TransportRequestCallback;
+
+  };
+
   indices: {
     getAlias (params?: API.Indices_GetAlias_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Indices_GetAlias_Response>;
     getAlias (callback: callbackFn<API.Indices_GetAlias_Response>): TransportRequestCallback;
@@ -693,6 +726,43 @@ export default class OpenSearchAPI {
   };
 
   ltr: {
+    deleteDefaultStore (params?: API.Ltr_DeleteDefaultStore_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_DeleteDefaultStore_Response>;
+    deleteDefaultStore (callback: callbackFn<API.Ltr_DeleteDefaultStore_Response>): TransportRequestCallback;
+    deleteDefaultStore (params: API.Ltr_DeleteDefaultStore_Request, callback: callbackFn<API.Ltr_DeleteDefaultStore_Response>): TransportRequestCallback;
+    deleteDefaultStore (params: API.Ltr_DeleteDefaultStore_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_DeleteDefaultStore_Response>): TransportRequestCallback;
+
+    listStores (params?: API.Ltr_ListStores_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_ListStores_Response>;
+    listStores (callback: callbackFn<API.Ltr_ListStores_Response>): TransportRequestCallback;
+    listStores (params: API.Ltr_ListStores_Request, callback: callbackFn<API.Ltr_ListStores_Response>): TransportRequestCallback;
+    listStores (params: API.Ltr_ListStores_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_ListStores_Response>): TransportRequestCallback;
+
+    createDefaultStore (params?: API.Ltr_CreateDefaultStore_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_CreateDefaultStore_Response>;
+    createDefaultStore (callback: callbackFn<API.Ltr_CreateDefaultStore_Response>): TransportRequestCallback;
+    createDefaultStore (params: API.Ltr_CreateDefaultStore_Request, callback: callbackFn<API.Ltr_CreateDefaultStore_Response>): TransportRequestCallback;
+    createDefaultStore (params: API.Ltr_CreateDefaultStore_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_CreateDefaultStore_Response>): TransportRequestCallback;
+
+    cacheStats (params?: API.Ltr_CacheStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_CacheStats_Response>;
+    cacheStats (callback: callbackFn<API.Ltr_CacheStats_Response>): TransportRequestCallback;
+    cacheStats (params: API.Ltr_CacheStats_Request, callback: callbackFn<API.Ltr_CacheStats_Response>): TransportRequestCallback;
+    cacheStats (params: API.Ltr_CacheStats_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_CacheStats_Response>): TransportRequestCallback;
+
+    clearCache (params?: API.Ltr_ClearCache_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_ClearCache_Response>;
+    clearCache (callback: callbackFn<API.Ltr_ClearCache_Response>): TransportRequestCallback;
+    clearCache (params: API.Ltr_ClearCache_Request, callback: callbackFn<API.Ltr_ClearCache_Response>): TransportRequestCallback;
+    clearCache (params: API.Ltr_ClearCache_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_ClearCache_Response>): TransportRequestCallback;
+
+    deleteStore (params: API.Ltr_DeleteStore_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_DeleteStore_Response>;
+    deleteStore (params: API.Ltr_DeleteStore_Request, callback: callbackFn<API.Ltr_DeleteStore_Response>): TransportRequestCallback;
+    deleteStore (params: API.Ltr_DeleteStore_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_DeleteStore_Response>): TransportRequestCallback;
+
+    getStore (params: API.Ltr_GetStore_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_GetStore_Response>;
+    getStore (params: API.Ltr_GetStore_Request, callback: callbackFn<API.Ltr_GetStore_Response>): TransportRequestCallback;
+    getStore (params: API.Ltr_GetStore_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_GetStore_Response>): TransportRequestCallback;
+
+    createStore (params: API.Ltr_CreateStore_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_CreateStore_Response>;
+    createStore (params: API.Ltr_CreateStore_Request, callback: callbackFn<API.Ltr_CreateStore_Response>): TransportRequestCallback;
+    createStore (params: API.Ltr_CreateStore_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_CreateStore_Response>): TransportRequestCallback;
+
     stats (params?: API.Ltr_Stats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_Stats_Response>;
     stats (callback: callbackFn<API.Ltr_Stats_Response>): TransportRequestCallback;
     stats (params: API.Ltr_Stats_Request, callback: callbackFn<API.Ltr_Stats_Response>): TransportRequestCallback;
@@ -958,6 +1028,14 @@ export default class OpenSearchAPI {
     getTool (params: API.Ml_GetTool_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetTool_Response>;
     getTool (params: API.Ml_GetTool_Request, callback: callbackFn<API.Ml_GetTool_Response>): TransportRequestCallback;
     getTool (params: API.Ml_GetTool_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetTool_Response>): TransportRequestCallback;
+
+  };
+
+  neural: {
+    stats (params?: API.Neural_Stats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Neural_Stats_Response>;
+    stats (callback: callbackFn<API.Neural_Stats_Response>): TransportRequestCallback;
+    stats (params: API.Neural_Stats_Request, callback: callbackFn<API.Neural_Stats_Response>): TransportRequestCallback;
+    stats (params: API.Neural_Stats_Request, options: TransportRequestOptions, callback: callbackFn<API.Neural_Stats_Response>): TransportRequestCallback;
 
   };
 

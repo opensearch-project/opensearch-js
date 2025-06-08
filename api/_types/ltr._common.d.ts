@@ -15,6 +15,25 @@
  */
 
 import * as Common from './_common'
+import * as Nodes_Common from './nodes._common'
+
+export type AcknowledgedResponse = {
+  acknowledged?: boolean;
+  index?: string;
+  shards_acknowledged?: boolean;
+}
+
+export type CacheAllStats = {
+  features?: CacheItemStats;
+  featuresets?: CacheItemStats;
+  models?: CacheItemStats;
+  total?: CacheItemStats;
+}
+
+export type CacheItemStats = {
+  count?: number;
+  ram?: number;
+}
 
 export type CacheStat = {
   entry_count?: number;
@@ -30,18 +49,53 @@ export type CacheStats = {
   model?: CacheStat;
 }
 
+export type CacheStatsResponse = {
+  _nodes?: Common.NodeStatistics;
+  all?: CacheAllStats;
+  cluster_name?: Common.Name;
+  nodes?: Record<string, NodeDetails>;
+  stores?: Record<string, any>;
+}
+
+export type ListStoresResponse = {
+  stores: Record<string, StoreDetails>;
+}
+
+export type NodeDetails = {
+  hostname?: string;
+  name?: string;
+  stats?: NodeStatsDetails;
+}
+
 export type NodeStats = {
   cache?: CacheStats;
   request_error_count?: number;
   request_total_count?: number;
 }
 
-export type Stats = {
-  _nodes?: Common.NodeStatistics;
+export type NodeStatsDetails = {
+  features?: CacheItemStats;
+  featuresets?: CacheItemStats;
+  models?: CacheItemStats;
+  total?: CacheItemStats;
+}
+
+export type Stats = Nodes_Common.NodesResponseBase & {
   cluster_name?: Common.Name;
   nodes?: Record<string, NodeStats>;
   status?: string;
   stores?: StoreStats;
+}
+
+export type StoreDetails = {
+  counts?: Record<string, any>;
+  index?: string;
+  store?: string;
+  version?: number;
+}
+
+export type StoreExistsResponse = {
+  exists?: boolean;
 }
 
 export type StoreStat = {

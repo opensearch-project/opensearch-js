@@ -19,9 +19,11 @@ import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
 export interface Security_PatchDistinguishedName_Request extends Global.Params {
-  body?: Security_Common.PatchOperations;
+  body?: Security_PatchDistinguishedName_RequestBody;
   cluster_name: string;
 }
+
+export type Security_PatchDistinguishedName_RequestBody = Security_Common.PatchOperation[]
 
 export interface Security_PatchDistinguishedName_Response extends ApiResponse {
   body: Security_PatchDistinguishedName_ResponseBody;

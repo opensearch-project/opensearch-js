@@ -231,17 +231,17 @@ export type HighlightField = HighlightBase & {
 
 export type Hit = {
   _explanation?: Core_Explain.Explanation;
-  _id: Common.Id;
+  _id?: Common.Id;
   _ignored?: string[];
-  _index: Common.IndexName;
+  _index?: Common.IndexName;
   _nested?: NestedIdentity;
   _node?: string;
   _primary_term?: number;
   _routing?: string;
-  _score?: undefined | number | string;
+  _score?: undefined | number;
   _seq_no?: Common.SequenceNumber;
   _shard?: string;
-  _source?: Record<string, any>;
+  _source?: TDocument;
   _type?: Common.Type;
   _version?: Common.VersionNumber;
   fields?: Record<string, any>;
@@ -253,8 +253,10 @@ export type Hit = {
 }
 
 export type HitsMetadata = {
-  hits: Hit[];
-  max_score?: undefined | number | string;
+  hits: Hit & {
+  _source?: T;
+}[];
+  max_score?: undefined | number;
   total?: TotalHits | number;
 }
 
@@ -345,6 +347,16 @@ export type PointInTimeReference = {
   keep_alive?: Common.Duration;
 }
 
+export type ProcessorExecutionDetail = {
+  duration_millis?: number;
+  error?: string;
+  input_data?: Record<string, any> | Record<string, any>[];
+  output_data?: Record<string, any> | Record<string, any>[];
+  processor_name?: string;
+  status?: string;
+  tag?: string;
+}
+
 export type Profile = {
   shards: ShardProfile[];
 }
@@ -397,10 +409,10 @@ export type ResponseBody = {
   aggregations?: Record<string, Common_Aggregations.Aggregate>;
   fields?: Record<string, Record<string, any>>;
   hits: HitsMetadata;
-  max_score?: number;
   num_reduce_phases?: number;
   phase_took?: Common.PhaseTook;
   pit_id?: Common.Id;
+  processor_results?: ProcessorExecutionDetail[];
   profile?: Profile;
   suggest?: Record<string, Suggest[]>;
   terminated_early?: boolean;
@@ -472,6 +484,10 @@ export type SuggestFuzziness = {
 }
 
 export type SuggestSort = 'frequency' | 'score'
+
+export type T = Record<string, any>
+
+export type TDocument = Record<string, any>
 
 export type TermSuggest = SuggestBase & {
   options: TermSuggestOption | TermSuggestOption[];

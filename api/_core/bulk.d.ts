@@ -29,7 +29,7 @@ export interface Bulk_Request extends Global.Params {
   pipeline?: string;
   refresh?: Common.Refresh;
   require_alias?: boolean;
-  routing?: Common.RoutingInQueryString;
+  routing?: Common.Routing;
   timeout?: Common.Duration;
   type?: string;
   wait_for_active_shards?: Common.WaitForActiveShards;

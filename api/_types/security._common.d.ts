@@ -14,6 +14,7 @@
  * modify the API generator.
  */
 
+import * as Nodes_Common from './nodes._common'
 
 export type AccountDetails = {
   backend_roles?: string[];
@@ -40,7 +41,7 @@ export type ActionGroupsMap = Record<string, ActionGroup>
 
 export type AllowListConfig = {
   enabled?: boolean;
-  requests?: Record<string, any>;
+  requests?: Record<string, string[]>;
 }
 
 export type AuditConfig = {
@@ -80,16 +81,10 @@ export type AuthInfo = {
   size_of_custom_attributes?: string;
   size_of_user?: string;
   sso_logout_url?: undefined | string;
-  tenants?: Record<string, any>;
+  tenants?: Record<string, boolean>;
   user?: string;
   user_name?: string;
   user_requested_tenant?: undefined | string;
-}
-
-export type CertificateCountPerNode = {
-  failed?: number;
-  successful?: number;
-  total?: number;
 }
 
 export type CertificatesDetail = {
@@ -204,8 +199,7 @@ export type GetCertificates = {
   transport_certificates_list?: CertificatesDetail[];
 }
 
-export type GetCertificatesNew = {
-  _nodes?: Record<string, CertificateCountPerNode>;
+export type GetCertificatesNew = Nodes_Common.NodesResponseBase & {
   cluster_name?: string;
   nodes?: Record<string, CertificatesPerNode>;
 }
@@ -252,10 +246,8 @@ export type PatchOperation = {
   value?: Record<string, any>;
 }
 
-export type PatchOperations = PatchOperation[]
-
 export type PermissionsInfo = {
-  disabled_endpoints?: Record<string, any>;
+  disabled_endpoints?: Record<string, string[]>;
   has_api_access?: boolean;
   user?: string;
   user_name?: string;
@@ -295,12 +287,12 @@ export type SSLInfo = {
   peer_certificates_list?: string[];
   principal: undefined | string;
   ssl_cipher: undefined | string;
-  ssl_openssl_available: boolean;
-  ssl_openssl_non_available_cause: undefined | string;
-  ssl_openssl_supports_hostname_validation: boolean;
-  ssl_openssl_supports_key_manager_factory: boolean;
-  ssl_openssl_version: number | string;
-  ssl_openssl_version_string: undefined | string;
+  ssl_openssl_available?: boolean;
+  ssl_openssl_non_available_cause?: undefined | string;
+  ssl_openssl_supports_hostname_validation?: boolean;
+  ssl_openssl_supports_key_manager_factory?: boolean;
+  ssl_openssl_version?: number | string;
+  ssl_openssl_version_string?: undefined | string;
   ssl_protocol: undefined | string;
   ssl_provider_http: undefined | string;
   ssl_provider_transport_client: string;
@@ -325,13 +317,13 @@ export type TenantsMap = Record<string, Tenant>
 
 export type UpgradeCheck = {
   status?: string;
-  upgradeActions?: Record<string, any>;
+  upgradeActions?: Record<string, Record<string, string[]>>;
   upgradeAvailable?: boolean;
 }
 
 export type UpgradePerform = {
   status?: string;
-  upgrades?: Record<string, any>;
+  upgrades?: Record<string, Record<string, string[]>>;
 }
 
 export type User = {

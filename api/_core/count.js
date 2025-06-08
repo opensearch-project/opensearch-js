@@ -37,7 +37,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {number} [params.min_score] - Sets the minimum `_score` value that documents must have to be included in the result.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
  * @param {string} [params.q] - Query in the Lucene query string syntax.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {number} [params.terminate_after] - Maximum number of documents to collect for each shard. If a query reaches this limit, OpenSearch terminates the query early. OpenSearch collects documents before sorting.
  * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (`*`). To search all data streams and indexes, omit this parameter or use `*` or `_all`.
  * @param {object} [params.body] - Query to restrict the results specified with the Query DSL (optional)

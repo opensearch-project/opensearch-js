@@ -18,6 +18,7 @@ import * as Common from './_common'
 import * as Common_Aggregations from './_common.aggregations'
 import * as Common_QueryDsl from './_common.query_dsl'
 import * as Core_Search from './_core.search'
+import * as Nodes_Common from './nodes._common'
 
 export type AsynchronousSearchStats = {
   cancelled?: number;
@@ -77,8 +78,7 @@ export type Search = {
   version?: boolean;
 }
 
-export type StatsResponse = {
-  _nodes?: Common.NodeStatistics;
+export type StatsResponse = Nodes_Common.NodesResponseBase & {
   cluster_name?: string;
   nodes?: Record<string, NodesStats>;
 }

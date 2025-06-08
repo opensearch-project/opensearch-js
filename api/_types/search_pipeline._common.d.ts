@@ -73,6 +73,8 @@ export type PersonalizeSearchRankingResponseProcessor = {
 
 export type PhaseResultsProcessor = {
   'normalization-processor': NormalizationPhaseResultsProcessor;
+} | {
+  'score-ranker-processor': ScoreRankerPhaseResultsProcessor;
 }
 
 export type RenameFieldResponseProcessor = {
@@ -133,8 +135,12 @@ export type RetrievalAugmentedGenerationResponseProcessor = {
 }
 
 export type ScoreCombination = {
-  parameters?: number[];
+  parameters?: ScoreCombinationParameters;
   technique?: ScoreCombinationTechnique;
+}
+
+export type ScoreCombinationParameters = {
+  weights?: number[];
 }
 
 export type ScoreCombinationTechnique = 'arithmetic_mean' | 'geometric_mean' | 'harmonic_mean'
@@ -145,9 +151,21 @@ export type ScoreNormalization = {
 
 export type ScoreNormalizationTechnique = 'l2' | 'min_max'
 
+export type ScoreRankerCombination = {
+  rank_constant?: number;
+  technique: ScoreRankerCombinationTechnique;
+}
+
+export type ScoreRankerCombinationTechnique = 'rrf'
+
+export type ScoreRankerPhaseResultsProcessor = {
+  combination: ScoreRankerCombination;
+}
+
 export type SearchPipelineMap = Record<string, SearchPipelineStructure>
 
 export type SearchPipelineStructure = {
+  description?: string;
   phase_results_processors?: PhaseResultsProcessor[];
   request_processors?: RequestProcessor[];
   response_processors?: ResponseProcessor[];

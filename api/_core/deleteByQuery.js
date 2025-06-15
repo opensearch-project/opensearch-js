@@ -44,7 +44,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.refresh] - If `true`, OpenSearch refreshes all shards involved in the delete by query after the request completes.
  * @param {boolean} [params.request_cache] - If `true`, the request cache is used for this request. Defaults to the index-level setting.
  * @param {number} [params.requests_per_second=0] - The throttle for this request in sub-requests per second.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {string} [params.scroll] - Period to retain the search context for scrolling.
  * @param {number} [params.scroll_size=100] - Size of the scroll request that powers the operation.
  * @param {string} [params.search_timeout] - Explicit timeout for each search request. Defaults to no timeout.

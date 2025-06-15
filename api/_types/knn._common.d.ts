@@ -15,6 +15,7 @@
  */
 
 import * as Common from './_common'
+import * as Nodes_Common from './nodes._common'
 
 export type DeletedModel = {
   model_id: string;
@@ -84,8 +85,7 @@ export type NodeStats = {
   training_requests?: number;
 }
 
-export type Stats = {
-  _nodes?: Common.NodeStatistics;
+export type Stats = Nodes_Common.NodesResponseBase & {
   circuit_breaker_triggered?: boolean;
   cluster_name?: Common.Name;
   model_index_status?: Common.HealthStatus | undefined;

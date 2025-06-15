@@ -34,7 +34,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.refresh] - If 'true', OpenSearch refreshes the affected shards to make this operation visible to search, if `wait_for` then wait for a refresh to make this operation visible to search, if `false` do nothing with refreshes.
  * @param {boolean} [params.require_alias=false] - If `true`, the destination must be an index alias.
  * @param {number} [params.retry_on_conflict=0] - Specify how many times should the operation be retried when a conflict occurs.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {string} [params.timeout] - Period to wait for dynamic mapping updates and active shards. This guarantees OpenSearch waits for at least the timeout before failing. The actual wait time could be longer, particularly when multiple waits occur.
  * @param {string} [params.wait_for_active_shards] - The number of shard copies that must be active before proceeding with the operations. Set to 'all' or any positive integer up to the total number of shards in the index (number_of_replicas+1). Defaults to 1 meaning the primary shard.
  * @param {string} params.id - Document ID

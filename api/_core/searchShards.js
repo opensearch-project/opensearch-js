@@ -30,8 +30,9 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {string} [params.index] - Returns the indexes and shards that a search request would be executed against.
+ * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

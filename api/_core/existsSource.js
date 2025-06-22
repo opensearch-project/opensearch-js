@@ -33,9 +33,9 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.refresh] - If `true`, OpenSearch refreshes all shards involved in the delete by query after the request completes.
  * @param {string} [params.routing] - Target the specified primary shard.
  * @param {number} [params.version] - Explicit version number for concurrency control. The specified version must match the current version of the document for the request to succeed.
- * @param {string} [params.version_type] - Specific version type: `external`, `external_gte`.
+ * @param {string} [params.version_type] - The specific version type: `external`, `external_gte`.
  * @param {string} params.id - Identifier of the document.
- * @param {string} params.index - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
+ * @param {string} params.index - A comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

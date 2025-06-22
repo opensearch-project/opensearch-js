@@ -34,9 +34,9 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.routing] - Target the specified primary shard.
  * @param {string} [params.stored_fields] - List of stored fields to return as part of a hit. If no fields are specified, no stored fields are included in the response. If this field is specified, the `_source` parameter defaults to false.
  * @param {number} [params.version] - Explicit version number for concurrency control. The specified version must match the current version of the document for the request to succeed.
- * @param {string} [params.version_type] - Specific version type: `internal`, `external`, `external_gte`.
- * @param {string} params.id - Unique identifier of the document.
- * @param {string} params.index - Name of the index that contains the document.
+ * @param {string} [params.version_type] - The specific version type: `internal`, `external`, `external_gte`.
+ * @param {string} params.id - The unique identifier of the document.
+ * @param {string} params.index - The name of the index that contains the document.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

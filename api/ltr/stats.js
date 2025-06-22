@@ -26,8 +26,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.timeout] - The time in milliseconds to wait for a response.
- * @param {array} [params.node_id] - Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
- * @param {array} [params.stat] - Comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
+ * @param {array} [params.node_id] - A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+ * @param {array} [params.stat] - A comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

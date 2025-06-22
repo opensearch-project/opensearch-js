@@ -19,18 +19,25 @@ import * as Core_Search from './_core.search'
 
 export type CreateOperation = WriteOperation
 
-export type DeleteOperation = OperationBase
+export type DeleteOperation = OperationBase & {
+  if_primary_term?: number;
+  if_seq_no?: Common.SequenceNumber;
+  version?: Common.VersionNumber;
+  version_type?: Common.VersionType;
+}
 
-export type IndexOperation = WriteOperation
+export type IndexOperation = WriteOperation & {
+  if_primary_term?: number;
+  if_seq_no?: Common.SequenceNumber;
+  op_type?: Common.OpType;
+  version?: Common.VersionNumber;
+  version_type?: Common.VersionType;
+}
 
 export type OperationBase = {
   _id?: Common.Id;
   _index?: Common.IndexName;
-  if_primary_term?: number;
-  if_seq_no?: Common.SequenceNumber;
   routing?: Common.Routing;
-  version?: Common.VersionNumber;
-  version_type?: Common.VersionType;
 }
 
 export type OperationContainer = {
@@ -45,7 +52,7 @@ export type ResponseItem = {
   _index: string;
   _primary_term?: number;
   _seq_no?: Common.SequenceNumber;
-  _shards?: Common.ShardStatistics;
+  _shards?: Common.ShardInfo;
   _type?: string;
   _version?: Common.VersionNumber;
   error?: Common.ErrorCause;
@@ -66,12 +73,13 @@ export type UpdateAction = {
 }
 
 export type UpdateOperation = OperationBase & {
+  if_primary_term?: number;
+  if_seq_no?: Common.SequenceNumber;
   require_alias?: boolean;
   retry_on_conflict?: number;
 }
 
 export type WriteOperation = OperationBase & {
-  dynamic_templates?: Record<string, string>;
   pipeline?: string;
   require_alias?: boolean;
 }

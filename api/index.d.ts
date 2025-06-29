@@ -36,7 +36,7 @@ import { GetScript_Request, GetScript_Response, GetScript_ResponseBody } from '.
 import { PutScript_Request, PutScript_RequestBody, PutScript_Response, PutScript_ResponseBody } from './_core/putScript';
 import { ScriptsPainlessExecute_Request, ScriptsPainlessExecute_RequestBody, ScriptsPainlessExecute_Response, ScriptsPainlessExecute_ResponseBody } from './_core/scriptsPainlessExecute';
 import { Search_Request, Search_RequestBody, Search_Response, Search_ResponseBody } from './_core/search';
-import { SearchShards_Request, SearchShards_Response, SearchShards_ResponseBody } from './_core/searchShards';
+import { SearchShards_Request, SearchShards_RequestBody, SearchShards_Response, SearchShards_ResponseBody } from './_core/searchShards';
 import { DeletePit_Request, DeletePit_RequestBody, DeletePit_Response, DeletePit_ResponseBody } from './_core/deletePit';
 import { DeleteAllPits_Request, DeleteAllPits_Response, DeleteAllPits_ResponseBody } from './_core/deleteAllPits';
 import { GetAllPits_Request, GetAllPits_Response, GetAllPits_ResponseBody } from './_core/getAllPits';
@@ -137,8 +137,8 @@ import { Cluster_Health_Request, Cluster_Health_Response, Cluster_Health_Respons
 import { Cluster_PendingTasks_Request, Cluster_PendingTasks_Response, Cluster_PendingTasks_ResponseBody } from './cluster/pendingTasks';
 import { Cluster_Reroute_Request, Cluster_Reroute_RequestBody, Cluster_Reroute_Response, Cluster_Reroute_ResponseBody } from './cluster/reroute';
 import { Cluster_GetWeightedRouting_Request, Cluster_GetWeightedRouting_Response, Cluster_GetWeightedRouting_ResponseBody } from './cluster/getWeightedRouting';
-import { Cluster_PutWeightedRouting_Request, Cluster_PutWeightedRouting_Response, Cluster_PutWeightedRouting_ResponseBody } from './cluster/putWeightedRouting';
-import { Cluster_DeleteWeightedRouting_Request, Cluster_DeleteWeightedRouting_Response, Cluster_DeleteWeightedRouting_ResponseBody } from './cluster/deleteWeightedRouting';
+import { Cluster_PutWeightedRouting_Request, Cluster_PutWeightedRouting_RequestBody, Cluster_PutWeightedRouting_Response, Cluster_PutWeightedRouting_ResponseBody } from './cluster/putWeightedRouting';
+import { Cluster_DeleteWeightedRouting_Request, Cluster_DeleteWeightedRouting_RequestBody, Cluster_DeleteWeightedRouting_Response, Cluster_DeleteWeightedRouting_ResponseBody } from './cluster/deleteWeightedRouting';
 import { Cluster_GetSettings_Request, Cluster_GetSettings_Response, Cluster_GetSettings_ResponseBody } from './cluster/getSettings';
 import { Cluster_PutSettings_Request, Cluster_PutSettings_RequestBody, Cluster_PutSettings_Response, Cluster_PutSettings_ResponseBody } from './cluster/putSettings';
 import { Cluster_State_Request, Cluster_State_Response, Cluster_State_ResponseBody } from './cluster/state';
@@ -162,6 +162,32 @@ import { Insights_TopQueries_Request, Insights_TopQueries_Response, Insights_Top
 import { List_Help_Request, List_Help_Response, List_Help_ResponseBody } from './list/help';
 import { List_Indices_Request, List_Indices_Response, List_Indices_ResponseBody } from './list/indices';
 import { List_Shards_Request, List_Shards_Response, List_Shards_ResponseBody } from './list/shards';
+import { Ltr_DeleteDefaultStore_Request, Ltr_DeleteDefaultStore_Response, Ltr_DeleteDefaultStore_ResponseBody } from './ltr/deleteDefaultStore';
+import { Ltr_ListStores_Request, Ltr_ListStores_Response, Ltr_ListStores_ResponseBody } from './ltr/listStores';
+import { Ltr_CreateDefaultStore_Request, Ltr_CreateDefaultStore_Response, Ltr_CreateDefaultStore_ResponseBody } from './ltr/createDefaultStore';
+import { Ltr_CacheStats_Request, Ltr_CacheStats_Response, Ltr_CacheStats_ResponseBody } from './ltr/cacheStats';
+import { Ltr_ClearCache_Request, Ltr_ClearCache_Response, Ltr_ClearCache_ResponseBody } from './ltr/clearCache';
+import { Ltr_SearchFeatures_Request, Ltr_SearchFeatures_Response, Ltr_SearchFeatures_ResponseBody } from './ltr/searchFeatures';
+import { Ltr_DeleteFeature_Request, Ltr_DeleteFeature_Response, Ltr_DeleteFeature_ResponseBody } from './ltr/deleteFeature';
+import { Ltr_GetFeature_Request, Ltr_GetFeature_Response, Ltr_GetFeature_ResponseBody } from './ltr/getFeature';
+import { Ltr_UpdateFeature_Request, Ltr_UpdateFeature_RequestBody, Ltr_UpdateFeature_Response, Ltr_UpdateFeature_ResponseBody } from './ltr/updateFeature';
+import { Ltr_CreateFeature_Request, Ltr_CreateFeature_RequestBody, Ltr_CreateFeature_Response, Ltr_CreateFeature_ResponseBody } from './ltr/createFeature';
+import { Ltr_SearchFeaturesets_Request, Ltr_SearchFeaturesets_Response, Ltr_SearchFeaturesets_ResponseBody } from './ltr/searchFeaturesets';
+import { Ltr_DeleteFeatureset_Request, Ltr_DeleteFeatureset_Response, Ltr_DeleteFeatureset_ResponseBody } from './ltr/deleteFeatureset';
+import { Ltr_GetFeatureset_Request, Ltr_GetFeatureset_Response, Ltr_GetFeatureset_ResponseBody } from './ltr/getFeatureset';
+import { Ltr_UpdateFeatureset_Request, Ltr_UpdateFeatureset_RequestBody, Ltr_UpdateFeatureset_Response, Ltr_UpdateFeatureset_ResponseBody } from './ltr/updateFeatureset';
+import { Ltr_CreateFeatureset_Request, Ltr_CreateFeatureset_RequestBody, Ltr_CreateFeatureset_Response, Ltr_CreateFeatureset_ResponseBody } from './ltr/createFeatureset';
+import { Ltr_AddFeaturesToSet_Request, Ltr_AddFeaturesToSet_RequestBody, Ltr_AddFeaturesToSet_Response, Ltr_AddFeaturesToSet_ResponseBody } from './ltr/addFeaturesToSet';
+import { Ltr_AddFeaturesToSetByQuery_Request, Ltr_AddFeaturesToSetByQuery_Response, Ltr_AddFeaturesToSetByQuery_ResponseBody } from './ltr/addFeaturesToSetByQuery';
+import { Ltr_CreateModelFromSet_Request, Ltr_CreateModelFromSet_RequestBody, Ltr_CreateModelFromSet_Response, Ltr_CreateModelFromSet_ResponseBody } from './ltr/createModelFromSet';
+import { Ltr_SearchModels_Request, Ltr_SearchModels_Response, Ltr_SearchModels_ResponseBody } from './ltr/searchModels';
+import { Ltr_DeleteModel_Request, Ltr_DeleteModel_Response, Ltr_DeleteModel_ResponseBody } from './ltr/deleteModel';
+import { Ltr_GetModel_Request, Ltr_GetModel_Response, Ltr_GetModel_ResponseBody } from './ltr/getModel';
+import { Ltr_CreateModel_Request, Ltr_CreateModel_RequestBody, Ltr_CreateModel_Response, Ltr_CreateModel_ResponseBody } from './ltr/createModel';
+import { Ltr_DeleteStore_Request, Ltr_DeleteStore_Response, Ltr_DeleteStore_ResponseBody } from './ltr/deleteStore';
+import { Ltr_GetStore_Request, Ltr_GetStore_Response, Ltr_GetStore_ResponseBody } from './ltr/getStore';
+import { Ltr_CreateStore_Request, Ltr_CreateStore_Response, Ltr_CreateStore_ResponseBody } from './ltr/createStore';
+import { Ltr_Stats_Request, Ltr_Stats_Response, Ltr_Stats_ResponseBody } from './ltr/stats';
 import { Nodes_Info_Request, Nodes_Info_Response, Nodes_Info_ResponseBody } from './nodes/info';
 import { Nodes_HotThreads_Request, Nodes_HotThreads_Response, Nodes_HotThreads_ResponseBody } from './nodes/hotThreads';
 import { Nodes_ReloadSecureSettings_Request, Nodes_ReloadSecureSettings_RequestBody, Nodes_ReloadSecureSettings_Response, Nodes_ReloadSecureSettings_ResponseBody } from './nodes/reloadSecureSettings';
@@ -201,7 +227,7 @@ import { Security_GetDistinguishedNames_Request, Security_GetDistinguishedNames_
 import { Security_PatchDistinguishedNames_Request, Security_PatchDistinguishedNames_RequestBody, Security_PatchDistinguishedNames_Response, Security_PatchDistinguishedNames_ResponseBody } from './security/patchDistinguishedNames';
 import { Security_DeleteDistinguishedName_Request, Security_DeleteDistinguishedName_Response, Security_DeleteDistinguishedName_ResponseBody } from './security/deleteDistinguishedName';
 import { Security_GetDistinguishedName_Request, Security_GetDistinguishedName_Response, Security_GetDistinguishedName_ResponseBody } from './security/getDistinguishedName';
-import { Security_PatchDistinguishedName_Request, Security_PatchDistinguishedName_Response, Security_PatchDistinguishedName_ResponseBody } from './security/patchDistinguishedName';
+import { Security_PatchDistinguishedName_Request, Security_PatchDistinguishedName_RequestBody, Security_PatchDistinguishedName_Response, Security_PatchDistinguishedName_ResponseBody } from './security/patchDistinguishedName';
 import { Security_UpdateDistinguishedName_Request, Security_UpdateDistinguishedName_Response, Security_UpdateDistinguishedName_ResponseBody } from './security/updateDistinguishedName';
 import { Security_GetPermissionsInfo_Request, Security_GetPermissionsInfo_Response, Security_GetPermissionsInfo_ResponseBody } from './security/getPermissionsInfo';
 import { Security_GetRoles_Request, Security_GetRoles_Response, Security_GetRoles_ResponseBody } from './security/getRoles';
@@ -275,7 +301,6 @@ import { Knn_TrainModel_Request, Knn_TrainModel_Response, Knn_TrainModel_Respons
 import { Knn_DeleteModel_Request, Knn_DeleteModel_Response, Knn_DeleteModel_ResponseBody } from './knn/deleteModel';
 import { Knn_GetModel_Request, Knn_GetModel_Response, Knn_GetModel_ResponseBody } from './knn/getModel';
 import { Knn_Warmup_Request, Knn_Warmup_Response, Knn_Warmup_ResponseBody } from './knn/warmup';
-import { Ltr_Stats_Request, Ltr_Stats_Response, Ltr_Stats_ResponseBody } from './ltr/stats';
 import { Ml_ExecuteAlgorithm_Request, Ml_ExecuteAlgorithm_RequestBody, Ml_ExecuteAlgorithm_Response, Ml_ExecuteAlgorithm_ResponseBody } from './ml/executeAlgorithm';
 import { Ml_Predict_Request, Ml_Predict_RequestBody, Ml_Predict_Response, Ml_Predict_ResponseBody } from './ml/predict';
 import { Ml_TrainPredict_Request, Ml_TrainPredict_RequestBody, Ml_TrainPredict_Response, Ml_TrainPredict_ResponseBody } from './ml/trainPredict';
@@ -335,6 +360,7 @@ import { Ml_DeleteTask_Request, Ml_DeleteTask_Response, Ml_DeleteTask_ResponseBo
 import { Ml_GetTask_Request, Ml_GetTask_Response, Ml_GetTask_ResponseBody } from './ml/getTask';
 import { Ml_GetAllTools_Request, Ml_GetAllTools_Response, Ml_GetAllTools_ResponseBody } from './ml/getAllTools';
 import { Ml_GetTool_Request, Ml_GetTool_Response, Ml_GetTool_ResponseBody } from './ml/getTool';
+import { Neural_Stats_Request, Neural_Stats_Response, Neural_Stats_ResponseBody } from './neural/stats';
 import { Notifications_ListChannels_Request, Notifications_ListChannels_Response, Notifications_ListChannels_ResponseBody } from './notifications/listChannels';
 import { Notifications_DeleteConfigs_Request, Notifications_DeleteConfigs_Response, Notifications_DeleteConfigs_ResponseBody } from './notifications/deleteConfigs';
 import { Notifications_GetConfigs_Request, Notifications_GetConfigs_RequestBody, Notifications_GetConfigs_Response, Notifications_GetConfigs_ResponseBody } from './notifications/getConfigs';
@@ -383,6 +409,24 @@ import { Rollups_Put_Request, Rollups_Put_Response, Rollups_Put_ResponseBody } f
 import { Rollups_Explain_Request, Rollups_Explain_Response, Rollups_Explain_ResponseBody } from './rollups/explain';
 import { Rollups_Start_Request, Rollups_Start_Response, Rollups_Start_ResponseBody } from './rollups/start';
 import { Rollups_Stop_Request, Rollups_Stop_Response, Rollups_Stop_ResponseBody } from './rollups/stop';
+import { SearchRelevance_GetNodeStats_Request, SearchRelevance_GetNodeStats_Response, SearchRelevance_GetNodeStats_ResponseBody } from './searchRelevance/getNodeStats';
+import { SearchRelevance_GetExperiments_Request, SearchRelevance_GetExperiments_Response, SearchRelevance_GetExperiments_ResponseBody } from './searchRelevance/getExperiments';
+import { SearchRelevance_PutExperiments_Request, SearchRelevance_PutExperiments_RequestBody, SearchRelevance_PutExperiments_Response, SearchRelevance_PutExperiments_ResponseBody } from './searchRelevance/putExperiments';
+import { SearchRelevance_DeleteExperiments_Request, SearchRelevance_DeleteExperiments_Response, SearchRelevance_DeleteExperiments_ResponseBody } from './searchRelevance/deleteExperiments';
+import { SearchRelevance_GetJudgments_Request, SearchRelevance_GetJudgments_Response, SearchRelevance_GetJudgments_ResponseBody } from './searchRelevance/getJudgments';
+import { SearchRelevance_PutJudgments_Request, SearchRelevance_PutJudgments_RequestBody, SearchRelevance_PutJudgments_Response, SearchRelevance_PutJudgments_ResponseBody } from './searchRelevance/putJudgments';
+import { SearchRelevance_DeleteJudgments_Request, SearchRelevance_DeleteJudgments_Response, SearchRelevance_DeleteJudgments_ResponseBody } from './searchRelevance/deleteJudgments';
+import { SearchRelevance_GetQuerySets_Request, SearchRelevance_GetQuerySets_Response, SearchRelevance_GetQuerySets_ResponseBody } from './searchRelevance/getQuerySets';
+import { SearchRelevance_PostQuerySets_Request, SearchRelevance_PostQuerySets_RequestBody, SearchRelevance_PostQuerySets_Response, SearchRelevance_PostQuerySets_ResponseBody } from './searchRelevance/postQuerySets';
+import { SearchRelevance_PutQuerySets_Request, SearchRelevance_PutQuerySets_RequestBody, SearchRelevance_PutQuerySets_Response, SearchRelevance_PutQuerySets_ResponseBody } from './searchRelevance/putQuerySets';
+import { SearchRelevance_DeleteQuerySets_Request, SearchRelevance_DeleteQuerySets_Response, SearchRelevance_DeleteQuerySets_ResponseBody } from './searchRelevance/deleteQuerySets';
+import { SearchRelevance_GetSearchConfigurations_Request, SearchRelevance_GetSearchConfigurations_Response, SearchRelevance_GetSearchConfigurations_ResponseBody } from './searchRelevance/getSearchConfigurations';
+import { SearchRelevance_PutSearchConfigurations_Request, SearchRelevance_PutSearchConfigurations_RequestBody, SearchRelevance_PutSearchConfigurations_Response, SearchRelevance_PutSearchConfigurations_ResponseBody } from './searchRelevance/putSearchConfigurations';
+import { SearchRelevance_DeleteSearchConfigurations_Request, SearchRelevance_DeleteSearchConfigurations_Response, SearchRelevance_DeleteSearchConfigurations_ResponseBody } from './searchRelevance/deleteSearchConfigurations';
+import { SearchRelevance_GetStats_Request, SearchRelevance_GetStats_Response, SearchRelevance_GetStats_ResponseBody } from './searchRelevance/getStats';
+import { SecurityAnalytics_GetAlerts_Request, SecurityAnalytics_GetAlerts_Response, SecurityAnalytics_GetAlerts_ResponseBody } from './securityAnalytics/getAlerts';
+import { SecurityAnalytics_GetFindings_Request, SecurityAnalytics_GetFindings_Response, SecurityAnalytics_GetFindings_ResponseBody } from './securityAnalytics/getFindings';
+import { SecurityAnalytics_SearchFindingCorrelations_Request, SecurityAnalytics_SearchFindingCorrelations_Response, SecurityAnalytics_SearchFindingCorrelations_ResponseBody } from './securityAnalytics/searchFindingCorrelations';
 import { Sm_GetPolicies_Request, Sm_GetPolicies_Response, Sm_GetPolicies_ResponseBody } from './sm/getPolicies';
 import { Sm_DeletePolicy_Request, Sm_DeletePolicy_Response, Sm_DeletePolicy_ResponseBody } from './sm/deletePolicy';
 import { Sm_GetPolicy_Request, Sm_GetPolicy_Response, Sm_GetPolicy_ResponseBody } from './sm/getPolicy';
@@ -399,6 +443,13 @@ import { Transforms_Put_Request, Transforms_Put_Response, Transforms_Put_Respons
 import { Transforms_Explain_Request, Transforms_Explain_Response, Transforms_Explain_ResponseBody } from './transforms/explain';
 import { Transforms_Start_Request, Transforms_Start_Response, Transforms_Start_ResponseBody } from './transforms/start';
 import { Transforms_Stop_Request, Transforms_Stop_Response, Transforms_Stop_ResponseBody } from './transforms/stop';
+import { Geospatial_GetUploadStats_Request, Geospatial_GetUploadStats_Response, Geospatial_GetUploadStats_ResponseBody } from './geospatial/getUploadStats';
+import { Geospatial_GeojsonUploadPost_Request, Geospatial_GeojsonUploadPost_Response, Geospatial_GeojsonUploadPost_ResponseBody } from './geospatial/geojsonUploadPost';
+import { Geospatial_GeojsonUploadPut_Request, Geospatial_GeojsonUploadPut_Response, Geospatial_GeojsonUploadPut_ResponseBody } from './geospatial/geojsonUploadPut';
+import { Geospatial_GetIp2GeoDatasource_Request, Geospatial_GetIp2GeoDatasource_Response, Geospatial_GetIp2GeoDatasource_ResponseBody } from './geospatial/getIp2GeoDatasource';
+import { Geospatial_DeleteIp2GeoDatasource_Request, Geospatial_DeleteIp2GeoDatasource_Response, Geospatial_DeleteIp2GeoDatasource_ResponseBody } from './geospatial/deleteIp2GeoDatasource';
+import { Geospatial_PutIp2GeoDatasource_Request, Geospatial_PutIp2GeoDatasource_Response, Geospatial_PutIp2GeoDatasource_ResponseBody } from './geospatial/putIp2GeoDatasource';
+import { Geospatial_PutIp2GeoDatasourceSettings_Request, Geospatial_PutIp2GeoDatasourceSettings_Response, Geospatial_PutIp2GeoDatasourceSettings_ResponseBody } from './geospatial/putIp2GeoDatasourceSettings';
 import { RemoteStore_Restore_Request, RemoteStore_Restore_RequestBody, RemoteStore_Restore_Response, RemoteStore_Restore_ResponseBody } from './remoteStore/restore';
 import { SearchPipeline_Get_Request, SearchPipeline_Get_Response, SearchPipeline_Get_ResponseBody } from './searchPipeline/get';
 import { SearchPipeline_Delete_Request, SearchPipeline_Delete_Response, SearchPipeline_Delete_ResponseBody } from './searchPipeline/delete';
@@ -445,7 +496,7 @@ export {
   PutScript_Request, PutScript_RequestBody, PutScript_Response, PutScript_ResponseBody,
   ScriptsPainlessExecute_Request, ScriptsPainlessExecute_RequestBody, ScriptsPainlessExecute_Response, ScriptsPainlessExecute_ResponseBody,
   Search_Request, Search_RequestBody, Search_Response, Search_ResponseBody,
-  SearchShards_Request, SearchShards_Response, SearchShards_ResponseBody,
+  SearchShards_Request, SearchShards_RequestBody, SearchShards_Response, SearchShards_ResponseBody,
   DeletePit_Request, DeletePit_RequestBody, DeletePit_Response, DeletePit_ResponseBody,
   DeleteAllPits_Request, DeleteAllPits_Response, DeleteAllPits_ResponseBody,
   GetAllPits_Request, GetAllPits_Response, GetAllPits_ResponseBody,
@@ -546,8 +597,8 @@ export {
   Cluster_PendingTasks_Request, Cluster_PendingTasks_Response, Cluster_PendingTasks_ResponseBody,
   Cluster_Reroute_Request, Cluster_Reroute_RequestBody, Cluster_Reroute_Response, Cluster_Reroute_ResponseBody,
   Cluster_GetWeightedRouting_Request, Cluster_GetWeightedRouting_Response, Cluster_GetWeightedRouting_ResponseBody,
-  Cluster_PutWeightedRouting_Request, Cluster_PutWeightedRouting_Response, Cluster_PutWeightedRouting_ResponseBody,
-  Cluster_DeleteWeightedRouting_Request, Cluster_DeleteWeightedRouting_Response, Cluster_DeleteWeightedRouting_ResponseBody,
+  Cluster_PutWeightedRouting_Request, Cluster_PutWeightedRouting_RequestBody, Cluster_PutWeightedRouting_Response, Cluster_PutWeightedRouting_ResponseBody,
+  Cluster_DeleteWeightedRouting_Request, Cluster_DeleteWeightedRouting_RequestBody, Cluster_DeleteWeightedRouting_Response, Cluster_DeleteWeightedRouting_ResponseBody,
   Cluster_GetSettings_Request, Cluster_GetSettings_Response, Cluster_GetSettings_ResponseBody,
   Cluster_PutSettings_Request, Cluster_PutSettings_RequestBody, Cluster_PutSettings_Response, Cluster_PutSettings_ResponseBody,
   Cluster_State_Request, Cluster_State_Response, Cluster_State_ResponseBody,
@@ -571,6 +622,32 @@ export {
   List_Help_Request, List_Help_Response, List_Help_ResponseBody,
   List_Indices_Request, List_Indices_Response, List_Indices_ResponseBody,
   List_Shards_Request, List_Shards_Response, List_Shards_ResponseBody,
+  Ltr_DeleteDefaultStore_Request, Ltr_DeleteDefaultStore_Response, Ltr_DeleteDefaultStore_ResponseBody,
+  Ltr_ListStores_Request, Ltr_ListStores_Response, Ltr_ListStores_ResponseBody,
+  Ltr_CreateDefaultStore_Request, Ltr_CreateDefaultStore_Response, Ltr_CreateDefaultStore_ResponseBody,
+  Ltr_CacheStats_Request, Ltr_CacheStats_Response, Ltr_CacheStats_ResponseBody,
+  Ltr_ClearCache_Request, Ltr_ClearCache_Response, Ltr_ClearCache_ResponseBody,
+  Ltr_SearchFeatures_Request, Ltr_SearchFeatures_Response, Ltr_SearchFeatures_ResponseBody,
+  Ltr_DeleteFeature_Request, Ltr_DeleteFeature_Response, Ltr_DeleteFeature_ResponseBody,
+  Ltr_GetFeature_Request, Ltr_GetFeature_Response, Ltr_GetFeature_ResponseBody,
+  Ltr_UpdateFeature_Request, Ltr_UpdateFeature_RequestBody, Ltr_UpdateFeature_Response, Ltr_UpdateFeature_ResponseBody,
+  Ltr_CreateFeature_Request, Ltr_CreateFeature_RequestBody, Ltr_CreateFeature_Response, Ltr_CreateFeature_ResponseBody,
+  Ltr_SearchFeaturesets_Request, Ltr_SearchFeaturesets_Response, Ltr_SearchFeaturesets_ResponseBody,
+  Ltr_DeleteFeatureset_Request, Ltr_DeleteFeatureset_Response, Ltr_DeleteFeatureset_ResponseBody,
+  Ltr_GetFeatureset_Request, Ltr_GetFeatureset_Response, Ltr_GetFeatureset_ResponseBody,
+  Ltr_UpdateFeatureset_Request, Ltr_UpdateFeatureset_RequestBody, Ltr_UpdateFeatureset_Response, Ltr_UpdateFeatureset_ResponseBody,
+  Ltr_CreateFeatureset_Request, Ltr_CreateFeatureset_RequestBody, Ltr_CreateFeatureset_Response, Ltr_CreateFeatureset_ResponseBody,
+  Ltr_AddFeaturesToSet_Request, Ltr_AddFeaturesToSet_RequestBody, Ltr_AddFeaturesToSet_Response, Ltr_AddFeaturesToSet_ResponseBody,
+  Ltr_AddFeaturesToSetByQuery_Request, Ltr_AddFeaturesToSetByQuery_Response, Ltr_AddFeaturesToSetByQuery_ResponseBody,
+  Ltr_CreateModelFromSet_Request, Ltr_CreateModelFromSet_RequestBody, Ltr_CreateModelFromSet_Response, Ltr_CreateModelFromSet_ResponseBody,
+  Ltr_SearchModels_Request, Ltr_SearchModels_Response, Ltr_SearchModels_ResponseBody,
+  Ltr_DeleteModel_Request, Ltr_DeleteModel_Response, Ltr_DeleteModel_ResponseBody,
+  Ltr_GetModel_Request, Ltr_GetModel_Response, Ltr_GetModel_ResponseBody,
+  Ltr_CreateModel_Request, Ltr_CreateModel_RequestBody, Ltr_CreateModel_Response, Ltr_CreateModel_ResponseBody,
+  Ltr_DeleteStore_Request, Ltr_DeleteStore_Response, Ltr_DeleteStore_ResponseBody,
+  Ltr_GetStore_Request, Ltr_GetStore_Response, Ltr_GetStore_ResponseBody,
+  Ltr_CreateStore_Request, Ltr_CreateStore_Response, Ltr_CreateStore_ResponseBody,
+  Ltr_Stats_Request, Ltr_Stats_Response, Ltr_Stats_ResponseBody,
   Nodes_Info_Request, Nodes_Info_Response, Nodes_Info_ResponseBody,
   Nodes_HotThreads_Request, Nodes_HotThreads_Response, Nodes_HotThreads_ResponseBody,
   Nodes_ReloadSecureSettings_Request, Nodes_ReloadSecureSettings_RequestBody, Nodes_ReloadSecureSettings_Response, Nodes_ReloadSecureSettings_ResponseBody,
@@ -610,7 +687,7 @@ export {
   Security_PatchDistinguishedNames_Request, Security_PatchDistinguishedNames_RequestBody, Security_PatchDistinguishedNames_Response, Security_PatchDistinguishedNames_ResponseBody,
   Security_DeleteDistinguishedName_Request, Security_DeleteDistinguishedName_Response, Security_DeleteDistinguishedName_ResponseBody,
   Security_GetDistinguishedName_Request, Security_GetDistinguishedName_Response, Security_GetDistinguishedName_ResponseBody,
-  Security_PatchDistinguishedName_Request, Security_PatchDistinguishedName_Response, Security_PatchDistinguishedName_ResponseBody,
+  Security_PatchDistinguishedName_Request, Security_PatchDistinguishedName_RequestBody, Security_PatchDistinguishedName_Response, Security_PatchDistinguishedName_ResponseBody,
   Security_UpdateDistinguishedName_Request, Security_UpdateDistinguishedName_Response, Security_UpdateDistinguishedName_ResponseBody,
   Security_GetPermissionsInfo_Request, Security_GetPermissionsInfo_Response, Security_GetPermissionsInfo_ResponseBody,
   Security_GetRoles_Request, Security_GetRoles_Response, Security_GetRoles_ResponseBody,
@@ -684,7 +761,6 @@ export {
   Knn_DeleteModel_Request, Knn_DeleteModel_Response, Knn_DeleteModel_ResponseBody,
   Knn_GetModel_Request, Knn_GetModel_Response, Knn_GetModel_ResponseBody,
   Knn_Warmup_Request, Knn_Warmup_Response, Knn_Warmup_ResponseBody,
-  Ltr_Stats_Request, Ltr_Stats_Response, Ltr_Stats_ResponseBody,
   Ml_ExecuteAlgorithm_Request, Ml_ExecuteAlgorithm_RequestBody, Ml_ExecuteAlgorithm_Response, Ml_ExecuteAlgorithm_ResponseBody,
   Ml_Predict_Request, Ml_Predict_RequestBody, Ml_Predict_Response, Ml_Predict_ResponseBody,
   Ml_TrainPredict_Request, Ml_TrainPredict_RequestBody, Ml_TrainPredict_Response, Ml_TrainPredict_ResponseBody,
@@ -744,6 +820,7 @@ export {
   Ml_GetTask_Request, Ml_GetTask_Response, Ml_GetTask_ResponseBody,
   Ml_GetAllTools_Request, Ml_GetAllTools_Response, Ml_GetAllTools_ResponseBody,
   Ml_GetTool_Request, Ml_GetTool_Response, Ml_GetTool_ResponseBody,
+  Neural_Stats_Request, Neural_Stats_Response, Neural_Stats_ResponseBody,
   Notifications_ListChannels_Request, Notifications_ListChannels_Response, Notifications_ListChannels_ResponseBody,
   Notifications_DeleteConfigs_Request, Notifications_DeleteConfigs_Response, Notifications_DeleteConfigs_ResponseBody,
   Notifications_GetConfigs_Request, Notifications_GetConfigs_RequestBody, Notifications_GetConfigs_Response, Notifications_GetConfigs_ResponseBody,
@@ -792,6 +869,24 @@ export {
   Rollups_Explain_Request, Rollups_Explain_Response, Rollups_Explain_ResponseBody,
   Rollups_Start_Request, Rollups_Start_Response, Rollups_Start_ResponseBody,
   Rollups_Stop_Request, Rollups_Stop_Response, Rollups_Stop_ResponseBody,
+  SearchRelevance_GetNodeStats_Request, SearchRelevance_GetNodeStats_Response, SearchRelevance_GetNodeStats_ResponseBody,
+  SearchRelevance_GetExperiments_Request, SearchRelevance_GetExperiments_Response, SearchRelevance_GetExperiments_ResponseBody,
+  SearchRelevance_PutExperiments_Request, SearchRelevance_PutExperiments_RequestBody, SearchRelevance_PutExperiments_Response, SearchRelevance_PutExperiments_ResponseBody,
+  SearchRelevance_DeleteExperiments_Request, SearchRelevance_DeleteExperiments_Response, SearchRelevance_DeleteExperiments_ResponseBody,
+  SearchRelevance_GetJudgments_Request, SearchRelevance_GetJudgments_Response, SearchRelevance_GetJudgments_ResponseBody,
+  SearchRelevance_PutJudgments_Request, SearchRelevance_PutJudgments_RequestBody, SearchRelevance_PutJudgments_Response, SearchRelevance_PutJudgments_ResponseBody,
+  SearchRelevance_DeleteJudgments_Request, SearchRelevance_DeleteJudgments_Response, SearchRelevance_DeleteJudgments_ResponseBody,
+  SearchRelevance_GetQuerySets_Request, SearchRelevance_GetQuerySets_Response, SearchRelevance_GetQuerySets_ResponseBody,
+  SearchRelevance_PostQuerySets_Request, SearchRelevance_PostQuerySets_RequestBody, SearchRelevance_PostQuerySets_Response, SearchRelevance_PostQuerySets_ResponseBody,
+  SearchRelevance_PutQuerySets_Request, SearchRelevance_PutQuerySets_RequestBody, SearchRelevance_PutQuerySets_Response, SearchRelevance_PutQuerySets_ResponseBody,
+  SearchRelevance_DeleteQuerySets_Request, SearchRelevance_DeleteQuerySets_Response, SearchRelevance_DeleteQuerySets_ResponseBody,
+  SearchRelevance_GetSearchConfigurations_Request, SearchRelevance_GetSearchConfigurations_Response, SearchRelevance_GetSearchConfigurations_ResponseBody,
+  SearchRelevance_PutSearchConfigurations_Request, SearchRelevance_PutSearchConfigurations_RequestBody, SearchRelevance_PutSearchConfigurations_Response, SearchRelevance_PutSearchConfigurations_ResponseBody,
+  SearchRelevance_DeleteSearchConfigurations_Request, SearchRelevance_DeleteSearchConfigurations_Response, SearchRelevance_DeleteSearchConfigurations_ResponseBody,
+  SearchRelevance_GetStats_Request, SearchRelevance_GetStats_Response, SearchRelevance_GetStats_ResponseBody,
+  SecurityAnalytics_GetAlerts_Request, SecurityAnalytics_GetAlerts_Response, SecurityAnalytics_GetAlerts_ResponseBody,
+  SecurityAnalytics_GetFindings_Request, SecurityAnalytics_GetFindings_Response, SecurityAnalytics_GetFindings_ResponseBody,
+  SecurityAnalytics_SearchFindingCorrelations_Request, SecurityAnalytics_SearchFindingCorrelations_Response, SecurityAnalytics_SearchFindingCorrelations_ResponseBody,
   Sm_GetPolicies_Request, Sm_GetPolicies_Response, Sm_GetPolicies_ResponseBody,
   Sm_DeletePolicy_Request, Sm_DeletePolicy_Response, Sm_DeletePolicy_ResponseBody,
   Sm_GetPolicy_Request, Sm_GetPolicy_Response, Sm_GetPolicy_ResponseBody,
@@ -808,6 +903,13 @@ export {
   Transforms_Explain_Request, Transforms_Explain_Response, Transforms_Explain_ResponseBody,
   Transforms_Start_Request, Transforms_Start_Response, Transforms_Start_ResponseBody,
   Transforms_Stop_Request, Transforms_Stop_Response, Transforms_Stop_ResponseBody,
+  Geospatial_GetUploadStats_Request, Geospatial_GetUploadStats_Response, Geospatial_GetUploadStats_ResponseBody,
+  Geospatial_GeojsonUploadPost_Request, Geospatial_GeojsonUploadPost_Response, Geospatial_GeojsonUploadPost_ResponseBody,
+  Geospatial_GeojsonUploadPut_Request, Geospatial_GeojsonUploadPut_Response, Geospatial_GeojsonUploadPut_ResponseBody,
+  Geospatial_GetIp2GeoDatasource_Request, Geospatial_GetIp2GeoDatasource_Response, Geospatial_GetIp2GeoDatasource_ResponseBody,
+  Geospatial_DeleteIp2GeoDatasource_Request, Geospatial_DeleteIp2GeoDatasource_Response, Geospatial_DeleteIp2GeoDatasource_ResponseBody,
+  Geospatial_PutIp2GeoDatasource_Request, Geospatial_PutIp2GeoDatasource_Response, Geospatial_PutIp2GeoDatasource_ResponseBody,
+  Geospatial_PutIp2GeoDatasourceSettings_Request, Geospatial_PutIp2GeoDatasourceSettings_Response, Geospatial_PutIp2GeoDatasourceSettings_ResponseBody,
   RemoteStore_Restore_Request, RemoteStore_Restore_RequestBody, RemoteStore_Restore_Response, RemoteStore_Restore_ResponseBody,
   SearchPipeline_Get_Request, SearchPipeline_Get_Response, SearchPipeline_Get_ResponseBody,
   SearchPipeline_Delete_Request, SearchPipeline_Delete_Response, SearchPipeline_Delete_ResponseBody,

@@ -29,8 +29,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.expand_wildcards] - Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`. Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
  * @param {boolean} [params.ignore_unavailable] - If `false`, requests that include a missing data stream or index in the target indexes or data streams return an error.
  * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only.
- * @param {string} params.name - Comma-separated list of aliases to check. Supports wildcards (`*`).
- * @param {string} [params.index] - Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+ * @param {string} params.name - A comma-separated list of aliases to check. Supports wildcards (`*`).
+ * @param {string} [params.index] - A comma-separated list of data streams or indexes used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

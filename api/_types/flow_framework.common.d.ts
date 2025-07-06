@@ -159,6 +159,8 @@ export type WorkflowSearchStateResponse = {
   took?: number;
 }
 
+export type WorkFlowState = 'COMPLETED' | 'FAILED' | 'NOT_STARTED' | 'PROVISIONING'
+
 export type WorkFlowStatusDefaultResponse = {
   error?: string;
   resources_created?: string[];
@@ -172,7 +174,7 @@ export type WorkFlowStatusFullResponse = {
   provision_start_time?: string;
   provisioning_progress?: string;
   resources_created?: string[];
-  state?: 'COMPLETED' | 'FAILED' | 'NOT_STARTED' | 'PROVISIONING';
+  state?: WorkFlowState;
   user?: user;
   user_outputs?: string[];
   workflow_id?: string;

@@ -16,6 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
+import * as Ml_Common from '../_types/ml._common'
 
 export interface Ml_LoadModel_Request extends Global.Params {
   model_id: string;
@@ -28,6 +29,6 @@ export interface Ml_LoadModel_Response extends ApiResponse {
 export type Ml_LoadModel_ResponseBody = {
   status: string;
   task_id: string;
-  task_type: 'BATCH_INGEST' | 'BATCH_PREDICTION' | 'DEPLOY_MODEL' | 'EXECUTION' | 'PREDICTION' | 'REGISTER_MODEL' | 'TRAINING' | 'TRAINING_AND_PREDICTION';
+  task_type: Ml_Common.MlTaskType;
 }
 

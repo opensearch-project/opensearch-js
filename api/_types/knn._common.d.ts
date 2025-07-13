@@ -15,11 +15,14 @@
  */
 
 import * as Common from './_common'
+import * as Nodes_Common from './nodes._common'
 
 export type DeletedModel = {
   model_id: string;
-  result: 'deleted' | 'error';
+  result: DeletionResult;
 }
+
+export type DeletionResult = 'deleted' | 'error'
 
 export type GraphMergeStats = {
   current?: number;
@@ -48,6 +51,8 @@ export type KnnMethod = {
   space_type?: string;
 }
 
+export type KnnStatName = 'cache_capacity_reached' | 'circuit_breaker_triggered' | 'eviction_count' | 'faiss_initialized' | 'graph_index_errors' | 'graph_index_requests' | 'graph_memory_usage' | 'graph_memory_usage_percentage' | 'graph_query_errors' | 'graph_query_requests' | 'graph_stats' | 'hit_count' | 'indexing_from_model_degraded' | 'indices_in_cache' | 'knn_query_requests' | 'knn_query_with_filter_requests' | 'load_exception_count' | 'load_success_count' | 'lucene_initialized' | 'max_distance_query_requests' | 'max_distance_query_with_filter_requests' | 'min_score_query_requests' | 'min_score_query_with_filter_requests' | 'miss_count' | 'model_index_status' | 'nmslib_initialized' | 'script_compilation_errors' | 'script_compilations' | 'script_query_errors' | 'script_query_requests' | 'total_load_time' | 'training_errors' | 'training_memory_usage' | 'training_memory_usage_percentage' | 'training_requests'
+
 export type NodeStats = {
   cache_capacity_reached?: boolean;
   eviction_count?: number;
@@ -73,6 +78,7 @@ export type NodeStats = {
   min_score_query_with_filter_requests?: number;
   miss_count?: number;
   nmslib_initialized?: boolean;
+  remote_vector_index_build_stats?: RemoteVectorIndexBuildStats;
   script_compilation_errors?: number;
   script_compilations?: number;
   script_query_errors?: number;
@@ -84,8 +90,41 @@ export type NodeStats = {
   training_requests?: number;
 }
 
-export type Stats = {
-  _nodes?: Common.NodeStatistics;
+export type RemoteVectorIndexBuildStats = {
+  build_stats?: RemoteVectorIndexBuildStatsDetails;
+  client_stats?: RemoteVectorIndexClientStats;
+  repository_stats?: RemoteVectorIndexRepositoryStats;
+}
+
+export type RemoteVectorIndexBuildStatsDetails = {
+  remote_index_build_current_flush_operations?: number;
+  remote_index_build_current_flush_size?: Common.ByteCount;
+  remote_index_build_current_merge_operations?: number;
+  remote_index_build_current_merge_size?: Common.ByteCount;
+  remote_index_build_flush_time_in_millis?: Common.DurationValueUnitMillis;
+  remote_index_build_merge_time_in_millis?: Common.DurationValueUnitMillis;
+}
+
+export type RemoteVectorIndexClientStats = {
+  build_request_failure_count?: number;
+  build_request_success_count?: number;
+  index_build_failure_count?: number;
+  index_build_success_count?: number;
+  status_request_failure_count?: number;
+  status_request_success_count?: number;
+  waiting_time_in_ms?: Common.DurationValueUnitMillis;
+}
+
+export type RemoteVectorIndexRepositoryStats = {
+  read_failure_count?: number;
+  read_success_count?: number;
+  successful_read_time_in_millis?: Common.DurationValueUnitMillis;
+  successful_write_time_in_millis?: Common.DurationValueUnitMillis;
+  write_failure_count?: number;
+  write_success_count?: number;
+}
+
+export type Stats = Nodes_Common.NodesResponseBase & {
   circuit_breaker_triggered?: boolean;
   cluster_name?: Common.Name;
   model_index_status?: Common.HealthStatus | undefined;

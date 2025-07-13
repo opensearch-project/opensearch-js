@@ -15,8 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
-import * as Sm_Common from '../_types/sm._common'
 
 export interface Sm_DeletePolicy_Request extends Global.Params {
   policy_name: string;
@@ -26,5 +26,5 @@ export interface Sm_DeletePolicy_Response extends ApiResponse {
   body: Sm_DeletePolicy_ResponseBody;
 }
 
-export type Sm_DeletePolicy_ResponseBody = Sm_Common.DeletePolicyResponse
+export type Sm_DeletePolicy_ResponseBody = Common.WriteResponseBase
 

@@ -36,7 +36,7 @@ const { normalizeArguments } = require('../utils');
  * @param {boolean} [params.ccs_minimize_roundtrips=true] - Indicates whether network round-trips should be minimized as part of cross-cluster search requests execution.
  * @param {string} [params.default_operator] - The default operator for query string query (AND or OR).
  * @param {string} [params.df] - The field to use as default where no field prefix is given in the query string.
- * @param {array} [params.docvalue_fields] - Comma-separated list of fields to return as the docvalue representation of a field for each hit.
+ * @param {array} [params.docvalue_fields] - A comma-separated list of fields to return as the docvalue representation of a field for each hit.
  * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
  * @param {boolean} [params.explain] - Specify whether to return detailed information about score computation as part of a hit.
  * @param {number} [params.from=0] - Starting offset.
@@ -49,14 +49,14 @@ const { normalizeArguments } = require('../utils');
  * @param {string} [params.q] - Query in the Lucene query string syntax.
  * @param {boolean} [params.request_cache] - Specify if request cache should be used for this request or not, defaults to index level setting.
  * @param {boolean} [params.rest_total_hits_as_int=false] - Indicates whether `hits.total` should be rendered as an integer or an object in the rest search response.
- * @param {string} [params.routing] - Comma-separated list of specific routing values.
+ * @param {string} [params.routing] - A comma-separated list of specific routing values.
  * @param {string} [params.scroll] - Specify how long a consistent view of the index should be maintained for scrolled search.
  * @param {string} [params.search_type] - Search operation type.
  * @param {boolean} [params.seq_no_primary_term] - Specify whether to return sequence number and primary term of the last modification of each hit.
  * @param {number} [params.size=10] - Number of hits to return.
- * @param {array} [params.sort] - Comma-separated list of <field>:<direction> pairs.
+ * @param {array} [params.sort] - A comma-separated list of <field>:<direction> pairs.
  * @param {array} [params.stats] - Specific 'tag' of the request for logging and statistical purposes.
- * @param {array} [params.stored_fields] - Comma-separated list of stored fields to return.
+ * @param {array} [params.stored_fields] - A comma-separated list of stored fields to return.
  * @param {string} [params.suggest_field] - Specify which field to use for suggestions.
  * @param {string} [params.suggest_mode] - Specify suggest mode.
  * @param {number} [params.suggest_size] - How many suggestions to return in response.

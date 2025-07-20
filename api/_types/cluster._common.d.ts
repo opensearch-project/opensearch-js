@@ -37,3 +37,5 @@ export type ComponentTemplateSummary = {
   version?: Common.VersionNumber;
 }
 
+export type WaitForNodes = number | string
+

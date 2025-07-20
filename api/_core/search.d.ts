@@ -69,6 +69,7 @@ export interface Search_Request extends Global.Params {
   track_scores?: boolean;
   track_total_hits?: Core_Search.TrackHits;
   typed_keys?: boolean;
+  verbose_pipeline?: boolean;
   version?: boolean;
 }
 
@@ -79,7 +80,7 @@ export type Search_RequestBody = {
   collapse?: Core_Search.FieldCollapse;
   docvalue_fields?: Common_QueryDsl.FieldAndFormat[];
   explain?: boolean;
-  ext?: Record<string, Record<string, any>>;
+  ext?: Record<string, any>;
   fields?: Common_QueryDsl.FieldAndFormat[];
   from?: number;
   highlight?: Core_Search.Highlight;
@@ -89,7 +90,6 @@ export type Search_RequestBody = {
   post_filter?: Common_QueryDsl.QueryContainer;
   profile?: boolean;
   query?: Common_QueryDsl.QueryContainer;
-  rank?: Common.RankContainer;
   rescore?: Core_Search.Rescore | Core_Search.Rescore[];
   script_fields?: Record<string, Common.ScriptField>;
   search_after?: Common.SortResults;
@@ -111,5 +111,5 @@ export interface Search_Response extends ApiResponse {
   body: Search_ResponseBody;
 }
 
-export type Search_ResponseBody = Core_Search.ResponseBody
+export type Search_ResponseBody = Core_Search.SearchResponse
 

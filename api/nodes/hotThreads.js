@@ -25,13 +25,13 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Nodes
  *
  * @param {object} [params]
- * @param {boolean} [params.ignore_idle_threads=true] - Don't show threads that are in known-idle places, such as waiting on a socket select or pulling from an empty task queue.
- * @param {string} [params.interval] - The interval for the second sampling of threads.
- * @param {number} [params.snapshots=10] - Number of samples of thread stack trace.
- * @param {number} [params.threads=3] - Specify the number of threads to provide information for.
- * @param {string} [params.timeout] - Operation timeout.
+ * @param {boolean} [params.ignore_idle_threads=true] - Whether to show threads that are in known-idle places, such as waiting on a socket select or pulling from an empty task queue.
+ * @param {string} [params.interval] - The time interval between thread stack trace samples.
+ * @param {number} [params.snapshots=10] - The number of thread stack trace samples to collect.
+ * @param {number} [params.threads=3] - The number of threads to provide information for.
+ * @param {string} [params.timeout] - The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.type] - The type to sample.
- * @param {array} [params.node_id] - Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+ * @param {array} [params.node_id] - A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

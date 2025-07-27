@@ -80,22 +80,7 @@ export type ByteCount = number
 
 export type ByteUnit = 'b' | 'kb' | 'k' | 'mb' | 'm' | 'gb' | 'g' | 'tb' | 't' | 'pb' | 'p'
 
-export type ClusterDetails = {
-  _shards?: ShardStatistics;
-  failures?: ShardFailure[];
-  indices: string;
-  status: ClusterSearchStatus;
-  timed_out: boolean;
-  took?: DurationValueUnitMillis;
-}
-
-export type ClusterSearchStatus = 'failed' | 'partial' | 'running' | 'skipped' | 'successful'
-
 export type ClusterStatistics = {
-  details?: Record<string, ClusterDetails>;
-  failed: number;
-  partial: number;
-  running: number;
   skipped: number;
   successful: number;
   total: number;
@@ -234,8 +219,10 @@ export type GeoDistanceSort = {
   distance_type?: GeoDistanceType;
   ignore_unmapped?: boolean;
   mode?: SortMode;
+  nested?: NestedSortValue;
   order?: SortOrder;
   unit?: DistanceUnit;
+  validation_method?: Common_QueryDsl.GeoValidationMethod;
   [key: string]: any | GeoLocation[];
 }
 
@@ -248,11 +235,6 @@ export type GeoHashLocation = {
 }
 
 export type GeoHashPrecision = number | string
-
-export type GeoLine = {
-  coordinates: number[][];
-  type: string;
-}
 
 export type GeoLocation = LatLonGeoLocation | GeoHashLocation | number[] | string
 
@@ -324,9 +306,10 @@ export type InlineGet = {
   _primary_term?: number;
   _routing?: Routing;
   _seq_no?: SequenceNumber;
-  _source?: Record<string, any>;
-  fields?: Record<string, Record<string, any>>;
+  _source?: TDocument;
+  fields?: Record<string, any>;
   found: boolean;
+  [key: string]: any;
 }
 
 export type InlineGetDictUserDefined = {
@@ -336,6 +319,7 @@ export type InlineGetDictUserDefined = {
   _source?: Record<string, any>;
   fields?: Record<string, Record<string, any>>;
   found: boolean;
+  [key: string]: any | Record<string, any>;
 }
 
 export type InlineScript = string | (ScriptBase & {
@@ -417,6 +401,7 @@ export type NodeShard = {
   primary: boolean;
   recovery_source?: Record<string, Id>;
   relocating_node?: NodeId | undefined;
+  searchOnly?: boolean;
   shard: number;
   state: Indices_Stats.ShardRoutingState;
   unassigned_info?: Cluster_AllocationExplain.UnassignedInformation;
@@ -484,12 +469,6 @@ export type QueryCacheStats = {
   memory_size_in_bytes: ByteCount;
   miss_count: number;
   total_count: number;
-}
-
-export type RankBase = Record<string, any>
-
-export type RankContainer = {
-  rrf?: RrfRank;
 }
 
 export type RecoveryStats = {
@@ -606,8 +585,6 @@ export type ResourceStats = {
   total: ResourceStat;
 }
 
-export type ResourceType = 'index_or_alias'
-
 export type Result = 'created' | 'deleted' | 'noop' | 'not_found' | 'updated'
 
 export type Retries = {
@@ -618,11 +595,6 @@ export type Retries = {
 export type Routing = string
 
 export type RoutingInQueryString = StringOrStringArray
-
-export type RrfRank = RankBase & {
-  rank_constant?: number;
-  window_size?: number;
-}
 
 export type ScoreSort = {
   order?: SortOrder;
@@ -746,6 +718,13 @@ export type ShardFailure = {
   status?: string;
 }
 
+export type ShardInfo = {
+  failed: uint;
+  failures?: ShardFailure[];
+  successful: uint;
+  total: uint;
+}
+
 export type ShardsOperationResponseBase = {
   _shards: ShardStatistics;
 }
@@ -829,6 +808,8 @@ export type TaskFailure = {
 
 export type TaskId = string
 
+export type TDocument = Record<string, any>
+
 export type TermFrequencyNormalization = 'h1' | 'h2' | 'h3' | 'no' | 'z'
 
 export type ThreadInfo = {
@@ -865,6 +846,8 @@ export type TranslogStats = {
 
 export type TransportAddress = string
 
+export type TResult = Record<string, any>
+
 export type Type = string
 
 export type uint = number
@@ -891,9 +874,9 @@ export type VersionType = 'external' | 'external_gte' | 'force' | 'internal'
 
 export type Void = Record<string, any>
 
-export type WaitForActiveShardOptions = 'all' | 'index-setting'
+export type WaitForActiveShardOptions = 'all' | undefined
 
-export type WaitForActiveShards = number | WaitForActiveShardOptions
+export type WaitForActiveShards = StringifiedInteger | WaitForActiveShardOptions
 
 export type WaitForEvents = 'immediate' | 'urgent' | 'high' | 'normal' | 'low' | 'languid'
 

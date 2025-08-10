@@ -583,6 +583,7 @@ export type ShardSegmentReplicationBackpressureStats = {
 
 export type ShardTaskCancellationStats = {
   search_shard_task?: ShardTaskCancellationStatsDetail;
+  search_task?: ShardTaskCancellationStatsDetail;
 }
 
 export type ShardTaskCancellationStatsDetail = {

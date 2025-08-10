@@ -25,12 +25,12 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Indices
  *
  * @param {object} [params]
- * @param {string} [params.completion_fields] - Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
+ * @param {string} [params.completion_fields] - A comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
  * @param {string} [params.expand_wildcards] - Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`.
- * @param {string} [params.fielddata_fields] - Comma-separated list or wildcard expressions of fields to include in field data statistics.
- * @param {string} [params.fields] - Comma-separated list or wildcard expressions of fields to include in the statistics.
+ * @param {string} [params.fielddata_fields] - A comma-separated list or wildcard expressions of fields to include in field data statistics.
+ * @param {string} [params.fields] - A comma-separated list or wildcard expressions of fields to include in the statistics.
  * @param {boolean} [params.forbid_closed_indices=true] - If `true`, statistics are not collected from closed indexes.
- * @param {string} [params.groups] - Comma-separated list of search groups to include in the search statistics.
+ * @param {string} [params.groups] - A comma-separated list of search groups to include in the search statistics.
  * @param {boolean} [params.include_segment_file_sizes=false] - If `true`, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested).
  * @param {boolean} [params.include_unloaded_segments=false] - If `true`, the response includes information from segments that are not loaded into memory.
  * @param {string} [params.level] - Indicates whether statistics are aggregated at the cluster, index, or shard level.

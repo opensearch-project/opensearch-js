@@ -39,5 +39,7 @@ export interface Get_Response extends ApiResponse {
   body: Get_ResponseBody;
 }
 
-export type Get_ResponseBody = Core_Get.GetResult
+export interface Get_ResponseBody extends Core_Get.GetResultBase {
+  _source?: Common.TDocument;
+}
 

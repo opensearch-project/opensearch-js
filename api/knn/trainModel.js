@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Create and train a model that can be used for initializing k-NN native library indexes during indexing.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/knn/api/#train-model - knn.train_model}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/vector-search/api/knn/#train-a-model - knn.train_model}
  *
  * @memberOf API-Knn
  *

@@ -21,12 +21,17 @@ import * as Global from '../_types/_global'
 
 export interface SearchShards_Request extends Global.Params {
   allow_no_indices?: boolean;
+  body?: SearchShards_RequestBody;
   expand_wildcards?: Common.ExpandWildcards;
   ignore_unavailable?: boolean;
   index?: Common.Indices;
   local?: boolean;
   preference?: string;
   routing?: Common.RoutingInQueryString;
+}
+
+export type SearchShards_RequestBody = {
+  slice?: Common.SlicedScroll;
 }
 
 export interface SearchShards_Response extends ApiResponse {

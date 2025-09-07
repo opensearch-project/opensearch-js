@@ -29,7 +29,7 @@ export interface Bulk_Request extends Global.Params {
   pipeline?: string;
   refresh?: Common.Refresh;
   require_alias?: boolean;
-  routing?: Common.RoutingInQueryString;
+  routing?: Common.Routing;
   timeout?: Common.Duration;
   type?: string;
   wait_for_active_shards?: Common.WaitForActiveShards;
@@ -41,10 +41,5 @@ export interface Bulk_Response extends ApiResponse {
   body: Bulk_ResponseBody;
 }
 
-export type Bulk_ResponseBody = {
-  errors: boolean;
-  ingest_took?: number;
-  items: Record<string, Core_Bulk.ResponseItem>[];
-  took: number;
-}
+export type Bulk_ResponseBody = Core_Bulk.BulkResponseBase
 

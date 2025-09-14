@@ -29,8 +29,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {boolean} [params.create=false] - If `true`, the template passed in the body is only used if no existing templates match the same index patterns. If `false`, the simulation uses the template with the highest priority. Note that the template is not permanently added or updated in either case; it is only used for the simulation.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} [params.name] - Name of the index template to simulate. To test a template configuration before you add it to the cluster, omit this parameter and specify the template configuration in the request body.
- * @param {object} [params.body] - New index template definition to be simulated, if no index template name is specified.
+ * @param {string} [params.name] - The name of the index template to simulate. To test a template configuration before you add it to the cluster, omit this parameter and specify the template configuration in the request body.
+ * @param {object} [params.body] - The configuration for an index template.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

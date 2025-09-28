@@ -110,6 +110,8 @@ export type Replication = {
   use_roles?: UseRoles;
 }
 
+export type ReplicationStatus = 'BOOTSTRAPPING' | 'PAUSED' | 'REPLICATION NOT IN PROGRESS' | 'RUNNING' | 'SYNCING'
+
 export type SettingsBody = {
   index?: IndexSchema;
 }
@@ -119,7 +121,7 @@ export type Status = {
   leader_alias?: Common.IndexAlias;
   leader_index?: Common.IndexName;
   reason?: string;
-  status?: 'BOOTSTRAPPING' | 'PAUSED' | 'REPLICATION NOT IN PROGRESS' | 'RUNNING' | 'SYNCING';
+  status?: ReplicationStatus;
   syncing_details?: SyncingDetails;
 }
 

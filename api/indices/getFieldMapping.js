@@ -30,8 +30,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {boolean} [params.include_defaults] - If `true`, return all default settings in the response.
  * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only.
- * @param {string} params.fields - Comma-separated list or wildcard expression of fields used to limit returned information.
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+ * @param {string} params.fields - A comma-separated list or wildcard expression of fields used to limit returned information.
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

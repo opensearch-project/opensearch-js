@@ -74,6 +74,7 @@ import * as Cluster_WeightedRouting from './cluster.weighted_routing'
 import * as DanglingIndices_ListDanglingIndices from './dangling_indices.list_dangling_indices'
 import * as FlowFramework_Common from './flow_framework.common'
 import * as FlowFramework_Errors from './flow_framework.errors'
+import * as Geospatial_Common from './geospatial._common'
 import * as Indices_Common from './indices._common'
 import * as Indices_AddBlock from './indices.add_block'
 import * as Indices_Analyze from './indices.analyze'
@@ -94,11 +95,13 @@ import * as Indices_UpdateAliases from './indices.update_aliases'
 import * as Indices_ValidateQuery from './indices.validate_query'
 import * as Ingest_Common from './ingest._common'
 import * as Ingest_Simulate from './ingest.simulate'
+import * as Ingestion_Common from './ingestion._common'
 import * as Insights_Common from './insights._common'
 import * as Ism_Common from './ism._common'
 import * as Knn_Common from './knn._common'
 import * as Ltr_Common from './ltr._common'
 import * as Ml_Common from './ml._common'
+import * as Neural_Common from './neural._common'
 import * as Nodes_Common from './nodes._common'
 import * as Nodes_Info from './nodes.info'
 import * as Nodes_ReloadSecureSettings from './nodes.reload_secure_settings'
@@ -111,6 +114,9 @@ import * as RemoteStore_Common from './remote_store._common'
 import * as Replication_Common from './replication._common'
 import * as Rollups_Common from './rollups._common'
 import * as SearchPipeline_Common from './search_pipeline._common'
+import * as SearchRelevance_Common from './search_relevance._common'
+import * as SecurityAnalytics_Alerts from './security_analytics.alerts'
+import * as SecurityAnalytics_Findings from './security_analytics.findings'
 import * as Security_Common from './security._common'
 import * as Sm_Common from './sm._common'
 import * as Snapshot_Common from './snapshot._common'
@@ -184,6 +190,7 @@ export {
   DanglingIndices_ListDanglingIndices,
   FlowFramework_Common,
   FlowFramework_Errors,
+  Geospatial_Common,
   Indices_Common,
   Indices_AddBlock,
   Indices_Analyze,
@@ -204,11 +211,13 @@ export {
   Indices_ValidateQuery,
   Ingest_Common,
   Ingest_Simulate,
+  Ingestion_Common,
   Insights_Common,
   Ism_Common,
   Knn_Common,
   Ltr_Common,
   Ml_Common,
+  Neural_Common,
   Nodes_Common,
   Nodes_Info,
   Nodes_ReloadSecureSettings,
@@ -221,6 +230,9 @@ export {
   Replication_Common,
   Rollups_Common,
   SearchPipeline_Common,
+  SearchRelevance_Common,
+  SecurityAnalytics_Alerts,
+  SecurityAnalytics_Findings,
   Security_Common,
   Sm_Common,
   Snapshot_Common,

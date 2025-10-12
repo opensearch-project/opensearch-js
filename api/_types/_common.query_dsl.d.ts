@@ -68,7 +68,7 @@ export type DateDecayPlacement = {
   scale?: Common.Duration;
 }
 
-export type DateRangeQueryParameters = {
+export type DateRangeQuery = RangeQueryBase & {
   format?: Common.DateFormat;
   from?: Common.DateMath | undefined;
   gt?: Common.DateMath;
@@ -450,7 +450,7 @@ export type NeuralQuery = QueryBase & {
   query_text?: string;
 }
 
-export type NumberRangeQueryParameters = {
+export type NumberRangeQuery = RangeQueryBase & {
   from?: number | string | undefined;
   gt?: number;
   gte?: number;
@@ -555,6 +555,7 @@ export type QueryContainer = {
   span_or?: SpanOrQuery;
   span_term?: Record<string, SpanTermQuery>;
   span_within?: SpanWithinQuery;
+  template?: Record<string, any>;
   term?: Record<string, TermQuery>;
   terms?: TermsQuery;
   terms_set?: Record<string, TermsSetQuery>;
@@ -599,7 +600,7 @@ export type RandomScoreFunction = {
   seed?: number | string;
 }
 
-export type RangeQuery = (RangeQueryBase & NumberRangeQueryParameters) | (RangeQueryBase & DateRangeQueryParameters)
+export type RangeQuery = NumberRangeQuery | DateRangeQuery
 
 export type RangeQueryBase = QueryBase & {
   relation?: RangeRelation;
@@ -745,19 +746,23 @@ export type TermQuery = Common.FieldValue | (QueryBase & {
 })
 
 export type TermsLookup = {
-  id?: Common.Id;
-  index?: Common.IndexName;
-  path?: Common.Field;
+  id: Common.Id;
+  index: Common.IndexName;
+  path: Common.Field;
   routing?: Common.Routing;
+  store?: boolean;
 }
 
 export type TermsQuery = QueryBase & {
   _name?: any;
   boost?: any;
+  value_type?: TermsQueryValueType;
   [key: string]: any | TermsQueryField;
 }
 
 export type TermsQueryField = Common.FieldValue[] | TermsLookup
+
+export type TermsQueryValueType = 'bitmap' | 'default'
 
 export type TermsSetQuery = QueryBase & {
   minimum_should_match_field?: Common.Field;

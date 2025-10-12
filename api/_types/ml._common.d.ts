@@ -16,6 +16,7 @@
 
 import * as Common from './_common'
 import * as Common_Analysis from './_common.analysis'
+import * as Common_QueryDsl from './_common.query_dsl'
 
 export type Action = {
   action_type?: string;
@@ -27,17 +28,19 @@ export type Action = {
   url?: string;
 }
 
+export type AdditionalConfig = {
+  space_type?: string;
+}
+
 export type AdditionalInfo = Record<string, any>
+
+export type AgentType = 'conversational' | 'conversational_flow' | 'flow'
 
 export type Aggregation = {
   field?: string;
   max?: Aggregation;
   sum?: Aggregation;
   [key: string]: any;
-}
-
-export type Algorithm = {
-  value?: FunctionName;
 }
 
 export type AlgorithmOperations = {
@@ -52,13 +55,6 @@ export type AlgorithmOperations = {
 
 export type Algorithms = Record<string, AlgorithmOperations>
 
-export type BoolQuery = {
-  filter?: Filter[];
-  must?: Filter[];
-  must_not?: Filter;
-  should?: Filter[];
-}
-
 export type Buckets = {
   end_time?: number;
   entities?: Entity[];
@@ -68,8 +64,10 @@ export type Buckets = {
 
 export type ByteBuffer = {
   array?: string;
-  order?: 'BIG_ENDIAN' | 'LITTLE_ENDIAN';
+  order?: ByteOrder;
 }
+
+export type ByteOrder = 'BIG_ENDIAN' | 'LITTLE_ENDIAN'
 
 export type ClientConfig = {
   connection_timeout?: number;
@@ -82,9 +80,13 @@ export type ClientConfig = {
 }
 
 export type ColumnMeta = {
-  column_type?: 'BOOLEAN' | 'DOUBLE' | 'INTEGER' | 'STRING';
+  column_type?: ColumnType;
   name?: Common.Name;
 }
+
+export type ColumnType = 'BOOLEAN' | 'DOUBLE' | 'INTEGER' | 'STRING'
+
+export type ConnectorProtocol = 'aws_sigv4' | 'http'
 
 export type Credential = {
   access_key?: string;
@@ -113,20 +115,7 @@ export type ExecuteLocalSampleCalculatorResponse = {
   result?: number;
 }
 
-export type Exists = {
-  field?: Common.Field;
-}
-
-export type Filter = {
-  exists?: Exists;
-  match?: Match;
-  nested?: Nested;
-  range?: Range;
-  term?: Term;
-  terms?: Term;
-}
-
-export type FunctionName = 'AD_LIBSVM' | 'AGENT' | 'ANOMALY_LOCALIZATION' | 'BATCH_RCF' | 'CONNECTOR' | 'FIT_RCF' | 'KMEANS' | 'LINEAR_REGRESSION' | 'LOCAL_SAMPLE_CALCULATOR' | 'LOGISTIC_REGRESSION' | 'METRICS_CORRELATION' | 'QUESTION_ANSWERING' | 'RCF_SUMMARIZE' | 'REMOTE' | 'SAMPLE_ALGO' | 'SPARSE_ENCODING' | 'SPARSE_TOKENIZE' | 'TEXT_EMBEDDING' | 'TEXT_SIMILARITY'
+export type FunctionName = 'AD_LIBSVM' | 'ad_libsvm' | 'AGENT' | 'agent' | 'ANOMALY_LOCALIZATION' | 'anomaly_localization' | 'BATCH_RCF' | 'batch_rcf' | 'CONNECTOR' | 'connector' | 'FIT_RCF' | 'fit_rcf' | 'KMEANS' | 'kmeans' | 'LINEAR_REGRESSION' | 'linear_regression' | 'LOCAL_SAMPLE_CALCULATOR' | 'local_sample_calculator' | 'LOGISTIC_REGRESSION' | 'logistic_regression' | 'METRICS_CORRELATION' | 'metrics_correlation' | 'QUESTION_ANSWERING' | 'question_answering' | 'RCF_SUMMARIZE' | 'rcf_summarize' | 'REMOTE' | 'remote' | 'SAMPLE_ALGO' | 'sample_algo' | 'SPARSE_ENCODING' | 'sparse_encoding' | 'SPARSE_TOKENIZE' | 'sparse_tokenize' | 'TEXT_EMBEDDING' | 'text_embedding' | 'TEXT_SIMILARITY' | 'text_similarity'
 
 export type GetAgentResponse = {
   created_time?: number;
@@ -135,7 +124,7 @@ export type GetAgentResponse = {
   last_updated_time?: number;
   name?: Common.Name;
   tools?: ToolItems[];
-  type?: 'conversational' | 'conversational_flow' | 'flow';
+  type?: AgentType;
 }
 
 export type GetConnectorResponse = {
@@ -145,7 +134,7 @@ export type GetConnectorResponse = {
   last_updated_time?: number;
   name?: Common.Name;
   parameters?: Parameters;
-  protocol?: 'aws_sigv4' | 'http';
+  protocol?: ConnectorProtocol;
   version?: Common.VersionString;
 }
 
@@ -154,13 +143,13 @@ export type GetProfileResponse = {
 }
 
 export type GetStatsResponse = {
-  ml_config_index_status?: 'green' | 'non-existent' | 'red' | 'yellow';
+  ml_config_index_status?: MlIndexStatus;
   ml_connector_count?: number;
-  ml_connector_index_status?: 'green' | 'non-existent' | 'red' | 'yellow';
-  ml_controller_index_status?: 'green' | 'non-existent' | 'red' | 'yellow';
+  ml_connector_index_status?: MlIndexStatus;
+  ml_controller_index_status?: MlIndexStatus;
   ml_model_count?: number;
-  ml_model_index_status?: 'green' | 'non-existent' | 'red' | 'yellow';
-  ml_task_index_status?: 'green' | 'non-existent' | 'red' | 'yellow';
+  ml_model_index_status?: MlIndexStatus;
+  ml_task_index_status?: MlIndexStatus;
   nodes?: NodeStats;
 }
 
@@ -174,13 +163,15 @@ export type Guardrails = {
   response_validation_regex?: string;
   source_fields?: Common.Fields;
   stop_words?: Common_Analysis.StopWords;
-  type?: 'local_regex' | 'model';
+  type?: GuardrailsType;
 }
 
 export type GuardrailsInputOutput = {
   model_id?: string;
   response_validation_regex?: string;
 }
+
+export type GuardrailsType = 'local_regex' | 'model'
 
 export type Headers = {
   content_type?: string;
@@ -198,28 +189,18 @@ export type InferenceResults = {
 
 export type InputQuery = {
   _source?: string[];
-  query?: Query;
+  query?: Common_QueryDsl.QueryContainer;
   size?: number;
 }
 
-export type Key = {
-  gt?: number;
-  gte?: number;
-  lt?: number;
-  lte?: number;
-}
+export type KMeansDistanceType = 'COSINE' | 'EUCLIDEAN' | 'L1'
 
 export type LLM = {
   model_id?: string;
   parameters?: Parameters;
 }
 
-export type Match = {
-  description?: string;
-  [key: string]: any;
-}
-
-export type MatchAllQuery = Record<string, any>
+export type LocalSampleCalculatorOperation = 'max' | 'min' | 'sum'
 
 export type Memory = {
   additional_info?: AdditionalInfo;
@@ -244,6 +225,16 @@ export type Message = {
   trace_number?: number;
 }
 
+export type MlIndexStatus = 'green' | 'non-existent' | 'red' | 'yellow'
+
+export type MlInputDataType = 'DATA_FRAME' | 'QUESTION_ANSWERING' | 'REMOTE' | 'SEARCH_QUERY' | 'TEXT_DOCS' | 'TEXT_SIMILARITY'
+
+export type MlResultDataType = 'BOOLEAN' | 'FLOAT16' | 'FLOAT32' | 'FLOAT64' | 'INT32' | 'INT64' | 'INT8' | 'STRING' | 'UINT8' | 'UNKNOWN'
+
+export type MlStatName = 'ml_config_index_status' | 'ml_connector_count' | 'ml_connector_index_status' | 'ml_controller_index_status' | 'ml_model_count' | 'ml_model_index_status' | 'ml_task_index_status'
+
+export type MlTaskType = 'BATCH_INGEST' | 'BATCH_PREDICTION' | 'DEPLOY_MODEL' | 'EXECUTION' | 'PREDICTION' | 'REGISTER_MODEL' | 'TRAINING' | 'TRAINING_AND_PREDICTION'
+
 export type Model = {
   algorithm?: string;
   created_time?: number;
@@ -255,13 +246,14 @@ export type Model = {
   model_content_size_in_bytes?: number;
   model_format?: ModelFormat;
   model_group_id?: string;
-  model_state: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED';
+  model_state: ModelState;
   model_version?: string;
   name?: string;
   total_chunks?: number;
 }
 
 export type ModelConfig = {
+  additional_config?: AdditionalConfig;
   all_config?: string;
   embedding_dimension?: number;
   framework_type?: string;
@@ -271,7 +263,7 @@ export type ModelConfig = {
 export type ModelFormat = 'ONNX' | 'TORCH_SCRIPT'
 
 export type ModelGroup = {
-  access: 'private' | 'public' | 'restricted';
+  access: ModelGroupAccessMode;
   created_time?: number;
   description: string;
   last_updated_time?: number;
@@ -279,6 +271,8 @@ export type ModelGroup = {
   name: string;
   owner?: Owner;
 }
+
+export type ModelGroupAccessMode = 'private' | 'public' | 'restricted'
 
 export type ModelGroupRegistration = {
   model_group_id: string;
@@ -290,7 +284,7 @@ export type ModelProfile = {
   execute?: ModelStats;
   memory_size_estimation_cpu?: number;
   memory_size_estimation_gpu?: number;
-  model_state?: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED';
+  model_state?: ModelState;
   predict?: ModelStats;
   predict_request_stats?: PredictRequestStats;
   predictor?: string;
@@ -304,18 +298,12 @@ export type ModelProfile = {
 
 export type Models = Record<string, ModelProfile>
 
+export type ModelState = 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED'
+
 export type ModelStats = {
   ml_action_failure_count?: number;
   ml_action_request_count?: number;
   ml_executing_task_count?: number;
-}
-
-export type Nested = {
-  boost?: number;
-  ignore_unmapped?: boolean;
-  path?: Common.Field;
-  query?: Query;
-  score_mode?: 'avg' | 'max' | 'min' | 'none' | 'sum';
 }
 
 export type Node = {
@@ -341,7 +329,7 @@ export type NodeStatsDetails = {
 export type Output = {
   byte_buffer?: ByteBuffer;
   data: number[];
-  data_type?: 'BOOLEAN' | 'FLOAT16' | 'FLOAT32' | 'FLOAT64' | 'INT32' | 'INT64' | 'INT8' | 'STRING' | 'UINT8' | 'UNKNOWN';
+  data_type?: MlResultDataType;
   name?: string;
   result?: string;
   shape?: number[];
@@ -355,11 +343,6 @@ export type Owner = {
   user_requested_tenant?: undefined | string;
 }
 
-export type OwnerNameKeyword = {
-  boost?: number;
-  value?: Common.FieldValue;
-}
-
 export type Parameters = Record<string, any>
 
 export type PredictionResult = {
@@ -370,7 +353,7 @@ export type PredictionResult = {
 export type PredictModelOutput = {
   byte_buffer?: ByteBuffer;
   data: number[];
-  data_type?: 'BOOLEAN' | 'FLOAT16' | 'FLOAT32' | 'FLOAT64' | 'INT32' | 'INT64' | 'INT8' | 'STRING' | 'UINT8' | 'UNKNOWN';
+  data_type?: MlResultDataType;
   name?: string;
   shape?: number[];
 }
@@ -407,24 +390,12 @@ export type ProfileRequest = {
   task_ids?: Common.Id[];
 }
 
-export type Query = {
-  bool?: BoolQuery;
-  match?: Match;
-  match_all?: MatchAllQuery;
-  term?: Term;
-  [key: string]: any;
-}
-
-export type Range = {
-  k1?: Key;
-  k2?: Key;
-  k3?: Key;
-}
-
 export type RateLimiter = {
   limit: Common.StringifiedDouble;
-  unit: 'DAYS' | 'HOURS' | 'MICROSECONDS' | 'MILLISECONDS' | 'MINUTES' | 'NANOSECONDS' | 'SECONDS';
+  unit: RateLimiterUnit;
 }
+
+export type RateLimiterUnit = 'DAYS' | 'HOURS' | 'MICROSECONDS' | 'MILLISECONDS' | 'MINUTES' | 'NANOSECONDS' | 'SECONDS'
 
 export type Result = {
   buckets?: Buckets[];
@@ -473,75 +444,8 @@ export type SearchResponse = {
 
 export type SearchTasksResponse = SearchResponse
 
-export type Sort = {
-  _id?: SortOrder;
-  _index?: SortOrder;
-  _score?: SortOrder;
-  _seq_no?: SortOrder;
-  algorithm?: SortOrder;
-  auto_redeploy_retry_times?: SortOrder;
-  chunk_number?: SortOrder;
-  created_time?: SortOrder;
-  current_worker_node_count?: SortOrder;
-  deploy_to_all_nodes?: SortOrder;
-  is_hidden?: SortOrder;
-  last_registered_time?: SortOrder;
-  last_updated_time?: SortOrder;
-  model_content_hash_value?: SortOrder;
-  model_content_size_in_bytes?: SortOrder;
-  model_format?: SortOrder;
-  model_group_id?: SortOrder;
-  model_state?: SortOrder;
-  model_version?: SortOrder;
-  planning_worker_node_count?: SortOrder;
-  planning_worker_nodes?: SortOrder;
-  total_chunks?: SortOrder;
-}
-
-export type SortAgent = {
-  _id?: SortOrder;
-  _index?: SortOrder;
-  _score?: SortOrder;
-  _seq_no?: SortOrder;
-  created_time?: SortOrder;
-  is_hidden?: SortOrder;
-  last_updated_time?: SortOrder;
-  parameters?: SortOrder;
-  tools?: SortOrder;
-  type?: SortOrder;
-}
-
-export type SortMemory = {
-  _id?: SortOrder;
-  _index?: SortOrder;
-  _score?: SortOrder;
-  _seq_no?: SortOrder;
-  additional_info?: SortOrder;
-  application_time?: SortOrder;
-  create_time?: SortOrder;
-  updated_time?: SortOrder;
-  user?: SortOrder;
-}
-
-export type SortMessage = {
-  _id?: SortOrder;
-  _index?: SortOrder;
-  _score?: SortOrder;
-  _seq_no?: SortOrder;
-  additional_info?: SortOrder;
-  create_time?: SortOrder;
-  memory_id?: SortOrder;
-  origin?: SortOrder;
-  parent_message_id?: SortOrder;
-  trace_number?: SortOrder;
-}
-
-export type SortOrder = {
-  order?: 'asc' | 'desc';
-}
-
 export type Source = {
-  access?: 'private' | 'public' | 'restricted';
+  access?: ModelGroupAccessMode;
   actions?: Action[];
   additional_info?: AdditionalInfo;
   algorithm?: string;
@@ -559,7 +463,7 @@ export type Source = {
   error?: string;
   function_name?: FunctionName;
   input?: undefined | string;
-  input_type?: 'DATA_FRAME' | 'QUESTION_ANSWERING' | 'REMOTE' | 'SEARCH_QUERY' | 'TEXT_DOCS' | 'TEXT_SIMILARITY';
+  input_type?: MlInputDataType;
   is_async?: boolean;
   is_hidden?: boolean;
   last_deployed_time?: number;
@@ -575,7 +479,7 @@ export type Source = {
   model_format?: ModelFormat;
   model_group_id?: string;
   model_id?: Common.Name;
-  model_state?: 'DEPLOYED' | 'DEPLOYING' | 'DEPLOY_FAILED' | 'PARTIALLY_DEPLOYED' | 'REGISTERED' | 'REGISTERING' | 'UNDEPLOYED';
+  model_state?: ModelState;
   model_task_type?: string;
   model_version?: string;
   name?: Common.Name;
@@ -586,14 +490,14 @@ export type Source = {
   planning_worker_node_count?: number;
   planning_worker_nodes?: Common.NodeIds[];
   prompt_template?: undefined | string;
-  protocol?: 'aws_sigv4' | 'http';
+  protocol?: ConnectorProtocol;
   response?: undefined | string;
   state?: Status;
-  task_type?: 'BATCH_INGEST' | 'BATCH_PREDICTION' | 'DEPLOY_MODEL' | 'EXECUTION' | 'PREDICTION' | 'REGISTER_MODEL' | 'TRAINING' | 'TRAINING_AND_PREDICTION';
+  task_type?: MlTaskType;
   tools?: ToolItems[];
   total_chunks?: number;
   trace_number?: undefined | string;
-  type?: 'conversational' | 'conversational_flow' | 'flow';
+  type?: AgentType;
   updated_time?: string;
   url?: string;
   user?: string;
@@ -610,32 +514,33 @@ export type Task = {
   is_async?: boolean;
   last_update_time?: number;
   model_id?: string;
-  state: 'CANCELLED' | 'CANCELLING' | 'COMPLETED' | 'COMPLETED_WITH_ERROR' | 'CREATED' | 'EXPIRED' | 'FAILED' | 'RUNNING';
+  state: TaskState;
   task_id?: string;
-  task_type?: 'BATCH_INGEST' | 'BATCH_PREDICTION' | 'DEPLOY_MODEL' | 'EXECUTION' | 'PREDICTION' | 'REGISTER_MODEL' | 'TRAINING' | 'TRAINING_AND_PREDICTION';
+  task_type?: MlTaskType;
   worker_node?: Common.NodeIds[];
 }
 
 export type Tasks = Record<string, Task>
 
-export type Term = {
-  _id?: Common.Id[];
-  algorithm?: Algorithm;
-  function_name?: FunctionName;
-  model_id?: Common.Name;
-  name?: OwnerNameKeyword;
-  'owner.name.keyword'?: OwnerNameKeyword;
-  type?: Type;
-}
+export type TaskState = 'CANCELLED' | 'CANCELLING' | 'COMPLETED' | 'COMPLETED_WITH_ERROR' | 'CREATED' | 'EXPIRED' | 'FAILED' | 'RUNNING'
 
 export type Tool = {
+  attributes?: ToolAttributes;
   description?: string;
   name?: Common.Name;
   type?: string;
   version?: Common.VersionString;
 }
 
+export type ToolAttributes = {
+  input_schema?: string;
+  strict?: boolean;
+  [key: string]: any | Record<string, any>;
+}
+
 export type ToolItems = {
+  attributes?: ToolAttributes;
+  description?: string;
   include_output_in_agent_response?: boolean;
   name?: string;
   parameters?: Parameters;
@@ -643,9 +548,11 @@ export type ToolItems = {
   [key: string]: any;
 }
 
+export type ToolName = 'AgentTool' | 'CatIndexTool' | 'ConnectorTool' | 'CreateAnomalyDetectorTool' | 'IndexMappingTool' | 'ListIndexTool' | 'LogPatternTool' | 'MLModelTool' | 'NeuralSparseSearchTool' | 'PPLTool' | 'RAGTool' | 'SearchAlertsTool' | 'SearchAnomalyDetectorsTool' | 'SearchAnomalyResultsTool' | 'SearchIndexTool' | 'SearchMonitorsTool' | 'VectorDBTool' | 'VisualizationTool'
+
 export type TrainParameters = {
   centroids?: number;
-  distance_type?: 'COSINE' | 'EUCLIDEAN' | 'L1';
+  distance_type?: KMeansDistanceType;
   iterations?: number;
 }
 
@@ -657,10 +564,6 @@ export type TrainPredictResponse = {
 export type TrainResponse = {
   model_id?: Common.Name;
   status: Status;
-}
-
-export type Type = {
-  value?: 'conversational' | 'conversational_flow' | 'flow';
 }
 
 export type UndeployModelNode = {
@@ -684,7 +587,7 @@ export type UpdateModelGroupResponse = {
 }
 
 export type Values = {
-  column_type?: 'BOOLEAN' | 'DOUBLE' | 'INTEGER' | 'STRING';
+  column_type?: ColumnType;
   value?: number;
 }
 

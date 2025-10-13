@@ -270,6 +270,7 @@ export type TextEmbeddingProcessor = ProcessorBase & {
   batch_size?: number;
   field_map: Record<string, string>;
   model_id: Common.Id;
+  skip_existing?: boolean;
 }
 
 export type TrimProcessor = ProcessorBase & {

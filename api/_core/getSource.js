@@ -29,13 +29,13 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params._source_excludes] - A comma-separated list of source fields to exclude in the response.
  * @param {string} [params._source_includes] - A comma-separated list of source fields to include in the response.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
- * @param {boolean} [params.realtime] - Boolean) If `true`, the request is real-time as opposed to near-real-time.
+ * @param {boolean} [params.realtime] - Boolean) If `true`, the request is real time as opposed to near real time.
  * @param {string} [params.refresh] - If `true`, OpenSearch refreshes the affected shards to make this operation visible to search. If `false`, do nothing with refreshes.
  * @param {string} [params.routing] - Target the specified primary shard.
  * @param {number} [params.version] - Explicit version number for concurrency control. The specified version must match the current version of the document for the request to succeed.
- * @param {string} [params.version_type] - Specific version type. One of `internal`, `external`, `external_gte`.
- * @param {string} params.id - Unique identifier of the document.
- * @param {string} params.index - Name of the index that contains the document.
+ * @param {string} [params.version_type] - The specific version type. One of `internal`, `external`, `external_gte`.
+ * @param {string} params.id - The unique identifier of the document.
+ * @param {string} params.index - The name of the index containing the document.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

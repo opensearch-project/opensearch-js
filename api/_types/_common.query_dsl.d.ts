@@ -65,14 +65,16 @@ export type DateDecayPlacement = {
   decay?: number;
   offset?: Common.Duration;
   origin?: Common.DateTime;
-  scale?: Common.Duration;
+  scale: Common.Duration;
 }
 
-export type DateRangeQueryParameters = {
+export type DateRangeQuery = RangeQueryBase & {
   format?: Common.DateFormat;
   from?: Common.DateMath | undefined;
   gt?: Common.DateMath;
   gte?: Common.DateMath;
+  include_lower?: boolean;
+  include_upper?: boolean;
   lt?: Common.DateMath;
   lte?: Common.DateMath;
   time_zone?: Common.TimeZone;
@@ -171,14 +173,15 @@ export type GeoBoundingBoxQuery = QueryBase & {
 export type GeoDecayPlacement = {
   decay?: number;
   offset?: Common.Distance;
-  origin?: Common.GeoLocation;
-  scale?: Common.Distance;
+  origin: Common.GeoLocation;
+  scale: Common.Distance;
 }
 
 export type GeoDistanceQuery = QueryBase & {
   distance: Common.Distance;
   distance_type?: Common.GeoDistanceType;
   ignore_unmapped?: IgnoreUnmapped;
+  unit?: Common.DistanceUnit;
   validation_method?: GeoValidationMethod;
   [key: string]: any | Common.GeoLocation;
 }
@@ -450,10 +453,12 @@ export type NeuralQuery = QueryBase & {
   query_text?: string;
 }
 
-export type NumberRangeQueryParameters = {
+export type NumberRangeQuery = RangeQueryBase & {
   from?: number | string | undefined;
   gt?: number;
   gte?: number;
+  include_lower?: boolean;
+  include_upper?: boolean;
   lt?: number;
   lte?: number;
   to?: number | string | undefined;
@@ -462,8 +467,8 @@ export type NumberRangeQueryParameters = {
 export type NumericDecayPlacement = {
   decay?: number;
   offset?: number;
-  origin?: number;
-  scale?: number;
+  origin: number;
+  scale: number;
 }
 
 export type Operator = 'and' | 'AND' | 'or' | 'OR'
@@ -555,6 +560,7 @@ export type QueryContainer = {
   span_or?: SpanOrQuery;
   span_term?: Record<string, SpanTermQuery>;
   span_within?: SpanWithinQuery;
+  template?: Record<string, any>;
   term?: Record<string, TermQuery>;
   terms?: TermsQuery;
   terms_set?: Record<string, TermsSetQuery>;
@@ -599,7 +605,7 @@ export type RandomScoreFunction = {
   seed?: number | string;
 }
 
-export type RangeQuery = (RangeQueryBase & NumberRangeQueryParameters) | (RangeQueryBase & DateRangeQueryParameters)
+export type RangeQuery = NumberRangeQuery | DateRangeQuery
 
 export type RangeQueryBase = QueryBase & {
   relation?: RangeRelation;
@@ -745,19 +751,23 @@ export type TermQuery = Common.FieldValue | (QueryBase & {
 })
 
 export type TermsLookup = {
-  id?: Common.Id;
-  index?: Common.IndexName;
-  path?: Common.Field;
+  id: Common.Id;
+  index: Common.IndexName;
+  path: Common.Field;
   routing?: Common.Routing;
+  store?: boolean;
 }
 
 export type TermsQuery = QueryBase & {
   _name?: any;
   boost?: any;
+  value_type?: TermsQueryValueType;
   [key: string]: any | TermsQueryField;
 }
 
 export type TermsQueryField = Common.FieldValue[] | TermsLookup
+
+export type TermsQueryValueType = 'bitmap' | 'default'
 
 export type TermsSetQuery = QueryBase & {
   minimum_should_match_field?: Common.Field;

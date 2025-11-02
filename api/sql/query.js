@@ -19,7 +19,7 @@
 const { normalizeArguments } = require('../utils');
 
 /**
- * Executes SQL or PPL queries against OpenSearch indices.
+ * Executes SQL or PPL queries against OpenSearch indexes.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/ - sql.query}
  *
  * @memberOf API-Sql

@@ -69,6 +69,7 @@ export interface Search_Request extends Global.Params {
   track_scores?: boolean;
   track_total_hits?: Core_Search.TrackHits;
   typed_keys?: boolean;
+  verbose_pipeline?: boolean;
   version?: boolean;
 }
 
@@ -77,22 +78,24 @@ export type Search_RequestBody = {
   aggregations?: Record<string, Common_Aggregations.AggregationContainer>;
   aggs?: Record<string, Common_Aggregations.AggregationContainer>;
   collapse?: Core_Search.FieldCollapse;
+  derived?: Record<string, Common.DerivedField>;
   docvalue_fields?: Common_QueryDsl.FieldAndFormat[];
   explain?: boolean;
-  ext?: Record<string, Record<string, any>>;
+  ext?: Record<string, any>;
   fields?: Common_QueryDsl.FieldAndFormat[];
   from?: number;
   highlight?: Core_Search.Highlight;
+  include_named_queries_score?: boolean;
   indices_boost?: Record<string, number>[];
   min_score?: number;
   pit?: Core_Search.PointInTimeReference;
   post_filter?: Common_QueryDsl.QueryContainer;
   profile?: boolean;
   query?: Common_QueryDsl.QueryContainer;
-  rank?: Common.RankContainer;
   rescore?: Core_Search.Rescore | Core_Search.Rescore[];
   script_fields?: Record<string, Common.ScriptField>;
   search_after?: Common.SortResults;
+  search_pipeline?: string;
   seq_no_primary_term?: boolean;
   size?: number;
   slice?: Common.SlicedScroll;
@@ -104,6 +107,7 @@ export type Search_RequestBody = {
   timeout?: string;
   track_scores?: boolean;
   track_total_hits?: Core_Search.TrackHits;
+  verbose_pipeline?: boolean;
   version?: boolean;
 }
 
@@ -111,5 +115,5 @@ export interface Search_Response extends ApiResponse {
   body: Search_ResponseBody;
 }
 
-export type Search_ResponseBody = Core_Search.ResponseBody
+export type Search_ResponseBody = Core_Search.SearchResponse
 

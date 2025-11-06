@@ -629,13 +629,22 @@ export type Term = {
 }
 
 export type Tool = {
+  attributes?: ToolAttributes;
   description?: string;
   name?: Common.Name;
   type?: string;
   version?: Common.VersionString;
 }
 
+export type ToolAttributes = {
+  input_schema?: string;
+  strict?: boolean;
+  [key: string]: any | Record<string, any>;
+}
+
 export type ToolItems = {
+  attributes?: ToolAttributes;
+  description?: string;
   include_output_in_agent_response?: boolean;
   name?: string;
   parameters?: Parameters;

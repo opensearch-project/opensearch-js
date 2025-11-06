@@ -69,6 +69,7 @@ export interface Search_Request extends Global.Params {
   track_scores?: boolean;
   track_total_hits?: Core_Search.TrackHits;
   typed_keys?: boolean;
+  verbose_pipeline?: boolean;
   version?: boolean;
 }
 

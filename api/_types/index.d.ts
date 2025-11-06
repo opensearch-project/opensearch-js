@@ -74,6 +74,7 @@ import * as Cluster_WeightedRouting from './cluster.weighted_routing'
 import * as DanglingIndices_ListDanglingIndices from './dangling_indices.list_dangling_indices'
 import * as FlowFramework_Common from './flow_framework.common'
 import * as FlowFramework_Errors from './flow_framework.errors'
+import * as Geospatial_Common from './geospatial._common'
 import * as Indices_Common from './indices._common'
 import * as Indices_AddBlock from './indices.add_block'
 import * as Indices_Analyze from './indices.analyze'
@@ -99,6 +100,7 @@ import * as Ism_Common from './ism._common'
 import * as Knn_Common from './knn._common'
 import * as Ltr_Common from './ltr._common'
 import * as Ml_Common from './ml._common'
+import * as Neural_Common from './neural._common'
 import * as Nodes_Common from './nodes._common'
 import * as Nodes_Info from './nodes.info'
 import * as Nodes_ReloadSecureSettings from './nodes.reload_secure_settings'
@@ -184,6 +186,7 @@ export {
   DanglingIndices_ListDanglingIndices,
   FlowFramework_Common,
   FlowFramework_Errors,
+  Geospatial_Common,
   Indices_Common,
   Indices_AddBlock,
   Indices_Analyze,
@@ -209,6 +212,7 @@ export {
   Knn_Common,
   Ltr_Common,
   Ml_Common,
+  Neural_Common,
   Nodes_Common,
   Nodes_Info,
   Nodes_ReloadSecureSettings,

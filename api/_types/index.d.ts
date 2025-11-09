@@ -95,6 +95,7 @@ import * as Indices_UpdateAliases from './indices.update_aliases'
 import * as Indices_ValidateQuery from './indices.validate_query'
 import * as Ingest_Common from './ingest._common'
 import * as Ingest_Simulate from './ingest.simulate'
+import * as Ingestion_Common from './ingestion._common'
 import * as Insights_Common from './insights._common'
 import * as Ism_Common from './ism._common'
 import * as Knn_Common from './knn._common'
@@ -113,6 +114,9 @@ import * as RemoteStore_Common from './remote_store._common'
 import * as Replication_Common from './replication._common'
 import * as Rollups_Common from './rollups._common'
 import * as SearchPipeline_Common from './search_pipeline._common'
+import * as SearchRelevance_Common from './search_relevance._common'
+import * as SecurityAnalytics_Alerts from './security_analytics.alerts'
+import * as SecurityAnalytics_Findings from './security_analytics.findings'
 import * as Security_Common from './security._common'
 import * as Sm_Common from './sm._common'
 import * as Snapshot_Common from './snapshot._common'
@@ -122,6 +126,7 @@ import * as Snapshot_VerifyRepository from './snapshot.verify_repository'
 import * as Sql_Common from './sql._common'
 import * as Tasks_Common from './tasks._common'
 import * as Transforms_Common from './transforms._common'
+import * as Ubi_Common from './ubi._common'
 import * as Wlm_Common from './wlm._common'
 import * as Global from './_global'
 
@@ -207,6 +212,7 @@ export {
   Indices_ValidateQuery,
   Ingest_Common,
   Ingest_Simulate,
+  Ingestion_Common,
   Insights_Common,
   Ism_Common,
   Knn_Common,
@@ -225,6 +231,9 @@ export {
   Replication_Common,
   Rollups_Common,
   SearchPipeline_Common,
+  SearchRelevance_Common,
+  SecurityAnalytics_Alerts,
+  SecurityAnalytics_Findings,
   Security_Common,
   Sm_Common,
   Snapshot_Common,
@@ -234,6 +243,7 @@ export {
   Sql_Common,
   Tasks_Common,
   Transforms_Common,
+  Ubi_Common,
   Wlm_Common,
   Global,
 };

@@ -41,10 +41,5 @@ export interface Bulk_Response extends ApiResponse {
   body: Bulk_ResponseBody;
 }
 
-export type Bulk_ResponseBody = {
-  errors: boolean;
-  ingest_took?: number;
-  items: Record<string, Core_Bulk.ResponseItem>[];
-  took: number;
-}
+export type Bulk_ResponseBody = Core_Bulk.BulkResponseBase
 

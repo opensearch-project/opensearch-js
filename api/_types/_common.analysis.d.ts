@@ -16,7 +16,7 @@
 
 import * as Common from './_common'
 
-export type Analyzer = CustomAnalyzer | FingerprintAnalyzer | KeywordAnalyzer | LanguageAnalyzer | NoriAnalyzer | PatternAnalyzer | SimpleAnalyzer | StandardAnalyzer | StopAnalyzer | WhitespaceAnalyzer | IcuAnalyzer | KuromojiAnalyzer | SnowballAnalyzer | DutchAnalyzer | SmartcnAnalyzer | CjkAnalyzer | PhoneAnalyzer
+export type Analyzer = CustomAnalyzer | FingerprintAnalyzer | KeywordAnalyzer | LanguageAnalyzer | NoriAnalyzer | PatternAnalyzer | SimpleAnalyzer | StandardAnalyzer | StopAnalyzer | WhitespaceAnalyzer | IcuAnalyzer | KuromojiAnalyzer | SnowballAnalyzer | DutchAnalyzer | SmartcnAnalyzer | CjkAnalyzer | PhoneAnalyzer | PhoneSearchAnalyzer
 
 export type AsciiFoldingTokenFilter = TokenFilterBase & {
   preserve_original?: Common.StringifiedBoolean;
@@ -438,9 +438,16 @@ export type PersianStemTokenFilter = TokenFilterBase & {
   type: 'persian_stem';
 }
 
-export type PhoneAnalyzer = {
+export type PhoneAnalyzer = PhoneAnalyzerBase & {
+  type: 'phone';
+}
+
+export type PhoneAnalyzerBase = {
   'phone-region'?: string;
-  type?: 'phone' | 'phone-search';
+}
+
+export type PhoneSearchAnalyzer = PhoneAnalyzerBase & {
+  type: 'phone-search';
 }
 
 export type PhoneticEncoder = 'beider_morse' | 'caverphone1' | 'caverphone2' | 'cologne' | 'daitch_mokotoff' | 'double_metaphone' | 'haasephonetik' | 'koelnerphonetik' | 'metaphone' | 'nysiis' | 'refined_soundex' | 'soundex'

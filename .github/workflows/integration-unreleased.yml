@@ -40,7 +40,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: opensearch/distribution/archives/linux-tar/build/distributions
-          key: ${{ steps.get-key.outputs.key }}
+          key: "123"
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4

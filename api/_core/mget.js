@@ -29,11 +29,11 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params._source_excludes] - A comma-separated list of source fields to exclude from the response. You can also use this parameter to exclude fields from the subset specified in `_source_includes` query parameter.
  * @param {string} [params._source_includes] - A comma-separated list of source fields to include in the response. If this parameter is specified, only these source fields are returned. You can exclude fields from this subset using the `_source_excludes` query parameter. If the `_source` parameter is `false`, this parameter is ignored.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
- * @param {boolean} [params.realtime] - If `true`, the request is real-time as opposed to near-real-time.
+ * @param {boolean} [params.realtime] - If `true`, the request is real time as opposed to near real time.
  * @param {string} [params.refresh] - If `true`, the request refreshes relevant shards before retrieving documents.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {string} [params.stored_fields] - If `true`, retrieves the document fields stored in the index rather than the document `_source`.
- * @param {string} [params.index] - Name of the index to retrieve documents from when `ids` are specified, or when a document in the `docs` array does not specify an index.
+ * @param {string} [params.index] - The name of the index to retrieve documents from when `ids` are specified, or when a document in the `docs` array does not specify an index.
  * @param {object} params.body - Document identifiers; can be either `docs` (containing full document information) or `ids` (when index is provided in the URL.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

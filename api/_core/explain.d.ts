@@ -52,7 +52,9 @@ export type Explain_ResponseBody = {
   _index: Common.IndexName;
   _type?: Common.Type;
   explanation?: Core_Explain.Explanation;
-  get?: Common.InlineGet;
+  get?: extends Common.InlineGet {
+  _source?: Common.TDocument;
+};
   matched: boolean;
 }
 

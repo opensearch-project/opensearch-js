@@ -15,11 +15,6 @@
  */
 
 
-export type BadRequestResponse = {
-  error?: string;
-  status?: number;
-}
-
 export type CreateUpdatePolicyRequest = {
   creation: CreationConfig;
   deletion?: DeletionConfig;
@@ -41,17 +36,6 @@ export type CronExpression = {
 
 export type CronSchedule = {
   cron?: CronExpression;
-}
-
-export type DeletePolicyResponse = {
-  _id: string;
-  _index: string;
-  _primary_term: number;
-  _seq_no: number;
-  _shards: ShardsInfo;
-  _version: number;
-  forced_refresh: boolean;
-  result: string;
 }
 
 export type DeletionCondition = {
@@ -92,29 +76,20 @@ export type GetPoliciesResponse = {
 export type IntervalConfig = {
   period: number;
   start_time: number;
-  unit: 'Days' | 'Hours' | 'Minutes';
+  unit: IntervalUnit;
 }
 
 export type IntervalSchedule = {
   interval?: IntervalConfig;
 }
 
+export type IntervalUnit = 'Days' | 'Hours' | 'Minutes'
+
 export type ListedPolicy = {
   _id: string;
   _primary_term?: number;
   _seq_no?: number;
   sm_policy: SMPolicy;
-}
-
-export type NotFoundError = {
-  reason: string;
-  root_cause?: RootCause[];
-  type: string;
-}
-
-export type NotFoundResponse = {
-  error: NotFoundError;
-  status: number;
 }
 
 export type NotificationChannel = {
@@ -147,17 +122,6 @@ export type PolicyResponse = {
 
 export type RetryMetadata = {
   count?: number;
-}
-
-export type RootCause = {
-  reason?: string;
-  type?: string;
-}
-
-export type ShardsInfo = {
-  failed?: number;
-  successful?: number;
-  total?: number;
 }
 
 export type SMPolicy = {

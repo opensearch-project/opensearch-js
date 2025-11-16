@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Indices
  *
  * @param {object} [params]
- * @param {string} [params.name] - Comma-separated list of data streams used to limit the request. Wildcard expressions (`*`) are supported. To target all data streams in a cluster, omit this parameter or use `*`.
+ * @param {string} [params.name] - A comma-separated list of data streams used to limit the request. Wildcard expressions (`*`) are supported. To target all data streams in a cluster, omit this parameter or use `*`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

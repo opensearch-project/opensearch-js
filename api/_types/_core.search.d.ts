@@ -16,7 +16,6 @@
 
 import * as Common from './_common'
 import * as Common_Aggregations from './_common.aggregations'
-import * as Common_Analysis from './_common.analysis'
 import * as Common_QueryDsl from './_common.query_dsl'
 import * as Core_Explain from './_core.explain'
 
@@ -104,9 +103,13 @@ export type CompletionContext = Context | {
   prefix?: boolean;
 }
 
-export type CompletionSuggest = SuggestBase & {
-  options: CompletionSuggestOption | CompletionSuggestOption[];
-}
+export type CompletionSuggest = SuggestBase & ({
+  options: (CompletionSuggestOption & {
+  _source?: TDocument;
+}) | (CompletionSuggestOption & {
+  _source?: TDocument;
+}[]);
+})
 
 export type CompletionSuggester = SuggesterBase & {
   contexts?: Record<string, CompletionContext[]>;
@@ -120,10 +123,10 @@ export type CompletionSuggestOption = {
   _index?: Common.IndexName;
   _routing?: Common.Routing;
   _score?: number;
-  _source?: Record<string, any>;
+  _source?: TDocument;
   collate_match?: boolean;
   contexts?: Record<string, Context[]>;
-  fields?: Record<string, Record<string, any>>;
+  fields?: Record<string, any>;
   score?: number;
   text: string;
 }
@@ -225,7 +228,6 @@ export type HighlighterTagsSchema = 'styled'
 export type HighlighterType = BuiltinHighlighterType | string
 
 export type HighlightField = HighlightBase & {
-  analyzer?: Common_Analysis.Analyzer;
   matched_fields?: Common.Fields;
 }
 
@@ -250,14 +252,21 @@ export type Hit = {
   inner_hits?: Record<string, InnerHitsResult>;
   matched_queries?: string[];
   sort?: Common.SortResults;
+  [key: string]: any | Record<string, any>;
 }
 
 export type HitsMetadata = {
   hits: Hit & {
-  _source?: T;
+  _source?: TDocument;
 }[];
   max_score?: undefined | number;
   total?: TotalHits | number;
+}
+
+export type HitsMetadataJsonValue = HitsMetadata & {
+  hits?: {
+  _source?: any;
+}[];
 }
 
 export type InnerHits = {
@@ -265,7 +274,7 @@ export type InnerHits = {
   collapse?: FieldCollapse;
   docvalue_fields?: Common_QueryDsl.FieldAndFormat[];
   explain?: boolean;
-  fields?: Common.Fields;
+  fields?: Common_QueryDsl.FieldAndFormat[];
   from?: number;
   highlight?: Highlight;
   ignore_unmapped?: boolean;
@@ -350,8 +359,8 @@ export type PointInTimeReference = {
 export type ProcessorExecutionDetail = {
   duration_millis?: number;
   error?: string;
-  input_data?: Record<string, any> | Record<string, any>[];
-  output_data?: Record<string, any> | Record<string, any>[];
+  input_data?: any;
+  output_data?: any;
   processor_name?: string;
   status?: string;
   tag?: string;
@@ -402,12 +411,22 @@ export type RescoreQuery = {
   score_mode?: ScoreMode;
 }
 
-export type ResponseBody = {
+export type ScoreMode = 'avg' | 'max' | 'min' | 'multiply' | 'total'
+
+export type SearchProfile = {
+  collector: Collector[];
+  query: QueryProfile[];
+  rewrite_time: number;
+}
+
+export type SearchResponse = SearchResult & Record<string, any>
+
+export type SearchResult = {
   _clusters?: Common.ClusterStatistics;
   _scroll_id?: Common.ScrollId;
   _shards: Common.ShardStatistics;
   aggregations?: Record<string, Common_Aggregations.Aggregate>;
-  fields?: Record<string, Record<string, any>>;
+  fields?: Record<string, any>;
   hits: HitsMetadata;
   num_reduce_phases?: number;
   phase_took?: Common.PhaseTook;
@@ -420,13 +439,20 @@ export type ResponseBody = {
   took: number;
 }
 
-export type ScoreMode = 'avg' | 'max' | 'min' | 'multiply' | 'total'
-
-export type SearchProfile = {
-  collector: Collector[];
-  query: QueryProfile[];
-  rewrite_time: number;
-}
+export type SearchResultJsonValue = SearchResult & ({
+  hits?: {
+  hits?: {
+  _source?: any;
+}[];
+};
+  suggest?: Record<string, {
+  options?: {
+  _source?: any;
+} | {
+  _source?: any;
+}[];
+} | PhraseSuggest | TermSuggest[]>;
+})
 
 export type ShardProfile = {
   aggregations: AggregationProfile[];
@@ -456,7 +482,13 @@ export type StupidBackoffSmoothingModel = {
   discount: number;
 }
 
-export type Suggest = CompletionSuggest | PhraseSuggest | TermSuggest
+export type Suggest = (CompletionSuggest & ({
+  options?: (CompletionSuggestOption & {
+  _source?: TDocument;
+}) | (CompletionSuggestOption & {
+  _source?: TDocument;
+}[]);
+})) | PhraseSuggest | TermSuggest
 
 export type SuggestBase = {
   length: number;
@@ -484,8 +516,6 @@ export type SuggestFuzziness = {
 }
 
 export type SuggestSort = 'frequency' | 'score'
-
-export type T = Record<string, any>
 
 export type TDocument = Record<string, any>
 

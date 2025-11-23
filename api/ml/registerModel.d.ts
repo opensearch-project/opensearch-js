@@ -27,9 +27,12 @@ export type Ml_RegisterModel_RequestBody = {
   connector_id?: string;
   description?: string;
   function_name?: string;
+  model_config?: Ml_Common.ModelConfig;
+  model_content_hash_value?: string;
   model_format?: Ml_Common.ModelFormat;
   model_group_id?: Common.Id;
   name: string;
+  url?: string;
   version?: Common.VersionString;
 }
 

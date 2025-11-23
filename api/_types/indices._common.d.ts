@@ -18,6 +18,7 @@ import * as Common from './_common'
 import * as Common_Analysis from './_common.analysis'
 import * as Common_Mapping from './_common.mapping'
 import * as Common_QueryDsl from './_common.query_dsl'
+import * as Ingestion_Common from './ingestion._common'
 
 export type Alias = {
   filter?: Common_QueryDsl.QueryContainer;
@@ -83,22 +84,6 @@ export type FielddataFrequencyFilter = {
 }
 
 export type IndexCheckOnStartup = 'checksum' | 'false' | 'true'
-
-export type IndexError = {
-  error?: IndexErrorCause;
-  status?: number;
-}
-
-export type IndexErrorCause = {
-  index?: Common.IndexName;
-  index_uuid?: Common.Uuid;
-  reason?: string;
-  'resource.id'?: Common.IndexName;
-  'resource.type'?: Common.ResourceType;
-  root_cause?: IndexErrorCause[];
-  type: string;
-  [key: string]: any | Record<string, any>;
-}
 
 export type IndexGetUpgradeStatus = {
   indices?: Record<string, UpgradeStatus>;
@@ -203,6 +188,7 @@ export type IndexSettings = {
   index?: IndexSettings;
   indexing?: IndexSettingsIndexing;
   indexing_pressure?: IndexingPressure;
+  ingestion_source?: IngestionSource;
   knn?: Common.StringifiedBoolean;
   'knn.algo_param.ef_search'?: Common.StringifiedInteger;
   lifecycle?: IndexSettingsLifecycle;
@@ -232,6 +218,7 @@ export type IndexSettings = {
   query_string?: IndexSettingsQueryString;
   'query_string.lenient'?: Common.StringifiedBoolean;
   refresh_interval?: Common.Duration;
+  'replication.type'?: ReplicationType;
   routing?: IndexRouting;
   routing_partition_size?: Common.StringifiedInteger;
   routing_path?: Common.StringOrStringArray;
@@ -382,6 +369,7 @@ export type IndexSettingsSearch = {
   default_pipeline?: string;
   idle?: SearchIdle;
   slowlog?: SearchSlowlog;
+  star_tree_index?: IndexSettingsSearchStarTreeIndex;
   throttled?: Common.StringifiedBoolean;
 }
 
@@ -392,6 +380,10 @@ export type IndexSettingsSearchConcurrent = {
 export type IndexSettingsSearchConcurrentSegmentSearch = {
   enabled?: Common.StringifiedBoolean;
   mode?: string;
+}
+
+export type IndexSettingsSearchStarTreeIndex = {
+  enabled?: Common.StringifiedBoolean;
 }
 
 export type IndexSettingsSimilarity = {
@@ -531,6 +523,39 @@ export type IndexVersioning = {
   created_string?: string;
 }
 
+export type IngestionSource = {
+  all_active?: Common.StringifiedBoolean;
+  error_strategy?: Ingestion_Common.ErrorPolicy;
+  internal_queue_size?: Common.StringifiedInteger;
+  num_processor_threads?: Common.StringifiedInteger;
+  param?: Record<string, any>;
+  pointer?: IngestionSourcePointer;
+  'pointer.init.reset'?: IngestionSourcePointerInitReset;
+  'pointer.init.reset.value'?: string;
+  poll?: IngestionSourcePoll;
+  'poll.max_batch_size'?: Common.StringifiedLong;
+  'poll.timeout'?: Common.StringifiedInteger;
+  type?: IngestionSourceType;
+}
+
+export type IngestionSourcePointer = {
+  init?: IngestionSourcePointerInit;
+}
+
+export type IngestionSourcePointerInit = {
+  reset?: IngestionSourcePointerInitReset;
+  'reset.value'?: string;
+}
+
+export type IngestionSourcePointerInitReset = 'EARLIEST' | 'LATEST' | 'NONE' | 'RESET_BY_OFFSET' | 'RESET_BY_TIMESTAMP' | 'earliest' | 'latest' | 'none' | 'reset_by_offset' | 'reset_by_timestamp'
+
+export type IngestionSourcePoll = {
+  max_batch_size?: Common.StringifiedLong;
+  timeout?: Common.StringifiedInteger;
+}
+
+export type IngestionSourceType = 'file' | 'kafka' | 'kinesis' | 'none'
+
 export type ManagedBy = 'Data stream lifecycle' | 'Index Lifecycle Management' | 'Unmanaged'
 
 export type NumericFielddata = {
@@ -538,6 +563,8 @@ export type NumericFielddata = {
 }
 
 export type NumericFielddataFormat = 'array' | 'disabled'
+
+export type ReplicationType = 'DOCUMENT' | 'SEGMENT'
 
 export type RetentionLease = {
   period: Common.Duration;

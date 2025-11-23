@@ -20,12 +20,12 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Preloads native library files into memory, reducing initial search latency for specified indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/knn/api/#warmup-operation - knn.warmup}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/vector-search/api/knn/#warmup-operation - knn.warmup}
  *
  * @memberOf API-Knn
  *
  * @param {object} params
- * @param {array} params.index - Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
+ * @param {array} params.index - A comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

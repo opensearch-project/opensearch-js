@@ -17,7 +17,7 @@
 
 export type QueryGroupCreate = {
   name: string;
-  resiliency_mode: 'enforced' | 'monitor' | 'soft';
+  resiliency_mode: ResiliencyMode;
   resource_limits: {
   cpu?: number;
   memory: number;
@@ -30,7 +30,7 @@ export type QueryGroupCreate = {
 export type QueryGroupResponse = {
   _id: string;
   name: string;
-  resiliency_mode: 'enforced' | 'monitor' | 'soft';
+  resiliency_mode: ResiliencyMode;
   resource_limits: {
   cpu?: number;
   memory: number;
@@ -42,9 +42,11 @@ export type QueryGroupResponse = {
 }
 
 export type QueryGroupUpdate = {
-  resiliency_mode?: 'enforced' | 'monitor' | 'soft';
+  resiliency_mode?: ResiliencyMode;
   resource_limits?: ResourceLimitsSchema;
 }
+
+export type ResiliencyMode = 'enforced' | 'monitor' | 'soft'
 
 export type ResourceLimitsSchema = {
   cpu?: number;

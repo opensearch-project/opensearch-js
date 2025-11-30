@@ -32,6 +32,8 @@ export type Measurements = {
   memory?: Measurement;
 }
 
+export type MetricType = 'cpu' | 'latency' | 'memory'
+
 export type Source = {
   _source?: Core_Search.SourceConfig;
   aggregations?: Record<string, any>;

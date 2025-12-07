@@ -23,7 +23,7 @@ export interface Ml_RegisterModelGroup_Request extends Global.Params {
 }
 
 export type Ml_RegisterModelGroup_RequestBody = {
-  access_mode?: 'private' | 'public' | 'restricted';
+  access_mode?: Ml_Common.ModelGroupAccessMode;
   add_all_backend_roles?: boolean;
   backend_roles?: string[];
   description?: string;

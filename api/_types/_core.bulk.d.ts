@@ -17,6 +17,13 @@
 import * as Common from './_common'
 import * as Core_Search from './_core.search'
 
+export type BulkResponse = {
+  errors: boolean;
+  ingest_took?: number;
+  items: Item[];
+  took: number;
+}
+
 export type CreateOperation = WriteOperation
 
 export type DeleteOperation = OperationBase & {
@@ -34,6 +41,13 @@ export type IndexOperation = WriteOperation & {
   version_type?: Common.VersionType;
 }
 
+export type Item = {
+  create?: ResponseItem;
+  delete?: ResponseItem;
+  index?: ResponseItem;
+  update?: ResponseItem;
+}
+
 export type OperationBase = {
   _id?: Common.Id;
   _index?: Common.IndexName;
@@ -48,7 +62,7 @@ export type OperationContainer = {
 }
 
 export type ResponseItem = {
-  _id?: undefined | string;
+  _id?: string;
   _index: string;
   _primary_term?: number;
   _seq_no?: Common.SequenceNumber;
@@ -67,6 +81,8 @@ export type UpdateAction = {
   detect_noop?: boolean;
   doc?: Record<string, any>;
   doc_as_upsert?: boolean;
+  if_primary_term?: number;
+  if_seq_no?: Common.SequenceNumber;
   script?: Common.Script;
   scripted_upsert?: boolean;
   upsert?: Record<string, any>;

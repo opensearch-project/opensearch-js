@@ -16,15 +16,8 @@
 
 import * as Common from './_common'
 
-export type Weights = WeightsBase & {
-  weights?: Record<string, any>;
-}
-
 export type WeightsBase = {
   _version?: Common.VersionNumber;
-}
-
-export type WeightsResponse = Weights & {
-  discovered_cluster_manager?: boolean;
+  weights?: Record<string, string>;
 }
 

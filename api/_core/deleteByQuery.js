@@ -44,7 +44,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.refresh] - If `true`, OpenSearch refreshes all shards involved in the delete by query after the request completes.
  * @param {boolean} [params.request_cache] - If `true`, the request cache is used for this request. Defaults to the index-level setting.
  * @param {number} [params.requests_per_second=0] - The throttle for this request in sub-requests per second.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {string} [params.scroll] - Period to retain the search context for scrolling.
  * @param {number} [params.scroll_size=100] - Size of the scroll request that powers the operation.
  * @param {string} [params.search_timeout] - Explicit timeout for each search request. Defaults to no timeout.
@@ -58,7 +58,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.version] - If `true`, returns the document version as part of a hit.
  * @param {string} [params.wait_for_active_shards] - The number of shard copies that must be active before proceeding with the operation. Set to all or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
  * @param {boolean} [params.wait_for_completion=true] - If `true`, the request blocks until the operation is complete.
- * @param {string} params.index - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (`*`). To search all data streams or indexes, omit this parameter or use `*` or `_all`.
+ * @param {string} params.index - A comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (`*`). To search all data streams or indexes, omit this parameter or use `*` or `_all`.
  * @param {object} params.body - The search definition using the Query DSL
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

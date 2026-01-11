@@ -30,7 +30,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.ignore_unavailable] - Whether specified concrete indexes should be ignored when unavailable (missing or closed).
  * @param {boolean} [params.only_ancient_segments] - If `true`, only ancient (an older Lucene major release) segments will be upgraded.
  * @param {boolean} [params.wait_for_completion=false] - Should this request wait until the operation has completed before returning.
- * @param {array} [params.index] - Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
+ * @param {array} [params.index] - A comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -613,6 +613,21 @@ export default class OpenSearchAPI {
 
   };
 
+  ingestion: {
+    pause (params: API.Ingestion_Pause_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ingestion_Pause_Response>;
+    pause (params: API.Ingestion_Pause_Request, callback: callbackFn<API.Ingestion_Pause_Response>): TransportRequestCallback;
+    pause (params: API.Ingestion_Pause_Request, options: TransportRequestOptions, callback: callbackFn<API.Ingestion_Pause_Response>): TransportRequestCallback;
+
+    resume (params: API.Ingestion_Resume_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ingestion_Resume_Response>;
+    resume (params: API.Ingestion_Resume_Request, callback: callbackFn<API.Ingestion_Resume_Response>): TransportRequestCallback;
+    resume (params: API.Ingestion_Resume_Request, options: TransportRequestOptions, callback: callbackFn<API.Ingestion_Resume_Response>): TransportRequestCallback;
+
+    getState (params: API.Ingestion_GetState_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ingestion_GetState_Response>;
+    getState (params: API.Ingestion_GetState_Request, callback: callbackFn<API.Ingestion_GetState_Response>): TransportRequestCallback;
+    getState (params: API.Ingestion_GetState_Request, options: TransportRequestOptions, callback: callbackFn<API.Ingestion_GetState_Response>): TransportRequestCallback;
+
+  };
+
   insights: {
     topQueries (params: API.Insights_TopQueries_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Insights_TopQueries_Response>;
     topQueries (params: API.Insights_TopQueries_Request, callback: callbackFn<API.Insights_TopQueries_Response>): TransportRequestCallback;
@@ -751,6 +766,77 @@ export default class OpenSearchAPI {
     clearCache (params: API.Ltr_ClearCache_Request, callback: callbackFn<API.Ltr_ClearCache_Response>): TransportRequestCallback;
     clearCache (params: API.Ltr_ClearCache_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_ClearCache_Response>): TransportRequestCallback;
 
+    searchFeatures (params?: API.Ltr_SearchFeatures_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_SearchFeatures_Response>;
+    searchFeatures (callback: callbackFn<API.Ltr_SearchFeatures_Response>): TransportRequestCallback;
+    searchFeatures (params: API.Ltr_SearchFeatures_Request, callback: callbackFn<API.Ltr_SearchFeatures_Response>): TransportRequestCallback;
+    searchFeatures (params: API.Ltr_SearchFeatures_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_SearchFeatures_Response>): TransportRequestCallback;
+
+    deleteFeature (params: API.Ltr_DeleteFeature_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_DeleteFeature_Response>;
+    deleteFeature (params: API.Ltr_DeleteFeature_Request, callback: callbackFn<API.Ltr_DeleteFeature_Response>): TransportRequestCallback;
+    deleteFeature (params: API.Ltr_DeleteFeature_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_DeleteFeature_Response>): TransportRequestCallback;
+
+    getFeature (params: API.Ltr_GetFeature_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_GetFeature_Response>;
+    getFeature (params: API.Ltr_GetFeature_Request, callback: callbackFn<API.Ltr_GetFeature_Response>): TransportRequestCallback;
+    getFeature (params: API.Ltr_GetFeature_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_GetFeature_Response>): TransportRequestCallback;
+
+    updateFeature (params: API.Ltr_UpdateFeature_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_UpdateFeature_Response>;
+    updateFeature (params: API.Ltr_UpdateFeature_Request, callback: callbackFn<API.Ltr_UpdateFeature_Response>): TransportRequestCallback;
+    updateFeature (params: API.Ltr_UpdateFeature_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_UpdateFeature_Response>): TransportRequestCallback;
+
+    createFeature (params: API.Ltr_CreateFeature_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_CreateFeature_Response>;
+    createFeature (params: API.Ltr_CreateFeature_Request, callback: callbackFn<API.Ltr_CreateFeature_Response>): TransportRequestCallback;
+    createFeature (params: API.Ltr_CreateFeature_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_CreateFeature_Response>): TransportRequestCallback;
+
+    searchFeaturesets (params?: API.Ltr_SearchFeaturesets_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_SearchFeaturesets_Response>;
+    searchFeaturesets (callback: callbackFn<API.Ltr_SearchFeaturesets_Response>): TransportRequestCallback;
+    searchFeaturesets (params: API.Ltr_SearchFeaturesets_Request, callback: callbackFn<API.Ltr_SearchFeaturesets_Response>): TransportRequestCallback;
+    searchFeaturesets (params: API.Ltr_SearchFeaturesets_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_SearchFeaturesets_Response>): TransportRequestCallback;
+
+    deleteFeatureset (params: API.Ltr_DeleteFeatureset_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_DeleteFeatureset_Response>;
+    deleteFeatureset (params: API.Ltr_DeleteFeatureset_Request, callback: callbackFn<API.Ltr_DeleteFeatureset_Response>): TransportRequestCallback;
+    deleteFeatureset (params: API.Ltr_DeleteFeatureset_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_DeleteFeatureset_Response>): TransportRequestCallback;
+
+    getFeatureset (params: API.Ltr_GetFeatureset_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_GetFeatureset_Response>;
+    getFeatureset (params: API.Ltr_GetFeatureset_Request, callback: callbackFn<API.Ltr_GetFeatureset_Response>): TransportRequestCallback;
+    getFeatureset (params: API.Ltr_GetFeatureset_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_GetFeatureset_Response>): TransportRequestCallback;
+
+    updateFeatureset (params: API.Ltr_UpdateFeatureset_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_UpdateFeatureset_Response>;
+    updateFeatureset (params: API.Ltr_UpdateFeatureset_Request, callback: callbackFn<API.Ltr_UpdateFeatureset_Response>): TransportRequestCallback;
+    updateFeatureset (params: API.Ltr_UpdateFeatureset_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_UpdateFeatureset_Response>): TransportRequestCallback;
+
+    createFeatureset (params: API.Ltr_CreateFeatureset_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_CreateFeatureset_Response>;
+    createFeatureset (params: API.Ltr_CreateFeatureset_Request, callback: callbackFn<API.Ltr_CreateFeatureset_Response>): TransportRequestCallback;
+    createFeatureset (params: API.Ltr_CreateFeatureset_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_CreateFeatureset_Response>): TransportRequestCallback;
+
+    addFeaturesToSet (params: API.Ltr_AddFeaturesToSet_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_AddFeaturesToSet_Response>;
+    addFeaturesToSet (params: API.Ltr_AddFeaturesToSet_Request, callback: callbackFn<API.Ltr_AddFeaturesToSet_Response>): TransportRequestCallback;
+    addFeaturesToSet (params: API.Ltr_AddFeaturesToSet_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_AddFeaturesToSet_Response>): TransportRequestCallback;
+
+    addFeaturesToSetByQuery (params: API.Ltr_AddFeaturesToSetByQuery_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_AddFeaturesToSetByQuery_Response>;
+    addFeaturesToSetByQuery (params: API.Ltr_AddFeaturesToSetByQuery_Request, callback: callbackFn<API.Ltr_AddFeaturesToSetByQuery_Response>): TransportRequestCallback;
+    addFeaturesToSetByQuery (params: API.Ltr_AddFeaturesToSetByQuery_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_AddFeaturesToSetByQuery_Response>): TransportRequestCallback;
+
+    createModelFromSet (params: API.Ltr_CreateModelFromSet_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_CreateModelFromSet_Response>;
+    createModelFromSet (params: API.Ltr_CreateModelFromSet_Request, callback: callbackFn<API.Ltr_CreateModelFromSet_Response>): TransportRequestCallback;
+    createModelFromSet (params: API.Ltr_CreateModelFromSet_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_CreateModelFromSet_Response>): TransportRequestCallback;
+
+    searchModels (params?: API.Ltr_SearchModels_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_SearchModels_Response>;
+    searchModels (callback: callbackFn<API.Ltr_SearchModels_Response>): TransportRequestCallback;
+    searchModels (params: API.Ltr_SearchModels_Request, callback: callbackFn<API.Ltr_SearchModels_Response>): TransportRequestCallback;
+    searchModels (params: API.Ltr_SearchModels_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_SearchModels_Response>): TransportRequestCallback;
+
+    deleteModel (params: API.Ltr_DeleteModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_DeleteModel_Response>;
+    deleteModel (params: API.Ltr_DeleteModel_Request, callback: callbackFn<API.Ltr_DeleteModel_Response>): TransportRequestCallback;
+    deleteModel (params: API.Ltr_DeleteModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_DeleteModel_Response>): TransportRequestCallback;
+
+    getModel (params: API.Ltr_GetModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_GetModel_Response>;
+    getModel (params: API.Ltr_GetModel_Request, callback: callbackFn<API.Ltr_GetModel_Response>): TransportRequestCallback;
+    getModel (params: API.Ltr_GetModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_GetModel_Response>): TransportRequestCallback;
+
+    createModel (params: API.Ltr_CreateModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_CreateModel_Response>;
+    createModel (params: API.Ltr_CreateModel_Request, callback: callbackFn<API.Ltr_CreateModel_Response>): TransportRequestCallback;
+    createModel (params: API.Ltr_CreateModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_CreateModel_Response>): TransportRequestCallback;
+
     deleteStore (params: API.Ltr_DeleteStore_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ltr_DeleteStore_Response>;
     deleteStore (params: API.Ltr_DeleteStore_Request, callback: callbackFn<API.Ltr_DeleteStore_Response>): TransportRequestCallback;
     deleteStore (params: API.Ltr_DeleteStore_Request, options: TransportRequestOptions, callback: callbackFn<API.Ltr_DeleteStore_Response>): TransportRequestCallback;
@@ -814,6 +900,10 @@ export default class OpenSearchAPI {
     executeAgent (params: API.Ml_ExecuteAgent_Request, callback: callbackFn<API.Ml_ExecuteAgent_Response>): TransportRequestCallback;
     executeAgent (params: API.Ml_ExecuteAgent_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_ExecuteAgent_Response>): TransportRequestCallback;
 
+    executeAgentStream (params: API.Ml_ExecuteAgentStream_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_ExecuteAgentStream_Response>;
+    executeAgentStream (params: API.Ml_ExecuteAgentStream_Request, callback: callbackFn<API.Ml_ExecuteAgentStream_Response>): TransportRequestCallback;
+    executeAgentStream (params: API.Ml_ExecuteAgentStream_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_ExecuteAgentStream_Response>): TransportRequestCallback;
+
     createConnector (params?: API.Ml_CreateConnector_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_CreateConnector_Response>;
     createConnector (callback: callbackFn<API.Ml_CreateConnector_Response>): TransportRequestCallback;
     createConnector (params: API.Ml_CreateConnector_Request, callback: callbackFn<API.Ml_CreateConnector_Response>): TransportRequestCallback;
@@ -861,6 +951,56 @@ export default class OpenSearchAPI {
     createMemory (callback: callbackFn<API.Ml_CreateMemory_Response>): TransportRequestCallback;
     createMemory (params: API.Ml_CreateMemory_Request, callback: callbackFn<API.Ml_CreateMemory_Response>): TransportRequestCallback;
     createMemory (params: API.Ml_CreateMemory_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_CreateMemory_Response>): TransportRequestCallback;
+
+    createMemoryContainer (params?: API.Ml_CreateMemoryContainer_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_CreateMemoryContainer_Response>;
+    createMemoryContainer (callback: callbackFn<API.Ml_CreateMemoryContainer_Response>): TransportRequestCallback;
+    createMemoryContainer (params: API.Ml_CreateMemoryContainer_Request, callback: callbackFn<API.Ml_CreateMemoryContainer_Response>): TransportRequestCallback;
+    createMemoryContainer (params: API.Ml_CreateMemoryContainer_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_CreateMemoryContainer_Response>): TransportRequestCallback;
+
+    searchMemoryContainer (params?: API.Ml_SearchMemoryContainer_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_SearchMemoryContainer_Response>;
+    searchMemoryContainer (callback: callbackFn<API.Ml_SearchMemoryContainer_Response>): TransportRequestCallback;
+    searchMemoryContainer (params: API.Ml_SearchMemoryContainer_Request, callback: callbackFn<API.Ml_SearchMemoryContainer_Response>): TransportRequestCallback;
+    searchMemoryContainer (params: API.Ml_SearchMemoryContainer_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_SearchMemoryContainer_Response>): TransportRequestCallback;
+
+    deleteMemoryContainer (params: API.Ml_DeleteMemoryContainer_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteMemoryContainer_Response>;
+    deleteMemoryContainer (params: API.Ml_DeleteMemoryContainer_Request, callback: callbackFn<API.Ml_DeleteMemoryContainer_Response>): TransportRequestCallback;
+    deleteMemoryContainer (params: API.Ml_DeleteMemoryContainer_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteMemoryContainer_Response>): TransportRequestCallback;
+
+    getMemoryContainer (params: API.Ml_GetMemoryContainer_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetMemoryContainer_Response>;
+    getMemoryContainer (params: API.Ml_GetMemoryContainer_Request, callback: callbackFn<API.Ml_GetMemoryContainer_Response>): TransportRequestCallback;
+    getMemoryContainer (params: API.Ml_GetMemoryContainer_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetMemoryContainer_Response>): TransportRequestCallback;
+
+    updateMemoryContainer (params: API.Ml_UpdateMemoryContainer_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UpdateMemoryContainer_Response>;
+    updateMemoryContainer (params: API.Ml_UpdateMemoryContainer_Request, callback: callbackFn<API.Ml_UpdateMemoryContainer_Response>): TransportRequestCallback;
+    updateMemoryContainer (params: API.Ml_UpdateMemoryContainer_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UpdateMemoryContainer_Response>): TransportRequestCallback;
+
+    addAgenticMemory (params: API.Ml_AddAgenticMemory_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_AddAgenticMemory_Response>;
+    addAgenticMemory (params: API.Ml_AddAgenticMemory_Request, callback: callbackFn<API.Ml_AddAgenticMemory_Response>): TransportRequestCallback;
+    addAgenticMemory (params: API.Ml_AddAgenticMemory_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_AddAgenticMemory_Response>): TransportRequestCallback;
+
+    deleteAgenticMemoryQuery (params: API.Ml_DeleteAgenticMemoryQuery_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteAgenticMemoryQuery_Response>;
+    deleteAgenticMemoryQuery (params: API.Ml_DeleteAgenticMemoryQuery_Request, callback: callbackFn<API.Ml_DeleteAgenticMemoryQuery_Response>): TransportRequestCallback;
+    deleteAgenticMemoryQuery (params: API.Ml_DeleteAgenticMemoryQuery_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteAgenticMemoryQuery_Response>): TransportRequestCallback;
+
+    searchAgenticMemory (params: API.Ml_SearchAgenticMemory_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_SearchAgenticMemory_Response>;
+    searchAgenticMemory (params: API.Ml_SearchAgenticMemory_Request, callback: callbackFn<API.Ml_SearchAgenticMemory_Response>): TransportRequestCallback;
+    searchAgenticMemory (params: API.Ml_SearchAgenticMemory_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_SearchAgenticMemory_Response>): TransportRequestCallback;
+
+    deleteAgenticMemory (params: API.Ml_DeleteAgenticMemory_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_DeleteAgenticMemory_Response>;
+    deleteAgenticMemory (params: API.Ml_DeleteAgenticMemory_Request, callback: callbackFn<API.Ml_DeleteAgenticMemory_Response>): TransportRequestCallback;
+    deleteAgenticMemory (params: API.Ml_DeleteAgenticMemory_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_DeleteAgenticMemory_Response>): TransportRequestCallback;
+
+    getAgenticMemory (params: API.Ml_GetAgenticMemory_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetAgenticMemory_Response>;
+    getAgenticMemory (params: API.Ml_GetAgenticMemory_Request, callback: callbackFn<API.Ml_GetAgenticMemory_Response>): TransportRequestCallback;
+    getAgenticMemory (params: API.Ml_GetAgenticMemory_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetAgenticMemory_Response>): TransportRequestCallback;
+
+    updateAgenticMemory (params: API.Ml_UpdateAgenticMemory_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_UpdateAgenticMemory_Response>;
+    updateAgenticMemory (params: API.Ml_UpdateAgenticMemory_Request, callback: callbackFn<API.Ml_UpdateAgenticMemory_Response>): TransportRequestCallback;
+    updateAgenticMemory (params: API.Ml_UpdateAgenticMemory_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_UpdateAgenticMemory_Response>): TransportRequestCallback;
+
+    createMemoryContainerSession (params: API.Ml_CreateMemoryContainerSession_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_CreateMemoryContainerSession_Response>;
+    createMemoryContainerSession (params: API.Ml_CreateMemoryContainerSession_Request, callback: callbackFn<API.Ml_CreateMemoryContainerSession_Response>): TransportRequestCallback;
+    createMemoryContainerSession (params: API.Ml_CreateMemoryContainerSession_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_CreateMemoryContainerSession_Response>): TransportRequestCallback;
 
     searchMemory (params?: API.Ml_SearchMemory_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_SearchMemory_Response>;
     searchMemory (callback: callbackFn<API.Ml_SearchMemory_Response>): TransportRequestCallback;
@@ -979,6 +1119,10 @@ export default class OpenSearchAPI {
     predictModel (params: API.Ml_PredictModel_Request, callback: callbackFn<API.Ml_PredictModel_Response>): TransportRequestCallback;
     predictModel (params: API.Ml_PredictModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_PredictModel_Response>): TransportRequestCallback;
 
+    predictModelStream (params: API.Ml_PredictModelStream_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_PredictModelStream_Response>;
+    predictModelStream (params: API.Ml_PredictModelStream_Request, callback: callbackFn<API.Ml_PredictModelStream_Response>): TransportRequestCallback;
+    predictModelStream (params: API.Ml_PredictModelStream_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_PredictModelStream_Response>): TransportRequestCallback;
+
     chunkModel (params: API.Ml_ChunkModel_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_ChunkModel_Response>;
     chunkModel (params: API.Ml_ChunkModel_Request, callback: callbackFn<API.Ml_ChunkModel_Response>): TransportRequestCallback;
     chunkModel (params: API.Ml_ChunkModel_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_ChunkModel_Response>): TransportRequestCallback;
@@ -1024,6 +1168,10 @@ export default class OpenSearchAPI {
     getAllTools (callback: callbackFn<API.Ml_GetAllTools_Response>): TransportRequestCallback;
     getAllTools (params: API.Ml_GetAllTools_Request, callback: callbackFn<API.Ml_GetAllTools_Response>): TransportRequestCallback;
     getAllTools (params: API.Ml_GetAllTools_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_GetAllTools_Response>): TransportRequestCallback;
+
+    executeTool (params: API.Ml_ExecuteTool_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_ExecuteTool_Response>;
+    executeTool (params: API.Ml_ExecuteTool_Request, callback: callbackFn<API.Ml_ExecuteTool_Response>): TransportRequestCallback;
+    executeTool (params: API.Ml_ExecuteTool_Request, options: TransportRequestOptions, callback: callbackFn<API.Ml_ExecuteTool_Response>): TransportRequestCallback;
 
     getTool (params: API.Ml_GetTool_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ml_GetTool_Response>;
     getTool (params: API.Ml_GetTool_Request, callback: callbackFn<API.Ml_GetTool_Response>): TransportRequestCallback;
@@ -1287,6 +1435,79 @@ export default class OpenSearchAPI {
     put (params: API.SearchPipeline_Put_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchPipeline_Put_Response>;
     put (params: API.SearchPipeline_Put_Request, callback: callbackFn<API.SearchPipeline_Put_Response>): TransportRequestCallback;
     put (params: API.SearchPipeline_Put_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchPipeline_Put_Response>): TransportRequestCallback;
+
+  };
+
+  searchRelevance: {
+    getNodeStats (params: API.SearchRelevance_GetNodeStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_GetNodeStats_Response>;
+    getNodeStats (params: API.SearchRelevance_GetNodeStats_Request, callback: callbackFn<API.SearchRelevance_GetNodeStats_Response>): TransportRequestCallback;
+    getNodeStats (params: API.SearchRelevance_GetNodeStats_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_GetNodeStats_Response>): TransportRequestCallback;
+
+    getExperiments (params?: API.SearchRelevance_GetExperiments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_GetExperiments_Response>;
+    getExperiments (callback: callbackFn<API.SearchRelevance_GetExperiments_Response>): TransportRequestCallback;
+    getExperiments (params: API.SearchRelevance_GetExperiments_Request, callback: callbackFn<API.SearchRelevance_GetExperiments_Response>): TransportRequestCallback;
+    getExperiments (params: API.SearchRelevance_GetExperiments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_GetExperiments_Response>): TransportRequestCallback;
+
+    putExperiments (params?: API.SearchRelevance_PutExperiments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_PutExperiments_Response>;
+    putExperiments (callback: callbackFn<API.SearchRelevance_PutExperiments_Response>): TransportRequestCallback;
+    putExperiments (params: API.SearchRelevance_PutExperiments_Request, callback: callbackFn<API.SearchRelevance_PutExperiments_Response>): TransportRequestCallback;
+    putExperiments (params: API.SearchRelevance_PutExperiments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_PutExperiments_Response>): TransportRequestCallback;
+
+    deleteExperiments (params: API.SearchRelevance_DeleteExperiments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_DeleteExperiments_Response>;
+    deleteExperiments (params: API.SearchRelevance_DeleteExperiments_Request, callback: callbackFn<API.SearchRelevance_DeleteExperiments_Response>): TransportRequestCallback;
+    deleteExperiments (params: API.SearchRelevance_DeleteExperiments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_DeleteExperiments_Response>): TransportRequestCallback;
+
+    getJudgments (params?: API.SearchRelevance_GetJudgments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_GetJudgments_Response>;
+    getJudgments (callback: callbackFn<API.SearchRelevance_GetJudgments_Response>): TransportRequestCallback;
+    getJudgments (params: API.SearchRelevance_GetJudgments_Request, callback: callbackFn<API.SearchRelevance_GetJudgments_Response>): TransportRequestCallback;
+    getJudgments (params: API.SearchRelevance_GetJudgments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_GetJudgments_Response>): TransportRequestCallback;
+
+    putJudgments (params?: API.SearchRelevance_PutJudgments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_PutJudgments_Response>;
+    putJudgments (callback: callbackFn<API.SearchRelevance_PutJudgments_Response>): TransportRequestCallback;
+    putJudgments (params: API.SearchRelevance_PutJudgments_Request, callback: callbackFn<API.SearchRelevance_PutJudgments_Response>): TransportRequestCallback;
+    putJudgments (params: API.SearchRelevance_PutJudgments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_PutJudgments_Response>): TransportRequestCallback;
+
+    deleteJudgments (params: API.SearchRelevance_DeleteJudgments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_DeleteJudgments_Response>;
+    deleteJudgments (params: API.SearchRelevance_DeleteJudgments_Request, callback: callbackFn<API.SearchRelevance_DeleteJudgments_Response>): TransportRequestCallback;
+    deleteJudgments (params: API.SearchRelevance_DeleteJudgments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_DeleteJudgments_Response>): TransportRequestCallback;
+
+    getQuerySets (params?: API.SearchRelevance_GetQuerySets_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_GetQuerySets_Response>;
+    getQuerySets (callback: callbackFn<API.SearchRelevance_GetQuerySets_Response>): TransportRequestCallback;
+    getQuerySets (params: API.SearchRelevance_GetQuerySets_Request, callback: callbackFn<API.SearchRelevance_GetQuerySets_Response>): TransportRequestCallback;
+    getQuerySets (params: API.SearchRelevance_GetQuerySets_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_GetQuerySets_Response>): TransportRequestCallback;
+
+    postQuerySets (params?: API.SearchRelevance_PostQuerySets_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_PostQuerySets_Response>;
+    postQuerySets (callback: callbackFn<API.SearchRelevance_PostQuerySets_Response>): TransportRequestCallback;
+    postQuerySets (params: API.SearchRelevance_PostQuerySets_Request, callback: callbackFn<API.SearchRelevance_PostQuerySets_Response>): TransportRequestCallback;
+    postQuerySets (params: API.SearchRelevance_PostQuerySets_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_PostQuerySets_Response>): TransportRequestCallback;
+
+    putQuerySets (params?: API.SearchRelevance_PutQuerySets_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_PutQuerySets_Response>;
+    putQuerySets (callback: callbackFn<API.SearchRelevance_PutQuerySets_Response>): TransportRequestCallback;
+    putQuerySets (params: API.SearchRelevance_PutQuerySets_Request, callback: callbackFn<API.SearchRelevance_PutQuerySets_Response>): TransportRequestCallback;
+    putQuerySets (params: API.SearchRelevance_PutQuerySets_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_PutQuerySets_Response>): TransportRequestCallback;
+
+    deleteQuerySets (params: API.SearchRelevance_DeleteQuerySets_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_DeleteQuerySets_Response>;
+    deleteQuerySets (params: API.SearchRelevance_DeleteQuerySets_Request, callback: callbackFn<API.SearchRelevance_DeleteQuerySets_Response>): TransportRequestCallback;
+    deleteQuerySets (params: API.SearchRelevance_DeleteQuerySets_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_DeleteQuerySets_Response>): TransportRequestCallback;
+
+    getSearchConfigurations (params?: API.SearchRelevance_GetSearchConfigurations_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_GetSearchConfigurations_Response>;
+    getSearchConfigurations (callback: callbackFn<API.SearchRelevance_GetSearchConfigurations_Response>): TransportRequestCallback;
+    getSearchConfigurations (params: API.SearchRelevance_GetSearchConfigurations_Request, callback: callbackFn<API.SearchRelevance_GetSearchConfigurations_Response>): TransportRequestCallback;
+    getSearchConfigurations (params: API.SearchRelevance_GetSearchConfigurations_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_GetSearchConfigurations_Response>): TransportRequestCallback;
+
+    putSearchConfigurations (params?: API.SearchRelevance_PutSearchConfigurations_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_PutSearchConfigurations_Response>;
+    putSearchConfigurations (callback: callbackFn<API.SearchRelevance_PutSearchConfigurations_Response>): TransportRequestCallback;
+    putSearchConfigurations (params: API.SearchRelevance_PutSearchConfigurations_Request, callback: callbackFn<API.SearchRelevance_PutSearchConfigurations_Response>): TransportRequestCallback;
+    putSearchConfigurations (params: API.SearchRelevance_PutSearchConfigurations_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_PutSearchConfigurations_Response>): TransportRequestCallback;
+
+    deleteSearchConfigurations (params: API.SearchRelevance_DeleteSearchConfigurations_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_DeleteSearchConfigurations_Response>;
+    deleteSearchConfigurations (params: API.SearchRelevance_DeleteSearchConfigurations_Request, callback: callbackFn<API.SearchRelevance_DeleteSearchConfigurations_Response>): TransportRequestCallback;
+    deleteSearchConfigurations (params: API.SearchRelevance_DeleteSearchConfigurations_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_DeleteSearchConfigurations_Response>): TransportRequestCallback;
+
+    getStats (params?: API.SearchRelevance_GetStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_GetStats_Response>;
+    getStats (callback: callbackFn<API.SearchRelevance_GetStats_Response>): TransportRequestCallback;
+    getStats (params: API.SearchRelevance_GetStats_Request, callback: callbackFn<API.SearchRelevance_GetStats_Response>): TransportRequestCallback;
+    getStats (params: API.SearchRelevance_GetStats_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_GetStats_Response>): TransportRequestCallback;
 
   };
 
@@ -1628,6 +1849,23 @@ export default class OpenSearchAPI {
 
   };
 
+  securityAnalytics: {
+    getAlerts (params?: API.SecurityAnalytics_GetAlerts_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SecurityAnalytics_GetAlerts_Response>;
+    getAlerts (callback: callbackFn<API.SecurityAnalytics_GetAlerts_Response>): TransportRequestCallback;
+    getAlerts (params: API.SecurityAnalytics_GetAlerts_Request, callback: callbackFn<API.SecurityAnalytics_GetAlerts_Response>): TransportRequestCallback;
+    getAlerts (params: API.SecurityAnalytics_GetAlerts_Request, options: TransportRequestOptions, callback: callbackFn<API.SecurityAnalytics_GetAlerts_Response>): TransportRequestCallback;
+
+    getFindings (params?: API.SecurityAnalytics_GetFindings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SecurityAnalytics_GetFindings_Response>;
+    getFindings (callback: callbackFn<API.SecurityAnalytics_GetFindings_Response>): TransportRequestCallback;
+    getFindings (params: API.SecurityAnalytics_GetFindings_Request, callback: callbackFn<API.SecurityAnalytics_GetFindings_Response>): TransportRequestCallback;
+    getFindings (params: API.SecurityAnalytics_GetFindings_Request, options: TransportRequestOptions, callback: callbackFn<API.SecurityAnalytics_GetFindings_Response>): TransportRequestCallback;
+
+    searchFindingCorrelations (params: API.SecurityAnalytics_SearchFindingCorrelations_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SecurityAnalytics_SearchFindingCorrelations_Response>;
+    searchFindingCorrelations (params: API.SecurityAnalytics_SearchFindingCorrelations_Request, callback: callbackFn<API.SecurityAnalytics_SearchFindingCorrelations_Response>): TransportRequestCallback;
+    searchFindingCorrelations (params: API.SecurityAnalytics_SearchFindingCorrelations_Request, options: TransportRequestOptions, callback: callbackFn<API.SecurityAnalytics_SearchFindingCorrelations_Response>): TransportRequestCallback;
+
+  };
+
   sm: {
     getPolicies (params?: API.Sm_GetPolicies_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Sm_GetPolicies_Response>;
     getPolicies (callback: callbackFn<API.Sm_GetPolicies_Response>): TransportRequestCallback;
@@ -1797,6 +2035,14 @@ export default class OpenSearchAPI {
     stop (params: API.Transforms_Stop_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Transforms_Stop_Response>;
     stop (params: API.Transforms_Stop_Request, callback: callbackFn<API.Transforms_Stop_Response>): TransportRequestCallback;
     stop (params: API.Transforms_Stop_Request, options: TransportRequestOptions, callback: callbackFn<API.Transforms_Stop_Response>): TransportRequestCallback;
+
+  };
+
+  ubi: {
+    initialize (params?: API.Ubi_Initialize_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ubi_Initialize_Response>;
+    initialize (callback: callbackFn<API.Ubi_Initialize_Response>): TransportRequestCallback;
+    initialize (params: API.Ubi_Initialize_Request, callback: callbackFn<API.Ubi_Initialize_Response>): TransportRequestCallback;
+    initialize (params: API.Ubi_Initialize_Request, options: TransportRequestOptions, callback: callbackFn<API.Ubi_Initialize_Response>): TransportRequestCallback;
 
   };
 

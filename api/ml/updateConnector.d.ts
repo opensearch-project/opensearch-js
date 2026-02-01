@@ -25,7 +25,7 @@ export interface Ml_UpdateConnector_Request extends Global.Params {
 }
 
 export type Ml_UpdateConnector_RequestBody = {
-  access_mode?: 'private' | 'public' | 'restricted';
+  access_mode?: Ml_Common.ModelGroupAccessMode;
   actions?: Ml_Common.Action[];
   backend_roles?: string[];
   credential?: Ml_Common.Credential;
@@ -33,7 +33,7 @@ export type Ml_UpdateConnector_RequestBody = {
   name?: Common.Name;
   parameters?: Ml_Common.Parameters;
   'parameters.skip_validating_missing_parameters'?: boolean;
-  protocol?: 'aws_sigv4' | 'http';
+  protocol?: Ml_Common.ConnectorProtocol;
   version?: Common.VersionNumber;
 }
 

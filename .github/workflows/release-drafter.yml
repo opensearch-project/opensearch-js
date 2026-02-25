@@ -8,6 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # Required for OIDC
+      contents: write
+      issues: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,8 +27,16 @@ jobs:
           issue-title: 'Release opensearch-js : ${{ steps.get_data.outputs.version }}'
           issue-body: "Please approve or deny the release of opensearch-js. **VERSION**: ${{ steps.get_data.outputs.version }} **TAG**: ${{ github.ref_name }}  **COMMIT**: ${{ github.sha }}"
           exclude-workflow-initiator-as-approver: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+#      - run: npm run build --if-present
+#      - run: npm test
+      - run: npm publish
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          draft: true
+          draft: false
           generate_release_notes: true

@@ -124,7 +124,7 @@
     "url": "https://github.com/opensearch-project/opensearch-js/issues"
   },
   "engines": {
-    "node": ">=14",
+    "node": ">=18",
     "yarn": "^1.22.10"
   },
   "tsd": {

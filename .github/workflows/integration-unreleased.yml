@@ -19,9 +19,9 @@ jobs:
       fail-fast: false
       matrix:
         entry:
-          - { node_version: '18.x', opensearch_ref: '1.x', jdk_version: '11' }
-          - { node_version: '18.x', opensearch_ref: '2.x', jdk_version: '17' }
-          - { node_version: '18.x', opensearch_ref: 'main', jdk_version: '21' }
+          - { node_version: '20.x', opensearch_ref: '1.x', jdk_version: '11' }
+          - { node_version: '20.x', opensearch_ref: '2.x', jdk_version: '17' }
+          - { node_version: '20.x', opensearch_ref: 'main', jdk_version: '21' }
     steps:
       - name: Checkout OpenSearch
         uses: actions/checkout@v4
@@ -47,7 +47,7 @@ jobs:
         if: steps.cache-restore.outputs.cache-hit != 'true'
         with:
           distribution: 'temurin'
-          java-version: ${{ matrix.entry.jdk_version || '17' }}
+          java-version: ${{ matrix.entry.jdk_version || '21' }}
 
       - name: Assemble OpenSearch
         if: steps.cache-restore.outputs.cache-hit != 'true'

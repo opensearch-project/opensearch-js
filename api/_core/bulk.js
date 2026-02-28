@@ -31,7 +31,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.pipeline] - ID of the pipeline to use to preprocess incoming documents. If the index has a default ingest pipeline specified, then setting the value to `_none` disables the default ingest pipeline for this request. If a final pipeline is configured it will always run, regardless of the value of this parameter.
  * @param {string} [params.refresh] - If `true`, OpenSearch refreshes the affected shards to make this operation visible to search, if `wait_for` then wait for a refresh to make this operation visible to search, if `false` do nothing with refreshes. Valid values: `true`, `false`, `wait_for`.
  * @param {boolean} [params.require_alias=false] - If `true`, the request's actions must target an index alias.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {string} [params.timeout] - Period each action waits for the following operations: automatic index creation, dynamic mapping updates, waiting for active shards.
  * @param {string} [params.type] - Default document type for items which don't provide one.
  * @param {string} [params.wait_for_active_shards] - The number of shard copies that must be active before proceeding with the operation. Set to all or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).

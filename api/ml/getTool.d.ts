@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
 export interface Ml_GetTool_Request extends Global.Params {
-  tool_name: 'AgentTool' | 'CatIndexTool' | 'ConnectorTool' | 'CreateAnomalyDetectorTool' | 'IndexMappingTool' | 'ListIndexTool' | 'LogPatternTool' | 'MLModelTool' | 'NeuralSparseSearchTool' | 'PPLTool' | 'RAGTool' | 'SearchAlertsTool' | 'SearchAnomalyDetectorsTool' | 'SearchAnomalyResultsTool' | 'SearchIndexTool' | 'SearchMonitorsTool' | 'VectorDBTool' | 'VisualizationTool';
+  tool_name: Ml_Common.ToolName;
 }
 
 export interface Ml_GetTool_Response extends ApiResponse {

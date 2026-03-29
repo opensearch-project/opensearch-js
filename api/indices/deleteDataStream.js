@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Indices
  *
  * @param {object} params
- * @param {string} params.name - Comma-separated list of data streams to delete. Wildcard (`*`) expressions are supported.
+ * @param {string} params.name - A comma-separated list of data streams to delete. Wildcard (`*`) expressions are supported.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

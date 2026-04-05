@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Used to retrieve information about models present in the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/knn/api/#get-model - knn.get_model}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/vector-search/api/knn/#get-a-model - knn.get_model}
  *
  * @memberOf API-Knn
  *

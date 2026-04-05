@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Core
  *
  * @param {object} [params]
- * @param {string} [params.scroll_id] DEPRECATED - Comma-separated list of scroll IDs to clear. To clear all scroll IDs, use `_all`.
- * @param {object} [params.body] - Comma-separated list of scroll IDs to clear if none was specified using the `scroll_id` parameter
+ * @param {string} [params.scroll_id] DEPRECATED - A comma-separated list of scroll IDs to clear. To clear all scroll IDs, use `_all`.
+ * @param {object} [params.body] - A comma-separated list of scroll IDs to clear if none was specified using the `scroll_id` parameter
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -21,6 +21,10 @@ import * as Core_Search from './_core.search'
 export type AdjacencyMatrixAggregate = MultiBucketAggregateBaseAdjacencyMatrixBucket & Record<string, any>
 
 export type AdjacencyMatrixAggregation = BucketAggregationBase & {
+  adjacency_matrix: AdjacencyMatrixAggregationFields;
+}
+
+export type AdjacencyMatrixAggregationFields = {
   filters?: Record<string, Common_QueryDsl.QueryContainer>;
 }
 
@@ -28,7 +32,7 @@ export type AdjacencyMatrixBucket = MultiBucketBase & {
   key: string;
 }
 
-export type Aggregate = AdjacencyMatrixAggregate | AutoDateHistogramAggregate | AvgAggregate | BoxPlotAggregate | BucketMetricValueAggregate | CardinalityAggregate | ChildrenAggregate | CompositeAggregate | DateHistogramAggregate | DateRangeAggregate | DerivativeAggregate | DoubleTermsAggregate | ExtendedStatsAggregate | ExtendedStatsBucketAggregate | FilterAggregate | FiltersAggregate | GeoBoundsAggregate | GeoCentroidAggregate | GeoDistanceAggregate | GeoHashGridAggregate | GeoTileGridAggregate | GlobalAggregate | HdrPercentilesAggregate | HdrPercentileRanksAggregate | HistogramAggregate | IpRangeAggregate | LongRareTermsAggregate | LongTermsAggregate | MatrixStatsAggregate | MaxAggregate | MedianAbsoluteDeviationAggregate | MinAggregate | MissingAggregate | MultiTermsAggregate | NestedAggregate | ParentAggregate | PercentilesBucketAggregate | RangeAggregate | RateAggregate | ReverseNestedAggregate | SamplerAggregate | ScriptedMetricAggregate | SignificantLongTermsAggregate | SignificantStringTermsAggregate | CumulativeCardinalityAggregate | SimpleValueAggregate | StatsAggregate | StatsBucketAggregate | StringRareTermsAggregate | StringTermsAggregate | SumAggregate | TDigestPercentilesAggregate | TDigestPercentileRanksAggregate | TTestAggregate | TopHitsAggregate | UnmappedRareTermsAggregate | UnmappedSignificantTermsAggregate | UnmappedTermsAggregate | ValueCountAggregate | VariableWidthHistogramAggregate | WeightedAvgAggregate
+export type Aggregate = AggregateBase & Record<string, any>
 
 export type AggregateBase = {
   meta?: Common.Metadata;
@@ -38,18 +42,9 @@ export type AggregateOrder = Record<string, Common.SortOrder> | Record<string, C
 
 export type Aggregation = {
   meta?: Common.Metadata;
-  name?: string;
 }
 
-export type AggregationContainer = {
-  aggregations?: Record<string, AggregationContainer>;
-  aggs?: Record<string, AggregationContainer>;
-  meta?: Common.Metadata;
-} & ({
-  adjacency_matrix: AdjacencyMatrixAggregation;
-} | {
-  auto_date_histogram: AutoDateHistogramAggregation;
-} | {
+export type AggregationContainer = Aggregation & (AdjacencyMatrixAggregation | AutoDateHistogramAggregation | {
   avg: AverageAggregation;
 } | {
   avg_bucket: AverageBucketAggregation;
@@ -63,47 +58,21 @@ export type AggregationContainer = {
   bucket_sort: BucketSortAggregation;
 } | {
   cardinality: CardinalityAggregation;
-} | {
-  children: ChildrenAggregation;
-} | {
-  composite: CompositeAggregation;
-} | {
+} | ChildrenAggregation | CompositeAggregation | {
   cumulative_cardinality: CumulativeCardinalityAggregation;
 } | {
   cumulative_sum: CumulativeSumAggregation;
-} | {
-  date_histogram: DateHistogramAggregation;
-} | {
-  date_range: DateRangeAggregation;
-} | {
+} | DateHistogramAggregation | DateRangeAggregation | {
   derivative: DerivativeAggregation;
-} | {
-  diversified_sampler: DiversifiedSamplerAggregation;
-} | {
+} | DiversifiedSamplerAggregation | {
   extended_stats: ExtendedStatsAggregation;
 } | {
   extended_stats_bucket: ExtendedStatsBucketAggregation;
-} | {
-  filter: Common_QueryDsl.QueryContainer;
-} | {
-  filters: FiltersAggregation;
-} | {
+} | FilterAggregation | FiltersAggregation | {
   geo_bounds: GeoBoundsAggregation;
 } | {
   geo_centroid: GeoCentroidAggregation;
-} | {
-  geo_distance: GeoDistanceAggregation;
-} | {
-  geohash_grid: GeoHashGridAggregation;
-} | {
-  geotile_grid: GeoTileGridAggregation;
-} | {
-  global: GlobalAggregation;
-} | {
-  histogram: HistogramAggregation;
-} | {
-  ip_range: IpRangeAggregation;
-} | {
+} | GeoDistanceAggregation | GeoHashGridAggregation | GeoTileGridAggregation | GlobalAggregation | HistogramAggregation | IpRangeAggregation | {
   matrix_stats: MatrixStatsAggregation;
 } | {
   max: MaxAggregation;
@@ -115,47 +84,27 @@ export type AggregationContainer = {
   min: MinAggregation;
 } | {
   min_bucket: MinBucketAggregation;
-} | {
-  missing: MissingAggregation;
-} | {
+} | MissingAggregation | {
   moving_avg: MovingAverageAggregation;
 } | {
   moving_percentiles: MovingPercentilesAggregation;
 } | {
   moving_fn: MovingFunctionAggregation;
-} | {
-  multi_terms: MultiTermsAggregation;
-} | {
-  nested: NestedAggregation;
-} | {
+} | MultiTermsAggregation | NestedAggregation | {
   normalize: NormalizeAggregation;
-} | {
-  parent: ParentAggregation;
-} | {
+} | ParentAggregation | {
   percentile_ranks: PercentileRanksAggregation;
 } | {
   percentiles: PercentilesAggregation;
 } | {
   percentiles_bucket: PercentilesBucketAggregation;
-} | {
-  range: RangeAggregation;
-} | {
-  rare_terms: RareTermsAggregation;
-} | {
+} | RangeAggregation | RareTermsAggregation | {
   rate: RateAggregation;
-} | {
-  reverse_nested: ReverseNestedAggregation;
-} | {
-  sampler: SamplerAggregation;
-} | {
+} | ReverseNestedAggregation | SamplerAggregation | {
   scripted_metric: ScriptedMetricAggregation;
 } | {
   serial_diff: SerialDifferencingAggregation;
-} | {
-  significant_terms: SignificantTermsAggregation;
-} | {
-  significant_text: SignificantTextAggregation;
-} | {
+} | SignificantTermsAggregation | SignificantTextAggregation | {
   stats: StatsAggregation;
 } | {
   stats_bucket: StatsBucketAggregation;
@@ -163,9 +112,7 @@ export type AggregationContainer = {
   sum: SumAggregation;
 } | {
   sum_bucket: SumBucketAggregation;
-} | {
-  terms: TermsAggregation;
-} | {
+} | TermsAggregation | {
   top_hits: TopHitsAggregation;
 } | {
   t_test: TTestAggregation;
@@ -194,6 +141,10 @@ export type AutoDateHistogramAggregate = MultiBucketAggregateBaseDateHistogramBu
 }
 
 export type AutoDateHistogramAggregation = BucketAggregationBase & {
+  auto_date_histogram: AutoDateHistogramAggregationFields;
+}
+
+export type AutoDateHistogramAggregationFields = {
   buckets?: number;
   field?: Common.Field;
   format?: string;
@@ -211,7 +162,7 @@ export type AverageBucketAggregation = PipelineAggregationBase & Record<string, 
 
 export type AvgAggregate = SingleMetricAggregateBase & Record<string, any>
 
-export type BoxPlotAggregate = AggregateBase & {
+export type BoxPlotAggregate = {
   lower: number;
   lower_as_string?: string;
   max: number;
@@ -232,13 +183,16 @@ export type BoxplotAggregation = MetricAggregationBase & {
   compression?: number;
 }
 
-export type BucketAggregationBase = Aggregation & Record<string, any>
+export type BucketAggregationBase = {
+  aggregations?: Record<string, AggregationContainer>;
+  aggs?: Record<string, AggregationContainer>;
+}
 
 export type BucketMetricValueAggregate = SingleMetricAggregateBase & {
   keys: string[];
 }
 
-export type BucketPathAggregation = Aggregation & {
+export type BucketPathAggregation = {
   buckets_path?: BucketsPath;
 }
 
@@ -252,7 +206,7 @@ export type BucketSelectorAggregation = PipelineAggregationBase & {
   script?: Common.Script;
 }
 
-export type BucketSortAggregation = Aggregation & {
+export type BucketSortAggregation = {
   from?: number;
   gap_policy?: GapPolicy;
   size?: number;
@@ -265,21 +219,24 @@ export type BucketsQueryContainer = Buckets & (Record<string, Common_QueryDsl.Qu
 
 export type CalendarInterval = 'second' | '1s' | 'minute' | '1m' | 'hour' | '1h' | 'day' | '1d' | 'week' | '1w' | 'month' | '1M' | 'quarter' | '1q' | 'year' | '1Y'
 
-export type CardinalityAggregate = AggregateBase & {
+export type CardinalityAggregate = {
   value: number;
 }
 
 export type CardinalityAggregation = MetricAggregationBase & {
   execution_hint?: CardinalityExecutionMode;
   precision_threshold?: number;
-  rehash?: boolean;
 }
 
-export type CardinalityExecutionMode = 'direct' | 'global_ordinals' | 'save_memory_heuristic' | 'save_time_heuristic' | 'segment_ordinals'
+export type CardinalityExecutionMode = 'direct' | 'global_ordinals' | 'segment_ordinals'
 
 export type ChildrenAggregate = SingleBucketAggregateBase & Record<string, any>
 
 export type ChildrenAggregation = BucketAggregationBase & {
+  children: ChildrenAggregationFields;
+}
+
+export type ChildrenAggregationFields = {
   type?: Common.RelationName;
 }
 
@@ -295,6 +252,10 @@ export type CompositeAggregate = MultiBucketAggregateBaseCompositeBucket & {
 export type CompositeAggregateKey = Record<string, Common.FieldValue>
 
 export type CompositeAggregation = BucketAggregationBase & {
+  composite: CompositeAggregationFields;
+}
+
+export type CompositeAggregationFields = {
   after?: CompositeAggregateKey;
   size?: number;
   sources?: Record<string, CompositeAggregationSource>[];
@@ -339,7 +300,7 @@ export type CompositeValuesSource = {
   value_type?: ValueType;
 }
 
-export type CumulativeCardinalityAggregate = AggregateBase & {
+export type CumulativeCardinalityAggregate = {
   value: number;
   value_as_string?: string;
 }
@@ -351,6 +312,10 @@ export type CumulativeSumAggregation = PipelineAggregationBase & Record<string, 
 export type DateHistogramAggregate = MultiBucketAggregateBaseDateHistogramBucket & Record<string, any>
 
 export type DateHistogramAggregation = BucketAggregationBase & {
+  date_histogram: DateHistogramAggregationFields;
+}
+
+export type DateHistogramAggregationFields = {
   calendar_interval?: CalendarInterval;
   extended_bounds?: ExtendedBoundsFieldDateMath;
   field?: Common.Field;
@@ -376,6 +341,10 @@ export type DateHistogramBucket = MultiBucketBase & {
 export type DateRangeAggregate = RangeAggregateBase & Record<string, any>
 
 export type DateRangeAggregation = BucketAggregationBase & {
+  date_range: DateRangeAggregationFields;
+}
+
+export type DateRangeAggregationFields = {
   field?: Common.Field;
   format?: string;
   keyed?: boolean;
@@ -398,6 +367,10 @@ export type DerivativeAggregate = SingleMetricAggregateBase & {
 export type DerivativeAggregation = PipelineAggregationBase & Record<string, any>
 
 export type DiversifiedSamplerAggregation = BucketAggregationBase & {
+  diversified_sampler: DiversifiedSamplerAggregationFields;
+}
+
+export type DiversifiedSamplerAggregationFields = {
   execution_hint?: SamplerAggregationExecutionHint;
   field?: Common.Field;
   max_docs_per_value?: number;
@@ -469,9 +442,19 @@ export type FieldDateMath = Common.DateMath | number
 
 export type FilterAggregate = SingleBucketAggregateBase & Record<string, any>
 
+export type FilterAggregation = BucketAggregationBase & {
+  filter: FilterAggregationFields;
+}
+
+export type FilterAggregationFields = Common_QueryDsl.QueryContainer
+
 export type FiltersAggregate = MultiBucketAggregateBaseFiltersBucket & Record<string, any>
 
 export type FiltersAggregation = BucketAggregationBase & {
+  filters: FiltersAggregationFields;
+}
+
+export type FiltersAggregationFields = {
   filters?: BucketsQueryContainer;
   keyed?: boolean;
   other_bucket?: boolean;
@@ -490,7 +473,7 @@ export type FormattableMetricAggregation = MetricAggregationBase & {
 
 export type GapPolicy = 'insert_zeros' | 'keep_values' | 'skip'
 
-export type GeoBoundsAggregate = AggregateBase & {
+export type GeoBoundsAggregate = {
   bounds?: Common.GeoBounds;
 }
 
@@ -498,7 +481,7 @@ export type GeoBoundsAggregation = MetricAggregationBase & {
   wrap_longitude?: boolean;
 }
 
-export type GeoCentroidAggregate = AggregateBase & {
+export type GeoCentroidAggregate = {
   count: number;
   location?: Common.GeoLocation;
 }
@@ -511,6 +494,10 @@ export type GeoCentroidAggregation = MetricAggregationBase & {
 export type GeoDistanceAggregate = RangeAggregateBase & Record<string, any>
 
 export type GeoDistanceAggregation = BucketAggregationBase & {
+  geo_distance: GeoDistanceAggregationFields;
+}
+
+export type GeoDistanceAggregationFields = {
   distance_type?: Common.GeoDistanceType;
   field?: Common.Field;
   origin?: Common.GeoLocation;
@@ -521,6 +508,10 @@ export type GeoDistanceAggregation = BucketAggregationBase & {
 export type GeoHashGridAggregate = MultiBucketAggregateBaseGeoHashGridBucket & Record<string, any>
 
 export type GeoHashGridAggregation = BucketAggregationBase & {
+  geohash_grid: GeoHashGridAggregationFields;
+}
+
+export type GeoHashGridAggregationFields = {
   bounds?: Common.GeoBounds;
   field?: Common.Field;
   precision?: Common.GeoHashPrecision;
@@ -535,6 +526,10 @@ export type GeoHashGridBucket = MultiBucketBase & {
 export type GeoTileGridAggregate = MultiBucketAggregateBaseGeoTileGridBucket & Record<string, any>
 
 export type GeoTileGridAggregation = BucketAggregationBase & {
+  geotile_grid: GeoTileGridAggregationFields;
+}
+
+export type GeoTileGridAggregationFields = {
   bounds?: Common.GeoBounds;
   field?: Common.Field;
   precision?: Common.GeoTilePrecision;
@@ -548,7 +543,11 @@ export type GeoTileGridBucket = MultiBucketBase & {
 
 export type GlobalAggregate = SingleBucketAggregateBase & Record<string, any>
 
-export type GlobalAggregation = BucketAggregationBase & Record<string, any>
+export type GlobalAggregation = BucketAggregationBase & {
+  global: GlobalAggregationFields;
+}
+
+export type GlobalAggregationFields = Record<string, any>
 
 export type GoogleNormalizedDistanceHeuristic = {
   background_is_superset?: boolean;
@@ -565,6 +564,10 @@ export type HdrPercentilesAggregate = PercentilesAggregateBase & Record<string, 
 export type HistogramAggregate = MultiBucketAggregateBaseHistogramBucket & Record<string, any>
 
 export type HistogramAggregation = BucketAggregationBase & {
+  histogram: HistogramAggregationFields;
+}
+
+export type HistogramAggregationFields = {
   extended_bounds?: ExtendedBoundsDouble;
   field?: Common.Field;
   format?: string;
@@ -617,6 +620,10 @@ export type HoltWintersType = 'add' | 'mult'
 export type IpRangeAggregate = MultiBucketAggregateBaseIpRangeBucket & Record<string, any>
 
 export type IpRangeAggregation = BucketAggregationBase & {
+  ip_range: IpRangeAggregationFields;
+}
+
+export type IpRangeAggregationFields = {
   field?: Common.Field;
   ranges?: IpRangeAggregationRange[];
 }
@@ -656,12 +663,12 @@ export type LongTermsBucket = TermsBucketBase & {
 
 export type LongTermsBucketKey = number | string
 
-export type MatrixAggregation = Aggregation & {
+export type MatrixAggregation = {
   fields?: Common.Fields;
   missing?: Record<string, number>;
 }
 
-export type MatrixStatsAggregate = AggregateBase & {
+export type MatrixStatsAggregate = {
   doc_count: number;
   fields?: MatrixStatsFields[];
 }
@@ -683,7 +690,9 @@ export type MatrixStatsFields = {
 
 export type MaxAggregate = SingleMetricAggregateBase & Record<string, any>
 
-export type MaxAggregation = FormatMetricAggregationBase & Record<string, any>
+export type MaxAggregation = FormatMetricAggregationBase & {
+  value_type?: ValueType;
+}
 
 export type MaxBucketAggregation = PipelineAggregationBase & Record<string, any>
 
@@ -694,14 +703,14 @@ export type MedianAbsoluteDeviationAggregation = FormatMetricAggregationBase & {
 }
 
 export type MetricAggregationBase = {
-  field?: Common.Field;
   missing?: Common.FieldValue;
-  script?: Common.Script;
 }
 
 export type MinAggregate = SingleMetricAggregateBase & Record<string, any>
 
-export type MinAggregation = FormatMetricAggregationBase & Record<string, any>
+export type MinAggregation = FormatMetricAggregationBase & {
+  value_type?: ValueType;
+}
 
 export type MinBucketAggregation = PipelineAggregationBase & Record<string, any>
 
@@ -710,6 +719,10 @@ export type MinimumInterval = 'day' | 'hour' | 'minute' | 'month' | 'second' | '
 export type MissingAggregate = SingleBucketAggregateBase & Record<string, any>
 
 export type MissingAggregation = BucketAggregationBase & {
+  missing: MissingAggregationFields;
+}
+
+export type MissingAggregationFields = {
   field?: Common.Field;
   missing?: Common.FieldValue;
 }
@@ -736,7 +749,7 @@ export type MovingPercentilesAggregation = PipelineAggregationBase & {
   window?: number;
 }
 
-export type MultiBucketAggregateBase = AggregateBase & {
+export type MultiBucketAggregateBase = {
   buckets: Buckets & (Record<string, TBucket> | TBucket[]);
 }
 
@@ -794,6 +807,7 @@ export type MultiBucketAggregateBaseVoid = MultiBucketAggregateBase & {
 
 export type MultiBucketBase = {
   doc_count: number;
+  [key: string]: any | Aggregate;
 }
 
 export type MultiTermLookup = {
@@ -804,6 +818,10 @@ export type MultiTermLookup = {
 export type MultiTermsAggregate = TermsAggregateBaseMultiTermsBucket & Record<string, any>
 
 export type MultiTermsAggregation = BucketAggregationBase & {
+  multi_terms: MultiTermsAggregationFields;
+}
+
+export type MultiTermsAggregationFields = {
   collect_mode?: TermsAggregationCollectMode;
   min_doc_count?: number;
   order?: HistogramOrder;
@@ -828,6 +846,10 @@ export type MutualInformationHeuristic = {
 export type NestedAggregate = SingleBucketAggregateBase & Record<string, any>
 
 export type NestedAggregation = BucketAggregationBase & {
+  nested: NestedAggregationFields;
+}
+
+export type NestedAggregationFields = {
   path?: Common.Field;
 }
 
@@ -840,6 +862,10 @@ export type NormalizeMethod = 'mean' | 'percent_of_sum' | 'rescale_0_1' | 'resca
 export type ParentAggregate = SingleBucketAggregateBase & Record<string, any>
 
 export type ParentAggregation = BucketAggregationBase & {
+  parent: ParentAggregationFields;
+}
+
+export type ParentAggregationFields = {
   type?: Common.RelationName;
 }
 
@@ -854,7 +880,7 @@ export type PercentileRanksAggregation = FormatMetricAggregationBase & {
 
 export type Percentiles = KeyedPercentiles | ArrayPercentilesItem[]
 
-export type PercentilesAggregateBase = AggregateBase & {
+export type PercentilesAggregateBase = {
   values: Percentiles;
 }
 
@@ -881,6 +907,10 @@ export type RangeAggregate = RangeAggregateBase & Record<string, any>
 export type RangeAggregateBase = MultiBucketAggregateBaseRangeBucket & Record<string, any>
 
 export type RangeAggregation = BucketAggregationBase & {
+  range: RangeAggregationFields;
+}
+
+export type RangeAggregationFields = {
   field?: Common.Field;
   format?: string;
   keyed?: boolean;
@@ -898,6 +928,10 @@ export type RangeBucket = MultiBucketBase & {
 }
 
 export type RareTermsAggregation = BucketAggregationBase & {
+  rare_terms: RareTermsAggregationFields;
+}
+
+export type RareTermsAggregationFields = {
   exclude?: TermsExclude;
   field?: Common.Field;
   include?: TermsInclude;
@@ -907,7 +941,7 @@ export type RareTermsAggregation = BucketAggregationBase & {
   value_type?: string;
 }
 
-export type RateAggregate = AggregateBase & {
+export type RateAggregate = {
   value: number;
   value_as_string?: string;
 }
@@ -922,22 +956,30 @@ export type RateMode = 'sum' | 'value_count'
 export type ReverseNestedAggregate = SingleBucketAggregateBase & Record<string, any>
 
 export type ReverseNestedAggregation = BucketAggregationBase & {
+  reverse_nested: ReverseNestedAggregationFields;
+}
+
+export type ReverseNestedAggregationFields = {
   path?: Common.Field;
 }
 
 export type SamplerAggregate = SingleBucketAggregateBase & Record<string, any>
 
 export type SamplerAggregation = BucketAggregationBase & {
-  shard_size?: number;
+  sampler: SamplerAggregationFields;
 }
 
 export type SamplerAggregationExecutionHint = 'bytes_hash' | 'global_ordinals' | 'map'
+
+export type SamplerAggregationFields = {
+  shard_size?: number;
+}
 
 export type ScriptedHeuristic = {
   script: Common.Script;
 }
 
-export type ScriptedMetricAggregate = AggregateBase & {
+export type ScriptedMetricAggregate = {
   value: any;
 }
 
@@ -984,6 +1026,10 @@ export type SignificantTermsAggregateBaseVoid = SignificantTermsAggregateBase & 
 }
 
 export type SignificantTermsAggregation = BucketAggregationBase & {
+  significant_terms: SignificantTermsAggregationFields;
+}
+
+export type SignificantTermsAggregationFields = {
   background_filter?: Common_QueryDsl.QueryContainer;
   chi_square?: ChiSquareHeuristic;
   exclude?: TermsExclude;
@@ -1007,6 +1053,10 @@ export type SignificantTermsBucketBase = MultiBucketBase & {
 }
 
 export type SignificantTextAggregation = BucketAggregationBase & {
+  significant_text: SignificantTextAggregationFields;
+}
+
+export type SignificantTextAggregationFields = {
   background_filter?: Common_QueryDsl.QueryContainer;
   chi_square?: ChiSquareHeuristic;
   exclude?: TermsExclude;
@@ -1033,12 +1083,12 @@ export type SimpleMovingAverageAggregation = MovingAverageAggregationBase & {
 
 export type SimpleValueAggregate = SingleMetricAggregateBase & Record<string, any>
 
-export type SingleBucketAggregateBase = AggregateBase & {
+export type SingleBucketAggregateBase = {
   doc_count: number;
   [key: string]: any | Aggregate;
 }
 
-export type SingleMetricAggregateBase = AggregateBase & {
+export type SingleMetricAggregateBase = {
   value: number | undefined;
   value_as_string?: string;
 }
@@ -1063,7 +1113,7 @@ export type StandardDeviationBoundsAsString = {
 
 export type StatsAggregate = StatsAggregateBase & Record<string, any>
 
-export type StatsAggregateBase = AggregateBase & {
+export type StatsAggregateBase = {
   avg: number | undefined;
   avg_as_string?: string;
   count: number;
@@ -1117,11 +1167,11 @@ export type TermsAggregateBase = MultiBucketAggregateBase & {
 }
 
 export type TermsAggregateBaseDoubleTermsBucket = TermsAggregateBase & {
-  buckets?: Buckets & (Record<string, DoubleTermsBucket> | DoubleTermsBucket[]);
+  buckets: DoubleTermsBucket[];
 }
 
 export type TermsAggregateBaseLongTermsBucket = TermsAggregateBase & {
-  buckets?: Buckets & (Record<string, LongTermsBucket> | LongTermsBucket[]);
+  buckets: LongTermsBucket[];
 }
 
 export type TermsAggregateBaseMultiTermsBucket = TermsAggregateBase & {
@@ -1129,38 +1179,43 @@ export type TermsAggregateBaseMultiTermsBucket = TermsAggregateBase & {
 }
 
 export type TermsAggregateBaseStringTermsBucket = TermsAggregateBase & {
-  buckets?: Buckets & (Record<string, StringTermsBucket> | StringTermsBucket[]);
+  buckets: StringTermsBucket[];
+}
+
+export type TermsAggregateBaseUnsignedLongTermsBucket = TermsAggregateBase & {
+  buckets: UnsignedLongTermsBucket[];
 }
 
 export type TermsAggregateBaseVoid = TermsAggregateBase & {
-  buckets?: Buckets & (Record<string, Common.Void> | Common.Void[]);
+  buckets: Common.Void[];
 }
 
 export type TermsAggregation = BucketAggregationBase & {
-  collect_mode?: TermsAggregationCollectMode;
-  exclude?: TermsExclude;
-  execution_hint?: TermsAggregationExecutionHint;
-  field?: Common.Field;
-  format?: string;
-  include?: TermsInclude;
-  min_doc_count?: number;
-  missing?: Common.FieldValue;
-  missing_bucket?: boolean;
-  missing_order?: MissingOrder;
-  order?: AggregateOrder;
-  script?: Common.Script;
-  shard_size?: number;
-  show_term_doc_count_error?: boolean;
-  size?: number;
-  value_type?: string;
+  terms: TermsAggregationFields;
 }
 
 export type TermsAggregationCollectMode = 'breadth_first' | 'depth_first'
 
 export type TermsAggregationExecutionHint = 'global_ordinals' | 'global_ordinals_hash' | 'global_ordinals_low_cardinality' | 'map'
 
+export type TermsAggregationFields = {
+  collect_mode?: TermsAggregationCollectMode;
+  exclude?: TermsExclude;
+  execution_hint?: TermsAggregationExecutionHint;
+  format?: string;
+  include?: TermsInclude;
+  min_doc_count?: number;
+  missing?: Common.FieldValue;
+  order?: AggregateOrder;
+  shard_min_doc_count?: number;
+  shard_size?: number;
+  show_term_doc_count_error?: boolean;
+  size?: number;
+  value_type?: ValueType;
+}
+
 export type TermsBucketBase = MultiBucketBase & {
-  doc_count_error?: number;
+  doc_count_error_upper_bound?: number;
 }
 
 export type TermsExclude = string | string[]
@@ -1178,8 +1233,8 @@ export type TestPopulation = {
   script?: Common.Script;
 }
 
-export type TopHitsAggregate = AggregateBase & {
-  hits: Core_Search.HitsMetadata;
+export type TopHitsAggregate = {
+  hits: Core_Search.HitsMetadataJsonValue;
 }
 
 export type TopHitsAggregation = MetricAggregationBase & {
@@ -1197,12 +1252,12 @@ export type TopHitsAggregation = MetricAggregationBase & {
   version?: boolean;
 }
 
-export type TTestAggregate = AggregateBase & {
+export type TTestAggregate = {
   value: number | undefined;
   value_as_string?: string;
 }
 
-export type TTestAggregation = Aggregation & {
+export type TTestAggregation = {
   a?: TestPopulation;
   b?: TestPopulation;
   type?: TTestType;
@@ -1216,11 +1271,18 @@ export type UnmappedSignificantTermsAggregate = SignificantTermsAggregateBaseVoi
 
 export type UnmappedTermsAggregate = TermsAggregateBaseVoid & Record<string, any>
 
+export type UnsignedLongTermsAggregate = TermsAggregateBaseUnsignedLongTermsBucket & Record<string, any>
+
+export type UnsignedLongTermsBucket = TermsBucketBase & {
+  key: number;
+  key_as_string?: string;
+}
+
 export type ValueCountAggregate = SingleMetricAggregateBase & Record<string, any>
 
 export type ValueCountAggregation = FormattableMetricAggregation & Record<string, any>
 
-export type ValueType = 'boolean' | 'date' | 'date_nanos' | 'double' | 'geo_point' | 'ip' | 'long' | 'number' | 'numeric' | 'string'
+export type ValueType = 'boolean' | 'byte' | 'date' | 'double' | 'float' | 'integer' | 'ip' | 'long' | 'number' | 'numeric' | 'short' | 'string' | 'unsigned_long'
 
 export type VariableWidthHistogramAggregate = MultiBucketAggregateBaseVariableWidthHistogramBucket & Record<string, any>
 
@@ -1240,7 +1302,7 @@ export type VariableWidthHistogramBucket = MultiBucketBase & {
   min_as_string?: string;
 }
 
-export type WeightedAverageAggregation = Aggregation & {
+export type WeightedAverageAggregation = {
   format?: string;
   value?: WeightedAverageValue;
   value_type?: ValueType;

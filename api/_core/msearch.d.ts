@@ -20,6 +20,7 @@ import * as Core_Msearch from '../_types/_core.msearch'
 import * as Global from '../_types/_global'
 
 export interface Msearch_Request extends Global.Params {
+  allow_partial_results?: boolean;
   body: Msearch_RequestBody;
   ccs_minimize_roundtrips?: boolean;
   index?: Common.Indices;

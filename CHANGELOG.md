@@ -10,6 +10,9 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+
+- Fix `x-amz-content-sha256` not included in SigV4 SignedHeaders ([#1098](https://github.com/opensearch-project/opensearch-js/issues/1098))
+
 ### Security
 
 ## [3.5.1]

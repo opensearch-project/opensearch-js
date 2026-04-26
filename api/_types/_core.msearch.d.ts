@@ -66,7 +66,7 @@ export type MultisearchHeader = {
   search_type?: Common.SearchType;
 }
 
-export type MultiSearchItem = Core_Search.ResponseBody & {
+export type MultiSearchItem = Core_Search.SearchResult & {
   status?: number;
 }
 

@@ -33,7 +33,9 @@ jobs:
       - name: Get OpenSearch branch top
         id: get-key
         working-directory: opensearch
-        run: echo key=`git log -1 --format='%H'` >> $GITHUB_OUTPUT
+        run: |
+          keytemp=`git log -1 --format='%H'`-${{ matrix.entry.opensearch_ref }}
+          echo "key=$keytemp" >> $GITHUB_OUTPUT
 
       - name: Restore cached build
         id: cache-restore

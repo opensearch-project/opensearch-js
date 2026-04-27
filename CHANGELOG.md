@@ -15,6 +15,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [3.6.0]
 ### Fixed
 - Fix `x-amz-content-sha256` not included in SigV4 SignedHeaders ([#1098](https://github.com/opensearch-project/opensearch-js/issues/1098), ([#1099](https://github.com/opensearch-project/opensearch-js/pull/1099)))
+- chore: Replace pinned @sinonjs/fake-timers commit with ^15.3.2 ([#1100](https://github.com/opensearch-project/opensearch-js/pull/1100))
 
 ## [3.5.1]
 ### Fixed

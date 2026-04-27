@@ -31,7 +31,7 @@ export interface List_Shards_Request extends Global.Params {
   next_token?: undefined | string;
   s?: string[];
   size?: number;
-  sort?: 'asc' | 'desc';
+  sort?: Common.SortOrder;
   time?: Common.TimeUnit;
   v?: boolean;
 }

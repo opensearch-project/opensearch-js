@@ -49,7 +49,7 @@ jobs:
         if: steps.cache-restore.outputs.cache-hit != 'true'
         with:
           distribution: 'temurin'
-          java-version: ${{ matrix.entry.jdk_version || '17' }}
+          java-version: ${{ matrix.entry.jdk_version || '21' }}
 
       - name: Assemble OpenSearch
         if: steps.cache-restore.outputs.cache-hit != 'true'

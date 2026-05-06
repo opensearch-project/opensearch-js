@@ -20,9 +20,12 @@ import * as Neural_Common from '../_types/neural._common'
 
 export interface Neural_Stats_Request extends Global.Params {
   flat_stat_paths?: boolean;
+  include_all_nodes?: boolean;
+  include_individual_nodes?: boolean;
+  include_info?: boolean;
   include_metadata?: boolean;
   node_id?: string;
-  stat?: 'cluster_version' | 'text_embedding_executions' | 'text_embedding_processors_in_pipelines';
+  stat?: Neural_Common.NeuralStatName | Neural_Common.NeuralStatName[];
 }
 
 export interface Neural_Stats_Response extends ApiResponse {

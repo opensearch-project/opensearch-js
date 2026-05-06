@@ -19,29 +19,39 @@
 /** @namespace API-Ml */
 
 function MlApi(bindObj) {
+  this.addAgenticMemory = require('./addAgenticMemory').bind(bindObj);
   this.chunkModel = require('./chunkModel').bind(bindObj);
   this.createConnector = require('./createConnector').bind(bindObj);
   this.createController = require('./createController').bind(bindObj);
   this.createMemory = require('./createMemory').bind(bindObj);
+  this.createMemoryContainer = require('./createMemoryContainer').bind(bindObj);
+  this.createMemoryContainerSession = require('./createMemoryContainerSession').bind(bindObj);
   this.createMessage = require('./createMessage').bind(bindObj);
   this.createModelMeta = require('./createModelMeta').bind(bindObj);
   this.deleteAgent = require('./deleteAgent').bind(bindObj);
+  this.deleteAgenticMemory = require('./deleteAgenticMemory').bind(bindObj);
+  this.deleteAgenticMemoryQuery = require('./deleteAgenticMemoryQuery').bind(bindObj);
   this.deleteConnector = require('./deleteConnector').bind(bindObj);
   this.deleteController = require('./deleteController').bind(bindObj);
   this.deleteMemory = require('./deleteMemory').bind(bindObj);
+  this.deleteMemoryContainer = require('./deleteMemoryContainer').bind(bindObj);
   this.deleteModel = require('./deleteModel').bind(bindObj);
   this.deleteModelGroup = require('./deleteModelGroup').bind(bindObj);
   this.deleteTask = require('./deleteTask').bind(bindObj);
   this.deployModel = require('./deployModel').bind(bindObj);
   this.executeAgent = require('./executeAgent').bind(bindObj);
+  this.executeAgentStream = require('./executeAgentStream').bind(bindObj);
   this.executeAlgorithm = require('./executeAlgorithm').bind(bindObj);
+  this.executeTool = require('./executeTool').bind(bindObj);
   this.getAgent = require('./getAgent').bind(bindObj);
+  this.getAgenticMemory = require('./getAgenticMemory').bind(bindObj);
   this.getAllMemories = require('./getAllMemories').bind(bindObj);
   this.getAllMessages = require('./getAllMessages').bind(bindObj);
   this.getAllTools = require('./getAllTools').bind(bindObj);
   this.getConnector = require('./getConnector').bind(bindObj);
   this.getController = require('./getController').bind(bindObj);
   this.getMemory = require('./getMemory').bind(bindObj);
+  this.getMemoryContainer = require('./getMemoryContainer').bind(bindObj);
   this.getMessage = require('./getMessage').bind(bindObj);
   this.getMessageTraces = require('./getMessageTraces').bind(bindObj);
   this.getModel = require('./getModel').bind(bindObj);
@@ -55,13 +65,16 @@ function MlApi(bindObj) {
   this.loadModel = require('./loadModel').bind(bindObj);
   this.predict = require('./predict').bind(bindObj);
   this.predictModel = require('./predictModel').bind(bindObj);
+  this.predictModelStream = require('./predictModelStream').bind(bindObj);
   this.registerAgents = require('./registerAgents').bind(bindObj);
   this.registerModel = require('./registerModel').bind(bindObj);
   this.registerModelGroup = require('./registerModelGroup').bind(bindObj);
   this.registerModelMeta = require('./registerModelMeta').bind(bindObj);
+  this.searchAgenticMemory = require('./searchAgenticMemory').bind(bindObj);
   this.searchAgents = require('./searchAgents').bind(bindObj);
   this.searchConnectors = require('./searchConnectors').bind(bindObj);
   this.searchMemory = require('./searchMemory').bind(bindObj);
+  this.searchMemoryContainer = require('./searchMemoryContainer').bind(bindObj);
   this.searchMessage = require('./searchMessage').bind(bindObj);
   this.searchModelGroup = require('./searchModelGroup').bind(bindObj);
   this.searchModels = require('./searchModels').bind(bindObj);
@@ -70,15 +83,19 @@ function MlApi(bindObj) {
   this.trainPredict = require('./trainPredict').bind(bindObj);
   this.undeployModel = require('./undeployModel').bind(bindObj);
   this.unloadModel = require('./unloadModel').bind(bindObj);
+  this.updateAgenticMemory = require('./updateAgenticMemory').bind(bindObj);
   this.updateConnector = require('./updateConnector').bind(bindObj);
   this.updateController = require('./updateController').bind(bindObj);
   this.updateMemory = require('./updateMemory').bind(bindObj);
+  this.updateMemoryContainer = require('./updateMemoryContainer').bind(bindObj);
   this.updateMessage = require('./updateMessage').bind(bindObj);
   this.updateModel = require('./updateModel').bind(bindObj);
   this.updateModelGroup = require('./updateModelGroup').bind(bindObj);
   this.uploadChunk = require('./uploadChunk').bind(bindObj);
   this.uploadModel = require('./uploadModel').bind(bindObj);
 
+  // Deprecated: Use addAgenticMemory instead.
+  this.add_agentic_memory = require('./addAgenticMemory').bind(bindObj);
   // Deprecated: Use chunkModel instead.
   this.chunk_model = require('./chunkModel').bind(bindObj);
   // Deprecated: Use createConnector instead.
@@ -87,18 +104,28 @@ function MlApi(bindObj) {
   this.create_controller = require('./createController').bind(bindObj);
   // Deprecated: Use createMemory instead.
   this.create_memory = require('./createMemory').bind(bindObj);
+  // Deprecated: Use createMemoryContainer instead.
+  this.create_memory_container = require('./createMemoryContainer').bind(bindObj);
+  // Deprecated: Use createMemoryContainerSession instead.
+  this.create_memory_container_session = require('./createMemoryContainerSession').bind(bindObj);
   // Deprecated: Use createMessage instead.
   this.create_message = require('./createMessage').bind(bindObj);
   // Deprecated: Use createModelMeta instead.
   this.create_model_meta = require('./createModelMeta').bind(bindObj);
   // Deprecated: Use deleteAgent instead.
   this.delete_agent = require('./deleteAgent').bind(bindObj);
+  // Deprecated: Use deleteAgenticMemory instead.
+  this.delete_agentic_memory = require('./deleteAgenticMemory').bind(bindObj);
+  // Deprecated: Use deleteAgenticMemoryQuery instead.
+  this.delete_agentic_memory_query = require('./deleteAgenticMemoryQuery').bind(bindObj);
   // Deprecated: Use deleteConnector instead.
   this.delete_connector = require('./deleteConnector').bind(bindObj);
   // Deprecated: Use deleteController instead.
   this.delete_controller = require('./deleteController').bind(bindObj);
   // Deprecated: Use deleteMemory instead.
   this.delete_memory = require('./deleteMemory').bind(bindObj);
+  // Deprecated: Use deleteMemoryContainer instead.
+  this.delete_memory_container = require('./deleteMemoryContainer').bind(bindObj);
   // Deprecated: Use deleteModel instead.
   this.delete_model = require('./deleteModel').bind(bindObj);
   // Deprecated: Use deleteModelGroup instead.
@@ -109,10 +136,16 @@ function MlApi(bindObj) {
   this.deploy_model = require('./deployModel').bind(bindObj);
   // Deprecated: Use executeAgent instead.
   this.execute_agent = require('./executeAgent').bind(bindObj);
+  // Deprecated: Use executeAgentStream instead.
+  this.execute_agent_stream = require('./executeAgentStream').bind(bindObj);
   // Deprecated: Use executeAlgorithm instead.
   this.execute_algorithm = require('./executeAlgorithm').bind(bindObj);
+  // Deprecated: Use executeTool instead.
+  this.execute_tool = require('./executeTool').bind(bindObj);
   // Deprecated: Use getAgent instead.
   this.get_agent = require('./getAgent').bind(bindObj);
+  // Deprecated: Use getAgenticMemory instead.
+  this.get_agentic_memory = require('./getAgenticMemory').bind(bindObj);
   // Deprecated: Use getAllMemories instead.
   this.get_all_memories = require('./getAllMemories').bind(bindObj);
   // Deprecated: Use getAllMessages instead.
@@ -125,6 +158,8 @@ function MlApi(bindObj) {
   this.get_controller = require('./getController').bind(bindObj);
   // Deprecated: Use getMemory instead.
   this.get_memory = require('./getMemory').bind(bindObj);
+  // Deprecated: Use getMemoryContainer instead.
+  this.get_memory_container = require('./getMemoryContainer').bind(bindObj);
   // Deprecated: Use getMessage instead.
   this.get_message = require('./getMessage').bind(bindObj);
   // Deprecated: Use getMessageTraces instead.
@@ -149,6 +184,8 @@ function MlApi(bindObj) {
   this.load_model = require('./loadModel').bind(bindObj);
   // Deprecated: Use predictModel instead.
   this.predict_model = require('./predictModel').bind(bindObj);
+  // Deprecated: Use predictModelStream instead.
+  this.predict_model_stream = require('./predictModelStream').bind(bindObj);
   // Deprecated: Use registerAgents instead.
   this.register_agents = require('./registerAgents').bind(bindObj);
   // Deprecated: Use registerModel instead.
@@ -157,12 +194,16 @@ function MlApi(bindObj) {
   this.register_model_group = require('./registerModelGroup').bind(bindObj);
   // Deprecated: Use registerModelMeta instead.
   this.register_model_meta = require('./registerModelMeta').bind(bindObj);
+  // Deprecated: Use searchAgenticMemory instead.
+  this.search_agentic_memory = require('./searchAgenticMemory').bind(bindObj);
   // Deprecated: Use searchAgents instead.
   this.search_agents = require('./searchAgents').bind(bindObj);
   // Deprecated: Use searchConnectors instead.
   this.search_connectors = require('./searchConnectors').bind(bindObj);
   // Deprecated: Use searchMemory instead.
   this.search_memory = require('./searchMemory').bind(bindObj);
+  // Deprecated: Use searchMemoryContainer instead.
+  this.search_memory_container = require('./searchMemoryContainer').bind(bindObj);
   // Deprecated: Use searchMessage instead.
   this.search_message = require('./searchMessage').bind(bindObj);
   // Deprecated: Use searchModelGroup instead.
@@ -177,12 +218,16 @@ function MlApi(bindObj) {
   this.undeploy_model = require('./undeployModel').bind(bindObj);
   // Deprecated: Use unloadModel instead.
   this.unload_model = require('./unloadModel').bind(bindObj);
+  // Deprecated: Use updateAgenticMemory instead.
+  this.update_agentic_memory = require('./updateAgenticMemory').bind(bindObj);
   // Deprecated: Use updateConnector instead.
   this.update_connector = require('./updateConnector').bind(bindObj);
   // Deprecated: Use updateController instead.
   this.update_controller = require('./updateController').bind(bindObj);
   // Deprecated: Use updateMemory instead.
   this.update_memory = require('./updateMemory').bind(bindObj);
+  // Deprecated: Use updateMemoryContainer instead.
+  this.update_memory_container = require('./updateMemoryContainer').bind(bindObj);
   // Deprecated: Use updateMessage instead.
   this.update_message = require('./updateMessage').bind(bindObj);
   // Deprecated: Use updateModel instead.

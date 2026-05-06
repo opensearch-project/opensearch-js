@@ -15,6 +15,7 @@
  */
 
 import * as Common from './_common'
+import * as Nodes_Common from './nodes._common'
 
 export type AcknowledgedResponse = {
   acknowledged?: boolean;
@@ -60,6 +61,8 @@ export type ListStoresResponse = {
   stores: Record<string, StoreDetails>;
 }
 
+export type LtrStatName = 'cache' | 'request_error_count' | 'request_total_count' | 'status' | 'stores'
+
 export type NodeDetails = {
   hostname?: string;
   name?: string;
@@ -79,8 +82,13 @@ export type NodeStatsDetails = {
   total?: CacheItemStats;
 }
 
-export type Stats = {
-  _nodes?: Common.NodeStatistics;
+export type NotFoundResponse = {
+  _id?: string;
+  _index?: string;
+  found?: boolean;
+}
+
+export type Stats = Nodes_Common.NodesResponseBase & {
   cluster_name?: Common.Name;
   nodes?: Record<string, NodeStats>;
   status?: string;

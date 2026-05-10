@@ -11,7 +11,7 @@ jobs:
       run:
         working-directory: ./api_generator
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
           fetch-depth: 0

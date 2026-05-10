@@ -42,8 +42,6 @@ export type Aggregation = {
 }
 
 export type AggregationContainer = {
-  aggregations?: Record<string, AggregationContainer>;
-  aggs?: Record<string, AggregationContainer>;
   meta?: Common.Metadata;
 } & ({
   adjacency_matrix: AdjacencyMatrixAggregation;
@@ -232,7 +230,10 @@ export type BoxplotAggregation = MetricAggregationBase & {
   compression?: number;
 }
 
-export type BucketAggregationBase = Aggregation & Record<string, any>
+export type BucketAggregationBase = Aggregation & {
+  aggregations?: Record<string, AggregationContainer>;
+  aggs?: Record<string, AggregationContainer>;
+}
 
 export type BucketMetricValueAggregate = SingleMetricAggregateBase & {
   keys: string[];
@@ -272,10 +273,9 @@ export type CardinalityAggregate = AggregateBase & {
 export type CardinalityAggregation = MetricAggregationBase & {
   execution_hint?: CardinalityExecutionMode;
   precision_threshold?: number;
-  rehash?: boolean;
 }
 
-export type CardinalityExecutionMode = 'direct' | 'global_ordinals' | 'save_memory_heuristic' | 'save_time_heuristic' | 'segment_ordinals'
+export type CardinalityExecutionMode = 'direct' | 'global_ordinals'
 
 export type ChildrenAggregate = SingleBucketAggregateBase & Record<string, any>
 
@@ -693,7 +693,7 @@ export type MedianAbsoluteDeviationAggregation = FormatMetricAggregationBase & {
   compression?: number;
 }
 
-export type MetricAggregationBase = {
+export type MetricAggregationBase = Aggregation & {
   field?: Common.Field;
   missing?: Common.FieldValue;
   script?: Common.Script;
@@ -1179,7 +1179,7 @@ export type TestPopulation = {
 }
 
 export type TopHitsAggregate = AggregateBase & {
-  hits: Core_Search.HitsMetadata;
+  hits: Core_Search.HitsMetadataJsonValue;
 }
 
 export type TopHitsAggregation = MetricAggregationBase & {

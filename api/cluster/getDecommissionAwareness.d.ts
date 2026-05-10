@@ -26,5 +26,5 @@ export interface Cluster_GetDecommissionAwareness_Response extends ApiResponse {
   body: Cluster_GetDecommissionAwareness_ResponseBody;
 }
 
-export type Cluster_GetDecommissionAwareness_ResponseBody = Cluster_DecommissionAwareness.DecommissionStatusResponse
+export type Cluster_GetDecommissionAwareness_ResponseBody = Record<string, Cluster_DecommissionAwareness.DecommissionStatus>
 

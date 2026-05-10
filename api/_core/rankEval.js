@@ -29,7 +29,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
  * @param {boolean} [params.ignore_unavailable] - If `true`, missing or closed indexes are not included in the response.
  * @param {string} [params.search_type] - Search operation type
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard (`*`) expressions are supported. To target all data streams and indexes in a cluster, omit this parameter or use `_all` or `*`.
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard (`*`) expressions are supported. To target all data streams and indexes in a cluster, omit this parameter or use `_all` or `*`.
  * @param {object} params.body - The ranking evaluation search definition, including search requests, document ratings and ranking metric definition.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

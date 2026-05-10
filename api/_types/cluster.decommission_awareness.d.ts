@@ -15,7 +15,5 @@
  */
 
 
-export type DecommissionStatusResponse = ZoneDecommissionStatusResponse
-
-export type ZoneDecommissionStatusResponse = Record<string, 'DRAINING' | 'FAILED' | 'INIT' | 'IN_PROGRESS' | 'SUCCESSFUL'>
+export type DecommissionStatus = 'INIT' | 'DRAINING' | 'IN_PROGRESS' | 'SUCCESSFUL' | 'FAILED'
 

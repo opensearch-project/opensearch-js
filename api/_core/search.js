@@ -44,6 +44,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.ignore_throttled] - If `true`, concrete, expanded or aliased indexes will be ignored when frozen.
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {boolean} [params.include_named_queries_score=false] - Indicates whether `hit.matched_queries` should be rendered as a map that includes the name of the matched query associated with its score (true) or as an array containing the name of the matched queries (false)
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (`*`). To search all data streams and indexes, omit this parameter or use `*` or `_all`.
  * @param {boolean} [params.lenient] - If `true`, format-based query failures (such as providing text to a numeric field) in the query string will be ignored. This parameter can only be used when the `q` query string parameter is specified.
  * @param {number} [params.max_concurrent_shard_requests=5] - Defines the number of concurrent shard requests per node this search executes concurrently. This value should be used to limit the impact of the search on the cluster in order to limit the number of concurrent shard requests.
  * @param {boolean} [params.phase_took=false] - Indicates whether to return phase-level `took` time values in the response.
@@ -52,7 +53,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.q] - Query in the Lucene query string syntax using query parameter search. Query parameter searches do not support the full OpenSearch Query DSL but are handy for testing.
  * @param {boolean} [params.request_cache] - If `true`, the caching of search results is enabled for requests where `size` is `0`. Defaults to index level settings.
  * @param {boolean} [params.rest_total_hits_as_int=false] - Indicates whether `hits.total` should be rendered as an integer or an object in the rest search response.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {string} [params.scroll] - Period to retain the search context for scrolling. See Scroll search results. By default, this value cannot exceed `1d` (24 hours). You can change this limit using the `search.max_keep_alive` cluster-level setting.
  * @param {string} [params.search_pipeline] - Customizable sequence of processing stages applied to search queries.
  * @param {string} [params.search_type] - How distributed term frequencies are calculated for relevance scoring.
@@ -72,7 +73,6 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.typed_keys] - If `true`, aggregation and suggester names are be prefixed by their respective types in the response.
  * @param {boolean} [params.verbose_pipeline] - Enables or disables verbose mode for the search pipeline. When verbose mode is enabled, detailed information about each processor in the search pipeline is included in the search response. This includes the processor name, execution status, input, output, and time taken for processing. This parameter is primarily intended for debugging purposes, allowing users to track how data flows and transforms through the search pipeline.
  * @param {boolean} [params.version] - If `true`, returns document version as part of a hit.
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (`*`). To search all data streams and indexes, omit this parameter or use `*` or `_all`.
  * @param {object} [params.body] - The search definition using the Query DSL
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

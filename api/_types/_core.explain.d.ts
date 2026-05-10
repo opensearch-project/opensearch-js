@@ -17,7 +17,7 @@
 
 export type Explanation = {
   description: string;
-  details: Explanation[];
+  details?: Explanation[];
   value: number;
 }
 

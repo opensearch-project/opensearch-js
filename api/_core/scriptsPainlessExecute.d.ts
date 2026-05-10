@@ -34,6 +34,6 @@ export interface ScriptsPainlessExecute_Response extends ApiResponse {
 }
 
 export type ScriptsPainlessExecute_ResponseBody = {
-  result: number | string | boolean;
+  result: Common.TResult;
 }
 

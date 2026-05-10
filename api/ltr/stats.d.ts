@@ -21,7 +21,7 @@ import * as Ltr_Common from '../_types/ltr._common'
 
 export interface Ltr_Stats_Request extends Global.Params {
   node_id?: string[];
-  stat?: 'cache' | 'request_error_count' | 'request_total_count'[];
+  stat?: Ltr_Common.LtrStatName | Ltr_Common.LtrStatName[];
   timeout?: Common.Duration;
 }
 

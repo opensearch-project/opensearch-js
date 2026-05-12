@@ -10,6 +10,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Api Generator: fix TypeScript operator precedence when wrapping intersection/union types in arrays (e.g. `Hit & { _source?: TDocument; }[]` now renders as `(Hit & { _source?: TDocument; })[]`)
 ### Security
 
 ## [3.6.0]

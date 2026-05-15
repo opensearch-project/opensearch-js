@@ -10,6 +10,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Api Generator: Add parentheses around array element types containing intersections, fixing the `HitsMetadata.hits` type ([#1112](https://github.com/opensearch-project/opensearch-js/issues/1112))
 ### Security
 
 ## [3.6.0]

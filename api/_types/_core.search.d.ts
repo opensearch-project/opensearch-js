@@ -253,9 +253,9 @@ export type Hit = {
 }
 
 export type HitsMetadata = {
-  hits: Hit & {
+  hits: (Hit & {
   _source?: T;
-}[];
+})[];
   max_score?: undefined | number;
   total?: TotalHits | number;
 }

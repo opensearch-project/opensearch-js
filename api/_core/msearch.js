@@ -32,7 +32,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.rest_total_hits_as_int=false] - If `true`, `hits.total` are returned as an integer in the response. Defaults to false, which returns an object.
  * @param {string} [params.search_type] - Indicates whether global term and document frequencies should be used when scoring returned documents.
  * @param {boolean} [params.typed_keys] - Specifies whether aggregation and suggester names should be prefixed by their respective types in the response.
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and index aliases to search.
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and index aliases to search.
  * @param {array} params.body - The request definitions (metadata-search request definition pairs), separated by newlines
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

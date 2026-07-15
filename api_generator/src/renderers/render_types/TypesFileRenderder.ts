@@ -28,7 +28,7 @@ export default class TypesFileRenderder extends BaseRenderer {
     return {
       is_function: this._container.is_function,
       types: _.entries(this._container.schemas).map(([name, schema]) => {
-        const definition = this.#render_schema(schema)
+        const definition = this.#render_schema(schema, true)
         const is_interface = definition.startsWith('extends')
         return { name, definition, is_interface }
       }),
@@ -40,7 +40,7 @@ export default class TypesFileRenderder extends BaseRenderer {
     }
   }
 
-  #render_schema (schema: Schema): string {
+  #render_schema (schema: Schema, is_top_level = false): string {
     if (schema.anyOf != null) schema.oneOf = schema.anyOf
     if (Array.isArray(schema.items)) throw new Error('Unhandled positioned array schema')
     if (_.isEmpty(schema)) return 'any'
@@ -57,7 +57,7 @@ export default class TypesFileRenderder extends BaseRenderer {
     if (Array.isArray(schema.type)) return schema.type.map(type => this.#render_schema({ type } satisfies Schema)).join(' | ')
     if (schema.type != null && schema.type !== 'object') throw new Error(`Unhandled schema type: ${(schema as any).type}`)
     if (schema.oneOf != null) return this.#render_oneOf(schema.oneOf as Schema[])
-    if (schema.allOf != null) return this.#render_allOf(schema.allOf as Schema[])
+    if (schema.allOf != null) return this.#render_allOf(schema.allOf as Schema[], is_top_level)
     return this.#render_simple_obj(schema)
   }
 
@@ -66,7 +66,7 @@ export default class TypesFileRenderder extends BaseRenderer {
     return this.#union(renders)
   }
 
-  #render_allOf (schemas: Schema[]): string {
+  #render_allOf (schemas: Schema[], is_top_level = false): string {
     const named_schemas = schemas.filter(schema => schema.$ref != null)
     const one_of_schemas = schemas.filter(schema => schema.oneOf != null)
     const component_schemas = schemas.filter(schema => (schema.$ref ?? schema.oneOf) == null)
@@ -85,7 +85,7 @@ export default class TypesFileRenderder extends BaseRenderer {
     if (inline_schemas.length === 0) return named_render
     if (named_schemas.length === 0) return inline_render
 
-    if (inline_render.includes('{') && this._container.is_function) return `extends ${named_render} ${inline_render}`
+    if (is_top_level && inline_render.includes('{') && this._container.is_function) return `extends ${named_render} ${inline_render}`
     else return this.#intersection([named_render, inline_render])
   }
 

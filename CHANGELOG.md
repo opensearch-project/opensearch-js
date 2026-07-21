@@ -12,6 +12,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 - Api Generator: fix invalid extends syntax generated for nested allOf inside object properties ([#1128](https://github.com/opensearch-project/opensearch-js/pull/1128))
 ### Security
+- Fix CVEs in diff, lodash, and yaml dependencies ([#1131] https://github.com/opensearch-project/opensearch-js/pull/1131)
 
 ## [3.6.0]
 ### Fixed

@@ -11,6 +11,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 ### Fixed
 - Api Generator: fix invalid extends syntax generated for nested allOf inside object properties ([#1128](https://github.com/opensearch-project/opensearch-js/pull/1128))
+- Fix generate_api workflow: replace revoked GitHub App token with GITHUB_TOKEN ([#1130]https://github.com/opensearch-project/opensearch-js/pull/1130)
 ### Security
 
 ## [3.6.0]

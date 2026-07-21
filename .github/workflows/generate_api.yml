@@ -39,17 +39,10 @@ jobs:
         id: date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
-      - name: GitHub App token
-        id: github_app_token
-        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          private_key: ${{ secrets.APP_PRIVATE_KEY }}
-
       - name: Create pull request
         uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
         with:
-          token: ${{ steps.github_app_token.outputs.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Updated opensearch-js to reflect the latest OpenSearch API spec (${{ env.date }})"
           title: "[AUTOCUT] Update opensearch-js to reflect the latest OpenSearch API spec (${{ env.date }})"
           body: |

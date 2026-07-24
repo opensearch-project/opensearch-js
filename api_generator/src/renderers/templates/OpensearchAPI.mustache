@@ -6,35 +6,46 @@
 const { kConfigErr } = require('./utils')
 const kApiModules = Symbol('api modules')
 
+// Namespace constructors and root function modules are required once at
+// module load time (not per Client instance) to avoid paying `require()`
+// resolution cost (and any installed require-hook overhead, e.g. APM/OTel
+// auto-instrumentation) on every `new Client()` / `client.child()` call.
+{{#api_modules}}
+const {{{prototype_name}}}Ctor = require('{{{path}}}');
+{{/api_modules}}
+
+{{#root_functions}}
+const {{{prototype_name}}}Fn = require('{{{path}}}');
+{{/root_functions}}
+
 class OpenSearchAPI {
   constructor (opts) {
     this[kConfigErr] = opts.ConfigurationError
-    this[kApiModules] = {
-      {{#api_modules}}
-      {{{prototype_name}}}: new(require('{{{path}}}'))(this),
-      {{/api_modules}}
-    }
+    this[kApiModules] = {}
 
     // Setup Root API Functions
     /** @namespace {{{doc_namespace}}} */
     {{#root_functions}}
-    this.{{{prototype_name}}} = require('{{{path}}}').bind(this)
+    this.{{{prototype_name}}} = {{{prototype_name}}}Fn.bind(this)
     {{/root_functions}}
 
     {{#deprecated_root_functions}}
     // Deprecated: Use {{{prototype_name}}} instead.
-    this.{{{snake_cased_name}}} = require('{{{path}}}').bind(this)
+    this.{{{snake_cased_name}}} = {{{prototype_name}}}Fn.bind(this)
     {{/deprecated_root_functions}}
 
     // Setup API Modules
+    // Each namespace is instantiated lazily on first access
+    const kApiModulesMap = this[kApiModules]
+    const self = this
     Object.defineProperties(this, {
     {{#api_modules}}
-      {{{prototype_name}}}: { get() { return this[kApiModules].{{{prototype_name}}} } },
+      {{{prototype_name}}}: { get() { return kApiModulesMap.{{{prototype_name}}} ?? (kApiModulesMap.{{{prototype_name}}} = new {{{prototype_name}}}Ctor(self)) } },
     {{/api_modules}}
 
     {{#deprecated_api_modules}}
       // Deprecated: Use {{{prototype_name}}} instead.
-      {{{snake_cased_name}}}: { get() { return this[kApiModules].{{{prototype_name}}} } },
+      {{{snake_cased_name}}}: { get() { return kApiModulesMap.{{{prototype_name}}} ?? (kApiModulesMap.{{{prototype_name}}} = new {{{prototype_name}}}Ctor(self)) } },
     {{/deprecated_api_modules}}
     })
   }

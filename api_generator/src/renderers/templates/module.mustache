@@ -5,14 +5,21 @@
 
 /** @namespace {{doc_namespace}} */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+{{#functions}}
+const {{{prototype_name}}}Fn = require('{{{path}}}');
+{{/functions}}
+
 function {{{module_name}}}(bindObj) {
   {{#functions}}
-  this.{{{prototype_name}}} = require('{{{path}}}').bind(bindObj);
+  this.{{{prototype_name}}} = {{{prototype_name}}}Fn.bind(bindObj);
   {{/functions}}
 
   {{#deprecated_functions}}
   // Deprecated: Use {{{prototype_name}}} instead.
-  this.{{{snake_cased_name}}} = require('{{{path}}}').bind(bindObj);
+  this.{{{snake_cased_name}}} = {{{prototype_name}}}Fn.bind(bindObj);
   {{/deprecated_functions}}
 }
 

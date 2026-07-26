@@ -18,22 +18,32 @@
 
 /** @namespace API-Knn */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const deleteModelFn = require('./deleteModel');
+const getModelFn = require('./getModel');
+const searchModelsFn = require('./searchModels');
+const statsFn = require('./stats');
+const trainModelFn = require('./trainModel');
+const warmupFn = require('./warmup');
+
 function KnnApi(bindObj) {
-  this.deleteModel = require('./deleteModel').bind(bindObj);
-  this.getModel = require('./getModel').bind(bindObj);
-  this.searchModels = require('./searchModels').bind(bindObj);
-  this.stats = require('./stats').bind(bindObj);
-  this.trainModel = require('./trainModel').bind(bindObj);
-  this.warmup = require('./warmup').bind(bindObj);
+  this.deleteModel = deleteModelFn.bind(bindObj);
+  this.getModel = getModelFn.bind(bindObj);
+  this.searchModels = searchModelsFn.bind(bindObj);
+  this.stats = statsFn.bind(bindObj);
+  this.trainModel = trainModelFn.bind(bindObj);
+  this.warmup = warmupFn.bind(bindObj);
 
   // Deprecated: Use deleteModel instead.
-  this.delete_model = require('./deleteModel').bind(bindObj);
+  this.delete_model = deleteModelFn.bind(bindObj);
   // Deprecated: Use getModel instead.
-  this.get_model = require('./getModel').bind(bindObj);
+  this.get_model = getModelFn.bind(bindObj);
   // Deprecated: Use searchModels instead.
-  this.search_models = require('./searchModels').bind(bindObj);
+  this.search_models = searchModelsFn.bind(bindObj);
   // Deprecated: Use trainModel instead.
-  this.train_model = require('./trainModel').bind(bindObj);
+  this.train_model = trainModelFn.bind(bindObj);
 }
 
 module.exports = KnnApi;

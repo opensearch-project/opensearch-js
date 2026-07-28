@@ -13,6 +13,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Api Generator: fix invalid extends syntax generated for nested allOf inside object properties ([#1128](https://github.com/opensearch-project/opensearch-js/pull/1128))
 - Replace GitHub App token with opensearch-ci-bot PAT in generate_api workflow ([#1130](https://github.com/opensearch-project/opensearch-js/pull/1130))
 - Api Generator: Lazily instantiate API namespaces to fix Client construction performance ([#1133](https://github.com/opensearch-project/opensearch-js/pull/1133))
+- Fix bulk helper mapping response items to variable-width `bulkBody` when mixing delete and index/create/update operations, which caused incorrect operation/document pairing and undefined deserialization ([#1125](https://github.com/opensearch-project/opensearch-js/issues/1125), [#1126](https://github.com/opensearch-project/opensearch-js/pull/1126))
 ### Security
 - Fix CVEs in diff, lodash, and yaml dependencies ([#1131] https://github.com/opensearch-project/opensearch-js/pull/1131)
 

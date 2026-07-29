@@ -26,7 +26,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @param {object} params
  * @param {string} params.role - The name of the role for which to create a role mapping.
- * @param {object} params.body 
+ * @param {object} params.body
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

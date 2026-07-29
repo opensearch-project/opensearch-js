@@ -48,7 +48,7 @@ function threadPoolFunc(params, options, callback) {
   let { body, thread_pool_patterns, ...querystring } = params;
   thread_pool_patterns = parsePathParam(thread_pool_patterns);
 
-  const path = ['/_cat/thread_pool', thread_pool_patterns].filter(c => c != null).join('/');
+  const path = ['/_cat/thread_pool', thread_pool_patterns].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

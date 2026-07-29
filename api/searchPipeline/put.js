@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.cluster_manager_timeout] - operation timeout for connection to cluster-manager node.
  * @param {string} [params.timeout] - Operation timeout.
  * @param {string} params.id - Pipeline ID.
- * @param {object} params.body 
+ * @param {object} params.body
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

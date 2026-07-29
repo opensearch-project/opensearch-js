@@ -14,26 +14,26 @@
  * modify the API generator.
  */
 
-'use strict'
+'use strict';
 
 const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
-* Make a customized POST request.
-*
-* @memberOf API-Http
-*
-* @param {Object} params
-* @param {string} params.path - URL of the request
-* @param {Object} [params.querystring] - Querystring parameters
-* @param {Object} [params.headers] - Request headers
-* @param {Object | Object[] | string} [params.body] - Request body
-*
-* @param {Object} [options] - Options for {@link Transport#request}
-* @param {function} [callback] - Callback that handles errors and response
-*
-* @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
-*/
+ * Make a customized POST request.
+ *
+ * @memberOf API-Http
+ *
+ * @param {Object} params
+ * @param {string} params.path - URL of the request
+ * @param {Object} [params.querystring] - Querystring parameters
+ * @param {Object} [params.headers] - Request headers
+ * @param {Object | Object[] | string} [params.body] - Request body
+ *
+ * @param {Object} [options] - Options for {@link Transport#request}
+ * @param {function} [callback] - Callback that handles errors and response
+ *
+ * @returns {{abort: function(), then: function(), catch: function()}|Promise<never>|*}
+ */
 function postFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
   if (params.path == null) return handleMissingParam('path', this, callback);

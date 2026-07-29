@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Ml
  *
  * @param {object} [params]
- * @param {string} [params.node_id] 
- * @param {string} [params.stat] 
+ * @param {string} [params.node_id]
+ * @param {string} [params.stat]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -40,7 +40,7 @@ function getStatsFunc(params, options, callback) {
   node_id = parsePathParam(node_id);
   stat = parsePathParam(stat);
 
-  const path = ['/_plugins/_ml', node_id, 'stats', stat].filter(c => c != null).join('/');
+  const path = ['/_plugins/_ml', node_id, 'stats', stat].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

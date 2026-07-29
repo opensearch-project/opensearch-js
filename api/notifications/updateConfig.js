@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Notifications
  *
  * @param {object} params
- * @param {string} params.config_id 
- * @param {object} params.body 
+ * @param {string} params.config_id
+ * @param {object} params.body
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

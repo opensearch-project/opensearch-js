@@ -25,9 +25,9 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Ml
  *
  * @param {object} params
- * @param {string} params.algorithm_name 
- * @param {string} params.model_id 
- * @param {object} [params.body] 
+ * @param {string} params.algorithm_name
+ * @param {string} params.model_id
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

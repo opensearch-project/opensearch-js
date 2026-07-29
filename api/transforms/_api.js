@@ -27,7 +27,6 @@ function TransformsApi(bindObj) {
   this.search = require('./search').bind(bindObj);
   this.start = require('./start').bind(bindObj);
   this.stop = require('./stop').bind(bindObj);
-
 }
 
 module.exports = TransformsApi;

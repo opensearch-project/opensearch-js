@@ -38,7 +38,7 @@ function clearCacheFunc(params, options, callback) {
   let { body, store, ...querystring } = params;
   store = parsePathParam(store);
 
-  const path = ['/_ltr', store, '_clearcache'].filter(c => c != null).join('/');
+  const path = ['/_ltr', store, '_clearcache'].filter((c) => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

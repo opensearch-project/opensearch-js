@@ -43,7 +43,7 @@ function statusFunc(params, options, callback) {
   repository = parsePathParam(repository);
   snapshot = parsePathParam(snapshot);
 
-  const path = ['/_snapshot', repository, snapshot, '_status'].filter(c => c != null).join('/');
+  const path = ['/_snapshot', repository, snapshot, '_status'].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

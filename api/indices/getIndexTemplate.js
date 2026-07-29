@@ -42,7 +42,7 @@ function getIndexTemplateFunc(params, options, callback) {
   let { body, name, ...querystring } = params;
   name = parsePathParam(name);
 
-  const path = ['/_index_template', name].filter(c => c != null).join('/');
+  const path = ['/_index_template', name].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

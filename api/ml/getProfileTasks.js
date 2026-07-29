@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Ml
  *
  * @param {object} [params]
- * @param {string} [params.task_id] 
- * @param {object} [params.body] 
+ * @param {string} [params.task_id]
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -39,7 +39,7 @@ function getProfileTasksFunc(params, options, callback) {
   let { body, task_id, ...querystring } = params;
   task_id = parsePathParam(task_id);
 
-  const path = ['/_plugins/_ml/profile/tasks', task_id].filter(c => c != null).join('/');
+  const path = ['/_plugins/_ml/profile/tasks', task_id].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

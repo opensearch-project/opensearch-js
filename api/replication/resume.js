@@ -26,7 +26,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @param {object} params
  * @param {string} params.index - The name of the data stream, index, or index alias to perform bulk actions on.
- * @param {object} params.body 
+ * @param {object} params.body
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

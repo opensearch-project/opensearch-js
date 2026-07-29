@@ -31,7 +31,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.use_case] - Specifies the workflow template to use.
  * @param {string} [params.validation=all] - Specifies the validation type. Valid values are `all` (validate the template) and `none` (do not validate the template).
  * @param {string} params.workflow_id - The ID of the workflow.
- * @param {object} [params.body] 
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

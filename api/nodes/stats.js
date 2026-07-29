@@ -50,7 +50,9 @@ function statsFunc(params, options, callback) {
   metric = parsePathParam(metric);
   index_metric = parsePathParam(index_metric);
 
-  const path = ['/_nodes', node_id, 'stats', metric, index_metric].filter(c => c != null).join('/');
+  const path = ['/_nodes', node_id, 'stats', metric, index_metric]
+    .filter((c) => c != null)
+    .join('/');
   const method = 'GET';
   body = body || '';
 

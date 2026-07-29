@@ -30,7 +30,7 @@ const { normalizeArguments } = require('../utils');
  * @param {boolean} [params.update_fields=false] - Whether to update only the fields included in the request body..
  * @param {string} [params.use_case] - Specifies the workflow template to use.
  * @param {string} [params.validation=all] - Specifies the validation type. Valid values are `all` (validate the template) and `none` (do not validate the template).
- * @param {object} [params.body] 
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

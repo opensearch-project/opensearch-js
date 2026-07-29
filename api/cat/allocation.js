@@ -47,7 +47,7 @@ function allocationFunc(params, options, callback) {
   let { body, node_id, ...querystring } = params;
   node_id = parsePathParam(node_id);
 
-  const path = ['/_cat/allocation', node_id].filter(c => c != null).join('/');
+  const path = ['/_cat/allocation', node_id].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

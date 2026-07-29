@@ -51,7 +51,7 @@ function mtermvectorsFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['', index, '_mtermvectors'].filter(c => c != null).join('/');
+  const path = ['', index, '_mtermvectors'].filter((c) => c != null).join('/');
   const method = body ? 'POST' : 'GET';
   body = body || '';
 

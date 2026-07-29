@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Geospatial
  *
  * @param {object} [params]
- * @param {string} [params.name] 
+ * @param {string} [params.name]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -38,7 +38,7 @@ function getIp2GeoDatasourceFunc(params, options, callback) {
   let { body, name, ...querystring } = params;
   name = parsePathParam(name);
 
-  const path = ['/_plugins/geospatial/ip2geo/datasource', name].filter(c => c != null).join('/');
+  const path = ['/_plugins/geospatial/ip2geo/datasource', name].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

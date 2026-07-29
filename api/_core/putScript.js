@@ -46,7 +46,7 @@ function putScriptFunc(params, options, callback) {
   id = parsePathParam(id);
   context = parsePathParam(context);
 
-  const path = ['/_scripts', id, context].filter(c => c != null).join('/');
+  const path = ['/_scripts', id, context].filter((c) => c != null).join('/');
   const method = context == null ? 'POST' : 'PUT';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);

@@ -47,7 +47,7 @@ function snapshotsFunc(params, options, callback) {
   let { body, repository, ...querystring } = params;
   repository = parsePathParam(repository);
 
-  const path = ['/_cat/snapshots', repository].filter(c => c != null).join('/');
+  const path = ['/_cat/snapshots', repository].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Ml
  *
  * @param {object} [params]
- * @param {string} [params.model_id] 
- * @param {object} [params.body] 
+ * @param {string} [params.model_id]
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -39,7 +39,7 @@ function undeployModelFunc(params, options, callback) {
   let { body, model_id, ...querystring } = params;
   model_id = parsePathParam(model_id);
 
-  const path = ['/_plugins/_ml/models', model_id, '_undeploy'].filter(c => c != null).join('/');
+  const path = ['/_plugins/_ml/models', model_id, '_undeploy'].filter((c) => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

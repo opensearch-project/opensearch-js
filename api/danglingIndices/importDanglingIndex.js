@@ -38,7 +38,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  */
 function importDanglingIndexFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.accept_data_loss == null) return handleMissingParam('accept_data_loss', this, callback);
+  if (params.accept_data_loss == null)
+    return handleMissingParam('accept_data_loss', this, callback);
   if (params.index_uuid == null) return handleMissingParam('index_uuid', this, callback);
 
   let { body, index_uuid, ...querystring } = params;

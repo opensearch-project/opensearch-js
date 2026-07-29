@@ -26,7 +26,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @param {object} params
  * @param {string} params.attribute - The name of awareness attribute, usually `zone`.
- * @param {string} [params.body] 
+ * @param {string} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

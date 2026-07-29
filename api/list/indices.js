@@ -55,7 +55,7 @@ function indicesFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_list/indices', index].filter(c => c != null).join('/');
+  const path = ['/_list/indices', index].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

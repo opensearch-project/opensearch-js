@@ -39,7 +39,7 @@ function getFunc(params, options, callback) {
   let { body, id, ...querystring } = params;
   id = parsePathParam(id);
 
-  const path = ['/_search/pipeline', id].filter(c => c != null).join('/');
+  const path = ['/_search/pipeline', id].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

@@ -27,8 +27,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {object} params
  * @param {number} [params.if_primary_term] - Only perform the operation if the document has this primary term.
  * @param {number} [params.if_seq_no] - Only perform the operation if the document has this sequence number.
- * @param {string} params.policy_id 
- * @param {string} [params.body] 
+ * @param {string} params.policy_id
+ * @param {string} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

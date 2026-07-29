@@ -44,7 +44,7 @@ function putAliasFunc(params, options, callback) {
   name = parsePathParam(name);
   index = parsePathParam(index);
 
-  const path = ['', index, '_alias', name].filter(c => c != null).join('/');
+  const path = ['', index, '_alias', name].filter((c) => c != null).join('/');
   const method = name == null ? 'POST' : 'PUT';
   body = body || '';
 

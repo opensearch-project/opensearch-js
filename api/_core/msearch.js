@@ -47,7 +47,7 @@ function msearchFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['', index, '_msearch'].filter(c => c != null).join('/');
+  const path = ['', index, '_msearch'].filter((c) => c != null).join('/');
   const method = body ? 'POST' : 'GET';
 
   return this.transport.request({ method, path, querystring, bulkBody: body }, options, callback);

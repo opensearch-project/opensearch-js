@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Geospatial
  *
  * @param {object} params
- * @param {string} params.name 
- * @param {object} params.body 
+ * @param {string} params.name
+ * @param {object} params.body
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

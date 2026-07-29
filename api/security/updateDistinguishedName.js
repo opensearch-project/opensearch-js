@@ -26,7 +26,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  *
  * @param {object} params
  * @param {string} params.cluster_name - The name of the cluster containing the `nodesDn` value to create or update.
- * @param {object} [params.body] 
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

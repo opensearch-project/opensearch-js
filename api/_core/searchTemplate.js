@@ -31,14 +31,16 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.explain] - If `true`, the response includes additional details about score computation as part of a hit.
  * @param {boolean} [params.ignore_throttled] - If `true`, specified concrete, expanded, or aliased indexes are not included in the response when throttled.
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
+ * @param {boolean} [params.phase_took=false] - Indicates whether to return phase-level `took` time values in the response.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
  * @param {boolean} [params.profile] - If `true`, the query execution is profiled.
  * @param {boolean} [params.rest_total_hits_as_int=false] - If `true`, `hits.total` are rendered as an integer in the response.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {string} [params.scroll] - Specifies how long a consistent view of the index should be maintained for scrolled search.
+ * @param {string} [params.search_pipeline] - Customizable sequence of processing stages applied to search queries.
  * @param {string} [params.search_type] - The type of the search operation.
  * @param {boolean} [params.typed_keys] - If `true`, the response prefixes aggregation and suggester names with their respective types.
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (*).
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (*).
  * @param {object} params.body - The search definition template and its parameters.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

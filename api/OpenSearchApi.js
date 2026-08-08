@@ -32,6 +32,7 @@ class OpenSearchAPI {
       http: new(require('./http/_api'))(this),
       indices: new(require('./indices/_api'))(this),
       ingest: new(require('./ingest/_api'))(this),
+      ingestion: new(require('./ingestion/_api'))(this),
       insights: new(require('./insights/_api'))(this),
       ism: new(require('./ism/_api'))(this),
       knn: new(require('./knn/_api'))(this),
@@ -48,12 +49,15 @@ class OpenSearchAPI {
       replication: new(require('./replication/_api'))(this),
       rollups: new(require('./rollups/_api'))(this),
       searchPipeline: new(require('./searchPipeline/_api'))(this),
+      searchRelevance: new(require('./searchRelevance/_api'))(this),
+      securityAnalytics: new(require('./securityAnalytics/_api'))(this),
       security: new(require('./security/_api'))(this),
       sm: new(require('./sm/_api'))(this),
       snapshot: new(require('./snapshot/_api'))(this),
       sql: new(require('./sql/_api'))(this),
       tasks: new(require('./tasks/_api'))(this),
       transforms: new(require('./transforms/_api'))(this),
+      ubi: new(require('./ubi/_api'))(this),
       wlm: new(require('./wlm/_api'))(this),
     }
 
@@ -165,6 +169,7 @@ class OpenSearchAPI {
       http: { get() { return this[kApiModules].http } },
       indices: { get() { return this[kApiModules].indices } },
       ingest: { get() { return this[kApiModules].ingest } },
+      ingestion: { get() { return this[kApiModules].ingestion } },
       insights: { get() { return this[kApiModules].insights } },
       ism: { get() { return this[kApiModules].ism } },
       knn: { get() { return this[kApiModules].knn } },
@@ -181,12 +186,15 @@ class OpenSearchAPI {
       replication: { get() { return this[kApiModules].replication } },
       rollups: { get() { return this[kApiModules].rollups } },
       searchPipeline: { get() { return this[kApiModules].searchPipeline } },
+      searchRelevance: { get() { return this[kApiModules].searchRelevance } },
+      securityAnalytics: { get() { return this[kApiModules].securityAnalytics } },
       security: { get() { return this[kApiModules].security } },
       sm: { get() { return this[kApiModules].sm } },
       snapshot: { get() { return this[kApiModules].snapshot } },
       sql: { get() { return this[kApiModules].sql } },
       tasks: { get() { return this[kApiModules].tasks } },
       transforms: { get() { return this[kApiModules].transforms } },
+      ubi: { get() { return this[kApiModules].ubi } },
       wlm: { get() { return this[kApiModules].wlm } },
 
       // Deprecated: Use asynchronousSearch instead.
@@ -199,6 +207,10 @@ class OpenSearchAPI {
       remote_store: { get() { return this[kApiModules].remoteStore } },
       // Deprecated: Use searchPipeline instead.
       search_pipeline: { get() { return this[kApiModules].searchPipeline } },
+      // Deprecated: Use searchRelevance instead.
+      search_relevance: { get() { return this[kApiModules].searchRelevance } },
+      // Deprecated: Use securityAnalytics instead.
+      security_analytics: { get() { return this[kApiModules].securityAnalytics } },
     })
   }
 }

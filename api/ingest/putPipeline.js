@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates or updates an ingest pipeline.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/create-update-ingest/ - ingest.put_pipeline}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ingest-pipelines/create-ingest/ - ingest.put_pipeline}
  *
  * @memberOf API-Ingest
  *

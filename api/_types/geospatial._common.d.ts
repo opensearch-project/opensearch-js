@@ -29,24 +29,28 @@ export type DataSource = {
   endpoint: string;
   name: Common.Name;
   next_update_at_in_epoch_millis: Common.EpochTimeUnitMillis;
-  state: 'AVAILABLE' | 'CREATE_FAILED' | 'CREATING' | 'DELETING';
+  state: DataSourceState;
   update_interval_in_days: number;
   update_stats: UpdateStats;
 }
+
+export type DataSourceState = 'AVAILABLE' | 'CREATE_FAILED' | 'CREATING' | 'DELETING'
 
 export type Envelope = PointCoordinates[]
 
 export type GeoJSONData = {
   geometry: Geometry;
   properties?: Record<string, any>;
-  type: 'Feature' | 'FeatureCollection';
+  type: GeoJSONDataType;
 }
+
+export type GeoJSONDataType = 'Feature' | 'FeatureCollection'
 
 export type GeoJSONRequest = {
   data: GeoJSONData[];
   field?: string;
   index: Common.IndexName;
-  type: 'geo_point' | 'geo_shape';
+  type: GeospatialFieldType;
 }
 
 export type Geometry = GeoShapes | GeometryCollection
@@ -57,6 +61,8 @@ export type GeometryCollection = {
 }
 
 export type GeoShapes = Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon | Envelope
+
+export type GeospatialFieldType = 'geo_point' | 'geo_shape'
 
 export type GeoSpatialGeojsonUploadResponse = {
   errors: boolean;

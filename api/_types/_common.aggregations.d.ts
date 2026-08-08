@@ -42,8 +42,6 @@ export type Aggregation = {
 }
 
 export type AggregationContainer = {
-  aggregations?: Record<string, AggregationContainer>;
-  aggs?: Record<string, AggregationContainer>;
   meta?: Common.Metadata;
 } & ({
   adjacency_matrix: AdjacencyMatrixAggregation;
@@ -232,7 +230,10 @@ export type BoxplotAggregation = MetricAggregationBase & {
   compression?: number;
 }
 
-export type BucketAggregationBase = Aggregation & Record<string, any>
+export type BucketAggregationBase = Aggregation & {
+  aggregations?: Record<string, AggregationContainer>;
+  aggs?: Record<string, AggregationContainer>;
+}
 
 export type BucketMetricValueAggregate = SingleMetricAggregateBase & {
   keys: string[];
@@ -272,10 +273,9 @@ export type CardinalityAggregate = AggregateBase & {
 export type CardinalityAggregation = MetricAggregationBase & {
   execution_hint?: CardinalityExecutionMode;
   precision_threshold?: number;
-  rehash?: boolean;
 }
 
-export type CardinalityExecutionMode = 'direct' | 'global_ordinals' | 'save_memory_heuristic' | 'save_time_heuristic' | 'segment_ordinals'
+export type CardinalityExecutionMode = 'direct' | 'global_ordinals' | 'segment_ordinals'
 
 export type ChildrenAggregate = SingleBucketAggregateBase & Record<string, any>
 
@@ -683,7 +683,9 @@ export type MatrixStatsFields = {
 
 export type MaxAggregate = SingleMetricAggregateBase & Record<string, any>
 
-export type MaxAggregation = FormatMetricAggregationBase & Record<string, any>
+export type MaxAggregation = FormatMetricAggregationBase & {
+  value_type?: ValueType;
+}
 
 export type MaxBucketAggregation = PipelineAggregationBase & Record<string, any>
 
@@ -693,15 +695,15 @@ export type MedianAbsoluteDeviationAggregation = FormatMetricAggregationBase & {
   compression?: number;
 }
 
-export type MetricAggregationBase = {
-  field?: Common.Field;
+export type MetricAggregationBase = Aggregation & {
   missing?: Common.FieldValue;
-  script?: Common.Script;
 }
 
 export type MinAggregate = SingleMetricAggregateBase & Record<string, any>
 
-export type MinAggregation = FormatMetricAggregationBase & Record<string, any>
+export type MinAggregation = FormatMetricAggregationBase & {
+  value_type?: ValueType;
+}
 
 export type MinBucketAggregation = PipelineAggregationBase & Record<string, any>
 
@@ -1140,19 +1142,16 @@ export type TermsAggregation = BucketAggregationBase & {
   collect_mode?: TermsAggregationCollectMode;
   exclude?: TermsExclude;
   execution_hint?: TermsAggregationExecutionHint;
-  field?: Common.Field;
   format?: string;
   include?: TermsInclude;
   min_doc_count?: number;
   missing?: Common.FieldValue;
-  missing_bucket?: boolean;
-  missing_order?: MissingOrder;
   order?: AggregateOrder;
-  script?: Common.Script;
+  shard_min_doc_count?: number;
   shard_size?: number;
   show_term_doc_count_error?: boolean;
   size?: number;
-  value_type?: string;
+  value_type?: ValueType;
 }
 
 export type TermsAggregationCollectMode = 'breadth_first' | 'depth_first'
@@ -1179,7 +1178,7 @@ export type TestPopulation = {
 }
 
 export type TopHitsAggregate = AggregateBase & {
-  hits: Core_Search.HitsMetadata;
+  hits: Core_Search.HitsMetadataJsonValue;
 }
 
 export type TopHitsAggregation = MetricAggregationBase & {
@@ -1220,7 +1219,7 @@ export type ValueCountAggregate = SingleMetricAggregateBase & Record<string, any
 
 export type ValueCountAggregation = FormattableMetricAggregation & Record<string, any>
 
-export type ValueType = 'boolean' | 'date' | 'date_nanos' | 'double' | 'geo_point' | 'ip' | 'long' | 'number' | 'numeric' | 'string'
+export type ValueType = 'boolean' | 'byte' | 'date' | 'double' | 'float' | 'geo_point' | 'integer' | 'ip' | 'long' | 'number' | 'numeric' | 'range' | 'short' | 'string' | 'unsigned_long'
 
 export type VariableWidthHistogramAggregate = MultiBucketAggregateBaseVariableWidthHistogramBucket & Record<string, any>
 

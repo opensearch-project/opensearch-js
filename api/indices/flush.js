@@ -30,7 +30,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.force] - If `true`, the request forces a flush even if there are no changes to commit to the index.
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
  * @param {boolean} [params.wait_if_ongoing=true] - If `true`, the flush operation blocks until execution when another flush operation is running. If `false`, OpenSearch returns an error if you request a flush when another flush operation is running.
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases to flush. Supports wildcards (`*`). To flush all data streams and indexes, omit this parameter or use `*` or `_all`.
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases to flush. Supports wildcards (`*`). To flush all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -26,5 +26,7 @@ export interface Cluster_GetWeightedRouting_Response extends ApiResponse {
   body: Cluster_GetWeightedRouting_ResponseBody;
 }
 
-export type Cluster_GetWeightedRouting_ResponseBody = Cluster_WeightedRouting.WeightsResponse
+export interface Cluster_GetWeightedRouting_ResponseBody extends Cluster_WeightedRouting.WeightsBase {
+  discovered_cluster_manager?: boolean;
+}
 

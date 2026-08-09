@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 import * as Insights_Common from '../_types/insights._common'
 
 export interface Insights_TopQueries_Request extends Global.Params {
-  type: 'cpu' | 'latency' | 'memory';
+  type: Insights_Common.MetricType;
 }
 
 export interface Insights_TopQueries_Response extends ApiResponse {

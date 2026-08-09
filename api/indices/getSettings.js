@@ -33,8 +33,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.include_defaults=false] - If `true`, return all default settings in the response.
  * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only. If `false`, information is retrieved from the cluster-manager node.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} [params.name] - Comma-separated list or wildcard expression of settings to retrieve.
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+ * @param {string} [params.name] - A comma-separated list or wildcard expression of settings to retrieve.
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

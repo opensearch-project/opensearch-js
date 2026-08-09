@@ -18,226 +18,306 @@
 
 /** @namespace API-Security */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const authinfoFn = require('./authinfo');
+const authtokenFn = require('./authtoken');
+const changePasswordFn = require('./changePassword');
+const configUpgradeCheckFn = require('./configUpgradeCheck');
+const configUpgradePerformFn = require('./configUpgradePerform');
+const createActionGroupFn = require('./createActionGroup');
+const createAllowlistFn = require('./createAllowlist');
+const createRoleFn = require('./createRole');
+const createRoleMappingFn = require('./createRoleMapping');
+const createTenantFn = require('./createTenant');
+const createUpdateTenancyConfigFn = require('./createUpdateTenancyConfig');
+const createUserFn = require('./createUser');
+const createUserLegacyFn = require('./createUserLegacy');
+const deleteActionGroupFn = require('./deleteActionGroup');
+const deleteDistinguishedNameFn = require('./deleteDistinguishedName');
+const deleteRoleFn = require('./deleteRole');
+const deleteRoleMappingFn = require('./deleteRoleMapping');
+const deleteTenantFn = require('./deleteTenant');
+const deleteUserFn = require('./deleteUser');
+const deleteUserLegacyFn = require('./deleteUserLegacy');
+const flushCacheFn = require('./flushCache');
+const generateOboTokenFn = require('./generateOboToken');
+const generateUserTokenFn = require('./generateUserToken');
+const generateUserTokenLegacyFn = require('./generateUserTokenLegacy');
+const getAccountDetailsFn = require('./getAccountDetails');
+const getActionGroupFn = require('./getActionGroup');
+const getActionGroupsFn = require('./getActionGroups');
+const getAllCertificatesFn = require('./getAllCertificates');
+const getAllowlistFn = require('./getAllowlist');
+const getAuditConfigurationFn = require('./getAuditConfiguration');
+const getCertificatesFn = require('./getCertificates');
+const getConfigurationFn = require('./getConfiguration');
+const getDashboardsInfoFn = require('./getDashboardsInfo');
+const getDistinguishedNameFn = require('./getDistinguishedName');
+const getDistinguishedNamesFn = require('./getDistinguishedNames');
+const getNodeCertificatesFn = require('./getNodeCertificates');
+const getPermissionsInfoFn = require('./getPermissionsInfo');
+const getRoleFn = require('./getRole');
+const getRoleMappingFn = require('./getRoleMapping');
+const getRoleMappingsFn = require('./getRoleMappings');
+const getRolesFn = require('./getRoles');
+const getSslinfoFn = require('./getSslinfo');
+const getTenancyConfigFn = require('./getTenancyConfig');
+const getTenantFn = require('./getTenant');
+const getTenantsFn = require('./getTenants');
+const getUserFn = require('./getUser');
+const getUserLegacyFn = require('./getUserLegacy');
+const getUsersFn = require('./getUsers');
+const getUsersLegacyFn = require('./getUsersLegacy');
+const healthFn = require('./health');
+const migrateFn = require('./migrate');
+const patchActionGroupFn = require('./patchActionGroup');
+const patchActionGroupsFn = require('./patchActionGroups');
+const patchAllowlistFn = require('./patchAllowlist');
+const patchAuditConfigurationFn = require('./patchAuditConfiguration');
+const patchConfigurationFn = require('./patchConfiguration');
+const patchDistinguishedNameFn = require('./patchDistinguishedName');
+const patchDistinguishedNamesFn = require('./patchDistinguishedNames');
+const patchRoleFn = require('./patchRole');
+const patchRoleMappingFn = require('./patchRoleMapping');
+const patchRoleMappingsFn = require('./patchRoleMappings');
+const patchRolesFn = require('./patchRoles');
+const patchTenantFn = require('./patchTenant');
+const patchTenantsFn = require('./patchTenants');
+const patchUserFn = require('./patchUser');
+const patchUsersFn = require('./patchUsers');
+const postDashboardsInfoFn = require('./postDashboardsInfo');
+const reloadHttpCertificatesFn = require('./reloadHttpCertificates');
+const reloadTransportCertificatesFn = require('./reloadTransportCertificates');
+const tenantInfoFn = require('./tenantInfo');
+const updateAuditConfigurationFn = require('./updateAuditConfiguration');
+const updateConfigurationFn = require('./updateConfiguration');
+const updateDistinguishedNameFn = require('./updateDistinguishedName');
+const validateFn = require('./validate');
+const whoAmIFn = require('./whoAmI');
+const whoAmIProtectedFn = require('./whoAmIProtected');
+
 function SecurityApi(bindObj) {
-  this.authinfo = require('./authinfo').bind(bindObj);
-  this.authtoken = require('./authtoken').bind(bindObj);
-  this.changePassword = require('./changePassword').bind(bindObj);
-  this.configUpgradeCheck = require('./configUpgradeCheck').bind(bindObj);
-  this.configUpgradePerform = require('./configUpgradePerform').bind(bindObj);
-  this.createActionGroup = require('./createActionGroup').bind(bindObj);
-  this.createAllowlist = require('./createAllowlist').bind(bindObj);
-  this.createRole = require('./createRole').bind(bindObj);
-  this.createRoleMapping = require('./createRoleMapping').bind(bindObj);
-  this.createTenant = require('./createTenant').bind(bindObj);
-  this.createUpdateTenancyConfig = require('./createUpdateTenancyConfig').bind(bindObj);
-  this.createUser = require('./createUser').bind(bindObj);
-  this.createUserLegacy = require('./createUserLegacy').bind(bindObj);
-  this.deleteActionGroup = require('./deleteActionGroup').bind(bindObj);
-  this.deleteDistinguishedName = require('./deleteDistinguishedName').bind(bindObj);
-  this.deleteRole = require('./deleteRole').bind(bindObj);
-  this.deleteRoleMapping = require('./deleteRoleMapping').bind(bindObj);
-  this.deleteTenant = require('./deleteTenant').bind(bindObj);
-  this.deleteUser = require('./deleteUser').bind(bindObj);
-  this.deleteUserLegacy = require('./deleteUserLegacy').bind(bindObj);
-  this.flushCache = require('./flushCache').bind(bindObj);
-  this.generateOboToken = require('./generateOboToken').bind(bindObj);
-  this.generateUserToken = require('./generateUserToken').bind(bindObj);
-  this.generateUserTokenLegacy = require('./generateUserTokenLegacy').bind(bindObj);
-  this.getAccountDetails = require('./getAccountDetails').bind(bindObj);
-  this.getActionGroup = require('./getActionGroup').bind(bindObj);
-  this.getActionGroups = require('./getActionGroups').bind(bindObj);
-  this.getAllCertificates = require('./getAllCertificates').bind(bindObj);
-  this.getAllowlist = require('./getAllowlist').bind(bindObj);
-  this.getAuditConfiguration = require('./getAuditConfiguration').bind(bindObj);
-  this.getCertificates = require('./getCertificates').bind(bindObj);
-  this.getConfiguration = require('./getConfiguration').bind(bindObj);
-  this.getDashboardsInfo = require('./getDashboardsInfo').bind(bindObj);
-  this.getDistinguishedName = require('./getDistinguishedName').bind(bindObj);
-  this.getDistinguishedNames = require('./getDistinguishedNames').bind(bindObj);
-  this.getNodeCertificates = require('./getNodeCertificates').bind(bindObj);
-  this.getPermissionsInfo = require('./getPermissionsInfo').bind(bindObj);
-  this.getRole = require('./getRole').bind(bindObj);
-  this.getRoleMapping = require('./getRoleMapping').bind(bindObj);
-  this.getRoleMappings = require('./getRoleMappings').bind(bindObj);
-  this.getRoles = require('./getRoles').bind(bindObj);
-  this.getSslinfo = require('./getSslinfo').bind(bindObj);
-  this.getTenancyConfig = require('./getTenancyConfig').bind(bindObj);
-  this.getTenant = require('./getTenant').bind(bindObj);
-  this.getTenants = require('./getTenants').bind(bindObj);
-  this.getUser = require('./getUser').bind(bindObj);
-  this.getUserLegacy = require('./getUserLegacy').bind(bindObj);
-  this.getUsers = require('./getUsers').bind(bindObj);
-  this.getUsersLegacy = require('./getUsersLegacy').bind(bindObj);
-  this.health = require('./health').bind(bindObj);
-  this.migrate = require('./migrate').bind(bindObj);
-  this.patchActionGroup = require('./patchActionGroup').bind(bindObj);
-  this.patchActionGroups = require('./patchActionGroups').bind(bindObj);
-  this.patchAllowlist = require('./patchAllowlist').bind(bindObj);
-  this.patchAuditConfiguration = require('./patchAuditConfiguration').bind(bindObj);
-  this.patchConfiguration = require('./patchConfiguration').bind(bindObj);
-  this.patchDistinguishedName = require('./patchDistinguishedName').bind(bindObj);
-  this.patchDistinguishedNames = require('./patchDistinguishedNames').bind(bindObj);
-  this.patchRole = require('./patchRole').bind(bindObj);
-  this.patchRoleMapping = require('./patchRoleMapping').bind(bindObj);
-  this.patchRoleMappings = require('./patchRoleMappings').bind(bindObj);
-  this.patchRoles = require('./patchRoles').bind(bindObj);
-  this.patchTenant = require('./patchTenant').bind(bindObj);
-  this.patchTenants = require('./patchTenants').bind(bindObj);
-  this.patchUser = require('./patchUser').bind(bindObj);
-  this.patchUsers = require('./patchUsers').bind(bindObj);
-  this.postDashboardsInfo = require('./postDashboardsInfo').bind(bindObj);
-  this.reloadHttpCertificates = require('./reloadHttpCertificates').bind(bindObj);
-  this.reloadTransportCertificates = require('./reloadTransportCertificates').bind(bindObj);
-  this.tenantInfo = require('./tenantInfo').bind(bindObj);
-  this.updateAuditConfiguration = require('./updateAuditConfiguration').bind(bindObj);
-  this.updateConfiguration = require('./updateConfiguration').bind(bindObj);
-  this.updateDistinguishedName = require('./updateDistinguishedName').bind(bindObj);
-  this.validate = require('./validate').bind(bindObj);
-  this.whoAmI = require('./whoAmI').bind(bindObj);
-  this.whoAmIProtected = require('./whoAmIProtected').bind(bindObj);
+  this.authinfo = authinfoFn.bind(bindObj);
+  this.authtoken = authtokenFn.bind(bindObj);
+  this.changePassword = changePasswordFn.bind(bindObj);
+  this.configUpgradeCheck = configUpgradeCheckFn.bind(bindObj);
+  this.configUpgradePerform = configUpgradePerformFn.bind(bindObj);
+  this.createActionGroup = createActionGroupFn.bind(bindObj);
+  this.createAllowlist = createAllowlistFn.bind(bindObj);
+  this.createRole = createRoleFn.bind(bindObj);
+  this.createRoleMapping = createRoleMappingFn.bind(bindObj);
+  this.createTenant = createTenantFn.bind(bindObj);
+  this.createUpdateTenancyConfig = createUpdateTenancyConfigFn.bind(bindObj);
+  this.createUser = createUserFn.bind(bindObj);
+  this.createUserLegacy = createUserLegacyFn.bind(bindObj);
+  this.deleteActionGroup = deleteActionGroupFn.bind(bindObj);
+  this.deleteDistinguishedName = deleteDistinguishedNameFn.bind(bindObj);
+  this.deleteRole = deleteRoleFn.bind(bindObj);
+  this.deleteRoleMapping = deleteRoleMappingFn.bind(bindObj);
+  this.deleteTenant = deleteTenantFn.bind(bindObj);
+  this.deleteUser = deleteUserFn.bind(bindObj);
+  this.deleteUserLegacy = deleteUserLegacyFn.bind(bindObj);
+  this.flushCache = flushCacheFn.bind(bindObj);
+  this.generateOboToken = generateOboTokenFn.bind(bindObj);
+  this.generateUserToken = generateUserTokenFn.bind(bindObj);
+  this.generateUserTokenLegacy = generateUserTokenLegacyFn.bind(bindObj);
+  this.getAccountDetails = getAccountDetailsFn.bind(bindObj);
+  this.getActionGroup = getActionGroupFn.bind(bindObj);
+  this.getActionGroups = getActionGroupsFn.bind(bindObj);
+  this.getAllCertificates = getAllCertificatesFn.bind(bindObj);
+  this.getAllowlist = getAllowlistFn.bind(bindObj);
+  this.getAuditConfiguration = getAuditConfigurationFn.bind(bindObj);
+  this.getCertificates = getCertificatesFn.bind(bindObj);
+  this.getConfiguration = getConfigurationFn.bind(bindObj);
+  this.getDashboardsInfo = getDashboardsInfoFn.bind(bindObj);
+  this.getDistinguishedName = getDistinguishedNameFn.bind(bindObj);
+  this.getDistinguishedNames = getDistinguishedNamesFn.bind(bindObj);
+  this.getNodeCertificates = getNodeCertificatesFn.bind(bindObj);
+  this.getPermissionsInfo = getPermissionsInfoFn.bind(bindObj);
+  this.getRole = getRoleFn.bind(bindObj);
+  this.getRoleMapping = getRoleMappingFn.bind(bindObj);
+  this.getRoleMappings = getRoleMappingsFn.bind(bindObj);
+  this.getRoles = getRolesFn.bind(bindObj);
+  this.getSslinfo = getSslinfoFn.bind(bindObj);
+  this.getTenancyConfig = getTenancyConfigFn.bind(bindObj);
+  this.getTenant = getTenantFn.bind(bindObj);
+  this.getTenants = getTenantsFn.bind(bindObj);
+  this.getUser = getUserFn.bind(bindObj);
+  this.getUserLegacy = getUserLegacyFn.bind(bindObj);
+  this.getUsers = getUsersFn.bind(bindObj);
+  this.getUsersLegacy = getUsersLegacyFn.bind(bindObj);
+  this.health = healthFn.bind(bindObj);
+  this.migrate = migrateFn.bind(bindObj);
+  this.patchActionGroup = patchActionGroupFn.bind(bindObj);
+  this.patchActionGroups = patchActionGroupsFn.bind(bindObj);
+  this.patchAllowlist = patchAllowlistFn.bind(bindObj);
+  this.patchAuditConfiguration = patchAuditConfigurationFn.bind(bindObj);
+  this.patchConfiguration = patchConfigurationFn.bind(bindObj);
+  this.patchDistinguishedName = patchDistinguishedNameFn.bind(bindObj);
+  this.patchDistinguishedNames = patchDistinguishedNamesFn.bind(bindObj);
+  this.patchRole = patchRoleFn.bind(bindObj);
+  this.patchRoleMapping = patchRoleMappingFn.bind(bindObj);
+  this.patchRoleMappings = patchRoleMappingsFn.bind(bindObj);
+  this.patchRoles = patchRolesFn.bind(bindObj);
+  this.patchTenant = patchTenantFn.bind(bindObj);
+  this.patchTenants = patchTenantsFn.bind(bindObj);
+  this.patchUser = patchUserFn.bind(bindObj);
+  this.patchUsers = patchUsersFn.bind(bindObj);
+  this.postDashboardsInfo = postDashboardsInfoFn.bind(bindObj);
+  this.reloadHttpCertificates = reloadHttpCertificatesFn.bind(bindObj);
+  this.reloadTransportCertificates = reloadTransportCertificatesFn.bind(bindObj);
+  this.tenantInfo = tenantInfoFn.bind(bindObj);
+  this.updateAuditConfiguration = updateAuditConfigurationFn.bind(bindObj);
+  this.updateConfiguration = updateConfigurationFn.bind(bindObj);
+  this.updateDistinguishedName = updateDistinguishedNameFn.bind(bindObj);
+  this.validate = validateFn.bind(bindObj);
+  this.whoAmI = whoAmIFn.bind(bindObj);
+  this.whoAmIProtected = whoAmIProtectedFn.bind(bindObj);
 
   // Deprecated: Use changePassword instead.
-  this.change_password = require('./changePassword').bind(bindObj);
+  this.change_password = changePasswordFn.bind(bindObj);
   // Deprecated: Use configUpgradeCheck instead.
-  this.config_upgrade_check = require('./configUpgradeCheck').bind(bindObj);
+  this.config_upgrade_check = configUpgradeCheckFn.bind(bindObj);
   // Deprecated: Use configUpgradePerform instead.
-  this.config_upgrade_perform = require('./configUpgradePerform').bind(bindObj);
+  this.config_upgrade_perform = configUpgradePerformFn.bind(bindObj);
   // Deprecated: Use createActionGroup instead.
-  this.create_action_group = require('./createActionGroup').bind(bindObj);
+  this.create_action_group = createActionGroupFn.bind(bindObj);
   // Deprecated: Use createAllowlist instead.
-  this.create_allowlist = require('./createAllowlist').bind(bindObj);
+  this.create_allowlist = createAllowlistFn.bind(bindObj);
   // Deprecated: Use createRole instead.
-  this.create_role = require('./createRole').bind(bindObj);
+  this.create_role = createRoleFn.bind(bindObj);
   // Deprecated: Use createRoleMapping instead.
-  this.create_role_mapping = require('./createRoleMapping').bind(bindObj);
+  this.create_role_mapping = createRoleMappingFn.bind(bindObj);
   // Deprecated: Use createTenant instead.
-  this.create_tenant = require('./createTenant').bind(bindObj);
+  this.create_tenant = createTenantFn.bind(bindObj);
   // Deprecated: Use createUpdateTenancyConfig instead.
-  this.create_update_tenancy_config = require('./createUpdateTenancyConfig').bind(bindObj);
+  this.create_update_tenancy_config = createUpdateTenancyConfigFn.bind(bindObj);
   // Deprecated: Use createUser instead.
-  this.create_user = require('./createUser').bind(bindObj);
+  this.create_user = createUserFn.bind(bindObj);
   // Deprecated: Use createUserLegacy instead.
-  this.create_user_legacy = require('./createUserLegacy').bind(bindObj);
+  this.create_user_legacy = createUserLegacyFn.bind(bindObj);
   // Deprecated: Use deleteActionGroup instead.
-  this.delete_action_group = require('./deleteActionGroup').bind(bindObj);
+  this.delete_action_group = deleteActionGroupFn.bind(bindObj);
   // Deprecated: Use deleteDistinguishedName instead.
-  this.delete_distinguished_name = require('./deleteDistinguishedName').bind(bindObj);
+  this.delete_distinguished_name = deleteDistinguishedNameFn.bind(bindObj);
   // Deprecated: Use deleteRole instead.
-  this.delete_role = require('./deleteRole').bind(bindObj);
+  this.delete_role = deleteRoleFn.bind(bindObj);
   // Deprecated: Use deleteRoleMapping instead.
-  this.delete_role_mapping = require('./deleteRoleMapping').bind(bindObj);
+  this.delete_role_mapping = deleteRoleMappingFn.bind(bindObj);
   // Deprecated: Use deleteTenant instead.
-  this.delete_tenant = require('./deleteTenant').bind(bindObj);
+  this.delete_tenant = deleteTenantFn.bind(bindObj);
   // Deprecated: Use deleteUser instead.
-  this.delete_user = require('./deleteUser').bind(bindObj);
+  this.delete_user = deleteUserFn.bind(bindObj);
   // Deprecated: Use deleteUserLegacy instead.
-  this.delete_user_legacy = require('./deleteUserLegacy').bind(bindObj);
+  this.delete_user_legacy = deleteUserLegacyFn.bind(bindObj);
   // Deprecated: Use flushCache instead.
-  this.flush_cache = require('./flushCache').bind(bindObj);
+  this.flush_cache = flushCacheFn.bind(bindObj);
   // Deprecated: Use generateOboToken instead.
-  this.generate_obo_token = require('./generateOboToken').bind(bindObj);
+  this.generate_obo_token = generateOboTokenFn.bind(bindObj);
   // Deprecated: Use generateUserToken instead.
-  this.generate_user_token = require('./generateUserToken').bind(bindObj);
+  this.generate_user_token = generateUserTokenFn.bind(bindObj);
   // Deprecated: Use generateUserTokenLegacy instead.
-  this.generate_user_token_legacy = require('./generateUserTokenLegacy').bind(bindObj);
+  this.generate_user_token_legacy = generateUserTokenLegacyFn.bind(bindObj);
   // Deprecated: Use getAccountDetails instead.
-  this.get_account_details = require('./getAccountDetails').bind(bindObj);
+  this.get_account_details = getAccountDetailsFn.bind(bindObj);
   // Deprecated: Use getActionGroup instead.
-  this.get_action_group = require('./getActionGroup').bind(bindObj);
+  this.get_action_group = getActionGroupFn.bind(bindObj);
   // Deprecated: Use getActionGroups instead.
-  this.get_action_groups = require('./getActionGroups').bind(bindObj);
+  this.get_action_groups = getActionGroupsFn.bind(bindObj);
   // Deprecated: Use getAllCertificates instead.
-  this.get_all_certificates = require('./getAllCertificates').bind(bindObj);
+  this.get_all_certificates = getAllCertificatesFn.bind(bindObj);
   // Deprecated: Use getAllowlist instead.
-  this.get_allowlist = require('./getAllowlist').bind(bindObj);
+  this.get_allowlist = getAllowlistFn.bind(bindObj);
   // Deprecated: Use getAuditConfiguration instead.
-  this.get_audit_configuration = require('./getAuditConfiguration').bind(bindObj);
+  this.get_audit_configuration = getAuditConfigurationFn.bind(bindObj);
   // Deprecated: Use getCertificates instead.
-  this.get_certificates = require('./getCertificates').bind(bindObj);
+  this.get_certificates = getCertificatesFn.bind(bindObj);
   // Deprecated: Use getConfiguration instead.
-  this.get_configuration = require('./getConfiguration').bind(bindObj);
+  this.get_configuration = getConfigurationFn.bind(bindObj);
   // Deprecated: Use getDashboardsInfo instead.
-  this.get_dashboards_info = require('./getDashboardsInfo').bind(bindObj);
+  this.get_dashboards_info = getDashboardsInfoFn.bind(bindObj);
   // Deprecated: Use getDistinguishedName instead.
-  this.get_distinguished_name = require('./getDistinguishedName').bind(bindObj);
+  this.get_distinguished_name = getDistinguishedNameFn.bind(bindObj);
   // Deprecated: Use getDistinguishedNames instead.
-  this.get_distinguished_names = require('./getDistinguishedNames').bind(bindObj);
+  this.get_distinguished_names = getDistinguishedNamesFn.bind(bindObj);
   // Deprecated: Use getNodeCertificates instead.
-  this.get_node_certificates = require('./getNodeCertificates').bind(bindObj);
+  this.get_node_certificates = getNodeCertificatesFn.bind(bindObj);
   // Deprecated: Use getPermissionsInfo instead.
-  this.get_permissions_info = require('./getPermissionsInfo').bind(bindObj);
+  this.get_permissions_info = getPermissionsInfoFn.bind(bindObj);
   // Deprecated: Use getRole instead.
-  this.get_role = require('./getRole').bind(bindObj);
+  this.get_role = getRoleFn.bind(bindObj);
   // Deprecated: Use getRoleMapping instead.
-  this.get_role_mapping = require('./getRoleMapping').bind(bindObj);
+  this.get_role_mapping = getRoleMappingFn.bind(bindObj);
   // Deprecated: Use getRoleMappings instead.
-  this.get_role_mappings = require('./getRoleMappings').bind(bindObj);
+  this.get_role_mappings = getRoleMappingsFn.bind(bindObj);
   // Deprecated: Use getRoles instead.
-  this.get_roles = require('./getRoles').bind(bindObj);
+  this.get_roles = getRolesFn.bind(bindObj);
   // Deprecated: Use getSslinfo instead.
-  this.get_sslinfo = require('./getSslinfo').bind(bindObj);
+  this.get_sslinfo = getSslinfoFn.bind(bindObj);
   // Deprecated: Use getTenancyConfig instead.
-  this.get_tenancy_config = require('./getTenancyConfig').bind(bindObj);
+  this.get_tenancy_config = getTenancyConfigFn.bind(bindObj);
   // Deprecated: Use getTenant instead.
-  this.get_tenant = require('./getTenant').bind(bindObj);
+  this.get_tenant = getTenantFn.bind(bindObj);
   // Deprecated: Use getTenants instead.
-  this.get_tenants = require('./getTenants').bind(bindObj);
+  this.get_tenants = getTenantsFn.bind(bindObj);
   // Deprecated: Use getUser instead.
-  this.get_user = require('./getUser').bind(bindObj);
+  this.get_user = getUserFn.bind(bindObj);
   // Deprecated: Use getUserLegacy instead.
-  this.get_user_legacy = require('./getUserLegacy').bind(bindObj);
+  this.get_user_legacy = getUserLegacyFn.bind(bindObj);
   // Deprecated: Use getUsers instead.
-  this.get_users = require('./getUsers').bind(bindObj);
+  this.get_users = getUsersFn.bind(bindObj);
   // Deprecated: Use getUsersLegacy instead.
-  this.get_users_legacy = require('./getUsersLegacy').bind(bindObj);
+  this.get_users_legacy = getUsersLegacyFn.bind(bindObj);
   // Deprecated: Use patchActionGroup instead.
-  this.patch_action_group = require('./patchActionGroup').bind(bindObj);
+  this.patch_action_group = patchActionGroupFn.bind(bindObj);
   // Deprecated: Use patchActionGroups instead.
-  this.patch_action_groups = require('./patchActionGroups').bind(bindObj);
+  this.patch_action_groups = patchActionGroupsFn.bind(bindObj);
   // Deprecated: Use patchAllowlist instead.
-  this.patch_allowlist = require('./patchAllowlist').bind(bindObj);
+  this.patch_allowlist = patchAllowlistFn.bind(bindObj);
   // Deprecated: Use patchAuditConfiguration instead.
-  this.patch_audit_configuration = require('./patchAuditConfiguration').bind(bindObj);
+  this.patch_audit_configuration = patchAuditConfigurationFn.bind(bindObj);
   // Deprecated: Use patchConfiguration instead.
-  this.patch_configuration = require('./patchConfiguration').bind(bindObj);
+  this.patch_configuration = patchConfigurationFn.bind(bindObj);
   // Deprecated: Use patchDistinguishedName instead.
-  this.patch_distinguished_name = require('./patchDistinguishedName').bind(bindObj);
+  this.patch_distinguished_name = patchDistinguishedNameFn.bind(bindObj);
   // Deprecated: Use patchDistinguishedNames instead.
-  this.patch_distinguished_names = require('./patchDistinguishedNames').bind(bindObj);
+  this.patch_distinguished_names = patchDistinguishedNamesFn.bind(bindObj);
   // Deprecated: Use patchRole instead.
-  this.patch_role = require('./patchRole').bind(bindObj);
+  this.patch_role = patchRoleFn.bind(bindObj);
   // Deprecated: Use patchRoleMapping instead.
-  this.patch_role_mapping = require('./patchRoleMapping').bind(bindObj);
+  this.patch_role_mapping = patchRoleMappingFn.bind(bindObj);
   // Deprecated: Use patchRoleMappings instead.
-  this.patch_role_mappings = require('./patchRoleMappings').bind(bindObj);
+  this.patch_role_mappings = patchRoleMappingsFn.bind(bindObj);
   // Deprecated: Use patchRoles instead.
-  this.patch_roles = require('./patchRoles').bind(bindObj);
+  this.patch_roles = patchRolesFn.bind(bindObj);
   // Deprecated: Use patchTenant instead.
-  this.patch_tenant = require('./patchTenant').bind(bindObj);
+  this.patch_tenant = patchTenantFn.bind(bindObj);
   // Deprecated: Use patchTenants instead.
-  this.patch_tenants = require('./patchTenants').bind(bindObj);
+  this.patch_tenants = patchTenantsFn.bind(bindObj);
   // Deprecated: Use patchUser instead.
-  this.patch_user = require('./patchUser').bind(bindObj);
+  this.patch_user = patchUserFn.bind(bindObj);
   // Deprecated: Use patchUsers instead.
-  this.patch_users = require('./patchUsers').bind(bindObj);
+  this.patch_users = patchUsersFn.bind(bindObj);
   // Deprecated: Use postDashboardsInfo instead.
-  this.post_dashboards_info = require('./postDashboardsInfo').bind(bindObj);
+  this.post_dashboards_info = postDashboardsInfoFn.bind(bindObj);
   // Deprecated: Use reloadHttpCertificates instead.
-  this.reload_http_certificates = require('./reloadHttpCertificates').bind(bindObj);
+  this.reload_http_certificates = reloadHttpCertificatesFn.bind(bindObj);
   // Deprecated: Use reloadTransportCertificates instead.
-  this.reload_transport_certificates = require('./reloadTransportCertificates').bind(bindObj);
+  this.reload_transport_certificates = reloadTransportCertificatesFn.bind(bindObj);
   // Deprecated: Use tenantInfo instead.
-  this.tenant_info = require('./tenantInfo').bind(bindObj);
+  this.tenant_info = tenantInfoFn.bind(bindObj);
   // Deprecated: Use updateAuditConfiguration instead.
-  this.update_audit_configuration = require('./updateAuditConfiguration').bind(bindObj);
+  this.update_audit_configuration = updateAuditConfigurationFn.bind(bindObj);
   // Deprecated: Use updateConfiguration instead.
-  this.update_configuration = require('./updateConfiguration').bind(bindObj);
+  this.update_configuration = updateConfigurationFn.bind(bindObj);
   // Deprecated: Use updateDistinguishedName instead.
-  this.update_distinguished_name = require('./updateDistinguishedName').bind(bindObj);
+  this.update_distinguished_name = updateDistinguishedNameFn.bind(bindObj);
   // Deprecated: Use whoAmI instead.
-  this.who_am_i = require('./whoAmI').bind(bindObj);
+  this.who_am_i = whoAmIFn.bind(bindObj);
   // Deprecated: Use whoAmIProtected instead.
-  this.who_am_i_protected = require('./whoAmIProtected').bind(bindObj);
+  this.who_am_i_protected = whoAmIProtectedFn.bind(bindObj);
 }
 
 module.exports = SecurityApi;

@@ -18,44 +18,60 @@
 
 /** @namespace API-Ism */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const addPolicyFn = require('./addPolicy');
+const changePolicyFn = require('./changePolicy');
+const deletePolicyFn = require('./deletePolicy');
+const existsPolicyFn = require('./existsPolicy');
+const explainPolicyFn = require('./explainPolicy');
+const getPoliciesFn = require('./getPolicies');
+const getPolicyFn = require('./getPolicy');
+const putPoliciesFn = require('./putPolicies');
+const putPolicyFn = require('./putPolicy');
+const refreshSearchAnalyzersFn = require('./refreshSearchAnalyzers');
+const removePolicyFn = require('./removePolicy');
+const retryIndexFn = require('./retryIndex');
+
 function IsmApi(bindObj) {
-  this.addPolicy = require('./addPolicy').bind(bindObj);
-  this.changePolicy = require('./changePolicy').bind(bindObj);
-  this.deletePolicy = require('./deletePolicy').bind(bindObj);
-  this.existsPolicy = require('./existsPolicy').bind(bindObj);
-  this.explainPolicy = require('./explainPolicy').bind(bindObj);
-  this.getPolicies = require('./getPolicies').bind(bindObj);
-  this.getPolicy = require('./getPolicy').bind(bindObj);
-  this.putPolicies = require('./putPolicies').bind(bindObj);
-  this.putPolicy = require('./putPolicy').bind(bindObj);
-  this.refreshSearchAnalyzers = require('./refreshSearchAnalyzers').bind(bindObj);
-  this.removePolicy = require('./removePolicy').bind(bindObj);
-  this.retryIndex = require('./retryIndex').bind(bindObj);
+  this.addPolicy = addPolicyFn.bind(bindObj);
+  this.changePolicy = changePolicyFn.bind(bindObj);
+  this.deletePolicy = deletePolicyFn.bind(bindObj);
+  this.existsPolicy = existsPolicyFn.bind(bindObj);
+  this.explainPolicy = explainPolicyFn.bind(bindObj);
+  this.getPolicies = getPoliciesFn.bind(bindObj);
+  this.getPolicy = getPolicyFn.bind(bindObj);
+  this.putPolicies = putPoliciesFn.bind(bindObj);
+  this.putPolicy = putPolicyFn.bind(bindObj);
+  this.refreshSearchAnalyzers = refreshSearchAnalyzersFn.bind(bindObj);
+  this.removePolicy = removePolicyFn.bind(bindObj);
+  this.retryIndex = retryIndexFn.bind(bindObj);
 
   // Deprecated: Use addPolicy instead.
-  this.add_policy = require('./addPolicy').bind(bindObj);
+  this.add_policy = addPolicyFn.bind(bindObj);
   // Deprecated: Use changePolicy instead.
-  this.change_policy = require('./changePolicy').bind(bindObj);
+  this.change_policy = changePolicyFn.bind(bindObj);
   // Deprecated: Use deletePolicy instead.
-  this.delete_policy = require('./deletePolicy').bind(bindObj);
+  this.delete_policy = deletePolicyFn.bind(bindObj);
   // Deprecated: Use existsPolicy instead.
-  this.exists_policy = require('./existsPolicy').bind(bindObj);
+  this.exists_policy = existsPolicyFn.bind(bindObj);
   // Deprecated: Use explainPolicy instead.
-  this.explain_policy = require('./explainPolicy').bind(bindObj);
+  this.explain_policy = explainPolicyFn.bind(bindObj);
   // Deprecated: Use getPolicies instead.
-  this.get_policies = require('./getPolicies').bind(bindObj);
+  this.get_policies = getPoliciesFn.bind(bindObj);
   // Deprecated: Use getPolicy instead.
-  this.get_policy = require('./getPolicy').bind(bindObj);
+  this.get_policy = getPolicyFn.bind(bindObj);
   // Deprecated: Use putPolicies instead.
-  this.put_policies = require('./putPolicies').bind(bindObj);
+  this.put_policies = putPoliciesFn.bind(bindObj);
   // Deprecated: Use putPolicy instead.
-  this.put_policy = require('./putPolicy').bind(bindObj);
+  this.put_policy = putPolicyFn.bind(bindObj);
   // Deprecated: Use refreshSearchAnalyzers instead.
-  this.refresh_search_analyzers = require('./refreshSearchAnalyzers').bind(bindObj);
+  this.refresh_search_analyzers = refreshSearchAnalyzersFn.bind(bindObj);
   // Deprecated: Use removePolicy instead.
-  this.remove_policy = require('./removePolicy').bind(bindObj);
+  this.remove_policy = removePolicyFn.bind(bindObj);
   // Deprecated: Use retryIndex instead.
-  this.retry_index = require('./retryIndex').bind(bindObj);
+  this.retry_index = retryIndexFn.bind(bindObj);
 }
 
 module.exports = IsmApi;

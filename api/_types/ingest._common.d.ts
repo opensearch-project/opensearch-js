@@ -242,7 +242,7 @@ export type SetProcessor = ProcessorBase & {
   ignore_empty_value?: boolean;
   media_type?: string;
   override?: boolean;
-  value?: Record<string, any>;
+  value?: string;
 }
 
 export type SetSecurityUserProcessor = ProcessorBase & {

@@ -21,6 +21,8 @@ export type PendingTask = {
   insert_order: number;
   priority: string;
   source: string;
+  time_in_execution?: Common.Duration;
+  time_in_execution_millis?: Common.DurationValueUnitMillis;
   time_in_queue?: Common.Duration;
   time_in_queue_millis: Common.DurationValueUnitMillis;
 }

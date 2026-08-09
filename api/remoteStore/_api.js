@@ -18,8 +18,13 @@
 
 /** @namespace API-Remote-Store */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const restoreFn = require('./restore');
+
 function RemoteStoreApi(bindObj) {
-  this.restore = require('./restore').bind(bindObj);
+  this.restore = restoreFn.bind(bindObj);
 
 }
 

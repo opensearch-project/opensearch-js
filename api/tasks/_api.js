@@ -22,7 +22,6 @@ function TasksApi(bindObj) {
   this.cancel = require('./cancel').bind(bindObj);
   this.get = require('./get').bind(bindObj);
   this.list = require('./list').bind(bindObj);
-
 }
 
 module.exports = TasksApi;

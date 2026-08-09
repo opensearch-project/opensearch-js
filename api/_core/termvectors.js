@@ -53,7 +53,7 @@ function termvectorsFunc(params, options, callback) {
   index = parsePathParam(index);
   id = parsePathParam(id);
 
-  const path = ['', index, '_termvectors', id].filter(c => c != null).join('/');
+  const path = ['', index, '_termvectors', id].filter((c) => c != null).join('/');
   const method = body ? 'POST' : 'GET';
   body = body || '';
 

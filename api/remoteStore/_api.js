@@ -20,7 +20,6 @@
 
 function RemoteStoreApi(bindObj) {
   this.restore = require('./restore').bind(bindObj);
-
 }
 
 module.exports = RemoteStoreApi;

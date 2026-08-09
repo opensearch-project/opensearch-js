@@ -28,7 +28,6 @@ function HttpApi(bindObj) {
   this.post = require('./post').bind(bindObj);
   this.put = require('./put').bind(bindObj);
   this.trace = require('./trace').bind(bindObj);
-
 }
 
 module.exports = HttpApi;

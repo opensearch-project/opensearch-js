@@ -20,7 +20,6 @@
 
 function NeuralApi(bindObj) {
   this.stats = require('./stats').bind(bindObj);
-
 }
 
 module.exports = NeuralApi;

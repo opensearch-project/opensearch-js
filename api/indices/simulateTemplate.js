@@ -43,7 +43,7 @@ function simulateTemplateFunc(params, options, callback) {
   let { body, name, ...querystring } = params;
   name = parsePathParam(name);
 
-  const path = ['/_index_template/_simulate', name].filter(c => c != null).join('/');
+  const path = ['/_index_template/_simulate', name].filter((c) => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

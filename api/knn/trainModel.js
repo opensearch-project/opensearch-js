@@ -27,7 +27,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {object} [params]
  * @param {string} [params.preference] - Preferred node to execute training.
  * @param {string} [params.model_id] - The id of the model.
- * @param {object} [params.body] 
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -40,7 +40,7 @@ function trainModelFunc(params, options, callback) {
   let { body, model_id, ...querystring } = params;
   model_id = parsePathParam(model_id);
 
-  const path = ['/_plugins/_knn/models', model_id, '_train'].filter(c => c != null).join('/');
+  const path = ['/_plugins/_knn/models', model_id, '_train'].filter((c) => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

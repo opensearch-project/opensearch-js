@@ -42,7 +42,7 @@ function infoFunc(params, options, callback) {
   metric = parsePathParam(metric);
   node_id = parsePathParam(node_id);
 
-  const path = ['/_nodes', node_id, metric].filter(c => c != null).join('/');
+  const path = ['/_nodes', node_id, metric].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

@@ -22,7 +22,6 @@ function ListApi(bindObj) {
   this.help = require('./help').bind(bindObj);
   this.indices = require('./indices').bind(bindObj);
   this.shards = require('./shards').bind(bindObj);
-
 }
 
 module.exports = ListApi;

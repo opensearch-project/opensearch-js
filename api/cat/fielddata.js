@@ -44,7 +44,7 @@ function fielddataFunc(params, options, callback) {
   let { body, fields, ...querystring } = params;
   fields = parsePathParam(fields);
 
-  const path = ['/_cat/fielddata', fields].filter(c => c != null).join('/');
+  const path = ['/_cat/fielddata', fields].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

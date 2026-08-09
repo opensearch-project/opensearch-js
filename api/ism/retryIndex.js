@@ -25,8 +25,8 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Ism
  *
  * @param {object} [params]
- * @param {string} [params.index] 
- * @param {object} [params.body] 
+ * @param {string} [params.index]
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -39,7 +39,7 @@ function retryIndexFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_plugins/_ism/retry', index].filter(c => c != null).join('/');
+  const path = ['/_plugins/_ism/retry', index].filter((c) => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

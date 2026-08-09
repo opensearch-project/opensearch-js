@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.rest_total_hits_as_int=false] - If `true`, the API response's `hit.total` property is returned as an integer. If `false`, the API response's `hit.total` property is returned as an object.
  * @param {string} [params.scroll] - Period to retain the search context for scrolling.
  * @param {string} [params.scroll_id] DEPRECATED - The scroll ID
- * @param {object} [params.body] 
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -41,7 +41,7 @@ function scrollFunc(params, options, callback) {
   let { body, scroll_id, ...querystring } = params;
   scroll_id = parsePathParam(scroll_id);
 
-  const path = ['/_search/scroll', scroll_id].filter(c => c != null).join('/');
+  const path = ['/_search/scroll', scroll_id].filter((c) => c != null).join('/');
   const method = body ? 'POST' : 'GET';
   body = body || '';
 

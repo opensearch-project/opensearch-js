@@ -23,7 +23,6 @@ function AsynchronousSearchApi(bindObj) {
   this.get = require('./get').bind(bindObj);
   this.search = require('./search').bind(bindObj);
   this.stats = require('./stats').bind(bindObj);
-
 }
 
 module.exports = AsynchronousSearchApi;

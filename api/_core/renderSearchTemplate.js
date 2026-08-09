@@ -39,7 +39,7 @@ function renderSearchTemplateFunc(params, options, callback) {
   let { body, id, ...querystring } = params;
   id = parsePathParam(id);
 
-  const path = ['/_render/template', id].filter(c => c != null).join('/');
+  const path = ['/_render/template', id].filter((c) => c != null).join('/');
   const method = body ? 'POST' : 'GET';
   body = body || '';
 

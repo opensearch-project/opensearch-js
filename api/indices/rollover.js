@@ -48,7 +48,7 @@ function rolloverFunc(params, options, callback) {
   alias = parsePathParam(alias);
   new_index = parsePathParam(new_index);
 
-  const path = ['', alias, '_rollover', new_index].filter(c => c != null).join('/');
+  const path = ['', alias, '_rollover', new_index].filter((c) => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

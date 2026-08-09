@@ -67,7 +67,7 @@ const { normalizeArguments } = require('../utils');
  * @param {boolean} [params.track_total_hits] - Indicate if the number of documents that match the query should be tracked.
  * @param {boolean} [params.typed_keys] - Specify whether aggregation and suggester names should be prefixed by their respective types in the response.
  * @param {boolean} [params.version] - Whether to return document version as part of a hit.
- * @param {object} [params.body] 
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

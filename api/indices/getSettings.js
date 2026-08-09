@@ -48,7 +48,7 @@ function getSettingsFunc(params, options, callback) {
   name = parsePathParam(name);
   index = parsePathParam(index);
 
-  const path = ['', index, '_settings', name].filter(c => c != null).join('/');
+  const path = ['', index, '_settings', name].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

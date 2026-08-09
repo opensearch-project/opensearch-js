@@ -51,7 +51,7 @@ function healthFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_cluster/health', index].filter(c => c != null).join('/');
+  const path = ['/_cluster/health', index].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

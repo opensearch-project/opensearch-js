@@ -35,14 +35,20 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  */
 function putDecommissionAwarenessFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.awareness_attribute_name == null) return handleMissingParam('awareness_attribute_name', this, callback);
-  if (params.awareness_attribute_value == null) return handleMissingParam('awareness_attribute_value', this, callback);
+  if (params.awareness_attribute_name == null)
+    return handleMissingParam('awareness_attribute_name', this, callback);
+  if (params.awareness_attribute_value == null)
+    return handleMissingParam('awareness_attribute_value', this, callback);
 
   let { body, awareness_attribute_name, awareness_attribute_value, ...querystring } = params;
   awareness_attribute_name = parsePathParam(awareness_attribute_name);
   awareness_attribute_value = parsePathParam(awareness_attribute_value);
 
-  const path = '/_cluster/decommission/awareness/' + awareness_attribute_name + '/' + awareness_attribute_value;
+  const path =
+    '/_cluster/decommission/awareness/' +
+    awareness_attribute_name +
+    '/' +
+    awareness_attribute_value;
   const method = 'PUT';
   body = body || '';
 

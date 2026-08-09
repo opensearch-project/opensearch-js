@@ -25,7 +25,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Ism
  *
  * @param {object} [params]
- * @param {string} [params.index] 
+ * @param {string} [params.index]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -38,7 +38,7 @@ function removePolicyFunc(params, options, callback) {
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
-  const path = ['/_plugins/_ism/remove', index].filter(c => c != null).join('/');
+  const path = ['/_plugins/_ism/remove', index].filter((c) => c != null).join('/');
   const method = 'POST';
   body = body || '';
 

@@ -41,7 +41,7 @@ function statsFunc(params, options, callback) {
   node_id = parsePathParam(node_id);
   stat = parsePathParam(stat);
 
-  const path = ['/_plugins/_ltr', node_id, 'stats', stat].filter(c => c != null).join('/');
+  const path = ['/_plugins/_ltr', node_id, 'stats', stat].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

@@ -45,7 +45,7 @@ function aliasesFunc(params, options, callback) {
   let { body, name, ...querystring } = params;
   name = parsePathParam(name);
 
-  const path = ['/_cat/aliases', name].filter(c => c != null).join('/');
+  const path = ['/_cat/aliases', name].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

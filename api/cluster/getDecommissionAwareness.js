@@ -34,7 +34,8 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  */
 function getDecommissionAwarenessFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
-  if (params.awareness_attribute_name == null) return handleMissingParam('awareness_attribute_name', this, callback);
+  if (params.awareness_attribute_name == null)
+    return handleMissingParam('awareness_attribute_name', this, callback);
 
   let { body, awareness_attribute_name, ...querystring } = params;
   awareness_attribute_name = parsePathParam(awareness_attribute_name);

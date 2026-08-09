@@ -25,7 +25,6 @@ function RollupsApi(bindObj) {
   this.put = require('./put').bind(bindObj);
   this.start = require('./start').bind(bindObj);
   this.stop = require('./stop').bind(bindObj);
-
 }
 
 module.exports = RollupsApi;

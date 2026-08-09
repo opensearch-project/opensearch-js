@@ -41,7 +41,7 @@ function getRepositoryFunc(params, options, callback) {
   let { body, repository, ...querystring } = params;
   repository = parsePathParam(repository);
 
-  const path = ['/_snapshot', repository].filter(c => c != null).join('/');
+  const path = ['/_snapshot', repository].filter((c) => c != null).join('/');
   const method = 'GET';
   body = body || '';
 

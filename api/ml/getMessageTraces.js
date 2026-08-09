@@ -25,9 +25,9 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Ml
  *
  * @param {object} params
- * @param {number} [params.max_results] 
- * @param {number} [params.next_token] 
- * @param {string} params.message_id 
+ * @param {number} [params.max_results]
+ * @param {number} [params.next_token]
+ * @param {string} params.message_id
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

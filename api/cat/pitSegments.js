@@ -31,7 +31,7 @@ const { normalizeArguments } = require('../utils');
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.
- * @param {object} [params.body] 
+ * @param {object} [params.body]
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

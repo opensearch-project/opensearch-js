@@ -29,7 +29,7 @@ export type Ml_CreateConnector_RequestBody = {
   description: string;
   name: string;
   parameters: Ml_Common.Parameters;
-  protocol: 'aws_sigv4' | 'http';
+  protocol: Ml_Common.ConnectorProtocol;
   version: number;
 }
 

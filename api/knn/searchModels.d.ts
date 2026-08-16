@@ -72,5 +72,5 @@ export interface Knn_SearchModels_Response extends ApiResponse {
   body: Knn_SearchModels_ResponseBody;
 }
 
-export type Knn_SearchModels_ResponseBody = Core_Search.ResponseBody
+export type Knn_SearchModels_ResponseBody = Core_Search.SearchResultJsonValue & Record<string, any>
 

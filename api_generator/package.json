@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "generate_api": "ts-node src/generate_api.ts",
-    "download_spec": "curl -L -X GET \"https://github.com/opensearch-project/opensearch-api-specification/releases/download/main-latest/opensearch-openapi.yaml\" -o opensearch-openapi.yaml",
+    "download_spec": "curl -L -X GET \"https://api-spec.opensearch.org/opensearch-openapi.yaml\" -o opensearch-openapi.yaml",
     "lint": "eslint . --report-unused-disable-directives",
     "lint--fix": "eslint . --fix --report-unused-disable-directives"
   },

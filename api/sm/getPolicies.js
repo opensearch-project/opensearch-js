@@ -29,7 +29,7 @@ const { normalizeArguments } = require('../utils');
  * @param {string} [params.queryString] - The query string to filter the returned snapshot management policies.
  * @param {number} [params.size] - The number of snapshot management policies to return.
  * @param {string} [params.sortField] - The name of the field to sort the snapshot management policies by.
- * @param {string} [params.sortOrder=asc] - The order to sort the snapshot management policies.
+ * @param {string} [params.sortOrder] - The order to sort the snapshot management policies.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

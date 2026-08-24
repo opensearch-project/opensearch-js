@@ -131,6 +131,44 @@ test('Sign with SigV4 and provided service', (t) => {
   t.same(signedRequest.service, mockService);
 });
 
+test('Sign with SigV4 preserves user-provided host header', (t) => {
+  t.plan(1);
+
+  const mockCreds = {
+    accessKeyId: uuidv4(),
+    secretAccessKey: uuidv4(),
+  };
+
+  const mockRegion = 'us-west-2';
+
+  const AwsSigv4SignerOptions = {
+    getCredentials: () =>
+      new Promise((resolve) => {
+        setTimeout(() => resolve(mockCreds), 100);
+      }),
+    region: mockRegion,
+  };
+
+  const auth = AwsSigv4Signer(AwsSigv4SignerOptions);
+
+  const connection = new Connection({
+    url: new URL('https://localhost:9200'),
+  });
+
+  const customHost = 'custom.example.com';
+
+  const request = connection.buildRequestObject({
+    path: '/hello',
+    method: 'GET',
+    headers: {
+      host: customHost,
+    },
+  });
+
+  const signedRequest = auth.buildSignedRequestObject(request);
+  t.same(signedRequest.headers.host, customHost, 'host header should be overwritable via headers');
+});
+
 test('Sign with SigV4 using default getCredentials provider', (t) => {
   t.plan(2);
 

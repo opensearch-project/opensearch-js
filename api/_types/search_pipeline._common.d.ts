@@ -16,6 +16,21 @@
 
 import * as Common_QueryDsl from './_common.query_dsl'
 
+export type AgenticContextResponseProcessor = {
+  agent_steps_summary?: boolean;
+  description?: string;
+  dsl_query?: boolean;
+  ignore_failure?: boolean;
+  tag?: string;
+}
+
+export type AgenticQueryTranslatorRequestProcessor = {
+  agent_id: string;
+  description?: string;
+  ignore_failure?: boolean;
+  tag?: string;
+}
+
 export type CollapseResponseProcessor = {
   context_prefix?: string;
   description?: string;
@@ -86,6 +101,8 @@ export type RenameFieldResponseProcessor = {
 }
 
 export type RequestProcessor = {
+  agentic_query_translator: AgenticQueryTranslatorRequestProcessor;
+} | {
   filter_query: FilterQueryRequestProcessor;
 } | {
   neural_query_enricher: NeuralQueryEnricherRequestProcessor;
@@ -108,6 +125,8 @@ export type RerankResponseProcessor = {
 }
 
 export type ResponseProcessor = {
+  agentic_context: AgenticContextResponseProcessor;
+} | {
   personalize_search_ranking: PersonalizeSearchRankingResponseProcessor;
 } | {
   retrieval_augmented_generation: RetrievalAugmentedGenerationResponseProcessor;

@@ -16,7 +16,6 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Common from '../_types/_common'
-import * as Common_Aggregations from '../_types/_common.aggregations'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
 
@@ -29,11 +28,13 @@ export interface SearchTemplate_Request extends Global.Params {
   ignore_throttled?: boolean;
   ignore_unavailable?: boolean;
   index?: Common.Indices;
+  phase_took?: boolean;
   preference?: string;
   profile?: boolean;
   rest_total_hits_as_int?: boolean;
   routing?: Common.RoutingInQueryString;
   scroll?: Common.Duration;
+  search_pipeline?: string;
   search_type?: Common.SearchType;
   typed_keys?: boolean;
 }
@@ -41,7 +42,7 @@ export interface SearchTemplate_Request extends Global.Params {
 export type SearchTemplate_RequestBody = {
   explain?: boolean;
   id?: Common.Id;
-  params?: Record<string, Record<string, any>>;
+  params?: Record<string, any>;
   profile?: boolean;
   source?: string;
 }
@@ -50,21 +51,7 @@ export interface SearchTemplate_Response extends ApiResponse {
   body: SearchTemplate_ResponseBody;
 }
 
-export type SearchTemplate_ResponseBody = {
-  _clusters?: Common.ClusterStatistics;
-  _scroll_id?: Common.ScrollId;
-  _shards: Common.ShardStatistics;
-  aggregations?: Record<string, Common_Aggregations.Aggregate>;
-  fields?: Record<string, Record<string, any>>;
-  hits: Core_Search.HitsMetadata;
-  max_score?: number;
-  num_reduce_phases?: number;
-  pit_id?: Common.Id;
-  profile?: Core_Search.Profile;
+export interface SearchTemplate_ResponseBody extends Core_Search.SearchResult {
   status?: number;
-  suggest?: Record<string, Core_Search.Suggest[]>;
-  terminated_early?: boolean;
-  timed_out: boolean;
-  took: number;
 }
 

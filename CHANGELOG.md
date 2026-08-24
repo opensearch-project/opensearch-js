@@ -7,6 +7,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 ### Changed
+- Updated API spec download URL to `https://api-spec.opensearch.org` ([#1141](https://github.com/opensearch-project/opensearch-js/pull/1141))
 ### Deprecated
 ### Removed
 ### Fixed

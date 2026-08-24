@@ -35,5 +35,5 @@ export interface Scroll_Response extends ApiResponse {
   body: Scroll_ResponseBody;
 }
 
-export type Scroll_ResponseBody = Core_Search.ResponseBody
+export type Scroll_ResponseBody = Core_Search.SearchResponse
 

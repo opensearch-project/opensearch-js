@@ -18,6 +18,12 @@ import * as Common from './_common'
 import * as Common_Analysis from './_common.analysis'
 import * as Core_Search from './_core.search'
 
+export type AgenticQuery = QueryBase & {
+  memory_id?: string;
+  query_fields?: Common.Field[];
+  query_text: string;
+}
+
 export type BoolQuery = QueryBase & {
   adjust_pure_negative?: boolean;
   filter?: QueryContainer | QueryContainer[];
@@ -65,14 +71,16 @@ export type DateDecayPlacement = {
   decay?: number;
   offset?: Common.Duration;
   origin?: Common.DateTime;
-  scale?: Common.Duration;
+  scale: Common.Duration;
 }
 
-export type DateRangeQueryParameters = {
+export type DateRangeQuery = RangeQueryBase & {
   format?: Common.DateFormat;
   from?: Common.DateMath | undefined;
   gt?: Common.DateMath;
   gte?: Common.DateMath;
+  include_lower?: boolean;
+  include_upper?: boolean;
   lt?: Common.DateMath;
   lte?: Common.DateMath;
   time_zone?: Common.TimeZone;
@@ -109,7 +117,6 @@ export type ExistsQuery = QueryBase & {
 export type FieldAndFormat = Common.Field | {
   field: Common.Field;
   format?: string;
-  include_unmapped?: boolean;
 }
 
 export type FieldLookup = {
@@ -171,14 +178,15 @@ export type GeoBoundingBoxQuery = QueryBase & {
 export type GeoDecayPlacement = {
   decay?: number;
   offset?: Common.Distance;
-  origin?: Common.GeoLocation;
-  scale?: Common.Distance;
+  origin: Common.GeoLocation;
+  scale: Common.Distance;
 }
 
 export type GeoDistanceQuery = QueryBase & {
   distance: Common.Distance;
   distance_type?: Common.GeoDistanceType;
   ignore_unmapped?: IgnoreUnmapped;
+  unit?: Common.DistanceUnit;
   validation_method?: GeoValidationMethod;
   [key: string]: any | Common.GeoLocation;
 }
@@ -232,6 +240,7 @@ export type HasParentQuery = QueryBase & {
 }
 
 export type HybridQuery = QueryBase & {
+  filter?: QueryContainer;
   pagination_depth?: number;
   queries?: QueryContainer[];
 }
@@ -450,10 +459,12 @@ export type NeuralQuery = QueryBase & {
   query_text?: string;
 }
 
-export type NumberRangeQueryParameters = {
+export type NumberRangeQuery = RangeQueryBase & {
   from?: number | string | undefined;
   gt?: number;
   gte?: number;
+  include_lower?: boolean;
+  include_upper?: boolean;
   lt?: number;
   lte?: number;
   to?: number | string | undefined;
@@ -462,8 +473,8 @@ export type NumberRangeQueryParameters = {
 export type NumericDecayPlacement = {
   decay?: number;
   offset?: number;
-  origin?: number;
-  scale?: number;
+  origin: number;
+  scale: number;
 }
 
 export type Operator = 'and' | 'AND' | 'or' | 'OR'
@@ -486,13 +497,6 @@ export type PercolateQuery = QueryBase & {
   version?: Common.VersionNumber;
 }
 
-export type PinnedDoc = {
-  _id: Common.Id;
-  _index: Common.IndexName;
-}
-
-export type PinnedQuery = QueryBase & Record<string, any>
-
 export type PrefixQuery = string | (QueryBase & {
   case_insensitive?: boolean;
   rewrite?: Common.MultiTermQueryRewrite;
@@ -505,6 +509,7 @@ export type QueryBase = {
 }
 
 export type QueryContainer = {
+  agentic?: AgenticQuery;
   bool?: BoolQuery;
   boosting?: BoostingQuery;
   combined_fields?: CombinedFieldsQuery;
@@ -538,7 +543,6 @@ export type QueryContainer = {
   neural?: Record<string, NeuralQuery>;
   parent_id?: ParentIdQuery;
   percolate?: PercolateQuery;
-  pinned?: PinnedQuery;
   prefix?: Record<string, PrefixQuery>;
   query_string?: QueryStringQuery;
   range?: Record<string, RangeQuery>;
@@ -555,6 +559,7 @@ export type QueryContainer = {
   span_or?: SpanOrQuery;
   span_term?: Record<string, SpanTermQuery>;
   span_within?: SpanWithinQuery;
+  template?: Record<string, any>;
   term?: Record<string, TermQuery>;
   terms?: TermsQuery;
   terms_set?: Record<string, TermsSetQuery>;
@@ -599,7 +604,7 @@ export type RandomScoreFunction = {
   seed?: number | string;
 }
 
-export type RangeQuery = (RangeQueryBase & NumberRangeQueryParameters) | (RangeQueryBase & DateRangeQueryParameters)
+export type RangeQuery = NumberRangeQuery | DateRangeQuery
 
 export type RangeQueryBase = QueryBase & {
   relation?: RangeRelation;
@@ -752,9 +757,9 @@ export type TermsLookup = {
   store?: boolean;
 }
 
-export type TermsQuery = QueryBase & {
-  _name?: any;
-  boost?: any;
+export type TermsQuery = {
+  _name?: string;
+  boost?: number;
   value_type?: TermsQueryValueType;
   [key: string]: any | TermsQueryField;
 }

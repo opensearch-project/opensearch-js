@@ -20,7 +20,7 @@ import * as Ml_Common from '../_types/ml._common'
 
 export interface Ml_GetStats_Request extends Global.Params {
   node_id?: string;
-  stat?: 'ml_config_index_status' | 'ml_connector_count' | 'ml_connector_index_status' | 'ml_controller_index_status' | 'ml_model_count' | 'ml_model_index_status' | 'ml_task_index_status';
+  stat?: Ml_Common.MlStatName | Ml_Common.MlStatName[];
 }
 
 export interface Ml_GetStats_Response extends ApiResponse {

@@ -33,7 +33,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.include_defaults=false] - If `true`, return all default settings in the response.
  * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the cluster-manager node.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} params.index - Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*) are supported.
+ * @param {string} params.index - A comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*) are supported.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

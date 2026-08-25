@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Used to delete a particular model in the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/knn/api/#delete-model - knn.delete_model}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/vector-search/api/knn/#delete-a-model - knn.delete_model}
  *
  * @memberOf API-Knn
  *

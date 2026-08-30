@@ -18,29 +18,40 @@
 
 /** @namespace API-Geospatial */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const deleteIp2GeoDatasourceFn = require('./deleteIp2GeoDatasource');
+const geojsonUploadPostFn = require('./geojsonUploadPost');
+const geojsonUploadPutFn = require('./geojsonUploadPut');
+const getIp2GeoDatasourceFn = require('./getIp2GeoDatasource');
+const getUploadStatsFn = require('./getUploadStats');
+const putIp2GeoDatasourceFn = require('./putIp2GeoDatasource');
+const putIp2GeoDatasourceSettingsFn = require('./putIp2GeoDatasourceSettings');
+
 function GeospatialApi(bindObj) {
-  this.deleteIp2GeoDatasource = require('./deleteIp2GeoDatasource').bind(bindObj);
-  this.geojsonUploadPost = require('./geojsonUploadPost').bind(bindObj);
-  this.geojsonUploadPut = require('./geojsonUploadPut').bind(bindObj);
-  this.getIp2GeoDatasource = require('./getIp2GeoDatasource').bind(bindObj);
-  this.getUploadStats = require('./getUploadStats').bind(bindObj);
-  this.putIp2GeoDatasource = require('./putIp2GeoDatasource').bind(bindObj);
-  this.putIp2GeoDatasourceSettings = require('./putIp2GeoDatasourceSettings').bind(bindObj);
+  this.deleteIp2GeoDatasource = deleteIp2GeoDatasourceFn.bind(bindObj);
+  this.geojsonUploadPost = geojsonUploadPostFn.bind(bindObj);
+  this.geojsonUploadPut = geojsonUploadPutFn.bind(bindObj);
+  this.getIp2GeoDatasource = getIp2GeoDatasourceFn.bind(bindObj);
+  this.getUploadStats = getUploadStatsFn.bind(bindObj);
+  this.putIp2GeoDatasource = putIp2GeoDatasourceFn.bind(bindObj);
+  this.putIp2GeoDatasourceSettings = putIp2GeoDatasourceSettingsFn.bind(bindObj);
 
   // Deprecated: Use deleteIp2GeoDatasource instead.
-  this.delete_ip2geo_datasource = require('./deleteIp2GeoDatasource').bind(bindObj);
+  this.delete_ip2geo_datasource = deleteIp2GeoDatasourceFn.bind(bindObj);
   // Deprecated: Use geojsonUploadPost instead.
-  this.geojson_upload_post = require('./geojsonUploadPost').bind(bindObj);
+  this.geojson_upload_post = geojsonUploadPostFn.bind(bindObj);
   // Deprecated: Use geojsonUploadPut instead.
-  this.geojson_upload_put = require('./geojsonUploadPut').bind(bindObj);
+  this.geojson_upload_put = geojsonUploadPutFn.bind(bindObj);
   // Deprecated: Use getIp2GeoDatasource instead.
-  this.get_ip2geo_datasource = require('./getIp2GeoDatasource').bind(bindObj);
+  this.get_ip2geo_datasource = getIp2GeoDatasourceFn.bind(bindObj);
   // Deprecated: Use getUploadStats instead.
-  this.get_upload_stats = require('./getUploadStats').bind(bindObj);
+  this.get_upload_stats = getUploadStatsFn.bind(bindObj);
   // Deprecated: Use putIp2GeoDatasource instead.
-  this.put_ip2geo_datasource = require('./putIp2GeoDatasource').bind(bindObj);
+  this.put_ip2geo_datasource = putIp2GeoDatasourceFn.bind(bindObj);
   // Deprecated: Use putIp2GeoDatasourceSettings instead.
-  this.put_ip2geo_datasource_settings = require('./putIp2GeoDatasourceSettings').bind(bindObj);
+  this.put_ip2geo_datasource_settings = putIp2GeoDatasourceSettingsFn.bind(bindObj);
 }
 
 module.exports = GeospatialApi;

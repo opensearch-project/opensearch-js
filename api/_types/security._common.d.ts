@@ -14,6 +14,7 @@
  * modify the API generator.
  */
 
+import * as Nodes_Common from './nodes._common'
 
 export type AccountDetails = {
   backend_roles?: string[];
@@ -40,7 +41,7 @@ export type ActionGroupsMap = Record<string, ActionGroup>
 
 export type AllowListConfig = {
   enabled?: boolean;
-  requests?: Record<string, any>;
+  requests?: Record<string, string[]>;
 }
 
 export type AuditConfig = {
@@ -80,16 +81,10 @@ export type AuthInfo = {
   size_of_custom_attributes?: string;
   size_of_user?: string;
   sso_logout_url?: undefined | string;
-  tenants?: Record<string, any>;
+  tenants?: Record<string, boolean>;
   user?: string;
   user_name?: string;
   user_requested_tenant?: undefined | string;
-}
-
-export type CertificateCountPerNode = {
-  failed?: number;
-  successful?: number;
-  total?: number;
 }
 
 export type CertificatesDetail = {
@@ -190,8 +185,10 @@ export type DynamicOptions = {
 
 export type Error = {
   message?: string;
-  status?: 'BAD_REQUEST' | 'CONFLICT' | 'FORBIDDEN' | 'INTERNAL_SERVER_ERROR' | 'NOT_FOUND' | 'NOT_IMPLEMENTED' | 'UNAUTHORIZED';
+  status?: ErrorStatus;
 }
+
+export type ErrorStatus = 'BAD_REQUEST' | 'CONFLICT' | 'FORBIDDEN' | 'INTERNAL_SERVER_ERROR' | 'NOT_FOUND' | 'NOT_IMPLEMENTED' | 'UNAUTHORIZED'
 
 export type GenerateOBOToken = {
   authenticationToken?: string;
@@ -204,8 +201,7 @@ export type GetCertificates = {
   transport_certificates_list?: CertificatesDetail[];
 }
 
-export type GetCertificatesNew = {
-  _nodes?: Record<string, CertificateCountPerNode>;
+export type GetCertificatesNew = Nodes_Common.NodesResponseBase & {
   cluster_name?: string;
   nodes?: Record<string, CertificatesPerNode>;
 }
@@ -213,6 +209,7 @@ export type GetCertificatesNew = {
 export type HealthInfo = {
   message?: undefined | string;
   mode?: string;
+  settings?: Record<string, any>;
   status?: string;
 }
 
@@ -252,10 +249,8 @@ export type PatchOperation = {
   value?: Record<string, any>;
 }
 
-export type PatchOperations = PatchOperation[]
-
 export type PermissionsInfo = {
-  disabled_endpoints?: Record<string, any>;
+  disabled_endpoints?: Record<string, string[]>;
   has_api_access?: boolean;
   user?: string;
   user_name?: string;
@@ -325,13 +320,13 @@ export type TenantsMap = Record<string, Tenant>
 
 export type UpgradeCheck = {
   status?: string;
-  upgradeActions?: Record<string, any>;
+  upgradeActions?: Record<string, Record<string, string[]>>;
   upgradeAvailable?: boolean;
 }
 
 export type UpgradePerform = {
   status?: string;
-  upgrades?: Record<string, any>;
+  upgrades?: Record<string, Record<string, string[]>>;
 }
 
 export type User = {

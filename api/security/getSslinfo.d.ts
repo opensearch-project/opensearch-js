@@ -15,11 +15,12 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Security_Common from '../_types/security._common'
 
 export interface Security_GetSslinfo_Request extends Global.Params {
-  show_dn?: boolean | string;
+  show_dn?: Common.StringifiedBoolean;
 }
 
 export interface Security_GetSslinfo_Response extends ApiResponse {

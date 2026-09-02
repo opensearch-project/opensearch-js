@@ -19,7 +19,7 @@ import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
 export interface Ml_ExecuteAlgorithm_Request extends Global.Params {
-  algorithm_name: 'anomaly_localization' | 'local_sample_calculator';
+  algorithm_name: Ml_Common.FunctionName;
   body?: Ml_ExecuteAlgorithm_RequestBody;
 }
 
@@ -32,7 +32,7 @@ export type Ml_ExecuteAlgorithm_RequestBody = {
   metrics?: number[][];
   min_time_interval?: number;
   num_outputs?: number;
-  operation?: 'max' | 'min' | 'sum';
+  operation?: Ml_Common.LocalSampleCalculatorOperation;
   start_time?: number;
   time_field_name?: string;
 }

@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Sm_Common from '../_types/sm._common'
 
@@ -23,7 +24,7 @@ export interface Sm_GetPolicies_Request extends Global.Params {
   queryString?: string;
   size?: number;
   sortField?: string;
-  sortOrder?: 'asc' | 'desc';
+  sortOrder?: Common.SortOrder;
 }
 
 export interface Sm_GetPolicies_Response extends ApiResponse {

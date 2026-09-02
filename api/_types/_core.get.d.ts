@@ -16,16 +16,20 @@
 
 import * as Common from './_common'
 
-export type GetResult = {
+export type GetResult = GetResultBase & {
+  _source?: Common.TDocument;
+}
+
+export type GetResultBase = {
   _id: Common.Id;
   _index: Common.IndexName;
   _primary_term?: number;
   _routing?: string;
   _seq_no?: Common.SequenceNumber;
-  _source?: Record<string, any>;
+  _source?: Common.TDocument;
   _type?: Common.Type;
   _version?: Common.VersionNumber;
-  fields?: Record<string, Record<string, any>>;
+  fields?: Record<string, any>;
   found: boolean;
 }
 

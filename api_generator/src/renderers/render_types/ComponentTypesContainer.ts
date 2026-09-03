@@ -13,6 +13,8 @@ import type { JSONSchema7 as Schema } from 'json-schema'
 import type { RawOpenSearchSpec, RawParameter } from '../../spec_parser/types'
 import _ from 'lodash'
 
+type GenericParameterSchema = Schema & { 'x-is-generic-type-parameter'?: boolean }
+
 export default class ComponentTypesContainer extends TypesContainer {
   constructor (file_name: string, schemas: Record<string, Schema>) {
     super(TYPE_COMPONENTS_FOLDER, file_name, schemas)
@@ -25,6 +27,9 @@ export default class ComponentTypesContainer extends TypesContainer {
 
   private static build_components (spec: RawOpenSearchSpec): void {
     const referenced_schemas = _.entries(spec.components.schemas).map(([key, schema]) => {
+      if ((schema as GenericParameterSchema)['x-is-generic-type-parameter'] === true) {
+        TypesContainer.GENERIC_PARAMS.add(key)
+      }
       const [file_name, schema_name] = key.split(SEPARATOR)
       return { file_name, schema_name, schema }
     })

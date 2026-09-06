@@ -18,16 +18,24 @@
 
 /** @namespace API-Ppl */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const explainFn = require('./explain');
+const getStatsFn = require('./getStats');
+const postStatsFn = require('./postStats');
+const queryFn = require('./query');
+
 function PplApi(bindObj) {
-  this.explain = require('./explain').bind(bindObj);
-  this.getStats = require('./getStats').bind(bindObj);
-  this.postStats = require('./postStats').bind(bindObj);
-  this.query = require('./query').bind(bindObj);
+  this.explain = explainFn.bind(bindObj);
+  this.getStats = getStatsFn.bind(bindObj);
+  this.postStats = postStatsFn.bind(bindObj);
+  this.query = queryFn.bind(bindObj);
 
   // Deprecated: Use getStats instead.
-  this.get_stats = require('./getStats').bind(bindObj);
+  this.get_stats = getStatsFn.bind(bindObj);
   // Deprecated: Use postStats instead.
-  this.post_stats = require('./postStats').bind(bindObj);
+  this.post_stats = postStatsFn.bind(bindObj);
 }
 
 module.exports = PplApi;

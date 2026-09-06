@@ -18,6 +18,7 @@ import * as Common from './_common'
 import * as Common_Aggregations from './_common.aggregations'
 import * as Common_QueryDsl from './_common.query_dsl'
 import * as Core_Search from './_core.search'
+import * as Nodes_Common from './nodes._common'
 
 export type AsynchronousSearchStats = {
   cancelled?: number;
@@ -38,7 +39,7 @@ export type NodesStats = {
 export type ResponseBody = {
   expiration_time_in_millis?: number;
   id?: string;
-  response?: Core_Search.ResponseBody;
+  response?: Core_Search.SearchResponse;
   start_time_in_millis?: number;
   state?: string;
   took?: number;
@@ -60,7 +61,6 @@ export type Search = {
   post_filter?: Common_QueryDsl.QueryContainer;
   profile?: boolean;
   query?: Common_QueryDsl.QueryContainer;
-  rank?: Common.RankContainer;
   script_fields?: Record<string, Common.ScriptField>;
   search_after?: Common.SortResults;
   seq_no_primary_term?: boolean;
@@ -77,8 +77,7 @@ export type Search = {
   version?: boolean;
 }
 
-export type StatsResponse = {
-  _nodes?: Common.NodeStatistics;
+export type StatsResponse = Nodes_Common.NodesResponseBase & {
   cluster_name?: string;
   nodes?: Record<string, NodesStats>;
 }

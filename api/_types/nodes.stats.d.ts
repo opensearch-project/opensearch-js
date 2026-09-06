@@ -362,6 +362,17 @@ export type RemoteStoreStats = {
   last_successful_fetch_of_pinned_timestamps?: Common.EpochTimeUnitSeconds;
 }
 
+export type RepositoryStatsSnapshot = {
+  repository_location?: Record<string, string>;
+  repository_name?: string;
+  repository_type?: string;
+  request_counts?: Record<string, number>;
+  request_failures_total?: Record<string, number>;
+  request_retry_count_total?: Record<string, number>;
+  request_success_total?: Record<string, number>;
+  request_time_in_millis?: Record<string, number>;
+}
+
 export type ScriptCacheStats = {
   contexts?: ScriptContextStats[];
   sum: ScriptStats;
@@ -483,7 +494,7 @@ export type ShardIndexingPressureStats = {
   total_rejections_breakup_shadow_mode?: ShardIndexingPressureRejectionsBreakupStats;
 }
 
-export type ShardRepositoriesStats = any[]
+export type ShardRepositoriesStats = RepositoryStatsSnapshot[]
 
 export type ShardResourceUsageStats = Record<string, ShardResourceUsageStatsDetail>
 

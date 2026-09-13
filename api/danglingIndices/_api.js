@@ -18,17 +18,24 @@
 
 /** @namespace API-Dangling-Indices */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const deleteDanglingIndexFn = require('./deleteDanglingIndex');
+const importDanglingIndexFn = require('./importDanglingIndex');
+const listDanglingIndicesFn = require('./listDanglingIndices');
+
 function DanglingIndicesApi(bindObj) {
-  this.deleteDanglingIndex = require('./deleteDanglingIndex').bind(bindObj);
-  this.importDanglingIndex = require('./importDanglingIndex').bind(bindObj);
-  this.listDanglingIndices = require('./listDanglingIndices').bind(bindObj);
+  this.deleteDanglingIndex = deleteDanglingIndexFn.bind(bindObj);
+  this.importDanglingIndex = importDanglingIndexFn.bind(bindObj);
+  this.listDanglingIndices = listDanglingIndicesFn.bind(bindObj);
 
   // Deprecated: Use deleteDanglingIndex instead.
-  this.delete_dangling_index = require('./deleteDanglingIndex').bind(bindObj);
+  this.delete_dangling_index = deleteDanglingIndexFn.bind(bindObj);
   // Deprecated: Use importDanglingIndex instead.
-  this.import_dangling_index = require('./importDanglingIndex').bind(bindObj);
+  this.import_dangling_index = importDanglingIndexFn.bind(bindObj);
   // Deprecated: Use listDanglingIndices instead.
-  this.list_dangling_indices = require('./listDanglingIndices').bind(bindObj);
+  this.list_dangling_indices = listDanglingIndicesFn.bind(bindObj);
 }
 
 module.exports = DanglingIndicesApi;

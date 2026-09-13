@@ -18,10 +18,17 @@
 
 /** @namespace API-Tasks */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const cancelFn = require('./cancel');
+const getFn = require('./get');
+const listFn = require('./list');
+
 function TasksApi(bindObj) {
-  this.cancel = require('./cancel').bind(bindObj);
-  this.get = require('./get').bind(bindObj);
-  this.list = require('./list').bind(bindObj);
+  this.cancel = cancelFn.bind(bindObj);
+  this.get = getFn.bind(bindObj);
+  this.list = listFn.bind(bindObj);
 
 }
 

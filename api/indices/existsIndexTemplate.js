@@ -29,7 +29,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.flat_settings=false] - Return settings in flat format.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} params.name - Name of the index template to check existence of. Wildcard (*) expressions are supported.
+ * @param {string} params.name - The name of the index template to check existence of. Wildcard (*) expressions are supported.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

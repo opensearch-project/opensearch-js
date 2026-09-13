@@ -30,29 +30,6 @@ export type DateHistogramGroup = {
   timezone?: string;
 }
 
-export type DeletedTransformResponse = {
-  _id: Common.Id;
-  _index: string;
-  _primary_term: number;
-  _seq_no: Common.SequenceNumber;
-  _shards: Common.ShardStatistics;
-  _type?: Common.Type;
-  _version: Common.VersionNumber;
-  forced_refresh: boolean;
-  result: string;
-  status: number;
-}
-
-export type DeleteTransformResponseItem = {
-  delete?: DeletedTransformResponse;
-}
-
-export type DeleteTransformsResponse = {
-  errors?: boolean;
-  items?: DeleteTransformResponseItem[];
-  took?: number;
-}
-
 export type Explain = {
   metadata_id?: undefined | string;
   transform_metadata?: TransformMetadata | undefined;

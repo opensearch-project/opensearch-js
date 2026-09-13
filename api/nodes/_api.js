@@ -18,17 +18,26 @@
 
 /** @namespace API-Nodes */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const hotThreadsFn = require('./hotThreads');
+const infoFn = require('./info');
+const reloadSecureSettingsFn = require('./reloadSecureSettings');
+const statsFn = require('./stats');
+const usageFn = require('./usage');
+
 function NodesApi(bindObj) {
-  this.hotThreads = require('./hotThreads').bind(bindObj);
-  this.info = require('./info').bind(bindObj);
-  this.reloadSecureSettings = require('./reloadSecureSettings').bind(bindObj);
-  this.stats = require('./stats').bind(bindObj);
-  this.usage = require('./usage').bind(bindObj);
+  this.hotThreads = hotThreadsFn.bind(bindObj);
+  this.info = infoFn.bind(bindObj);
+  this.reloadSecureSettings = reloadSecureSettingsFn.bind(bindObj);
+  this.stats = statsFn.bind(bindObj);
+  this.usage = usageFn.bind(bindObj);
 
   // Deprecated: Use hotThreads instead.
-  this.hot_threads = require('./hotThreads').bind(bindObj);
+  this.hot_threads = hotThreadsFn.bind(bindObj);
   // Deprecated: Use reloadSecureSettings instead.
-  this.reload_secure_settings = require('./reloadSecureSettings').bind(bindObj);
+  this.reload_secure_settings = reloadSecureSettingsFn.bind(bindObj);
 }
 
 module.exports = NodesApi;

@@ -18,23 +18,32 @@
 
 /** @namespace API-Query */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const datasourceDeleteFn = require('./datasourceDelete');
+const datasourceRetrieveFn = require('./datasourceRetrieve');
+const datasourcesCreateFn = require('./datasourcesCreate');
+const datasourcesListFn = require('./datasourcesList');
+const datasourcesUpdateFn = require('./datasourcesUpdate');
+
 function QueryApi(bindObj) {
-  this.datasourceDelete = require('./datasourceDelete').bind(bindObj);
-  this.datasourceRetrieve = require('./datasourceRetrieve').bind(bindObj);
-  this.datasourcesCreate = require('./datasourcesCreate').bind(bindObj);
-  this.datasourcesList = require('./datasourcesList').bind(bindObj);
-  this.datasourcesUpdate = require('./datasourcesUpdate').bind(bindObj);
+  this.datasourceDelete = datasourceDeleteFn.bind(bindObj);
+  this.datasourceRetrieve = datasourceRetrieveFn.bind(bindObj);
+  this.datasourcesCreate = datasourcesCreateFn.bind(bindObj);
+  this.datasourcesList = datasourcesListFn.bind(bindObj);
+  this.datasourcesUpdate = datasourcesUpdateFn.bind(bindObj);
 
   // Deprecated: Use datasourceDelete instead.
-  this.datasource_delete = require('./datasourceDelete').bind(bindObj);
+  this.datasource_delete = datasourceDeleteFn.bind(bindObj);
   // Deprecated: Use datasourceRetrieve instead.
-  this.datasource_retrieve = require('./datasourceRetrieve').bind(bindObj);
+  this.datasource_retrieve = datasourceRetrieveFn.bind(bindObj);
   // Deprecated: Use datasourcesCreate instead.
-  this.datasources_create = require('./datasourcesCreate').bind(bindObj);
+  this.datasources_create = datasourcesCreateFn.bind(bindObj);
   // Deprecated: Use datasourcesList instead.
-  this.datasources_list = require('./datasourcesList').bind(bindObj);
+  this.datasources_list = datasourcesListFn.bind(bindObj);
   // Deprecated: Use datasourcesUpdate instead.
-  this.datasources_update = require('./datasourcesUpdate').bind(bindObj);
+  this.datasources_update = datasourcesUpdateFn.bind(bindObj);
 }
 
 module.exports = QueryApi;

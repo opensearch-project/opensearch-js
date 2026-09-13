@@ -38,10 +38,6 @@ export type DataSourceConfiguration = {
 
 export type DataSourceList = DataSource[]
 
-export type DataSourceNotFound = {
-  error: ErrorResponse;
-}
-
 export type DataSourceRetrieve = {
   allowedRoles?: string[];
   configuration?: DataSourceConfiguration;
@@ -51,21 +47,5 @@ export type DataSourceRetrieve = {
   properties: Record<string, any>;
   resultIndex: string;
   status: string;
-}
-
-export type Error = {
-  reason: string;
-  root_cause: RootCause[];
-  type: string;
-}
-
-export type ErrorResponse = {
-  error?: Error;
-  status?: number;
-}
-
-export type RootCause = {
-  reason: string;
-  type: string;
 }
 

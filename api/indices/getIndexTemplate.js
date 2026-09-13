@@ -29,7 +29,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.flat_settings=false] - If `true`, returns settings in flat format.
  * @param {boolean} [params.local=false] - If `true`, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the cluster-manager node.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
- * @param {string} [params.name] - Name of the index template to retrieve. Wildcard (*) expressions are supported.
+ * @param {string} [params.name] - The name of the index template to retrieve. Wildcard (*) expressions are supported.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

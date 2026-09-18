@@ -100,7 +100,7 @@ export default class Connection {
   makeRequest: any;
   _openRequests: number;
   _status: string;
-  _agent: http.Agent | https.Agent | hpagent.HttpProxyAgent | hpagent.HttpsProxyAgent;
+  agent: http.Agent | https.Agent | hpagent.HttpProxyAgent | hpagent.HttpsProxyAgent;
   constructor(opts?: ConnectionOptions);
   request(
     params: RequestOptions,

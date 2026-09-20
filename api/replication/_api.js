@@ -18,31 +18,46 @@
 
 /** @namespace API-Replication */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const autofollowStatsFn = require('./autofollowStats');
+const createReplicationRuleFn = require('./createReplicationRule');
+const deleteReplicationRuleFn = require('./deleteReplicationRule');
+const followerStatsFn = require('./followerStats');
+const leaderStatsFn = require('./leaderStats');
+const pauseFn = require('./pause');
+const resumeFn = require('./resume');
+const startFn = require('./start');
+const statusFn = require('./status');
+const stopFn = require('./stop');
+const updateSettingsFn = require('./updateSettings');
+
 function ReplicationApi(bindObj) {
-  this.autofollowStats = require('./autofollowStats').bind(bindObj);
-  this.createReplicationRule = require('./createReplicationRule').bind(bindObj);
-  this.deleteReplicationRule = require('./deleteReplicationRule').bind(bindObj);
-  this.followerStats = require('./followerStats').bind(bindObj);
-  this.leaderStats = require('./leaderStats').bind(bindObj);
-  this.pause = require('./pause').bind(bindObj);
-  this.resume = require('./resume').bind(bindObj);
-  this.start = require('./start').bind(bindObj);
-  this.status = require('./status').bind(bindObj);
-  this.stop = require('./stop').bind(bindObj);
-  this.updateSettings = require('./updateSettings').bind(bindObj);
+  this.autofollowStats = autofollowStatsFn.bind(bindObj);
+  this.createReplicationRule = createReplicationRuleFn.bind(bindObj);
+  this.deleteReplicationRule = deleteReplicationRuleFn.bind(bindObj);
+  this.followerStats = followerStatsFn.bind(bindObj);
+  this.leaderStats = leaderStatsFn.bind(bindObj);
+  this.pause = pauseFn.bind(bindObj);
+  this.resume = resumeFn.bind(bindObj);
+  this.start = startFn.bind(bindObj);
+  this.status = statusFn.bind(bindObj);
+  this.stop = stopFn.bind(bindObj);
+  this.updateSettings = updateSettingsFn.bind(bindObj);
 
   // Deprecated: Use autofollowStats instead.
-  this.autofollow_stats = require('./autofollowStats').bind(bindObj);
+  this.autofollow_stats = autofollowStatsFn.bind(bindObj);
   // Deprecated: Use createReplicationRule instead.
-  this.create_replication_rule = require('./createReplicationRule').bind(bindObj);
+  this.create_replication_rule = createReplicationRuleFn.bind(bindObj);
   // Deprecated: Use deleteReplicationRule instead.
-  this.delete_replication_rule = require('./deleteReplicationRule').bind(bindObj);
+  this.delete_replication_rule = deleteReplicationRuleFn.bind(bindObj);
   // Deprecated: Use followerStats instead.
-  this.follower_stats = require('./followerStats').bind(bindObj);
+  this.follower_stats = followerStatsFn.bind(bindObj);
   // Deprecated: Use leaderStats instead.
-  this.leader_stats = require('./leaderStats').bind(bindObj);
+  this.leader_stats = leaderStatsFn.bind(bindObj);
   // Deprecated: Use updateSettings instead.
-  this.update_settings = require('./updateSettings').bind(bindObj);
+  this.update_settings = updateSettingsFn.bind(bindObj);
 }
 
 module.exports = ReplicationApi;

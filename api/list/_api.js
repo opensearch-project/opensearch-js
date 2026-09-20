@@ -18,10 +18,17 @@
 
 /** @namespace API-List */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const helpFn = require('./help');
+const indicesFn = require('./indices');
+const shardsFn = require('./shards');
+
 function ListApi(bindObj) {
-  this.help = require('./help').bind(bindObj);
-  this.indices = require('./indices').bind(bindObj);
-  this.shards = require('./shards').bind(bindObj);
+  this.help = helpFn.bind(bindObj);
+  this.indices = indicesFn.bind(bindObj);
+  this.shards = shardsFn.bind(bindObj);
 
 }
 

@@ -28,12 +28,12 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {number} [params.if_primary_term] - Only perform the operation if the document has this primary term.
  * @param {number} [params.if_seq_no] - Only perform the operation if the document has this sequence number.
  * @param {string} [params.refresh] - If `true`, OpenSearch refreshes the affected shards to make this operation visible to search, if `wait_for` then wait for a refresh to make this operation visible to search, if `false` do nothing with refreshes. Valid values: `true`, `false`, `wait_for`.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {string} [params.timeout] - Period to wait for active shards.
  * @param {number} [params.version] - Explicit version number for concurrency control. The specified version must match the current version of the document for the request to succeed.
- * @param {string} [params.version_type] - Specific version type: `external`, `external_gte`.
+ * @param {string} [params.version_type] - The specific version type: `external`, `external_gte`.
  * @param {string} [params.wait_for_active_shards] - The number of shard copies that must be active before proceeding with the operation. Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
- * @param {string} params.id - Unique identifier for the document.
+ * @param {string} params.id - The unique identifier for the document.
  * @param {string} params.index - Name of the target index.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

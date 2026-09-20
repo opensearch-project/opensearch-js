@@ -18,11 +18,19 @@
 
 /** @namespace API-Asynchronous-Search */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const deleteFn = require('./delete');
+const getFn = require('./get');
+const searchFn = require('./search');
+const statsFn = require('./stats');
+
 function AsynchronousSearchApi(bindObj) {
-  this.delete = require('./delete').bind(bindObj);
-  this.get = require('./get').bind(bindObj);
-  this.search = require('./search').bind(bindObj);
-  this.stats = require('./stats').bind(bindObj);
+  this.delete = deleteFn.bind(bindObj);
+  this.get = getFn.bind(bindObj);
+  this.search = searchFn.bind(bindObj);
+  this.stats = statsFn.bind(bindObj);
 
 }
 

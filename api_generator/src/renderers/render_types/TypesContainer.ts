@@ -19,6 +19,7 @@ export const SEPARATOR = '___' // separating fileName___schemaName in $ref
 
 export default class TypesContainer {
   static readonly REPO = new Map<FilePath, TypesContainer>()
+  static readonly GENERIC_PARAMS = new Set<string>()
 
   readonly folder_name: string
   readonly file_name: string
@@ -37,6 +38,19 @@ export default class TypesContainer {
     this.schemas = schemas
   }
 
+  static generic_param_key (ref: string): string {
+    return ref.startsWith('#/components/schemas/') ? ref.slice('#/components/schemas/'.length) : ref
+  }
+
+  static is_generic_param_ref (ref: string): boolean {
+    return TypesContainer.GENERIC_PARAMS.has(TypesContainer.generic_param_key(ref))
+  }
+
+  static generic_param_name (ref: string): string {
+    const key = TypesContainer.generic_param_key(ref)
+    return key.split(SEPARATOR)[1]
+  }
+
   static import_path (from: { file_path: string }, to: { file_path: string }): string {
     const relative = path.relative(path.dirname(to.file_path), from.file_path).replace('.d.ts', '').replaceAll('\\', '/')
     return relative.startsWith('.') ? relative : `./${relative}`
@@ -52,6 +66,15 @@ export default class TypesContainer {
     const container = this.ref_to_container(ref)
     if (container === this) return schema_name
     return `${container.import_name}.${schema_name}`
+  }
+
+  ref_to_schema (ref: string): Schema {
+    const schema_name = ref.split(SEPARATOR)[1]
+    if (schema_name == null) throw new Error(`Schema name not found in reference: ${ref}`)
+    const container = this.ref_to_container(ref)
+    const schema = container.schemas[schema_name]
+    if (schema == null) throw new Error(`Schema not found for: ${ref} -> ${container.file_path}`)
+    return schema
   }
 
   ref_to_container (ref: string): TypesContainer {

@@ -18,29 +18,40 @@
 
 /** @namespace API-Observability */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const createObjectFn = require('./createObject');
+const deleteObjectFn = require('./deleteObject');
+const deleteObjectsFn = require('./deleteObjects');
+const getLocalstatsFn = require('./getLocalstats');
+const getObjectFn = require('./getObject');
+const listObjectsFn = require('./listObjects');
+const updateObjectFn = require('./updateObject');
+
 function ObservabilityApi(bindObj) {
-  this.createObject = require('./createObject').bind(bindObj);
-  this.deleteObject = require('./deleteObject').bind(bindObj);
-  this.deleteObjects = require('./deleteObjects').bind(bindObj);
-  this.getLocalstats = require('./getLocalstats').bind(bindObj);
-  this.getObject = require('./getObject').bind(bindObj);
-  this.listObjects = require('./listObjects').bind(bindObj);
-  this.updateObject = require('./updateObject').bind(bindObj);
+  this.createObject = createObjectFn.bind(bindObj);
+  this.deleteObject = deleteObjectFn.bind(bindObj);
+  this.deleteObjects = deleteObjectsFn.bind(bindObj);
+  this.getLocalstats = getLocalstatsFn.bind(bindObj);
+  this.getObject = getObjectFn.bind(bindObj);
+  this.listObjects = listObjectsFn.bind(bindObj);
+  this.updateObject = updateObjectFn.bind(bindObj);
 
   // Deprecated: Use createObject instead.
-  this.create_object = require('./createObject').bind(bindObj);
+  this.create_object = createObjectFn.bind(bindObj);
   // Deprecated: Use deleteObject instead.
-  this.delete_object = require('./deleteObject').bind(bindObj);
+  this.delete_object = deleteObjectFn.bind(bindObj);
   // Deprecated: Use deleteObjects instead.
-  this.delete_objects = require('./deleteObjects').bind(bindObj);
+  this.delete_objects = deleteObjectsFn.bind(bindObj);
   // Deprecated: Use getLocalstats instead.
-  this.get_localstats = require('./getLocalstats').bind(bindObj);
+  this.get_localstats = getLocalstatsFn.bind(bindObj);
   // Deprecated: Use getObject instead.
-  this.get_object = require('./getObject').bind(bindObj);
+  this.get_object = getObjectFn.bind(bindObj);
   // Deprecated: Use listObjects instead.
-  this.list_objects = require('./listObjects').bind(bindObj);
+  this.list_objects = listObjectsFn.bind(bindObj);
   // Deprecated: Use updateObject instead.
-  this.update_object = require('./updateObject').bind(bindObj);
+  this.update_object = updateObjectFn.bind(bindObj);
 }
 
 module.exports = ObservabilityApi;

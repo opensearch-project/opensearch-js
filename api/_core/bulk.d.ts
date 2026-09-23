@@ -35,16 +35,11 @@ export interface Bulk_Request extends Global.Params {
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export type Bulk_RequestBody = Core_Bulk.OperationContainer | Core_Bulk.UpdateAction | Record<string, any>[]
+export type Bulk_RequestBody = (Core_Bulk.OperationContainer | Core_Bulk.UpdateAction | Record<string, any>)[]
 
 export interface Bulk_Response extends ApiResponse {
   body: Bulk_ResponseBody;
 }
 
-export type Bulk_ResponseBody = {
-  errors: boolean;
-  ingest_took?: number;
-  items: Record<string, Core_Bulk.ResponseItem>[];
-  took: number;
-}
+export type Bulk_ResponseBody = Core_Bulk.BulkResponse
 

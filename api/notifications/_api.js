@@ -18,35 +18,48 @@
 
 /** @namespace API-Notifications */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const createConfigFn = require('./createConfig');
+const deleteConfigFn = require('./deleteConfig');
+const deleteConfigsFn = require('./deleteConfigs');
+const getConfigFn = require('./getConfig');
+const getConfigsFn = require('./getConfigs');
+const listChannelsFn = require('./listChannels');
+const listFeaturesFn = require('./listFeatures');
+const sendTestFn = require('./sendTest');
+const updateConfigFn = require('./updateConfig');
+
 function NotificationsApi(bindObj) {
-  this.createConfig = require('./createConfig').bind(bindObj);
-  this.deleteConfig = require('./deleteConfig').bind(bindObj);
-  this.deleteConfigs = require('./deleteConfigs').bind(bindObj);
-  this.getConfig = require('./getConfig').bind(bindObj);
-  this.getConfigs = require('./getConfigs').bind(bindObj);
-  this.listChannels = require('./listChannels').bind(bindObj);
-  this.listFeatures = require('./listFeatures').bind(bindObj);
-  this.sendTest = require('./sendTest').bind(bindObj);
-  this.updateConfig = require('./updateConfig').bind(bindObj);
+  this.createConfig = createConfigFn.bind(bindObj);
+  this.deleteConfig = deleteConfigFn.bind(bindObj);
+  this.deleteConfigs = deleteConfigsFn.bind(bindObj);
+  this.getConfig = getConfigFn.bind(bindObj);
+  this.getConfigs = getConfigsFn.bind(bindObj);
+  this.listChannels = listChannelsFn.bind(bindObj);
+  this.listFeatures = listFeaturesFn.bind(bindObj);
+  this.sendTest = sendTestFn.bind(bindObj);
+  this.updateConfig = updateConfigFn.bind(bindObj);
 
   // Deprecated: Use createConfig instead.
-  this.create_config = require('./createConfig').bind(bindObj);
+  this.create_config = createConfigFn.bind(bindObj);
   // Deprecated: Use deleteConfig instead.
-  this.delete_config = require('./deleteConfig').bind(bindObj);
+  this.delete_config = deleteConfigFn.bind(bindObj);
   // Deprecated: Use deleteConfigs instead.
-  this.delete_configs = require('./deleteConfigs').bind(bindObj);
+  this.delete_configs = deleteConfigsFn.bind(bindObj);
   // Deprecated: Use getConfig instead.
-  this.get_config = require('./getConfig').bind(bindObj);
+  this.get_config = getConfigFn.bind(bindObj);
   // Deprecated: Use getConfigs instead.
-  this.get_configs = require('./getConfigs').bind(bindObj);
+  this.get_configs = getConfigsFn.bind(bindObj);
   // Deprecated: Use listChannels instead.
-  this.list_channels = require('./listChannels').bind(bindObj);
+  this.list_channels = listChannelsFn.bind(bindObj);
   // Deprecated: Use listFeatures instead.
-  this.list_features = require('./listFeatures').bind(bindObj);
+  this.list_features = listFeaturesFn.bind(bindObj);
   // Deprecated: Use sendTest instead.
-  this.send_test = require('./sendTest').bind(bindObj);
+  this.send_test = sendTestFn.bind(bindObj);
   // Deprecated: Use updateConfig instead.
-  this.update_config = require('./updateConfig').bind(bindObj);
+  this.update_config = updateConfigFn.bind(bindObj);
 }
 
 module.exports = NotificationsApi;

@@ -18,21 +18,30 @@
 
 /** @namespace API-Ingest */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const deletePipelineFn = require('./deletePipeline');
+const getPipelineFn = require('./getPipeline');
+const processorGrokFn = require('./processorGrok');
+const putPipelineFn = require('./putPipeline');
+const simulateFn = require('./simulate');
+
 function IngestApi(bindObj) {
-  this.deletePipeline = require('./deletePipeline').bind(bindObj);
-  this.getPipeline = require('./getPipeline').bind(bindObj);
-  this.processorGrok = require('./processorGrok').bind(bindObj);
-  this.putPipeline = require('./putPipeline').bind(bindObj);
-  this.simulate = require('./simulate').bind(bindObj);
+  this.deletePipeline = deletePipelineFn.bind(bindObj);
+  this.getPipeline = getPipelineFn.bind(bindObj);
+  this.processorGrok = processorGrokFn.bind(bindObj);
+  this.putPipeline = putPipelineFn.bind(bindObj);
+  this.simulate = simulateFn.bind(bindObj);
 
   // Deprecated: Use deletePipeline instead.
-  this.delete_pipeline = require('./deletePipeline').bind(bindObj);
+  this.delete_pipeline = deletePipelineFn.bind(bindObj);
   // Deprecated: Use getPipeline instead.
-  this.get_pipeline = require('./getPipeline').bind(bindObj);
+  this.get_pipeline = getPipelineFn.bind(bindObj);
   // Deprecated: Use processorGrok instead.
-  this.processor_grok = require('./processorGrok').bind(bindObj);
+  this.processor_grok = processorGrokFn.bind(bindObj);
   // Deprecated: Use putPipeline instead.
-  this.put_pipeline = require('./putPipeline').bind(bindObj);
+  this.put_pipeline = putPipelineFn.bind(bindObj);
 }
 
 module.exports = IngestApi;

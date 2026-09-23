@@ -35,7 +35,6 @@ import { Readable as ReadableStream } from 'stream';
 import { BasicAuth, AwsSigv4Auth } from './pool';
 import * as http from 'http';
 import * as https from 'https';
-import * as hpagent from 'hpagent';
 import { ConnectionOptions as TlsConnectionOptions } from 'tls';
 
 export declare type agentFn = (opts: ConnectionOptions) => any;
@@ -100,7 +99,7 @@ export default class Connection {
   makeRequest: any;
   _openRequests: number;
   _status: string;
-  _agent: http.Agent | https.Agent | hpagent.HttpProxyAgent | hpagent.HttpsProxyAgent;
+  _agent: http.Agent | https.Agent;
   constructor(opts?: ConnectionOptions);
   request(
     params: RequestOptions,

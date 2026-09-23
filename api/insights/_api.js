@@ -18,11 +18,16 @@
 
 /** @namespace API-Insights */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const topQueriesFn = require('./topQueries');
+
 function InsightsApi(bindObj) {
-  this.topQueries = require('./topQueries').bind(bindObj);
+  this.topQueries = topQueriesFn.bind(bindObj);
 
   // Deprecated: Use topQueries instead.
-  this.top_queries = require('./topQueries').bind(bindObj);
+  this.top_queries = topQueriesFn.bind(bindObj);
 }
 
 module.exports = InsightsApi;

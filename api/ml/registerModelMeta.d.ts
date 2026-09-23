@@ -25,6 +25,7 @@ export interface Ml_RegisterModelMeta_Request extends Global.Params {
 
 export type Ml_RegisterModelMeta_RequestBody = {
   description?: string;
+  function_name?: Ml_Common.FunctionName;
   model_config: Ml_Common.ModelConfig;
   model_content_hash_value: string;
   model_format: Ml_Common.ModelFormat;

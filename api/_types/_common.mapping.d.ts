@@ -145,7 +145,7 @@ export type FieldNamesField = {
   enabled: boolean;
 }
 
-export type FieldType = 'aggregate_metric_double' | 'alias' | 'binary' | 'boolean' | 'byte' | 'completion' | 'constant_keyword' | 'date' | 'date_nanos' | 'date_range' | 'double' | 'double_range' | 'flat_object' | 'float' | 'float_range' | 'geo_point' | 'geo_shape' | 'half_float' | 'histogram' | 'icu_collation_keyword' | 'integer' | 'integer_range' | 'ip' | 'ip_range' | 'join' | 'keyword' | 'knn_vector' | 'long' | 'long_range' | 'match_only_text' | 'murmur3' | 'nested' | 'object' | 'percolator' | 'rank_feature' | 'rank_features' | 'scaled_float' | 'search_as_you_type' | 'short' | 'text' | 'token_count' | 'unsigned_long' | 'version' | 'wildcard' | 'xy_point' | 'xy_shape'
+export type FieldType = 'aggregate_metric_double' | 'alias' | 'binary' | 'boolean' | 'byte' | 'completion' | 'constant_keyword' | 'date' | 'date_nanos' | 'date_range' | 'double' | 'double_range' | 'flat_object' | 'float' | 'float_range' | 'geo_point' | 'geo_shape' | 'half_float' | 'histogram' | 'icu_collation_keyword' | 'integer' | 'integer_range' | 'ip' | 'ip_range' | 'join' | 'keyword' | 'knn_vector' | 'long' | 'long_range' | 'match_only_text' | 'murmur3' | 'nested' | 'object' | 'percolator' | 'rank_feature' | 'rank_features' | 'scaled_float' | 'search_as_you_type' | 'semantic' | 'short' | 'text' | 'token_count' | 'unsigned_long' | 'version' | 'wildcard' | 'xy_point' | 'xy_shape'
 
 export type FlatObjectProperty = PropertyBase & {
   aggregatable?: boolean;
@@ -319,7 +319,7 @@ export type PercolatorProperty = PropertyBase & {
   type: 'percolator';
 }
 
-export type Property = BinaryProperty | BooleanProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | FlatObjectProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty | IcuCollationKeywordProperty
+export type Property = BinaryProperty | BooleanProperty | JoinProperty | KeywordProperty | MatchOnlyTextProperty | PercolatorProperty | RankFeatureProperty | RankFeaturesProperty | SearchAsYouTypeProperty | TextProperty | VersionProperty | WildcardProperty | DateNanosProperty | DateProperty | AggregateMetricDoubleProperty | FlatObjectProperty | NestedProperty | ObjectProperty | CompletionProperty | ConstantKeywordProperty | FieldAliasProperty | HistogramProperty | IpProperty | Murmur3HashProperty | TokenCountProperty | GeoPointProperty | GeoShapeProperty | XyPointProperty | XyShapeProperty | ByteNumberProperty | DoubleNumberProperty | FloatNumberProperty | HalfFloatNumberProperty | IntegerNumberProperty | LongNumberProperty | ScaledFloatNumberProperty | SemanticProperty | ShortNumberProperty | UnsignedLongNumberProperty | DateRangeProperty | DoubleRangeProperty | FloatRangeProperty | IntegerRangeProperty | IpRangeProperty | LongRangeProperty | KnnVectorProperty | IcuCollationKeywordProperty
 
 export type PropertyBase = {
   dynamic?: DynamicMapping;
@@ -364,6 +364,37 @@ export type SearchAsYouTypeProperty = CorePropertyBase & {
   search_quote_analyzer?: string;
   term_vector?: TermVectorOption;
   type: 'search_as_you_type';
+}
+
+export type SemanticChunkingStrategy = {
+  algorithm: string;
+  parameters?: {
+};
+}
+
+export type SemanticDenseEmbeddingConfig = {
+  compression_level?: string;
+  data_type?: string;
+  method?: KnnVectorMethod;
+  mode?: string;
+}
+
+export type SemanticProperty = {
+  chunking?: boolean | SemanticChunkingStrategy[];
+  dense_embedding_config?: SemanticDenseEmbeddingConfig;
+  model_id: string;
+  raw_field_type?: string;
+  search_model_id?: string;
+  semantic_field_search_analyzer?: string;
+  semantic_info_field_name?: string;
+  skip_existing_embedding?: boolean;
+  sparse_encoding_config?: SemanticSparseEncodingConfig;
+  type: 'semantic';
+}
+
+export type SemanticSparseEncodingConfig = {
+  prune_ratio?: number;
+  prune_type?: string;
 }
 
 export type ShortNumberProperty = NumberPropertyBase & {

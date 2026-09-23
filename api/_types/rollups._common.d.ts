@@ -15,6 +15,7 @@
  */
 
 import * as Common from './_common'
+import * as Indices_Common from './indices._common'
 
 export type Cron = {
   expression?: string;
@@ -88,6 +89,7 @@ export type Rollup = {
   schema_version?: number;
   source_index?: string;
   target_index?: string;
+  target_index_settings?: Indices_Common.IndexSettings;
 }
 
 export type RollupEntity = {

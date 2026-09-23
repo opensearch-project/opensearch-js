@@ -18,16 +18,29 @@
 
 /** @namespace API-Http */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const connectFn = require('./connect');
+const deleteFn = require('./delete');
+const getFn = require('./get');
+const headFn = require('./head');
+const optionsFn = require('./options');
+const patchFn = require('./patch');
+const postFn = require('./post');
+const putFn = require('./put');
+const traceFn = require('./trace');
+
 function HttpApi(bindObj) {
-  this.connect = require('./connect').bind(bindObj);
-  this.delete = require('./delete').bind(bindObj);
-  this.get = require('./get').bind(bindObj);
-  this.head = require('./head').bind(bindObj);
-  this.options = require('./options').bind(bindObj);
-  this.patch = require('./patch').bind(bindObj);
-  this.post = require('./post').bind(bindObj);
-  this.put = require('./put').bind(bindObj);
-  this.trace = require('./trace').bind(bindObj);
+  this.connect = connectFn.bind(bindObj);
+  this.delete = deleteFn.bind(bindObj);
+  this.get = getFn.bind(bindObj);
+  this.head = headFn.bind(bindObj);
+  this.options = optionsFn.bind(bindObj);
+  this.patch = patchFn.bind(bindObj);
+  this.post = postFn.bind(bindObj);
+  this.put = putFn.bind(bindObj);
+  this.trace = traceFn.bind(bindObj);
 
 }
 

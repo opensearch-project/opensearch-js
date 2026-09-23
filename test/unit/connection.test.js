@@ -34,7 +34,7 @@ const { inspect } = require('util');
 const { URL } = require('url');
 const { Agent } = require('http');
 const { Readable } = require('stream');
-const hpagent = require('hpagent');
+const { HttpProxyAgent, HttpsProxyAgent } = require('../../lib/ProxyAgent');
 const intoStream = require('into-stream');
 const { buildServer } = require('../utils');
 const Connection = require('../../lib/Connection');
@@ -1072,7 +1072,7 @@ test('Proxy agent (http)', (t) => {
     proxy: 'http://localhost:8080',
   });
 
-  t.ok(connection.agent instanceof hpagent.HttpProxyAgent);
+  t.ok(connection.agent instanceof HttpProxyAgent);
 });
 
 test('Proxy agent (https)', (t) => {
@@ -1083,7 +1083,7 @@ test('Proxy agent (https)', (t) => {
     proxy: 'http://localhost:8080',
   });
 
-  t.ok(connection.agent instanceof hpagent.HttpsProxyAgent);
+  t.ok(connection.agent instanceof HttpsProxyAgent);
 });
 
 test('Abort with a slow body', (t) => {

@@ -32,7 +32,7 @@ is considered to be too large or too old.
  * @param {string} [params.timeout] - Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {string} [params.wait_for_active_shards] - The number of shard copies that must be active before proceeding with the operation. Set to all or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
  * @param {string} params.alias - Name of the data stream or index alias to roll over.
- * @param {string} [params.new_index] - Name of the index to create. Supports date math. Data streams do not support this parameter.
+ * @param {string} [params.new_index] - The name of the index to create. Supports date math. Data streams do not support this parameter.
  * @param {object} [params.body] - The conditions that needs to be met for executing rollover
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

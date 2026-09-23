@@ -84,9 +84,9 @@ export type ActionRetry = {
 export type ActionRollover = {
   copy_alias?: boolean;
   min_doc_count?: number;
-  min_index_age?: number;
-  min_primary_shard_size?: number;
-  min_size?: number;
+  min_index_age?: string;
+  min_primary_shard_size?: string;
+  min_size?: string;
 }
 
 export type ActionRollup = Record<string, any>

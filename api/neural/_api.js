@@ -18,8 +18,13 @@
 
 /** @namespace API-Neural */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const statsFn = require('./stats');
+
 function NeuralApi(bindObj) {
-  this.stats = require('./stats').bind(bindObj);
+  this.stats = statsFn.bind(bindObj);
 
 }
 

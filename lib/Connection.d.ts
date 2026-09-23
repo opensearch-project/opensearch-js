@@ -99,7 +99,7 @@ export default class Connection {
   makeRequest: any;
   _openRequests: number;
   _status: string;
-  _agent: http.Agent | https.Agent;
+  agent: http.Agent | https.Agent;
   constructor(opts?: ConnectionOptions);
   request(
     params: RequestOptions,

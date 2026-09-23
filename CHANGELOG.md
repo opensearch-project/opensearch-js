@@ -6,13 +6,24 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [3.9.0]
+Versions 3.7.0 and 3.8.0 are skipped. The numbers were used by the malicious packages described in [GHSA-27f5-xjrr-q9ff](https://github.com/opensearch-project/opensearch-js/security/advisories/GHSA-27f5-xjrr-q9ff), and npm does not allow a version number to be used again.
+
+### Added
+- Api Generator: support `x-is-generic-type-parameter`. Types that use a generic marker now take a type parameter with an `any` default, for example `HitsMetadata<TDocument = any>` ([#1129](https://github.com/opensearch-project/opensearch-js/pull/1129))
+### Dependencies
 - Remove `hpagent`. The client now uses its own proxy agent, derived from `hpagent` 1.2.0 ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 ### Changed
+- Updated API to match the OpenSearch spec from Sep 23, 2026 ([#1150](https://github.com/opensearch-project/opensearch-js/pull/1150))
 - Updated API spec download URL to `https://api-spec.opensearch.org` ([#1141](https://github.com/opensearch-project/opensearch-js/pull/1141))
 - CI: test against OpenSearch 1.3.20, 2.19.6 and 3.8.0, and Node.js 22.x, 24.x and 26.x ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 - CI: use the reusable backport-pr workflow from opensearch-build ([#1123](https://github.com/opensearch-project/opensearch-js/pull/1123))
-### Deprecated
-### Removed
 ### Fixed
 - Fix HTTPS proxy with an IP address on Node.js 26 (`ERR_INVALID_ARG_VALUE` for TLS servername) ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 - CI: wait for the security plugin to initialize before the secure integration tests run ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
@@ -22,8 +33,9 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Api Generator: Lazily instantiate API namespaces to fix Client construction performance ([#1133](https://github.com/opensearch-project/opensearch-js/pull/1133))
 - Fix bulk helper mapping response items to variable-width `bulkBody` when mixing delete and index/create/update operations, which caused incorrect operation/document pairing and undefined deserialization ([#1125](https://github.com/opensearch-project/opensearch-js/issues/1125), [#1126](https://github.com/opensearch-project/opensearch-js/pull/1126))
 - Upgrade webpack to v5 in bundler test to support the nullish coalescing operator emitted by the API generator ([#1138](https://github.com/opensearch-project/opensearch-js/pull/1138))
+- Declare the `Connection` agent property as `agent`, not `_agent`, to match the runtime ([#1146](https://github.com/opensearch-project/opensearch-js/pull/1146))
 ### Security
-- Fix CVEs in diff, lodash, and yaml dependencies ([#1131] https://github.com/opensearch-project/opensearch-js/pull/1131)
+- Fix CVEs in diff, lodash, and yaml dependencies ([#1131](https://github.com/opensearch-project/opensearch-js/pull/1131))
 
 ## [3.6.0]
 ### Fixed

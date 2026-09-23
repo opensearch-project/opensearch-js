@@ -155,9 +155,14 @@ export type NodeInfoSearch = {
   remote: NodeInfoSearchRemote;
 }
 
+export type NodeInfoSearchPipelineProcessor = {
+  type: string;
+}
+
 export type NodeInfoSearchPipelines = {
-  request_processors?: NodeInfoIngestProcessor[];
-  response_processors?: NodeInfoIngestProcessor[];
+  phase_results_processors?: NodeInfoSearchPipelineProcessor[];
+  request_processors?: NodeInfoSearchPipelineProcessor[];
+  response_processors?: NodeInfoSearchPipelineProcessor[];
 }
 
 export type NodeInfoSearchRemote = {

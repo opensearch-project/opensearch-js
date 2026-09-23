@@ -217,7 +217,7 @@ export default class TypesFileRenderder extends BaseRenderer {
       }
       return this.#render_ref(schema.$ref, generic_param_keys)
     }
-    if (schema.items != null) return `${this.#render_schema(schema.items as Schema, generic_param_keys)}[]`
+    if (schema.items != null) return `${this.#parenthesize(this.#render_schema(schema.items as Schema, generic_param_keys), [' & ', ' | '])}[]`
     if (schema.type === 'array') return 'any[]'
     if (schema.enum != null) return schema.enum.map(str => `'${str as string}'`).join(' | ')
     if (schema.type === 'string' && schema.const != null) return `'${schema.const as string}'`
@@ -338,15 +338,15 @@ export default class TypesFileRenderder extends BaseRenderer {
   }
 
   #union (renders: string[]): string {
-    return _.uniq(renders.map(render => this.#parenthesize(render, ' & '))).join(' | ')
+    return _.uniq(renders.map(render => this.#parenthesize(render, [' & ']))).join(' | ')
   }
 
   #intersection (renders: string[]): string {
-    return _.uniq(renders.filter((r) => r !== '').map(render => this.#parenthesize(render, ' | '))).join(' & ')
+    return _.uniq(renders.filter((r) => r !== '').map(render => this.#parenthesize(render, [' | ']))).join(' & ')
   }
 
-  #parenthesize (render: string, token: ' | ' | ' & '): string {
-    const required = !render.startsWith('(') && _.some(render.split('\n').map(line => line.includes(token) && !line.endsWith(';')))
+  #parenthesize (render: string, tokens: Array<' | ' | ' & '>): string {
+    const required = !render.startsWith('(') && _.some(render.split('\n').map(line => tokens.some(token => line.includes(token)) && !line.endsWith(';')))
     return required ? `(${render})` : render
   }
 

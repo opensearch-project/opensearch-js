@@ -19,9 +19,9 @@ jobs:
       fail-fast: false
       matrix:
         entry:
-          - { node_version: '18.x', opensearch_ref: '1.x', jdk_version: '11' }
-          - { node_version: '18.x', opensearch_ref: '2.x', jdk_version: '17' }
-          - { node_version: '18.x', opensearch_ref: 'main', jdk_version: '21' }
+          - { node_version: '24.x', opensearch_ref: '1.x', jdk_version: '11' }
+          - { node_version: '24.x', opensearch_ref: '2.x', jdk_version: '17' }
+          - { node_version: '24.x', opensearch_ref: 'main', jdk_version: '21' }
     steps:
       - name: Checkout OpenSearch
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4

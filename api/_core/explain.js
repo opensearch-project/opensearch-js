@@ -19,7 +19,7 @@
 const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
- * Returns information about why a specific matches (or doesn't match) a query.
+ * Returns information about why a specific document matches (or doesn't match) a query.
  * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/explain/ - explain}
  *
  * @memberOf API-Core
@@ -35,7 +35,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {boolean} [params.lenient] - If `true`, format-based query failures (such as providing text to a numeric field) in the query string will be ignored.
  * @param {string} [params.preference=random] - Specifies the node or shard the operation should be performed on. Random by default.
  * @param {string} [params.q] - Query in the Lucene query string syntax.
- * @param {string} [params.routing] - Custom value used to route operations to a specific shard.
+ * @param {string} [params.routing] - A custom value used to route operations to a specific shard.
  * @param {string} [params.stored_fields] - A comma-separated list of stored fields to return in the response.
  * @param {string} params.id - Defines the document ID.
  * @param {string} params.index - Index names used to limit the request. Only a single index name can be provided to this parameter.

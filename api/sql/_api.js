@@ -18,18 +18,28 @@
 
 /** @namespace API-Sql */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const closeFn = require('./close');
+const explainFn = require('./explain');
+const getStatsFn = require('./getStats');
+const postStatsFn = require('./postStats');
+const queryFn = require('./query');
+const settingsFn = require('./settings');
+
 function SqlApi(bindObj) {
-  this.close = require('./close').bind(bindObj);
-  this.explain = require('./explain').bind(bindObj);
-  this.getStats = require('./getStats').bind(bindObj);
-  this.postStats = require('./postStats').bind(bindObj);
-  this.query = require('./query').bind(bindObj);
-  this.settings = require('./settings').bind(bindObj);
+  this.close = closeFn.bind(bindObj);
+  this.explain = explainFn.bind(bindObj);
+  this.getStats = getStatsFn.bind(bindObj);
+  this.postStats = postStatsFn.bind(bindObj);
+  this.query = queryFn.bind(bindObj);
+  this.settings = settingsFn.bind(bindObj);
 
   // Deprecated: Use getStats instead.
-  this.get_stats = require('./getStats').bind(bindObj);
+  this.get_stats = getStatsFn.bind(bindObj);
   // Deprecated: Use postStats instead.
-  this.post_stats = require('./postStats').bind(bindObj);
+  this.post_stats = postStatsFn.bind(bindObj);
 }
 
 module.exports = SqlApi;

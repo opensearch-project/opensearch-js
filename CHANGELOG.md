@@ -14,6 +14,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- CI: grant `contents: write` to the gh-pages workflow, which failed with HTTP 403 on push ([#1152](https://github.com/opensearch-project/opensearch-js/pull/1152))
 - Fix HTTPS proxy with an IP address on Node.js 26 (`ERR_INVALID_ARG_VALUE` for TLS servername) ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 - CI: wait for the security plugin to initialize before the secure integration tests run ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 - Api Generator: fix invalid extends syntax generated for nested allOf inside object properties ([#1128](https://github.com/opensearch-project/opensearch-js/pull/1128))

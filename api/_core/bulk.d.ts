@@ -35,7 +35,7 @@ export interface Bulk_Request extends Global.Params {
   wait_for_active_shards?: Common.WaitForActiveShards;
 }
 
-export type Bulk_RequestBody = Core_Bulk.OperationContainer | Core_Bulk.UpdateAction | Record<string, any>[]
+export type Bulk_RequestBody = (Core_Bulk.OperationContainer | Core_Bulk.UpdateAction | Record<string, any>)[]
 
 export interface Bulk_Response extends ApiResponse {
   body: Bulk_ResponseBody;

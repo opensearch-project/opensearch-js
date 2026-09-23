@@ -108,7 +108,7 @@ export type CompletionSuggest = SuggestBase & ({
   _source?: TDocument;
 }) | (CompletionSuggestOption & {
   _source?: TDocument;
-}[]);
+})[];
 })
 
 export type CompletionSuggester = SuggesterBase & {
@@ -259,7 +259,7 @@ export type Hit = {
 
 export type HitsMetadata = {
   hits: (Hit & {
-  _source?: T;
+  _source?: TDocument;
 })[];
   max_score?: undefined | number;
   total?: TotalHits | number;
@@ -450,13 +450,13 @@ export type SearchResultJsonValue = SearchResult & ({
   _source?: any;
 }[];
 };
-  suggest?: Record<string, {
+  suggest?: Record<string, ({
   options?: {
   _source?: any;
 } | {
   _source?: any;
 }[];
-} | PhraseSuggest | TermSuggest[]>;
+} | PhraseSuggest | TermSuggest)[]>;
 })
 
 export type ShardProfile = {
@@ -492,7 +492,7 @@ export type Suggest = (CompletionSuggest & ({
   _source?: TDocument;
 }) | (CompletionSuggestOption & {
   _source?: TDocument;
-}[]);
+})[];
 })) | PhraseSuggest | TermSuggest
 
 export type SuggestBase = {

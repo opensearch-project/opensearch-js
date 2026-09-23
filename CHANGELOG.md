@@ -7,9 +7,11 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 ### Changed
+- CI: test against OpenSearch 1.3.20, 2.19.6 and 3.8.0, and Node.js 22.x, 24.x and 26.x ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 ### Deprecated
 ### Removed
 ### Fixed
+- CI: wait for the security plugin to initialize before the secure integration tests run ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 - Api Generator: fix invalid extends syntax generated for nested allOf inside object properties ([#1128](https://github.com/opensearch-project/opensearch-js/pull/1128))
 - Replace GitHub App token with opensearch-ci-bot PAT in generate_api workflow ([#1130](https://github.com/opensearch-project/opensearch-js/pull/1130))
 - Api Generator: Lazily instantiate API namespaces to fix Client construction performance ([#1133](https://github.com/opensearch-project/opensearch-js/pull/1133))

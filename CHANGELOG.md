@@ -6,10 +6,14 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+- Remove `hpagent`. The client now uses its own proxy agent, derived from `hpagent` 1.2.0 ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 ### Changed
+- CI: test against OpenSearch 1.3.20, 2.19.6 and 3.8.0, and Node.js 22.x, 24.x and 26.x ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 ### Deprecated
 ### Removed
 ### Fixed
+- Fix HTTPS proxy with an IP address on Node.js 26 (`ERR_INVALID_ARG_VALUE` for TLS servername) ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
+- CI: wait for the security plugin to initialize before the secure integration tests run ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 - Api Generator: fix invalid extends syntax generated for nested allOf inside object properties ([#1128](https://github.com/opensearch-project/opensearch-js/pull/1128))
 - Api Generator: Add parentheses around array element types containing intersections, fixing the `HitsMetadata.hits` type ([#1112](https://github.com/opensearch-project/opensearch-js/issues/1112))
 - Replace GitHub App token with opensearch-ci-bot PAT in generate_api workflow ([#1130](https://github.com/opensearch-project/opensearch-js/pull/1130))

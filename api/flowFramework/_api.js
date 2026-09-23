@@ -18,24 +18,38 @@
 
 /** @namespace API-Flow-Framework */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const createFn = require('./create');
+const deleteFn = require('./delete');
+const deprovisionFn = require('./deprovision');
+const getFn = require('./get');
+const getStatusFn = require('./getStatus');
+const getStepsFn = require('./getSteps');
+const provisionFn = require('./provision');
+const searchFn = require('./search');
+const searchStateFn = require('./searchState');
+const updateFn = require('./update');
+
 function FlowFrameworkApi(bindObj) {
-  this.create = require('./create').bind(bindObj);
-  this.delete = require('./delete').bind(bindObj);
-  this.deprovision = require('./deprovision').bind(bindObj);
-  this.get = require('./get').bind(bindObj);
-  this.getStatus = require('./getStatus').bind(bindObj);
-  this.getSteps = require('./getSteps').bind(bindObj);
-  this.provision = require('./provision').bind(bindObj);
-  this.search = require('./search').bind(bindObj);
-  this.searchState = require('./searchState').bind(bindObj);
-  this.update = require('./update').bind(bindObj);
+  this.create = createFn.bind(bindObj);
+  this.delete = deleteFn.bind(bindObj);
+  this.deprovision = deprovisionFn.bind(bindObj);
+  this.get = getFn.bind(bindObj);
+  this.getStatus = getStatusFn.bind(bindObj);
+  this.getSteps = getStepsFn.bind(bindObj);
+  this.provision = provisionFn.bind(bindObj);
+  this.search = searchFn.bind(bindObj);
+  this.searchState = searchStateFn.bind(bindObj);
+  this.update = updateFn.bind(bindObj);
 
   // Deprecated: Use getStatus instead.
-  this.get_status = require('./getStatus').bind(bindObj);
+  this.get_status = getStatusFn.bind(bindObj);
   // Deprecated: Use getSteps instead.
-  this.get_steps = require('./getSteps').bind(bindObj);
+  this.get_steps = getStepsFn.bind(bindObj);
   // Deprecated: Use searchState instead.
-  this.search_state = require('./searchState').bind(bindObj);
+  this.search_state = searchStateFn.bind(bindObj);
 }
 
 module.exports = FlowFrameworkApi;

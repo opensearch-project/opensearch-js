@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [22.x, 24.x, 26.x]
 
     env:
       SECURE_INTEGRATION: false
@@ -44,17 +44,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # NPM started understanding yarn.lock file starting from v7
-      - name: Update NPM
-        shell: bash
-        run: |
-          export NPM_VERSION=$(npm -v)
-          export IS_NPM_SUITABLE=$(node -p "parseInt(process.env.NPM_ROOT, 10) >= 7")
-          if [ "$IS_NPM_SUITABLE" == "false" ]; then
-            echo "NPM needs upgrading!"
-            npm i npm@7 -g
-          fi
-
       - name: Install
         run: |
           npm install
@@ -69,7 +58,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [22.x, 24.x, 26.x]
 
     env:
       SECURE_INTEGRATION: true
@@ -92,17 +81,6 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: ${{ matrix.node-version }}
-
-      # NPM started understanding yarn.lock file starting from v7
-      - name: Update NPM
-        shell: bash
-        run: |
-          export NPM_VERSION=$(npm -v)
-          export IS_NPM_SUITABLE=$(node -p "parseInt(process.env.NPM_ROOT, 10) >= 7")
-          if [ "$IS_NPM_SUITABLE" == "false" ]; then
-            echo "NPM needs upgrading!"
-            npm i npm@7 -g
-          fi
 
       - name: Install
         run: |

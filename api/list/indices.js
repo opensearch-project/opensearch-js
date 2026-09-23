@@ -29,7 +29,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {string} [params.expand_wildcards] - The type of index that wildcard patterns can match.
  * @param {string} [params.format] - A short version of the Accept header, such as `JSON`, `YAML`.
- * @param {array} [params.h] - Comma-separated list of column names to display.
+ * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {string} [params.health] - The health status used to limit returned indexes. By default, the response includes indexes of any health status.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.include_unloaded_segments=false] - If `true`, the response includes information from segments that are not loaded into memory.
@@ -37,12 +37,12 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
  * @param {null | string} [params.next_token] - Token to retrieve next page of indexes.
  * @param {boolean} [params.pri=false] - If `true`, the response only includes information from primary shards.
- * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
+ * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {number} [params.size] - Maximum number of indexes to be displayed in a page.
  * @param {string} [params.sort] - Defines order in which indexes will be displayed. Accepted values are `asc` and `desc`. If `desc`, most recently created indexes would be displayed first.
  * @param {string} [params.time] - The unit used to display time values.
  * @param {boolean} [params.v=false] - Verbose mode. Display column headers.
- * @param {string} [params.index] - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

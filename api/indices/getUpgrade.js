@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {boolean} [params.allow_no_indices] - Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
  * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
  * @param {boolean} [params.ignore_unavailable] - Whether specified concrete indexes should be ignored when unavailable (missing or closed).
- * @param {array} [params.index] - Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
+ * @param {array} [params.index] - A comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

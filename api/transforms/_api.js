@@ -18,15 +18,27 @@
 
 /** @namespace API-Transforms */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const deleteFn = require('./delete');
+const explainFn = require('./explain');
+const getFn = require('./get');
+const previewFn = require('./preview');
+const putFn = require('./put');
+const searchFn = require('./search');
+const startFn = require('./start');
+const stopFn = require('./stop');
+
 function TransformsApi(bindObj) {
-  this.delete = require('./delete').bind(bindObj);
-  this.explain = require('./explain').bind(bindObj);
-  this.get = require('./get').bind(bindObj);
-  this.preview = require('./preview').bind(bindObj);
-  this.put = require('./put').bind(bindObj);
-  this.search = require('./search').bind(bindObj);
-  this.start = require('./start').bind(bindObj);
-  this.stop = require('./stop').bind(bindObj);
+  this.delete = deleteFn.bind(bindObj);
+  this.explain = explainFn.bind(bindObj);
+  this.get = getFn.bind(bindObj);
+  this.preview = previewFn.bind(bindObj);
+  this.put = putFn.bind(bindObj);
+  this.search = searchFn.bind(bindObj);
+  this.start = startFn.bind(bindObj);
+  this.stop = stopFn.bind(bindObj);
 
 }
 

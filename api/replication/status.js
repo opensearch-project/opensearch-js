@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Retrieves the the status of an index replication.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/replication-plugin/api/#get-replication-status - replication.status}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/tuning-your-cluster/replication-plugin/api/#get-replication-status - replication.status}
  *
  * @memberOf API-Replication
  *

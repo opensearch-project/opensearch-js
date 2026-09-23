@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Retrieves all tenants.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-tenants - security.get_tenants}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-tenants - security.get_tenants}
  *
  * @memberOf API-Security
  *

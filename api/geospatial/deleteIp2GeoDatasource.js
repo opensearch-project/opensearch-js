@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Delete a specific IP2Geo data source.
- * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#deleting-the-ip2geo-data-source - geospatial.delete_ip2geo_datasource}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ingest-pipelines/processors/ip2geo/#deleting-the-ip2geo-data-source - geospatial.delete_ip2geo_datasource}
  *
  * @memberOf API-Geospatial
  *

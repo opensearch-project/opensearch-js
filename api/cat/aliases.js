@@ -20,13 +20,13 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Shows information about aliases currently configured to indexes, including filter and routing information.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-aliases/ - cat.aliases}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-aliases/ - cat.aliases}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
  * @param {string} [params.expand_wildcards] - Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.

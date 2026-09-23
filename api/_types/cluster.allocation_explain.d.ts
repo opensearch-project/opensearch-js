@@ -78,7 +78,10 @@ export type NodeDiskUsage = {
   least_available: DiskUsage;
   most_available: DiskUsage;
   node_name: Common.Name;
+  node_resource_usage_stats?: NodeResourceUsageStats;
 }
+
+export type NodeResourceUsageStats = Record<string, any>
 
 export type ReservedSize = {
   node_id: Common.Id;

@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Delete multiple channel configurations.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/observing-your-data/notifications/api/#delete-channel-configuration - notifications.delete_configs}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/observing-your-data/notifications/api/#delete-channel-configuration - notifications.delete_configs}
  *
  * @memberOf API-Notifications
  *

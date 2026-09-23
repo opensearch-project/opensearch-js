@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Updates individual attributes for an internal user.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-user - security.patch_user}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#patch-user - security.patch_user}
  *
  * @memberOf API-Security
  *

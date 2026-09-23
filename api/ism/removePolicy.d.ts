@@ -20,7 +20,7 @@ import * as Global from '../_types/_global'
 import * as Ism_Common from '../_types/ism._common'
 
 export interface Ism_RemovePolicy_Request extends Global.Params {
-  index?: Common.IndexName;
+  index?: Common.Indices;
 }
 
 export interface Ism_RemovePolicy_Response extends ApiResponse {

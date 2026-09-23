@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Deletes the specified replication rule.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/replication-plugin/api/#delete-replication-rule - replication.delete_replication_rule}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/tuning-your-cluster/replication-plugin/api/#delete-replication-rule - replication.delete_replication_rule}
  *
  * @memberOf API-Replication
  *

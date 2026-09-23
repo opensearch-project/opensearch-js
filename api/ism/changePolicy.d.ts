@@ -21,7 +21,7 @@ import * as Ism_Common from '../_types/ism._common'
 
 export interface Ism_ChangePolicy_Request extends Global.Params {
   body?: Ism_Common.ChangePolicyRequest;
-  index?: Common.IndexName;
+  index?: Common.Indices;
 }
 
 export interface Ism_ChangePolicy_Response extends ApiResponse {

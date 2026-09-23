@@ -103,10 +103,10 @@ export type CompletionContext = Context | {
   prefix?: boolean;
 }
 
-export type CompletionSuggest = SuggestBase & ({
-  options: (CompletionSuggestOption & {
+export type CompletionSuggest<TDocument = any> = SuggestBase & ({
+  options: (CompletionSuggestOption<TDocument> & {
   _source?: TDocument;
-}) | (CompletionSuggestOption & {
+}) | (CompletionSuggestOption<TDocument> & {
   _source?: TDocument;
 })[];
 })
@@ -118,7 +118,7 @@ export type CompletionSuggester = SuggesterBase & {
   skip_duplicates?: boolean;
 }
 
-export type CompletionSuggestOption = {
+export type CompletionSuggestOption<TDocument = any> = {
   _id?: string;
   _index?: Common.IndexName;
   _routing?: Common.Routing;
@@ -233,7 +233,7 @@ export type HighlightField = HighlightBase & {
 
 export type HighlightFields = Record<string, HighlightField> | Record<string, HighlightField>[]
 
-export type Hit = {
+export type Hit<TDocument = any> = {
   _explanation?: Core_Explain.Explanation;
   _id?: Common.Id;
   _ignored?: string[];
@@ -257,15 +257,15 @@ export type Hit = {
   [key: string]: any | Record<string, any>;
 }
 
-export type HitsMetadata = {
-  hits: (Hit & {
+export type HitsMetadata<TDocument = any> = {
+  hits: (Hit<TDocument> & {
   _source?: TDocument;
 })[];
-  max_score?: undefined | number;
+  max_score: undefined | number;
   total?: TotalHits | number;
 }
 
-export type HitsMetadataJsonValue = HitsMetadata & {
+export type HitsMetadataJsonValue = HitsMetadata<any> & {
   hits?: {
   _source?: any;
 }[];
@@ -421,14 +421,14 @@ export type SearchProfile = {
   rewrite_time: number;
 }
 
-export type SearchResponse = SearchResult & Record<string, any>
+export type SearchResponse = SearchResult<any> & Record<string, any>
 
-export type SearchResult = {
+export type SearchResult<TDocument = any> = {
   _clusters?: Common.ClusterStatistics;
   _scroll_id?: Common.ScrollId;
   _shards: Common.ShardStatistics;
   aggregations?: Record<string, Common_Aggregations.Aggregate>;
-  hits: HitsMetadata & {
+  hits: HitsMetadata<TDocument> & {
   hits?: {
   _source?: TDocument;
 }[];
@@ -438,13 +438,13 @@ export type SearchResult = {
   pit_id?: Common.Id;
   processor_results?: ProcessorExecutionDetail[];
   profile?: Profile;
-  suggest?: Record<string, Suggest[]>;
+  suggest?: Record<string, Suggest<TDocument>[]>;
   terminated_early?: boolean;
   timed_out: boolean;
   took: number;
 }
 
-export type SearchResultJsonValue = SearchResult & ({
+export type SearchResultJsonValue = SearchResult<any> & ({
   hits?: {
   hits?: {
   _source?: any;
@@ -487,10 +487,10 @@ export type StupidBackoffSmoothingModel = {
   discount: number;
 }
 
-export type Suggest = (CompletionSuggest & ({
-  options?: (CompletionSuggestOption & {
+export type Suggest<TDocument = any> = (CompletionSuggest<TDocument> & ({
+  options?: (CompletionSuggestOption<TDocument> & {
   _source?: TDocument;
-}) | (CompletionSuggestOption & {
+}) | (CompletionSuggestOption<TDocument> & {
   _source?: TDocument;
 })[];
 })) | PhraseSuggest | TermSuggest
@@ -521,8 +521,6 @@ export type SuggestFuzziness = {
 }
 
 export type SuggestSort = 'frequency' | 'score'
-
-export type TDocument = Record<string, any>
 
 export type TermSuggest = SuggestBase & {
   options: TermSuggestOption | TermSuggestOption[];

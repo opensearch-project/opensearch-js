@@ -20,14 +20,14 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Provides low-level information about the segments in the shards of an index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-segments/ - cat.segments}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-segments/ - cat.segments}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
  * @param {string} [params.bytes] - The units used to display byte values.
  * @param {string} [params.cluster_manager_timeout] - The amount of time allowed to establish a connection to the cluster manager node.
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {string} [params.master_timeout] DEPRECATED - The amount of time allowed to establish a connection to the cluster manager node.

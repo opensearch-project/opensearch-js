@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Simulate matching the given index name against the index templates in the system.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.simulate_index_template}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.simulate_index_template}
  *
  * @memberOf API-Indices
  *

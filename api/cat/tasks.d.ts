@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Cat_Common from '../_types/cat._common'
 import * as Cat_Tasks from '../_types/cat.tasks'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
@@ -22,7 +23,7 @@ import * as Global from '../_types/_global'
 export interface Cat_Tasks_Request extends Global.Params {
   actions?: string[];
   detailed?: boolean;
-  format?: string;
+  format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
   nodes?: string[];

@@ -20,7 +20,7 @@ import * as Sql_Common from '../_types/sql._common'
 
 export interface Sql_PostStats_Request extends Global.Params {
   body?: Sql_Common.Stats;
-  format?: string;
+  format?: Sql_Common.ResponseFormat;
   sanitize?: boolean;
 }
 

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Provides statistics on operations happening in a data stream.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/data-streams/ - indices.data_streams_stats}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/data-streams/ - indices.data_streams_stats}
  *
  * @memberOf API-Indices
  *

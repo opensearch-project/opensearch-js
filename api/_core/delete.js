@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Removes a document from the index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/delete-document/ - delete}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/delete-document/ - delete}
  *
  * @memberOf API-Core
  *

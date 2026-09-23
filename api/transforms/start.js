@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Start transform.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-transforms/transforms-apis/#start-a-transform-job - transforms.start}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-transforms/transforms-apis/#start-a-transform-job - transforms.start}
  *
  * @memberOf API-Transforms
  *

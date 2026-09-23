@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Creates, updates, or deletes multiple internal users in a single request.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-users - security.patch_users}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#patch-users - security.patch_users}
  *
  * @memberOf API-Security
  *

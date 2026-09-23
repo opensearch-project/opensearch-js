@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Provides statistics on operations happening in an index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.stats}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.stats}
  *
  * @memberOf API-Indices
  *

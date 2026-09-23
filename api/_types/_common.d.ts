@@ -302,6 +302,7 @@ export type IndexingStats = {
   index_time_in_millis: DurationValueUnitMillis;
   index_total: number;
   is_throttled: boolean;
+  max_last_index_request_timestamp?: number;
   noop_update_total: number;
   throttle_time?: Duration;
   throttle_time_in_millis: DurationValueUnitMillis;
@@ -316,7 +317,7 @@ export type IndicesResponseBase = AcknowledgedResponseBase & {
   _shards?: ShardStatistics;
 }
 
-export type InlineGet = {
+export type InlineGet<TDocument = any> = {
   _primary_term?: number;
   _routing?: Routing;
   _seq_no?: SequenceNumber;
@@ -369,6 +370,23 @@ export type MergesStats = {
   total_time?: Duration;
   total_time_in_millis: DurationValueUnitMillis;
   unreferenced_file_cleanups_performed?: number;
+  warmer?: MergesWarmerStats;
+}
+
+export type MergesWarmerStats = {
+  ongoing_count?: number;
+  total_bytes_received?: ByteCount;
+  total_bytes_sent?: ByteCount;
+  total_failure_count?: number;
+  total_invocations_count?: number;
+  total_receive_time?: Duration;
+  total_receive_time_millis?: DurationValueUnitMillis;
+  total_received_size?: HumanReadableByteCount;
+  total_send_time?: Duration;
+  total_send_time_millis?: DurationValueUnitMillis;
+  total_sent_size?: HumanReadableByteCount;
+  total_time?: Duration;
+  total_time_millis?: DurationValueUnitMillis;
 }
 
 export type Metadata = Record<string, any>
@@ -404,7 +422,7 @@ export type NodeIds = NodeId | NodeId[]
 
 export type NodeName = string
 
-export type NodeRole = 'client' | 'coordinating_only' | 'data' | 'data_cold' | 'data_content' | 'data_frozen' | 'data_hot' | 'data_warm' | 'ingest' | 'ml' | 'remote_cluster_client' | 'transform' | 'voting_only' | 'master' | 'cluster_manager'
+export type NodeRole = 'client' | 'coordinating_only' | 'data' | 'data_cold' | 'data_content' | 'data_frozen' | 'data_hot' | 'data_warm' | 'ingest' | 'ml' | 'remote_cluster_client' | 'transform' | 'voting_only' | 'master' | 'cluster_manager' | 'search' | 'warm'
 
 export type NodeRoles = NodeRole[]
 
@@ -666,6 +684,7 @@ export type SearchStats = {
   point_in_time_time_in_millis?: DurationValueUnitMillis;
   point_in_time_total?: number;
   query_current: number;
+  query_failed?: number;
   query_time?: Duration;
   query_time_in_millis: DurationValueUnitMillis;
   query_total: number;
@@ -675,6 +694,11 @@ export type SearchStats = {
   scroll_time_in_millis: DurationValueUnitMillis;
   scroll_total: number;
   search_idle_reactivate_count_total?: number;
+  startree_query_current?: number;
+  startree_query_failed?: number;
+  startree_query_time?: Duration;
+  startree_query_time_in_millis?: DurationValueUnitMillis;
+  startree_query_total?: number;
   suggest_current: number;
   suggest_time?: Duration;
   suggest_time_in_millis: DurationValueUnitMillis;
@@ -831,8 +855,6 @@ export type TaskFailure = {
 
 export type TaskId = string
 
-export type TDocument = Record<string, any>
-
 export type TermFrequencyNormalization = 'h1' | 'h2' | 'h3' | 'no' | 'z'
 
 export type ThreadInfo = {
@@ -868,8 +890,6 @@ export type TranslogStats = {
 }
 
 export type TransportAddress = string
-
-export type TResult = Record<string, any>
 
 export type Type = string
 

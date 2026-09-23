@@ -284,6 +284,7 @@ export type NodeInfoSettingsNode = {
 export type NodeInfoSettingsPlugins = Record<string, any>
 
 export type NodeInfoSettingsTransport = {
+  ssl?: Record<string, any>;
   type: NodeInfoSettingsTransportType;
   'type.default'?: string;
 }

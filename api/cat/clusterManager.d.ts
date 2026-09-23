@@ -16,12 +16,13 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Cat_ClusterManager from '../_types/cat.cluster_manager'
+import * as Cat_Common from '../_types/cat._common'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
 export interface Cat_ClusterManager_Request extends Global.Params {
   cluster_manager_timeout?: Common.Duration;
-  format?: string;
+  format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
   local?: boolean;

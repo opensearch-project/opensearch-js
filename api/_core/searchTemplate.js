@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Allows to use the Mustache language to pre-render a search definition.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/search-template/ - search_template}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/search-plugins/search-template/ - search_template}
  *
  * @memberOf API-Core
  *

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deletes all distinguished names in the specified cluster or node allowlist. Requires super admin or REST API permissions.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#delete-distinguished-names - security.delete_distinguished_name}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#delete-distinguished-names - security.delete_distinguished_name}
  *
  * @memberOf API-Security
  *

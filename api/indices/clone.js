@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Clones an index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/clone/ - indices.clone}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/clone/ - indices.clone}
  *
  * @memberOf API-Indices
  *

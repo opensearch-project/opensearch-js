@@ -20,12 +20,12 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Executes a PPL query against OpenSearch indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/ - ppl.query}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/search-plugins/sql/sql-ppl-api/ - ppl.query}
  *
  * @memberOf API-Ppl
  *
  * @param {object} params
- * @param {string} [params.format] - Specifies the response format (JSON OR YAML).
+ * @param {string} [params.format=jdbc] - Specifies the response format (JSON OR YAML).
  * @param {boolean} [params.sanitize=true] - Whether to sanitize special characters in the results.
  * @param {object} params.body - Contains the PPL query to execute.
  *

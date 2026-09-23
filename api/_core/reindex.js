@@ -22,7 +22,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
  * Allows to copy documents from one index to another, optionally filtering the source
 documents by a query, changing the destination index settings, or fetching the
 documents from a remote cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/reindex-data/ - reindex}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/reindex-data/ - reindex}
  *
  * @memberOf API-Core
  *

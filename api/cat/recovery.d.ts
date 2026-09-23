@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Cat_Common from '../_types/cat._common'
 import * as Cat_Recovery from '../_types/cat.recovery'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
@@ -23,7 +24,7 @@ export interface Cat_Recovery_Request extends Global.Params {
   active_only?: boolean;
   bytes?: Common.ByteUnit;
   detailed?: boolean;
-  format?: string;
+  format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
   index?: Common.Indices;

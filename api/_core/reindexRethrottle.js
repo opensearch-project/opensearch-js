@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Changes the number of requests per second for a particular reindex operation.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - reindex_rethrottle}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - reindex_rethrottle}
  *
  * @memberOf API-Core
  *

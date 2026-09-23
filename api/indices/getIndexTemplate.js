@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns an index template.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-templates/ - indices.get_index_template}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-templates/ - indices.get_index_template}
  *
  * @memberOf API-Indices
  *

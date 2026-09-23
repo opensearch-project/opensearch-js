@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Adds a block to an index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.add_block}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.add_block}
  *
  * @memberOf API-Indices
  *

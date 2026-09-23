@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Retrieve information about the specified internal user.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-user - security.get_user}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-user - security.get_user}
  *
  * @memberOf API-Security
  *

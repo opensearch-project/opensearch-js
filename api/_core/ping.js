@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns whether the cluster is running.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - ping}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - ping}
  *
  * @memberOf API-Core
  *

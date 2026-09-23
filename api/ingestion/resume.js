@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Use this API to resume ingestion for the given index.
- * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/api-reference/document-apis/pull-based-ingestion-management/ - ingestion.resume}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/pull-based-ingestion-management/ - ingestion.resume}
  *
  * @memberOf API-Ingestion
  *

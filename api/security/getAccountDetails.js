@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns account information for the current user.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-account-details - security.get_account_details}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-account-details - security.get_account_details}
  *
  * @memberOf API-Security
  *

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Allows you to split an existing index into a new index with more primary shards.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/split/ - indices.split}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/split/ - indices.split}
  *
  * @memberOf API-Indices
  *

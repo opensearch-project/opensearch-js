@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Retrieves one action group.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-action-group - security.get_action_group}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-action-group - security.get_action_group}
  *
  * @memberOf API-Security
  *

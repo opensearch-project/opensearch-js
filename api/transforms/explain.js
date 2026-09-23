@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns the status and metadata of a transform job.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-transforms/transforms-apis/#get-the-status-of-a-transform-job - transforms.explain}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-transforms/transforms-apis/#get-the-status-of-a-transform-job - transforms.explain}
  *
  * @memberOf API-Transforms
  *

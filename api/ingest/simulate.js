@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Simulates an ingest pipeline with example documents.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/simulate-ingest/ - ingest.simulate}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/ingest-apis/simulate-ingest/ - ingest.simulate}
  *
  * @memberOf API-Ingest
  *

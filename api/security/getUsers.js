@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Retrieve all internal users.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-users - security.get_users}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-users - security.get_users}
  *
  * @memberOf API-Security
  *

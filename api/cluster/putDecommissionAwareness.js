@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Decommissions a cluster zone based on awareness. This can greatly benefit multi-zone deployments, where awareness attributes can aid in applying new upgrades to a cluster in a controlled fashion.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-decommission/#example-decommissioning-and-recommissioning-a-zone - cluster.put_decommission_awareness}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-decommission/#decommissioning-and-recommissioning-a-zone - cluster.put_decommission_awareness}
  *
  * @memberOf API-Cluster
  *

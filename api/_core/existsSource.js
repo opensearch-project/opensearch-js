@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns information about whether a document source exists in an index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/get-documents/ - exists_source}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/get-documents/ - exists_source}
  *
  * @memberOf API-Core
  *

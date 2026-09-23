@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Updates the individual attributes of an action group.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-action-group - security.patch_action_group}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#patch-action-group - security.patch_action_group}
  *
  * @memberOf API-Security
  *

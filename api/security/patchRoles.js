@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Creates, updates, or deletes multiple roles in a single call.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-roles - security.patch_roles}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#patch-roles - security.patch_roles}
  *
  * @memberOf API-Security
  *

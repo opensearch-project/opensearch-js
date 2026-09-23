@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Retrieves the execution status information for an index rollup job.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#explain-an-index-rollup-job - rollups.explain}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-rollups/rollup-api/#explain-an-index-rollup-job - rollups.explain}
  *
  * @memberOf API-Rollups
  *

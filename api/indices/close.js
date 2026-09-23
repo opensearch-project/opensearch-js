@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Closes an index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/close-index/ - indices.close}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/close-index/ - indices.close}
  *
  * @memberOf API-Indices
  *

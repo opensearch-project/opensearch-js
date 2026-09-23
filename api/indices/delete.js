@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deletes an index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/delete-index/ - indices.delete}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/delete-index/ - indices.delete}
  *
  * @memberOf API-Indices
  *

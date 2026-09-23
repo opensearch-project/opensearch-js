@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns information about whether a particular index template exists.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-templates/ - indices.exists_index_template}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-templates/ - indices.exists_index_template}
  *
  * @memberOf API-Indices
  *

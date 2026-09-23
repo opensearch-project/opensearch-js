@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns information about whether a particular index exists.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/exists/ - indices.exists}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/exists/ - indices.exists}
  *
  * @memberOf API-Indices
  *

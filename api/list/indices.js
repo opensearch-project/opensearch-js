@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns paginated information about indexes including number of primaries and replicas, document counts, disk size.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/list/list-indices/ - list.indices}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/list/list-indices/ - list.indices}
  *
  * @memberOf API-List
  *
@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.bytes] - The unit used to display byte values.
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {string} [params.expand_wildcards] - The type of index that wildcard patterns can match.
- * @param {string} [params.format] - A short version of the Accept header, such as `JSON`, `YAML`.
+ * @param {string} [params.format=text] - A short version of the Accept header, such as `JSON`, `YAML`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {string} [params.health] - The health status used to limit returned indexes. By default, the response includes indexes of any health status.
  * @param {boolean} [params.help=false] - Return help information.

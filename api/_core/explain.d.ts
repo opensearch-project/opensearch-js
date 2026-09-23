@@ -52,8 +52,8 @@ export type Explain_ResponseBody = {
   _index: Common.IndexName;
   _type?: Common.Type;
   explanation?: Core_Explain.Explanation;
-  get?: Common.InlineGet & {
-  _source?: Common.TDocument;
+  get?: Common.InlineGet<any> & {
+  _source?: any;
 };
   matched: boolean;
 }

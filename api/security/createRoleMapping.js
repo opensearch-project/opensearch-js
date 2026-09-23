@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates or replaces the specified role mapping.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#create-role-mapping - security.create_role_mapping}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#create-role-mapping - security.create_role_mapping}
  *
  * @memberOf API-Security
  *

@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Flushes the Security plugin's user, authentication, and authorization cache.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#flush-cache - security.flush_cache}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#flush-cache - security.flush_cache}
  *
  * @memberOf API-Security
  *

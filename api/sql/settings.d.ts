@@ -20,7 +20,7 @@ import * as Sql_Common from '../_types/sql._common'
 
 export interface Sql_Settings_Request extends Global.Params {
   body?: Sql_Settings_RequestBody;
-  format?: string;
+  format?: Sql_Common.ResponseFormat;
 }
 
 export type Sql_Settings_RequestBody = Sql_Common.SqlSettingsPlain | Sql_Common.SqlSettings

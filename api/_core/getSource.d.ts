@@ -37,5 +37,5 @@ export interface GetSource_Response extends ApiResponse {
   body: GetSource_ResponseBody;
 }
 
-export type GetSource_ResponseBody = Common.TDocument
+export type GetSource_ResponseBody = any
 

@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns available script types, languages and contexts.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/script-apis/get-script-language/ - get_script_languages}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/script-apis/get-script-language/ - get_script_languages}
  *
  * @memberOf API-Core
  *

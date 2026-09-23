@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Retrieves available workflow steps.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/get-workflow-steps/ - flow_framework.get_steps}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/automating-configurations/api/get-workflow-steps/ - flow_framework.get_steps}
  *
  * @memberOf API-Flow-Framework
  *

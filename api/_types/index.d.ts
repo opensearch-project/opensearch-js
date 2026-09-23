@@ -40,6 +40,7 @@ import * as Core_Termvectors from './_core.termvectors'
 import * as Core_UpdateByQueryRethrottle from './_core.update_by_query_rethrottle'
 import * as Core_Update from './_core.update'
 import * as AsynchronousSearch_Common from './asynchronous_search._common'
+import * as Cat_Common from './cat._common'
 import * as Cat_Aliases from './cat.aliases'
 import * as Cat_Allocation from './cat.allocation'
 import * as Cat_ClusterManager from './cat.cluster_manager'
@@ -83,6 +84,7 @@ import * as Indices_GetAlias from './indices.get_alias'
 import * as Indices_GetFieldMapping from './indices.get_field_mapping'
 import * as Indices_GetIndexTemplate from './indices.get_index_template'
 import * as Indices_GetMapping from './indices.get_mapping'
+import * as Indices_ModifyDataStream from './indices.modify_data_stream'
 import * as Indices_PutIndexTemplate from './indices.put_index_template'
 import * as Indices_Recovery from './indices.recovery'
 import * as Indices_ResolveIndex from './indices.resolve_index'
@@ -99,6 +101,7 @@ import * as Ingestion_Common from './ingestion._common'
 import * as Insights_Common from './insights._common'
 import * as Ism_Common from './ism._common'
 import * as Knn_Common from './knn._common'
+import * as List_Common from './list._common'
 import * as Ltr_Common from './ltr._common'
 import * as Ml_Common from './ml._common'
 import * as Neural_Common from './neural._common'
@@ -109,6 +112,7 @@ import * as Nodes_Stats from './nodes.stats'
 import * as Nodes_Usage from './nodes.usage'
 import * as Notifications_Common from './notifications._common'
 import * as Observability_Common from './observability._common'
+import * as Ppl_Common from './ppl._common'
 import * as Query_Common from './query._common'
 import * as RemoteStore_Common from './remote_store._common'
 import * as Replication_Common from './replication._common'
@@ -157,6 +161,7 @@ export {
   Core_UpdateByQueryRethrottle,
   Core_Update,
   AsynchronousSearch_Common,
+  Cat_Common,
   Cat_Aliases,
   Cat_Allocation,
   Cat_ClusterManager,
@@ -200,6 +205,7 @@ export {
   Indices_GetFieldMapping,
   Indices_GetIndexTemplate,
   Indices_GetMapping,
+  Indices_ModifyDataStream,
   Indices_PutIndexTemplate,
   Indices_Recovery,
   Indices_ResolveIndex,
@@ -216,6 +222,7 @@ export {
   Insights_Common,
   Ism_Common,
   Knn_Common,
+  List_Common,
   Ltr_Common,
   Ml_Common,
   Neural_Common,
@@ -226,6 +233,7 @@ export {
   Nodes_Usage,
   Notifications_Common,
   Observability_Common,
+  Ppl_Common,
   Query_Common,
   RemoteStore_Common,
   Replication_Common,

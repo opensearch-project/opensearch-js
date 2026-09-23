@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Updates a document with a script or partial document.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/update-document/ - update}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/update-document/ - update}
  *
  * @memberOf API-Core
  *

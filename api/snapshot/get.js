@@ -20,12 +20,12 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns information about a snapshot.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - snapshot.get}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - snapshot.get}
  *
  * @memberOf API-Snapshot
  *
  * @param {object} params
- * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units).
  * @param {boolean} [params.ignore_unavailable=false] - When `false`, the request returns an error for any snapshots that are unavailable.
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {boolean} [params.verbose] - When `true`, returns additional information about each snapshot, such as the version of OpenSearch which took the snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot. When `false`, returns only snapshot names and contained indexes. This is useful when the snapshots belong to a cloud-based repository, where each blob read is a cost or performance concern.

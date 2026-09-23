@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * List created notification channels.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/observing-your-data/notifications/api/#list-all-notification-channels - notifications.list_channels}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/observing-your-data/notifications/api/#list-all-notification-channels - notifications.list_channels}
  *
  * @memberOf API-Notifications
  *

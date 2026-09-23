@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates or updates an index template.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-templates/ - indices.put_template}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-templates/ - indices.put_template}
  *
  * @memberOf API-Indices
  *

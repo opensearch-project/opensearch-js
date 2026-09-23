@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Performs the force merge operation on one or more indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.forcemerge}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.forcemerge}
  *
  * @memberOf API-Indices
  *

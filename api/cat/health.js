@@ -20,12 +20,12 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns a concise representation of the cluster health.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-health/ - cat.health}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-health/ - cat.health}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.

@@ -14,9 +14,6 @@
  * modify the API generator.
  */
 
-import * as Common from './_common'
-import * as Common_QueryDsl from './_common.query_dsl'
-import * as Core_Search from './_core.search'
 
 export type GroupingType = 'NONE' | 'SIMILARITY' | 'none' | 'similarity'
 
@@ -33,38 +30,6 @@ export type Measurements = {
 }
 
 export type MetricType = 'cpu' | 'latency' | 'memory'
-
-export type Source = {
-  _source?: Core_Search.SourceConfig;
-  aggregations?: Record<string, any>;
-  collapse?: Core_Search.FieldCollapse;
-  docvalue_fields?: Common_QueryDsl.FieldAndFormat[];
-  explain?: boolean;
-  ext?: Record<string, Record<string, any>>;
-  fields?: Common_QueryDsl.FieldAndFormat[];
-  from?: number;
-  highlight?: Core_Search.Highlight;
-  indices_boost?: Record<string, number>[];
-  min_score?: number;
-  pit?: Core_Search.PointInTimeReference;
-  post_filter?: Common_QueryDsl.QueryContainer;
-  profile?: boolean;
-  query?: Common_QueryDsl.QueryContainer;
-  script_fields?: Record<string, Common.ScriptField>;
-  search_after?: Common.SortResults;
-  seq_no_primary_term?: boolean;
-  size?: number;
-  slice?: Common.SlicedScroll;
-  sort?: Common.Sort;
-  stats?: string[];
-  stored_fields?: Common.Fields;
-  suggest?: Core_Search.Suggester;
-  terminate_after?: number;
-  timeout?: string;
-  track_scores?: boolean;
-  track_total_hits?: Core_Search.TrackHits;
-  version?: boolean;
-}
 
 export type TaskResourceUsage = {
   cpu_time_in_nanos?: number;
@@ -84,6 +49,8 @@ export type TopQueriesResponse = {
 }
 
 export type TopQuery = {
+  backend_roles?: string[];
+  failed?: boolean;
   group_by?: GroupingType;
   id?: string;
   indices?: string[];
@@ -93,9 +60,13 @@ export type TopQuery = {
   phase_latency_map?: Record<string, any>;
   query_hashcode?: string;
   search_type?: string;
-  source?: Source;
+  source?: string;
+  source_truncated?: boolean;
   task_resource_usages?: TaskResourceUsages[];
   timestamp?: number;
   total_shards?: number;
+  user_roles?: string[];
+  username?: string;
+  wlm_group_id?: string;
 }
 

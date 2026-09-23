@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Allows to get multiple documents in one request.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/multi-get/ - mget}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/multi-get/ - mget}
  *
  * @memberOf API-Core
  *

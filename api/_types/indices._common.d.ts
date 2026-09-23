@@ -122,6 +122,8 @@ export type IndexRoutingAllocation = {
   include?: IndexRoutingAllocationInclude;
   initial_recovery?: IndexRoutingAllocationInitialRecovery;
   total_primary_shards_per_node?: Common.StringifiedInteger;
+  total_remote_capable_primary_shards_per_node?: Common.StringifiedInteger;
+  total_remote_capable_shards_per_node?: Common.StringifiedInteger;
   total_shards_per_node?: Common.StringifiedInteger;
 }
 
@@ -277,11 +279,20 @@ export type IndexSettingsMapping = {
   coerce?: Common.StringifiedBoolean;
   depth?: IndexSettingsMappingLimitDepth;
   dimension_fields?: IndexSettingsMappingLimitDimensionFields;
+  dynamic_properties?: IndexSettingsMappingDynamicProperties;
   field_name_length?: IndexSettingsMappingLimitFieldNameLength;
   ignore_malformed?: Common.StringifiedBoolean;
   nested_fields?: IndexSettingsMappingLimitNestedFields;
   nested_objects?: IndexSettingsMappingLimitNestedObjects;
   total_fields?: IndexSettingsMappingLimitTotalFields;
+}
+
+export type IndexSettingsMappingDynamicProperties = {
+  lucene_field?: IndexSettingsMappingDynamicPropertiesLuceneField;
+}
+
+export type IndexSettingsMappingDynamicPropertiesLuceneField = {
+  limit?: Common.StringifiedLong;
 }
 
 export type IndexSettingsMappingLimitDepth = {
@@ -336,6 +347,7 @@ export type IndexSettingsMergePolicyName = 'default' | 'log_byte_size' | 'tiered
 
 export type IndexSettingsMergeScheduler = {
   auto_throttle?: Common.StringifiedBoolean;
+  max_force_merge_mb_per_sec?: string;
   max_merge_count?: Common.StringifiedInteger;
   max_thread_count?: Common.StringifiedInteger;
 }
@@ -461,6 +473,8 @@ export type IndexSettingsStarTreeFieldDefault = {
 
 export type IndexSettingsStore = {
   allow_mmap?: Common.StringifiedBoolean;
+  data_locality?: string;
+  factory?: string;
   fs?: IndexSettingsStoreFs;
   hybrid?: IndexSettingsStoreHybrid;
   preload?: string[];
@@ -527,16 +541,22 @@ export type IngestionSource = {
   all_active?: Common.StringifiedBoolean;
   error_strategy?: Ingestion_Common.ErrorPolicy;
   internal_queue_size?: Common.StringifiedInteger;
+  mapper_settings?: Record<string, any>;
+  mapper_type?: IngestionSourceMapperType;
   num_processor_threads?: Common.StringifiedInteger;
   param?: Record<string, any>;
   pointer?: IngestionSourcePointer;
+  pointer_based_lag_update_interval?: string;
   'pointer.init.reset'?: IngestionSourcePointerInitReset;
-  'pointer.init.reset.value'?: string;
+  'pointer.init.reset.value'?: Common.StringifiedLong;
   poll?: IngestionSourcePoll;
   'poll.max_batch_size'?: Common.StringifiedLong;
   'poll.timeout'?: Common.StringifiedInteger;
   type?: IngestionSourceType;
+  warmup?: IngestionSourceWarmup;
 }
+
+export type IngestionSourceMapperType = 'default' | 'field_mapping' | 'raw_payload'
 
 export type IngestionSourcePointer = {
   init?: IngestionSourcePointerInit;
@@ -555,6 +575,11 @@ export type IngestionSourcePoll = {
 }
 
 export type IngestionSourceType = 'file' | 'kafka' | 'kinesis' | 'none'
+
+export type IngestionSourceWarmup = {
+  lag_threshold?: Common.StringifiedInteger;
+  timeout?: Common.Duration;
+}
 
 export type ManagedBy = 'Data stream lifecycle' | 'Index Lifecycle Management' | 'Unmanaged'
 
@@ -623,6 +648,7 @@ export type Translog = {
   durability?: TranslogDurability;
   flush_threshold_size?: Common.HumanReadableByteCount;
   generation_threshold_size?: Common.HumanReadableByteCount;
+  read_forward?: string;
   retention?: TranslogRetention;
   sync_interval?: Common.Duration;
 }

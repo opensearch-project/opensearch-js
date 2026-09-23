@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns help for the Cat APIs.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/index/ - cat.help}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/index/ - cat.help}
  *
  * @memberOf API-Cat
  *

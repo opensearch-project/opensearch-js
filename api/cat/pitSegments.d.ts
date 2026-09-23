@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Cat_Common from '../_types/cat._common'
 import * as Cat_Segments from '../_types/cat.segments'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
@@ -22,7 +23,7 @@ import * as Global from '../_types/_global'
 export interface Cat_PitSegments_Request extends Global.Params {
   body?: Cat_PitSegments_RequestBody;
   bytes?: Common.ByteUnit;
-  format?: string;
+  format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
   s?: string[];

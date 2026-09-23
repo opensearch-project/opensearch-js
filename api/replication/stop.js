@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Terminates the replication and converts the follower index to a standard index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/replication-plugin/api/#stop-replication - replication.stop}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/tuning-your-cluster/replication-plugin/api/#stop-replication - replication.stop}
  *
  * @memberOf API-Replication
  *

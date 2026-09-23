@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Deletes one or more point in time searches based on the IDs passed.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/point-in-time-api/#delete-pits - delete_pit}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/search-apis/point-in-time-api/#delete-pits - delete_pit}
  *
  * @memberOf API-Core
  *

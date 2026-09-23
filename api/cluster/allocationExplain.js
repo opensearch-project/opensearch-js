@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Explains how shards are allocated in the current cluster and provides an explanation for why unassigned shards can't be allocated to a node.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-allocation/ - cluster.allocation_explain}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-allocation/ - cluster.allocation_explain}
  *
  * @memberOf API-Cluster
  *

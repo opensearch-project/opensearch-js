@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates or updates a data stream.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/data-streams/ - indices.create_data_stream}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/data-streams/ - indices.create_data_stream}
  *
  * @memberOf API-Indices
  *

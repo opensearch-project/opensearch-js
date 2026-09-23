@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Retrieves all role mappings.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-role-mappings - security.get_role_mappings}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-role-mappings - security.get_role_mappings}
  *
  * @memberOf API-Security
  *

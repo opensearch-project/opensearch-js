@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns information and statistics about terms in the fields of a particular document.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - termvectors}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - termvectors}
  *
  * @memberOf API-Core
  *
@@ -38,7 +38,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.version_type] - The specific version type.
  * @param {string} params.index - The name of the index containing the document.
  * @param {string} [params.id] - The unique identifier of the document.
- * @param {object} [params.body] - Define parameters and or supply a document to get termvectors for. See documentation.
+ * @param {object} [params.body] - Define parameters and or supply a document to get term vectors for. See documentation.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

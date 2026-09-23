@@ -20,18 +20,18 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns basic information about the health of the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-health/ - cluster.health}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-health/ - cluster.health}
  *
  * @memberOf API-Cluster
  *
  * @param {object} [params]
  * @param {string} [params.awareness_attribute] - The name of the awareness attribute for which to return the cluster health status (for example, `zone`). Applicable only if `level` is set to `awareness_attributes`.
- * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units).
  * @param {string} [params.expand_wildcards] - Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
  * @param {string} [params.level] - Controls the amount of detail included in the cluster health response.
  * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.
  * @param {string} [params.master_timeout] DEPRECATED - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts `0` without a unit and `-1` to indicate an unspecified value.
- * @param {string} [params.timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+ * @param {string} [params.timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units).
  * @param {string} [params.wait_for_active_shards] - Waits until the specified number of shards is active before returning a response. Use `all` for all shards.
  * @param {string} [params.wait_for_events] - Waits until all currently queued events with the given priority are processed.
  * @param {boolean} [params.wait_for_no_initializing_shards=false] - Whether to wait until there are no initializing shards in the cluster.

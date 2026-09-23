@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deletes an index rollup job configuration.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#delete-an-index-rollup-job - rollups.delete}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-rollups/rollup-api/#delete-an-index-rollup-job - rollups.delete}
  *
  * @memberOf API-Rollups
  *

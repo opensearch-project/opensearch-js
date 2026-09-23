@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns information about ongoing index shard recoveries.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.recovery}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.recovery}
  *
  * @memberOf API-Indices
  *

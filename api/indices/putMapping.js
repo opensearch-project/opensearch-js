@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Updates the index mappings.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/put-mapping/ - indices.put_mapping}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/put-mapping/ - indices.put_mapping}
  *
  * @memberOf API-Indices
  *

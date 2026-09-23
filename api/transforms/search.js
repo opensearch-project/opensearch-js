@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns the details of all transform jobs.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-transforms/transforms-apis/#get-a-transform-jobs-details - transforms.search}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-transforms/transforms-apis/#get-a-transform-jobs-details - transforms.search}
  *
  * @memberOf API-Transforms
  *

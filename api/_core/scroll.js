@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Allows to retrieve a large numbers of results from a single search request.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/scroll/#path-and-http-methods - scroll}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/search-apis/scroll/#endpoints - scroll}
  *
  * @memberOf API-Core
  *

@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Clears any cluster voting configuration exclusions.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - cluster.delete_voting_config_exclusions}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - cluster.delete_voting_config_exclusions}
  *
  * @memberOf API-Cluster
  *

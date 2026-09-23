@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Adds, deletes, or modifies a single tenant.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-tenant - security.patch_tenant}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#patch-tenant - security.patch_tenant}
  *
  * @memberOf API-Security
  *

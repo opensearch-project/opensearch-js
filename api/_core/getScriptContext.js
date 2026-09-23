@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns all script contexts.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/script-apis/get-script-contexts/ - get_script_context}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/script-apis/get-script-contexts/ - get_script_context}
  *
  * @memberOf API-Core
  *

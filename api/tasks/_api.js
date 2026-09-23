@@ -22,11 +22,13 @@
 // instance) to avoid paying `require()` resolution cost on every Client
 // construction.
 const cancelFn = require('./cancel');
+const deleteFn = require('./delete');
 const getFn = require('./get');
 const listFn = require('./list');
 
 function TasksApi(bindObj) {
   this.cancel = cancelFn.bind(bindObj);
+  this.delete = deleteFn.bind(bindObj);
   this.get = getFn.bind(bindObj);
   this.list = listFn.bind(bindObj);
 

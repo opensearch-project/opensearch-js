@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Updates the cluster voting configuration by excluding certain node IDs or names.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - cluster.post_voting_config_exclusions}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - cluster.post_voting_config_exclusions}
  *
  * @memberOf API-Cluster
  *

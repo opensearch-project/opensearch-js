@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Retrieves information about any follower (syncing) indexes on a specified cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/replication-plugin/api/#get-follower-cluster-stats - replication.follower_stats}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/tuning-your-cluster/replication-plugin/api/#get-follower-cluster-stats - replication.follower_stats}
  *
  * @memberOf API-Replication
  *

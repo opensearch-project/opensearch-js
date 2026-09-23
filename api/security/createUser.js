@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates or replaces the specified user.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#create-user - security.create_user}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#create-user - security.create_user}
  *
  * @memberOf API-Security
  *

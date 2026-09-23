@@ -282,6 +282,12 @@ export type NodeIndexShardStats = Indices_Stats.IndexShardStatsBase & Record<str
 export type NodeIndicesStats = Indices_Stats.IndexStatsBase & {
   indices?: Record<string, Indices_Stats.IndexStats>;
   shards?: Record<string, Record<string, NodeIndexShardStats>[]>;
+  status_counter?: NodeIndicesStatusCounter;
+}
+
+export type NodeIndicesStatusCounter = {
+  doc_status?: StatusCounterStats;
+  search_response_status?: StatusCounterStats;
 }
 
 export type OperatingSystem = {
@@ -393,6 +399,7 @@ export type ScriptStatsBase = {
 export type ShardAdmissionControlStats = {
   global_cpu_usage?: UsageStats;
   global_io_usage?: UsageStats;
+  global_native_memory_usage?: UsageStats;
 }
 
 export type ShardClusterManagerThrottlingStats = {
@@ -502,6 +509,7 @@ export type ShardResourceUsageStatsDetail = {
   cpu_utilization_percent?: Common.PercentageString;
   io_usage_stats?: ShardResourceUsageStatsIoUsageStats;
   memory_utilization_percent?: Common.PercentageString;
+  native_memory_utilization_percent?: Common.PercentageString;
   timestamp?: Common.EpochTimeUnitMillis;
 }
 
@@ -562,11 +570,20 @@ export type ShardSearchBackpressureTaskStats = {
   resource_tracker_stats?: ShardSearchBackpressureTaskResourceTrackerStats;
 }
 
+export type ShardSearchPipelineFactoryStats = {
+  evaluation_stats?: ShardSearchPipelineOperationStats;
+  generation_stats?: ShardSearchPipelineOperationStats;
+  type?: string;
+}
+
+export type ShardSearchPipelineFactoryStatsByType = Record<string, ShardSearchPipelineFactoryStats>
+
 export type ShardSearchPipelineOperationStats = {
   count?: number;
   current?: number;
   failed?: number;
   time?: Common.Duration;
+  time_in_micros?: number;
   time_in_millis?: Common.DurationValueUnitMillis;
 }
 
@@ -577,15 +594,29 @@ export type ShardSearchPipelinePerPipelineProcessorStats = {
 
 export type ShardSearchPipelinePerPipelineStats = {
   request?: ShardSearchPipelineOperationStats;
-  request_processors?: ShardSearchPipelinePerPipelineProcessorStats[];
+  request_processors?: Record<string, ShardSearchPipelinePerPipelineProcessorStats>[];
   response?: ShardSearchPipelineOperationStats;
   response_processors?: Record<string, ShardSearchPipelinePerPipelineProcessorStats>[];
 }
 
+export type ShardSearchPipelineProcessorStatsByName = Record<string, ShardSearchPipelinePerPipelineProcessorStats>
+
 export type ShardSearchPipelineStats = {
   pipelines?: Record<string, ShardSearchPipelinePerPipelineStats>;
+  system_generated_factories?: ShardSearchPipelineSystemGeneratedFactories;
+  system_generated_processors?: ShardSearchPipelineSystemGeneratedProcessors;
   total_request?: ShardSearchPipelineOperationStats;
   total_response?: ShardSearchPipelineOperationStats;
+}
+
+export type ShardSearchPipelineSystemGeneratedFactories = {
+  request_processor_factories?: ShardSearchPipelineFactoryStatsByType[];
+  response_processor_factories?: ShardSearchPipelineFactoryStatsByType[];
+}
+
+export type ShardSearchPipelineSystemGeneratedProcessors = {
+  request_processors?: ShardSearchPipelineProcessorStatsByName[];
+  response_processors?: ShardSearchPipelineProcessorStatsByName[];
 }
 
 export type ShardSegmentReplicationBackpressureStats = {
@@ -645,6 +676,12 @@ export type Stats = {
   transport?: Transport;
   transport_address?: Common.TransportAddress;
   weighted_routing?: ShardWeightedRoutingStats;
+}
+
+export type StatusCounterStats = {
+  success?: number;
+  system_failure?: number;
+  user_error?: number;
 }
 
 export type ThreadCount = {

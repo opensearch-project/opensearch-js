@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Send a test notification.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/observing-your-data/notifications/api/#send-test-notification - notifications.send_test}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/observing-your-data/notifications/api/#send-test-notification - notifications.send_test}
  *
  * @memberOf API-Notifications
  *

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Allows to execute several search template operations in one request.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/search-template/ - msearch_template}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/search-plugins/search-template/ - msearch_template}
  *
  * @memberOf API-Core
  *

@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Changes the password for the current user.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#change-password - security.change_password}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#change-password - security.change_password}
  *
  * @memberOf API-Security
  *

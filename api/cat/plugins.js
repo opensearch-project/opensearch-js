@@ -20,13 +20,13 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns information about the names, components, and versions of the installed plugins.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-plugins/ - cat.plugins}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-plugins/ - cat.plugins}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - The amount of time allowed to establish a connection to the cluster manager node.
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {boolean} [params.local=false] - Returns local information but does not retrieve the state from the cluster manager node.

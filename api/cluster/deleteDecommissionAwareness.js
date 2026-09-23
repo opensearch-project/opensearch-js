@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Recommissions a decommissioned zone.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-decommission/#example-decommissioning-and-recommissioning-a-zone - cluster.delete_decommission_awareness}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-decommission/#decommissioning-and-recommissioning-a-zone - cluster.delete_decommission_awareness}
  *
  * @memberOf API-Cluster
  *

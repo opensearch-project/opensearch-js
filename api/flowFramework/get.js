@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Retrieves a workflow template.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/get-workflow/ - flow_framework.get}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/automating-configurations/api/get-workflow/ - flow_framework.get}
  *
  * @memberOf API-Flow-Framework
  *

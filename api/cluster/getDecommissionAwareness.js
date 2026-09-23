@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Retrieves the decommission status for all zones.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-decommission/#example-getting-zone-decommission-status - cluster.get_decommission_awareness}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-decommission/#getting-zone-decommission-status - cluster.get_decommission_awareness}
  *
  * @memberOf API-Cluster
  *

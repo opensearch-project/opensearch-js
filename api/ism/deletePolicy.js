@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deletes a policy.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/ism/api/#delete-policy - ism.delete_policy}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/ism/api/#delete-policy - ism.delete_policy}
  *
  * @memberOf API-Ism
  *

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Retrieves the specified tenant.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-tenant - security.get_tenant}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-tenant - security.get_tenant}
  *
  * @memberOf API-Security
  *

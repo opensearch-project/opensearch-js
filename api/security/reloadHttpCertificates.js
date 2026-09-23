@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Reloads the HTTP communication certificates.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#reload-http-certificates - security.reload_http_certificates}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#reload-http-certificates - security.reload_http_certificates}
  *
  * @memberOf API-Security
  *

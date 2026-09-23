@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Get one or more IP2Geo data sources, defaulting to returning all if no names specified.
- * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#sending-a-get-request - geospatial.get_ip2geo_datasource}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ingest-pipelines/processors/ip2geo/#sending-a-get-request - geospatial.get_ip2geo_datasource}
  *
  * @memberOf API-Geospatial
  *

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns information about the indexes and shards that a search request would be executed against.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - search_shards}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - search_shards}
  *
  * @memberOf API-Core
  *

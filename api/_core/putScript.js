@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates or updates a script.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/script-apis/create-stored-script/ - put_script}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/script-apis/create-stored-script/ - put_script}
  *
  * @memberOf API-Core
  *

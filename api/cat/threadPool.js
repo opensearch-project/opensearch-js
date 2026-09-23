@@ -21,13 +21,13 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 /**
  * Returns cluster-wide thread pool statistics per node.
 By default the active, queued, and rejected statistics are returned for all thread pools.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-thread-pool/ - cat.thread_pool}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-thread-pool/ - cat.thread_pool}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - A timeout for connection to the cluster manager node.
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {boolean} [params.local=false] - Returns local information but does not retrieve the state from the cluster manager node.

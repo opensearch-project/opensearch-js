@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deletes documents matching the provided query.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/delete-by-query/ - delete_by_query}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/delete-by-query/ - delete_by_query}
  *
  * @memberOf API-Core
  *

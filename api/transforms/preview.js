@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns a preview of what a transformed index would look like.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-transforms/transforms-apis/#preview-a-transform-jobs-results - transforms.preview}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-transforms/transforms-apis/#preview-a-transform-jobs-results - transforms.preview}
  *
  * @memberOf API-Transforms
  *

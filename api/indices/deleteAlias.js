@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deletes an alias.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-alias/#delete-aliases - indices.delete_alias}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/alias/delete-alias/ - indices.delete_alias}
  *
  * @memberOf API-Indices
  *

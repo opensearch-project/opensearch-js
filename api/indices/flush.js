@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Performs the flush operation on one or more indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.flush}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.flush}
  *
  * @memberOf API-Indices
  *

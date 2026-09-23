@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns number of documents matching a query.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/count/ - count}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/count/ - count}
  *
  * @memberOf API-Core
  *

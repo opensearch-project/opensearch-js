@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns low-level information about REST actions usage on nodes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - nodes.usage}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - nodes.usage}
  *
  * @memberOf API-Nodes
  *

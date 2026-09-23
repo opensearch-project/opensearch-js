@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Retrieves the current list of allowed APIs accessible to a normal user.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#access-control-for-the-api - security.get_allowlist}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#access-control-for-the-api - security.get_allowlist}
  *
  * @memberOf API-Security
  *

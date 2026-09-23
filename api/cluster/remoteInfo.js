@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns the information about configured remote clusters.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/remote-info/ - cluster.remote_info}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/remote-info/ - cluster.remote_info}
  *
  * @memberOf API-Cluster
  *

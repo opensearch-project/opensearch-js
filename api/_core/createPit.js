@@ -20,14 +20,17 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates point in time context.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/point-in-time-api/#create-a-pit - create_pit}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/search-apis/point-in-time-api/#create-a-pit - create_pit}
  *
  * @memberOf API-Core
  *
  * @param {object} params
+ * @param {boolean} [params.allow_no_indices] - If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes.
  * @param {boolean} [params.allow_partial_pit_creation] - Allow if point in time can be created with partial failures.
  * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
- * @param {string} [params.keep_alive] - Specify the keep alive for point in time.
+ * @param {boolean} [params.ignore_throttled] - If `true`, concrete, expanded or aliased indexes will be ignored when frozen.
+ * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
+ * @param {string} params.keep_alive - Specify the keep alive for point in time.
  * @param {string} [params.preference=random] - Specify the node or shard the operation should be performed on.
  * @param {string} [params.routing] - A comma-separated list of specific routing values.
  * @param {array} params.index - A comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
@@ -39,6 +42,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  */
 function createPitFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.keep_alive == null) return handleMissingParam('keep_alive', this, callback);
   if (params.index == null) return handleMissingParam('index', this, callback);
 
   let { body, index, ...querystring } = params;

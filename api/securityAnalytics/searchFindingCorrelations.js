@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * List correlations for a finding.
- * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/security-analytics/api-tools/correlation-eng/#list-correlations-for-a-finding-belonging-to-a-log-type - security_analytics.search_finding_correlations}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security-analytics/api-tools/correlation-eng/#list-correlations-for-a-finding-belonging-to-a-log-type - security_analytics.search_finding_correlations}
  *
  * @memberOf API-Security-Analytics
  *

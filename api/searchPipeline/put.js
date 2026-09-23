@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates or replaces the specified search pipeline.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/search-pipelines/creating-search-pipeline/ - search_pipeline.put}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/search-plugins/search-pipelines/creating-search-pipeline/ - search_pipeline.put}
  *
  * @memberOf API-Search-Pipeline
  *

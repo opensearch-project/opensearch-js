@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns a document.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/get-documents/ - get}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/get-documents/ - get}
  *
  * @memberOf API-Core
  *

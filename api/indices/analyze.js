@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Performs the analysis process on a text and return the tokens breakdown of the text.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/analyze-apis/perform-text-analysis/ - indices.analyze}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/analyze-apis/perform-text-analysis/ - indices.analyze}
  *
  * @memberOf API-Indices
  *

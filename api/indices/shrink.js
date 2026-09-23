@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Allow to shrink an existing index into a new index with fewer primary shards.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/shrink-index/ - indices.shrink}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/shrink-index/ - indices.shrink}
  *
  * @memberOf API-Indices
  *

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Lists information related to indexes, that is, how much disk space they are using, how many shards they have, their health status, and so on.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-indices/ - cat.indices}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-indices/ - cat.indices}
  *
  * @memberOf API-Cat
  *
@@ -28,7 +28,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.bytes] - The units used to display byte values.
  * @param {string} [params.cluster_manager_timeout] - The amount of time allowed to establish a connection to the cluster manager node.
  * @param {string} [params.expand_wildcards] - Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {string} [params.health] - Limits indexes based on their health status. Supported values are `green`, `yellow`, and `red`.
  * @param {boolean} [params.help=false] - Returns help information.

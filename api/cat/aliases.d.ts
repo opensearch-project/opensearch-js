@@ -16,12 +16,13 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Cat_Aliases from '../_types/cat.aliases'
+import * as Cat_Common from '../_types/cat._common'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
 export interface Cat_Aliases_Request extends Global.Params {
   expand_wildcards?: Common.ExpandWildcards;
-  format?: string;
+  format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
   local?: boolean;

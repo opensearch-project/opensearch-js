@@ -21,7 +21,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 /**
  * Returns information about active and last-completed segment replication events on each replica shard, including related shard-level metrics. 
 These metrics provide information about how far behind the primary shard the replicas are lagging.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-segment-replication/ - cat.segment_replication}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-segment-replication/ - cat.segment_replication}
  *
  * @memberOf API-Cat
  *
@@ -32,7 +32,7 @@ These metrics provide information about how far behind the primary shard the rep
  * @param {boolean} [params.completed_only=false] - When `true`, the response only includes the last-completed segment replication events.
  * @param {boolean} [params.detailed=false] - When `true`, the response includes additional metrics for each stage of a segment replication event.
  * @param {string} [params.expand_wildcards] - Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {boolean} [params.ignore_throttled] - Whether specified concrete, expanded, or aliased indexes should be ignored when throttled.
@@ -40,7 +40,7 @@ These metrics provide information about how far behind the primary shard the rep
  * @param {array} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {array} [params.shards] - A comma-separated list of shards to display.
- * @param {string} [params.time] - Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
+ * @param {string} [params.time] - Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://docs.opensearch.org/latest/api-reference/units/).
  * @param {string} [params.timeout] - The operation timeout.
  * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.
  *

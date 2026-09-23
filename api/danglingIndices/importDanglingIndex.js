@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Imports the specified dangling index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/dangling-index/ - dangling_indices.import_dangling_index}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/dangling-index/ - dangling_indices.import_dangling_index}
  *
  * @memberOf API-Dangling-Indices
  *

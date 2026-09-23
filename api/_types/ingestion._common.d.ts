@@ -32,7 +32,7 @@ export type IngestionStateShardFailure = {
 export type PauseIngestionResponse = {
   acknowledged: boolean;
   error?: string;
-  failures?: IngestionStateShardFailure[];
+  failures?: Record<string, IngestionStateShardFailure[]>;
   shards_acknowledged: boolean;
 }
 
@@ -53,13 +53,15 @@ export type ResumeIngestionRequest = {
 export type ResumeIngestionResponse = {
   acknowledged: boolean;
   error?: string;
-  failures?: IngestionStateShardFailure[];
+  failures?: Record<string, IngestionStateShardFailure[]>;
   shards_acknowledged: boolean;
 }
 
 export type ShardIngestionState = {
   batch_start_pointer?: string;
   error_policy?: ErrorPolicy;
+  is_primary?: boolean;
+  node?: string;
   poller_paused?: boolean;
   poller_state?: PollerState;
   shard?: number;

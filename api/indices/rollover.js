@@ -21,7 +21,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 /**
  * Updates an alias to point to a new index when the existing index
 is considered to be too large or too old.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/dashboards/im-dashboards/rollover/ - indices.rollover}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/dashboards/im-dashboards/rollover/ - indices.rollover}
  *
  * @memberOf API-Indices
  *

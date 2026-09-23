@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Updates the settings for an existing security configuration. Requires super admin or REST API permissions.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#update-configuration - security.update_configuration}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#update-configuration - security.update_configuration}
  *
  * @memberOf API-Security
  *

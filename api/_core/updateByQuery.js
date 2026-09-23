@@ -21,7 +21,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 /**
  * Performs an update on every document in the index without changing the source,
 for example to pick up a mapping change.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/update-by-query/ - update_by_query}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/update-by-query/ - update_by_query}
  *
  * @memberOf API-Core
  *

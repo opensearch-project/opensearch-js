@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Updates index aliases.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/alias/ - indices.update_aliases}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/alias/ - indices.update_aliases}
  *
  * @memberOf API-Indices
  *

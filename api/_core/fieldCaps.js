@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns the information about the capabilities of fields among multiple indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/field-types/supported-field-types/alias/#using-aliases-in-field-capabilities-api-operations - field_caps}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/mappings/supported-field-types/alias/#using-aliases-in-field-capabilities-api-operations - field_caps}
  *
  * @memberOf API-Core
  *

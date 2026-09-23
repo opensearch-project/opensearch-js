@@ -128,6 +128,7 @@ export type user = {
   name?: string;
   roles?: string[];
   user_requested_tenant?: string;
+  user_requested_tenant_access?: string;
 }
 
 export type UserProvidedSubstitutionExpressions = Record<string, string>

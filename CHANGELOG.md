@@ -9,6 +9,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Remove `hpagent`. The client now uses its own proxy agent, derived from `hpagent` 1.2.0 ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 ### Changed
 - CI: test against OpenSearch 1.3.20, 2.19.6 and 3.8.0, and Node.js 22.x, 24.x and 26.x ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
+- CI: use the reusable backport-pr workflow from opensearch-build ([#1123](https://github.com/opensearch-project/opensearch-js/pull/1123))
 ### Deprecated
 ### Removed
 ### Fixed

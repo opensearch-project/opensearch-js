@@ -5,6 +5,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Guide for implementing hybrid search functionality with OpenSearch JavaScript client in NestJS application ([#1020](https://github.com/opensearch-project/opensearch-js/pull/1020))
 ### Dependencies
 - Remove `hpagent`. The client now uses its own proxy agent, derived from `hpagent` 1.2.0 ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 ### Changed

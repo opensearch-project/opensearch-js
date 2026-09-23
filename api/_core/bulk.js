@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Allows to perform multiple index/update/delete operations in a single request.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/bulk/ - bulk}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/bulk/ - bulk}
  *
  * @memberOf API-Core
  *

@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Lists all active point in time searches.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/point-in-time-api/#list-all-pits - get_all_pits}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/search-apis/point-in-time-api/#list-all-pits - get_all_pits}
  *
  * @memberOf API-Core
  *

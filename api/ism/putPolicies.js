@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Creates or updates policies.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/ism/api/#create-policy - ism.put_policies}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/ism/api/#create-policy - ism.put_policies}
  *
  * @memberOf API-Ism
  *

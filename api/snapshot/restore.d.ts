@@ -30,6 +30,7 @@ export interface Snapshot_Restore_Request extends Global.Params {
 }
 
 export type Snapshot_Restore_RequestBody = {
+  attach_to_data_stream?: boolean;
   ignore_index_settings?: string[];
   ignore_unavailable?: boolean;
   include_aliases?: boolean;

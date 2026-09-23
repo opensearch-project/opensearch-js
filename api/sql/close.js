@@ -20,12 +20,12 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Closes an open cursor to free server-side resources.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/ - sql.close}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/search-plugins/sql/sql-ppl-api/ - sql.close}
  *
  * @memberOf API-Sql
  *
  * @param {object} [params]
- * @param {string} [params.format] - Specifies the response format (JSON or YAML).
+ * @param {string} [params.format=jdbc] - Specifies the response format (JSON or YAML).
  * @param {boolean} [params.sanitize=true] - Whether to escape special characters in the results.
  * @param {object} [params.body] - Contains the cursor identifier to close.
  *

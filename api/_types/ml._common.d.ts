@@ -326,6 +326,7 @@ export type Message = {
   response?: undefined | string;
   role?: string;
   trace_number?: number;
+  updated_time?: string;
 }
 
 export type Messages = {
@@ -467,6 +468,8 @@ export type Parameters = {
 
 export type PayloadType = 'conversational' | 'data'
 
+export type PredictionActionType = 'batch_predict' | 'batch_predict_status' | 'cancel_batch_predict' | 'execute' | 'predict'
+
 export type PredictionResult = {
   column_metas?: ColumnMeta[];
   rows?: Rows[];
@@ -545,7 +548,6 @@ export type SearchHitsHit = {
   _seq_no?: Common.SequenceNumber;
   _source?: Source;
   _version?: Common.VersionNumber;
-  model_id?: Common.Name;
   sort?: number[];
 }
 

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates or replaces the specified tenant.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#create-tenant - security.create_tenant}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#create-tenant - security.create_tenant}
  *
  * @memberOf API-Security
  *

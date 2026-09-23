@@ -20,13 +20,13 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Lists one or several CAT point-in-time segments.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/point-in-time-api/ - cat.pit_segments}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/search-plugins/point-in-time-api/ - cat.pit_segments}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
  * @param {string} [params.bytes] - The units used to display byte values.
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.

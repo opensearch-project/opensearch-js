@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Resumes replication of the leader index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/replication-plugin/api/#resume-replication - replication.resume}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/tuning-your-cluster/replication-plugin/api/#resume-replication - replication.resume}
  *
  * @memberOf API-Replication
  *

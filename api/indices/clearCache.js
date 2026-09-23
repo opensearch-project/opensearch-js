@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Clears all or specific caches for one or more indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/clear-index-cache/ - indices.clear_cache}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/clear-index-cache/ - indices.clear_cache}
  *
  * @memberOf API-Indices
  *

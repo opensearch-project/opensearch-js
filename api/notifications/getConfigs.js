@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Get multiple channel configurations with filtering.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/observing-your-data/notifications/api/#list-all-notification-configurations - notifications.get_configs}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/observing-your-data/notifications/api/#list-all-notification-configurations - notifications.get_configs}
  *
  * @memberOf API-Notifications
  *

@@ -20,14 +20,14 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns paginated details of shard allocation on nodes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/list/list-shards/ - list.shards}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/list/list-shards/ - list.shards}
  *
  * @memberOf API-List
  *
  * @param {object} [params]
  * @param {string} [params.bytes] - The unit used to display byte values.
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
- * @param {string} [params.format] - A short version of the Accept header, such as `JSON`, `YAML`.
+ * @param {string} [params.format=text] - A short version of the Accept header, such as `JSON`, `YAML`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.

@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Retrieve findings related to a specific detector type or detector ID.
- * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/security-analytics/api-tools/alert-finding-api/#get-findings - security_analytics.get_findings}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security-analytics/api-tools/alert-finding-api/#get-findings - security_analytics.get_findings}
  *
  * @memberOf API-Security-Analytics
  *

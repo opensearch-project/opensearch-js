@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Retrieves the current workflow provisioning status.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/get-workflow-status/ - flow_framework.get_status}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/automating-configurations/api/get-workflow-status/ - flow_framework.get_status}
  *
  * @memberOf API-Flow-Framework
  *

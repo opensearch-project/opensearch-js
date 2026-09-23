@@ -16,8 +16,8 @@
 
 
 export type DeletedPit = {
-  pit_id?: string;
-  successful?: boolean;
+  pit_id: string;
+  successful: boolean;
 }
 
 export type PitDetail = {

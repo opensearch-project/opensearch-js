@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Performs the refresh operation in one or more indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/tuning-your-cluster/availability-and-recovery/remote-store/index/#refresh-level-and-request-level-durability - indices.refresh}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/refresh/ - indices.refresh}
  *
  * @memberOf API-Indices
  *

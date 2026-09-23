@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Retrieves the policies.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/ism/api/#get-policy - ism.get_policies}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/ism/api/#get-policy - ism.get_policies}
  *
  * @memberOf API-Ism
  *

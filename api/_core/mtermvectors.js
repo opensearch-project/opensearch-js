@@ -19,8 +19,8 @@
 const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
- * Returns multiple termvectors in one request.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - mtermvectors}
+ * Returns multiple term vectors in one request.
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - mtermvectors}
  *
  * @memberOf API-Core
  *

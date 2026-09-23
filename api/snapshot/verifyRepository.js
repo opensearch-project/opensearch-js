@@ -20,12 +20,12 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Verifies a repository.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/snapshots/verify-snapshot-repository/ - snapshot.verify_repository}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/snapshots/verify-snapshot-repository/ - snapshot.verify_repository}
  *
  * @memberOf API-Snapshot
  *
  * @param {object} params
- * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units).
  * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
  * @param {string} [params.timeout] - The amount of time to wait for a response.
  * @param {string} params.repository - The name of the repository containing the snapshot.

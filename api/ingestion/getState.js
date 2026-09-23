@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Use this API to retrieve the ingestion state for a given index.
- * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/api-reference/document-apis/pull-based-ingestion-management/ - ingestion.get_state}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/pull-based-ingestion-management/ - ingestion.get_state}
  *
  * @memberOf API-Ingestion
  *

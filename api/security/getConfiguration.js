@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns the current Security plugin configuration in a JSON format.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-configuration - security.get_configuration}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-configuration - security.get_configuration}
  *
  * @memberOf API-Security
  *

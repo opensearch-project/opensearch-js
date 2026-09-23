@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns mapping for one or more fields.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/field-types/index/ - indices.get_field_mapping}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/field-types/index/ - indices.get_field_mapping}
  *
  * @memberOf API-Indices
  *

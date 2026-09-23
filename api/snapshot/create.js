@@ -20,12 +20,12 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates a snapshot within an existing repository.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/snapshots/create-snapshot/ - snapshot.create}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/snapshots/create-snapshot/ - snapshot.create}
  *
  * @memberOf API-Snapshot
  *
  * @param {object} params
- * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units).
  * @param {string} [params.master_timeout] DEPRECATED - Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
  * @param {boolean} [params.wait_for_completion=false] - When `true`, the request returns a response when the snapshot is complete. When `false`, the request returns a response when the snapshot initializes.
  * @param {string} params.repository - The name of the repository where the snapshot will be stored.

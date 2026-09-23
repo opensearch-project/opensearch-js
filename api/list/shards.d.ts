@@ -18,11 +18,12 @@ import { ApiResponse } from '../../lib/Transport'
 import * as Cat_Shards from '../_types/cat.shards'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
+import * as List_Common from '../_types/list._common'
 
 export interface List_Shards_Request extends Global.Params {
   bytes?: Common.ByteUnit;
   cluster_manager_timeout?: Common.Duration;
-  format?: string;
+  format?: List_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
   index?: Common.Indices;

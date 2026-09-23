@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Cat_Common from '../_types/cat._common'
 import * as Cat_SegmentReplication from '../_types/cat.segment_replication'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
@@ -26,7 +27,7 @@ export interface Cat_SegmentReplication_Request extends Global.Params {
   completed_only?: boolean;
   detailed?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
-  format?: string;
+  format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
   ignore_throttled?: boolean;

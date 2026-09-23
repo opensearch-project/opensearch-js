@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Update channel configuration.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/observing-your-data/notifications/api/#update-channel-configuration - notifications.update_config}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/observing-your-data/notifications/api/#update-channel-configuration - notifications.update_config}
  *
  * @memberOf API-Notifications
  *

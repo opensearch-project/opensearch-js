@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns information about whether a particular alias exists.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.exists_alias}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.exists_alias}
  *
  * @memberOf API-Indices
  *

@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Creates, updates, or deletes multiple action groups in a single request.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#patch-action-groups - security.patch_action_groups}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#patch-action-groups - security.patch_action_groups}
  *
  * @memberOf API-Security
  *

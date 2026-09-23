@@ -24,8 +24,13 @@ export interface Ml_PredictModel_Request extends Global.Params {
 }
 
 export type Ml_PredictModel_RequestBody = {
+  action_type?: Ml_Common.PredictionActionType;
+  context?: string;
+  dlq?: Record<string, string>;
+  parameters?: Record<string, string>;
   query_text?: string;
-  text_docs: string[];
+  question?: string;
+  text_docs?: string[];
 }
 
 export interface Ml_PredictModel_Response extends ApiResponse {

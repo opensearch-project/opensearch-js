@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Retrieves all node distinguished names. Requires super admin or REST API permissions.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-distinguished-names - security.get_distinguished_names}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-distinguished-names - security.get_distinguished_names}
  *
  * @memberOf API-Security
  *

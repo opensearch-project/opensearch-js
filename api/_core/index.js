@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates or updates a document in an index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/index-document/ - index}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/index-document/ - index}
  *
  * @memberOf API-Core
  *

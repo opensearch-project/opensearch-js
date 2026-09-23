@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Allows an arbitrary script to be executed and a result to be returned.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/script-apis/exec-script/ - scripts_painless_execute}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/script-apis/exec-script/ - scripts_painless_execute}
  *
  * @memberOf API-Core
  *

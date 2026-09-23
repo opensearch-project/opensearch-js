@@ -16,9 +16,10 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
+import * as Sql_Common from '../_types/sql._common'
 
 export interface Sql_GetStats_Request extends Global.Params {
-  format?: string;
+  format?: Sql_Common.ResponseFormat;
   sanitize?: boolean;
 }
 

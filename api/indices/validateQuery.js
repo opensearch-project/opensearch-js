@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Allows a user to validate a potentially expensive query without executing it.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.validate_query}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.validate_query}
  *
  * @memberOf API-Indices
  *

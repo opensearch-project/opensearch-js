@@ -20,12 +20,12 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Updates SQL plugin settings in the OpenSearch cluster configuration.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/settings/ - sql.settings}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/search-plugins/sql/settings/ - sql.settings}
  *
  * @memberOf API-Sql
  *
  * @param {object} [params]
- * @param {string} [params.format] - Specifies the response format (JSON or YAML).
+ * @param {string} [params.format=jdbc] - Specifies the response format (JSON or YAML).
  * @param {string} [params.body] - Contains SQL plugin configuration settings.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

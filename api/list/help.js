@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns help for the List APIs.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/list/index/ - list.help}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/list/index/ - list.help}
  *
  * @memberOf API-List
  *

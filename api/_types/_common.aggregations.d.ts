@@ -196,7 +196,7 @@ export type BucketPathAggregation = {
   buckets_path?: BucketsPath;
 }
 
-export type Buckets = Record<string, TBucket> | TBucket[]
+export type Buckets<TBucket = any> = Record<string, TBucket> | TBucket[]
 
 export type BucketScriptAggregation = PipelineAggregationBase & {
   script?: Common.Script;
@@ -215,7 +215,7 @@ export type BucketSortAggregation = {
 
 export type BucketsPath = string | string[] | Record<string, string>
 
-export type BucketsQueryContainer = Buckets & (Record<string, Common_QueryDsl.QueryContainer> | Common_QueryDsl.QueryContainer[])
+export type BucketsQueryContainer = Buckets<Common_QueryDsl.QueryContainer> & (Record<string, Common_QueryDsl.QueryContainer> | Common_QueryDsl.QueryContainer[])
 
 export type CalendarInterval = 'second' | '1s' | 'minute' | '1m' | 'hour' | '1h' | 'day' | '1d' | 'week' | '1w' | 'month' | '1M' | 'quarter' | '1q' | 'year' | '1Y'
 
@@ -394,17 +394,17 @@ export type EwmaMovingAverageAggregation = MovingAverageAggregationBase & {
   settings: EwmaModelSettings;
 }
 
-export type ExtendedBounds = {
+export type ExtendedBounds<T = any> = {
   max: T;
   min: T;
 }
 
-export type ExtendedBoundsDouble = ExtendedBounds & {
+export type ExtendedBoundsDouble = ExtendedBounds<number> & {
   max?: number;
   min?: number;
 }
 
-export type ExtendedBoundsFieldDateMath = ExtendedBounds & {
+export type ExtendedBoundsFieldDateMath = ExtendedBounds<FieldDateMath> & {
   max?: FieldDateMath;
   min?: FieldDateMath;
 }
@@ -749,60 +749,60 @@ export type MovingPercentilesAggregation = PipelineAggregationBase & {
   window?: number;
 }
 
-export type MultiBucketAggregateBase = AggregateBase & {
-  buckets: Buckets & (Record<string, TBucket> | TBucket[]);
+export type MultiBucketAggregateBase<TBucket = any> = AggregateBase & {
+  buckets: Buckets<TBucket> & (Record<string, TBucket> | TBucket[]);
 }
 
-export type MultiBucketAggregateBaseAdjacencyMatrixBucket = MultiBucketAggregateBase & {
-  buckets: Buckets & (Record<string, AdjacencyMatrixBucket> | AdjacencyMatrixBucket[]);
+export type MultiBucketAggregateBaseAdjacencyMatrixBucket = MultiBucketAggregateBase<AdjacencyMatrixBucket> & {
+  buckets: Buckets<AdjacencyMatrixBucket> & (Record<string, AdjacencyMatrixBucket> | AdjacencyMatrixBucket[]);
 }
 
-export type MultiBucketAggregateBaseCompositeBucket = MultiBucketAggregateBase & {
-  buckets: Buckets & (Record<string, CompositeBucket> | CompositeBucket[]);
+export type MultiBucketAggregateBaseCompositeBucket = MultiBucketAggregateBase<CompositeBucket> & {
+  buckets: Buckets<CompositeBucket> & (Record<string, CompositeBucket> | CompositeBucket[]);
 }
 
-export type MultiBucketAggregateBaseDateHistogramBucket = MultiBucketAggregateBase & {
-  buckets: Buckets & (Record<string, DateHistogramBucket> | DateHistogramBucket[]);
+export type MultiBucketAggregateBaseDateHistogramBucket = MultiBucketAggregateBase<DateHistogramBucket> & {
+  buckets: Buckets<DateHistogramBucket> & (Record<string, DateHistogramBucket> | DateHistogramBucket[]);
 }
 
-export type MultiBucketAggregateBaseFiltersBucket = MultiBucketAggregateBase & {
-  buckets: Buckets & (Record<string, FiltersBucket> | FiltersBucket[]);
+export type MultiBucketAggregateBaseFiltersBucket = MultiBucketAggregateBase<FiltersBucket> & {
+  buckets: Buckets<FiltersBucket> & (Record<string, FiltersBucket> | FiltersBucket[]);
 }
 
-export type MultiBucketAggregateBaseGeoHashGridBucket = MultiBucketAggregateBase & {
-  buckets: Buckets & (Record<string, GeoHashGridBucket> | GeoHashGridBucket[]);
+export type MultiBucketAggregateBaseGeoHashGridBucket = MultiBucketAggregateBase<GeoHashGridBucket> & {
+  buckets: Buckets<GeoHashGridBucket> & (Record<string, GeoHashGridBucket> | GeoHashGridBucket[]);
 }
 
-export type MultiBucketAggregateBaseGeoTileGridBucket = MultiBucketAggregateBase & {
-  buckets: Buckets & (Record<string, GeoTileGridBucket> | GeoTileGridBucket[]);
+export type MultiBucketAggregateBaseGeoTileGridBucket = MultiBucketAggregateBase<GeoTileGridBucket> & {
+  buckets: Buckets<GeoTileGridBucket> & (Record<string, GeoTileGridBucket> | GeoTileGridBucket[]);
 }
 
-export type MultiBucketAggregateBaseHistogramBucket = MultiBucketAggregateBase & {
-  buckets: Buckets & (Record<string, HistogramBucket> | HistogramBucket[]);
+export type MultiBucketAggregateBaseHistogramBucket = MultiBucketAggregateBase<HistogramBucket> & {
+  buckets: Buckets<HistogramBucket> & (Record<string, HistogramBucket> | HistogramBucket[]);
 }
 
-export type MultiBucketAggregateBaseIpRangeBucket = MultiBucketAggregateBase & {
-  buckets: Buckets & (Record<string, IpRangeBucket> | IpRangeBucket[]);
+export type MultiBucketAggregateBaseIpRangeBucket = MultiBucketAggregateBase<IpRangeBucket> & {
+  buckets: Buckets<IpRangeBucket> & (Record<string, IpRangeBucket> | IpRangeBucket[]);
 }
 
-export type MultiBucketAggregateBaseLongRareTermsBucket = MultiBucketAggregateBase & {
-  buckets?: Buckets & (Record<string, LongRareTermsBucket> | LongRareTermsBucket[]);
+export type MultiBucketAggregateBaseLongRareTermsBucket = MultiBucketAggregateBase<LongRareTermsBucket> & {
+  buckets?: Buckets<LongRareTermsBucket> & (Record<string, LongRareTermsBucket> | LongRareTermsBucket[]);
 }
 
-export type MultiBucketAggregateBaseRangeBucket = MultiBucketAggregateBase & {
-  buckets: Buckets & (Record<string, RangeBucket> | RangeBucket[]);
+export type MultiBucketAggregateBaseRangeBucket = MultiBucketAggregateBase<RangeBucket> & {
+  buckets: Buckets<RangeBucket> & (Record<string, RangeBucket> | RangeBucket[]);
 }
 
-export type MultiBucketAggregateBaseStringRareTermsBucket = MultiBucketAggregateBase & {
-  buckets?: Buckets & (Record<string, StringRareTermsBucket> | StringRareTermsBucket[]);
+export type MultiBucketAggregateBaseStringRareTermsBucket = MultiBucketAggregateBase<StringRareTermsBucket> & {
+  buckets?: Buckets<StringRareTermsBucket> & (Record<string, StringRareTermsBucket> | StringRareTermsBucket[]);
 }
 
-export type MultiBucketAggregateBaseVariableWidthHistogramBucket = MultiBucketAggregateBase & {
-  buckets: Buckets & (Record<string, VariableWidthHistogramBucket> | VariableWidthHistogramBucket[]);
+export type MultiBucketAggregateBaseVariableWidthHistogramBucket = MultiBucketAggregateBase<VariableWidthHistogramBucket> & {
+  buckets: Buckets<VariableWidthHistogramBucket> & (Record<string, VariableWidthHistogramBucket> | VariableWidthHistogramBucket[]);
 }
 
-export type MultiBucketAggregateBaseVoid = MultiBucketAggregateBase & {
-  buckets?: Buckets & (Record<string, Common.Void> | Common.Void[]);
+export type MultiBucketAggregateBaseVoid = MultiBucketAggregateBase<Common.Void> & {
+  buckets?: Buckets<Common.Void> & (Record<string, Common.Void> | Common.Void[]);
 }
 
 export type MultiBucketBase = {
@@ -1008,21 +1008,21 @@ export type SignificantStringTermsBucket = SignificantTermsBucketBase & {
   key: string;
 }
 
-export type SignificantTermsAggregateBase = MultiBucketAggregateBase & {
+export type SignificantTermsAggregateBase = MultiBucketAggregateBase<any> & {
   bg_count?: number;
   doc_count?: number;
 }
 
 export type SignificantTermsAggregateBaseSignificantLongTermsBucket = SignificantTermsAggregateBase & {
-  buckets?: Buckets & (Record<string, SignificantLongTermsBucket> | SignificantLongTermsBucket[]);
+  buckets?: Buckets<SignificantLongTermsBucket> & (Record<string, SignificantLongTermsBucket> | SignificantLongTermsBucket[]);
 }
 
 export type SignificantTermsAggregateBaseSignificantStringTermsBucket = SignificantTermsAggregateBase & {
-  buckets?: Buckets & (Record<string, SignificantStringTermsBucket> | SignificantStringTermsBucket[]);
+  buckets?: Buckets<SignificantStringTermsBucket> & (Record<string, SignificantStringTermsBucket> | SignificantStringTermsBucket[]);
 }
 
 export type SignificantTermsAggregateBaseVoid = SignificantTermsAggregateBase & {
-  buckets?: Buckets & (Record<string, Common.Void> | Common.Void[]);
+  buckets?: Buckets<Common.Void> & (Record<string, Common.Void> | Common.Void[]);
 }
 
 export type SignificantTermsAggregation = BucketAggregationBase & {
@@ -1148,10 +1148,6 @@ export type SumAggregation = FormatMetricAggregationBase & Record<string, any>
 
 export type SumBucketAggregation = PipelineAggregationBase & Record<string, any>
 
-export type T = Record<string, any>
-
-export type TBucket = Record<string, any>
-
 export type TDigest = {
   compression?: number;
 }
@@ -1160,7 +1156,7 @@ export type TDigestPercentileRanksAggregate = PercentilesAggregateBase
 
 export type TDigestPercentilesAggregate = PercentilesAggregateBase
 
-export type TermsAggregateBase = MultiBucketAggregateBase & {
+export type TermsAggregateBase = MultiBucketAggregateBase<any> & {
   doc_count_error_upper_bound?: number;
   sum_other_doc_count?: number;
 }
@@ -1174,7 +1170,7 @@ export type TermsAggregateBaseLongTermsBucket = TermsAggregateBase & {
 }
 
 export type TermsAggregateBaseMultiTermsBucket = TermsAggregateBase & {
-  buckets?: Buckets & (Record<string, MultiTermsBucket> | MultiTermsBucket[]);
+  buckets?: Buckets<MultiTermsBucket> & (Record<string, MultiTermsBucket> | MultiTermsBucket[]);
 }
 
 export type TermsAggregateBaseStringTermsBucket = TermsAggregateBase & {

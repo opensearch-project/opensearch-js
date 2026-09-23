@@ -29,6 +29,7 @@ export type ThreadPoolRecord = {
   name?: string;
   node_id?: Common.NodeId;
   node_name?: string;
+  parallelism?: undefined | string;
   pid?: string;
   pool_size?: string;
   port?: string;

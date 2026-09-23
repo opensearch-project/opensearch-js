@@ -459,6 +459,14 @@ export type NeuralQuery = QueryBase & {
   query_text?: string;
 }
 
+export type NeuralSparseQuery = QueryBase & {
+  analyzer?: string;
+  max_token_score?: number;
+  model_id?: string;
+  query_text?: string;
+  query_tokens?: Record<string, number>;
+}
+
 export type NumberRangeQuery = RangeQueryBase & {
   from?: number | string | undefined;
   gt?: number;
@@ -541,6 +549,7 @@ export type QueryContainer = {
   multi_match?: MultiMatchQuery;
   nested?: NestedQuery;
   neural?: Record<string, NeuralQuery>;
+  neural_sparse?: Record<string, NeuralSparseQuery>;
   parent_id?: ParentIdQuery;
   percolate?: PercolateQuery;
   prefix?: Record<string, PrefixQuery>;
@@ -551,6 +560,7 @@ export type QueryContainer = {
   script?: ScriptQuery;
   script_score?: ScriptScoreQuery;
   simple_query_string?: SimpleQueryStringQuery;
+  sltr?: StoredLtrQuery;
   span_containing?: SpanContainingQuery;
   span_first?: SpanFirstQuery;
   span_multi?: SpanMultiTermQuery;
@@ -744,6 +754,17 @@ export type SpanWithinQuery = QueryBase & {
   little: SpanQuery;
 }
 
+export type StoredLtrQuery = {
+  _name?: string;
+  active_features?: string[];
+  boost?: number;
+  cache?: boolean;
+  featureset?: string;
+  model?: string;
+  params: Record<string, any>;
+  store?: string;
+}
+
 export type TermQuery = Common.FieldValue | (QueryBase & {
   case_insensitive?: boolean;
   value: Common.FieldValue;
@@ -751,10 +772,8 @@ export type TermQuery = Common.FieldValue | (QueryBase & {
 
 export type TermsLookup = {
   id: Common.Id;
-  index: Common.IndexName;
-  path: Common.Field;
-  routing?: Common.Routing;
-  store?: boolean;
+} | {
+  query: QueryContainer;
 }
 
 export type TermsQuery = {

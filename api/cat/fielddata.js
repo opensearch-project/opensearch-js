@@ -20,14 +20,14 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Shows how much heap memory is currently being used by field data on every data node in the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-field-data/ - cat.fielddata}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-field-data/ - cat.fielddata}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
  * @param {string} [params.bytes] - The units used to display byte values.
  * @param {string} [params.fields] - A comma-separated list of fields used to limit the amount of returned information. To retrieve all fields, omit this parameter.
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.

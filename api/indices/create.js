@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates an index with optional settings and mappings.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/create-index/ - indices.create}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/create-index/ - indices.create}
  *
  * @memberOf API-Indices
  *

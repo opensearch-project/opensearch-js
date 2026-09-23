@@ -24,7 +24,9 @@ export interface Ml_PredictModelStream_Request extends Global.Params {
 }
 
 export type Ml_PredictModelStream_RequestBody = {
-  parameters: Ml_Common.Parameters;
+  action_type?: Ml_Common.PredictionActionType;
+  dlq?: Record<string, string>;
+  parameters?: Record<string, string>;
 }
 
 export interface Ml_PredictModelStream_Response extends ApiResponse {

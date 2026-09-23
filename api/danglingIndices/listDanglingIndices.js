@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns all dangling indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/dangling-index/ - dangling_indices.list_dangling_indices}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/dangling-index/ - dangling_indices.list_dangling_indices}
  *
  * @memberOf API-Dangling-Indices
  *

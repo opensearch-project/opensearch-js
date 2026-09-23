@@ -15,6 +15,11 @@
  */
 
 
+export type CalciteExplain = {
+  logical?: string;
+  physical?: string;
+}
+
 export type Cursor = {
   keep_alive?: string;
 }
@@ -32,6 +37,7 @@ export type ExplainBody = {
 }
 
 export type ExplainResponse = {
+  calcite?: CalciteExplain;
   root?: ExplainBody;
 }
 
@@ -64,6 +70,8 @@ export type QueryResponse = {
   status?: number;
   total?: number;
 }
+
+export type ResponseFormat = 'cost' | 'csv' | 'extended' | 'jdbc' | 'json' | 'raw' | 'simple' | 'standard' | 'viz' | 'yaml'
 
 export type Sql = {
   cursor?: Cursor;

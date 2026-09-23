@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Cancels a task, if it can be cancelled through an API.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/tasks/#task-canceling - tasks.cancel}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/tasks/cancel-tasks/ - tasks.cancel}
  *
  * @memberOf API-Tasks
  *

@@ -16,11 +16,12 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
+import * as Ppl_Common from '../_types/ppl._common'
 import * as Sql_Common from '../_types/sql._common'
 
 export interface Ppl_Explain_Request extends Global.Params {
   body: Sql_Common.Explain;
-  format?: string;
+  format?: Ppl_Common.ResponseFormat;
   sanitize?: boolean;
 }
 

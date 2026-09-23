@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Cat_Common from '../_types/cat._common'
 import * as Cat_Nodes from '../_types/cat.nodes'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
@@ -22,7 +23,7 @@ import * as Global from '../_types/_global'
 export interface Cat_Nodes_Request extends Global.Params {
   bytes?: Common.ByteUnit;
   cluster_manager_timeout?: Common.Duration;
-  format?: string;
+  format?: Cat_Common.ResponseFormat;
   full_id?: Common.StringifiedBoolean;
   h?: string[];
   help?: boolean;

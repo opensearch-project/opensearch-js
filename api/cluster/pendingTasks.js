@@ -21,12 +21,12 @@ const { normalizeArguments } = require('../utils');
 /**
  * Returns a list of pending cluster-level tasks, such as index creation, mapping updates,
 or new allocations.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - cluster.pending_tasks}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - cluster.pending_tasks}
  *
  * @memberOf API-Cluster
  *
  * @param {object} [params]
- * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units).
  * @param {boolean} [params.local=false] - When `true`, the request retrieves information from the local node only. When `false`, information is retrieved from the cluster manager node.
  * @param {string} [params.master_timeout] DEPRECATED - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts `0` without a unit and `-1` to indicate an unspecified value.
  *

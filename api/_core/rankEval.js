@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Allows to evaluate the quality of ranked search results over a set of typical search queries.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/rank-eval/ - rank_eval}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/rank-eval/ - rank_eval}
  *
  * @memberOf API-Core
  *

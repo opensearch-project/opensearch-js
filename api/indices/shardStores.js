@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Provides store information for shard copies of indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.shard_stores}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.shard_stores}
  *
  * @memberOf API-Indices
  *

@@ -20,12 +20,12 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns information about a snapshot repository.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/snapshots/get-snapshot-repository/ - snapshot.get_repository}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/snapshots/get-snapshot-repository/ - snapshot.get_repository}
  *
  * @memberOf API-Snapshot
  *
  * @param {object} [params]
- * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units).
  * @param {boolean} [params.local=false] - Whether to get information from the local node.
  * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
  * @param {string} [params.repository] - A comma-separated list of repository names.

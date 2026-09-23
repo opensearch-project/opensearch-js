@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns a list of built-in grok patterns.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - ingest.processor_grok}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - ingest.processor_grok}
  *
  * @memberOf API-Ingest
  *

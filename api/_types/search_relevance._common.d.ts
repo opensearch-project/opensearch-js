@@ -14,6 +14,8 @@
  * modify the API generator.
  */
 
+import * as Common from './_common'
+import * as Common_QueryDsl from './_common.query_dsl'
 
 export type PostQuerySetsRequest = {
   description?: string;
@@ -101,6 +103,7 @@ export type PutQuerySetsResponse = {
 }
 
 export type PutSearchConfigurationRequest = {
+  description?: string;
   index?: string;
   name?: string;
   query?: string;
@@ -118,5 +121,12 @@ export type PutUBIJudgmentsRequest = {
   maxRank?: number;
   name?: string;
   type?: string;
+}
+
+export type SearchRequest = {
+  from?: number;
+  query?: Common_QueryDsl.QueryContainer;
+  size?: number;
+  sort?: Common.Sort;
 }
 

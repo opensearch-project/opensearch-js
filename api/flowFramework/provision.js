@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Provisioning a workflow. This API is also executed when the Create or Update Workflow API is called with the provision parameter set to true.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/provision-workflow/ - flow_framework.provision}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/automating-configurations/api/provision-workflow/ - flow_framework.provision}
  *
  * @memberOf API-Flow-Framework
  *

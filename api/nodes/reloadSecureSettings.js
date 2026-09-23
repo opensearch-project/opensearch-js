@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Reloads secure settings.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-reload-secure/ - nodes.reload_secure_settings}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/nodes-apis/nodes-reload-secure/ - nodes.reload_secure_settings}
  *
  * @memberOf API-Nodes
  *

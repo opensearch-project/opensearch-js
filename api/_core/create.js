@@ -22,7 +22,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * Creates a new document in the index.
 
 Returns a 409 response when a document with a same ID already exists in the index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/index-document/ - create}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/index-document/ - create}
  *
  * @memberOf API-Core
  *

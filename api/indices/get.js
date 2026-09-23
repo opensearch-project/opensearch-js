@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns information about one or more indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/get-index/ - indices.get}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/get-index/ - indices.get}
  *
  * @memberOf API-Indices
  *

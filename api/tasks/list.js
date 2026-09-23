@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns a list of tasks.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/tasks/ - tasks.list}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/tasks/ - tasks.list}
  *
  * @memberOf API-Tasks
  *

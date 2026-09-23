@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Explicitly clears the search context for a scroll.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/scroll/ - clear_scroll}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/scroll/ - clear_scroll}
  *
  * @memberOf API-Core
  *

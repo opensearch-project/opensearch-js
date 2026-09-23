@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Provides low-level information about segments in a Lucene index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.segments}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.segments}
  *
  * @memberOf API-Indices
  *

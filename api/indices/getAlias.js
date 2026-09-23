@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns an alias.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-alias/ - indices.get_alias}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-alias/ - indices.get_alias}
  *
  * @memberOf API-Indices
  *

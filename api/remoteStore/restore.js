@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Restores from remote store.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/opensearch/remote/#restoring-from-a-backup - remote_store.restore}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/tuning-your-cluster/availability-and-recovery/remote-store/index/#restoring-from-a-backup - remote_store.restore}
  *
  * @memberOf API-Remote-Store
  *

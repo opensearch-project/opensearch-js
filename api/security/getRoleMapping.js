@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Retrieves the specified role mapping.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-role-mapping - security.get_role_mapping}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-role-mapping - security.get_role_mapping}
  *
  * @memberOf API-Security
  *

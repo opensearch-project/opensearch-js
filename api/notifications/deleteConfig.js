@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Delete a channel configuration.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/observing-your-data/notifications/api/#delete-channel-configuration - notifications.delete_config}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/observing-your-data/notifications/api/#delete-channel-configuration - notifications.delete_config}
  *
  * @memberOf API-Notifications
  *

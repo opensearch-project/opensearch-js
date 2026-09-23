@@ -20,12 +20,12 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Retrieves the currently applied policy on the specified indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index - ism.explain_policy}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/ism/api/#explain-index - ism.explain_policy}
  *
  * @memberOf API-Ism
  *
  * @param {object} [params]
- * @param {string} [params.index] 
+ * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  * @param {string} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

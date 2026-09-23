@@ -38,6 +38,11 @@ export type BytesProcessor = ProcessorBase & {
   target_field?: Common.Field;
 }
 
+export type ChunkingAlgorithm = {
+  delimiter?: DelimiterChunkingAlgorithm;
+  fixed_token_length?: FixedTokenLengthChunkingAlgorithm;
+}
+
 export type CircleProcessor = ProcessorBase & {
   error_distance: number;
   field: Common.Field;
@@ -83,6 +88,11 @@ export type DateProcessor = ProcessorBase & {
   timezone?: string;
 }
 
+export type DelimiterChunkingAlgorithm = {
+  delimiter?: string;
+  max_chunk_limit?: number;
+}
+
 export type DissectProcessor = ProcessorBase & {
   append_separator?: string;
   field: Common.Field;
@@ -99,6 +109,13 @@ export type DropProcessor = ProcessorBase & Record<string, any>
 
 export type FailProcessor = ProcessorBase & {
   message: string;
+}
+
+export type FixedTokenLengthChunkingAlgorithm = {
+  max_chunk_limit?: number;
+  overlap_rate?: number;
+  token_limit?: number;
+  tokenizer?: string;
 }
 
 export type ForeachProcessor = ProcessorBase & {
@@ -217,8 +234,11 @@ export type ProcessorContainer = {
   set?: SetProcessor;
   set_security_user?: SetSecurityUserProcessor;
   sort?: SortProcessor;
+  sparse_encoding?: SparseEncodingProcessor;
   split?: SplitProcessor;
+  text_chunking?: TextChunkingProcessor;
   text_embedding?: TextEmbeddingProcessor;
+  text_image_embedding?: TextImageEmbeddingProcessor;
   trim?: TrimProcessor;
   uppercase?: UppercaseProcessor;
   urldecode?: UrlDecodeProcessor;
@@ -258,6 +278,12 @@ export type SortProcessor = ProcessorBase & {
   target_field?: Common.Field;
 }
 
+export type SparseEncodingProcessor = ProcessorBase & {
+  batch_size?: number;
+  field_map: Record<string, string>;
+  model_id: Common.Id;
+}
+
 export type SplitProcessor = ProcessorBase & {
   field: Common.Field;
   ignore_missing?: boolean;
@@ -266,8 +292,19 @@ export type SplitProcessor = ProcessorBase & {
   target_field?: Common.Field;
 }
 
+export type TextChunkingProcessor = ProcessorBase & {
+  algorithm: ChunkingAlgorithm;
+  field_map: Record<string, string>;
+  max_chunk_limit?: number;
+}
+
 export type TextEmbeddingProcessor = ProcessorBase & {
   batch_size?: number;
+  field_map: Record<string, string>;
+  model_id: Common.Id;
+}
+
+export type TextImageEmbeddingProcessor = ProcessorBase & {
   field_map: Record<string, string>;
   model_id: Common.Id;
 }

@@ -23,7 +23,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 Default values:
   - `endpoint`: `"https://geoip.maps.opensearch.org/v1/geolite2-city/manifest.json"`
   - `update_interval_in_days`: 3.
- * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#data-source-options - geospatial.put_ip2geo_datasource}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ingest-pipelines/processors/ip2geo/#data-source-options - geospatial.put_ip2geo_datasource}
  *
  * @memberOf API-Geospatial
  *

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns an ingest pipeline.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/get-ingest/ - ingest.get_pipeline}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/ingest-apis/get-ingest/ - ingest.get_pipeline}
  *
  * @memberOf API-Ingest
  *

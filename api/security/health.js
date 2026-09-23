@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Checks to see if the Security plugin is running.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#health-check - security.health}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#health-check - security.health}
  *
  * @memberOf API-Security
  *

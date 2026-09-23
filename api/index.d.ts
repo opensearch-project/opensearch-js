@@ -64,6 +64,7 @@ import { Indices_UpdateAliases_Request, Indices_UpdateAliases_RequestBody, Indic
 import { Indices_Analyze_Request, Indices_Analyze_RequestBody, Indices_Analyze_Response, Indices_Analyze_ResponseBody } from './indices/analyze';
 import { Indices_ClearCache_Request, Indices_ClearCache_Response, Indices_ClearCache_ResponseBody } from './indices/clearCache';
 import { Indices_GetDataStream_Request, Indices_GetDataStream_Response, Indices_GetDataStream_ResponseBody } from './indices/getDataStream';
+import { Indices_ModifyDataStream_Request, Indices_ModifyDataStream_RequestBody, Indices_ModifyDataStream_Response, Indices_ModifyDataStream_ResponseBody } from './indices/modifyDataStream';
 import { Indices_DataStreamsStats_Request, Indices_DataStreamsStats_Response, Indices_DataStreamsStats_ResponseBody } from './indices/dataStreamsStats';
 import { Indices_DeleteDataStream_Request, Indices_DeleteDataStream_Response, Indices_DeleteDataStream_ResponseBody } from './indices/deleteDataStream';
 import { Indices_CreateDataStream_Request, Indices_CreateDataStream_RequestBody, Indices_CreateDataStream_Response, Indices_CreateDataStream_ResponseBody } from './indices/createDataStream';
@@ -427,19 +428,23 @@ import { Rollups_Stop_Request, Rollups_Stop_Response, Rollups_Stop_ResponseBody 
 import { SearchRelevance_GetNodeStats_Request, SearchRelevance_GetNodeStats_Response, SearchRelevance_GetNodeStats_ResponseBody } from './searchRelevance/getNodeStats';
 import { SearchRelevance_GetExperiments_Request, SearchRelevance_GetExperiments_Response, SearchRelevance_GetExperiments_ResponseBody } from './searchRelevance/getExperiments';
 import { SearchRelevance_PutExperiments_Request, SearchRelevance_PutExperiments_RequestBody, SearchRelevance_PutExperiments_Response, SearchRelevance_PutExperiments_ResponseBody } from './searchRelevance/putExperiments';
+import { SearchRelevance_ExperimentsSearch_Request, SearchRelevance_ExperimentsSearch_Response, SearchRelevance_ExperimentsSearch_ResponseBody } from './searchRelevance/experimentsSearch';
 import { SearchRelevance_DeleteExperiments_Request, SearchRelevance_DeleteExperiments_Response, SearchRelevance_DeleteExperiments_ResponseBody } from './searchRelevance/deleteExperiments';
 import { SearchRelevance_GetScheduledExperiments_Request, SearchRelevance_GetScheduledExperiments_Response, SearchRelevance_GetScheduledExperiments_ResponseBody } from './searchRelevance/getScheduledExperiments';
 import { SearchRelevance_PostScheduledExperiments_Request, SearchRelevance_PostScheduledExperiments_Response, SearchRelevance_PostScheduledExperiments_ResponseBody } from './searchRelevance/postScheduledExperiments';
 import { SearchRelevance_DeleteScheduledExperiments_Request, SearchRelevance_DeleteScheduledExperiments_Response, SearchRelevance_DeleteScheduledExperiments_ResponseBody } from './searchRelevance/deleteScheduledExperiments';
 import { SearchRelevance_GetJudgments_Request, SearchRelevance_GetJudgments_Response, SearchRelevance_GetJudgments_ResponseBody } from './searchRelevance/getJudgments';
 import { SearchRelevance_PutJudgments_Request, SearchRelevance_PutJudgments_RequestBody, SearchRelevance_PutJudgments_Response, SearchRelevance_PutJudgments_ResponseBody } from './searchRelevance/putJudgments';
+import { SearchRelevance_JudgmentsSearch_Request, SearchRelevance_JudgmentsSearch_Response, SearchRelevance_JudgmentsSearch_ResponseBody } from './searchRelevance/judgmentsSearch';
 import { SearchRelevance_DeleteJudgments_Request, SearchRelevance_DeleteJudgments_Response, SearchRelevance_DeleteJudgments_ResponseBody } from './searchRelevance/deleteJudgments';
 import { SearchRelevance_GetQuerySets_Request, SearchRelevance_GetQuerySets_Response, SearchRelevance_GetQuerySets_ResponseBody } from './searchRelevance/getQuerySets';
 import { SearchRelevance_PostQuerySets_Request, SearchRelevance_PostQuerySets_Response, SearchRelevance_PostQuerySets_ResponseBody } from './searchRelevance/postQuerySets';
 import { SearchRelevance_PutQuerySets_Request, SearchRelevance_PutQuerySets_Response, SearchRelevance_PutQuerySets_ResponseBody } from './searchRelevance/putQuerySets';
+import { SearchRelevance_QuerySetsSearch_Request, SearchRelevance_QuerySetsSearch_Response, SearchRelevance_QuerySetsSearch_ResponseBody } from './searchRelevance/querySetsSearch';
 import { SearchRelevance_DeleteQuerySets_Request, SearchRelevance_DeleteQuerySets_Response, SearchRelevance_DeleteQuerySets_ResponseBody } from './searchRelevance/deleteQuerySets';
 import { SearchRelevance_GetSearchConfigurations_Request, SearchRelevance_GetSearchConfigurations_Response, SearchRelevance_GetSearchConfigurations_ResponseBody } from './searchRelevance/getSearchConfigurations';
 import { SearchRelevance_PutSearchConfigurations_Request, SearchRelevance_PutSearchConfigurations_Response, SearchRelevance_PutSearchConfigurations_ResponseBody } from './searchRelevance/putSearchConfigurations';
+import { SearchRelevance_SearchConfigurationsSearch_Request, SearchRelevance_SearchConfigurationsSearch_Response, SearchRelevance_SearchConfigurationsSearch_ResponseBody } from './searchRelevance/searchConfigurationsSearch';
 import { SearchRelevance_DeleteSearchConfigurations_Request, SearchRelevance_DeleteSearchConfigurations_Response, SearchRelevance_DeleteSearchConfigurations_ResponseBody } from './searchRelevance/deleteSearchConfigurations';
 import { SearchRelevance_GetStats_Request, SearchRelevance_GetStats_Response, SearchRelevance_GetStats_ResponseBody } from './searchRelevance/getStats';
 import { SecurityAnalytics_GetAlerts_Request, SecurityAnalytics_GetAlerts_Response, SecurityAnalytics_GetAlerts_ResponseBody } from './securityAnalytics/getAlerts';
@@ -486,6 +491,7 @@ import { Snapshot_Clone_Request, Snapshot_Clone_RequestBody, Snapshot_Clone_Resp
 import { Snapshot_Restore_Request, Snapshot_Restore_RequestBody, Snapshot_Restore_Response, Snapshot_Restore_ResponseBody } from './snapshot/restore';
 import { Tasks_List_Request, Tasks_List_Response, Tasks_List_ResponseBody } from './tasks/list';
 import { Tasks_Cancel_Request, Tasks_Cancel_Response, Tasks_Cancel_ResponseBody } from './tasks/cancel';
+import { Tasks_Delete_Request, Tasks_Delete_Response, Tasks_Delete_ResponseBody } from './tasks/delete';
 import { Tasks_Get_Request, Tasks_Get_Response, Tasks_Get_ResponseBody } from './tasks/get';
 import { Wlm_GetQueryGroup_Request, Wlm_GetQueryGroup_Response, Wlm_GetQueryGroup_ResponseBody } from './wlm/getQueryGroup';
 import { Wlm_CreateQueryGroup_Request, Wlm_CreateQueryGroup_Response, Wlm_CreateQueryGroup_ResponseBody } from './wlm/createQueryGroup';
@@ -546,6 +552,7 @@ export {
   Indices_Analyze_Request, Indices_Analyze_RequestBody, Indices_Analyze_Response, Indices_Analyze_ResponseBody,
   Indices_ClearCache_Request, Indices_ClearCache_Response, Indices_ClearCache_ResponseBody,
   Indices_GetDataStream_Request, Indices_GetDataStream_Response, Indices_GetDataStream_ResponseBody,
+  Indices_ModifyDataStream_Request, Indices_ModifyDataStream_RequestBody, Indices_ModifyDataStream_Response, Indices_ModifyDataStream_ResponseBody,
   Indices_DataStreamsStats_Request, Indices_DataStreamsStats_Response, Indices_DataStreamsStats_ResponseBody,
   Indices_DeleteDataStream_Request, Indices_DeleteDataStream_Response, Indices_DeleteDataStream_ResponseBody,
   Indices_CreateDataStream_Request, Indices_CreateDataStream_RequestBody, Indices_CreateDataStream_Response, Indices_CreateDataStream_ResponseBody,
@@ -909,19 +916,23 @@ export {
   SearchRelevance_GetNodeStats_Request, SearchRelevance_GetNodeStats_Response, SearchRelevance_GetNodeStats_ResponseBody,
   SearchRelevance_GetExperiments_Request, SearchRelevance_GetExperiments_Response, SearchRelevance_GetExperiments_ResponseBody,
   SearchRelevance_PutExperiments_Request, SearchRelevance_PutExperiments_RequestBody, SearchRelevance_PutExperiments_Response, SearchRelevance_PutExperiments_ResponseBody,
+  SearchRelevance_ExperimentsSearch_Request, SearchRelevance_ExperimentsSearch_Response, SearchRelevance_ExperimentsSearch_ResponseBody,
   SearchRelevance_DeleteExperiments_Request, SearchRelevance_DeleteExperiments_Response, SearchRelevance_DeleteExperiments_ResponseBody,
   SearchRelevance_GetScheduledExperiments_Request, SearchRelevance_GetScheduledExperiments_Response, SearchRelevance_GetScheduledExperiments_ResponseBody,
   SearchRelevance_PostScheduledExperiments_Request, SearchRelevance_PostScheduledExperiments_Response, SearchRelevance_PostScheduledExperiments_ResponseBody,
   SearchRelevance_DeleteScheduledExperiments_Request, SearchRelevance_DeleteScheduledExperiments_Response, SearchRelevance_DeleteScheduledExperiments_ResponseBody,
   SearchRelevance_GetJudgments_Request, SearchRelevance_GetJudgments_Response, SearchRelevance_GetJudgments_ResponseBody,
   SearchRelevance_PutJudgments_Request, SearchRelevance_PutJudgments_RequestBody, SearchRelevance_PutJudgments_Response, SearchRelevance_PutJudgments_ResponseBody,
+  SearchRelevance_JudgmentsSearch_Request, SearchRelevance_JudgmentsSearch_Response, SearchRelevance_JudgmentsSearch_ResponseBody,
   SearchRelevance_DeleteJudgments_Request, SearchRelevance_DeleteJudgments_Response, SearchRelevance_DeleteJudgments_ResponseBody,
   SearchRelevance_GetQuerySets_Request, SearchRelevance_GetQuerySets_Response, SearchRelevance_GetQuerySets_ResponseBody,
   SearchRelevance_PostQuerySets_Request, SearchRelevance_PostQuerySets_Response, SearchRelevance_PostQuerySets_ResponseBody,
   SearchRelevance_PutQuerySets_Request, SearchRelevance_PutQuerySets_Response, SearchRelevance_PutQuerySets_ResponseBody,
+  SearchRelevance_QuerySetsSearch_Request, SearchRelevance_QuerySetsSearch_Response, SearchRelevance_QuerySetsSearch_ResponseBody,
   SearchRelevance_DeleteQuerySets_Request, SearchRelevance_DeleteQuerySets_Response, SearchRelevance_DeleteQuerySets_ResponseBody,
   SearchRelevance_GetSearchConfigurations_Request, SearchRelevance_GetSearchConfigurations_Response, SearchRelevance_GetSearchConfigurations_ResponseBody,
   SearchRelevance_PutSearchConfigurations_Request, SearchRelevance_PutSearchConfigurations_Response, SearchRelevance_PutSearchConfigurations_ResponseBody,
+  SearchRelevance_SearchConfigurationsSearch_Request, SearchRelevance_SearchConfigurationsSearch_Response, SearchRelevance_SearchConfigurationsSearch_ResponseBody,
   SearchRelevance_DeleteSearchConfigurations_Request, SearchRelevance_DeleteSearchConfigurations_Response, SearchRelevance_DeleteSearchConfigurations_ResponseBody,
   SearchRelevance_GetStats_Request, SearchRelevance_GetStats_Response, SearchRelevance_GetStats_ResponseBody,
   SecurityAnalytics_GetAlerts_Request, SecurityAnalytics_GetAlerts_Response, SecurityAnalytics_GetAlerts_ResponseBody,
@@ -968,6 +979,7 @@ export {
   Snapshot_Restore_Request, Snapshot_Restore_RequestBody, Snapshot_Restore_Response, Snapshot_Restore_ResponseBody,
   Tasks_List_Request, Tasks_List_Response, Tasks_List_ResponseBody,
   Tasks_Cancel_Request, Tasks_Cancel_Response, Tasks_Cancel_ResponseBody,
+  Tasks_Delete_Request, Tasks_Delete_Response, Tasks_Delete_ResponseBody,
   Tasks_Get_Request, Tasks_Get_Response, Tasks_Get_ResponseBody,
   Wlm_GetQueryGroup_Request, Wlm_GetQueryGroup_Response, Wlm_GetQueryGroup_ResponseBody,
   Wlm_CreateQueryGroup_Request, Wlm_CreateQueryGroup_Response, Wlm_CreateQueryGroup_ResponseBody,

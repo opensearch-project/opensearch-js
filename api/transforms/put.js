@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Create an index transform, or update a transform if `if_seq_no` and `if_primary_term` are provided.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-transforms/transforms-apis/#create-a-transform-job - transforms.put}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-transforms/transforms-apis/#create-a-transform-job - transforms.put}
  *
  * @memberOf API-Transforms
  *

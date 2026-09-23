@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Changes the number of requests per second for a particular Delete By Query operation.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - delete_by_query_rethrottle}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - delete_by_query_rethrottle}
  *
  * @memberOf API-Core
  *

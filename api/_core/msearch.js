@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Allows to execute several search operations in one request.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/multi-search/ - msearch}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/multi-search/ - msearch}
  *
  * @memberOf API-Core
  *

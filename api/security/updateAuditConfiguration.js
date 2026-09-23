@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Updates the audit configuration.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#audit-logs - security.update_audit_configuration}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#audit-logs - security.update_audit_configuration}
  *
  * @memberOf API-Security
  *

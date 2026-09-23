@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns basic information about the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - info}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - info}
  *
  * @memberOf API-Core
  *

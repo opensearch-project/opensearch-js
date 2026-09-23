@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deletes the specified internal user.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#delete-user - security.delete_user}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#delete-user - security.delete_user}
  *
  * @memberOf API-Security
  *

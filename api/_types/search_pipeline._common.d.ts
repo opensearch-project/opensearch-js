@@ -46,6 +46,18 @@ export type FilterQueryRequestProcessor = {
   tag?: string;
 }
 
+export type MLInferenceRequestProcessor = {
+  description?: string;
+  function_name?: string;
+  ignore_failure?: boolean;
+  input_map?: Record<string, string>[];
+  model_config?: Record<string, any>;
+  model_id: string;
+  model_input?: string;
+  output_map?: Record<string, string>[];
+  tag?: string;
+}
+
 export type MLOpenSearchReranker = {
   model_id: string;
 }
@@ -110,6 +122,8 @@ export type RequestProcessor = {
   script: SearchScriptRequestProcessor;
 } | {
   oversample: OversampleRequestProcessor;
+} | {
+  ml_inference: MLInferenceRequestProcessor;
 }
 
 export type RerankContext = {

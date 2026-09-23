@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deletes an index template.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/index-templates/#delete-a-template - indices.delete_index_template}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/index-templates/#delete-a-template - indices.delete_index_template}
  *
  * @memberOf API-Indices
  *

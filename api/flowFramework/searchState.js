@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Search for workflows by using a query matching a field.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/search-workflow-state/ - flow_framework.search_state}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/automating-configurations/api/search-workflow-state/ - flow_framework.search_state}
  *
  * @memberOf API-Flow-Framework
  *

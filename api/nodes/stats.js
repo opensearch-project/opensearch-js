@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns statistical information about nodes in the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-usage/ - nodes.stats}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/nodes-apis/nodes-usage/ - nodes.stats}
  *
  * @memberOf API-Nodes
  *

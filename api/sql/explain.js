@@ -20,12 +20,12 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Returns the execution plan for a SQL or PPL query.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/ - sql.explain}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/search-plugins/sql/sql-ppl-api/ - sql.explain}
  *
  * @memberOf API-Sql
  *
  * @param {object} [params]
- * @param {string} [params.format] - Specifies the response format (JSON or YAML).
+ * @param {string} [params.format=jdbc] - Specifies the response format (JSON or YAML).
  * @param {boolean} [params.sanitize=true] - Whether to escape special characters in the results.
  * @param {object} [params.body] - Contains the SQL or PPL query to explain.
  *

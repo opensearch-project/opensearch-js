@@ -20,20 +20,20 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Lists all of the snapshots stored in a specific repository.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-snapshots/ - cat.snapshots}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-snapshots/ - cat.snapshots}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
  * @param {string} [params.cluster_manager_timeout] - The amount of time allowed to establish a connection to the cluster manager node.
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {boolean} [params.ignore_unavailable=false] - When `true`, the response does not include information from unavailable snapshots.
  * @param {string} [params.master_timeout] DEPRECATED - The amount of time allowed to establish a connection to the cluster manager node.
  * @param {string} [params.repository] - A comma-separated list of snapshot repositories used to limit the request. Accepts wildcard expressions. `_all` returns all repositories. If any repository fails during the request, OpenSearch returns an error.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
- * @param {string} [params.time] - Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
+ * @param {string} [params.time] - Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://docs.opensearch.org/latest/api-reference/units/).
  * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

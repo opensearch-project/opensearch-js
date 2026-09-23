@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Creates or updates an alias.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/ - indices.put_alias}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/update-alias/ - indices.put_alias}
  *
  * @memberOf API-Indices
  *

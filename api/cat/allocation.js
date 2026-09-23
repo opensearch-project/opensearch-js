@@ -20,14 +20,14 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Provides a snapshot of how many shards are allocated to each data node and how much disk space they are using.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-allocation/ - cat.allocation}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-allocation/ - cat.allocation}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
  * @param {string} [params.bytes] - The units used to display byte values.
  * @param {string} [params.cluster_manager_timeout] - A timeout for connection to the cluster manager node.
- * @param {string} [params.format] - A short version of the HTTP `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the HTTP `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {boolean} [params.local=false] - Returns local information but does not retrieve the state from cluster-manager node.

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * The `_upgrade` API is no longer useful and will be removed.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.get_upgrade}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.get_upgrade}
  *
  * @memberOf API-Indices
  *

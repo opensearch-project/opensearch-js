@@ -19,6 +19,7 @@ import * as Common from './_common'
 export type AutoFollowStats = {
   failed_indices?: string[];
   last_execution_time?: number;
+  leader_alias?: string;
   name?: string;
   num_failed_leader_calls?: number;
   num_failed_start_replication?: number;

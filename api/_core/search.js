@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns results matching a query.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/search/ - search}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/search/ - search}
  *
  * @memberOf API-Core
  *

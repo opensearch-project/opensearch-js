@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Simulate resolving the given template name or body.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.simulate_template}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.simulate_template}
  *
  * @memberOf API-Indices
  *

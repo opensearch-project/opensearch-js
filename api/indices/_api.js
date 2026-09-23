@@ -49,6 +49,7 @@ const getMappingFn = require('./getMapping');
 const getSettingsFn = require('./getSettings');
 const getTemplateFn = require('./getTemplate');
 const getUpgradeFn = require('./getUpgrade');
+const modifyDataStreamFn = require('./modifyDataStream');
 const openFn = require('./open');
 const putAliasFn = require('./putAlias');
 const putIndexTemplateFn = require('./putIndexTemplate');
@@ -99,6 +100,7 @@ function IndicesApi(bindObj) {
   this.getSettings = getSettingsFn.bind(bindObj);
   this.getTemplate = getTemplateFn.bind(bindObj);
   this.getUpgrade = getUpgradeFn.bind(bindObj);
+  this.modifyDataStream = modifyDataStreamFn.bind(bindObj);
   this.open = openFn.bind(bindObj);
   this.putAlias = putAliasFn.bind(bindObj);
   this.putIndexTemplate = putIndexTemplateFn.bind(bindObj);
@@ -158,6 +160,8 @@ function IndicesApi(bindObj) {
   this.get_template = getTemplateFn.bind(bindObj);
   // Deprecated: Use getUpgrade instead.
   this.get_upgrade = getUpgradeFn.bind(bindObj);
+  // Deprecated: Use modifyDataStream instead.
+  this.modify_data_stream = modifyDataStreamFn.bind(bindObj);
   // Deprecated: Use putAlias instead.
   this.put_alias = putAliasFn.bind(bindObj);
   // Deprecated: Use putIndexTemplate instead.

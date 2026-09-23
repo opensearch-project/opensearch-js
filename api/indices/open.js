@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Opens an index.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/open-index/ - indices.open}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/open-index/ - indices.open}
  *
  * @memberOf API-Indices
  *

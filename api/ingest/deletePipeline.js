@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deletes an ingest pipeline.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/ingest-apis/delete-ingest/ - ingest.delete_pipeline}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/ingest-apis/delete-ingest/ - ingest.delete_pipeline}
  *
  * @memberOf API-Ingest
  *

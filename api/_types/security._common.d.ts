@@ -44,6 +44,12 @@ export type AllowListConfig = {
   requests?: Record<string, string[]>;
 }
 
+export type ApiTokensConfig = {
+  enabled?: boolean;
+  max_duration_seconds?: number;
+  max_tokens?: number;
+}
+
 export type AuditConfig = {
   audit?: AuditLogsConfig;
   compliance?: ComplianceConfig;
@@ -56,6 +62,7 @@ export type AuditConfigWithReadOnly = {
 }
 
 export type AuditLogsConfig = {
+  disabled_categories?: string[];
   disabled_rest_categories?: string[];
   disabled_transport_categories?: string[];
   enable_rest?: boolean;
@@ -142,7 +149,9 @@ export type CreateTenantParams = {
 }
 
 export type DashboardsInfo = {
+  api_tokens_enabled?: boolean;
   default_tenant?: string;
+  max_duration_seconds?: number;
   multitenancy_enabled?: boolean;
   not_fail_on_forbidden_enabled?: boolean;
   opensearch_dashboards_index?: string;
@@ -150,7 +159,9 @@ export type DashboardsInfo = {
   opensearch_dashboards_server_user?: string;
   password_validation_error_message?: string;
   password_validation_regex?: string;
+  preferred_tenants?: string[];
   private_tenant_enabled?: boolean;
+  resource_sharing_enabled?: boolean;
   sign_in_options?: string[];
   user_name?: string;
 }
@@ -166,6 +177,7 @@ export type DynamicConfig = {
 }
 
 export type DynamicOptions = {
+  api_tokens?: ApiTokensConfig;
   auth_failure_listeners?: Record<string, any>;
   authc?: Record<string, any>;
   authz?: Record<string, any>;
@@ -180,6 +192,7 @@ export type DynamicOptions = {
   multi_rolespan_enabled?: boolean;
   on_behalf_of?: Record<string, any>;
   'opensearch-dashboards'?: Record<string, any>;
+  privileges_evaluation_ignore_unauthorized_indices?: boolean;
   respect_request_indices_options?: boolean;
 }
 
@@ -228,6 +241,7 @@ export type InternalServerError = {
 export type MultiTenancyConfig = {
   default_tenant?: string;
   multitenancy_enabled?: boolean;
+  preferred_tenants?: string[];
   private_tenant_enabled?: boolean;
   sign_in_options?: string[];
 }

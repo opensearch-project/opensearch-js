@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Update a specific IP2Geo data source.
- * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#updating-an-ip2geo-data-source - geospatial.put_ip2geo_datasource_settings}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ingest-pipelines/processors/ip2geo/#updating-an-ip2geo-data-source - geospatial.put_ip2geo_datasource_settings}
  *
  * @memberOf API-Geospatial
  *

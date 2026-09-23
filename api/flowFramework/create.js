@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Creates a new workflow template.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/create-workflow/ - flow_framework.create}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/automating-configurations/api/create-workflow/ - flow_framework.create}
  *
  * @memberOf API-Flow-Framework
  *

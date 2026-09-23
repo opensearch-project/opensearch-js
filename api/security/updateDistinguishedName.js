@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Adds or updates the specified distinguished names in the cluster or node allowlist. Requires super admin or REST API permissions.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#update-distinguished-names - security.update_distinguished_name}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#update-distinguished-names - security.update_distinguished_name}
  *
  * @memberOf API-Security
  *

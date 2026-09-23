@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns information about hot threads on each node in the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/ - nodes.hot_threads}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/nodes-apis/nodes-hot-threads/ - nodes.hot_threads}
  *
  * @memberOf API-Nodes
  *

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Updates a workflow template that has not been provisioned.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/create-workflow/ - flow_framework.update}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/automating-configurations/api/create-workflow/ - flow_framework.update}
  *
  * @memberOf API-Flow-Framework
  *

@@ -20,20 +20,20 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Lists the states of all primary and replica shards and how they are distributed.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cat/cat-shards/ - cat.shards}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cat/cat-shards/ - cat.shards}
  *
  * @memberOf API-Cat
  *
  * @param {object} [params]
  * @param {string} [params.bytes] - The units used to display byte values.
  * @param {string} [params.cluster_manager_timeout] - The amount of time allowed to establish a connection to the cluster manager node.
- * @param {string} [params.format] - A short version of the `Accept` header, such as `json` or `yaml`.
+ * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {boolean} [params.local=false] - Returns local information but does not retrieve the state from the cluster manager node.
  * @param {string} [params.master_timeout] DEPRECATED - The amount of time allowed to establish a connection to the cluster manager node.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
- * @param {string} [params.time] - Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
+ * @param {string} [params.time] - Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://docs.opensearch.org/latest/api-reference/units/).
  * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.
  * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *

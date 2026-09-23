@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Changes the number of requests per second for a particular Update By Query operation.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - update_by_query_rethrottle}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - update_by_query_rethrottle}
  *
  * @memberOf API-Core
  *

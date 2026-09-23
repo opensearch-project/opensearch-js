@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Updates the current list of APIs accessible for users on the allow list.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#access-control-for-the-api - security.patch_allowlist}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#access-control-for-the-api - security.patch_allowlist}
  *
  * @memberOf API-Security
  *

@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Performs an asynchronous search.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/search-plugins/async/index/#rest-api - asynchronous_search.search}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/search-plugins/async/index/#rest-api - asynchronous_search.search}
  *
  * @memberOf API-Asynchronous-Search
  *

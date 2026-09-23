@@ -51,7 +51,7 @@ export interface SearchTemplate_Response extends ApiResponse {
   body: SearchTemplate_ResponseBody;
 }
 
-export interface SearchTemplate_ResponseBody extends Core_Search.SearchResult {
+export interface SearchTemplate_ResponseBody extends Core_Search.SearchResult<any> {
   status?: number;
 }
 

@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Delete weighted shard routing weights.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-awareness/#example-deleting-weights - cluster.delete_weighted_routing}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-awareness/#example-request-deleting-the-configuration - cluster.delete_weighted_routing}
  *
  * @memberOf API-Cluster
  *

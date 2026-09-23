@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns information about any matching indexes, aliases, and data streams.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - indices.resolve_index}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - indices.resolve_index}
  *
  * @memberOf API-Indices
  *

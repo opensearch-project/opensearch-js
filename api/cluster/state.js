@@ -20,13 +20,13 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns comprehensive information about the state of the cluster.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - cluster.state}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - cluster.state}
  *
  * @memberOf API-Cluster
  *
  * @param {object} [params]
  * @param {boolean} [params.allow_no_indices] - Whether to ignore a wildcard index expression that resolves into no concrete indexes. This includes the `_all` string or when no indexes have been specified.
- * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units).
  * @param {string} [params.expand_wildcards] - Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
  * @param {boolean} [params.flat_settings=false] - Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings. For example, the flat form of `"cluster": { "max_shards_per_node": 500 }` is `"cluster.max_shards_per_node": "500"`.
  * @param {boolean} [params.ignore_unavailable] - Whether the specified concrete indexes should be ignored when unavailable (missing or closed).
@@ -34,7 +34,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.master_timeout] DEPRECATED - A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts `0` without a unit and `-1` to indicate an unspecified value.
  * @param {number} [params.wait_for_metadata_version] - Wait for the metadata version to be equal or greater than the specified metadata version.
  * @param {string} [params.wait_for_timeout] - The maximum time to wait for `wait_for_metadata_version` before timing out.
- * @param {array} [params.metric] - Limits the information returned to only the [specified metric groups](https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#metric-groups).
+ * @param {array} [params.metric] - Limits the information returned to only the [specified metric groups](https://docs.opensearch.org/latest/api-reference/cluster-api/cluster-stats/#metric-groups).
  * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

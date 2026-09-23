@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deletes a script.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/script-apis/delete-script/ - delete_script}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/script-apis/delete-script/ - delete_script}
  *
  * @memberOf API-Core
  *

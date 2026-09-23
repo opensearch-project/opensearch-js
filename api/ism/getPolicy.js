@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Retrieves a specific policy.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/im-plugin/ism/api/#put-policy - ism.get_policy}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/im-plugin/ism/api/#get-policy - ism.get_policy}
  *
  * @memberOf API-Ism
  *

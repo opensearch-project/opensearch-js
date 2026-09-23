@@ -20,7 +20,7 @@ const { normalizeArguments, handleMissingParam } = require('../utils');
 
 /**
  * Create channel configuration.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/observing-your-data/notifications/api/#create-channel-configuration - notifications.create_config}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/observing-your-data/notifications/api/#create-channel-configuration - notifications.create_config}
  *
  * @memberOf API-Notifications
  *

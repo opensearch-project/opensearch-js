@@ -406,6 +406,10 @@ export default class OpenSearchAPI {
     getDataStream (params: API.Indices_GetDataStream_Request, callback: callbackFn<API.Indices_GetDataStream_Response>): TransportRequestCallback;
     getDataStream (params: API.Indices_GetDataStream_Request, options: TransportRequestOptions, callback: callbackFn<API.Indices_GetDataStream_Response>): TransportRequestCallback;
 
+    modifyDataStream (params: API.Indices_ModifyDataStream_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Indices_ModifyDataStream_Response>;
+    modifyDataStream (params: API.Indices_ModifyDataStream_Request, callback: callbackFn<API.Indices_ModifyDataStream_Response>): TransportRequestCallback;
+    modifyDataStream (params: API.Indices_ModifyDataStream_Request, options: TransportRequestOptions, callback: callbackFn<API.Indices_ModifyDataStream_Response>): TransportRequestCallback;
+
     dataStreamsStats (params?: API.Indices_DataStreamsStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Indices_DataStreamsStats_Response>;
     dataStreamsStats (callback: callbackFn<API.Indices_DataStreamsStats_Response>): TransportRequestCallback;
     dataStreamsStats (params: API.Indices_DataStreamsStats_Request, callback: callbackFn<API.Indices_DataStreamsStats_Response>): TransportRequestCallback;
@@ -1453,6 +1457,11 @@ export default class OpenSearchAPI {
     putExperiments (params: API.SearchRelevance_PutExperiments_Request, callback: callbackFn<API.SearchRelevance_PutExperiments_Response>): TransportRequestCallback;
     putExperiments (params: API.SearchRelevance_PutExperiments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_PutExperiments_Response>): TransportRequestCallback;
 
+    experimentsSearch (params?: API.SearchRelevance_ExperimentsSearch_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_ExperimentsSearch_Response>;
+    experimentsSearch (callback: callbackFn<API.SearchRelevance_ExperimentsSearch_Response>): TransportRequestCallback;
+    experimentsSearch (params: API.SearchRelevance_ExperimentsSearch_Request, callback: callbackFn<API.SearchRelevance_ExperimentsSearch_Response>): TransportRequestCallback;
+    experimentsSearch (params: API.SearchRelevance_ExperimentsSearch_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_ExperimentsSearch_Response>): TransportRequestCallback;
+
     deleteExperiments (params: API.SearchRelevance_DeleteExperiments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_DeleteExperiments_Response>;
     deleteExperiments (params: API.SearchRelevance_DeleteExperiments_Request, callback: callbackFn<API.SearchRelevance_DeleteExperiments_Response>): TransportRequestCallback;
     deleteExperiments (params: API.SearchRelevance_DeleteExperiments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_DeleteExperiments_Response>): TransportRequestCallback;
@@ -1481,6 +1490,11 @@ export default class OpenSearchAPI {
     putJudgments (params: API.SearchRelevance_PutJudgments_Request, callback: callbackFn<API.SearchRelevance_PutJudgments_Response>): TransportRequestCallback;
     putJudgments (params: API.SearchRelevance_PutJudgments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_PutJudgments_Response>): TransportRequestCallback;
 
+    judgmentsSearch (params?: API.SearchRelevance_JudgmentsSearch_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_JudgmentsSearch_Response>;
+    judgmentsSearch (callback: callbackFn<API.SearchRelevance_JudgmentsSearch_Response>): TransportRequestCallback;
+    judgmentsSearch (params: API.SearchRelevance_JudgmentsSearch_Request, callback: callbackFn<API.SearchRelevance_JudgmentsSearch_Response>): TransportRequestCallback;
+    judgmentsSearch (params: API.SearchRelevance_JudgmentsSearch_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_JudgmentsSearch_Response>): TransportRequestCallback;
+
     deleteJudgments (params: API.SearchRelevance_DeleteJudgments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_DeleteJudgments_Response>;
     deleteJudgments (params: API.SearchRelevance_DeleteJudgments_Request, callback: callbackFn<API.SearchRelevance_DeleteJudgments_Response>): TransportRequestCallback;
     deleteJudgments (params: API.SearchRelevance_DeleteJudgments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_DeleteJudgments_Response>): TransportRequestCallback;
@@ -1500,6 +1514,11 @@ export default class OpenSearchAPI {
     putQuerySets (params: API.SearchRelevance_PutQuerySets_Request, callback: callbackFn<API.SearchRelevance_PutQuerySets_Response>): TransportRequestCallback;
     putQuerySets (params: API.SearchRelevance_PutQuerySets_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_PutQuerySets_Response>): TransportRequestCallback;
 
+    querySetsSearch (params?: API.SearchRelevance_QuerySetsSearch_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_QuerySetsSearch_Response>;
+    querySetsSearch (callback: callbackFn<API.SearchRelevance_QuerySetsSearch_Response>): TransportRequestCallback;
+    querySetsSearch (params: API.SearchRelevance_QuerySetsSearch_Request, callback: callbackFn<API.SearchRelevance_QuerySetsSearch_Response>): TransportRequestCallback;
+    querySetsSearch (params: API.SearchRelevance_QuerySetsSearch_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_QuerySetsSearch_Response>): TransportRequestCallback;
+
     deleteQuerySets (params: API.SearchRelevance_DeleteQuerySets_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_DeleteQuerySets_Response>;
     deleteQuerySets (params: API.SearchRelevance_DeleteQuerySets_Request, callback: callbackFn<API.SearchRelevance_DeleteQuerySets_Response>): TransportRequestCallback;
     deleteQuerySets (params: API.SearchRelevance_DeleteQuerySets_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_DeleteQuerySets_Response>): TransportRequestCallback;
@@ -1513,6 +1532,11 @@ export default class OpenSearchAPI {
     putSearchConfigurations (callback: callbackFn<API.SearchRelevance_PutSearchConfigurations_Response>): TransportRequestCallback;
     putSearchConfigurations (params: API.SearchRelevance_PutSearchConfigurations_Request, callback: callbackFn<API.SearchRelevance_PutSearchConfigurations_Response>): TransportRequestCallback;
     putSearchConfigurations (params: API.SearchRelevance_PutSearchConfigurations_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_PutSearchConfigurations_Response>): TransportRequestCallback;
+
+    searchConfigurationsSearch (params?: API.SearchRelevance_SearchConfigurationsSearch_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_SearchConfigurationsSearch_Response>;
+    searchConfigurationsSearch (callback: callbackFn<API.SearchRelevance_SearchConfigurationsSearch_Response>): TransportRequestCallback;
+    searchConfigurationsSearch (params: API.SearchRelevance_SearchConfigurationsSearch_Request, callback: callbackFn<API.SearchRelevance_SearchConfigurationsSearch_Response>): TransportRequestCallback;
+    searchConfigurationsSearch (params: API.SearchRelevance_SearchConfigurationsSearch_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_SearchConfigurationsSearch_Response>): TransportRequestCallback;
 
     deleteSearchConfigurations (params: API.SearchRelevance_DeleteSearchConfigurations_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_DeleteSearchConfigurations_Response>;
     deleteSearchConfigurations (params: API.SearchRelevance_DeleteSearchConfigurations_Request, callback: callbackFn<API.SearchRelevance_DeleteSearchConfigurations_Response>): TransportRequestCallback;
@@ -2008,6 +2032,10 @@ export default class OpenSearchAPI {
     cancel (callback: callbackFn<API.Tasks_Cancel_Response>): TransportRequestCallback;
     cancel (params: API.Tasks_Cancel_Request, callback: callbackFn<API.Tasks_Cancel_Response>): TransportRequestCallback;
     cancel (params: API.Tasks_Cancel_Request, options: TransportRequestOptions, callback: callbackFn<API.Tasks_Cancel_Response>): TransportRequestCallback;
+
+    delete (params: API.Tasks_Delete_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Tasks_Delete_Response>;
+    delete (params: API.Tasks_Delete_Request, callback: callbackFn<API.Tasks_Delete_Response>): TransportRequestCallback;
+    delete (params: API.Tasks_Delete_Request, options: TransportRequestOptions, callback: callbackFn<API.Tasks_Delete_Response>): TransportRequestCallback;
 
     get (params: API.Tasks_Get_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Tasks_Get_Response>;
     get (params: API.Tasks_Get_Request, callback: callbackFn<API.Tasks_Get_Response>): TransportRequestCallback;

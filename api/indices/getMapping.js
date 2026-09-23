@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns mappings for one or more indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/field-types/index/#get-a-mapping - indices.get_mapping}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/get-mapping/ - indices.get_mapping}
  *
  * @memberOf API-Indices
  *

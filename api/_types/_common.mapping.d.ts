@@ -286,6 +286,7 @@ export type LongRangeProperty = RangePropertyBase & {
 export type MatchOnlyTextProperty = {
   copy_to?: Common.Fields;
   fields?: Record<string, Property>;
+  index?: boolean;
   meta?: Record<string, string>;
   type: 'match_only_text';
 }

@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Cat_Common from '../_types/cat._common'
 import * as Cat_Indices from '../_types/cat.indices'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
@@ -23,7 +24,7 @@ export interface Cat_Indices_Request extends Global.Params {
   bytes?: Common.ByteUnit;
   cluster_manager_timeout?: Common.Duration;
   expand_wildcards?: Common.ExpandWildcards;
-  format?: string;
+  format?: Cat_Common.ResponseFormat;
   h?: string[];
   health?: Common.HealthStatus;
   help?: boolean;

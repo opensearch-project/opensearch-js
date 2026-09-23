@@ -21,7 +21,7 @@ import * as Ism_Common from '../_types/ism._common'
 
 export interface Ism_ExplainPolicy_Request extends Global.Params {
   body?: Ism_ExplainPolicy_RequestBody;
-  index?: Common.IndexName;
+  index?: Common.Indices;
 }
 
 export type Ism_ExplainPolicy_RequestBody = any

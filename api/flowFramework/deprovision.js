@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Deprovision workflow's resources when you no longer need them.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/automating-configurations/api/deprovision-workflow/ - flow_framework.deprovision}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/automating-configurations/api/deprovision-workflow/ - flow_framework.deprovision}
  *
  * @memberOf API-Flow-Framework
  *

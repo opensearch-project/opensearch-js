@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns information about why a specific document matches (or doesn't match) a query.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/explain/ - explain}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/explain/ - explain}
  *
  * @memberOf API-Core
  *

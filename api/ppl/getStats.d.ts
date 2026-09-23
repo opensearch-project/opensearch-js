@@ -16,9 +16,10 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
+import * as Ppl_Common from '../_types/ppl._common'
 
 export interface Ppl_GetStats_Request extends Global.Params {
-  format?: string;
+  format?: Ppl_Common.ResponseFormat;
   sanitize?: boolean;
 }
 

@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
 
 /**
  * Returns settings for one or more indexes.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/index-apis/get-settings/ - indices.get_settings}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/index-apis/get-settings/ - indices.get_settings}
  *
  * @memberOf API-Indices
  *

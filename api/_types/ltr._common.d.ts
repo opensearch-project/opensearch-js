@@ -49,8 +49,7 @@ export type CacheStats = {
   model?: CacheStat;
 }
 
-export type CacheStatsResponse = {
-  _nodes?: Common.NodeStatistics;
+export type CacheStatsResponse = Nodes_Common.NodesResponseBase & {
   all?: CacheAllStats;
   cluster_name?: Common.Name;
   nodes?: Record<string, NodeDetails>;

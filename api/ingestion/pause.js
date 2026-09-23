@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Use this API to pause ingestion for a given index.
- * <br/> See Also: {@link https://docs.opensearch.org/docs/latest/api-reference/document-apis/pull-based-ingestion-management/ - ingestion.pause}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/pull-based-ingestion-management/ - ingestion.pause}
  *
  * @memberOf API-Ingestion
  *

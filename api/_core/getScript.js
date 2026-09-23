@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Returns a script.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/script-apis/get-stored-script/ - get_script}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/script-apis/get-stored-script/ - get_script}
  *
  * @memberOf API-Core
  *

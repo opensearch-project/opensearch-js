@@ -20,12 +20,12 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates a clone of all or part of a snapshot in the same repository as the original snapshot.
- * <br/> See Also: {@link https://opensearch.org/docs/latest - snapshot.clone}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/ - snapshot.clone}
  *
  * @memberOf API-Snapshot
  *
  * @param {object} params
- * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+ * @param {string} [params.cluster_manager_timeout] - The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://docs.opensearch.org/latest/api-reference/common-parameters/#time-units).
  * @param {string} [params.master_timeout] DEPRECATED - Explicit operation timeout for connection to cluster-manager node
  * @param {string} params.repository - The name of repository which will contain the snapshots clone.
  * @param {string} params.snapshot - The name of the original snapshot.

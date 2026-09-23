@@ -19,10 +19,13 @@ import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
 export interface CreatePit_Request extends Global.Params {
+  allow_no_indices?: boolean;
   allow_partial_pit_creation?: boolean;
   expand_wildcards?: Common.ExpandWildcards;
+  ignore_throttled?: boolean;
+  ignore_unavailable?: boolean;
   index: string[];
-  keep_alive?: Common.Duration;
+  keep_alive: Common.Duration;
   preference?: string;
   routing?: Common.RoutingInQueryString;
 }
@@ -32,8 +35,8 @@ export interface CreatePit_Response extends ApiResponse {
 }
 
 export type CreatePit_ResponseBody = {
-  _shards?: Common.ShardStatistics;
-  creation_time?: number;
-  pit_id?: string;
+  _shards: Common.ShardStatistics;
+  creation_time: number;
+  pit_id: string;
 }
 

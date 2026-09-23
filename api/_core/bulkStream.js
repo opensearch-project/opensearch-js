@@ -20,7 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Allows to perform multiple index/update/delete operations using request response streaming.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/api-reference/document-apis/bulk-streaming/ - bulk_stream}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/document-apis/bulk-streaming/ - bulk_stream}
  *
  * @memberOf API-Core
  *

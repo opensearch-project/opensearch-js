@@ -20,7 +20,7 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Retrieves the cluster security certificates.
- * <br/> See Also: {@link https://opensearch.org/docs/latest/security/access-control/api/#get-certificates - security.get_certificates}
+ * <br/> See Also: {@link https://docs.opensearch.org/latest/security/access-control/api/#get-certificates - security.get_certificates}
  *
  * @memberOf API-Security
  *

@@ -15,12 +15,13 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Cat_Common from '../_types/cat._common'
 import * as Cat_Count from '../_types/cat.count'
 import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 
 export interface Cat_Count_Request extends Global.Params {
-  format?: string;
+  format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
   index?: Common.Indices;

@@ -20,7 +20,7 @@ import * as Sql_Common from '../_types/sql._common'
 
 export interface Sql_Query_Request extends Global.Params {
   body?: Sql_Common.Query;
-  format?: string;
+  format?: Sql_Common.ResponseFormat;
   sanitize?: boolean;
 }
 

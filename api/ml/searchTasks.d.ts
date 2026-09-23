@@ -15,6 +15,8 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
+import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Global from '../_types/_global'
 import * as Ml_Common from '../_types/ml._common'
 
@@ -23,9 +25,9 @@ export interface Ml_SearchTasks_Request extends Global.Params {
 }
 
 export type Ml_SearchTasks_RequestBody = {
-  query?: Ml_Common.Query;
+  query?: Common_QueryDsl.QueryContainer;
   size?: number;
-  sort?: Ml_Common.Sort[];
+  sort?: Common.Sort;
 }
 
 export interface Ml_SearchTasks_Response extends ApiResponse {

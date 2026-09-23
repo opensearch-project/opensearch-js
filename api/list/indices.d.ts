@@ -35,7 +35,7 @@ export interface List_Indices_Request extends Global.Params {
   pri?: boolean;
   s?: string[];
   size?: number;
-  sort?: 'asc' | 'desc';
+  sort?: Common.SortOrder;
   time?: Common.TimeUnit;
   v?: boolean;
 }

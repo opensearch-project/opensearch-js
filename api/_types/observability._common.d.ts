@@ -15,17 +15,6 @@
  */
 
 
-export type ErrorResponse = {
-  reason: string;
-  root_cause: RootCause[];
-  type: string;
-}
-
-export type NotFoundResponse = {
-  error: ErrorResponse;
-  status: number;
-}
-
 export type ObservabilityObject = {
   createdTimeMs?: number;
   lastUpdatedTimeMs?: number;
@@ -54,11 +43,6 @@ export type OperationalPanel = {
 export type QueryFilter = {
   language: string;
   query: string;
-}
-
-export type RootCause = {
-  reason: string;
-  type: string;
 }
 
 export type SavedQuery = {

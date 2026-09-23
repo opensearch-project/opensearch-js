@@ -6,14 +6,20 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 ### Dependencies
+- Remove `hpagent`. The client now uses its own proxy agent, derived from `hpagent` 1.2.0 ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 ### Changed
+- CI: test against OpenSearch 1.3.20, 2.19.6 and 3.8.0, and Node.js 22.x, 24.x and 26.x ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 ### Deprecated
 ### Removed
 ### Fixed
+- Fix HTTPS proxy with an IP address on Node.js 26 (`ERR_INVALID_ARG_VALUE` for TLS servername) ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
+- CI: wait for the security plugin to initialize before the secure integration tests run ([#1147](https://github.com/opensearch-project/opensearch-js/pull/1147))
 - Api Generator: fix invalid extends syntax generated for nested allOf inside object properties ([#1128](https://github.com/opensearch-project/opensearch-js/pull/1128))
+- Api Generator: Add parentheses around array element types that contain intersections or unions, fixing the `HitsMetadata.hits`, bulk request body and search `suggest` types ([#1112](https://github.com/opensearch-project/opensearch-js/issues/1112), [#1114](https://github.com/opensearch-project/opensearch-js/pull/1114))
 - Replace GitHub App token with opensearch-ci-bot PAT in generate_api workflow ([#1130](https://github.com/opensearch-project/opensearch-js/pull/1130))
 - Api Generator: Lazily instantiate API namespaces to fix Client construction performance ([#1133](https://github.com/opensearch-project/opensearch-js/pull/1133))
 - Fix bulk helper mapping response items to variable-width `bulkBody` when mixing delete and index/create/update operations, which caused incorrect operation/document pairing and undefined deserialization ([#1125](https://github.com/opensearch-project/opensearch-js/issues/1125), [#1126](https://github.com/opensearch-project/opensearch-js/pull/1126))
+- Upgrade webpack to v5 in bundler test to support the nullish coalescing operator emitted by the API generator ([#1138](https://github.com/opensearch-project/opensearch-js/pull/1138))
 ### Security
 - Fix CVEs in diff, lodash, and yaml dependencies ([#1131] https://github.com/opensearch-project/opensearch-js/pull/1131)
 

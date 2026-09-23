@@ -18,10 +18,17 @@
 
 /** @namespace API-Search-Pipeline */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const deleteFn = require('./delete');
+const getFn = require('./get');
+const putFn = require('./put');
+
 function SearchPipelineApi(bindObj) {
-  this.delete = require('./delete').bind(bindObj);
-  this.get = require('./get').bind(bindObj);
-  this.put = require('./put').bind(bindObj);
+  this.delete = deleteFn.bind(bindObj);
+  this.get = getFn.bind(bindObj);
+  this.put = putFn.bind(bindObj);
 
 }
 

@@ -28,12 +28,12 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.bytes] - The unit used to display byte values.
  * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {string} [params.format] - A short version of the Accept header, such as `JSON`, `YAML`.
- * @param {array} [params.h] - Comma-separated list of column names to display.
+ * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Return help information.
  * @param {boolean} [params.local=false] - Return local information, do not retrieve the state from cluster-manager node.
  * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
  * @param {null | string} [params.next_token] - Token to retrieve next page of shards.
- * @param {array} [params.s] - Comma-separated list of column names or column aliases to sort by.
+ * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {number} [params.size] - Maximum number of shards to be displayed in a page.
  * @param {string} [params.sort] - Defines order in which shards will be displayed. Accepted values are `asc` and `desc`. If `desc`, most recently created shards would be displayed first.
  * @param {string} [params.time] - The unit in which to display time values.

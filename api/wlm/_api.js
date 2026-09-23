@@ -18,20 +18,28 @@
 
 /** @namespace API-Wlm */
 
+// All operation modules are required once at module load time (not per
+// instance) to avoid paying `require()` resolution cost on every Client
+// construction.
+const createQueryGroupFn = require('./createQueryGroup');
+const deleteQueryGroupFn = require('./deleteQueryGroup');
+const getQueryGroupFn = require('./getQueryGroup');
+const updateQueryGroupFn = require('./updateQueryGroup');
+
 function WlmApi(bindObj) {
-  this.createQueryGroup = require('./createQueryGroup').bind(bindObj);
-  this.deleteQueryGroup = require('./deleteQueryGroup').bind(bindObj);
-  this.getQueryGroup = require('./getQueryGroup').bind(bindObj);
-  this.updateQueryGroup = require('./updateQueryGroup').bind(bindObj);
+  this.createQueryGroup = createQueryGroupFn.bind(bindObj);
+  this.deleteQueryGroup = deleteQueryGroupFn.bind(bindObj);
+  this.getQueryGroup = getQueryGroupFn.bind(bindObj);
+  this.updateQueryGroup = updateQueryGroupFn.bind(bindObj);
 
   // Deprecated: Use createQueryGroup instead.
-  this.create_query_group = require('./createQueryGroup').bind(bindObj);
+  this.create_query_group = createQueryGroupFn.bind(bindObj);
   // Deprecated: Use deleteQueryGroup instead.
-  this.delete_query_group = require('./deleteQueryGroup').bind(bindObj);
+  this.delete_query_group = deleteQueryGroupFn.bind(bindObj);
   // Deprecated: Use getQueryGroup instead.
-  this.get_query_group = require('./getQueryGroup').bind(bindObj);
+  this.get_query_group = getQueryGroupFn.bind(bindObj);
   // Deprecated: Use updateQueryGroup instead.
-  this.update_query_group = require('./updateQueryGroup').bind(bindObj);
+  this.update_query_group = updateQueryGroupFn.bind(bindObj);
 }
 
 module.exports = WlmApi;

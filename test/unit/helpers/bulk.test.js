@@ -1228,6 +1228,185 @@ test('bulk delete', (t) => {
   t.end();
 });
 
+test('bulk mixed operations', (t) => {
+  t.test(
+    'Mixed index/delete/index response errors map each failing operation/document correctly',
+    async (t) => {
+      let dropCount = 0;
+      const MockConnection = connection.buildMockConnection({
+        onRequest(params) {
+          t.equal(params.path, '/_bulk');
+          return {
+            body: {
+              took: 0,
+              errors: true,
+              items: [
+                { index: { status: 400, error: { something: 'went wrong' } } },
+                { delete: { status: 400, error: { something: 'went wrong' } } },
+                { index: { status: 400, error: { something: 'went wrong' } } },
+              ],
+            },
+          };
+        },
+      });
+
+      const client = new Client({
+        node: 'http://localhost:9200',
+        Connection: MockConnection,
+      });
+      const result = await client.helpers.bulk({
+        datasource: dataset.slice(),
+        flushBytes: 5000000,
+        concurrency: 1,
+        onDocument(doc) {
+          if (doc.user === 'arya') {
+            return {
+              delete: { _index: 'test', _id: 1 },
+            };
+          }
+          return {
+            index: { _index: 'test' },
+          };
+        },
+        onDrop(doc) {
+          dropCount++;
+          if (dropCount === 1) {
+            t.same(doc, {
+              status: 400,
+              error: { something: 'went wrong' },
+              operation: { index: { _index: 'test' } },
+              document: { user: 'jon', age: 23 },
+              retried: false,
+            });
+          } else if (dropCount === 2) {
+            t.same(doc, {
+              status: 400,
+              error: { something: 'went wrong' },
+              operation: { delete: { _index: 'test', _id: 1 } },
+              document: null,
+              retried: false,
+            });
+          } else if (dropCount === 3) {
+            t.same(doc, {
+              status: 400,
+              error: { something: 'went wrong' },
+              operation: { index: { _index: 'test' } },
+              document: { user: 'tyrion', age: 39 },
+              retried: false,
+            });
+          }
+        },
+      });
+
+      t.equal(dropCount, 3);
+      t.type(result.time, 'number');
+      t.type(result.bytes, 'number');
+      t.match(result, {
+        total: 3,
+        successful: 0,
+        retry: 0,
+        failed: 3,
+        aborted: false,
+      });
+    }
+  );
+
+  t.test('Mixed 429 retry exhaustion preserves exact retry body and onDrop mappings', async (t) => {
+    let requestCount = 0;
+    let dropCount = 0;
+    const MockConnection = connection.buildMockConnection({
+      onRequest(params) {
+        t.equal(params.path, '/_bulk');
+        requestCount++;
+        if (requestCount === 2) {
+          const lines = params.body.split('\n').filter(Boolean);
+          t.equal(lines.length, 5);
+          t.same(JSON.parse(lines[0]), { index: { _index: 'test' } });
+          t.same(JSON.parse(lines[1]), { user: 'jon', age: 23 });
+          t.same(JSON.parse(lines[2]), { delete: { _index: 'test', _id: 1 } });
+          t.same(JSON.parse(lines[3]), { index: { _index: 'test' } });
+          t.same(JSON.parse(lines[4]), { user: 'tyrion', age: 39 });
+        }
+        return {
+          body: {
+            took: 0,
+            errors: true,
+            items: [
+              { index: { status: 429 } },
+              { delete: { status: 429 } },
+              { index: { status: 429 } },
+            ],
+          },
+        };
+      },
+    });
+
+    const client = new Client({
+      node: 'http://localhost:9200',
+      Connection: MockConnection,
+    });
+    const result = await client.helpers.bulk({
+      datasource: dataset.slice(),
+      flushBytes: 5000000,
+      concurrency: 1,
+      wait: 10,
+      retries: 1,
+      onDocument(doc) {
+        if (doc.user === 'arya') {
+          return {
+            delete: { _index: 'test', _id: 1 },
+          };
+        }
+        return {
+          index: { _index: 'test' },
+        };
+      },
+      onDrop(doc) {
+        dropCount++;
+        if (dropCount === 1) {
+          t.same(doc, {
+            status: 429,
+            error: null,
+            operation: { index: { _index: 'test' } },
+            document: { user: 'jon', age: 23 },
+            retried: true,
+          });
+        } else if (dropCount === 2) {
+          t.same(doc, {
+            status: 429,
+            error: null,
+            operation: { delete: { _index: 'test', _id: 1 } },
+            document: null,
+            retried: true,
+          });
+        } else if (dropCount === 3) {
+          t.same(doc, {
+            status: 429,
+            error: null,
+            operation: { index: { _index: 'test' } },
+            document: { user: 'tyrion', age: 39 },
+            retried: true,
+          });
+        }
+      },
+    });
+
+    t.equal(requestCount, 2);
+    t.equal(dropCount, 3);
+    t.type(result.time, 'number');
+    t.type(result.bytes, 'number');
+    t.match(result, {
+      total: 3,
+      successful: 0,
+      retry: 5,
+      failed: 3,
+      aborted: false,
+    });
+  });
+
+  t.end();
+});
+
 test('transport options', (t) => {
   t.test('Should pass transport options in request', async (t) => {
     let count = 0;

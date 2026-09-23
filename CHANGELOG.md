@@ -20,6 +20,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Api Generator: Add parentheses around array element types that contain intersections or unions, fixing the `HitsMetadata.hits`, bulk request body and search `suggest` types ([#1112](https://github.com/opensearch-project/opensearch-js/issues/1112), [#1114](https://github.com/opensearch-project/opensearch-js/pull/1114))
 - Replace GitHub App token with opensearch-ci-bot PAT in generate_api workflow ([#1130](https://github.com/opensearch-project/opensearch-js/pull/1130))
 - Api Generator: Lazily instantiate API namespaces to fix Client construction performance ([#1133](https://github.com/opensearch-project/opensearch-js/pull/1133))
+- Fix bulk helper mapping response items to variable-width `bulkBody` when mixing delete and index/create/update operations, which caused incorrect operation/document pairing and undefined deserialization ([#1125](https://github.com/opensearch-project/opensearch-js/issues/1125), [#1126](https://github.com/opensearch-project/opensearch-js/pull/1126))
 - Upgrade webpack to v5 in bundler test to support the nullish coalescing operator emitted by the API generator ([#1138](https://github.com/opensearch-project/opensearch-js/pull/1138))
 ### Security
 - Fix CVEs in diff, lodash, and yaml dependencies ([#1131] https://github.com/opensearch-project/opensearch-js/pull/1131)

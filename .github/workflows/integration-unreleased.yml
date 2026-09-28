@@ -24,7 +24,7 @@ jobs:
           - { node_version: '24.x', opensearch_ref: 'main', jdk_version: '21' }
     steps:
       - name: Checkout OpenSearch
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
         with:
           repository: opensearch-project/OpenSearch
           ref: ${{ matrix.entry.opensearch_ref }}
@@ -82,7 +82,7 @@ jobs:
           exit 1
 
       - name: Checkout Javascript Client
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
         with:
           path: js-client
 

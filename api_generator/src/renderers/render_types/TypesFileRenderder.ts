@@ -17,7 +17,12 @@ const TS_VAR_REGEX = /^[a-zA-Z_$][a-zA-Z_$0-9]*$/
 
 interface ExtendsInfo {
   extends: Array<{ ref: string, schema: Schema }>
+  // Everything the allOf contributes besides the $refs, used to find generic parameters and their specializations.
   own: Schema
+  // The inline object members merged into one object, rendered as one part of the intersection.
+  object: Schema
+  // The inline members that are compositions themselves (oneOf, anyOf or allOf), each rendered as its own part.
+  compositions: Schema[]
 }
 
 export default class TypesFileRenderder extends BaseRenderer {
@@ -25,6 +30,7 @@ export default class TypesFileRenderder extends BaseRenderer {
   private readonly _container: TypesContainer
   private readonly _extends_info_cache = new WeakMap<Schema, ExtendsInfo | null>()
   private readonly _generic_params_cache = new WeakMap<Schema, string[]>()
+  private readonly _hoisted_cache = new WeakMap<Schema, Schema>()
 
   constructor (container: TypesContainer) {
     super()
@@ -37,11 +43,15 @@ export default class TypesFileRenderder extends BaseRenderer {
       types: _.entries(this._container.schemas)
         .filter(([name]) => !TypesContainer.is_generic_param_ref(this.#key_for(name)))
         .map(([name, schema]) => {
-          const own_param_keys = this._container.is_function ? [] : this.#own_generic_params(schema)
-          const type_params = this.#render_generic_params(own_param_keys)
-          const definition = this.#render_schema(schema, new Set(own_param_keys), true)
-          const is_interface = definition.startsWith('extends')
-          return { name: `${name}${type_params}`, definition, is_interface }
+          try {
+            const own_param_keys = this._container.is_function ? [] : this.#own_generic_params(schema)
+            const type_params = this.#render_generic_params(own_param_keys)
+            const definition = this.#render_schema(schema, new Set(own_param_keys), true)
+            const is_interface = definition.startsWith('extends')
+            return { name: `${name}${type_params}`, definition, is_interface }
+          } catch (error) {
+            throw new Error(`Cannot render ${this.#key_for(name)}: ${(error as Error).message}`)
+          }
         }),
       imports: Array.from(this._container.referenced_containers)
         .sort((a, b) => a.import_name.localeCompare(b.import_name))
@@ -55,38 +65,92 @@ export default class TypesFileRenderder extends BaseRenderer {
     return `${this._container.file_name}${SEPARATOR}${schema_name}`
   }
 
-  #normalize_extends (schema: Schema): ExtendsInfo | null {
-    if (this._extends_info_cache.has(schema)) return this._extends_info_cache.get(schema) ?? null
+  // A schema with properties next to allOf/oneOf/anyOf must satisfy both, so it is rewritten as
+  // allOf: [{ the properties }, ...the composition]. Otherwise the properties would be dropped.
+  #hoist_sibling_properties (schema: Schema): Schema {
+    const cached = this._hoisted_cache.get(schema)
+    if (cached != null) return cached
+    const has_object_part = !_.isEmpty(schema.properties) || (schema.additionalProperties != null && typeof schema.additionalProperties === 'object')
+    const has_composition = schema.allOf != null || schema.oneOf != null || schema.anyOf != null
+    if (!has_object_part || !has_composition) return schema
+
+    const object_part: Schema = { type: 'object' }
+    if (schema.properties != null) object_part.properties = schema.properties
+    if (schema.required != null) object_part.required = schema.required
+    if (schema.additionalProperties != null) object_part.additionalProperties = schema.additionalProperties
+    const hoisted: Schema = {
+      allOf: [
+        object_part,
+        ...(schema.allOf ?? []),
+        ...(schema.oneOf != null ? [{ oneOf: schema.oneOf }] : []),
+        ...(schema.anyOf != null ? [{ anyOf: schema.anyOf }] : [])
+      ]
+    }
+    this._hoisted_cache.set(schema, hoisted)
+    return hoisted
+  }
+
+  #normalize_extends (original: Schema): ExtendsInfo | null {
+    if (this._extends_info_cache.has(original)) return this._extends_info_cache.get(original) ?? null
+    const schema = this.#hoist_sibling_properties(original)
     if (schema.allOf == null) {
-      this._extends_info_cache.set(schema, null)
+      this._extends_info_cache.set(original, null)
       return null
     }
     const members = schema.allOf as Schema[]
+    const is_composition = (member: Schema): boolean => member.oneOf != null || member.anyOf != null || member.allOf != null
     const named = members.filter((member) => member.$ref != null)
-    const one_of_members = members.filter((member) => member.oneOf != null)
-    const inline_members = members.filter((member) => (member.$ref ?? member.oneOf) == null)
-    const own = inline_members.reduce<Schema>((acc, member) => {
+    const compositions = members.filter((member) => member.$ref == null && is_composition(member))
+    const inline_members = members.filter((member) => member.$ref == null && !is_composition(member))
+    const merge_inline = (): Schema => inline_members.reduce<Schema>((acc, member) => {
       acc.properties = { ...acc.properties, ...member.properties }
       acc.additionalProperties = acc.additionalProperties ?? member.additionalProperties
       acc.required = [...(acc.required ?? []), ...(member.required ?? [])]
       return acc
     }, {})
-    if (one_of_members.length > 0) {
-      own.oneOf = one_of_members.flatMap((member) => member.oneOf as Schema[])
-    }
+    const object = merge_inline()
+    const own = merge_inline()
+    const one_of = compositions.flatMap((member) => (member.oneOf ?? []) as Schema[])
+    const any_of = compositions.flatMap((member) => (member.anyOf ?? []) as Schema[])
+    if (one_of.length > 0) own.oneOf = one_of
+    if (any_of.length > 0) own.anyOf = any_of
     for (const member of named) {
-      if (member.properties != null) own.properties = { ...own.properties, ...member.properties }
-      if (member.additionalProperties != null) own.additionalProperties = own.additionalProperties ?? member.additionalProperties
-      if (member.items != null) own.items = own.items ?? member.items
-      if (member.required != null) own.required = [...(own.required ?? []), ...member.required]
+      for (const target of [own, object]) {
+        if (member.properties != null) target.properties = { ...target.properties, ...member.properties }
+        if (member.additionalProperties != null) target.additionalProperties = target.additionalProperties ?? member.additionalProperties
+        if (member.items != null) target.items = target.items ?? member.items
+        if (member.required != null) target.required = [...(target.required ?? []), ...member.required]
+      }
     }
 
     const extends_list = named
       .filter((member): member is Schema & { $ref: string } => typeof member.$ref === 'string')
       .map((member) => ({ ref: member.$ref, schema: this.#resolve_ref(member.$ref) }))
-    const info = { extends: extends_list, own }
-    this._extends_info_cache.set(schema, info)
+    this.#assert_compatible_properties([...extends_list.map(({ schema: base }) => this.#normalize_extends(base)?.object ?? base), ...named, ...inline_members])
+    const info = { extends: extends_list, own, object, compositions }
+    this._extends_info_cache.set(original, info)
     return info
+  }
+
+  // Two allOf members that declare the same property with different primitive types cannot both be satisfied.
+  // The merge would silently keep one of them (or produce `never`), so fail instead of emitting a wrong type.
+  #assert_compatible_properties (members: Schema[]): void {
+    const primitive_type = (schema: Schema): string | undefined => {
+      if (typeof schema.type !== 'string' || schema.type === 'object' || schema.type === 'array') return undefined
+      return schema.type === 'integer' ? 'number' : schema.type
+    }
+    const seen = new Map<string, string>()
+    for (const member of members) {
+      for (const [prop_name, prop_schema] of Object.entries(member.properties ?? {})) {
+        const type = primitive_type(prop_schema as Schema)
+        if (type == null) continue
+        const existing = seen.get(prop_name)
+        if (existing != null && existing !== type) {
+          throw new Error(`allOf members declare property '${prop_name}' as both ${existing} and ${type}`)
+        }
+        seen.set(prop_name, type)
+      }
+    }
   }
 
   #resolve_ref (ref: string): Schema {
@@ -105,6 +169,9 @@ export default class TypesFileRenderder extends BaseRenderer {
       const inherited_generic_prop_names = this.#inherited_generic_prop_names(resolved_info)
       this.#collect_own_property_params(own, inherited_generic_prop_names, params)
       this.#collect_own_root_level_params(own, params)
+      for (const member of resolved_info?.compositions ?? []) {
+        if (member.allOf != null) this.#collect_generic_param_refs(member, params)
+      }
     }
 
     const result = Array.from(params).sort((a, b) => {
@@ -228,6 +295,8 @@ export default class TypesFileRenderder extends BaseRenderer {
     if (schema.type === 'null') return 'undefined'
     if (Array.isArray(schema.type)) return schema.type.map(type => this.#render_schema({ type } satisfies Schema, generic_param_keys)).join(' | ')
     if (schema.type != null && schema.type !== 'object') throw new Error(`Unhandled schema type: ${(schema as any).type}`)
+    const hoisted = this.#hoist_sibling_properties(schema)
+    if (hoisted !== schema) return this.#render_allOf(schema, generic_param_keys, is_top_level)
     const union_members = schema.anyOf ?? schema.oneOf
     if (union_members != null) return this.#render_oneOf(union_members as Schema[], generic_param_keys)
     if (schema.allOf != null) return this.#render_allOf(schema, generic_param_keys, is_top_level)
@@ -255,9 +324,12 @@ export default class TypesFileRenderder extends BaseRenderer {
     const info = this.#normalize_extends(schema)
     if (info == null) return this.#render_simple_obj(schema, generic_param_keys)
 
-    const inline_render = _.isEmpty(info.own) ? '' : this.#render_schema(info.own, generic_param_keys)
+    const inline_render = _.isEmpty(info.object) ? '' : this.#render_schema(info.object, generic_param_keys)
     const named_render = this.#intersection(info.extends.map(({ ref, schema: base }) => this.#render_extends(ref, base, info.own, generic_param_keys)))
+    // Each composition member is a separate constraint: allOf: [{ oneOf: [A, B] }, { oneOf: [C, D] }] is (A | B) & (C | D).
+    const composition_renders = info.compositions.map((member) => this.#render_schema(member, generic_param_keys))
 
+    if (composition_renders.length > 0) return this.#intersection([named_render, inline_render, ...composition_renders])
     if (inline_render === '') return named_render
     if (info.extends.length === 0) return inline_render
 

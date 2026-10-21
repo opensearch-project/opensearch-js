@@ -5,11 +5,15 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Api Generator: add a test suite for the type renderer, run in CI, with regression tests for schema composition shapes (allOf/oneOf/anyOf nested in each other) ([#1162](https://github.com/opensearch-project/opensearch-js/pull/1162))
 ### Dependencies
 ### Changed
+- Api Generator: fail with the schema name when `allOf` members declare the same property with different types, instead of silently keeping one of them ([#1162](https://github.com/opensearch-project/opensearch-js/pull/1162))
+- Regenerated `MetricAggregationBase`, `TermsAggregationFields` and `TermsLookup` types with the fixed API generator ([#1162](https://github.com/opensearch-project/opensearch-js/pull/1162))
 ### Deprecated
 ### Removed
 ### Fixed
+- Api Generator: keep properties of `anyOf`/`oneOf`/`allOf` members nested in an `allOf`, and properties declared next to a composition keyword. Fixes missing `field`/`script` on `MetricAggregationBase` and `TermsAggregationFields`, and missing `index`/`path`/`routing`/`store` on `TermsLookup` ([#1162](https://github.com/opensearch-project/opensearch-js/pull/1162))
 ### Security
 
 ## [3.9.0]

@@ -5,6 +5,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Api Generator: add a test suite for the type renderer, run in CI, with regression tests for schema composition shapes (allOf/oneOf/anyOf nested in each other)
 ### Dependencies
 ### Changed
 ### Deprecated

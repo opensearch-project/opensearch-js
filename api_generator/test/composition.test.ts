@@ -8,12 +8,10 @@
  *
  */
 
-// Schema composition shapes (allOf/oneOf/anyOf nested in each other) that have caused type regressions.
-// The assertions are made against the TypeScript compiler, so they check what users can write,
-// not the exact text the generator emits.
-//
-// Known bugs are marked `test.failing`: the test documents the correct behavior and is expected to fail
-// until the generator is fixed. See https://github.com/opensearch-project/opensearch-js/issues/1154.
+// Schema composition shapes (allOf/oneOf/anyOf nested in each other) that have caused type regressions
+// (https://github.com/opensearch-project/opensearch-js/issues/1154).
+// Most assertions are made against the TypeScript compiler, so they check what users can write,
+// not only the exact text the generator emits.
 
 import { render_types, spec_from_fixture, spec_from_yaml, type_check, type_definition, type RenderedFiles } from './harness'
 
@@ -50,7 +48,17 @@ void [avg, histogram, empty]
 
   // S2: allOf: [object, { anyOf: [...] }] with optional-only branches (MetricAggregationBase, TermsAggregationFields).
   describe('anyOf as an allOf member (MetricAggregationBase, TermsAggregationFields)', () => {
-    test.failing('keeps the properties of the anyOf branches', () => {
+    test('renders the object part intersected with the anyOf', () => {
+      expect(type_definition(files, '_common.aggregations', 'MetricAggregationBase')).toBe(`{
+  missing?: Common.FieldValue;
+} & ({
+  field?: Common.Field;
+} | {
+  script?: Common.Script;
+})`)
+    })
+
+    test('keeps the properties of the anyOf branches', () => {
       expect(check(`
 const by_field: Common_Aggregations.MetricAggregationBase = { field: 'price', missing: 0 }
 const by_script: Common_Aggregations.MetricAggregationBase = { script: { source: 'doc.price.value' } }
@@ -63,7 +71,22 @@ void [by_field, by_script, avg, terms]
 
   // S3: properties + required next to allOf: [{ oneOf: [...] }] (TermsLookup).
   describe('properties next to a composition keyword (TermsLookup)', () => {
-    test.failing('keeps the sibling properties and their requiredness', () => {
+    test('renders the sibling properties intersected with the composition', () => {
+      expect(type_definition(files, '_common.query_dsl', 'TermsLookup')).toBe(`{
+  id?: Common.Id;
+  index: Common.IndexName;
+  path: Common.Field;
+  query?: QueryContainer;
+  routing?: Common.Routing;
+  store?: boolean;
+} & ({
+  id: Common.Id;
+} | {
+  query: QueryContainer;
+})`)
+    })
+
+    test('keeps the sibling properties and their requiredness', () => {
       expect(check(`
 const by_id: Common_QueryDsl.TermsLookup = { index: 'users', path: 'followers', id: '1' }
 const by_query: Common_QueryDsl.TermsLookup = { index: 'users', path: 'followers', query: { match_all: {} }, routing: 'r', store: true }
@@ -96,13 +119,74 @@ _common:
           - { type: object, properties: { d: { type: string } }, required: [d] }
 `))
 
-  test.failing('intersects the unions instead of concatenating them', () => {
+  test('intersects the unions instead of concatenating them', () => {
     expect(type_check(files(), `
 import * as Common from './_types/_common'
 const pair: Common.Pair = { a: 'a', c: 'c' }
 // @ts-expect-error one branch of each union is required
 const half: Common.Pair = { a: 'a' }
 export { pair, half }
+`)).toEqual([])
+  })
+})
+
+describe('other sibling and nesting shapes', () => {
+  const files = (): RenderedFiles => render_types(spec_from_yaml(`
+_common:
+  Named:
+    type: object
+    properties:
+      name:
+        type: string
+  WithOneOf:
+    type: object
+    properties:
+      name:
+        type: string
+    required: [name]
+    oneOf:
+      - { type: object, properties: { a: { type: string } }, required: [a] }
+      - { type: object, properties: { b: { type: string } }, required: [b] }
+  MapWithOneOf:
+    type: object
+    additionalProperties:
+      type: number
+    oneOf:
+      - { type: object, properties: { a: { type: number } }, required: [a] }
+      - { type: object, properties: { b: { type: number } }, required: [b] }
+  NestedAllOf:
+    allOf:
+      - $ref: '#/components/schemas/_common___Named'
+      - allOf:
+          - { type: object, properties: { a: { type: string } }, required: [a] }
+          - { type: object, properties: { b: { type: string } } }
+`))
+
+  test('keeps properties next to a top-level oneOf', () => {
+    expect(type_definition(files(), '_common', 'WithOneOf')).toBe(`{
+  name: string;
+} & ({
+  a: string;
+} | {
+  b: string;
+})`)
+  })
+
+  test('keeps additionalProperties next to a top-level oneOf', () => {
+    expect(type_definition(files(), '_common', 'MapWithOneOf')).toBe(`Record<string, number> & ({
+  a: number;
+} | {
+  b: number;
+})`)
+  })
+
+  test('keeps an inline allOf nested in an allOf', () => {
+    expect(type_check(files(), `
+import * as Common from './_types/_common'
+const nested: Common.NestedAllOf = { name: 'n', a: 'a', b: 'b' }
+// @ts-expect-error a is required by the nested allOf
+const without_a: Common.NestedAllOf = { name: 'n' }
+export { nested, without_a }
 `)).toEqual([])
   })
 })

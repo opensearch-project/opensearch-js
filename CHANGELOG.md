@@ -11,6 +11,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Api Generator: keep properties of `anyOf`/`oneOf`/`allOf` members nested in an `allOf`, and properties declared next to a composition keyword. Fixes missing `field`/`script` on `MetricAggregationBase` and `TermsAggregationFields`, and missing `index`/`path`/`routing`/`store` on `TermsLookup` ([#1154](https://github.com/opensearch-project/opensearch-js/issues/1154))
 ### Security
 
 ## [3.9.0]

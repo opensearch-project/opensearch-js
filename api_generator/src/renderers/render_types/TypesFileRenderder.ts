@@ -43,11 +43,15 @@ export default class TypesFileRenderder extends BaseRenderer {
       types: _.entries(this._container.schemas)
         .filter(([name]) => !TypesContainer.is_generic_param_ref(this.#key_for(name)))
         .map(([name, schema]) => {
-          const own_param_keys = this._container.is_function ? [] : this.#own_generic_params(schema)
-          const type_params = this.#render_generic_params(own_param_keys)
-          const definition = this.#render_schema(schema, new Set(own_param_keys), true)
-          const is_interface = definition.startsWith('extends')
-          return { name: `${name}${type_params}`, definition, is_interface }
+          try {
+            const own_param_keys = this._container.is_function ? [] : this.#own_generic_params(schema)
+            const type_params = this.#render_generic_params(own_param_keys)
+            const definition = this.#render_schema(schema, new Set(own_param_keys), true)
+            const is_interface = definition.startsWith('extends')
+            return { name: `${name}${type_params}`, definition, is_interface }
+          } catch (error) {
+            throw new Error(`Cannot render ${this.#key_for(name)}: ${(error as Error).message}`)
+          }
         }),
       imports: Array.from(this._container.referenced_containers)
         .sort((a, b) => a.import_name.localeCompare(b.import_name))
@@ -122,9 +126,31 @@ export default class TypesFileRenderder extends BaseRenderer {
     const extends_list = named
       .filter((member): member is Schema & { $ref: string } => typeof member.$ref === 'string')
       .map((member) => ({ ref: member.$ref, schema: this.#resolve_ref(member.$ref) }))
+    this.#assert_compatible_properties([...extends_list.map(({ schema: base }) => this.#normalize_extends(base)?.object ?? base), ...named, ...inline_members])
     const info = { extends: extends_list, own, object, compositions }
     this._extends_info_cache.set(original, info)
     return info
+  }
+
+  // Two allOf members that declare the same property with different primitive types cannot both be satisfied.
+  // The merge would silently keep one of them (or produce `never`), so fail instead of emitting a wrong type.
+  #assert_compatible_properties (members: Schema[]): void {
+    const primitive_type = (schema: Schema): string | undefined => {
+      if (typeof schema.type !== 'string' || schema.type === 'object' || schema.type === 'array') return undefined
+      return schema.type === 'integer' ? 'number' : schema.type
+    }
+    const seen = new Map<string, string>()
+    for (const member of members) {
+      for (const [prop_name, prop_schema] of Object.entries(member.properties ?? {})) {
+        const type = primitive_type(prop_schema as Schema)
+        if (type == null) continue
+        const existing = seen.get(prop_name)
+        if (existing != null && existing !== type) {
+          throw new Error(`allOf members declare property '${prop_name}' as both ${existing} and ${type}`)
+        }
+        seen.set(prop_name, type)
+      }
+    }
   }
 
   #resolve_ref (ref: string): Schema {

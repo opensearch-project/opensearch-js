@@ -190,3 +190,46 @@ export { nested, without_a }
 `)).toEqual([])
   })
 })
+
+describe('conflicting allOf members', () => {
+  test('fails with the schema name when inline members declare a property with different types', () => {
+    expect(() => render_types(spec_from_yaml(`
+_common:
+  Conflict:
+    allOf:
+      - { type: object, properties: { size: { type: string } } }
+      - { type: object, properties: { size: { type: boolean } } }
+`))).toThrow("Cannot render _common___Conflict: allOf members declare property 'size' as both string and boolean")
+  })
+
+  test('fails when an inline member conflicts with a referenced base', () => {
+    expect(() => render_types(spec_from_yaml(`
+_common:
+  Base:
+    type: object
+    properties:
+      size: { type: integer }
+  Conflict:
+    allOf:
+      - $ref: '#/components/schemas/_common___Base'
+      - { type: object, properties: { size: { type: string } } }
+`))).toThrow("allOf members declare property 'size' as both number and string")
+  })
+
+  test('accepts compatible redeclarations', () => {
+    const files = render_types(spec_from_yaml(`
+_common:
+  Base:
+    type: object
+    properties:
+      size: { type: integer }
+  Narrowed:
+    allOf:
+      - $ref: '#/components/schemas/_common___Base'
+      - { type: object, properties: { size: { type: number } }, required: [size] }
+`))
+    expect(type_definition(files, '_common', 'Narrowed')).toBe(`Base & {
+  size: number;
+}`)
+  })
+})

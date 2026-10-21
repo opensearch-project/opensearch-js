@@ -771,10 +771,17 @@ export type TermQuery = Common.FieldValue | (QueryBase & {
 })
 
 export type TermsLookup = {
+  id?: Common.Id;
+  index: Common.IndexName;
+  path: Common.Field;
+  query?: QueryContainer;
+  routing?: Common.Routing;
+  store?: boolean;
+} & ({
   id: Common.Id;
 } | {
   query: QueryContainer;
-}
+})
 
 export type TermsQuery = {
   _name?: string;

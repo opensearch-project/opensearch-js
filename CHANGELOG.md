@@ -8,6 +8,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Api Generator: add a test suite for the type renderer, run in CI, with regression tests for schema composition shapes (allOf/oneOf/anyOf nested in each other)
 ### Dependencies
 ### Changed
+- Regenerated `MetricAggregationBase`, `TermsAggregationFields` and `TermsLookup` types with the fixed API generator ([#1154](https://github.com/opensearch-project/opensearch-js/issues/1154))
 ### Deprecated
 ### Removed
 ### Fixed

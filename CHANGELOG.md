@@ -10,6 +10,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Fix bulk helper hangs and dropped batches caused by overlapping byte-based, timer-based, and EOF flushes under semaphore contention ([#1163](https://github.com/opensearch-project/opensearch-js/pull/1163))
 ### Security
 
 ## [3.9.0]

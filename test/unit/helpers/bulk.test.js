@@ -1760,7 +1760,7 @@ test('bulk semaphore', (t) => {
       onDrop() {
         t.fail('onDrop should never be called');
       },
-    })
+    });
 
     const first = await nextResponse();
     await secondDocumentRead;
@@ -1770,9 +1770,12 @@ test('bulk semaphore', (t) => {
     const second = await nextResponse();
     second.reply();
 
-    const third = await Promise.race([nextResponse(), new Promise((resolve) => {
-      setTimeout(() => resolve(false), 100);
-    })]);
+    const third = await Promise.race([
+      nextResponse(),
+      new Promise((resolve) => {
+        setTimeout(() => resolve(false), 100);
+      }),
+    ]);
 
     if (!third) {
       t.fail('Request #3 should be sent');
@@ -1866,7 +1869,7 @@ test('bulk semaphore', (t) => {
       onDrop() {
         t.fail('onDrop should never be called');
       },
-    })
+    });
 
     const first = await nextResponse(1);
     await secondDocumentRead;
@@ -1882,9 +1885,12 @@ test('bulk semaphore', (t) => {
     t.equal(JSON.parse(doc).id, 2, `Request #2 should contain document 2`);
     second.reply();
 
-    const third = await Promise.race([nextResponse(), new Promise((resolve) => {
-      setTimeout(() => resolve(false), 100);
-    })]);
+    const third = await Promise.race([
+      nextResponse(),
+      new Promise((resolve) => {
+        setTimeout(() => resolve(false), 100);
+      }),
+    ]);
 
     if (!third) {
       t.fail('Request #3 should be sent');
@@ -1892,7 +1898,7 @@ test('bulk semaphore', (t) => {
     }
     third.reply();
 
-    const result = await operation
+    const result = await operation;
 
     t.match(result, {
       total: 3,

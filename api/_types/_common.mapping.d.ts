@@ -284,10 +284,18 @@ export type LongRangeProperty = RangePropertyBase & {
 }
 
 export type MatchOnlyTextProperty = {
+  analyzer?: string;
+  boost?: number;
   copy_to?: Common.Fields;
+  eager_global_ordinals?: boolean;
+  fielddata?: boolean;
+  fielddata_frequency_filter?: Indices_Common.FielddataFrequencyFilter;
   fields?: Record<string, Property>;
   index?: boolean;
   meta?: Record<string, string>;
+  position_increment_gap?: number;
+  search_analyzer?: string;
+  term_vector?: TermVectorOption;
   type: 'match_only_text';
 }
 
@@ -380,18 +388,16 @@ export type SemanticDenseEmbeddingConfig = {
   mode?: string;
 }
 
-export type SemanticProperty = {
-  chunking?: boolean | SemanticChunkingStrategy[];
-  dense_embedding_config?: SemanticDenseEmbeddingConfig;
-  model_id: string;
-  raw_field_type?: string;
-  search_model_id?: string;
-  semantic_field_search_analyzer?: string;
-  semantic_info_field_name?: string;
-  skip_existing_embedding?: boolean;
-  sparse_encoding_config?: SemanticSparseEncodingConfig;
-  type: 'semantic';
+export type SemanticModelLanguageOption = 'ENGLISH' | 'MULTILINGUAL'
+
+export type SemanticModelSelection = {
+  language_option?: SemanticModelLanguageOption;
+  model_type?: SemanticModelType;
 }
+
+export type SemanticModelType = 'DENSE' | 'SPARSE'
+
+export type SemanticProperty = Record<string, any>
 
 export type SemanticSparseEncodingConfig = {
   prune_ratio?: number;

@@ -37,5 +37,9 @@ export type ComponentTemplateSummary = {
   version?: Common.VersionNumber;
 }
 
+export type SettingMetadata = {
+  dynamic: boolean;
+}
+
 export type WaitForNodes = number | string
 

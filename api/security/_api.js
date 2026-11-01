@@ -27,9 +27,11 @@ const changePasswordFn = require('./changePassword');
 const configUpgradeCheckFn = require('./configUpgradeCheck');
 const configUpgradePerformFn = require('./configUpgradePerform');
 const createActionGroupFn = require('./createActionGroup');
+const createActionGroupsFn = require('./createActionGroups');
 const createAllowlistFn = require('./createAllowlist');
 const createRoleFn = require('./createRole');
 const createRoleMappingFn = require('./createRoleMapping');
+const createRoleMappingsFn = require('./createRoleMappings');
 const createTenantFn = require('./createTenant');
 const createUpdateTenancyConfigFn = require('./createUpdateTenancyConfig');
 const createUserFn = require('./createUser');
@@ -105,9 +107,11 @@ function SecurityApi(bindObj) {
   this.configUpgradeCheck = configUpgradeCheckFn.bind(bindObj);
   this.configUpgradePerform = configUpgradePerformFn.bind(bindObj);
   this.createActionGroup = createActionGroupFn.bind(bindObj);
+  this.createActionGroups = createActionGroupsFn.bind(bindObj);
   this.createAllowlist = createAllowlistFn.bind(bindObj);
   this.createRole = createRoleFn.bind(bindObj);
   this.createRoleMapping = createRoleMappingFn.bind(bindObj);
+  this.createRoleMappings = createRoleMappingsFn.bind(bindObj);
   this.createTenant = createTenantFn.bind(bindObj);
   this.createUpdateTenancyConfig = createUpdateTenancyConfigFn.bind(bindObj);
   this.createUser = createUserFn.bind(bindObj);
@@ -184,12 +188,16 @@ function SecurityApi(bindObj) {
   this.config_upgrade_perform = configUpgradePerformFn.bind(bindObj);
   // Deprecated: Use createActionGroup instead.
   this.create_action_group = createActionGroupFn.bind(bindObj);
+  // Deprecated: Use createActionGroups instead.
+  this.create_action_groups = createActionGroupsFn.bind(bindObj);
   // Deprecated: Use createAllowlist instead.
   this.create_allowlist = createAllowlistFn.bind(bindObj);
   // Deprecated: Use createRole instead.
   this.create_role = createRoleFn.bind(bindObj);
   // Deprecated: Use createRoleMapping instead.
   this.create_role_mapping = createRoleMappingFn.bind(bindObj);
+  // Deprecated: Use createRoleMappings instead.
+  this.create_role_mappings = createRoleMappingsFn.bind(bindObj);
   // Deprecated: Use createTenant instead.
   this.create_tenant = createTenantFn.bind(bindObj);
   // Deprecated: Use createUpdateTenancyConfig instead.

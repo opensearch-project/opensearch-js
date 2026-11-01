@@ -234,6 +234,10 @@ export default class OpenSearchAPI {
     putSettings (params: API.Cluster_PutSettings_Request, callback: callbackFn<API.Cluster_PutSettings_Response>): TransportRequestCallback;
     putSettings (params: API.Cluster_PutSettings_Request, options: TransportRequestOptions, callback: callbackFn<API.Cluster_PutSettings_Response>): TransportRequestCallback;
 
+    describeSettings (params: API.Cluster_DescribeSettings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Cluster_DescribeSettings_Response>;
+    describeSettings (params: API.Cluster_DescribeSettings_Request, callback: callbackFn<API.Cluster_DescribeSettings_Response>): TransportRequestCallback;
+    describeSettings (params: API.Cluster_DescribeSettings_Request, options: TransportRequestOptions, callback: callbackFn<API.Cluster_DescribeSettings_Response>): TransportRequestCallback;
+
     state (params?: API.Cluster_State_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Cluster_State_Response>;
     state (callback: callbackFn<API.Cluster_State_Response>): TransportRequestCallback;
     state (params: API.Cluster_State_Request, callback: callbackFn<API.Cluster_State_Response>): TransportRequestCallback;
@@ -1583,6 +1587,10 @@ export default class OpenSearchAPI {
     patchActionGroups (params: API.Security_PatchActionGroups_Request, callback: callbackFn<API.Security_PatchActionGroups_Response>): TransportRequestCallback;
     patchActionGroups (params: API.Security_PatchActionGroups_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_PatchActionGroups_Response>): TransportRequestCallback;
 
+    createActionGroups (params: API.Security_CreateActionGroups_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_CreateActionGroups_Response>;
+    createActionGroups (params: API.Security_CreateActionGroups_Request, callback: callbackFn<API.Security_CreateActionGroups_Response>): TransportRequestCallback;
+    createActionGroups (params: API.Security_CreateActionGroups_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_CreateActionGroups_Response>): TransportRequestCallback;
+
     deleteActionGroup (params: API.Security_DeleteActionGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_DeleteActionGroup_Response>;
     deleteActionGroup (params: API.Security_DeleteActionGroup_Request, callback: callbackFn<API.Security_DeleteActionGroup_Response>): TransportRequestCallback;
     deleteActionGroup (params: API.Security_DeleteActionGroup_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_DeleteActionGroup_Response>): TransportRequestCallback;
@@ -1745,6 +1753,10 @@ export default class OpenSearchAPI {
     patchRoleMappings (params: API.Security_PatchRoleMappings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_PatchRoleMappings_Response>;
     patchRoleMappings (params: API.Security_PatchRoleMappings_Request, callback: callbackFn<API.Security_PatchRoleMappings_Response>): TransportRequestCallback;
     patchRoleMappings (params: API.Security_PatchRoleMappings_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_PatchRoleMappings_Response>): TransportRequestCallback;
+
+    createRoleMappings (params: API.Security_CreateRoleMappings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_CreateRoleMappings_Response>;
+    createRoleMappings (params: API.Security_CreateRoleMappings_Request, callback: callbackFn<API.Security_CreateRoleMappings_Response>): TransportRequestCallback;
+    createRoleMappings (params: API.Security_CreateRoleMappings_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_CreateRoleMappings_Response>): TransportRequestCallback;
 
     deleteRoleMapping (params: API.Security_DeleteRoleMapping_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_DeleteRoleMapping_Response>;
     deleteRoleMapping (params: API.Security_DeleteRoleMapping_Request, callback: callbackFn<API.Security_DeleteRoleMapping_Response>): TransportRequestCallback;

@@ -142,6 +142,7 @@ import { Cluster_PutWeightedRouting_Request, Cluster_PutWeightedRouting_RequestB
 import { Cluster_DeleteWeightedRouting_Request, Cluster_DeleteWeightedRouting_RequestBody, Cluster_DeleteWeightedRouting_Response, Cluster_DeleteWeightedRouting_ResponseBody } from './cluster/deleteWeightedRouting';
 import { Cluster_GetSettings_Request, Cluster_GetSettings_Response, Cluster_GetSettings_ResponseBody } from './cluster/getSettings';
 import { Cluster_PutSettings_Request, Cluster_PutSettings_RequestBody, Cluster_PutSettings_Response, Cluster_PutSettings_ResponseBody } from './cluster/putSettings';
+import { Cluster_DescribeSettings_Request, Cluster_DescribeSettings_Response, Cluster_DescribeSettings_ResponseBody } from './cluster/describeSettings';
 import { Cluster_State_Request, Cluster_State_Response, Cluster_State_ResponseBody } from './cluster/state';
 import { Cluster_Stats_Request, Cluster_Stats_Response, Cluster_Stats_ResponseBody } from './cluster/stats';
 import { Cluster_DeleteVotingConfigExclusions_Request, Cluster_DeleteVotingConfigExclusions_Response, Cluster_DeleteVotingConfigExclusions_ResponseBody } from './cluster/deleteVotingConfigExclusions';
@@ -201,6 +202,7 @@ import { Security_GetAccountDetails_Request, Security_GetAccountDetails_Response
 import { Security_ChangePassword_Request, Security_ChangePassword_Response, Security_ChangePassword_ResponseBody } from './security/changePassword';
 import { Security_GetActionGroups_Request, Security_GetActionGroups_Response, Security_GetActionGroups_ResponseBody } from './security/getActionGroups';
 import { Security_PatchActionGroups_Request, Security_PatchActionGroups_RequestBody, Security_PatchActionGroups_Response, Security_PatchActionGroups_ResponseBody } from './security/patchActionGroups';
+import { Security_CreateActionGroups_Request, Security_CreateActionGroups_RequestBody, Security_CreateActionGroups_Response, Security_CreateActionGroups_ResponseBody } from './security/createActionGroups';
 import { Security_DeleteActionGroup_Request, Security_DeleteActionGroup_Response, Security_DeleteActionGroup_ResponseBody } from './security/deleteActionGroup';
 import { Security_GetActionGroup_Request, Security_GetActionGroup_Response, Security_GetActionGroup_ResponseBody } from './security/getActionGroup';
 import { Security_PatchActionGroup_Request, Security_PatchActionGroup_RequestBody, Security_PatchActionGroup_Response, Security_PatchActionGroup_ResponseBody } from './security/patchActionGroup';
@@ -239,6 +241,7 @@ import { Security_PatchRole_Request, Security_PatchRole_RequestBody, Security_Pa
 import { Security_CreateRole_Request, Security_CreateRole_Response, Security_CreateRole_ResponseBody } from './security/createRole';
 import { Security_GetRoleMappings_Request, Security_GetRoleMappings_Response, Security_GetRoleMappings_ResponseBody } from './security/getRoleMappings';
 import { Security_PatchRoleMappings_Request, Security_PatchRoleMappings_RequestBody, Security_PatchRoleMappings_Response, Security_PatchRoleMappings_ResponseBody } from './security/patchRoleMappings';
+import { Security_CreateRoleMappings_Request, Security_CreateRoleMappings_RequestBody, Security_CreateRoleMappings_Response, Security_CreateRoleMappings_ResponseBody } from './security/createRoleMappings';
 import { Security_DeleteRoleMapping_Request, Security_DeleteRoleMapping_Response, Security_DeleteRoleMapping_ResponseBody } from './security/deleteRoleMapping';
 import { Security_GetRoleMapping_Request, Security_GetRoleMapping_Response, Security_GetRoleMapping_ResponseBody } from './security/getRoleMapping';
 import { Security_PatchRoleMapping_Request, Security_PatchRoleMapping_RequestBody, Security_PatchRoleMapping_Response, Security_PatchRoleMapping_ResponseBody } from './security/patchRoleMapping';
@@ -630,6 +633,7 @@ export {
   Cluster_DeleteWeightedRouting_Request, Cluster_DeleteWeightedRouting_RequestBody, Cluster_DeleteWeightedRouting_Response, Cluster_DeleteWeightedRouting_ResponseBody,
   Cluster_GetSettings_Request, Cluster_GetSettings_Response, Cluster_GetSettings_ResponseBody,
   Cluster_PutSettings_Request, Cluster_PutSettings_RequestBody, Cluster_PutSettings_Response, Cluster_PutSettings_ResponseBody,
+  Cluster_DescribeSettings_Request, Cluster_DescribeSettings_Response, Cluster_DescribeSettings_ResponseBody,
   Cluster_State_Request, Cluster_State_Response, Cluster_State_ResponseBody,
   Cluster_Stats_Request, Cluster_Stats_Response, Cluster_Stats_ResponseBody,
   Cluster_DeleteVotingConfigExclusions_Request, Cluster_DeleteVotingConfigExclusions_Response, Cluster_DeleteVotingConfigExclusions_ResponseBody,
@@ -689,6 +693,7 @@ export {
   Security_ChangePassword_Request, Security_ChangePassword_Response, Security_ChangePassword_ResponseBody,
   Security_GetActionGroups_Request, Security_GetActionGroups_Response, Security_GetActionGroups_ResponseBody,
   Security_PatchActionGroups_Request, Security_PatchActionGroups_RequestBody, Security_PatchActionGroups_Response, Security_PatchActionGroups_ResponseBody,
+  Security_CreateActionGroups_Request, Security_CreateActionGroups_RequestBody, Security_CreateActionGroups_Response, Security_CreateActionGroups_ResponseBody,
   Security_DeleteActionGroup_Request, Security_DeleteActionGroup_Response, Security_DeleteActionGroup_ResponseBody,
   Security_GetActionGroup_Request, Security_GetActionGroup_Response, Security_GetActionGroup_ResponseBody,
   Security_PatchActionGroup_Request, Security_PatchActionGroup_RequestBody, Security_PatchActionGroup_Response, Security_PatchActionGroup_ResponseBody,
@@ -727,6 +732,7 @@ export {
   Security_CreateRole_Request, Security_CreateRole_Response, Security_CreateRole_ResponseBody,
   Security_GetRoleMappings_Request, Security_GetRoleMappings_Response, Security_GetRoleMappings_ResponseBody,
   Security_PatchRoleMappings_Request, Security_PatchRoleMappings_RequestBody, Security_PatchRoleMappings_Response, Security_PatchRoleMappings_ResponseBody,
+  Security_CreateRoleMappings_Request, Security_CreateRoleMappings_RequestBody, Security_CreateRoleMappings_Response, Security_CreateRoleMappings_ResponseBody,
   Security_DeleteRoleMapping_Request, Security_DeleteRoleMapping_Response, Security_DeleteRoleMapping_ResponseBody,
   Security_GetRoleMapping_Request, Security_GetRoleMapping_Response, Security_GetRoleMapping_ResponseBody,
   Security_PatchRoleMapping_Request, Security_PatchRoleMapping_RequestBody, Security_PatchRoleMapping_Response, Security_PatchRoleMapping_ResponseBody,

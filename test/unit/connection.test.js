@@ -296,6 +296,44 @@ test('Timeout support', (t) => {
   });
 });
 
+test('Error after response should be ignored without logging to console', (t) => {
+  t.plan(2);
+
+  function handler(req, res) {
+    res.end('ok');
+  }
+
+  buildServer(handler, ({ port }, server) => {
+    const connection = new Connection({
+      url: new URL(`http://localhost:${port}`),
+    });
+
+    const originalConsoleLog = console.log;
+    console.log = () => {
+      t.fail('console.log should not be called for a late request error');
+    };
+
+    const request = connection.request(
+      {
+        path: '/hello',
+        method: 'GET',
+      },
+      (err, response) => {
+        t.error(err);
+        response.on('data', () => {});
+        response.on('end', () => {
+          request.emit('error', new Error('socket hang up'));
+          process.nextTick(() => {
+            console.log = originalConsoleLog;
+            t.pass('late error was ignored');
+            server.stop();
+          });
+        });
+      }
+    );
+  });
+});
+
 test('querystring', (t) => {
   t.test('Should concatenate the querystring', (t) => {
     t.plan(2);

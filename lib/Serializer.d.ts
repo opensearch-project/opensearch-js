@@ -28,7 +28,7 @@
  */
 
 export interface SerializerOptions {
-  disablePrototypePoisoningProtection: boolean | 'proto' | 'constructor';
+  disablePrototypePoisoningProtection: boolean | 'proto' | 'constructor' | 'remove';
   enableLongNumeralSupport: boolean;
 }
 

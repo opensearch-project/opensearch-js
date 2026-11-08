@@ -302,3 +302,49 @@ test('disable prototype poisoning protection only for constructor', (t) => {
     t.fail(err);
   }
 });
+
+test('remove prototype poisoning keys', (t) => {
+  t.plan(4);
+  const s = new Serializer({ disablePrototypePoisoningProtection: 'remove' });
+
+  const proto = s.deserialize('{"__proto__":{"foo":"bar"},"hello":"world"}');
+  t.equal(JSON.stringify(proto), '{"hello":"world"}');
+  t.notOk(Object.prototype.hasOwnProperty.call(proto, '__proto__'));
+
+  const ctor = s.deserialize('{"constructor":{"prototype":{"foo":"bar"}},"hello":"world"}');
+  t.equal(JSON.stringify(ctor), '{"hello":"world"}');
+  t.equal(ctor.constructor, Object);
+});
+
+test('remove nested prototype poisoning keys', (t) => {
+  t.plan(1);
+  const s = new Serializer({ disablePrototypePoisoningProtection: 'remove' });
+  const obj = s.deserialize(
+    '{"a":{"__proto__":{"foo":"bar"},"b":{"constructor":{"prototype":{"foo":"bar"}}}},' +
+      '"list":[{"__proto__":{"foo":"bar"}},{"constructor":{"prototype":{"foo":"bar"}}}],' +
+      '"keep":{"constructor":"not a prototype holder"}}'
+  );
+  t.equal(
+    JSON.stringify(obj),
+    '{"a":{"b":{}},"list":[{},{}],"keep":{"constructor":"not a prototype holder"}}'
+  );
+});
+
+test('remove prototype poisoning keys with long numerals enabled', (t) => {
+  t.plan(5);
+  const s = new Serializer({
+    disablePrototypePoisoningProtection: 'remove',
+    enableLongNumeralSupport: true,
+  });
+  const longPositive = BigInt(Number.MAX_SAFE_INTEGER) * 2n; // eslint-disable-line no-undef
+  const obj = s.deserialize(
+    `{"__proto__":{"foo":"bar"},"nested":{"constructor":{"prototype":{"foo":"bar"}}},` +
+      `"list":[{"__proto__":{"foo":"bar"},"id":${longPositive.toString()}}],` +
+      `"long":${longPositive.toString()}}`
+  );
+  t.same(Object.keys(obj), ['nested', 'list', 'long']);
+  t.same(Object.keys(obj.nested), []);
+  t.same(Object.keys(obj.list[0]), ['id']);
+  t.equal(obj.list[0].id, longPositive);
+  t.equal(obj.long, longPositive);
+});

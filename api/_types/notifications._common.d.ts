@@ -14,6 +14,7 @@
  * modify the API generator.
  */
 
+import * as Common from './_common'
 
 export type Chime = {
   url: string;
@@ -65,11 +66,11 @@ export type EventStatus = {
 export type GetConfigsResponse = {
   config_list?: NotificationsConfigsOutputItem[];
   start_index?: number;
-  total_hit_relation?: TotalHitRelation;
+  total_hit_relation?: Common.TotalHitsRelation;
   total_hits?: number;
 }
 
-export type HeaderParamsMap = Record<string, number>
+export type HeaderParamsMap = Record<string, string>
 
 export type HttpMethodType = 'PATCH' | 'POST' | 'PUT'
 
@@ -146,8 +147,6 @@ export type SnsItem = {
   role_arn?: string;
   topic_arn: string;
 }
-
-export type TotalHitRelation = 'eq' | 'gte'
 
 export type Webhook = {
   header_params?: HeaderParamsMap;

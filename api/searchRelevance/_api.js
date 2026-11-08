@@ -35,6 +35,7 @@ const getScheduledExperimentsFn = require('./getScheduledExperiments');
 const getSearchConfigurationsFn = require('./getSearchConfigurations');
 const getStatsFn = require('./getStats');
 const judgmentsSearchFn = require('./judgmentsSearch');
+const patchExperimentFn = require('./patchExperiment');
 const postQuerySetsFn = require('./postQuerySets');
 const postScheduledExperimentsFn = require('./postScheduledExperiments');
 const putExperimentsFn = require('./putExperiments');
@@ -59,6 +60,7 @@ function SearchRelevanceApi(bindObj) {
   this.getSearchConfigurations = getSearchConfigurationsFn.bind(bindObj);
   this.getStats = getStatsFn.bind(bindObj);
   this.judgmentsSearch = judgmentsSearchFn.bind(bindObj);
+  this.patchExperiment = patchExperimentFn.bind(bindObj);
   this.postQuerySets = postQuerySetsFn.bind(bindObj);
   this.postScheduledExperiments = postScheduledExperimentsFn.bind(bindObj);
   this.putExperiments = putExperimentsFn.bind(bindObj);
@@ -96,6 +98,8 @@ function SearchRelevanceApi(bindObj) {
   this.get_stats = getStatsFn.bind(bindObj);
   // Deprecated: Use judgmentsSearch instead.
   this.judgments_search = judgmentsSearchFn.bind(bindObj);
+  // Deprecated: Use patchExperiment instead.
+  this.patch_experiment = patchExperimentFn.bind(bindObj);
   // Deprecated: Use postQuerySets instead.
   this.post_query_sets = postQuerySetsFn.bind(bindObj);
   // Deprecated: Use postScheduledExperiments instead.

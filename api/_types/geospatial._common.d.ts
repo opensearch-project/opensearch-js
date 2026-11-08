@@ -20,6 +20,7 @@ export type Database = {
   fields?: string[];
   provider?: string;
   sha256_hash?: string;
+  updated_at?: string;
   updated_at_in_epoch_millis?: Common.EpochTimeUnitMillis;
   valid_for_in_days?: number;
 }
@@ -67,6 +68,7 @@ export type GeospatialFieldType = 'geo_point' | 'geo_shape'
 export type GeoSpatialGeojsonUploadResponse = {
   errors: boolean;
   failure: number;
+  failures?: UploadFailure[];
   success: number;
   took: Common.DurationValueUnitMillis;
   total: number;
@@ -129,12 +131,23 @@ export type PutIP2GeoDataSourceRequest = {
 }
 
 export type UpdateStats = {
-  last_processing_time_in_millis?: Common.EpochTimeUnitMillis;
+  last_failed_at?: string;
+  last_failed_at_in_epoch_millis?: Common.EpochTimeUnitMillis;
+  last_processing_time_in_millis?: number;
+  last_skipped_at?: string;
+  last_skipped_at_in_epoch_millis?: Common.EpochTimeUnitMillis;
+  last_succeeded_at?: string;
   last_succeeded_at_in_epoch_millis?: Common.EpochTimeUnitMillis;
 }
 
+export type UploadFailure = {
+  id?: string;
+  message?: string;
+  status?: number;
+}
+
 export type UploadStatsMetric = {
-  duration: Common.DurationValueUnitMillis;
+  duration: number;
   failed: number;
   id: Common.Id;
   node_id: Common.NodeId;
@@ -144,7 +157,7 @@ export type UploadStatsMetric = {
 }
 
 export type UploadStatsTotal = {
-  duration: Common.DurationValueUnitMillis;
+  duration: number;
   failed: number;
   request_count: number;
   success: number;

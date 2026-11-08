@@ -16,6 +16,7 @@
 
 import { ApiResponse } from '../../lib/Transport'
 import * as Global from '../_types/_global'
+import * as Knn_Common from '../_types/knn._common'
 
 export interface Knn_GetModel_Request extends Global.Params {
   model_id: string;
@@ -25,5 +26,5 @@ export interface Knn_GetModel_Response extends ApiResponse {
   body: Knn_GetModel_ResponseBody;
 }
 
-export type Knn_GetModel_ResponseBody = Record<string, any>
+export type Knn_GetModel_ResponseBody = Knn_Common.ModelResponse
 

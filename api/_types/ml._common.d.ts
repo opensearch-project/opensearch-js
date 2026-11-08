@@ -17,6 +17,7 @@
 import * as Common from './_common'
 import * as Common_Analysis from './_common.analysis'
 import * as Common_QueryDsl from './_common.query_dsl'
+import * as Core_Search from './_core.search'
 
 export type Action = {
   action_type?: string;
@@ -242,11 +243,6 @@ export type GuardrailsType = 'local_regex' | 'model'
 export type Headers = {
   content_type?: string;
   [key: string]: any;
-}
-
-export type HitsTotal = {
-  relation: string;
-  value: number;
 }
 
 export type Index = {
@@ -534,21 +530,8 @@ export type SearchAgentsResponse = SearchResponse
 
 export type SearchConnectorsResponse = SearchResponse
 
-export type SearchHits = {
-  hits: SearchHitsHit[];
-  max_score?: undefined | number;
-  total: HitsTotal;
-}
-
-export type SearchHitsHit = {
-  _id?: Common.Id;
-  _index?: Common.IndexName;
-  _primary_term?: number;
-  _score: undefined | number;
-  _seq_no?: Common.SequenceNumber;
+export type SearchHitsHit = Core_Search.Hit<Source> & {
   _source?: Source;
-  _version?: Common.VersionNumber;
-  sort?: number[];
 }
 
 export type SearchMemoryResponse = SearchResponse
@@ -559,11 +542,10 @@ export type SearchModelGroupsResponse = SearchResponse
 
 export type SearchModelsResponse = SearchResponse
 
-export type SearchResponse = {
-  _shards?: Common.ShardStatistics;
-  hits: SearchHits;
-  timed_out?: boolean;
-  took?: number;
+export type SearchResponse = Core_Search.SearchResult<any> & {
+  hits?: {
+  hits?: SearchHitsHit[];
+};
 }
 
 export type SearchTasksResponse = SearchResponse

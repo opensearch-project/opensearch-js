@@ -266,9 +266,9 @@ export type HitsMetadata<TDocument = any> = {
 }
 
 export type HitsMetadataJsonValue = HitsMetadata<any> & {
-  hits?: {
+  hits?: (Hit<any> & {
   _source?: any;
-}[];
+})[];
 }
 
 export type InnerHits = {
@@ -354,7 +354,7 @@ export type PhraseSuggestOption = {
 }
 
 export type PointInTimeReference = {
-  id: Common.Id;
+  id: Common.PitId;
   keep_alive?: Common.Duration;
 }
 
@@ -429,13 +429,13 @@ export type SearchResult<TDocument = any> = {
   _shards: Common.ShardStatistics;
   aggregations?: Record<string, Common_Aggregations.Aggregate>;
   hits: HitsMetadata<TDocument> & {
-  hits?: {
+  hits?: (Hit<TDocument> & {
   _source?: TDocument;
-}[];
+})[];
 };
   num_reduce_phases?: number;
   phase_took?: Common.PhaseTook;
-  pit_id?: Common.Id;
+  pit_id?: Common.PitId;
   processor_results?: ProcessorExecutionDetail[];
   profile?: Profile;
   suggest?: Record<string, Suggest<TDocument>[]>;
@@ -446,17 +446,17 @@ export type SearchResult<TDocument = any> = {
 
 export type SearchResultJsonValue = SearchResult<any> & ({
   hits?: {
-  hits?: {
+  hits?: (Hit<any> & {
   _source?: any;
-}[];
+})[];
 };
-  suggest?: Record<string, ({
-  options?: {
+  suggest?: Record<string, (CompletionSuggest<any> & ({
+  options?: (CompletionSuggestOption<any> & {
   _source?: any;
-} | {
+}) | (CompletionSuggestOption<any> & {
   _source?: any;
-}[];
-} | PhraseSuggest | TermSuggest)[]>;
+})[];
+})) | PhraseSuggest | TermSuggest[]>;
 })
 
 export type ShardProfile = {
@@ -550,11 +550,9 @@ export type TermSuggestOption = {
 }
 
 export type TotalHits = {
-  relation: TotalHitsRelation;
+  relation: Common.TotalHitsRelation;
   value: number;
 }
-
-export type TotalHitsRelation = 'eq' | 'gte'
 
 export type TrackHits = boolean | number
 

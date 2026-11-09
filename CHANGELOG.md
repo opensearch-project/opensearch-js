@@ -9,6 +9,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Apply the response size limits even when the response has no `Content-Length` header, and cap the size of a decompressed response body ([#1166](https://github.com/opensearch-project/opensearch-js/pull/1166))
 ### Security
 
 ## [2.13.0]

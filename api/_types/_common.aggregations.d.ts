@@ -704,7 +704,11 @@ export type MedianAbsoluteDeviationAggregation = FormatMetricAggregationBase & {
 
 export type MetricAggregationBase = {
   missing?: Common.FieldValue;
-}
+} & ({
+  field?: Common.Field;
+} | {
+  script?: Common.Script;
+})
 
 export type MinAggregate = SingleMetricAggregateBase
 
@@ -1207,7 +1211,11 @@ export type TermsAggregationFields = {
   show_term_doc_count_error?: boolean;
   size?: number;
   value_type?: ValueType;
-}
+} & ({
+  field?: Common.Field;
+} | {
+  script?: Common.Script;
+})
 
 export type TermsBucketBase = MultiBucketBase & {
   doc_count_error_upper_bound?: number;

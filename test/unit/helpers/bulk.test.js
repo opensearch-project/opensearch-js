@@ -1688,3 +1688,225 @@ test('Flush interval', (t) => {
 
   t.end();
 });
+
+test('bulk semaphore', (t) => {
+  t.test('Should not hang when server responses are slower than flushInterval', async (t) => {
+    let count = 0;
+    const MockConnection = connection.buildMockConnection({
+      onRequest(params) {
+        t.equal(params.path, '/_bulk');
+        t.match(params.headers, { 'content-type': 'application/x-ndjson' });
+        const [action, payload] = params.body.split('\n');
+        t.same(JSON.parse(action), { index: { _index: 'test' } });
+        t.same(JSON.parse(payload), dataset[count++]);
+        return { body: { errors: false, items: [{}] } };
+      },
+    });
+
+    const pendingResponses = [];
+    const requestQueue = [];
+    class ControlledMockConnection extends MockConnection {
+      request(params, callback) {
+        return super.request(params, (error, response) => {
+          pendingResponses.push({
+            params,
+            reply() {
+              callback(error, response);
+            },
+          });
+          const resolveRequest = requestQueue.shift();
+          if (resolveRequest) resolveRequest();
+        });
+      }
+    }
+
+    async function nextResponse() {
+      if (pendingResponses.length === 0) {
+        await new Promise((resolve) => {
+          requestQueue.push(resolve);
+        });
+      }
+      return pendingResponses.shift();
+    }
+
+    const client = new Client({
+      node: 'http://localhost:9200',
+      Connection: ControlledMockConnection,
+    });
+
+    async function* generator() {
+      const data = dataset.slice();
+      for (const doc of data) {
+        yield doc;
+      }
+    }
+
+    let resolveSecondDocument;
+    const secondDocumentRead = new Promise((resolve) => {
+      resolveSecondDocument = resolve;
+    });
+
+    const operation = client.helpers.bulk({
+      datasource: generator(),
+      flushBytes: 1,
+      concurrency: 1,
+      flushInterval: 50,
+      onDocument(doc) {
+        if (doc.user === dataset[1].user) resolveSecondDocument();
+        return {
+          index: { _index: 'test' },
+        };
+      },
+      onDrop() {
+        t.fail('onDrop should never be called');
+      },
+    });
+
+    const first = await nextResponse();
+    await secondDocumentRead;
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    first.reply();
+
+    const second = await nextResponse();
+    second.reply();
+
+    const third = await Promise.race([
+      nextResponse(),
+      new Promise((resolve) => {
+        setTimeout(() => resolve(false), 100);
+      }),
+    ]);
+
+    if (!third) {
+      t.fail('Request #3 should be sent');
+      return;
+    }
+    third.reply();
+
+    const result = await operation;
+
+    t.match(result, {
+      total: dataset.length,
+      successful: dataset.length,
+      failed: 0,
+      aborted: false,
+    });
+  });
+
+  t.test('Should not overwrite the previous callback', async (t) => {
+    const MockConnection = connection.buildMockConnection({
+      onRequest(params) {
+        t.equal(params.path, '/_bulk');
+        t.match(params.headers, { 'content-type': 'application/x-ndjson' });
+        const [action] = params.body.split('\n');
+        t.same(JSON.parse(action), { index: { _index: 'test' } });
+        return { body: { errors: false, items: [{}] } };
+      },
+    });
+
+    const pendingResponses = [];
+    const requestQueue = [];
+    class ControlledMockConnection extends MockConnection {
+      request(params, callback) {
+        return super.request(params, (error, response) => {
+          pendingResponses.push({
+            params,
+            reply() {
+              callback(error, response);
+            },
+          });
+          const resolveRequest = requestQueue.shift();
+          if (resolveRequest) resolveRequest();
+        });
+      }
+    }
+
+    async function nextResponse() {
+      if (pendingResponses.length === 0) {
+        await new Promise((resolve) => {
+          requestQueue.push(resolve);
+        });
+      }
+      return pendingResponses.shift();
+    }
+
+    const client = new Client({
+      node: 'http://localhost:9200',
+      Connection: ControlledMockConnection,
+    });
+
+    let resumeProducer;
+
+    const producerGate = new Promise((resolve) => {
+      resumeProducer = resolve;
+    });
+
+    async function* generator() {
+      yield { id: 1, data: 'x'.repeat(250) };
+      yield { id: 2, data: '' };
+
+      await producerGate;
+
+      yield { id: 3, data: '' };
+    }
+
+    let resolveSecondDocument;
+    const secondDocumentRead = new Promise((resolve) => {
+      resolveSecondDocument = resolve;
+    });
+
+    const operation = client.helpers.bulk({
+      datasource: generator(),
+      flushBytes: 200,
+      concurrency: 1,
+      flushInterval: 10,
+      onDocument(doc) {
+        if (doc.id === 2) resolveSecondDocument();
+        return {
+          index: { _index: 'test' },
+        };
+      },
+      onDrop() {
+        t.fail('onDrop should never be called');
+      },
+    });
+
+    const first = await nextResponse(1);
+    await secondDocumentRead;
+    // Keep request 1 pending and queue document 2
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    resumeProducer();
+    first.reply();
+
+    const second = await nextResponse(2);
+
+    const [_, doc] = second.params.bulkBody;
+    t.equal(JSON.parse(doc).id, 2, `Request #2 should contain document 2`);
+    second.reply();
+
+    const third = await Promise.race([
+      nextResponse(),
+      new Promise((resolve) => {
+        setTimeout(() => resolve(false), 100);
+      }),
+    ]);
+
+    if (!third) {
+      t.fail('Request #3 should be sent');
+      return;
+    }
+    third.reply();
+
+    const result = await operation;
+
+    t.match(result, {
+      total: 3,
+      successful: 3,
+      failed: 0,
+      aborted: false,
+    });
+  });
+
+  t.end();
+});

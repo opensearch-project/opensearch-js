@@ -95,10 +95,14 @@ export type AuthInfo = {
 }
 
 export type CertificatesDetail = {
+  alias?: string;
+  format?: string;
+  has_private_key?: boolean;
   issuer_dn?: string;
   not_after?: string;
   not_before?: string;
   san?: string;
+  serial_number?: string;
   subject_dn?: string;
 }
 
@@ -368,6 +372,7 @@ export type UserTenants = {
 export type WhoAmI = {
   dn?: undefined | string;
   is_admin?: boolean;
+  is_authenticated?: boolean;
   is_node_certificate_request?: boolean;
 }
 

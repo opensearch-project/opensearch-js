@@ -113,15 +113,34 @@ export type Replication = {
 
 export type ReplicationStatus = 'BOOTSTRAPPING' | 'PAUSED' | 'REPLICATION NOT IN PROGRESS' | 'RUNNING' | 'SYNCING'
 
+export type RestoreDetails = {
+  bytes_percent?: number;
+  bytes_recovered?: number;
+  bytes_total?: number;
+  files_percent?: number;
+  files_recovered?: number;
+  files_total?: number;
+  running_time?: number;
+  start_time?: number;
+}
+
 export type SettingsBody = {
   index?: IndexSchema;
 }
 
+export type ShardInfoResponse = {
+  bootstrap_task_details?: RestoreDetails;
+  shard_id?: string;
+  syncing_task_details?: SyncingDetails;
+}
+
 export type Status = {
+  bootstrap_details?: RestoreDetails;
   follower_index?: Common.IndexName;
   leader_alias?: Common.IndexAlias;
   leader_index?: Common.IndexName;
   reason?: string;
+  shard_replication_details?: ShardInfoResponse[];
   status?: ReplicationStatus;
   syncing_details?: SyncingDetails;
 }

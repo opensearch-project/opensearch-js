@@ -14,15 +14,16 @@
  * modify the API generator.
  */
 
+import * as Common from './_common'
 
 export type DeletedPit = {
-  pit_id: string;
+  pit_id: Common.PitId;
   successful: boolean;
 }
 
 export type PitDetail = {
   creation_time?: number;
   keep_alive?: number;
-  pit_id?: string;
+  pit_id: Common.PitId;
 }
 

@@ -220,6 +220,7 @@ export type IndexSettings = {
   query_string?: IndexSettingsQueryString;
   'query_string.lenient'?: Common.StringifiedBoolean;
   refresh_interval?: Common.Duration;
+  replication?: IndexSettingsReplication;
   'replication.type'?: ReplicationType;
   routing?: IndexRouting;
   routing_partition_size?: Common.StringifiedInteger;
@@ -373,6 +374,10 @@ export type IndexSettingsQueriesCache = {
 
 export type IndexSettingsQueryString = {
   lenient?: Common.StringifiedBoolean;
+}
+
+export type IndexSettingsReplication = {
+  type?: ReplicationType;
 }
 
 export type IndexSettingsSearch = {
@@ -539,6 +544,8 @@ export type IndexVersioning = {
 
 export type IngestionSource = {
   all_active?: Common.StringifiedBoolean;
+  decoder_settings?: Record<string, string>;
+  decoder_type?: string;
   error_strategy?: Ingestion_Common.ErrorPolicy;
   internal_queue_size?: Common.StringifiedInteger;
   mapper_settings?: Record<string, any>;

@@ -51,7 +51,27 @@ export type KnnMethod = {
   space_type?: string;
 }
 
-export type KnnStatName = 'cache_capacity_reached' | 'circuit_breaker_triggered' | 'eviction_count' | 'faiss_initialized' | 'graph_index_errors' | 'graph_index_requests' | 'graph_memory_usage' | 'graph_memory_usage_percentage' | 'graph_query_errors' | 'graph_query_requests' | 'graph_stats' | 'hit_count' | 'indexing_from_model_degraded' | 'indices_in_cache' | 'knn_query_requests' | 'knn_query_with_filter_requests' | 'load_exception_count' | 'load_success_count' | 'lucene_initialized' | 'max_distance_query_requests' | 'max_distance_query_with_filter_requests' | 'min_score_query_requests' | 'min_score_query_with_filter_requests' | 'miss_count' | 'model_index_status' | 'nmslib_initialized' | 'script_compilation_errors' | 'script_compilations' | 'script_query_errors' | 'script_query_requests' | 'total_load_time' | 'training_errors' | 'training_memory_usage' | 'training_memory_usage_percentage' | 'training_requests'
+export type KnnStatName = 'cache_capacity_reached' | 'circuit_breaker_triggered' | 'eviction_count' | 'faiss_initialized' | 'graph_index_errors' | 'graph_index_requests' | 'graph_memory_usage' | 'graph_memory_usage_percentage' | 'graph_query_errors' | 'graph_query_requests' | 'graph_stats' | 'hit_count' | 'indexing_from_model_degraded' | 'indices_in_cache' | 'knn_query_requests' | 'knn_query_with_filter_requests' | 'load_exception_count' | 'load_success_count' | 'lucene_initialized' | 'max_distance_query_requests' | 'max_distance_query_with_filter_requests' | 'min_score_query_requests' | 'min_score_query_with_filter_requests' | 'miss_count' | 'model_index_status' | 'nmslib_initialized' | 'remote_vector_index_build_stats' | 'script_compilation_errors' | 'script_compilations' | 'script_query_errors' | 'script_query_requests' | 'total_load_time' | 'training_errors' | 'training_memory_usage' | 'training_memory_usage_percentage' | 'training_requests'
+
+export type ModelResponse = {
+  compression_level?: string;
+  data_type?: string;
+  description?: string;
+  dimension?: number;
+  engine?: string;
+  error?: string;
+  mode?: string;
+  model_blob?: string;
+  model_definition?: Record<string, any>;
+  model_id: string;
+  model_version?: string;
+  space_type?: string;
+  state?: ModelState;
+  timestamp?: string;
+  training_node_assignment?: string;
+}
+
+export type ModelState = 'created' | 'failed' | 'training'
 
 export type NodeStats = {
   cache_capacity_reached?: boolean;
@@ -59,7 +79,7 @@ export type NodeStats = {
   faiss_initialized?: boolean;
   graph_index_errors?: number;
   graph_index_requests?: number;
-  graph_memory_usage?: Common.ByteCount;
+  graph_memory_usage?: number;
   graph_memory_usage_percentage?: Common.PercentageNumber;
   graph_query_errors?: number;
   graph_query_requests?: number;
@@ -85,7 +105,7 @@ export type NodeStats = {
   script_query_requests?: number;
   total_load_time?: Common.DurationValueUnitNanos;
   training_errors?: number;
-  training_memory_usage?: Common.ByteCount;
+  training_memory_usage?: number;
   training_memory_usage_percentage?: Common.PercentageNumber;
   training_requests?: number;
 }
@@ -109,7 +129,9 @@ export type RemoteVectorIndexClientStats = {
   build_request_failure_count?: number;
   build_request_success_count?: number;
   index_build_failure_count?: number;
+  index_build_merge_abort_exception?: number;
   index_build_success_count?: number;
+  index_build_terminal_exception?: number;
   status_request_failure_count?: number;
   status_request_success_count?: number;
   waiting_time_in_ms?: Common.DurationValueUnitMillis;
@@ -133,12 +155,15 @@ export type Stats = Nodes_Common.NodesResponseBase & {
 
 export type TrainedModel = {
   compression_level?: string;
+  data_type?: string;
   description?: string;
   dimension: number;
+  engine?: string;
   max_training_vector_count?: number;
   method?: KnnMethod;
   mode?: string;
   search_size?: number;
+  space_type?: string;
   spaceType?: string;
   training_field: string;
   training_index: string;

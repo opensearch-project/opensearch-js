@@ -64,7 +64,7 @@ export type NodeInfoClient = {
 }
 
 export type NodeInfoDiscovery = {
-  seed_hosts?: string;
+  seed_hosts?: Common.StringOrStringArray;
   type?: string;
 }
 
@@ -194,11 +194,29 @@ export type NodeInfoSettingsCluster = {
   initial_cluster_manager_nodes?: Common.StringOrStringArray;
   initial_master_nodes?: Common.StringOrStringArray;
   name: Common.Name;
-  routing?: Indices_Common.IndexRouting;
+  routing?: NodeInfoSettingsClusterRouting;
 }
 
 export type NodeInfoSettingsClusterElection = {
   strategy: Common.Name;
+}
+
+export type NodeInfoSettingsClusterRouting = {
+  allocation?: NodeInfoSettingsClusterRoutingAllocation;
+  rebalance?: Indices_Common.IndexRoutingRebalance;
+}
+
+export type NodeInfoSettingsClusterRoutingAllocation = Indices_Common.IndexRoutingAllocation & {
+  awareness?: NodeInfoSettingsClusterRoutingAllocationAwareness;
+}
+
+export type NodeInfoSettingsClusterRoutingAllocationAwareness = {
+  attributes?: Common.StringOrStringArray;
+  force?: Record<string, NodeInfoSettingsClusterRoutingAllocationAwarenessForce>;
+}
+
+export type NodeInfoSettingsClusterRoutingAllocationAwarenessForce = {
+  values?: Common.StringOrStringArray;
 }
 
 export type NodeInfoSettingsDeprecationIndexing = {
@@ -206,8 +224,12 @@ export type NodeInfoSettingsDeprecationIndexing = {
 }
 
 export type NodeInfoSettingsHttp = {
+  bind_host?: Common.StringOrStringArray;
   compression?: Common.StringifiedBoolean;
-  port?: Common.StringifiedInteger;
+  host?: Common.StringOrStringArray;
+  port?: string;
+  publish_host?: Common.StringOrStringArray;
+  publish_port?: Common.StringifiedInteger;
   type: NodeInfoSettingsHttpType;
   'type.default'?: string;
 }
@@ -272,18 +294,26 @@ export type NodeInfoSettingsIngest = {
 }
 
 export type NodeInfoSettingsNetwork = {
-  host: Common.Host;
+  bind_host?: Common.StringOrStringArray;
+  host?: Common.StringOrStringArray;
+  publish_host?: Common.StringOrStringArray;
 }
 
 export type NodeInfoSettingsNode = {
   attr?: Record<string, any>;
   max_local_storage_nodes?: string;
   name: Common.Name;
+  roles?: Common.StringOrStringArray;
 }
 
 export type NodeInfoSettingsPlugins = Record<string, any>
 
 export type NodeInfoSettingsTransport = {
+  bind_host?: Common.StringOrStringArray;
+  host?: Common.StringOrStringArray;
+  port?: string;
+  publish_host?: Common.StringOrStringArray;
+  publish_port?: Common.StringifiedInteger;
   ssl?: Record<string, any>;
   type: NodeInfoSettingsTransportType;
   'type.default'?: string;

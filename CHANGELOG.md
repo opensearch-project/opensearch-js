@@ -5,6 +5,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Accept `'remove'` for `disablePrototypePoisoningProtection`, which deletes poisoned `__proto__` and `constructor` keys from parsed responses instead of throwing ([#1071](https://github.com/opensearch-project/opensearch-js/issues/1071))
 ### Dependencies
 ### Changed
 ### Deprecated

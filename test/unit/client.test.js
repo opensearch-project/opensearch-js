@@ -1133,6 +1133,36 @@ test('Disable prototype poisoning protection', (t) => {
   });
 });
 
+test('Remove prototype poisoning keys', (t) => {
+  t.plan(2);
+
+  class MockConnection extends Connection {
+    request(params, callback) {
+      const stream = intoStream('{"__proto__":{"foo":"bar"},"hello":"world"}');
+      stream.statusCode = 200;
+      stream.headers = {
+        'content-type': 'application/json;utf=8',
+        'content-length': '43',
+        connection: 'keep-alive',
+        date: new Date().toISOString(),
+      };
+      process.nextTick(callback, null, stream);
+      return { abort() {} };
+    }
+  }
+
+  const client = new Client({
+    node: 'http://localhost:9200',
+    Connection: MockConnection,
+    disablePrototypePoisoningProtection: 'remove',
+  });
+
+  client.info((err, { body }) => {
+    t.error(err);
+    t.equal(JSON.stringify(body), '{"hello":"world"}');
+  });
+});
+
 test('API compatibility header (json)', (t) => {
   t.plan(4);
 

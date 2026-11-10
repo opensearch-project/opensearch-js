@@ -313,6 +313,35 @@ test('If the API uses the same key for both url and query parameter, the url sho
   });
 });
 
+test('bulk and bulkStream use POST with and without an index', (t) => {
+  const cases = [
+    { api: 'bulk', params: { body: [] }, url: '/_bulk' },
+    { api: 'bulk', params: { index: 'index', body: [] }, url: '/index/_bulk' },
+    { api: 'bulkStream', params: { body: [] }, url: '/_bulk/stream' },
+    { api: 'bulkStream', params: { index: 'index', body: [] }, url: '/index/_bulk/stream' },
+  ];
+  t.plan(cases.length * 3);
+
+  function handler(req, res) {
+    t.equal(req.method, 'POST', `${req.url} uses POST`);
+    res.setHeader('Content-Type', 'application/json;utf=8');
+    res.end(JSON.stringify({ hello: 'world' }));
+  }
+
+  buildServer(handler, async ({ port }, server) => {
+    const client = new Client({
+      node: `http://localhost:${port}`,
+    });
+
+    for (const { api, params, url } of cases) {
+      const { meta } = await client[api](params);
+      t.equal(meta.request.params.method, 'POST', `${api} ${url}`);
+      t.equal(meta.request.params.path, url);
+    }
+    server.stop();
+  });
+});
+
 test('ConfigurationError (callback)', (t) => {
   t.plan(1);
 

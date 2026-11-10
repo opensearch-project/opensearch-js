@@ -10,6 +10,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 ### Removed
 ### Fixed
+- Send `POST` instead of `PUT` for `bulk` and `bulkStream` when `index` is set, so bulk requests with a default index work on Amazon OpenSearch Serverless ([#1171](https://github.com/opensearch-project/opensearch-js/issues/1171))
 ### Security
 
 ## [3.10.0]

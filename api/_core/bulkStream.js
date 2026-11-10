@@ -53,7 +53,7 @@ function bulkStreamFunc(params, options, callback) {
   index = parsePathParam(index);
 
   const path = ['', index, '_bulk/stream'].filter(c => c != null).join('/');
-  const method = index == null ? 'POST' : 'PUT';
+  const method = 'POST';
 
   return this.transport.request({ method, path, querystring, bulkBody: body }, options, callback);
 }

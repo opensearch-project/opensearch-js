@@ -23,7 +23,7 @@ jobs:
           package-manager-cache: false
 
       # 2.x is a maintenance line: keep the `latest` dist-tag on 3.x.
-      - run: npm publish --tag latest-2
+      - run: npm publish --tag latest-2.x
 
       - name: Create a release
         uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2

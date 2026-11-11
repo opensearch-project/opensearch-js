@@ -36,5 +36,5 @@ The release process is standard across repositories in this org and is run by a 
 1. Create a tag, e.g. 2.14.0, and push it to the GitHub repo.
 1. The [release-drafter.yml](.github/workflows/release-drafter.yml) will be automatically kicked off and is responsible for publishing the package to NPM and creating a release on GitHub.
 1. The workflow requires approval from reviewers configured in the `release-approval` GitHub environment before it proceeds.
-1. Once approved, the workflow publishes to NPM using trusted publishers (OIDC authentication) under the `latest-2` dist-tag, so `latest` stays on 3.x. It then creates a GitHub release with auto-generated release notes, without marking it as the latest release.
+1. Once approved, the workflow publishes to NPM using trusted publishers (OIDC authentication) under the `latest-2.x` dist-tag, so `latest` stays on 3.x. It then creates a GitHub release with auto-generated release notes, without marking it as the latest release.
 1. Increment "version" in package.json to the next patch release, e.g. v2.1.1. See [example](https://github.com/opensearch-project/opensearch-js/pull/318)

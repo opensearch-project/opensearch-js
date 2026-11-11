@@ -6,7 +6,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 ### Dependencies
 ### Changed
-- Publish 2.x releases through the npm trusted publisher workflow under the `latest-2` dist-tag
+- Publish 2.x releases through the npm trusted publisher workflow under the `latest-2.x` dist-tag
 ### Deprecated
 ### Removed
 ### Fixed

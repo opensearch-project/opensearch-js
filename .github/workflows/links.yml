@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2
       - name: lychee Link Checker
         id: lychee
-        uses: lycheeverse/lychee-action@v1.5.0
+        uses: lycheeverse/lychee-action@76ab977fedbeaeb32029313724a2e56a8a393548 # v1.5.0
         with:
           args: --accept=200,403,429  "**/*.html" "**/*.md" "**/*.txt" "**/*.json" --exclude "file:///github/workspace/*" --exclude-mail
           fail: true

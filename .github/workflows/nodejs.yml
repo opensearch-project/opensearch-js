@@ -19,13 +19,13 @@ jobs:
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x, 16.x, 18.x]
-        os: [ubuntu-latest, windows-latest, macOS-13]
+        os: [ubuntu-latest, windows-latest, macos-15-intel]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
         with:
           node-version: ${{ matrix.node-version }}
 

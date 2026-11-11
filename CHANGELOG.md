@@ -12,6 +12,10 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Apply the response size limits even when the response has no `Content-Length` header, and cap the size of a decompressed response body ([#1166](https://github.com/opensearch-project/opensearch-js/pull/1166))
 ### Security
 
+## [2.14.0]
+### Fixed
+- Apply the response size limits even when the response has no `Content-Length` header, and cap the size of a decompressed response body ([#1166](https://github.com/opensearch-project/opensearch-js/pull/1166))
+
 ## [2.13.0]
 ### Dependencies
 - Bumps `micromatch` from 4.0.7 to 4.0.8

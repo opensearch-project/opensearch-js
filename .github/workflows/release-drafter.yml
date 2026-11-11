@@ -1,4 +1,4 @@
-name: Draft a release
+name: Release Workflow
 
 on:
   push:
@@ -6,25 +6,28 @@ on:
       - "*"
 
 jobs:
-  build:
+  release-to-npm:
+    environment: release-approval
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # Required for OIDC
+      contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3
-      - id: get_data
-        run: |
-          echo "approvers=$(cat .github/CODEOWNERS | grep @ | tr -d '* ' | sed 's/@/,/g' | sed 's/,//1')" >> $GITHUB_OUTPUT
-          echo "version=$(cat package.json | jq .version | tr -d "\"")" >> $GITHUB_OUTPUT
-      - uses: trstringer/manual-approval@fa642940caf8412403569b28b2db4a1df08a83a3 # v1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
-          secret: ${{ github.TOKEN }}
-          approvers: ${{ steps.get_data.outputs.approvers }}
-          minimum-approvals: 1
-          issue-title: 'Release opensearch-js : ${{ steps.get_data.outputs.version }}'
-          issue-body: "Please approve or deny the release of opensearch-js. **VERSION**: ${{ steps.get_data.outputs.version }} **TAG**: ${{ github.ref_name }}  **COMMIT**: ${{ github.sha }}"
-          exclude-workflow-initiator-as-approver: true
-      - name: Release
-        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+
+      # 2.x is a maintenance line: keep the `latest` dist-tag on 3.x.
+      - run: npm publish --tag latest-2
+
+      - name: Create a release
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
         with:
-          draft: true
+          draft: false
+          make_latest: false
           generate_release_notes: true

@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3
       - id: get_data
         run: |
           echo "approvers=$(cat .github/CODEOWNERS | grep @ | tr -d '* ' | sed 's/@/,/g' | sed 's/,//1')" >> $GITHUB_OUTPUT
           echo "version=$(cat package.json | jq .version | tr -d "\"")" >> $GITHUB_OUTPUT
-      - uses: trstringer/manual-approval@v1
+      - uses: trstringer/manual-approval@fa642940caf8412403569b28b2db4a1df08a83a3 # v1
         with:
           secret: ${{ github.TOKEN }}
           approvers: ${{ steps.get_data.outputs.approvers }}
@@ -24,7 +24,7 @@ jobs:
           issue-body: "Please approve or deny the release of opensearch-js. **VERSION**: ${{ steps.get_data.outputs.version }} **TAG**: ${{ github.ref_name }}  **COMMIT**: ${{ github.sha }}"
           exclude-workflow-initiator-as-approver: true
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
         with:
           draft: true
           generate_release_notes: true

@@ -18,24 +18,24 @@ jobs:
     steps:
       - name: GitHub App token
         id: github_app_token
-        uses: tibdex/github-app-token@v1.5.0
+        uses: tibdex/github-app-token@1901dc7d52169e70c27a8da37aef0d423e2867a2 # v1.5.0
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.APP_PRIVATE_KEY }}
           installation_id: 22958780
 
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3
         with:
           token: ${{ steps.github_app_token.outputs.token }}
 
       - name: Update the changelog
-        uses: dangoslen/dependabot-changelog-helper@v2
+        uses: dangoslen/dependabot-changelog-helper@b50e4a0a947219edb0a51ca92b9d4a4fb4e2a66f # v2
         with:
           version: 'Unreleased'
 
       - name: Commit the changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # v4
         with:
           commit_message: "Update changelog"
           branch: ${{ github.head_ref }}

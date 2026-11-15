@@ -17,11 +17,22 @@
 import * as Common from './_common'
 import * as Common_QueryDsl from './_common.query_dsl'
 
+export type PatchExperimentRequest = {
+  description?: string;
+  name?: string;
+}
+
+export type PatchExperimentResponse = {
+  experiment_id?: string;
+  experiment_result?: string;
+}
+
 export type PostQuerySetsRequest = {
   description?: string;
   name?: string;
   querySetSize?: number;
   sampling?: string;
+  ubiQueriesIndex?: string;
 }
 
 export type PostQuerySetsResponse = {

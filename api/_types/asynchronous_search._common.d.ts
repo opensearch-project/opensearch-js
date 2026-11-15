@@ -37,12 +37,12 @@ export type NodesStats = {
 }
 
 export type ResponseBody = {
+  error?: Common.ErrorCause;
   expiration_time_in_millis?: number;
   id?: string;
   response?: Core_Search.SearchResponse;
   start_time_in_millis?: number;
   state?: string;
-  took?: number;
 }
 
 export type Search = {

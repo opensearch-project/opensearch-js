@@ -14,8 +14,10 @@
  * modify the API generator.
  */
 
+import * as Common from './_common'
 
 export type ObservabilityObject = {
+  access?: string[];
   createdTimeMs?: number;
   lastUpdatedTimeMs?: number;
   objectId: string;
@@ -28,7 +30,7 @@ export type ObservabilityObject = {
 export type ObservabilityObjectList = {
   observabilityObjectList: ObservabilityObject[];
   startIndex: number;
-  totalHitRelation: string;
+  totalHitRelation: Common.TotalHitsRelation;
   totalHits: number;
 }
 
@@ -55,13 +57,19 @@ export type SavedQuery = {
 }
 
 export type SavedVisualization = {
+  application_id?: string;
   description: string;
+  metric_type?: string;
   name: string;
   query: string;
   selected_date_range: SelectedDateRange;
   selected_fields: SelectedFields;
+  selected_labels?: SelectedFields;
   selected_timestamp: SelectedTimestamp;
+  sub_type?: string;
   type: string;
+  units_of_measure?: string;
+  user_configs?: string;
 }
 
 export type SelectedDateRange = {

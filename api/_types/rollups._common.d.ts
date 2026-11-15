@@ -19,6 +19,7 @@ import * as Indices_Common from './indices._common'
 
 export type Cron = {
   expression?: string;
+  schedule_delay?: number;
   timezone?: string;
 }
 
@@ -51,7 +52,6 @@ export type HistogramDimension = {
 }
 
 export type Interval = {
-  cron?: Cron[] | Cron;
   period?: number;
   schedule_delay?: number;
   start_time?: number;
@@ -101,6 +101,7 @@ export type RollupEntity = {
 }
 
 export type Schedule = {
+  cron?: Cron;
   interval?: Interval;
 }
 

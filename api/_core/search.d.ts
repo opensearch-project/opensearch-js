@@ -20,6 +20,7 @@ import * as Common_Aggregations from '../_types/_common.aggregations'
 import * as Common_QueryDsl from '../_types/_common.query_dsl'
 import * as Core_Search from '../_types/_core.search'
 import * as Global from '../_types/_global'
+import * as SearchPipeline_Common from '../_types/search_pipeline._common'
 
 export interface Search_Request extends Global.Params {
   _source?: Core_Search.SourceConfigParam;
@@ -95,7 +96,7 @@ export type Search_RequestBody = {
   rescore?: Core_Search.Rescore | Core_Search.Rescore[];
   script_fields?: Record<string, Common.ScriptField>;
   search_after?: Common.SortResults;
-  search_pipeline?: string;
+  search_pipeline?: SearchPipeline_Common.SearchPipelineRef;
   seq_no_primary_term?: boolean;
   size?: number;
   slice?: Common.SlicedScroll;

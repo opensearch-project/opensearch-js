@@ -185,6 +185,8 @@ export type IndicesRecord = {
   'suggest.current'?: undefined | string;
   'suggest.time'?: undefined | string;
   'suggest.total'?: undefined | string;
+  system?: undefined | string;
+  'system.description'?: undefined | string;
   uuid?: string;
   'warmer.current'?: undefined | string;
   'warmer.total'?: undefined | string;

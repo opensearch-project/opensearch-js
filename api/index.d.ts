@@ -142,6 +142,7 @@ import { Cluster_PutWeightedRouting_Request, Cluster_PutWeightedRouting_RequestB
 import { Cluster_DeleteWeightedRouting_Request, Cluster_DeleteWeightedRouting_RequestBody, Cluster_DeleteWeightedRouting_Response, Cluster_DeleteWeightedRouting_ResponseBody } from './cluster/deleteWeightedRouting';
 import { Cluster_GetSettings_Request, Cluster_GetSettings_Response, Cluster_GetSettings_ResponseBody } from './cluster/getSettings';
 import { Cluster_PutSettings_Request, Cluster_PutSettings_RequestBody, Cluster_PutSettings_Response, Cluster_PutSettings_ResponseBody } from './cluster/putSettings';
+import { Cluster_DescribeSettings_Request, Cluster_DescribeSettings_Response, Cluster_DescribeSettings_ResponseBody } from './cluster/describeSettings';
 import { Cluster_State_Request, Cluster_State_Response, Cluster_State_ResponseBody } from './cluster/state';
 import { Cluster_Stats_Request, Cluster_Stats_Response, Cluster_Stats_ResponseBody } from './cluster/stats';
 import { Cluster_DeleteVotingConfigExclusions_Request, Cluster_DeleteVotingConfigExclusions_Response, Cluster_DeleteVotingConfigExclusions_ResponseBody } from './cluster/deleteVotingConfigExclusions';
@@ -163,6 +164,7 @@ import { Insights_TopQueries_Request, Insights_TopQueries_Response, Insights_Top
 import { List_Help_Request, List_Help_Response, List_Help_ResponseBody } from './list/help';
 import { List_Indices_Request, List_Indices_Response, List_Indices_ResponseBody } from './list/indices';
 import { List_Shards_Request, List_Shards_Response, List_Shards_ResponseBody } from './list/shards';
+import { List_WlmStats_Request, List_WlmStats_Response, List_WlmStats_ResponseBody } from './list/wlmStats';
 import { Ltr_DeleteDefaultStore_Request, Ltr_DeleteDefaultStore_Response, Ltr_DeleteDefaultStore_ResponseBody } from './ltr/deleteDefaultStore';
 import { Ltr_ListStores_Request, Ltr_ListStores_Response, Ltr_ListStores_ResponseBody } from './ltr/listStores';
 import { Ltr_CreateDefaultStore_Request, Ltr_CreateDefaultStore_Response, Ltr_CreateDefaultStore_ResponseBody } from './ltr/createDefaultStore';
@@ -201,6 +203,7 @@ import { Security_GetAccountDetails_Request, Security_GetAccountDetails_Response
 import { Security_ChangePassword_Request, Security_ChangePassword_Response, Security_ChangePassword_ResponseBody } from './security/changePassword';
 import { Security_GetActionGroups_Request, Security_GetActionGroups_Response, Security_GetActionGroups_ResponseBody } from './security/getActionGroups';
 import { Security_PatchActionGroups_Request, Security_PatchActionGroups_RequestBody, Security_PatchActionGroups_Response, Security_PatchActionGroups_ResponseBody } from './security/patchActionGroups';
+import { Security_CreateActionGroups_Request, Security_CreateActionGroups_RequestBody, Security_CreateActionGroups_Response, Security_CreateActionGroups_ResponseBody } from './security/createActionGroups';
 import { Security_DeleteActionGroup_Request, Security_DeleteActionGroup_Response, Security_DeleteActionGroup_ResponseBody } from './security/deleteActionGroup';
 import { Security_GetActionGroup_Request, Security_GetActionGroup_Response, Security_GetActionGroup_ResponseBody } from './security/getActionGroup';
 import { Security_PatchActionGroup_Request, Security_PatchActionGroup_RequestBody, Security_PatchActionGroup_Response, Security_PatchActionGroup_ResponseBody } from './security/patchActionGroup';
@@ -239,6 +242,7 @@ import { Security_PatchRole_Request, Security_PatchRole_RequestBody, Security_Pa
 import { Security_CreateRole_Request, Security_CreateRole_Response, Security_CreateRole_ResponseBody } from './security/createRole';
 import { Security_GetRoleMappings_Request, Security_GetRoleMappings_Response, Security_GetRoleMappings_ResponseBody } from './security/getRoleMappings';
 import { Security_PatchRoleMappings_Request, Security_PatchRoleMappings_RequestBody, Security_PatchRoleMappings_Response, Security_PatchRoleMappings_ResponseBody } from './security/patchRoleMappings';
+import { Security_CreateRoleMappings_Request, Security_CreateRoleMappings_RequestBody, Security_CreateRoleMappings_Response, Security_CreateRoleMappings_ResponseBody } from './security/createRoleMappings';
 import { Security_DeleteRoleMapping_Request, Security_DeleteRoleMapping_Response, Security_DeleteRoleMapping_ResponseBody } from './security/deleteRoleMapping';
 import { Security_GetRoleMapping_Request, Security_GetRoleMapping_Response, Security_GetRoleMapping_ResponseBody } from './security/getRoleMapping';
 import { Security_PatchRoleMapping_Request, Security_PatchRoleMapping_RequestBody, Security_PatchRoleMapping_Response, Security_PatchRoleMapping_ResponseBody } from './security/patchRoleMapping';
@@ -430,6 +434,7 @@ import { SearchRelevance_GetExperiments_Request, SearchRelevance_GetExperiments_
 import { SearchRelevance_PutExperiments_Request, SearchRelevance_PutExperiments_RequestBody, SearchRelevance_PutExperiments_Response, SearchRelevance_PutExperiments_ResponseBody } from './searchRelevance/putExperiments';
 import { SearchRelevance_ExperimentsSearch_Request, SearchRelevance_ExperimentsSearch_Response, SearchRelevance_ExperimentsSearch_ResponseBody } from './searchRelevance/experimentsSearch';
 import { SearchRelevance_DeleteExperiments_Request, SearchRelevance_DeleteExperiments_Response, SearchRelevance_DeleteExperiments_ResponseBody } from './searchRelevance/deleteExperiments';
+import { SearchRelevance_PatchExperiment_Request, SearchRelevance_PatchExperiment_Response, SearchRelevance_PatchExperiment_ResponseBody } from './searchRelevance/patchExperiment';
 import { SearchRelevance_GetScheduledExperiments_Request, SearchRelevance_GetScheduledExperiments_Response, SearchRelevance_GetScheduledExperiments_ResponseBody } from './searchRelevance/getScheduledExperiments';
 import { SearchRelevance_PostScheduledExperiments_Request, SearchRelevance_PostScheduledExperiments_Response, SearchRelevance_PostScheduledExperiments_ResponseBody } from './searchRelevance/postScheduledExperiments';
 import { SearchRelevance_DeleteScheduledExperiments_Request, SearchRelevance_DeleteScheduledExperiments_Response, SearchRelevance_DeleteScheduledExperiments_ResponseBody } from './searchRelevance/deleteScheduledExperiments';
@@ -493,10 +498,15 @@ import { Tasks_List_Request, Tasks_List_Response, Tasks_List_ResponseBody } from
 import { Tasks_Cancel_Request, Tasks_Cancel_Response, Tasks_Cancel_ResponseBody } from './tasks/cancel';
 import { Tasks_Delete_Request, Tasks_Delete_Response, Tasks_Delete_ResponseBody } from './tasks/delete';
 import { Tasks_Get_Request, Tasks_Get_Response, Tasks_Get_ResponseBody } from './tasks/get';
+import { Wlm_Stats_Request, Wlm_Stats_Response, Wlm_Stats_ResponseBody } from './wlm/stats';
 import { Wlm_GetQueryGroup_Request, Wlm_GetQueryGroup_Response, Wlm_GetQueryGroup_ResponseBody } from './wlm/getQueryGroup';
 import { Wlm_CreateQueryGroup_Request, Wlm_CreateQueryGroup_Response, Wlm_CreateQueryGroup_ResponseBody } from './wlm/createQueryGroup';
 import { Wlm_DeleteQueryGroup_Request, Wlm_DeleteQueryGroup_Response, Wlm_DeleteQueryGroup_ResponseBody } from './wlm/deleteQueryGroup';
 import { Wlm_UpdateQueryGroup_Request, Wlm_UpdateQueryGroup_Response, Wlm_UpdateQueryGroup_ResponseBody } from './wlm/updateQueryGroup';
+import { Wlm_GetWorkloadGroup_Request, Wlm_GetWorkloadGroup_Response, Wlm_GetWorkloadGroup_ResponseBody } from './wlm/getWorkloadGroup';
+import { Wlm_CreateWorkloadGroup_Request, Wlm_CreateWorkloadGroup_Response, Wlm_CreateWorkloadGroup_ResponseBody } from './wlm/createWorkloadGroup';
+import { Wlm_DeleteWorkloadGroup_Request, Wlm_DeleteWorkloadGroup_Response, Wlm_DeleteWorkloadGroup_ResponseBody } from './wlm/deleteWorkloadGroup';
+import { Wlm_UpdateWorkloadGroup_Request, Wlm_UpdateWorkloadGroup_Response, Wlm_UpdateWorkloadGroup_ResponseBody } from './wlm/updateWorkloadGroup';
 import { Ingestion_Pause_Request, Ingestion_Pause_Response, Ingestion_Pause_ResponseBody } from './ingestion/pause';
 import { Ingestion_Resume_Request, Ingestion_Resume_Response, Ingestion_Resume_ResponseBody } from './ingestion/resume';
 import { Ingestion_GetState_Request, Ingestion_GetState_Response, Ingestion_GetState_ResponseBody } from './ingestion/getState';
@@ -630,6 +640,7 @@ export {
   Cluster_DeleteWeightedRouting_Request, Cluster_DeleteWeightedRouting_RequestBody, Cluster_DeleteWeightedRouting_Response, Cluster_DeleteWeightedRouting_ResponseBody,
   Cluster_GetSettings_Request, Cluster_GetSettings_Response, Cluster_GetSettings_ResponseBody,
   Cluster_PutSettings_Request, Cluster_PutSettings_RequestBody, Cluster_PutSettings_Response, Cluster_PutSettings_ResponseBody,
+  Cluster_DescribeSettings_Request, Cluster_DescribeSettings_Response, Cluster_DescribeSettings_ResponseBody,
   Cluster_State_Request, Cluster_State_Response, Cluster_State_ResponseBody,
   Cluster_Stats_Request, Cluster_Stats_Response, Cluster_Stats_ResponseBody,
   Cluster_DeleteVotingConfigExclusions_Request, Cluster_DeleteVotingConfigExclusions_Response, Cluster_DeleteVotingConfigExclusions_ResponseBody,
@@ -651,6 +662,7 @@ export {
   List_Help_Request, List_Help_Response, List_Help_ResponseBody,
   List_Indices_Request, List_Indices_Response, List_Indices_ResponseBody,
   List_Shards_Request, List_Shards_Response, List_Shards_ResponseBody,
+  List_WlmStats_Request, List_WlmStats_Response, List_WlmStats_ResponseBody,
   Ltr_DeleteDefaultStore_Request, Ltr_DeleteDefaultStore_Response, Ltr_DeleteDefaultStore_ResponseBody,
   Ltr_ListStores_Request, Ltr_ListStores_Response, Ltr_ListStores_ResponseBody,
   Ltr_CreateDefaultStore_Request, Ltr_CreateDefaultStore_Response, Ltr_CreateDefaultStore_ResponseBody,
@@ -689,6 +701,7 @@ export {
   Security_ChangePassword_Request, Security_ChangePassword_Response, Security_ChangePassword_ResponseBody,
   Security_GetActionGroups_Request, Security_GetActionGroups_Response, Security_GetActionGroups_ResponseBody,
   Security_PatchActionGroups_Request, Security_PatchActionGroups_RequestBody, Security_PatchActionGroups_Response, Security_PatchActionGroups_ResponseBody,
+  Security_CreateActionGroups_Request, Security_CreateActionGroups_RequestBody, Security_CreateActionGroups_Response, Security_CreateActionGroups_ResponseBody,
   Security_DeleteActionGroup_Request, Security_DeleteActionGroup_Response, Security_DeleteActionGroup_ResponseBody,
   Security_GetActionGroup_Request, Security_GetActionGroup_Response, Security_GetActionGroup_ResponseBody,
   Security_PatchActionGroup_Request, Security_PatchActionGroup_RequestBody, Security_PatchActionGroup_Response, Security_PatchActionGroup_ResponseBody,
@@ -727,6 +740,7 @@ export {
   Security_CreateRole_Request, Security_CreateRole_Response, Security_CreateRole_ResponseBody,
   Security_GetRoleMappings_Request, Security_GetRoleMappings_Response, Security_GetRoleMappings_ResponseBody,
   Security_PatchRoleMappings_Request, Security_PatchRoleMappings_RequestBody, Security_PatchRoleMappings_Response, Security_PatchRoleMappings_ResponseBody,
+  Security_CreateRoleMappings_Request, Security_CreateRoleMappings_RequestBody, Security_CreateRoleMappings_Response, Security_CreateRoleMappings_ResponseBody,
   Security_DeleteRoleMapping_Request, Security_DeleteRoleMapping_Response, Security_DeleteRoleMapping_ResponseBody,
   Security_GetRoleMapping_Request, Security_GetRoleMapping_Response, Security_GetRoleMapping_ResponseBody,
   Security_PatchRoleMapping_Request, Security_PatchRoleMapping_RequestBody, Security_PatchRoleMapping_Response, Security_PatchRoleMapping_ResponseBody,
@@ -918,6 +932,7 @@ export {
   SearchRelevance_PutExperiments_Request, SearchRelevance_PutExperiments_RequestBody, SearchRelevance_PutExperiments_Response, SearchRelevance_PutExperiments_ResponseBody,
   SearchRelevance_ExperimentsSearch_Request, SearchRelevance_ExperimentsSearch_Response, SearchRelevance_ExperimentsSearch_ResponseBody,
   SearchRelevance_DeleteExperiments_Request, SearchRelevance_DeleteExperiments_Response, SearchRelevance_DeleteExperiments_ResponseBody,
+  SearchRelevance_PatchExperiment_Request, SearchRelevance_PatchExperiment_Response, SearchRelevance_PatchExperiment_ResponseBody,
   SearchRelevance_GetScheduledExperiments_Request, SearchRelevance_GetScheduledExperiments_Response, SearchRelevance_GetScheduledExperiments_ResponseBody,
   SearchRelevance_PostScheduledExperiments_Request, SearchRelevance_PostScheduledExperiments_Response, SearchRelevance_PostScheduledExperiments_ResponseBody,
   SearchRelevance_DeleteScheduledExperiments_Request, SearchRelevance_DeleteScheduledExperiments_Response, SearchRelevance_DeleteScheduledExperiments_ResponseBody,
@@ -981,10 +996,15 @@ export {
   Tasks_Cancel_Request, Tasks_Cancel_Response, Tasks_Cancel_ResponseBody,
   Tasks_Delete_Request, Tasks_Delete_Response, Tasks_Delete_ResponseBody,
   Tasks_Get_Request, Tasks_Get_Response, Tasks_Get_ResponseBody,
+  Wlm_Stats_Request, Wlm_Stats_Response, Wlm_Stats_ResponseBody,
   Wlm_GetQueryGroup_Request, Wlm_GetQueryGroup_Response, Wlm_GetQueryGroup_ResponseBody,
   Wlm_CreateQueryGroup_Request, Wlm_CreateQueryGroup_Response, Wlm_CreateQueryGroup_ResponseBody,
   Wlm_DeleteQueryGroup_Request, Wlm_DeleteQueryGroup_Response, Wlm_DeleteQueryGroup_ResponseBody,
   Wlm_UpdateQueryGroup_Request, Wlm_UpdateQueryGroup_Response, Wlm_UpdateQueryGroup_ResponseBody,
+  Wlm_GetWorkloadGroup_Request, Wlm_GetWorkloadGroup_Response, Wlm_GetWorkloadGroup_ResponseBody,
+  Wlm_CreateWorkloadGroup_Request, Wlm_CreateWorkloadGroup_Response, Wlm_CreateWorkloadGroup_ResponseBody,
+  Wlm_DeleteWorkloadGroup_Request, Wlm_DeleteWorkloadGroup_Response, Wlm_DeleteWorkloadGroup_ResponseBody,
+  Wlm_UpdateWorkloadGroup_Request, Wlm_UpdateWorkloadGroup_Response, Wlm_UpdateWorkloadGroup_ResponseBody,
   Ingestion_Pause_Request, Ingestion_Pause_Response, Ingestion_Pause_ResponseBody,
   Ingestion_Resume_Request, Ingestion_Resume_Response, Ingestion_Resume_ResponseBody,
   Ingestion_GetState_Request, Ingestion_GetState_Response, Ingestion_GetState_ResponseBody,

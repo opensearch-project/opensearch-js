@@ -197,6 +197,8 @@ export type ScoreRankerPhaseResultsProcessor = {
 
 export type SearchPipelineMap = Record<string, SearchPipelineStructure>
 
+export type SearchPipelineRef = string | SearchPipelineStructure
+
 export type SearchPipelineStructure = {
   description?: string;
   phase_results_processors?: PhaseResultsProcessor[];

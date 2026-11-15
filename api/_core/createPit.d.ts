@@ -37,6 +37,6 @@ export interface CreatePit_Response extends ApiResponse {
 export type CreatePit_ResponseBody = {
   _shards: Common.ShardStatistics;
   creation_time: number;
-  pit_id: string;
+  pit_id: Common.PitId;
 }
 

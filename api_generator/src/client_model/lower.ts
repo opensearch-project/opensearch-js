@@ -134,8 +134,14 @@ class Lowerer {
       },
       required: keys
     })
-    if ('one_of' in constraint && constraint.one_of != null) return { oneOf: constraint.one_of.map((keys) => branch(keys)) }
-    if ('any_of' in constraint && constraint.any_of != null) return { anyOf: constraint.any_of.map((keys) => branch(keys)) }
+    // A branch's nested constraints (a sort on a script also needs `type` or `lang`) hold together with the branch.
+    const with_nested = (keys: string[], index: number): Schema => {
+      const nested = ('nested' in constraint ? constraint.nested?.[index] : null) ?? []
+      const inner = nested.map((c) => this.constraint(c, fields)).filter((c): c is Schema => c != null)
+      return inner.length > 0 ? { allOf: [branch(keys), ...inner] } : branch(keys)
+    }
+    if ('one_of' in constraint && constraint.one_of != null) return { oneOf: constraint.one_of.map(with_nested) }
+    if ('any_of' in constraint && constraint.any_of != null) return { anyOf: constraint.any_of.map(with_nested) }
     if ('variants' in constraint) {
       return {
         oneOf: Object.entries(constraint.variants).map(([key, variant]) => {

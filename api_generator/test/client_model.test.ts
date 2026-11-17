@@ -103,6 +103,28 @@ describe('lower', () => {
     ])
   })
 
+  test('a presence branch brings its nested constraints along', () => {
+    const nested = spec()
+    const m = model()
+    m.types._common___Sort = {
+      type_kind: 'object',
+      fields: {
+        field: { type: { scalar: 'string' }, required: false },
+        script: { type: { scalar: 'string' }, required: false },
+        lang: { type: { scalar: 'string' }, required: false }
+      },
+      constraints: [{ union_kind: 'presence', one_of: [['field'], ['script']], nested: [null, [{ union_kind: 'presence', any_of: [['lang']] }]] }]
+    }
+    lower(nested, m)
+    const sort = (nested.components.schemas as Record<string, any>)._common___Sort
+    expect(sort.allOf[1].oneOf[1]).toEqual({
+      allOf: [
+        { type: 'object', properties: { script: { type: 'string' } }, required: ['script'] },
+        { anyOf: [{ type: 'object', properties: { lang: { type: 'string' } }, required: ['lang'] }] }
+      ]
+    })
+  })
+
   test('a union keeps its member titles', () => {
     expect(schemas._common___Choice).toEqual({
       oneOf: [{ ...ref('_common___Id'), title: 'a' }, { type: 'array', items: ref('_common___Id'), title: 'b' }]

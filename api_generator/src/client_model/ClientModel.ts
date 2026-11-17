@@ -42,7 +42,7 @@ export interface ObjectShape {
 }
 
 export type Constraint =
-  | { union_kind: 'presence', one_of?: string[][], any_of?: string[][] }
+  | { union_kind: 'presence', one_of?: string[][], any_of?: string[][], nested?: Array<Constraint[] | null> }
   | { union_kind: 'container', variants: Record<string, ContainerVariant> }
   | { union_kind: 'not_all', keys: string[] }
   | { union_kind: string, matches: 'one_of' | 'any_of', types: TypeExpr[] }

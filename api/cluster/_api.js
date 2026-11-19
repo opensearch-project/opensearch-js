@@ -26,6 +26,7 @@ const deleteComponentTemplateFn = require('./deleteComponentTemplate');
 const deleteDecommissionAwarenessFn = require('./deleteDecommissionAwareness');
 const deleteVotingConfigExclusionsFn = require('./deleteVotingConfigExclusions');
 const deleteWeightedRoutingFn = require('./deleteWeightedRouting');
+const describeSettingsFn = require('./describeSettings');
 const existsComponentTemplateFn = require('./existsComponentTemplate');
 const getComponentTemplateFn = require('./getComponentTemplate');
 const getDecommissionAwarenessFn = require('./getDecommissionAwareness');
@@ -49,6 +50,7 @@ function ClusterApi(bindObj) {
   this.deleteDecommissionAwareness = deleteDecommissionAwarenessFn.bind(bindObj);
   this.deleteVotingConfigExclusions = deleteVotingConfigExclusionsFn.bind(bindObj);
   this.deleteWeightedRouting = deleteWeightedRoutingFn.bind(bindObj);
+  this.describeSettings = describeSettingsFn.bind(bindObj);
   this.existsComponentTemplate = existsComponentTemplateFn.bind(bindObj);
   this.getComponentTemplate = getComponentTemplateFn.bind(bindObj);
   this.getDecommissionAwareness = getDecommissionAwarenessFn.bind(bindObj);
@@ -76,6 +78,8 @@ function ClusterApi(bindObj) {
   this.delete_voting_config_exclusions = deleteVotingConfigExclusionsFn.bind(bindObj);
   // Deprecated: Use deleteWeightedRouting instead.
   this.delete_weighted_routing = deleteWeightedRoutingFn.bind(bindObj);
+  // Deprecated: Use describeSettings instead.
+  this.describe_settings = describeSettingsFn.bind(bindObj);
   // Deprecated: Use existsComponentTemplate instead.
   this.exists_component_template = existsComponentTemplateFn.bind(bindObj);
   // Deprecated: Use getComponentTemplate instead.

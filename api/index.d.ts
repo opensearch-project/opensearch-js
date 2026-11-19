@@ -142,6 +142,7 @@ import { Cluster_PutWeightedRouting_Request, Cluster_PutWeightedRouting_RequestB
 import { Cluster_DeleteWeightedRouting_Request, Cluster_DeleteWeightedRouting_RequestBody, Cluster_DeleteWeightedRouting_Response, Cluster_DeleteWeightedRouting_ResponseBody } from './cluster/deleteWeightedRouting';
 import { Cluster_GetSettings_Request, Cluster_GetSettings_Response, Cluster_GetSettings_ResponseBody } from './cluster/getSettings';
 import { Cluster_PutSettings_Request, Cluster_PutSettings_RequestBody, Cluster_PutSettings_Response, Cluster_PutSettings_ResponseBody } from './cluster/putSettings';
+import { Cluster_DescribeSettings_Request, Cluster_DescribeSettings_Response, Cluster_DescribeSettings_ResponseBody } from './cluster/describeSettings';
 import { Cluster_State_Request, Cluster_State_Response, Cluster_State_ResponseBody } from './cluster/state';
 import { Cluster_Stats_Request, Cluster_Stats_Response, Cluster_Stats_ResponseBody } from './cluster/stats';
 import { Cluster_DeleteVotingConfigExclusions_Request, Cluster_DeleteVotingConfigExclusions_Response, Cluster_DeleteVotingConfigExclusions_ResponseBody } from './cluster/deleteVotingConfigExclusions';
@@ -630,6 +631,7 @@ export {
   Cluster_DeleteWeightedRouting_Request, Cluster_DeleteWeightedRouting_RequestBody, Cluster_DeleteWeightedRouting_Response, Cluster_DeleteWeightedRouting_ResponseBody,
   Cluster_GetSettings_Request, Cluster_GetSettings_Response, Cluster_GetSettings_ResponseBody,
   Cluster_PutSettings_Request, Cluster_PutSettings_RequestBody, Cluster_PutSettings_Response, Cluster_PutSettings_ResponseBody,
+  Cluster_DescribeSettings_Request, Cluster_DescribeSettings_Response, Cluster_DescribeSettings_ResponseBody,
   Cluster_State_Request, Cluster_State_Response, Cluster_State_ResponseBody,
   Cluster_Stats_Request, Cluster_Stats_Response, Cluster_Stats_ResponseBody,
   Cluster_DeleteVotingConfigExclusions_Request, Cluster_DeleteVotingConfigExclusions_Response, Cluster_DeleteVotingConfigExclusions_ResponseBody,

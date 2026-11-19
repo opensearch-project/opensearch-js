@@ -234,6 +234,10 @@ export default class OpenSearchAPI {
     putSettings (params: API.Cluster_PutSettings_Request, callback: callbackFn<API.Cluster_PutSettings_Response>): TransportRequestCallback;
     putSettings (params: API.Cluster_PutSettings_Request, options: TransportRequestOptions, callback: callbackFn<API.Cluster_PutSettings_Response>): TransportRequestCallback;
 
+    describeSettings (params: API.Cluster_DescribeSettings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Cluster_DescribeSettings_Response>;
+    describeSettings (params: API.Cluster_DescribeSettings_Request, callback: callbackFn<API.Cluster_DescribeSettings_Response>): TransportRequestCallback;
+    describeSettings (params: API.Cluster_DescribeSettings_Request, options: TransportRequestOptions, callback: callbackFn<API.Cluster_DescribeSettings_Response>): TransportRequestCallback;
+
     state (params?: API.Cluster_State_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Cluster_State_Response>;
     state (callback: callbackFn<API.Cluster_State_Response>): TransportRequestCallback;
     state (params: API.Cluster_State_Request, callback: callbackFn<API.Cluster_State_Response>): TransportRequestCallback;

@@ -284,10 +284,18 @@ export type LongRangeProperty = RangePropertyBase & {
 }
 
 export type MatchOnlyTextProperty = {
+  analyzer?: string;
+  boost?: number;
   copy_to?: Common.Fields;
+  eager_global_ordinals?: boolean;
+  fielddata?: boolean;
+  fielddata_frequency_filter?: Indices_Common.FielddataFrequencyFilter;
   fields?: Record<string, Property>;
   index?: boolean;
   meta?: Record<string, string>;
+  position_increment_gap?: number;
+  search_analyzer?: string;
+  term_vector?: TermVectorOption;
   type: 'match_only_text';
 }
 

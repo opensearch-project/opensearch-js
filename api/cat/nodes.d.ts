@@ -27,6 +27,7 @@ export interface Cat_Nodes_Request extends Global.Params {
   full_id?: Common.StringifiedBoolean;
   h?: string[];
   help?: boolean;
+  limit?: number;
   local?: boolean;
   master_timeout?: Common.Duration;
   s?: string[];

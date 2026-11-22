@@ -15,10 +15,12 @@
  */
 
 
-export type GroupingType = 'NONE' | 'SIMILARITY' | 'none' | 'similarity'
+export type AggregationType = 'AVERAGE' | 'NONE' | 'SUM'
+
+export type GroupingType = 'NONE' | 'SIMILARITY'
 
 export type Measurement = {
-  aggregationType?: string;
+  aggregationType?: AggregationType;
   count?: number;
   number?: number;
 }
@@ -50,15 +52,17 @@ export type TopQueriesResponse = {
 
 export type TopQuery = {
   backend_roles?: string[];
+  description?: string;
   failed?: boolean;
   group_by?: GroupingType;
   id?: string;
   indices?: string[];
+  is_cancelled?: boolean;
   labels?: Record<string, any>;
   measurements?: Measurements;
   node_id?: string;
-  phase_latency_map?: Record<string, any>;
-  query_hashcode?: string;
+  phase_latency_map?: Record<string, number>;
+  query_group_hashcode?: string;
   search_type?: string;
   source?: string;
   source_truncated?: boolean;

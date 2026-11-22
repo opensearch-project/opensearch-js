@@ -25,6 +25,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @memberOf API-Ism
  *
  * @param {object} params
+ * @param {string} [params.refresh] - Whether to refresh the affected shards to make this operation visible to search. Default is `true`.
  * @param {string} params.policy_id 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

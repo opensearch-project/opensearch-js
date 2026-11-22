@@ -25,8 +25,19 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Ism
  *
  * @param {object} [params]
+ * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
+ * @param {number} [params.from=0] - The starting index of the managed indexes to return.
+ * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.
+ * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
+ * @param {string} [params.queryString=*] - A query string that filters the managed indexes.
+ * @param {boolean} [params.show_policy=false] - Whether to include the policy of each managed index in the response.
+ * @param {number} [params.size=20] - The number of managed indexes to return.
+ * @param {string} [params.sortField=managed_index.index] - The field to sort the managed indexes by.
+ * @param {string} [params.sortOrder] - The sort order of the managed indexes.
+ * @param {string} [params.type=_default] - The type of the index metadata provider.
+ * @param {boolean} [params.validate_action=false] - Whether to include the validation result of the current action of each managed index in the response.
  * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
- * @param {string} [params.body] 
+ * @param {object} [params.body] - The filter for the managed indexes. Only read by `POST` requests, which require a body.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

@@ -16,6 +16,7 @@
 
 import * as Common from './_common'
 import * as Common_QueryDsl from './_common.query_dsl'
+import * as Core_Search from './_core.search'
 
 export type All = boolean
 
@@ -24,17 +25,21 @@ export type AllowDelete = string
 export type FlowFrameworkCreate = {
   description?: string;
   name: string;
+  ui_metadata?: Record<string, any>;
   use_case?: string;
   version?: version;
   workflows?: Record<string, any>;
 }
 
 export type FlowFrameworkGetResponse = {
+  all_shared_principals?: string[];
   created_time?: number;
   description?: string;
   last_provisioned_time?: number;
   last_updated_time?: number;
   name?: string;
+  tenant_id?: string;
+  ui_metadata?: Record<string, any>;
   use_case?: string;
   user?: user;
   version?: version;
@@ -44,6 +49,7 @@ export type FlowFrameworkGetResponse = {
 export type FlowFrameworkUpdate = {
   description?: string;
   name?: string;
+  ui_metadata?: Record<string, any>;
   use_case?: string;
   version?: version;
   workflows?: Record<string, any>;
@@ -55,14 +61,8 @@ export type hits = {
   total?: total;
 }
 
-export type itemsObject = {
-  _id?: string;
-  _index?: string;
-  _primary_term?: number;
-  _score?: number;
-  _seq_no?: number;
+export type itemsObject = Core_Search.Hit<FlowFrameworkGetResponse> & {
   _source?: FlowFrameworkGetResponse;
-  _version?: number;
 }
 
 export type Provision = boolean
@@ -90,12 +90,7 @@ export type SearchWorkflowRequest = {
   query?: Common_QueryDsl.QueryContainer;
 }
 
-export type shards = {
-  failed?: number;
-  skipped?: number;
-  successful?: number;
-  total?: number;
-}
+export type shards = Common.ShardStatistics
 
 export type StateHits = {
   hits?: StateItems[];
@@ -103,20 +98,11 @@ export type StateHits = {
   total?: total;
 }
 
-export type StateItems = {
-  _id?: string;
-  _index?: string;
-  _primary_term?: number;
-  _score?: number;
-  _seq_no?: number;
+export type StateItems = Core_Search.Hit<SearchStateResponse> & {
   _source?: SearchStateResponse;
-  _version?: number;
 }
 
-export type total = {
-  relation?: string;
-  value?: number;
-}
+export type total = Core_Search.TotalHits
 
 export type UpdateFields = boolean
 
@@ -164,20 +150,22 @@ export type WorkFlowState = 'COMPLETED' | 'FAILED' | 'NOT_STARTED' | 'PROVISIONI
 
 export type WorkFlowStatusDefaultResponse = {
   error?: string;
-  resources_created?: string[];
+  resources_created?: ResourcesCreated[];
   state?: string;
   workflow_id?: string;
 }
 
 export type WorkFlowStatusFullResponse = {
+  all_shared_principals?: string[];
   error?: string;
-  provision_end_time?: string;
-  provision_start_time?: string;
+  provision_end_time?: number;
+  provision_start_time?: number;
   provisioning_progress?: string;
-  resources_created?: string[];
+  resources_created?: ResourcesCreated[];
   state?: WorkFlowState;
+  tenant_id?: string;
   user?: user;
-  user_outputs?: string[];
+  user_outputs?: Record<string, any>;
   workflow_id?: string;
 }
 

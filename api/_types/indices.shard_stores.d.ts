@@ -29,10 +29,7 @@ export type ShardStore = {
 
 export type ShardStoreAllocation = 'primary' | 'replica' | 'unused'
 
-export type ShardStoreException = {
-  reason: string;
-  type: string;
-}
+export type ShardStoreException = Common.ErrorCause
 
 export type ShardStoreStatus = 'all' | 'green' | 'red' | 'yellow'
 

@@ -27,8 +27,9 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {object} params
  * @param {number} [params.if_primary_term] - Only perform the operation if the document has this primary term.
  * @param {number} [params.if_seq_no] - Only perform the operation if the document has this sequence number.
+ * @param {string} [params.refresh] - Whether to refresh the affected shards to make this operation visible to search. Default is `true`.
  * @param {string} params.policy_id 
- * @param {string} [params.body] 
+ * @param {string} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -38,13 +39,13 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 function putPolicyFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
   if (params.policy_id == null) return handleMissingParam('policy_id', this, callback);
+  if (params.body == null) return handleMissingParam('body', this, callback);
 
   let { body, policy_id, ...querystring } = params;
   policy_id = parsePathParam(policy_id);
 
   const path = '/_plugins/_ism/policies/' + policy_id;
   const method = 'PUT';
-  body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }

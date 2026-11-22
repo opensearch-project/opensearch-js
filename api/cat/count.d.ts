@@ -25,6 +25,7 @@ export interface Cat_Count_Request extends Global.Params {
   h?: string[];
   help?: boolean;
   index?: Common.Indices;
+  limit?: number;
   s?: string[];
   v?: boolean;
 }

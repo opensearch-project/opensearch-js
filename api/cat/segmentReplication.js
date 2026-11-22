@@ -38,6 +38,7 @@ These metrics provide information about how far behind the primary shard the rep
  * @param {boolean} [params.ignore_throttled] - Whether specified concrete, expanded, or aliased indexes should be ignored when throttled.
  * @param {boolean} [params.ignore_unavailable] - Whether the specified concrete indexes should be ignored when missing or closed.
  * @param {array} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+ * @param {number} [params.limit] - The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {array} [params.shards] - A comma-separated list of shards to display.
  * @param {string} [params.time] - Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://docs.opensearch.org/latest/api-reference/units/).

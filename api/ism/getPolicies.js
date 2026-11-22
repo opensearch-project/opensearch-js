@@ -24,7 +24,13 @@ const { normalizeArguments } = require('../utils');
  *
  * @memberOf API-Ism
  *
- * @param {object} [params] - (Unused)
+ * @param {object} [params]
+ * @param {number} [params.from=0] - The starting index of the policies to return.
+ * @param {string} [params.queryString=*] - A query string that filters the policies.
+ * @param {number} [params.size=20] - The number of policies to return.
+ * @param {string} [params.sortField=policy.policy_id.keyword] - The field to sort the policies by.
+ * @param {string} [params.sortOrder] - The sort order of the policies.
+ *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
  *

@@ -20,6 +20,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
 
 /**
  * Creates point in time context.
+Delete the PIT when done. Until then it counts against `search.max_open_pit_context`.
  * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/search-apis/point-in-time-api/#create-a-pit - create_pit}
  *
  * @memberOf API-Core
@@ -30,7 +31,7 @@ const { normalizeArguments, parsePathParam, handleMissingParam } = require('../u
  * @param {string} [params.expand_wildcards] - Whether to expand wildcard expression to concrete indexes that are open, closed or both.
  * @param {boolean} [params.ignore_throttled] - If `true`, concrete, expanded or aliased indexes will be ignored when frozen.
  * @param {boolean} [params.ignore_unavailable] - If `false`, the request returns an error if it targets a missing or closed index.
- * @param {string} params.keep_alive - Specify the keep alive for point in time.
+ * @param {string} params.keep_alive - Specify the keep alive for point in time. Each search against the PIT restarts it, and a search cannot shorten it. It cannot exceed the `point_in_time.max_keep_alive` cluster setting (24 hours by default).
  * @param {string} [params.preference=random] - Specify the node or shard the operation should be performed on.
  * @param {string} [params.routing] - A comma-separated list of specific routing values.
  * @param {array} params.index - A comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.

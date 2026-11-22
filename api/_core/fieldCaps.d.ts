@@ -31,7 +31,6 @@ export interface FieldCaps_Request extends Global.Params {
 }
 
 export type FieldCaps_RequestBody = {
-  fields?: Common.Fields;
   index_filter?: Common_QueryDsl.QueryContainer;
 }
 

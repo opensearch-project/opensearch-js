@@ -18,6 +18,7 @@ import * as Common from './_common'
 import * as Common_Aggregations from './_common.aggregations'
 import * as Common_QueryDsl from './_common.query_dsl'
 import * as Core_Search from './_core.search'
+import * as SearchPipeline_Common from './search_pipeline._common'
 
 export type MultisearchBody = {
   _source?: Core_Search.SourceConfig;
@@ -39,6 +40,7 @@ export type MultisearchBody = {
   rescore?: Core_Search.Rescore | Core_Search.Rescore[];
   script_fields?: Record<string, Common.ScriptField>;
   search_after?: Common.SortResults;
+  search_pipeline?: SearchPipeline_Common.SearchPipelineRef;
   seq_no_primary_term?: boolean;
   size?: number;
   sort?: Common.Sort;
@@ -49,6 +51,7 @@ export type MultisearchBody = {
   timeout?: string;
   track_scores?: boolean;
   track_total_hits?: Core_Search.TrackHits;
+  verbose_pipeline?: boolean;
   version?: boolean;
 }
 

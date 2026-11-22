@@ -27,6 +27,7 @@ export interface Cat_Segments_Request extends Global.Params {
   h?: string[];
   help?: boolean;
   index?: Common.Indices;
+  limit?: number;
   master_timeout?: Common.Duration;
   s?: string[];
   v?: boolean;

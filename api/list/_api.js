@@ -24,12 +24,16 @@
 const helpFn = require('./help');
 const indicesFn = require('./indices');
 const shardsFn = require('./shards');
+const wlmStatsFn = require('./wlmStats');
 
 function ListApi(bindObj) {
   this.help = helpFn.bind(bindObj);
   this.indices = indicesFn.bind(bindObj);
   this.shards = shardsFn.bind(bindObj);
+  this.wlmStats = wlmStatsFn.bind(bindObj);
 
+  // Deprecated: Use wlmStats instead.
+  this.wlm_stats = wlmStatsFn.bind(bindObj);
 }
 
 module.exports = ListApi;

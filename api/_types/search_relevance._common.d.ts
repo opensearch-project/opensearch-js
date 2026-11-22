@@ -17,11 +17,36 @@
 import * as Common from './_common'
 import * as Common_QueryDsl from './_common.query_dsl'
 
-export type PostQuerySetsRequest = {
+export type DocumentRatingUpdate = {
+  docId: string;
+  rating: string;
+}
+
+export type ExperimentValidationStatus = 'DRIFTED' | 'UNAVAILABLE' | 'VALID'
+
+export type JudgmentRatingUpdate = {
+  query: string;
+  ratings: DocumentRatingUpdate[];
+}
+
+export type LLMJudgmentRatingType = 'RELEVANT_IRRELEVANT' | 'SCORE0_1'
+
+export type PatchExperimentRequest = {
   description?: string;
   name?: string;
+}
+
+export type PatchExperimentResponse = {
+  experiment_id?: string;
+  experiment_result?: string;
+}
+
+export type PostQuerySetsRequest = {
+  description?: string;
+  name: string;
   querySetSize?: number;
   sampling?: string;
+  ubiQueriesIndex?: string;
 }
 
 export type PostQuerySetsResponse = {
@@ -30,8 +55,8 @@ export type PostQuerySetsResponse = {
 }
 
 export type PostScheduledExperimentsRequest = {
-  cronExpression?: string;
-  experimentId?: string;
+  cronExpression: string;
+  experimentId: string;
 }
 
 export type PostScheduledExperimentsResponse = {
@@ -39,60 +64,63 @@ export type PostScheduledExperimentsResponse = {
   job_result?: string;
 }
 
+export type PutExperimentRequestBase = {
+  querySetId: string;
+  searchConfigurationList: string[];
+  size: number;
+}
+
 export type PutExperimentResponse = {
   experiment_id?: string;
   experiment_result?: string;
 }
 
-export type PutHybridOptimizerExperimentRequest = {
+export type PutHybridOptimizerExperimentRequest = PutExperimentRequestBase & {
   judgmentList?: string[];
-  querySetId?: string;
-  searchConfigurationList?: string[];
-  size?: number;
-  type?: string;
+  type: 'HYBRID_OPTIMIZER';
 }
 
-export type PutImportJudgmentsRequest = {
+export type PutImportJudgmentsRequest = PutJudgmentsRequestBase & {
+  judgmentRatings: Record<string, any>[];
+  type: 'IMPORT_JUDGMENT';
+}
+
+export type PutJudgmentsRequestBase = {
   description?: string;
-  judgmentRatings?: Record<string, any>[];
-  name?: string;
-  type?: string;
+  name: string;
 }
 
 export type PutJudgmentsResponse = {
   judgment_id?: string;
 }
 
-export type PutLLMJudgmentsRequest = {
+export type PutLLMJudgmentsRequest = PutJudgmentsRequestBase & {
   contextFields?: string[];
-  description?: string;
+  existingJudgments?: string[];
   ignoreFailure?: boolean;
-  modelId?: string;
-  name?: string;
-  querySetId?: string;
+  llmJudgmentRatingType?: LLMJudgmentRatingType;
+  modelId: string;
+  overwriteCache?: boolean;
+  promptTemplate?: string;
+  querySetId: string;
   searchConfigurationList?: string[];
   size?: number;
-  type?: string;
+  tokenLimit?: number;
+  type: 'LLM_JUDGMENT';
 }
 
-export type PutPairwiseExperimentRequest = {
-  querySetId?: string;
-  searchConfigurationList?: string[];
-  size?: number;
-  type?: string;
+export type PutPairwiseExperimentRequest = PutExperimentRequestBase & {
+  type: 'PAIRWISE_COMPARISON';
 }
 
-export type PutPointwiseExperimentRequest = {
+export type PutPointwiseExperimentRequest = PutExperimentRequestBase & {
   judgmentList?: string[];
-  querySetId?: string;
-  searchConfigurationList?: string[];
-  size?: number;
-  type?: string;
+  type: 'POINTWISE_EVALUATION';
 }
 
 export type PutQuerySetsRequest = {
   description?: string;
-  name?: string;
+  name: string;
   querySetQueries?: Record<string, any>[];
   sampling?: string;
 }
@@ -105,7 +133,7 @@ export type PutQuerySetsResponse = {
 export type PutSearchConfigurationRequest = {
   description?: string;
   index?: string;
-  name?: string;
+  name: string;
   query?: string;
   searchPipeline?: string;
 }
@@ -115,12 +143,19 @@ export type PutSearchConfigurationResponse = {
   search_configuration_result?: string;
 }
 
-export type PutUBIJudgmentsRequest = {
-  clickModel?: string;
-  description?: string;
-  maxRank?: number;
-  name?: string;
-  type?: string;
+export type PutUBIJudgmentsRequest = PutJudgmentsRequestBase & {
+  clickModel: string;
+  endDate?: string;
+  maxRank: number;
+  startDate?: string;
+  type: 'UBI_JUDGMENT';
+  ubiEventsIndex?: string;
+}
+
+export type RetryJudgmentsResponse = {
+  judgment_id?: string;
+  message?: string;
+  status?: string;
 }
 
 export type SearchRequest = {
@@ -128,5 +163,20 @@ export type SearchRequest = {
   query?: Common_QueryDsl.QueryContainer;
   size?: number;
   sort?: Common.Sort;
+}
+
+export type UpdateJudgmentRatingsRequest = {
+  judgmentRatings: JudgmentRatingUpdate[];
+}
+
+export type UpdateJudgmentRatingsResponse = {
+  judgment_id?: string;
+  result?: string;
+}
+
+export type ValidateExperimentResponse = {
+  drifted_inputs: string[];
+  message: string;
+  status: ExperimentValidationStatus;
 }
 

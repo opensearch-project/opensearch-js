@@ -80,6 +80,8 @@ export type ByteCount = number
 
 export type ByteUnit = 'b' | 'kb' | 'k' | 'mb' | 'm' | 'gb' | 'g' | 'tb' | 't' | 'pb' | 'p'
 
+export type CircuitBreakerDurability = 'PERMANENT' | 'TRANSIENT'
+
 export type ClusterStatistics = {
   skipped: number;
   successful: number;
@@ -161,10 +163,34 @@ export type EpochTimeUnitMillis = UnitMillis
 export type EpochTimeUnitSeconds = UnitSeconds
 
 export type ErrorCause = {
+  bytes_limit?: number;
+  bytes_wanted?: number;
   caused_by?: ErrorCause;
+  col?: number;
+  durability?: CircuitBreakerDurability;
+  failed_shards?: ShardSearchFailure[];
+  grouped?: boolean;
   header?: Record<string, StringOrStringArray>;
+  index?: IndexName;
+  index_uuid?: Uuid;
+  lang?: string;
+  limit_entity?: ResponseLimitEntity;
+  line?: number;
+  max_buckets?: number;
+  node_id?: NodeId;
+  phase?: string;
+  position?: ScriptExceptionPosition;
+  processor_tag?: string;
+  processor_type?: string;
+  property_name?: string;
   reason?: string;
+  'resource.id'?: StringOrStringArray;
+  'resource.type'?: string;
+  response_limit?: number;
   root_cause?: ErrorCause[];
+  script?: string;
+  script_stack?: string[];
+  shard?: string;
   stack_trace?: string;
   suppressed?: ErrorCause[];
   type: string;
@@ -478,6 +504,8 @@ export type PhaseTook = {
 
 export type PipelineName = string
 
+export type PitId = string
+
 export type PluginStats = {
   classname: string;
   custom_foldername?: undefined | string;
@@ -617,6 +645,8 @@ export type ResourceStats = {
   total: ResourceStat;
 }
 
+export type ResponseLimitEntity = 'INDICES' | 'SHARDS'
+
 export type Result = 'created' | 'deleted' | 'noop' | 'not_found' | 'updated'
 
 export type Retries = {
@@ -636,6 +666,12 @@ export type Script = InlineScript | StoredScriptId
 
 export type ScriptBase = {
   params?: Record<string, any>;
+}
+
+export type ScriptExceptionPosition = {
+  end?: number;
+  offset?: number;
+  start?: number;
 }
 
 export type ScriptField = {
@@ -877,6 +913,8 @@ export type TopRightBottomLeftGeoBounds = {
   bottom_left: GeoLocation;
   top_right: GeoLocation;
 }
+
+export type TotalHitsRelation = 'eq' | 'gte'
 
 export type TranslogStats = {
   earliest_last_modified_age: number;

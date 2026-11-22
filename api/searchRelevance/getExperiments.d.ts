@@ -20,6 +20,7 @@ import * as Global from '../_types/_global'
 
 export interface SearchRelevance_GetExperiments_Request extends Global.Params {
   experiment_id?: string;
+  query_text?: string;
 }
 
 export interface SearchRelevance_GetExperiments_Response extends ApiResponse {

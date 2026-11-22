@@ -33,6 +33,7 @@ export interface Cat_SegmentReplication_Request extends Global.Params {
   ignore_throttled?: boolean;
   ignore_unavailable?: boolean;
   index?: string[];
+  limit?: number;
   s?: string[];
   shards?: string[];
   time?: Common.TimeUnit;

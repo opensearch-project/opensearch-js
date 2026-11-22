@@ -20,11 +20,20 @@ import * as Global from '../_types/_global'
 import * as Ism_Common from '../_types/ism._common'
 
 export interface Ism_ExplainPolicy_Request extends Global.Params {
-  body?: Ism_ExplainPolicy_RequestBody;
+  body?: Ism_Common.ExplainPolicyRequest;
+  cluster_manager_timeout?: Common.Duration;
+  from?: number;
   index?: Common.Indices;
+  local?: boolean;
+  master_timeout?: Common.Duration;
+  queryString?: string;
+  show_policy?: boolean;
+  size?: number;
+  sortField?: string;
+  sortOrder?: Common.SortOrder;
+  type?: string;
+  validate_action?: boolean;
 }
-
-export type Ism_ExplainPolicy_RequestBody = any
 
 export interface Ism_ExplainPolicy_Response extends ApiResponse {
   body: Ism_ExplainPolicy_ResponseBody;

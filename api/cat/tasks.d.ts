@@ -26,6 +26,7 @@ export interface Cat_Tasks_Request extends Global.Params {
   format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
+  limit?: number;
   nodes?: string[];
   parent_task_id?: string;
   s?: string[];

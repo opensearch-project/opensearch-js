@@ -26,6 +26,7 @@ export interface Cat_Allocation_Request extends Global.Params {
   format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
+  limit?: number;
   local?: boolean;
   master_timeout?: Common.Duration;
   node_id?: Common.NodeIds;

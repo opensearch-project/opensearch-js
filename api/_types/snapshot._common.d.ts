@@ -66,9 +66,10 @@ export type SnapshotInfo = {
 
 export type SnapshotShardFailure = {
   index?: Common.IndexName;
+  index_uuid?: string;
   node_id?: Common.Id;
   reason?: string;
-  shard_id?: Common.Id;
+  shard_id?: number;
   status?: string;
 }
 

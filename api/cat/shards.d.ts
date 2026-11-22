@@ -27,6 +27,7 @@ export interface Cat_Shards_Request extends Global.Params {
   h?: string[];
   help?: boolean;
   index?: Common.Indices;
+  limit?: number;
   local?: boolean;
   master_timeout?: Common.Duration;
   s?: string[];

@@ -19,18 +19,20 @@
 
 import _ from 'lodash'
 import type { JSONSchema7 as Schema } from 'json-schema'
-import type { ClientModel, Constraint, Field, ObjectShape, TypeEntry, TypeExpr } from './ClientModel'
+import { MODEL_KEY, type ClientModel, type Constraint, type Field, type ObjectShape, type TypeEntry, type TypeExpr } from './ClientModel'
 import type { RawOpenSearchSpec } from '../spec_parser/types'
 
 const REF_PREFIX = '#/components/schemas/'
 
 // Keywords of the original schema that annotate it rather than shape it (documentation, defaults, extensions):
-// kept on the lowered schema, so the JSDoc of the generated functions doesn't change.
+// kept on the lowered schema, so the JSDoc of the generated functions doesn't change. The model itself (`x-model`)
+// is not an annotation: the lowered schema replaces it.
 const ANNOTATIONS = new Set(['description', 'default', 'deprecated', 'title', 'examples', 'externalDocs', 'readOnly', 'writeOnly'])
 
 function with_annotations (lowered: Schema, original: Schema | undefined): Schema {
   if (original == null || typeof original !== 'object') return lowered
   for (const [key, value] of Object.entries(original)) {
+    if (key === MODEL_KEY) continue
     if (ANNOTATIONS.has(key) || key.startsWith('x-')) (lowered as Record<string, unknown>)[key] = value
   }
   return lowered
@@ -41,7 +43,10 @@ export default function lower (spec: RawOpenSearchSpec, model: ClientModel): voi
   const schemas = spec.components.schemas
   for (const [name, entry] of Object.entries(model.types)) {
     // Generic type parameters keep their schema: the renderer recognizes them by x-is-generic-type-parameter.
-    if (entry.type_kind === 'alias' && entry.generic_parameter === true) continue
+    if (entry.type_kind === 'alias' && entry.generic_parameter === true) {
+      if (schemas[name] != null) schemas[name] = _.omit(schemas[name], MODEL_KEY) as Schema
+      continue
+    }
     schemas[name] = with_annotations(lowerer.entry(entry), schemas[name])
   }
   const lower_bodies = (components: Record<string, any> | undefined, bodies: ClientModel['responses']): void => {

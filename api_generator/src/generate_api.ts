@@ -10,9 +10,6 @@
 
 import Generator from './Generator'
 
-// `npm run generate_api -- --model <opensearch-client-model.json>` reads the types from the spec's client model.
-const model_index = process.argv.indexOf('--model')
-const model_path = model_index >= 0 ? process.argv[model_index + 1] : undefined
-if (model_index >= 0 && model_path == null) throw new Error('--model needs the path of the client model')
-const generator = new Generator('opensearch-openapi.yaml', '../', model_path)
+// `npm run generate_api -- --model` reads the types from the spec's client model (its `x-model` extensions).
+const generator = new Generator('opensearch-openapi.yaml', '../', process.argv.includes('--model'))
 generator.generate()

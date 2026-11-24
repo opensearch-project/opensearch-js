@@ -5,7 +5,7 @@ Inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
-- Add an opt-in `--model` option to the API generator that reads the types from the resolved client model of opensearch-api-specification instead of interpreting `allOf`/`oneOf`/`anyOf` ([#1177](https://github.com/opensearch-project/opensearch-js/pull/1177))
+- Add an opt-in `--model` option to the API generator that reads the types from the resolved client model the specification carries in its `x-model` extensions instead of interpreting `allOf`/`oneOf`/`anyOf` ([#1177](https://github.com/opensearch-project/opensearch-js/pull/1177))
 ### Dependencies
 ### Changed
 ### Deprecated

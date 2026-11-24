@@ -8,12 +8,15 @@
  *
  */
 
-// The resolved client model of opensearch-api-specification (`opensearch-client-model.json`, built by
-// `npm run model` there): every type of the spec with its $refs followed, its allOfs merged and its unions
-// classified. See "Client Model" in the specification's CLIENT_GENERATOR_GUIDE.md.
+// The resolved client model of opensearch-api-specification: every type of the spec with its $refs followed, its
+// allOfs merged and its unions classified. The spec carries it next to the JSON Schema it is built from, as `x-model`
+// on every component schema, response and request body, plus `components.x-model` with its format and version
+// (written by `npm run merge` in that repository). See "Client Model" in the specification's
+// CLIENT_GENERATOR_GUIDE.md.
 
-import fs from 'fs'
+import type { RawOpenSearchSpec } from '../spec_parser/types'
 
+export const MODEL_KEY = 'x-model'
 export const MODEL_FORMAT = 'opensearch-client-model'
 export const SUPPORTED_VERSIONS = ['0.2.0']
 
@@ -81,12 +84,32 @@ export interface ClientModel {
   request_bodies: Record<string, BodyEntry>
 }
 
-// Reads a model file and checks its format and version.
-export function read_client_model (file_path: string): ClientModel {
-  const model = JSON.parse(fs.readFileSync(file_path, 'utf8')) as ClientModel
-  if (model.format !== MODEL_FORMAT) throw new Error(`${file_path} is not an OpenSearch client model (format ${model.format})`)
-  if (!SUPPORTED_VERSIONS.includes(model.version)) {
-    throw new Error(`Unsupported client model version ${model.version} (supported: ${SUPPORTED_VERSIONS.join(', ')})`)
+// The client model of a spec, from its `x-model` extensions: `components.x-model` (format and version), and the
+// `x-model` of every component schema (its type), response and request body (its body), by component name.
+export function read_client_model (spec: RawOpenSearchSpec): ClientModel {
+  const components = (spec.components ?? {}) as Record<string, Record<string, any> | undefined>
+  const header = components[MODEL_KEY] as { format?: string, version?: string } | undefined
+  if (header == null) {
+    throw new Error(`The specification has no client model (components.${MODEL_KEY}): use a specification merged by ` +
+      "opensearch-api-specification's `npm run merge` (opensearch-project/opensearch-api-specification#1329)")
   }
-  return model
+  if (header.format !== MODEL_FORMAT) throw new Error(`components.${MODEL_KEY} is not an OpenSearch client model (format ${header.format})`)
+  if (header.version == null || !SUPPORTED_VERSIONS.includes(header.version)) {
+    throw new Error(`Unsupported client model version ${header.version} (supported: ${SUPPORTED_VERSIONS.join(', ')})`)
+  }
+  const entries = <T>(section: string): Record<string, T> => {
+    const result: Record<string, T> = {}
+    for (const name of Object.keys(components[section] ?? {}).sort()) {
+      const entry = components[section]?.[name]?.[MODEL_KEY]
+      if (entry != null) result[name] = entry as T
+    }
+    return result
+  }
+  return {
+    format: header.format,
+    version: header.version,
+    types: entries<TypeEntry>('schemas'),
+    responses: entries<BodyEntry>('responses'),
+    request_bodies: entries<BodyEntry>('requestBodies')
+  }
 }

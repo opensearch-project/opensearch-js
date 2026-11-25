@@ -28,6 +28,8 @@ import { clear_child_dirs, recreate_dir } from './helpers'
 import OpenSearchApiTypeRenderer from './renderers/render_types/OpensearchApiTypeRenderer'
 import ApiTypeRenderer from './renderers/render_types/ApiTypeRenderer'
 import ComponentTypesRenderer from './renderers/render_types/ComponentTypesRenderer'
+import { read_client_model } from './client_model/ClientModel'
+import lower from './client_model/lower'
 
 const HTTP_METHODS = ['get', 'post', 'put', 'delete', 'head', 'patch', 'options', 'trace', 'connect'].sort()
 
@@ -35,10 +37,13 @@ export default class Generator {
   readonly namespaces: Record<string, Namespace>
   readonly repo_folder: string
 
-  constructor (spec_path: string, repo_folder: string) {
+  // `use_model`: read every type from the spec's client model (its `x-model` extensions) instead of interpreting
+  // allOf/oneOf/anyOf of the spec.
+  constructor (spec_path: string, repo_folder: string, use_model: boolean = false) {
     this.repo_folder = repo_folder
 
     const raw_spec: RawOpenSearchSpec = YAML.parse(fs.readFileSync(spec_path, 'utf8'))
+    if (use_model) lower(raw_spec, read_client_model(raw_spec))
     const operations = (new OperationParser(raw_spec)).operations
     this.namespaces =
       _.fromPairs(

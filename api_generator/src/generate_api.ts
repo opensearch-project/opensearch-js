@@ -10,5 +10,6 @@
 
 import Generator from './Generator'
 
-const generator = new Generator('opensearch-openapi.yaml', '../')
+// `npm run generate_api -- --model` reads the types from the spec's client model (its `x-model` extensions).
+const generator = new Generator('opensearch-openapi.yaml', '../', process.argv.includes('--model'))
 generator.generate()

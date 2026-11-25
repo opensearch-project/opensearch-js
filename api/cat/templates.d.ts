@@ -25,6 +25,7 @@ export interface Cat_Templates_Request extends Global.Params {
   format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
+  limit?: number;
   local?: boolean;
   master_timeout?: Common.Duration;
   name?: Common.Name;

@@ -37,5 +37,20 @@ export type ComponentTemplateSummary = {
   version?: Common.VersionNumber;
 }
 
+export type SettingMetadata = {
+  default?: string;
+  description?: string;
+  dynamic: boolean;
+  validation?: SettingValidation;
+}
+
+export type SettingValidation = {
+  max?: string;
+  min?: string;
+  type: SettingValueType;
+}
+
+export type SettingValueType = 'boolean' | 'byte_size' | 'double' | 'float' | 'integer' | 'long' | 'memory_size' | 'time'
+
 export type WaitForNodes = number | string
 

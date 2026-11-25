@@ -24,6 +24,7 @@ export interface Cat_Health_Request extends Global.Params {
   format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
+  limit?: number;
   s?: string[];
   time?: Common.TimeUnit;
   ts?: boolean;

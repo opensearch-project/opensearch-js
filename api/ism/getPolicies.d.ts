@@ -15,10 +15,17 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Ism_Common from '../_types/ism._common'
 
-export type Ism_GetPolicies_Request = Global.Params & Record<string, any>
+export interface Ism_GetPolicies_Request extends Global.Params {
+  from?: number;
+  queryString?: string;
+  size?: number;
+  sortField?: string;
+  sortOrder?: Common.SortOrder;
+}
 
 export interface Ism_GetPolicies_Response extends ApiResponse {
   body: Ism_GetPolicies_ResponseBody;

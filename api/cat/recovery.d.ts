@@ -28,6 +28,7 @@ export interface Cat_Recovery_Request extends Global.Params {
   h?: string[];
   help?: boolean;
   index?: Common.Indices;
+  limit?: number;
   s?: string[];
   time?: Common.TimeUnit;
   v?: boolean;

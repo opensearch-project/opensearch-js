@@ -26,12 +26,13 @@ export interface Cat_PitSegments_Request extends Global.Params {
   format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
+  limit?: number;
   s?: string[];
   v?: boolean;
 }
 
 export type Cat_PitSegments_RequestBody = {
-  pit_id: string[];
+  pit_id: Common.PitId[];
 }
 
 export interface Cat_PitSegments_Response extends ApiResponse {

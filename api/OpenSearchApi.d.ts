@@ -234,6 +234,10 @@ export default class OpenSearchAPI {
     putSettings (params: API.Cluster_PutSettings_Request, callback: callbackFn<API.Cluster_PutSettings_Response>): TransportRequestCallback;
     putSettings (params: API.Cluster_PutSettings_Request, options: TransportRequestOptions, callback: callbackFn<API.Cluster_PutSettings_Response>): TransportRequestCallback;
 
+    describeSettings (params: API.Cluster_DescribeSettings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Cluster_DescribeSettings_Response>;
+    describeSettings (params: API.Cluster_DescribeSettings_Request, callback: callbackFn<API.Cluster_DescribeSettings_Response>): TransportRequestCallback;
+    describeSettings (params: API.Cluster_DescribeSettings_Request, options: TransportRequestOptions, callback: callbackFn<API.Cluster_DescribeSettings_Response>): TransportRequestCallback;
+
     state (params?: API.Cluster_State_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Cluster_State_Response>;
     state (callback: callbackFn<API.Cluster_State_Response>): TransportRequestCallback;
     state (params: API.Cluster_State_Request, callback: callbackFn<API.Cluster_State_Response>): TransportRequestCallback;
@@ -640,13 +644,11 @@ export default class OpenSearchAPI {
   };
 
   ism: {
-    addPolicy (params?: API.Ism_AddPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_AddPolicy_Response>;
-    addPolicy (callback: callbackFn<API.Ism_AddPolicy_Response>): TransportRequestCallback;
+    addPolicy (params: API.Ism_AddPolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_AddPolicy_Response>;
     addPolicy (params: API.Ism_AddPolicy_Request, callback: callbackFn<API.Ism_AddPolicy_Response>): TransportRequestCallback;
     addPolicy (params: API.Ism_AddPolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_AddPolicy_Response>): TransportRequestCallback;
 
-    changePolicy (params?: API.Ism_ChangePolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_ChangePolicy_Response>;
-    changePolicy (callback: callbackFn<API.Ism_ChangePolicy_Response>): TransportRequestCallback;
+    changePolicy (params: API.Ism_ChangePolicy_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Ism_ChangePolicy_Response>;
     changePolicy (params: API.Ism_ChangePolicy_Request, callback: callbackFn<API.Ism_ChangePolicy_Response>): TransportRequestCallback;
     changePolicy (params: API.Ism_ChangePolicy_Request, options: TransportRequestOptions, callback: callbackFn<API.Ism_ChangePolicy_Response>): TransportRequestCallback;
 
@@ -741,6 +743,11 @@ export default class OpenSearchAPI {
     shards (callback: callbackFn<API.List_Shards_Response>): TransportRequestCallback;
     shards (params: API.List_Shards_Request, callback: callbackFn<API.List_Shards_Response>): TransportRequestCallback;
     shards (params: API.List_Shards_Request, options: TransportRequestOptions, callback: callbackFn<API.List_Shards_Response>): TransportRequestCallback;
+
+    wlmStats (params?: API.List_WlmStats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.List_WlmStats_Response>;
+    wlmStats (callback: callbackFn<API.List_WlmStats_Response>): TransportRequestCallback;
+    wlmStats (params: API.List_WlmStats_Request, callback: callbackFn<API.List_WlmStats_Response>): TransportRequestCallback;
+    wlmStats (params: API.List_WlmStats_Request, options: TransportRequestOptions, callback: callbackFn<API.List_WlmStats_Response>): TransportRequestCallback;
 
   };
 
@@ -1466,6 +1473,14 @@ export default class OpenSearchAPI {
     deleteExperiments (params: API.SearchRelevance_DeleteExperiments_Request, callback: callbackFn<API.SearchRelevance_DeleteExperiments_Response>): TransportRequestCallback;
     deleteExperiments (params: API.SearchRelevance_DeleteExperiments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_DeleteExperiments_Response>): TransportRequestCallback;
 
+    patchExperiment (params: API.SearchRelevance_PatchExperiment_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_PatchExperiment_Response>;
+    patchExperiment (params: API.SearchRelevance_PatchExperiment_Request, callback: callbackFn<API.SearchRelevance_PatchExperiment_Response>): TransportRequestCallback;
+    patchExperiment (params: API.SearchRelevance_PatchExperiment_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_PatchExperiment_Response>): TransportRequestCallback;
+
+    validateExperiments (params: API.SearchRelevance_ValidateExperiments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_ValidateExperiments_Response>;
+    validateExperiments (params: API.SearchRelevance_ValidateExperiments_Request, callback: callbackFn<API.SearchRelevance_ValidateExperiments_Response>): TransportRequestCallback;
+    validateExperiments (params: API.SearchRelevance_ValidateExperiments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_ValidateExperiments_Response>): TransportRequestCallback;
+
     getScheduledExperiments (params?: API.SearchRelevance_GetScheduledExperiments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_GetScheduledExperiments_Response>;
     getScheduledExperiments (callback: callbackFn<API.SearchRelevance_GetScheduledExperiments_Response>): TransportRequestCallback;
     getScheduledExperiments (params: API.SearchRelevance_GetScheduledExperiments_Request, callback: callbackFn<API.SearchRelevance_GetScheduledExperiments_Response>): TransportRequestCallback;
@@ -1498,6 +1513,14 @@ export default class OpenSearchAPI {
     deleteJudgments (params: API.SearchRelevance_DeleteJudgments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_DeleteJudgments_Response>;
     deleteJudgments (params: API.SearchRelevance_DeleteJudgments_Request, callback: callbackFn<API.SearchRelevance_DeleteJudgments_Response>): TransportRequestCallback;
     deleteJudgments (params: API.SearchRelevance_DeleteJudgments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_DeleteJudgments_Response>): TransportRequestCallback;
+
+    updateJudgmentRatings (params: API.SearchRelevance_UpdateJudgmentRatings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_UpdateJudgmentRatings_Response>;
+    updateJudgmentRatings (params: API.SearchRelevance_UpdateJudgmentRatings_Request, callback: callbackFn<API.SearchRelevance_UpdateJudgmentRatings_Response>): TransportRequestCallback;
+    updateJudgmentRatings (params: API.SearchRelevance_UpdateJudgmentRatings_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_UpdateJudgmentRatings_Response>): TransportRequestCallback;
+
+    retryJudgments (params: API.SearchRelevance_RetryJudgments_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_RetryJudgments_Response>;
+    retryJudgments (params: API.SearchRelevance_RetryJudgments_Request, callback: callbackFn<API.SearchRelevance_RetryJudgments_Response>): TransportRequestCallback;
+    retryJudgments (params: API.SearchRelevance_RetryJudgments_Request, options: TransportRequestOptions, callback: callbackFn<API.SearchRelevance_RetryJudgments_Response>): TransportRequestCallback;
 
     getQuerySets (params?: API.SearchRelevance_GetQuerySets_Request, options?: TransportRequestOptions): TransportRequestPromise<API.SearchRelevance_GetQuerySets_Response>;
     getQuerySets (callback: callbackFn<API.SearchRelevance_GetQuerySets_Response>): TransportRequestCallback;
@@ -1582,6 +1605,10 @@ export default class OpenSearchAPI {
     patchActionGroups (params: API.Security_PatchActionGroups_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_PatchActionGroups_Response>;
     patchActionGroups (params: API.Security_PatchActionGroups_Request, callback: callbackFn<API.Security_PatchActionGroups_Response>): TransportRequestCallback;
     patchActionGroups (params: API.Security_PatchActionGroups_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_PatchActionGroups_Response>): TransportRequestCallback;
+
+    createActionGroups (params: API.Security_CreateActionGroups_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_CreateActionGroups_Response>;
+    createActionGroups (params: API.Security_CreateActionGroups_Request, callback: callbackFn<API.Security_CreateActionGroups_Response>): TransportRequestCallback;
+    createActionGroups (params: API.Security_CreateActionGroups_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_CreateActionGroups_Response>): TransportRequestCallback;
 
     deleteActionGroup (params: API.Security_DeleteActionGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_DeleteActionGroup_Response>;
     deleteActionGroup (params: API.Security_DeleteActionGroup_Request, callback: callbackFn<API.Security_DeleteActionGroup_Response>): TransportRequestCallback;
@@ -1745,6 +1772,10 @@ export default class OpenSearchAPI {
     patchRoleMappings (params: API.Security_PatchRoleMappings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_PatchRoleMappings_Response>;
     patchRoleMappings (params: API.Security_PatchRoleMappings_Request, callback: callbackFn<API.Security_PatchRoleMappings_Response>): TransportRequestCallback;
     patchRoleMappings (params: API.Security_PatchRoleMappings_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_PatchRoleMappings_Response>): TransportRequestCallback;
+
+    createRoleMappings (params: API.Security_CreateRoleMappings_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_CreateRoleMappings_Response>;
+    createRoleMappings (params: API.Security_CreateRoleMappings_Request, callback: callbackFn<API.Security_CreateRoleMappings_Response>): TransportRequestCallback;
+    createRoleMappings (params: API.Security_CreateRoleMappings_Request, options: TransportRequestOptions, callback: callbackFn<API.Security_CreateRoleMappings_Response>): TransportRequestCallback;
 
     deleteRoleMapping (params: API.Security_DeleteRoleMapping_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Security_DeleteRoleMapping_Response>;
     deleteRoleMapping (params: API.Security_DeleteRoleMapping_Request, callback: callbackFn<API.Security_DeleteRoleMapping_Response>): TransportRequestCallback;
@@ -2089,6 +2120,11 @@ export default class OpenSearchAPI {
   };
 
   wlm: {
+    stats (params?: API.Wlm_Stats_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Wlm_Stats_Response>;
+    stats (callback: callbackFn<API.Wlm_Stats_Response>): TransportRequestCallback;
+    stats (params: API.Wlm_Stats_Request, callback: callbackFn<API.Wlm_Stats_Response>): TransportRequestCallback;
+    stats (params: API.Wlm_Stats_Request, options: TransportRequestOptions, callback: callbackFn<API.Wlm_Stats_Response>): TransportRequestCallback;
+
     getQueryGroup (params?: API.Wlm_GetQueryGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Wlm_GetQueryGroup_Response>;
     getQueryGroup (callback: callbackFn<API.Wlm_GetQueryGroup_Response>): TransportRequestCallback;
     getQueryGroup (params: API.Wlm_GetQueryGroup_Request, callback: callbackFn<API.Wlm_GetQueryGroup_Response>): TransportRequestCallback;
@@ -2105,6 +2141,23 @@ export default class OpenSearchAPI {
     updateQueryGroup (params: API.Wlm_UpdateQueryGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Wlm_UpdateQueryGroup_Response>;
     updateQueryGroup (params: API.Wlm_UpdateQueryGroup_Request, callback: callbackFn<API.Wlm_UpdateQueryGroup_Response>): TransportRequestCallback;
     updateQueryGroup (params: API.Wlm_UpdateQueryGroup_Request, options: TransportRequestOptions, callback: callbackFn<API.Wlm_UpdateQueryGroup_Response>): TransportRequestCallback;
+
+    getWorkloadGroup (params?: API.Wlm_GetWorkloadGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Wlm_GetWorkloadGroup_Response>;
+    getWorkloadGroup (callback: callbackFn<API.Wlm_GetWorkloadGroup_Response>): TransportRequestCallback;
+    getWorkloadGroup (params: API.Wlm_GetWorkloadGroup_Request, callback: callbackFn<API.Wlm_GetWorkloadGroup_Response>): TransportRequestCallback;
+    getWorkloadGroup (params: API.Wlm_GetWorkloadGroup_Request, options: TransportRequestOptions, callback: callbackFn<API.Wlm_GetWorkloadGroup_Response>): TransportRequestCallback;
+
+    createWorkloadGroup (params: API.Wlm_CreateWorkloadGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Wlm_CreateWorkloadGroup_Response>;
+    createWorkloadGroup (params: API.Wlm_CreateWorkloadGroup_Request, callback: callbackFn<API.Wlm_CreateWorkloadGroup_Response>): TransportRequestCallback;
+    createWorkloadGroup (params: API.Wlm_CreateWorkloadGroup_Request, options: TransportRequestOptions, callback: callbackFn<API.Wlm_CreateWorkloadGroup_Response>): TransportRequestCallback;
+
+    deleteWorkloadGroup (params: API.Wlm_DeleteWorkloadGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Wlm_DeleteWorkloadGroup_Response>;
+    deleteWorkloadGroup (params: API.Wlm_DeleteWorkloadGroup_Request, callback: callbackFn<API.Wlm_DeleteWorkloadGroup_Response>): TransportRequestCallback;
+    deleteWorkloadGroup (params: API.Wlm_DeleteWorkloadGroup_Request, options: TransportRequestOptions, callback: callbackFn<API.Wlm_DeleteWorkloadGroup_Response>): TransportRequestCallback;
+
+    updateWorkloadGroup (params: API.Wlm_UpdateWorkloadGroup_Request, options?: TransportRequestOptions): TransportRequestPromise<API.Wlm_UpdateWorkloadGroup_Response>;
+    updateWorkloadGroup (params: API.Wlm_UpdateWorkloadGroup_Request, callback: callbackFn<API.Wlm_UpdateWorkloadGroup_Response>): TransportRequestCallback;
+    updateWorkloadGroup (params: API.Wlm_UpdateWorkloadGroup_Request, options: TransportRequestOptions, callback: callbackFn<API.Wlm_UpdateWorkloadGroup_Response>): TransportRequestCallback;
 
   };
 

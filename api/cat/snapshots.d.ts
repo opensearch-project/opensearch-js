@@ -26,6 +26,7 @@ export interface Cat_Snapshots_Request extends Global.Params {
   h?: string[];
   help?: boolean;
   ignore_unavailable?: boolean;
+  limit?: number;
   master_timeout?: Common.Duration;
   repository?: Common.Names;
   s?: string[];

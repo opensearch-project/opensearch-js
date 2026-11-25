@@ -30,6 +30,7 @@ export interface Cat_Indices_Request extends Global.Params {
   help?: boolean;
   include_unloaded_segments?: boolean;
   index?: Common.Indices;
+  limit?: number;
   local?: boolean;
   master_timeout?: Common.Duration;
   pri?: boolean;

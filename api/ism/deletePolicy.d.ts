@@ -15,11 +15,13 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Ism_Common from '../_types/ism._common'
 
 export interface Ism_DeletePolicy_Request extends Global.Params {
   policy_id: string;
+  refresh?: Common.Refresh;
 }
 
 export interface Ism_DeletePolicy_Response extends ApiResponse {

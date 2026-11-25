@@ -25,12 +25,13 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Search-Relevance
  *
  * @param {object} [params]
- * @param {string} [params.flat_stat_paths] - Requests flattened stat paths as keys
- * @param {string} [params.include_all_nodes] - Whether to include all nodes
- * @param {string} [params.include_individual_nodes] - Whether to include individual nodes
- * @param {string} [params.include_info] - Whether to include info
- * @param {string} [params.include_metadata] - Whether to include metadata
- * @param {string} [params.stat] - The statistic to return
+ * @param {boolean} [params.flat_stat_paths] - Requests flattened stat paths as keys
+ * @param {boolean} [params.include_all_nodes] - Whether to include all nodes
+ * @param {boolean} [params.include_individual_nodes] - Whether to include individual nodes
+ * @param {boolean} [params.include_info] - Whether to include info
+ * @param {boolean} [params.include_metadata] - Whether to include metadata
+ * @param {string} [params.timeout] - The amount of time to wait for a response.
+ * @param {string} [params.stat] - A comma-separated list of statistics to return. Valid values: `cluster_version`, `import_judgment_rating_generations`, `llm_judgment_rating_generations`, `ubi_judgment_rating_generations`, `experiment_executions`, `experiment_pairwise_comparison_executions`, `experiment_pointwise_evaluation_executions`, `experiment_hybrid_optimizer_executions`.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

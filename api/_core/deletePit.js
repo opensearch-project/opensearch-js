@@ -20,6 +20,8 @@ const { normalizeArguments } = require('../utils');
 
 /**
  * Deletes one or more point in time searches based on the IDs passed.
+The response lists each PIT with `successful`. The server can answer 200 while some entries report `successful: false`.
+Those PITs were not deleted and stay open until their `keep_alive` runs out.
  * <br/> See Also: {@link https://docs.opensearch.org/latest/api-reference/search-apis/point-in-time-api/#delete-pits - delete_pit}
  *
  * @memberOf API-Core

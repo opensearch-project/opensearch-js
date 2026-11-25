@@ -32,6 +32,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+ * @param {number} [params.limit] - The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {string} [params.time] - Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://docs.opensearch.org/latest/api-reference/units/).
  * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.

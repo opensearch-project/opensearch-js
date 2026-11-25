@@ -25,6 +25,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Search-Relevance
  *
  * @param {object} [params]
+ * @param {string} [params.query_text] - A query text for visualizing experiment results. Accepted but currently does not change the response.
  * @param {string} [params.experiment_id] - The experiment id
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

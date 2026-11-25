@@ -20,8 +20,9 @@ import * as Global from '../_types/_global'
 import * as Ism_Common from '../_types/ism._common'
 
 export interface Ism_AddPolicy_Request extends Global.Params {
-  body?: Ism_Common.AddPolicyRequest;
+  body: Ism_Common.AddPolicyRequest;
   index?: Common.Indices;
+  type?: string;
 }
 
 export interface Ism_AddPolicy_Response extends ApiResponse {

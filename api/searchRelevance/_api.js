@@ -35,6 +35,7 @@ const getScheduledExperimentsFn = require('./getScheduledExperiments');
 const getSearchConfigurationsFn = require('./getSearchConfigurations');
 const getStatsFn = require('./getStats');
 const judgmentsSearchFn = require('./judgmentsSearch');
+const patchExperimentFn = require('./patchExperiment');
 const postQuerySetsFn = require('./postQuerySets');
 const postScheduledExperimentsFn = require('./postScheduledExperiments');
 const putExperimentsFn = require('./putExperiments');
@@ -42,7 +43,10 @@ const putJudgmentsFn = require('./putJudgments');
 const putQuerySetsFn = require('./putQuerySets');
 const putSearchConfigurationsFn = require('./putSearchConfigurations');
 const querySetsSearchFn = require('./querySetsSearch');
+const retryJudgmentsFn = require('./retryJudgments');
 const searchConfigurationsSearchFn = require('./searchConfigurationsSearch');
+const updateJudgmentRatingsFn = require('./updateJudgmentRatings');
+const validateExperimentsFn = require('./validateExperiments');
 
 function SearchRelevanceApi(bindObj) {
   this.deleteExperiments = deleteExperimentsFn.bind(bindObj);
@@ -59,6 +63,7 @@ function SearchRelevanceApi(bindObj) {
   this.getSearchConfigurations = getSearchConfigurationsFn.bind(bindObj);
   this.getStats = getStatsFn.bind(bindObj);
   this.judgmentsSearch = judgmentsSearchFn.bind(bindObj);
+  this.patchExperiment = patchExperimentFn.bind(bindObj);
   this.postQuerySets = postQuerySetsFn.bind(bindObj);
   this.postScheduledExperiments = postScheduledExperimentsFn.bind(bindObj);
   this.putExperiments = putExperimentsFn.bind(bindObj);
@@ -66,7 +71,10 @@ function SearchRelevanceApi(bindObj) {
   this.putQuerySets = putQuerySetsFn.bind(bindObj);
   this.putSearchConfigurations = putSearchConfigurationsFn.bind(bindObj);
   this.querySetsSearch = querySetsSearchFn.bind(bindObj);
+  this.retryJudgments = retryJudgmentsFn.bind(bindObj);
   this.searchConfigurationsSearch = searchConfigurationsSearchFn.bind(bindObj);
+  this.updateJudgmentRatings = updateJudgmentRatingsFn.bind(bindObj);
+  this.validateExperiments = validateExperimentsFn.bind(bindObj);
 
   // Deprecated: Use deleteExperiments instead.
   this.delete_experiments = deleteExperimentsFn.bind(bindObj);
@@ -96,6 +104,8 @@ function SearchRelevanceApi(bindObj) {
   this.get_stats = getStatsFn.bind(bindObj);
   // Deprecated: Use judgmentsSearch instead.
   this.judgments_search = judgmentsSearchFn.bind(bindObj);
+  // Deprecated: Use patchExperiment instead.
+  this.patch_experiment = patchExperimentFn.bind(bindObj);
   // Deprecated: Use postQuerySets instead.
   this.post_query_sets = postQuerySetsFn.bind(bindObj);
   // Deprecated: Use postScheduledExperiments instead.
@@ -110,8 +120,14 @@ function SearchRelevanceApi(bindObj) {
   this.put_search_configurations = putSearchConfigurationsFn.bind(bindObj);
   // Deprecated: Use querySetsSearch instead.
   this.query_sets_search = querySetsSearchFn.bind(bindObj);
+  // Deprecated: Use retryJudgments instead.
+  this.retry_judgments = retryJudgmentsFn.bind(bindObj);
   // Deprecated: Use searchConfigurationsSearch instead.
   this.search_configurations_search = searchConfigurationsSearchFn.bind(bindObj);
+  // Deprecated: Use updateJudgmentRatings instead.
+  this.update_judgment_ratings = updateJudgmentRatingsFn.bind(bindObj);
+  // Deprecated: Use validateExperiments instead.
+  this.validate_experiments = validateExperimentsFn.bind(bindObj);
 }
 
 module.exports = SearchRelevanceApi;

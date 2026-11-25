@@ -30,7 +30,7 @@ export type AllocationStore = {
   in_sync: boolean;
   matching_size_in_bytes: Common.ByteCount;
   matching_sync_id: boolean;
-  store_exception: string;
+  store_exception?: Common.ErrorCause;
 }
 
 export type ClusterInfo = {

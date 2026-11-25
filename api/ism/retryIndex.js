@@ -25,7 +25,10 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @memberOf API-Ism
  *
  * @param {object} [params]
+ * @param {string} [params.cluster_manager_timeout] - Operation timeout for connection to cluster-manager node.
  * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+ * @param {string} [params.master_timeout] DEPRECATED - Operation timeout for connection to cluster-manager node.
+ * @param {string} [params.type=_default] - The type of the index metadata provider.
  * @param {object} [params.body] 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}

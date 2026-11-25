@@ -21,7 +21,10 @@ import * as Ism_Common from '../_types/ism._common'
 
 export interface Ism_RetryIndex_Request extends Global.Params {
   body?: Ism_Common.RetryIndexRequest;
+  cluster_manager_timeout?: Common.Duration;
   index?: Common.Indices;
+  master_timeout?: Common.Duration;
+  type?: string;
 }
 
 export interface Ism_RetryIndex_Response extends ApiResponse {

@@ -15,6 +15,7 @@
  */
 
 import { ApiResponse } from '../../lib/Transport'
+import * as Common from '../_types/_common'
 import * as Global from '../_types/_global'
 import * as Notifications_Common from '../_types/notifications._common'
 
@@ -27,7 +28,7 @@ export interface Notifications_ListChannels_Response extends ApiResponse {
 export type Notifications_ListChannels_ResponseBody = {
   channel_list?: Notifications_Common.NotificationChannel[];
   start_index?: number;
-  total_hit_relation?: Notifications_Common.TotalHitRelation;
+  total_hit_relation?: Common.TotalHitsRelation;
   total_hits?: number;
 }
 

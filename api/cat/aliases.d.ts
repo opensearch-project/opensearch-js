@@ -25,6 +25,7 @@ export interface Cat_Aliases_Request extends Global.Params {
   format?: Cat_Common.ResponseFormat;
   h?: string[];
   help?: boolean;
+  limit?: number;
   local?: boolean;
   name?: Common.Names;
   s?: string[];

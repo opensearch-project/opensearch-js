@@ -267,7 +267,29 @@ export type MemoryStatsBase = {
   used_in_bytes?: Common.ByteCount;
 }
 
-export type Metric = '_all' | 'adaptive_selection' | 'admission_control' | 'breaker' | 'caches' | 'cluster_manager_throttling' | 'discovery' | 'file_cache' | 'fs' | 'http' | 'indexing_pressure' | 'indices' | 'ingest' | 'jvm' | 'os' | 'process' | 'repositories' | 'resource_usage_stats' | 'script' | 'script_cache' | 'search_backpressure' | 'search_pipeline' | 'segment_replication_backpressure' | 'shard_indexing_pressure' | 'task_cancellation' | 'thread_pool' | 'transport' | 'weighted_routing'
+export type Metric = '_all' | 'adaptive_selection' | 'admission_control' | 'breaker' | 'caches' | 'cluster_manager_throttling' | 'discovery' | 'file_cache' | 'fs' | 'http' | 'indexing_pressure' | 'indices' | 'ingest' | 'jvm' | 'native_allocator' | 'native_memory' | 'os' | 'process' | 'remote_store' | 'repositories' | 'resource_usage_stats' | 'script' | 'script_cache' | 'search_backpressure' | 'search_pipeline' | 'segment_replication_backpressure' | 'shard_indexing_pressure' | 'task_cancellation' | 'thread_pool' | 'transport' | 'weighted_routing'
+
+export type NativeMemory = {
+  analytics_backend?: NativeMemoryAnalyticsBackend;
+  native_allocator?: NativeMemoryAllocator;
+  total_estimated_bytes?: Common.ByteCount;
+}
+
+export type NativeMemoryAllocator = {
+  pools?: Record<string, NativeMemoryAllocatorPool>;
+  root?: NativeMemoryAllocatorPool;
+}
+
+export type NativeMemoryAllocatorPool = {
+  allocated_bytes?: Common.ByteCount;
+  limit_bytes?: Common.ByteCount;
+  peak_bytes?: Common.ByteCount;
+}
+
+export type NativeMemoryAnalyticsBackend = {
+  allocated_bytes?: Common.ByteCount;
+  resident_bytes?: Common.ByteCount;
+}
 
 export type NodeBufferPool = {
   count?: number;
@@ -558,10 +580,19 @@ export type ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats = {
   rolling_avg_bytes?: Common.ByteCount;
 }
 
+export type ShardSearchBackpressureTaskResourceTrackerNativeMemoryUsageTrackerStats = {
+  cancellation_count?: number;
+  current_avg?: Common.HumanReadableByteCount;
+  current_avg_bytes?: Common.ByteCount;
+  current_max?: Common.HumanReadableByteCount;
+  current_max_bytes?: Common.ByteCount;
+}
+
 export type ShardSearchBackpressureTaskResourceTrackerStats = {
   cpu_usage_tracker?: ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats;
   elapsed_time_tracker?: ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats;
   heap_usage_tracker?: ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats;
+  native_memory_usage_tracker?: ShardSearchBackpressureTaskResourceTrackerNativeMemoryUsageTrackerStats;
 }
 
 export type ShardSearchBackpressureTaskStats = {
@@ -658,6 +689,7 @@ export type Stats = {
   ip?: Common.Ip | Common.Ip[];
   jvm?: Jvm;
   name?: Common.Name;
+  native_memory?: NativeMemory;
   os?: OperatingSystem;
   process?: Process;
   remote_store?: RemoteStoreStats;

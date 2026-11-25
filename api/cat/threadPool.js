@@ -30,6 +30,7 @@ By default the active, queued, and rejected statistics are returned for all thre
  * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
+ * @param {number} [params.limit] - The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
  * @param {boolean} [params.local=false] - Returns local information but does not retrieve the state from the cluster manager node.
  * @param {string} [params.master_timeout] DEPRECATED - The amount of time allowed to establish a connection to the cluster manager node.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.

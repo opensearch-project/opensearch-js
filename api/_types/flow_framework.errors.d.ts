@@ -17,12 +17,10 @@
 
 export type BadRequestError = {
   error?: string;
-  status?: number;
 }
 
 export type ConflictError = {
   error?: string;
-  status?: number;
 }
 
 export type DeprovisioningError = {
@@ -35,22 +33,18 @@ export type DeprovisioningForbiddenError = {
 
 export type DuplicateKeyError = {
   error?: string;
-  status?: number;
 }
 
 export type FlowFrameworkAPIDisabledError = {
   error?: string;
-  status?: number;
 }
 
 export type InvalidParameterError = {
   error?: string;
-  status?: number;
 }
 
 export type InvalidRequestBodyFieldError = {
   error?: string;
-  status?: number;
 }
 
 export type InvalidTemplateVersionError = {
@@ -58,28 +52,23 @@ export type InvalidTemplateVersionError = {
 }
 
 export type MaxWorkflowsLimitError = {
-  code?: number;
   error?: string;
 }
 
 export type MissingParameterError = {
   error?: string;
-  status?: number;
 }
 
 export type ParameterConflictError = {
   error?: string;
-  status?: number;
 }
 
 export type RequestBodyParsingFailedError = {
   error?: string;
-  status?: number;
 }
 
 export type RequestTimeoutError = {
   error?: string;
-  status?: number;
 }
 
 export type TemplateNameRequiredError = {
@@ -87,7 +76,6 @@ export type TemplateNameRequiredError = {
 }
 
 export type TemplateNotFoundError = {
-  code?: number;
   error?: string;
 }
 
@@ -97,7 +85,6 @@ export type UnsupportedFieldUpdateError = {
 
 export type WorkFlowIdNullError = {
   error?: string;
-  status?: number;
 }
 
 export type WorkflowParsingError = {
@@ -106,11 +93,9 @@ export type WorkflowParsingError = {
 
 export type WorkflowSaveError = {
   error?: string;
-  status?: number;
 }
 
 export type WorkflowStepsRetrieveError = {
-  code?: number;
   error?: string;
 }
 

@@ -20,10 +20,11 @@ import * as Global from '../_types/_global'
 import * as Ism_Common from '../_types/ism._common'
 
 export interface Ism_PutPolicies_Request extends Global.Params {
-  body?: Ism_Common.PutPolicyRequest;
+  body: Ism_Common.PutPolicyRequest;
   if_primary_term?: number;
   if_seq_no?: Common.SequenceNumber;
   policyID: string;
+  refresh?: Common.Refresh;
 }
 
 export interface Ism_PutPolicies_Response extends ApiResponse {

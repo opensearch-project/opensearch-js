@@ -453,6 +453,7 @@ export type NeuralQuery = QueryBase & {
   filter?: QueryContainer;
   k?: number;
   max_distance?: number;
+  method_parameters?: Record<string, any>;
   min_score?: number;
   model_id?: string;
   query_image?: string;

@@ -26,6 +26,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @param {object} [params]
  * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+ * @param {string} [params.type=_default] - The type of the index metadata provider.
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response

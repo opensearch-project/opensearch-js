@@ -29,6 +29,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.format=text] - A short version of the `Accept` header, such as `json` or `yaml`.
  * @param {array} [params.h] - A comma-separated list of column names to display.
  * @param {boolean} [params.help=false] - Returns help information.
+ * @param {number} [params.limit] - The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
  * @param {boolean} [params.local=false] - Whether to return information from the local node only instead of from the cluster manager node.
  * @param {array} [params.s] - A comma-separated list of column names or column aliases to sort by.
  * @param {boolean} [params.v=false] - Enables verbose mode, which displays column headers.

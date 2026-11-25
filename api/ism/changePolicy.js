@@ -16,7 +16,7 @@
 
 'use strict';
 
-const { normalizeArguments, parsePathParam } = require('../utils');
+const { normalizeArguments, parsePathParam, handleMissingParam } = require('../utils');
 
 /**
  * Updates the managed index policy to a new policy.
@@ -24,9 +24,10 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  *
  * @memberOf API-Ism
  *
- * @param {object} [params]
+ * @param {object} params
  * @param {string} [params.index] - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
- * @param {object} [params.body] 
+ * @param {string} [params.type=_default] - The type of the index metadata provider.
+ * @param {object} params.body 
  *
  * @param {TransportRequestOptions} [options] - Options for {@link Transport#request}
  * @param {function} [callback] - Callback that handles errors and response
@@ -35,13 +36,13 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  */
 function changePolicyFunc(params, options, callback) {
   [params, options, callback] = normalizeArguments(params, options, callback);
+  if (params.body == null) return handleMissingParam('body', this, callback);
 
   let { body, index, ...querystring } = params;
   index = parsePathParam(index);
 
   const path = ['/_plugins/_ism/change_policy', index].filter(c => c != null).join('/');
   const method = 'POST';
-  body = body || '';
 
   return this.transport.request({ method, path, querystring, body }, options, callback);
 }

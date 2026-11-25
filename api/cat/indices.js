@@ -33,6 +33,7 @@ const { normalizeArguments, parsePathParam } = require('../utils');
  * @param {string} [params.health] - Limits indexes based on their health status. Supported values are `green`, `yellow`, and `red`.
  * @param {boolean} [params.help=false] - Returns help information.
  * @param {boolean} [params.include_unloaded_segments=false] - Whether to include information from segments not loaded into memory.
+ * @param {number} [params.limit] - The maximum number of rows to return. Must be greater than 0. Applied after sorting (`s`).
  * @param {boolean} [params.local=false] - Returns local information but does not retrieve the state from the cluster manager node.
  * @param {string} [params.master_timeout] DEPRECATED - The amount of time allowed to establish a connection to the cluster manager node.
  * @param {boolean} [params.pri=false] - When `true`, returns information only from the primary shards.

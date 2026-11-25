@@ -20,13 +20,14 @@ import * as Global from '../_types/_global'
 import * as Nodes_Common from '../_types/nodes._common'
 
 export interface SearchRelevance_GetNodeStats_Request extends Global.Params {
-  flat_stat_paths?: string;
-  include_all_nodes?: string;
-  include_individual_nodes?: string;
-  include_info?: string;
-  include_metadata?: string;
+  flat_stat_paths?: boolean;
+  include_all_nodes?: boolean;
+  include_individual_nodes?: boolean;
+  include_info?: boolean;
+  include_metadata?: boolean;
   node_id: string;
   stat?: string;
+  timeout?: Common.Duration;
 }
 
 export interface SearchRelevance_GetNodeStats_Response extends ApiResponse {

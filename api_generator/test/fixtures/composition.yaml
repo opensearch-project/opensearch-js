@@ -1,0 +1,183 @@
+# Composition shapes taken from the bundled OpenSearch API spec
+# (opensearch-api-specification@1e288d2, https://api-spec.opensearch.org/opensearch-openapi.yaml).
+# MetricAggregationBase, TermsAggregationFields and TermsLookup are copied verbatim (descriptions dropped).
+# AggregationContainer keeps the real structure with two of its 65 branches: one inline, one $ref -> allOf.
+# Everything else is a minimal stub so the fixture renders on its own.
+
+_common:
+  Field:
+    type: string
+  Id:
+    type: string
+  IndexName:
+    type: string
+  Routing:
+    type: string
+  FieldValue:
+    oneOf:
+      - type: string
+      - type: number
+      - type: boolean
+  Script:
+    type: object
+    properties:
+      source:
+        type: string
+  Metadata:
+    type: object
+    additionalProperties: true
+
+_common.aggregations:
+  Aggregation:
+    type: object
+    properties:
+      meta:
+        $ref: '#/components/schemas/_common___Metadata'
+  BucketAggregationBase:
+    type: object
+    properties:
+      aggregations:
+        type: object
+        additionalProperties:
+          $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
+  AverageAggregation:
+    allOf:
+      - $ref: '#/components/schemas/_common.aggregations___MetricAggregationBase'
+  HistogramAggregationFields:
+    type: object
+    properties:
+      interval:
+        type: number
+  HistogramAggregation:
+    allOf:
+      - $ref: '#/components/schemas/_common.aggregations___BucketAggregationBase'
+      - type: object
+        properties:
+          histogram:
+            $ref: '#/components/schemas/_common.aggregations___HistogramAggregationFields'
+        required: [histogram]
+  AggregationContainer:
+    allOf:
+      - $ref: '#/components/schemas/_common.aggregations___Aggregation'
+      - type: object
+        oneOf:
+          - properties:
+              avg:
+                $ref: '#/components/schemas/_common.aggregations___AverageAggregation'
+            required: [avg]
+          - $ref: '#/components/schemas/_common.aggregations___HistogramAggregation'
+  MetricAggregationBase:
+    allOf:
+      - type: object
+        properties:
+          missing:
+            $ref: '#/components/schemas/_common___FieldValue'
+      - anyOf:
+          - type: object
+            properties:
+              field:
+                $ref: '#/components/schemas/_common___Field'
+          - type: object
+            properties:
+              script:
+                $ref: '#/components/schemas/_common___Script'
+  TermsAggregationCollectMode:
+    type: string
+    enum: [breadth_first, depth_first]
+  TermsAggregationExecutionHint:
+    type: string
+    enum: [global_ordinals, map]
+  TermsExclude:
+    type: string
+  TermsInclude:
+    type: string
+  ValueType:
+    type: string
+  AggregateOrder:
+    type: object
+    additionalProperties:
+      type: string
+  TermsAggregationFields:
+    allOf:
+      - type: object
+        properties:
+          collect_mode:
+            $ref: '#/components/schemas/_common.aggregations___TermsAggregationCollectMode'
+          exclude:
+            $ref: '#/components/schemas/_common.aggregations___TermsExclude'
+          execution_hint:
+            $ref: '#/components/schemas/_common.aggregations___TermsAggregationExecutionHint'
+          include:
+            $ref: '#/components/schemas/_common.aggregations___TermsInclude'
+          min_doc_count:
+            type: integer
+            format: int64
+          missing:
+            $ref: '#/components/schemas/_common___FieldValue'
+          value_type:
+            $ref: '#/components/schemas/_common.aggregations___ValueType'
+          order:
+            $ref: '#/components/schemas/_common.aggregations___AggregateOrder'
+          shard_size:
+            type: integer
+            format: int32
+          shard_min_doc_count:
+            type: integer
+            format: int64
+          show_term_doc_count_error:
+            type: boolean
+          size:
+            type: integer
+            format: int32
+          format:
+            type: string
+      - anyOf:
+          - type: object
+            properties:
+              field:
+                $ref: '#/components/schemas/_common___Field'
+          - type: object
+            properties:
+              script:
+                $ref: '#/components/schemas/_common___Script'
+
+_common.query_dsl:
+  QueryContainer:
+    type: object
+    properties:
+      match_all:
+        type: object
+  TermsLookup:
+    type: object
+    properties:
+      index:
+        $ref: '#/components/schemas/_common___IndexName'
+      id:
+        $ref: '#/components/schemas/_common___Id'
+      path:
+        $ref: '#/components/schemas/_common___Field'
+      routing:
+        $ref: '#/components/schemas/_common___Routing'
+      query:
+        $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+        x-version-added: 3.2.0
+      store:
+        type: boolean
+    required:
+      - index
+      - path
+    allOf:
+      - oneOf:
+          - type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/_common___Id'
+            required:
+              - id
+          - type: object
+            properties:
+              query:
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+            required:
+              - query
+            x-version-added: 3.2.0

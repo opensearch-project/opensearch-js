@@ -36,3 +36,7 @@ expectType<string>(serializer.serialize({}));
 expectType<any>(serializer.deserialize(''));
 expectType<string>(serializer.ndserialize([]));
 expectType<string>(serializer.qserialize({}));
+
+expectType<Serializer>(
+  new Serializer({ disablePrototypePoisoningProtection: 'remove', enableLongNumeralSupport: false })
+);

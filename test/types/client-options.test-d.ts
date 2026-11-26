@@ -678,3 +678,21 @@ expectError<errors.ConfigurationError>(
     proxy: 42,
   })
 );
+
+/**
+ * `disablePrototypePoisoningProtection` option
+ */
+expectType<Client>(
+  new Client({
+    node: 'http://localhost:9200',
+    disablePrototypePoisoningProtection: 'remove',
+  })
+);
+
+expectError<errors.ConfigurationError>(
+  // @ts-expect-error
+  new Client({
+    node: 'http://localhost:9200',
+    disablePrototypePoisoningProtection: 'delete',
+  })
+);

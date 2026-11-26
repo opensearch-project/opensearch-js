@@ -97,7 +97,7 @@ interface ClientOptions {
     username?: string;
     password?: string;
   };
-  disablePrototypePoisoningProtection?: boolean | 'proto' | 'constructor';
+  disablePrototypePoisoningProtection?: boolean | 'proto' | 'constructor' | 'remove';
   memoryCircuitBreaker?: MemoryCircuitBreakerOptions;
   enableLongNumeralSupport?: boolean;
 }

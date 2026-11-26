@@ -14,6 +14,10 @@ import type ApiFunction from '../../spec_parser/ApiFunction'
 import type Namespace from '../../spec_parser/Namespace'
 import ApiPath from '../../spec_parser/ApiPath'
 
+// These accept POST and PUT on every path, and the optional path param (index) only sets a default target,
+// so they always use POST. Some services, such as Amazon OpenSearch Serverless, do not accept PUT for them.
+const ALWAYS_POST_FUNCTIONS = new Set(['bulk', 'bulk_stream'])
+
 export default class FunctionFileRenderer extends BaseRenderer {
   protected template_file = 'function.mustache'
   private readonly func: ApiFunction
@@ -70,6 +74,7 @@ export default class FunctionFileRenderer extends BaseRenderer {
     const verbs = Array.from(this.func.http_verbs).sort()
     if (_.isEqual(verbs, ['GET', 'POST'])) return "body ? 'POST' : 'GET'"
     if (_.isEqual(verbs, ['POST', 'PUT'])) {
+      if (ALWAYS_POST_FUNCTIONS.has(this.func.full_name)) return "'POST'"
       const optional = (_.values(this.func.path_params)).find((p) => !p.required)?.name
       if (optional == null) return "'POST'"
       return `${optional} == null ? 'POST' : 'PUT'`
